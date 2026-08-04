@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-04T19:21:01.504Z",
+  "generatedAt": "2026-08-04T19:24:33.452Z",
   "counts": {
-    "components": 84,
-    "ready": 84,
+    "components": 100,
+    "ready": 100,
     "layouts": 0
   },
   "categories": [
@@ -659,6 +659,166 @@
       "code": "/**\n * DateRangePickerSimple\n * Template Maker — özel bileşen (HTML'den TSX'e dönüştürüldü)\n * Basit, bağımsız tarih aralığı seçici (takvim + aralık vurgusu + temizle).\n * @id 088\n * @category Takvim\n */\nimport { useMemo, useState } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface DateRangePickerSimpleProps {\n  className?: string\n  /** Başlangıç ve bitiş tarihi (opsiyonel, kontrollü) */\n  value?: { start: Date | null; end: Date | null }\n  /** Seçim değiştiğinde çağrılır */\n  onChange?: (range: { start: Date | null; end: Date | null }) => void\n}\n\nconst DAY_NAMES = [\"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\", \"Sat\", \"Sun\"]\nconst MONTH_NAMES = [\"January\", \"February\", \"March\", \"April\", \"May\", \"June\", \"July\", \"August\", \"September\", \"October\", \"November\", \"December\"]\n\ntype Cell = { day: number; month: number; year: number; other: boolean }\n\nfunction buildCells(view: Date): Cell[] {\n  const firstDay = new Date(view.getFullYear(), view.getMonth(), 1)\n  const startOffset = (firstDay.getDay() + 6) % 7 // Pazartesi=0\n  const daysInMonth = new Date(view.getFullYear(), view.getMonth() + 1, 0).getDate()\n  const prevDays = new Date(view.getFullYear(), view.getMonth(), 0).getDate()\n  const cells: Cell[] = []\n  for (let i = startOffset; i > 0; i--) cells.push({ day: prevDays - i + 1, month: view.getMonth() - 1, year: view.getFullYear(), other: true })\n  for (let d = 1; d <= daysInMonth; d++) cells.push({ day: d, month: view.getMonth(), year: view.getFullYear(), other: false })\n  let next = 1\n  while (cells.length % 7 !== 0) cells.push({ day: next++, month: view.getMonth() + 1, year: view.getFullYear(), other: true })\n  return cells\n}\n\nfunction sameDay(a: Date, b: Date) {\n  return b && a.toDateString() === b.toDateString()\n}\n\nfunction DateRangePickerSimple({ className, value, onChange }: DateRangePickerSimpleProps) {\n  const [view, setView] = useState(() => new Date(2026, 8, 1))\n  const [internal, setInternal] = useState<{ start: Date | null; end: Date | null }>({\n    start: new Date(2026, 8, 1),\n    end: new Date(2026, 8, 9),\n  })\n\n  const range = value ?? internal\n  const setRange = (r: { start: Date | null; end: Date | null }) => {\n    setInternal(r)\n    onChange?.(r)\n  }\n\n  const cells = useMemo(() => buildCells(view), [view])\n\n  const selectDate = (y: number, m: number, d: number) => {\n    const picked = new Date(y, m, d)\n    if (!range.start || (range.start && range.end)) {\n      setRange({ start: picked, end: null })\n    } else if (!range.end) {\n      if (picked < range.start) setRange({ end: range.start, start: picked })\n      else setRange({ start: range.start, end: picked })\n    }\n  }\n\n  const changeMonth = (delta: number) => {\n    setView(new Date(view.getFullYear(), view.getMonth() + delta, 1))\n  }\n\n  const clear = () => setRange({ start: null, end: null })\n\n  return (\n    <div className={cn(\"w-[340px] rounded-[10px] bg-white p-[18px_20px] shadow-[0_2px_12px_rgba(0,0,0,.08)]\", className)}>\n      {/* Üst bar: ay/yıl gezinme + temizle */}\n      <div className=\"mb-3.5 flex items-center justify-center gap-3.5\">\n        <button\n          onClick={() => changeMonth(-1)}\n          aria-label=\"Önceki ay\"\n          className=\"flex h-7 w-7 cursor-pointer items-center justify-center rounded-md border-none bg-slate-100 text-sm text-[#555] transition-colors hover:bg-slate-200\"\n        >‹</button>\n        <span className=\"flex cursor-pointer items-center gap-1 text-[15px] font-semibold text-[#222]\">\n          {MONTH_NAMES[view.getMonth()]}\n          <span className=\"text-xs text-[#888]\">⌄</span>\n        </span>\n        <span className=\"flex cursor-pointer items-center gap-1 text-[15px] font-semibold text-[#222]\">\n          {view.getFullYear()}\n          <span className=\"text-xs text-[#888]\">⌄</span>\n        </span>\n        <button\n          onClick={() => changeMonth(1)}\n          aria-label=\"Sonraki ay\"\n          className=\"flex h-7 w-7 cursor-pointer items-center justify-center rounded-md border-none bg-slate-100 text-sm text-[#555] transition-colors hover:bg-slate-200\"\n        >›</button>\n        <button\n          onClick={clear}\n          title=\"Temizle\"\n          aria-label=\"Seçimi temizle\"\n          className=\"ml-auto flex h-7 w-7 cursor-pointer items-center justify-center rounded-md border-none bg-slate-100 text-sm text-[#555] transition-colors hover:bg-red-100 hover:text-red-600\"\n        >✕</button>\n      </div>\n\n      {/* Gün adları */}\n      <div className=\"mb-1 grid grid-cols-7 text-center\">\n        {DAY_NAMES.map((d) => (\n          <div key={d} className=\"py-1.5 text-xs font-semibold text-[#8b93a1]\">{d}</div>\n        ))}\n      </div>\n\n      {/* Takvim hücreleri */}\n      <div className=\"grid grid-cols-7 gap-y-1.5\">\n        {cells.map((c, idx) => {\n          const date = new Date(c.year, c.month, c.day)\n          const inRange = range.start && range.end && date >= range.start && date <= range.end\n          const isOnlyStart = range.start && !range.end && sameDay(date, range.start)\n          const col = idx % 7\n\n          let cls = \"relative flex h-[34px] cursor-pointer items-center justify-center text-sm text-[#3a3f4b]\"\n          if (c.other) cls += \" text-[#c7cbd3]\"\n          if (inRange) {\n            cls += \" bg-[#0b84fe] text-white\"\n            if (c.other) cls += \" text-white/60\"\n            if (sameDay(date, range.start as Date) || col === 0) cls += \" rounded-l-[17px]\"\n            if (sameDay(date, range.end as Date) || col === 6) cls += \" rounded-r-[17px]\"\n          } else if (isOnlyStart) {\n            cls += \" rounded-l-[17px] rounded-r-[17px] bg-[#0b84fe] text-white\"\n          }\n\n          return (\n            <div key={idx} className={cls} onClick={() => selectDate(c.year, c.month, c.day)}>\n              {c.day}\n            </div>\n          )\n        })}\n      </div>\n    </div>\n  )\n}\n\nexport { DateRangePickerSimple }\nexport type { DateRangePickerSimpleProps }\n",
       "description": "DateRangePickerSimple",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/date-range-picker-simple.tsx"
+    },
+    {
+      "id": "172",
+      "name": "Calendar",
+      "category": "Takvim",
+      "file": "calendar.tsx",
+      "exists": true,
+      "code": "/**\n * Calendar\n * HeroUI calendar'dan uyarlanmış — saf React (bağımlılıksız).\n * @internationalized/date YOK — kendi tarih mantığı (Date tabanlı), tarihler \"YYYY-MM-DD\".\n *   <Calendar value={date} onChange={setDate} minValue={today} isDateUnavailable={fn} />\n * Özellikler: selectionMode (single/multiple) · value/defaultValue/onChange ·\n * focusedValue/onFocusChange · minValue/maxValue · isDateUnavailable ·\n * weeksInMonth · isDisabled/isReadOnly · firstDayOfWeek.\n * @id 172\n * @category Takvim\n */\nimport { useMemo, useState, type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { ChevronLeft, ChevronRight } from \"@/components/ui/icons\"\n\n/* ---------- Tarih yardımcıları (saf) ---------- */\n\nconst pad = (n: number) => String(n).padStart(2, \"0\")\nconst toKey = (y: number, m: number, d: number) => `${y}-${pad(m + 1)}-${pad(d)}`\nconst todayKey = () => {\n  const t = new Date()\n  return toKey(t.getFullYear(), t.getMonth(), t.getDate())\n}\nconst parseKey = (key: string) => {\n  const [y, m, d] = key.split(\"-\").map(Number)\n  return { y, m: m - 1, d }\n}\nconst monthKey = (y: number, m: number) => `${y}-${pad(m + 1)}`\n\ninterface Cell {\n  key: string\n  day: number\n  outside: boolean\n}\n\nfunction buildCells(y: number, m: number, firstDay: \"mon\" | \"sun\", fixedWeeks?: number): Cell[] {\n  const first = new Date(y, m, 1)\n  let offset = (first.getDay() + 6) % 7 // Pzt = 0\n  if (firstDay === \"sun\") offset = first.getDay()\n  const daysInMonth = new Date(y, m + 1, 0).getDate()\n  const prevDays = new Date(y, m, 0).getDate()\n  const cells: Cell[] = []\n  for (let i = 0; i < offset; i++) {\n    const d = prevDays - offset + i + 1\n    cells.push({ key: toKey(y, m - 1, d), day: d, outside: true })\n  }\n  for (let d = 1; d <= daysInMonth; d++) cells.push({ key: toKey(y, m, d), day: d, outside: false })\n  const total = fixedWeeks ? fixedWeeks * 7 : Math.ceil(cells.length / 7) * 7\n  let next = 1\n  while (cells.length < total) {\n    cells.push({ key: toKey(y, m + 1, next), day: next, outside: true })\n    next++\n  }\n  return cells\n}\n\n/* ---------- Calendar ---------- */\n\ninterface CalendarProps {\n  /** Seçili tarih(ler) — \"YYYY-MM-DD\" (kontrollü) */\n  value?: string | string[] | null\n  /** İlk seçim (bağımsız) */\n  defaultValue?: string | string[]\n  onChange?: (value: string | string[] | null) => void\n  selectionMode?: \"single\" | \"multiple\"\n  /** Görüntülenen ayı kontrol eder — \"YYYY-MM\" */\n  focusedValue?: string\n  onFocusChange?: (value: string) => void\n  minValue?: string\n  maxValue?: string\n  /** Tarih uygun değilse true döner (örn. hafta sonu) */\n  isDateUnavailable?: (date: string) => boolean\n  /** Sabit hafta sayısı (6 gibi) — grid yüksekliği sabit kalır */\n  weeksInMonth?: number\n  isDisabled?: boolean\n  isReadOnly?: boolean\n  firstDayOfWeek?: \"mon\" | \"sun\"\n  /** Özel önceki/sonraki navigasyon ikonları */\n  navIconPrev?: ReactNode\n  navIconNext?: ReactNode\n  /** Bu tarihlerde (\"YYYY-MM-DD\") hücre altında nokta gösterilir */\n  indicatorDates?: string[]\n  className?: string\n  children?: ReactNode\n}\n\nconst WEEKDAYS = [\"Pzt\", \"Sal\", \"Çar\", \"Per\", \"Cum\", \"Cmt\", \"Paz\"]\n\nfunction Calendar({\n  value,\n  defaultValue,\n  onChange,\n  selectionMode = \"single\",\n  focusedValue,\n  onFocusChange,\n  minValue,\n  maxValue,\n  isDateUnavailable,\n  weeksInMonth,\n  isDisabled,\n  isReadOnly,\n  firstDayOfWeek = \"mon\",\n  navIconPrev,\n  navIconNext,\n  indicatorDates = [],\n  className,\n}: CalendarProps) {\n  const [internalValue, setInternalValue] = useState<string | string[] | null>(defaultValue ?? null)\n  const now = todayKey()\n  const [internalFocused, setInternalFocused] = useState<string>(now.slice(0, 7))\n\n  const controlled = value !== undefined\n  const selected = controlled ? (value ?? null) : internalValue\n  const focused = focusedValue ?? internalFocused\n  const setFocused = (v: string) => {\n    if (focusedValue === undefined) setInternalFocused(v)\n    onFocusChange?.(v)\n  }\n  const setSelected = (v: string | string[] | null) => {\n    if (!controlled) setInternalValue(v)\n    onChange?.(v)\n  }\n\n  const [fy, fm] = focused.split(\"-\").map(Number)\n  const cells = useMemo(() => buildCells(fy, fm, firstDayOfWeek, weeksInMonth), [fy, fm, firstDayOfWeek, weeksInMonth])\n\n  const isSelected = (key: string) => (Array.isArray(selected) ? selected.includes(key) : selected === key)\n\n  const select = (key: string) => {\n    if (isDisabled || isReadOnly) return\n    const { y, m, d } = parseKey(key)\n    const date = toKey(y, m, d)\n    if (minValue && date < minValue) return\n    if (maxValue && date > maxValue) return\n    if (isDateUnavailable?.(date)) return\n    if (selectionMode === \"single\") {\n      setSelected(isSelected(date) ? null : date)\n    } else {\n      const arr = Array.isArray(selected) ? [...selected] : []\n      setSelected(arr.includes(date) ? arr.filter((x) => x !== date) : [...arr, date])\n    }\n  }\n\n  const nav = (delta: number) => {\n    const d = new Date(fy, fm + delta, 1)\n    setFocused(monthKey(d.getFullYear(), d.getMonth()))\n  }\n\n  const monthLabel = new Date(fy, fm, 1).toLocaleDateString(\"tr-TR\", { month: \"long\", year: \"numeric\" })\n\n  return (\n    <div\n      data-slot=\"calendar\"\n      className={cn(\"w-fit rounded-xl border border-border bg-background p-3 shadow-sm\", isDisabled && \"opacity-50\", className)}\n    >\n      {/* Header */}\n      <div className=\"mb-2 flex items-center justify-between gap-2\">\n        <button\n          type=\"button\"\n          aria-label=\"Önceki ay\"\n          disabled={isDisabled}\n          onClick={() => nav(-1)}\n          className=\"flex size-7 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground disabled:opacity-40\"\n        >\n          {navIconPrev ?? <ChevronLeft className=\"size-4\" />}\n        </button>\n        <div className=\"text-sm font-medium\">{monthLabel}</div>\n        <button\n          type=\"button\"\n          aria-label=\"Sonraki ay\"\n          disabled={isDisabled}\n          onClick={() => nav(1)}\n          className=\"flex size-7 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground disabled:opacity-40\"\n        >\n          {navIconNext ?? <ChevronRight className=\"size-4\" />}\n        </button>\n      </div>\n\n      {/* Hafta günleri */}\n      <div className=\"grid grid-cols-7 gap-1\">\n        {WEEKDAYS.map((d) => (\n          <div key={d} className=\"flex h-8 items-center justify-center text-xs font-medium text-muted-foreground\">\n            {d}\n          </div>\n        ))}\n\n        {/* Günler */}\n        {cells.map((cell) => {\n          const sel = isSelected(cell.key)\n          const today = cell.key === now\n          const disabled = isDisabled || (minValue && cell.key < minValue) || (maxValue && cell.key > maxValue) || !!isDateUnavailable?.(cell.key)\n          return (\n            <button\n              key={cell.key}\n              type=\"button\"\n              disabled={disabled}\n              onClick={() => select(cell.key)}\n              data-selected={sel || undefined}\n              data-today={today || undefined}\n              data-outside-month={cell.outside || undefined}\n              className={cn(\n                \"relative flex h-8 w-8 items-center justify-center rounded-md text-sm transition-colors outline-none focus-visible:ring-3 focus-visible:ring-ring/50\",\n                cell.outside && \"text-muted-foreground/40\",\n                sel ? \"bg-blue-600 font-medium text-white\" : \"hover:bg-muted\",\n                today && !sel && \"bg-blue-100 text-blue-700 font-medium\",\n                disabled && \"cursor-not-allowed opacity-35 hover:bg-transparent\"\n              )}\n            >\n              {cell.day}\n              {indicatorDates.includes(cell.key) && (\n                <span className=\"pointer-events-none absolute bottom-0.5 size-1 rounded-full bg-current opacity-60\" />\n              )}\n            </button>\n          )\n        })}\n      </div>\n    </div>\n  )\n}\n\nexport { Calendar }\nexport type { CalendarProps }\n",
+      "description": "Calendar",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/calendar.tsx"
+    },
+    {
+      "id": "173",
+      "name": "CalendarBasic",
+      "category": "Takvim",
+      "file": "calendar-basic.tsx",
+      "exists": true,
+      "code": "/**\n * CalendarBasic\n * HeroUI Usage örneği — temel takvim (saf React).\n * @id 173\n * @category Takvim\n */\nimport { Calendar } from \"@/components/ui/calendar\"\n\nfunction CalendarBasic() {\n  return <Calendar aria-label=\"Event date\" />\n}\n\nexport { CalendarBasic }\n",
+      "description": "CalendarBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/calendar-basic.tsx"
+    },
+    {
+      "id": "174",
+      "name": "CalendarDisabled",
+      "category": "Takvim",
+      "file": "calendar-disabled.tsx",
+      "exists": true,
+      "code": "/**\n * CalendarDisabled\n * HeroUI Disabled örneği (saf React).\n * @id 174\n * @category Takvim\n */\nimport { Calendar } from \"@/components/ui/calendar\"\n\nfunction CalendarDisabled() {\n  const now = new Date()\n  const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, \"0\")}-${String(now.getDate()).padStart(2, \"0\")}`\n  return (\n    <div className=\"flex flex-col items-center gap-4\">\n      <Calendar isDisabled defaultValue={today} aria-label=\"Event date\" />\n      <p className=\"text-sm text-muted-foreground\">Calendar is disabled</p>\n    </div>\n  )\n}\n\nexport { CalendarDisabled }\n",
+      "description": "CalendarDisabled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/calendar-disabled.tsx"
+    },
+    {
+      "id": "175",
+      "name": "CalendarReadOnly",
+      "category": "Takvim",
+      "file": "calendar-read-only.tsx",
+      "exists": true,
+      "code": "/**\n * CalendarReadOnly\n * HeroUI Read Only örneği (saf React).\n * @id 175\n * @category Takvim\n */\nimport { Calendar } from \"@/components/ui/calendar\"\n\nfunction CalendarReadOnly() {\n  const now = new Date()\n  const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, \"0\")}-${String(now.getDate()).padStart(2, \"0\")}`\n  return (\n    <div className=\"flex flex-col items-center gap-4\">\n      <Calendar isReadOnly defaultValue={today} aria-label=\"Event date\" />\n      <p className=\"text-sm text-muted-foreground\">Calendar is read-only</p>\n    </div>\n  )\n}\n\nexport { CalendarReadOnly }\n",
+      "description": "CalendarReadOnly",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/calendar-read-only.tsx"
+    },
+    {
+      "id": "176",
+      "name": "CalendarDefaultValue",
+      "category": "Takvim",
+      "file": "calendar-default-value.tsx",
+      "exists": true,
+      "code": "/**\n * CalendarDefaultValue\n * HeroUI Default Value örneği — önceden seçili tarih (saf React).\n * @id 176\n * @category Takvim\n */\nimport { Calendar } from \"@/components/ui/calendar\"\n\nfunction CalendarDefaultValue() {\n  return <Calendar defaultValue=\"2025-02-14\" aria-label=\"Event date\" />\n}\n\nexport { CalendarDefaultValue }\n",
+      "description": "CalendarDefaultValue",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/calendar-default-value.tsx"
+    },
+    {
+      "id": "177",
+      "name": "CalendarControlled",
+      "category": "Takvim",
+      "file": "calendar-controlled.tsx",
+      "exists": true,
+      "code": "/**\n * CalendarControlled\n * HeroUI Controlled örneği — value + kısayollar (saf React).\n * @id 177\n * @category Takvim\n */\nimport { useState } from \"react\"\nimport { Calendar } from \"@/components/ui/calendar\"\nimport { Button } from \"@/components/ui/button\"\n\nfunction todayKey(offsetMonths = 0) {\n  const t = new Date()\n  t.setMonth(t.getMonth() + offsetMonths)\n  return `${t.getFullYear()}-${String(t.getMonth() + 1).padStart(2, \"0\")}-${String(t.getDate()).padStart(2, \"0\")}`\n}\n\nfunction CalendarControlled() {\n  const [value, setValue] = useState<string | null>(null)\n  const [focused, setFocused] = useState<string>(todayKey(0).slice(0, 7))\n  return (\n    <div className=\"flex flex-col items-center gap-4\">\n      <div className=\"flex gap-2\">\n        <Button size=\"sm\" variant=\"secondary\" onPress={() => { const d = todayKey(0); setValue(d); setFocused(d.slice(0, 7)) }}>Today</Button>\n        <Button size=\"sm\" variant=\"secondary\" onPress={() => { const d = todayKey(1); setValue(d); setFocused(d.slice(0, 7)) }}>Next Month</Button>\n        <Button size=\"sm\" variant=\"tertiary\" onPress={() => setValue(null)}>Clear</Button>\n      </div>\n      <Calendar value={value} focusedValue={focused} onFocusChange={setFocused} onChange={(v) => setValue(v as string | null)} aria-label=\"Event date\" />\n      <p className=\"text-sm text-muted-foreground\">Selected: {value ?? \"(none)\"}</p>\n    </div>\n  )\n}\n\nexport { CalendarControlled }\n",
+      "description": "CalendarControlled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/calendar-controlled.tsx"
+    },
+    {
+      "id": "178",
+      "name": "CalendarMinMaxDates",
+      "category": "Takvim",
+      "file": "calendar-min-max-dates.tsx",
+      "exists": true,
+      "code": "/**\n * CalendarMinMaxDates\n * HeroUI Min and Max Dates örneği (saf React).\n * @id 178\n * @category Takvim\n */\nimport { Calendar } from \"@/components/ui/calendar\"\n\nfunction CalendarMinMaxDates() {\n  const now = new Date()\n  const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, \"0\")}-${String(now.getDate()).padStart(2, \"0\")}`\n  const max = new Date(now.getFullYear(), now.getMonth() + 3, now.getDate())\n  const maxDate = `${max.getFullYear()}-${String(max.getMonth() + 1).padStart(2, \"0\")}-${String(max.getDate()).padStart(2, \"0\")}`\n  return (\n    <div className=\"flex flex-col items-center gap-4\">\n      <Calendar minValue={today} maxValue={maxDate} aria-label=\"Appointment date\" />\n      <p className=\"text-sm text-muted-foreground\">Select a date between today and {maxDate}</p>\n    </div>\n  )\n}\n\nexport { CalendarMinMaxDates }\n",
+      "description": "CalendarMinMaxDates",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/calendar-min-max-dates.tsx"
+    },
+    {
+      "id": "179",
+      "name": "CalendarUnavailableDates",
+      "category": "Takvim",
+      "file": "calendar-unavailable-dates.tsx",
+      "exists": true,
+      "code": "/**\n * CalendarUnavailableDates\n * HeroUI Unavailable Dates örneği — hafta sonları engelli (saf React).\n * @id 179\n * @category Takvim\n */\nimport { Calendar } from \"@/components/ui/calendar\"\n\nfunction isWeekend(date: string) {\n  const d = new Date(date + \"T00:00:00\")\n  const day = d.getDay()\n  return day === 0 || day === 6\n}\n\nfunction CalendarUnavailableDates() {\n  return (\n    <div className=\"flex flex-col items-center gap-4\">\n      <Calendar isDateUnavailable={isWeekend} aria-label=\"Appointment date\" />\n      <p className=\"text-sm text-muted-foreground\">Weekends are unavailable</p>\n    </div>\n  )\n}\n\nexport { CalendarUnavailableDates }\n",
+      "description": "CalendarUnavailableDates",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/calendar-unavailable-dates.tsx"
+    },
+    {
+      "id": "180",
+      "name": "CalendarWeeksInMonth",
+      "category": "Takvim",
+      "file": "calendar-weeks-in-month.tsx",
+      "exists": true,
+      "code": "/**\n * CalendarWeeksInMonth\n * HeroUI Weeks in Month örneği — sabit 6 hafta (saf React).\n * @id 180\n * @category Takvim\n */\nimport { Calendar } from \"@/components/ui/calendar\"\n\nfunction CalendarWeeksInMonth() {\n  return (\n    <div className=\"flex flex-col items-center gap-4\">\n      <Calendar weeksInMonth={6} aria-label=\"Event date\" />\n      <p className=\"text-sm text-muted-foreground\">Always shows 6 weeks per month to avoid layout shift</p>\n    </div>\n  )\n}\n\nexport { CalendarWeeksInMonth }\n",
+      "description": "CalendarWeeksInMonth",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/calendar-weeks-in-month.tsx"
+    },
+    {
+      "id": "181",
+      "name": "CalendarMultipleSelection",
+      "category": "Takvim",
+      "file": "calendar-multiple-selection.tsx",
+      "exists": true,
+      "code": "/**\n * CalendarMultipleSelection\n * HeroUI Multiple Selection örneği — birden çok tarih (saf React).\n * @id 181\n * @category Takvim\n */\nimport { useState } from \"react\"\nimport { Calendar } from \"@/components/ui/calendar\"\n\nfunction CalendarMultipleSelection() {\n  const [value, setValue] = useState<string[]>([])\n  return (\n    <div className=\"flex flex-col items-center gap-4\">\n      <Calendar selectionMode=\"multiple\" value={value} onChange={(v) => setValue((v ?? []) as string[])} aria-label=\"Event dates\" />\n      <p className=\"text-sm text-muted-foreground\">\n        {value.length ? `${value.length} tarih seçildi` : \"Select multiple dates\"}\n      </p>\n    </div>\n  )\n}\n\nexport { CalendarMultipleSelection }\n",
+      "description": "CalendarMultipleSelection",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/calendar-multiple-selection.tsx"
+    },
+    {
+      "id": "182",
+      "name": "CalendarFocusedValue",
+      "category": "Takvim",
+      "file": "calendar-focused-value.tsx",
+      "exists": true,
+      "code": "/**\n * CalendarFocusedValue\n * HeroUI Focused Value örneği — görüntülenen ayı programatik kontrol (saf React).\n * @id 182\n * @category Takvim\n */\nimport { useState } from \"react\"\nimport { Calendar } from \"@/components/ui/calendar\"\nimport { Button } from \"@/components/ui/button\"\n\nfunction CalendarFocusedValue() {\n  const [focused, setFocused] = useState(\"2025-06\")\n  return (\n    <div className=\"flex flex-col items-center gap-4\">\n      <Calendar focusedValue={focused} onFocusChange={setFocused} aria-label=\"Event date\" />\n      <p className=\"text-sm text-muted-foreground\">Focused: {focused}</p>\n      <div className=\"flex flex-wrap justify-center gap-2\">\n        <Button size=\"sm\" variant=\"secondary\" onPress={() => setFocused(\"2025-01\")}>Go to Jan</Button>\n        <Button size=\"sm\" variant=\"secondary\" onPress={() => setFocused(\"2025-06\")}>Go to Jun</Button>\n        <Button size=\"sm\" variant=\"secondary\" onPress={() => setFocused(\"2025-12\")}>Go to Christmas</Button>\n      </div>\n    </div>\n  )\n}\n\nexport { CalendarFocusedValue }\n",
+      "description": "CalendarFocusedValue",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/calendar-focused-value.tsx"
+    },
+    {
+      "id": "183",
+      "name": "CalendarWithIndicators",
+      "category": "Takvim",
+      "file": "calendar-with-indicators.tsx",
+      "exists": true,
+      "code": "/**\n * CalendarWithIndicators\n * HeroUI Cell Indicators örneği — etkinlik noktaları (saf React).\n * @id 183\n * @category Takvim\n */\nimport { Calendar } from \"@/components/ui/calendar\"\n\nfunction calendarIndicators(fy: number, fm: number) {\n  const out: string[] = []\n  for (const day of [3, 7, 12, 15, 21, 28]) {\n    out.push(`${fy}-${String(fm + 1).padStart(2, \"0\")}-${String(day).padStart(2, \"0\")}`)\n  }\n  return out\n}\n\nfunction CalendarWithIndicators() {\n  const now = new Date()\n  const indicators = calendarIndicators(now.getFullYear(), now.getMonth())\n  return <Calendar indicatorDates={indicators} aria-label=\"Event date\" />\n}\n\nexport { CalendarWithIndicators }\n",
+      "description": "CalendarWithIndicators",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/calendar-with-indicators.tsx"
+    },
+    {
+      "id": "184",
+      "name": "CalendarCustomIcons",
+      "category": "Takvim",
+      "file": "calendar-custom-icons.tsx",
+      "exists": true,
+      "code": "/**\n * CalendarCustomIcons\n * HeroUI Custom Navigation Icons örneği — özel ikonlar (saf React, kendi setimizden).\n * @id 184\n * @category Takvim\n */\nimport { Calendar } from \"@/components/ui/calendar\"\nimport { ArrowLeft, ArrowRight } from \"@/components/ui/icons\"\n\nfunction CalendarCustomIcons() {\n  return (\n    <Calendar\n      navIconPrev={<ArrowLeft className=\"size-4\" />}\n      navIconNext={<ArrowRight className=\"size-4\" />}\n      aria-label=\"Event date\"\n    />\n  )\n}\n\nexport { CalendarCustomIcons }\n",
+      "description": "CalendarCustomIcons",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/calendar-custom-icons.tsx"
+    },
+    {
+      "id": "185",
+      "name": "CalendarMultipleMonths",
+      "category": "Takvim",
+      "file": "calendar-multiple-months.tsx",
+      "exists": true,
+      "code": "/**\n * CalendarMultipleMonths\n * HeroUI Multiple Months örneği — yan yana iki ay (saf React).\n * İki ayrı Calendar (focusedValue ile 1 ay kaydırılmış) — seçim bağımsızdır.\n * @id 185\n * @category Takvim\n */\nimport { Calendar } from \"@/components/ui/calendar\"\n\nfunction nextMonthKey() {\n  const t = new Date()\n  t.setMonth(t.getMonth() + 1)\n  return `${t.getFullYear()}-${String(t.getMonth() + 1).padStart(2, \"0\")}`\n}\n\nfunction CalendarMultipleMonths() {\n  return (\n    <div className=\"flex gap-6 overflow-x-auto\">\n      <div className=\"w-fit\">\n        <Calendar aria-label=\"Trip dates\" />\n      </div>\n      <div className=\"w-fit\">\n        <Calendar focusedValue={nextMonthKey()} aria-label=\"Trip dates (next month)\" />\n      </div>\n    </div>\n  )\n}\n\nexport { CalendarMultipleMonths }\n",
+      "description": "CalendarMultipleMonths",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/calendar-multiple-months.tsx"
+    },
+    {
+      "id": "186",
+      "name": "CalendarBooking",
+      "category": "Takvim",
+      "file": "calendar-booking.tsx",
+      "exists": true,
+      "code": "/**\n * CalendarBooking\n * HeroUI Real-World örneği — rezervasyon takvimi (saf React).\n * @id 186\n * @category Takvim\n */\nimport { useState } from \"react\"\nimport { Calendar } from \"@/components/ui/calendar\"\nimport { Button } from \"@/components/ui/button\"\n\nconst bookedDays = [5, 6, 12, 13, 14, 20]\n\nfunction isWeekend(date: string) {\n  const day = new Date(date + \"T00:00:00\").getDay()\n  return day === 0 || day === 6\n}\n\nfunction CalendarBooking() {\n  const [selected, setSelected] = useState<string | null>(null)\n  const now = new Date()\n  const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, \"0\")}-${String(now.getDate()).padStart(2, \"0\")}`\n  const unavailable = (date: string) => isWeekend(date) || bookedDays.includes(Number(date.slice(-2)))\n\n  return (\n    <div className=\"flex flex-col items-center gap-4\">\n      <Calendar\n        minValue={today}\n        isDateUnavailable={unavailable}\n        value={selected}\n        onChange={(v) => setSelected(v as string | null)}\n        aria-label=\"Booking date\"\n      />\n      <div className=\"flex items-center gap-4 text-xs text-muted-foreground\">\n        <span className=\"flex items-center gap-1\"><span className=\"size-2 rounded-full bg-muted\" /> Dolu</span>\n        <span className=\"flex items-center gap-1\"><span className=\"size-2 rounded-full bg-muted\" /> Hafta sonu</span>\n      </div>\n      {selected && <Button size=\"sm\">Book {selected}</Button>}\n    </div>\n  )\n}\n\nexport { CalendarBooking }\n",
+      "description": "CalendarBooking",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/calendar-booking.tsx"
+    },
+    {
+      "id": "187",
+      "name": "CalendarCustomStyles",
+      "category": "Takvim",
+      "file": "calendar-custom-styles.tsx",
+      "exists": true,
+      "code": "/**\n * CalendarCustomStyles\n * HeroUI Tailwind CSS örneği — özelleştirilmiş görünüm (saf React).\n * @id 187\n * @category Takvim\n */\nimport { Calendar } from \"@/components/ui/calendar\"\n\nfunction CalendarCustomStyles() {\n  return <Calendar className=\"w-fit rounded-2xl border border-border/80 bg-background p-3 shadow-sm\" aria-label=\"Custom styled calendar\" />\n}\n\nexport { CalendarCustomStyles }\n",
+      "description": "CalendarCustomStyles",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/calendar-custom-styles.tsx"
     },
     {
       "id": "139",

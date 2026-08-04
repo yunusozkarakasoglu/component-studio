@@ -84,6 +84,22 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ### Takvim
 - `088` DateRangePickerSimple
+- `172` Calendar
+- `173` CalendarBasic
+- `174` CalendarDisabled
+- `175` CalendarReadOnly
+- `176` CalendarDefaultValue
+- `177` CalendarControlled
+- `178` CalendarMinMaxDates
+- `179` CalendarUnavailableDates
+- `180` CalendarWeeksInMonth
+- `181` CalendarMultipleSelection
+- `182` CalendarFocusedValue
+- `183` CalendarWithIndicators
+- `184` CalendarCustomIcons
+- `185` CalendarMultipleMonths
+- `186` CalendarBooking
+- `187` CalendarCustomStyles
 
 ### Veri Gösterimi
 - `139` TagGroup
@@ -117,7 +133,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 84 bileşen (saf React)**
+**Toplam: 100 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
