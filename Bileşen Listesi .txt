@@ -25,6 +25,21 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `117` CloseButton
 - `118` AlertBasic
 - `119` AlertCustomStyles
+- `120` AlertDialog
+- `121` AlertDialogDefault
+- `122` AlertDialogStatuses
+- `123` AlertDialogPlacements
+- `124` AlertDialogSizes
+- `125` AlertDialogControlled
+- `126` AlertDialogCustomIcon
+- `127` AlertDialogCustomTrigger
+- `128` AlertDialogBackdropVariants
+- `129` AlertDialogCustomBackdrop
+- `130` AlertDialogDismissBehavior
+- `131` AlertDialogCloseMethods
+- `132` AlertDialogCustomAnimations
+- `133` AlertDialogCustomPortal
+- `134` AlertDialogCustomStyles
 
 ### Form Elemanları
 
@@ -63,7 +78,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 32 bileşen (saf React)**
+**Toplam: 47 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
