@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-04T19:30:27.377Z",
+  "generatedAt": "2026-08-04T19:37:29.874Z",
   "counts": {
-    "components": 108,
-    "ready": 108,
+    "components": 133,
+    "ready": 133,
     "layouts": 0
   },
   "categories": [
@@ -18,7 +18,8 @@
     "Genel",
     "Kartlar",
     "Breadcrumbs",
-    "Özel Komponentler"
+    "Özel Komponentler",
+    "Checkbox"
   ],
   "components": [
     {
@@ -1100,6 +1101,256 @@
       "code": "/**\n * MillerColumns\n * Template Maker — özel bileşen (React + Tailwind Miller Columns navigatörü)\n * Hiyerarşik veriyi sütunlar halinde gezinme (dosya yöneticisi tarzı).\n * @id 089\n * @category Özel Komponentler\n */\nimport { Fragment, useCallback, useEffect, useMemo, useRef, useState } from \"react\"\n\n/* ---------- Tipler ---------- */\nexport interface TreeNode {\n  id: string\n  label?: string\n  title?: string\n  children?: TreeNode[]\n}\n\nexport interface MillerColumnsProps {\n  /** Ağaç verisi (id + çocuklar; label/title görüntülenir) */\n  data: TreeNode[]\n  /** Başlangıç yolu, örn. [\"eng\",\"fe\",\"react\"] */\n  initialPath?: string[]\n  /** Her gezinmede çağrılır: (path, son node) */\n  onChange?: (path: string[], node: TreeNode | null) => void\n  /** Kök için ekstra sınıflar */\n  className?: string\n}\n\n/* ---------- Yardımcılar ---------- */\nfunction getLabel(node: TreeNode | null | undefined): string {\n  return node?.label ?? node?.title ?? node?.id ?? \"\"\n}\n\nfunction findById(nodes: TreeNode[], id: string): TreeNode | null {\n  for (const n of nodes) {\n    if (n.id === id) return n\n    const found = findById(n.children || [], id)\n    if (found) return found\n  }\n  return null\n}\n\nfunction getNodesByPath(roots: TreeNode[], path: string[]): (TreeNode | null)[] {\n  const out: (TreeNode | null)[] = []\n  let cur = roots\n  for (const id of path) {\n    const node = cur.find((n) => n.id === id) || null\n    out.push(node)\n    if (node) cur = node.children || []\n    else break\n  }\n  return out\n}\n\n/* ---------- Alt bileşenler ---------- */\nfunction ChevronRight() {\n  return (\n    <svg\n      width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\"\n      stroke=\"currentColor\" strokeWidth=\"2\" strokeLinecap=\"round\"\n      strokeLinejoin=\"round\" aria-hidden=\"true\"\n    >\n      <polyline points=\"9 18 15 12 9 6\" />\n    </svg>\n  )\n}\n\nfunction Breadcrumb({\n  path, nodes, onCrumbClick,\n}: { path: string[]; nodes: (TreeNode | null)[]; onCrumbClick: (i: number) => void }) {\n  if (path.length === 0) {\n    return (\n      <div className=\"flex h-8 items-center gap-1 border-b border-slate-200 bg-slate-50 px-4\" aria-label=\"Breadcrumb\">\n        <span className=\"font-mono text-[11px] uppercase tracking-widest text-slate-400\">\n          / root\n        </span>\n      </div>\n    )\n  }\n  return (\n    <nav\n      aria-label=\"Breadcrumb\"\n      className=\"flex h-8 items-center gap-1 overflow-x-auto border-b border-slate-200 bg-slate-50 px-4\"\n    >\n      <button\n        type=\"button\"\n        onClick={() => onCrumbClick(-1)}\n        className=\"flex-shrink-0 font-mono text-[11px] uppercase tracking-wider text-slate-500 transition-colors hover:text-slate-300\"\n      >\n        root\n      </button>\n      {nodes.map((node, i) =>\n        node ? (\n          <Fragment key={node.id}>\n            <span className=\"flex-shrink-0 text-[11px] text-slate-400\">/</span>\n            <button\n              type=\"button\"\n              onClick={() => onCrumbClick(i)}\n              aria-current={i === nodes.length - 1 ? \"page\" : undefined}\n              className={`flex-shrink-0 font-mono text-[11px] uppercase tracking-wider transition-colors ${\n                i === nodes.length - 1 ? \"text-blue-600\" : \"text-slate-500 hover:text-slate-800\"\n              }`}\n            >\n              {getLabel(node)}\n            </button>\n          </Fragment>\n        ) : null\n      )}\n    </nav>\n  )\n}\n\nfunction ColumnItem({\n  node, depth, isSelected, onClick,\n}: { node: TreeNode; depth: number; isSelected: boolean; onClick: () => void }) {\n  const hasChildren = (node.children || []).length > 0\n  return (\n    <button\n      type=\"button\"\n      role=\"treeitem\"\n      aria-level={depth + 1}\n      aria-selected={isSelected}\n      aria-expanded={hasChildren ? true : undefined}\n      onClick={onClick}\n      className={`group relative flex w-full items-center justify-between px-3 py-2 text-left font-mono transition-colors ${\n        isSelected ? \"bg-blue-600 text-white\" : \"text-slate-500 hover:bg-slate-100 hover:text-slate-900\"\n      }`}\n    >\n      {isSelected && <span className=\"absolute left-0 top-0 h-full w-0.5 bg-blue-500\" />}\n      <span className=\"truncate pr-2 text-[13px]\">{getLabel(node)}</span>\n      {hasChildren && (\n        <span className={`flex-shrink-0 transition-colors ${isSelected ? \"text-white\" : \"text-slate-400 group-hover:text-slate-400\"}`}>\n          <ChevronRight />\n        </span>\n      )}\n    </button>\n  )\n}\n\nfunction ColumnPanel({\n  nodes, selectedId, headerLabel, depth, isLeaf, onSelect,\n}: {\n  nodes: TreeNode[]; selectedId: string | null; headerLabel: string\n  depth: number; isLeaf: boolean; onSelect: (node: TreeNode) => void\n}) {\n  return (\n    <section\n      aria-label={headerLabel}\n      className=\"miller-col-enter flex w-72 flex-shrink-0 flex-col border-r border-slate-200\"\n      style={{ backgroundColor: \"#f8fafc\" }}\n    >\n      <div className=\"flex-shrink-0 border-b border-slate-200 bg-slate-50 px-3 py-2\">\n        <div className=\"text-[10px] font-semibold uppercase tracking-widest text-slate-500\">\n          {headerLabel}\n        </div>\n        <div className=\"mt-0.5 font-mono text-[10px] text-slate-400\">depth/{depth}</div>\n      </div>\n      {isLeaf ? (\n        <div className=\"flex flex-1 items-center justify-center p-4\">\n          <div className=\"text-center\">\n            <div className=\"mb-1 text-[11px] uppercase tracking-wider text-slate-500\">Terminal node</div>\n            <div className=\"font-mono text-[12px] text-slate-400\">no children</div>\n          </div>\n        </div>\n      ) : nodes.length === 0 ? (\n        <div className=\"flex flex-1 items-center justify-center font-mono text-[12px] text-slate-400\">empty</div>\n      ) : (\n        <div className=\"miller-vscroll flex-1 overflow-y-auto py-1\" role=\"group\">\n          {nodes.map((node) => (\n            <ColumnItem\n              key={node.id}\n              node={node}\n              depth={depth}\n              isSelected={node.id === selectedId}\n              onClick={() => onSelect(node)}\n            />\n          ))}\n        </div>\n      )}\n    </section>\n  )\n}\n\n/* ---------- Ana bileşen ---------- */\nexport function MillerColumns({\n  data, initialPath = [], onChange, className = \"\",\n}: MillerColumnsProps) {\n  const [path, setPath] = useState<string[]>(() => initialPath)\n\n  const onChangeRef = useRef(onChange)\n  useEffect(() => {\n    onChangeRef.current = onChange\n  }, [onChange])\n\n  useEffect(() => {\n    if (!onChangeRef.current) return\n    const last = path.length > 0 ? findById(data, path[path.length - 1]) : null\n    onChangeRef.current(path, last)\n  }, [path, data])\n\n  const pathNodes = useMemo(() => getNodesByPath(data, path), [data, path])\n\n  const columns = useMemo(() => {\n    const cols: { nodes: TreeNode[]; headerLabel: string; depth: number; selectedId: string | null; isLeaf: boolean }[] = [\n      { nodes: data, headerLabel: \"All\", depth: 0, selectedId: path[0] ?? null, isLeaf: false },\n    ]\n    let cur = data\n    for (let i = 0; i < path.length; i++) {\n      const node = cur.find((n) => n.id === path[i])\n      if (!node) break\n      const kids = node.children || []\n      if (kids.length === 0) {\n        cols.push({ nodes: [], headerLabel: getLabel(node), depth: i + 1, selectedId: null, isLeaf: true })\n        break\n      }\n      cols.push({ nodes: kids, headerLabel: getLabel(node), depth: i + 1, selectedId: path[i + 1] ?? null, isLeaf: false })\n      cur = kids\n    }\n    return cols\n  }, [data, path])\n\n  const columnKey = (col: { depth: number }) =>\n    col.depth === 0 ? \"__root__\" : path.slice(0, col.depth).join(\"/\")\n\n  const scrollRef = useRef<HTMLDivElement | null>(null)\n  useEffect(() => {\n    const c = scrollRef.current\n    if (!c) return\n    const raf = requestAnimationFrame(() => {\n      c.scrollTo({ left: c.scrollWidth, behavior: \"smooth\" })\n    })\n    return () => cancelAnimationFrame(raf)\n  }, [path])\n\n  const handleSelect = useCallback((depth: number, node: TreeNode) => {\n    setPath((prev) => [...prev.slice(0, depth), node.id])\n  }, [])\n\n  const handleCrumb = useCallback((idx: number) => {\n    setPath((prev) => (idx < 0 ? [] : prev.slice(0, idx + 1)))\n  }, [])\n\n  return (\n    <div className={`flex h-full w-full flex-col bg-white text-slate-800 ${className}`}>\n      <Breadcrumb path={path} nodes={pathNodes} onCrumbClick={handleCrumb} />\n      <div\n        ref={scrollRef}\n        className=\"miller-hscroll flex flex-1 flex-row overflow-x-auto overflow-y-hidden\"\n        role=\"tree\"\n        aria-label=\"Miller columns navigator\"\n      >\n        {columns.map((col) => (\n          <ColumnPanel\n            key={columnKey(col)}\n            nodes={col.nodes}\n            selectedId={col.selectedId}\n            headerLabel={col.headerLabel}\n            depth={col.depth}\n            isLeaf={col.isLeaf}\n            onSelect={(node) => handleSelect(col.depth, node)}\n          />\n        ))}\n        <div className=\"w-px flex-shrink-0\" />\n      </div>\n\n      <style>{`\n        .miller-hscroll { scrollbar-width: thin; scrollbar-color: #cbd5e1 transparent; }\n        .miller-hscroll::-webkit-scrollbar { height: 4px; }\n        .miller-hscroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 2px; }\n        .miller-vscroll { scrollbar-width: thin; scrollbar-color: #cbd5e1 transparent; }\n        .miller-vscroll::-webkit-scrollbar { width: 4px; }\n        .miller-vscroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 2px; }\n        @keyframes miller-slide-in {\n          from { opacity: 0; transform: translateX(16px); }\n          to { opacity: 1; transform: translateX(0); }\n        }\n        .miller-col-enter { animation: miller-slide-in 120ms ease-out forwards; }\n      `}</style>\n    </div>\n  )\n}\n\n/* ---------- Örnek veri (önizleme/demo için) ---------- */\nexport const SAMPLE_DATA: TreeNode[] = [\n  {\n    id: \"eng\", label: \"Engineering\",\n    children: [\n      {\n        id: \"fe\", label: \"Frontend\",\n        children: [\n          {\n            id: \"react\", label: \"React\",\n            children: [\n              { id: \"hooks\", label: \"Hooks\", children: [\n                { id: \"useState\", label: \"useState\" },\n                { id: \"useEffect\", label: \"useEffect\" },\n                { id: \"useMemo\", label: \"useMemo\" },\n              ] },\n              { id: \"router\", label: \"Router\" },\n              { id: \"ssr\", label: \"SSR\" },\n            ],\n          },\n          { id: \"vue\", label: \"Vue\" },\n          { id: \"svelte\", label: \"Svelte\" },\n        ],\n      },\n      {\n        id: \"be\", label: \"Backend\",\n        children: [\n          { id: \"node\", label: \"Node.js\" },\n          { id: \"py\", label: \"Python\" },\n          { id: \"go\", label: \"Go\" },\n        ],\n      },\n    ],\n  },\n  {\n    id: \"design\", label: \"Design\",\n    children: [\n      { id: \"ux\", label: \"UX Research\" },\n      { id: \"ui\", label: \"UI Design\" },\n      { id: \"brand\", label: \"Brand\" },\n    ],\n  },\n  {\n    id: \"ops\", label: \"Operations\",\n    children: [\n      { id: \"ci\", label: \"CI/CD\" },\n      { id: \"mon\", label: \"Monitoring\" },\n      { id: \"sec\", label: \"Security\" },\n    ],\n  },\n]\n",
       "description": "MillerColumns",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/miller-columns.tsx"
+    },
+    {
+      "id": "198",
+      "name": "CheckboxBasic",
+      "category": "Checkbox",
+      "file": "checkbox-basic.tsx",
+      "exists": true,
+      "code": "/**\n * CheckboxBasic\n * HeroUI Usage örneği (saf React).\n * @id 198\n * @category Checkbox\n */\nimport { Checkbox } from \"@/components/ui/checkbox\"\n\nfunction CheckboxBasic() {\n  return <Checkbox name=\"basic-terms\" label=\"Accept terms and conditions\" />\n}\n\nexport { CheckboxBasic }\n",
+      "description": "Özel bileşen",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/checkbox-basic.tsx"
+    },
+    {
+      "id": "206",
+      "name": "CheckboxControlled",
+      "category": "Checkbox",
+      "file": "checkbox-controlled.tsx",
+      "exists": true,
+      "code": "/**\n * CheckboxControlled\n * HeroUI Controlled örneği (saf React).\n * @id 206\n * @category Checkbox\n */\nimport { useState } from \"react\"\nimport { Checkbox } from \"@/components/ui/checkbox\"\n\nfunction CheckboxControlled() {\n  const [isSelected, setIsSelected] = useState(true)\n  return (\n    <div className=\"flex flex-col gap-3\">\n      <Checkbox isSelected={isSelected} onChange={setIsSelected} label=\"Email notifications\" />\n      <p className=\"text-sm text-muted-foreground\">Status: <span className=\"font-medium\">{isSelected ? \"Enabled\" : \"Disabled\"}</span></p>\n    </div>\n  )\n}\n\nexport { CheckboxControlled }\n",
+      "description": "Özel bileşen",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/checkbox-controlled.tsx"
+    },
+    {
+      "id": "210",
+      "name": "CheckboxCustomIndicator",
+      "category": "Checkbox",
+      "file": "checkbox-custom-indicator.tsx",
+      "exists": true,
+      "code": "/**\n * CheckboxCustomIndicator\n * HeroUI Custom Indicator örneği — kalp/artı/çizgi işaretleri (saf React).\n * @id 210\n * @category Checkbox\n */\nimport { Checkbox } from \"@/components/ui/checkbox\"\nimport { Heart, Minus, Plus } from \"@/components/ui/icons\"\n\nfunction CheckboxCustomIndicator() {\n  return (\n    <div className=\"flex gap-4\">\n      <Checkbox defaultSelected label=\"Heart\" indicator={<Heart className=\"size-3\" />} />\n      <Checkbox defaultSelected label=\"Plus\" indicator={<Plus className=\"size-3.5\" />} />\n      <Checkbox isIndeterminate label=\"Indeterminate\" indicator={<Minus className=\"size-3.5\" />} />\n    </div>\n  )\n}\n\nexport { CheckboxCustomIndicator }\n",
+      "description": "Özel bileşen",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/checkbox-custom-indicator.tsx"
+    },
+    {
+      "id": "211",
+      "name": "CheckboxCustomStyles",
+      "category": "Checkbox",
+      "file": "checkbox-custom-styles.tsx",
+      "exists": true,
+      "code": "/**\n * CheckboxCustomStyles\n * HeroUI Tailwind CSS örneği — özel renk (saf React).\n * @id 211\n * @category Checkbox\n */\nimport { Checkbox } from \"@/components/ui/checkbox\"\n\nfunction CheckboxCustomStyles() {\n  return (\n    <Checkbox\n      className=\"[&_[data-slot=checkbox-control]]:border-emerald-400 [&_[data-slot=checkbox-control][data-selected]]:border-emerald-500 [&_[data-slot=checkbox-control][data-selected]]:bg-emerald-500\"\n      label=\"Custom styled checkbox\"\n    />\n  )\n}\n\nexport { CheckboxCustomStyles }\n",
+      "description": "Özel bileşen",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/checkbox-custom-styles.tsx"
+    },
+    {
+      "id": "204",
+      "name": "CheckboxDefaultSelected",
+      "category": "Checkbox",
+      "file": "checkbox-default-selected.tsx",
+      "exists": true,
+      "code": "/**\n * CheckboxDefaultSelected\n * HeroUI Default Selected örneği (saf React).\n * @id 204\n * @category Checkbox\n */\nimport { Checkbox } from \"@/components/ui/checkbox\"\n\nfunction CheckboxDefaultSelected() {\n  return <Checkbox defaultSelected label=\"Enable email notifications\" />\n}\n\nexport { CheckboxDefaultSelected }\n",
+      "description": "Özel bileşen",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/checkbox-default-selected.tsx"
+    },
+    {
+      "id": "201",
+      "name": "CheckboxDisabled",
+      "category": "Checkbox",
+      "file": "checkbox-disabled.tsx",
+      "exists": true,
+      "code": "/**\n * CheckboxDisabled\n * HeroUI Disabled örneği (saf React).\n * @id 201\n * @category Checkbox\n */\nimport { Checkbox } from \"@/components/ui/checkbox\"\n\nfunction CheckboxDisabled() {\n  return <Checkbox isDisabled label=\"Premium Feature\" description=\"This feature is coming soon\" />\n}\n\nexport { CheckboxDisabled }\n",
+      "description": "Özel bileşen",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/checkbox-disabled.tsx"
+    },
+    {
+      "id": "202",
+      "name": "CheckboxExternalLabel",
+      "category": "Checkbox",
+      "file": "checkbox-external-label.tsx",
+      "exists": true,
+      "code": "/**\n * CheckboxExternalLabel\n * HeroUI External Label örneği — dış etiket (saf React).\n * @id 202\n * @category Checkbox\n */\nimport { Checkbox } from \"@/components/ui/checkbox\"\nimport { Label } from \"@/components/ui/label\"\n\nfunction CheckboxExternalLabel() {\n  return (\n    <div className=\"flex items-center gap-3\">\n      <Checkbox aria-label=\"Send me marketing emails\" />\n      <Label>Send me marketing emails</Label>\n    </div>\n  )\n}\n\nexport { CheckboxExternalLabel }\n",
+      "description": "Özel bileşen",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/checkbox-external-label.tsx"
+    },
+    {
+      "id": "208",
+      "name": "CheckboxForm",
+      "category": "Checkbox",
+      "file": "checkbox-form.tsx",
+      "exists": true,
+      "code": "/**\n * CheckboxForm\n * HeroUI Form Integration örneği (saf React).\n * @id 208\n * @category Checkbox\n */\nimport { useState, type FormEvent } from \"react\"\nimport { Checkbox } from \"@/components/ui/checkbox\"\nimport { Button } from \"@/components/ui/button\"\n\nfunction CheckboxForm() {\n  const [msg, setMsg] = useState(\"\")\n  const onSubmit = (e: FormEvent<HTMLFormElement>) => {\n    e.preventDefault()\n    const data = new FormData(e.currentTarget)\n    setMsg(\"Seçilenler: \" + Array.from(data.entries()).map(([k]) => k).join(\", \") || \"hiçbiri\")\n  }\n  return (\n    <form className=\"flex flex-col gap-4\" onSubmit={onSubmit}>\n      <div className=\"flex flex-col gap-3\">\n        <Checkbox name=\"notifications\" label=\"Enable notifications\" />\n        <Checkbox defaultSelected name=\"newsletter\" label=\"Subscribe to newsletter\" />\n        <Checkbox name=\"marketing\" label=\"Receive marketing updates\" />\n      </div>\n      <Button className=\"w-fit\" size=\"sm\" type=\"submit\">Submit</Button>\n      {msg && <p className=\"text-sm text-muted-foreground\">{msg}</p>}\n    </form>\n  )\n}\n\nexport { CheckboxForm }\n",
+      "description": "Özel bileşen",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/checkbox-form.tsx"
+    },
+    {
+      "id": "200",
+      "name": "CheckboxFullRounded",
+      "category": "Checkbox",
+      "file": "checkbox-full-rounded.tsx",
+      "exists": true,
+      "code": "/**\n * CheckboxFullRounded\n * HeroUI Full Rounded örneği — boyutlar (saf React, className ile).\n * @id 200\n * @category Checkbox\n */\nimport { Checkbox } from \"@/components/ui/checkbox\"\n\nfunction CheckboxFullRounded() {\n  return (\n    <div className=\"flex flex-col gap-3\">\n      <Checkbox className=\"[&_[data-slot=checkbox-control]]:size-3 [&_[data-slot=checkbox-control]]:rounded-full\" label=\"Small size\" />\n      <Checkbox className=\"[&_[data-slot=checkbox-control]]:rounded-full\" label=\"Default size\" />\n      <Checkbox className=\"[&_[data-slot=checkbox-control]]:size-5 [&_[data-slot=checkbox-control]]:rounded-full\" label=\"Large size\" />\n      <Checkbox className=\"[&_[data-slot=checkbox-control]]:size-6 [&_[data-slot=checkbox-control]]:rounded-full\" label=\"Extra large size\" />\n    </div>\n  )\n}\n\nexport { CheckboxFullRounded }\n",
+      "description": "Özel bileşen",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/checkbox-full-rounded.tsx"
+    },
+    {
+      "id": "212",
+      "name": "CheckboxGroupBasic",
+      "category": "Checkbox",
+      "file": "checkbox-group-basic.tsx",
+      "exists": true,
+      "code": "/**\n * CheckboxGroupBasic\n * HeroUI Usage örneği (saf React).\n * @id 212\n * @category Checkbox\n */\nimport { Checkbox } from \"@/components/ui/checkbox\"\nimport { CheckboxGroup } from \"@/components/ui/checkbox-group\"\n\nfunction CheckboxGroupBasic() {\n  return (\n    <CheckboxGroup name=\"interests\" label=\"Select your interests\" description=\"Choose all that apply\">\n      <Checkbox value=\"coding\" label=\"Coding\" description=\"Love building software\" />\n      <Checkbox value=\"design\" label=\"Design\" description=\"Enjoy creating beautiful interfaces\" />\n      <Checkbox value=\"writing\" label=\"Writing\" description=\"Passionate about content creation\" />\n    </CheckboxGroup>\n  )\n}\n\nexport { CheckboxGroupBasic }\n",
+      "description": "Özel bileşen",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/checkbox-group-basic.tsx"
+    },
+    {
+      "id": "216",
+      "name": "CheckboxGroupControlled",
+      "category": "Checkbox",
+      "file": "checkbox-group-controlled.tsx",
+      "exists": true,
+      "code": "/**\n * CheckboxGroupControlled\n * HeroUI Controlled örneği (saf React).\n * @id 216\n * @category Checkbox\n */\nimport { useState } from \"react\"\nimport { Checkbox } from \"@/components/ui/checkbox\"\nimport { CheckboxGroup } from \"@/components/ui/checkbox-group\"\n\nfunction CheckboxGroupControlled() {\n  const [selected, setSelected] = useState([\"coding\", \"design\"])\n  return (\n    <CheckboxGroup className=\"min-w-[320px]\" name=\"skills\" value={selected} onChange={setSelected} label=\"Your skills\">\n      <Checkbox value=\"coding\" label=\"Coding\" />\n      <Checkbox value=\"design\" label=\"Design\" />\n      <Checkbox value=\"writing\" label=\"Writing\" />\n      <p className=\"mt-2 text-sm text-muted-foreground\">Selected: {selected.join(\", \") || \"None\"}</p>\n    </CheckboxGroup>\n  )\n}\n\nexport { CheckboxGroupControlled }\n",
+      "description": "Özel bileşen",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/checkbox-group-controlled.tsx"
+    },
+    {
+      "id": "219",
+      "name": "CheckboxGroupCustomIndicator",
+      "category": "Checkbox",
+      "file": "checkbox-group-custom-indicator.tsx",
+      "exists": true,
+      "code": "/**\n * CheckboxGroupCustomIndicator\n * HeroUI With Custom Indicator örneği — X işareti (saf React).\n * @id 219\n * @category Checkbox\n */\nimport { Checkbox } from \"@/components/ui/checkbox\"\nimport { CheckboxGroup } from \"@/components/ui/checkbox-group\"\nimport { X } from \"@/components/ui/icons\"\n\nfunction CheckboxGroupCustomIndicator() {\n  return (\n    <CheckboxGroup name=\"features\" label=\"Features\" description=\"Select the features you want\">\n      <Checkbox value=\"notifications\" label=\"Email notifications\" description=\"Receive updates via email\" indicator={<X className=\"size-3\" />} />\n      <Checkbox value=\"newsletter\" label=\"Newsletter\" description=\"Get weekly newsletters\" indicator={<X className=\"size-3\" />} />\n    </CheckboxGroup>\n  )\n}\n\nexport { CheckboxGroupCustomIndicator }\n",
+      "description": "Özel bileşen",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/checkbox-group-custom-indicator.tsx"
+    },
+    {
+      "id": "220",
+      "name": "CheckboxGroupCustomStyles",
+      "category": "Checkbox",
+      "file": "checkbox-group-custom-styles.tsx",
+      "exists": true,
+      "code": "/**\n * CheckboxGroupCustomStyles\n * HeroUI Tailwind CSS örneği (saf React).\n * @id 220\n * @category Checkbox\n */\nimport { Checkbox } from \"@/components/ui/checkbox\"\nimport { CheckboxGroup } from \"@/components/ui/checkbox-group\"\n\nconst channels = [\n  { label: \"Email\", value: \"email\" },\n  { label: \"SMS\", value: \"sms\" },\n  { label: \"Push\", value: \"push\" },\n] as const\n\nfunction CheckboxGroupCustomStyles() {\n  return (\n    <CheckboxGroup defaultValue={[\"email\"]} name=\"notification-channels\" label=\"Notification channels\" description=\"Choose how we should reach you for account updates.\">\n      {channels.map((c) => (\n        <Checkbox key={c.value} value={c.value} label={c.label} />\n      ))}\n    </CheckboxGroup>\n  )\n}\n\nexport { CheckboxGroupCustomStyles }\n",
+      "description": "Özel bileşen",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/checkbox-group-custom-styles.tsx"
+    },
+    {
+      "id": "214",
+      "name": "CheckboxGroupDisabled",
+      "category": "Checkbox",
+      "file": "checkbox-group-disabled.tsx",
+      "exists": true,
+      "code": "/**\n * CheckboxGroupDisabled\n * HeroUI Disabled örneği (saf React).\n * @id 214\n * @category Checkbox\n */\nimport { Checkbox } from \"@/components/ui/checkbox\"\nimport { CheckboxGroup } from \"@/components/ui/checkbox-group\"\n\nfunction CheckboxGroupDisabled() {\n  return (\n    <CheckboxGroup isDisabled name=\"disabled-features\" label=\"Features\" description=\"Feature selection is temporarily disabled\">\n      <Checkbox value=\"feature1\" label=\"Feature 1\" description=\"This feature is coming soon\" />\n      <Checkbox value=\"feature2\" label=\"Feature 2\" description=\"This feature is coming soon\" />\n    </CheckboxGroup>\n  )\n}\n\nexport { CheckboxGroupDisabled }\n",
+      "description": "Özel bileşen",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/checkbox-group-disabled.tsx"
+    },
+    {
+      "id": "218",
+      "name": "CheckboxGroupFeatures",
+      "category": "Checkbox",
+      "file": "checkbox-group-features.tsx",
+      "exists": true,
+      "code": "/**\n * CheckboxGroupFeatures\n * HeroUI Features and Add-ons örneği — ikonlu kart checkbox'lar (saf React).\n * @id 218\n * @category Checkbox\n */\nimport { Checkbox } from \"@/components/ui/checkbox\"\nimport { CheckboxGroup } from \"@/components/ui/checkbox-group\"\nimport { Bell, Mail, MessageCircle } from \"@/components/ui/icons\"\n\nconst addOns = [\n  { value: \"email\", icon: Mail, title: \"Email Notifications\", description: \"Receive updates via email\" },\n  { value: \"sms\", icon: MessageCircle, title: \"SMS Alerts\", description: \"Get instant SMS notifications\" },\n  { value: \"push\", icon: Bell, title: \"Push Notifications\", description: \"Browser and mobile push alerts\" },\n]\n\nfunction CheckboxGroupFeatures() {\n  return (\n    <div className=\"flex w-full flex-col items-center gap-4\">\n      <CheckboxGroup name=\"notification-preferences\" label=\"Notification preferences\" description=\"Choose how you want to receive updates\" className=\"w-full max-w-sm\">\n        {addOns.map((a) => (\n          <Checkbox key={a.value} value={a.value} variant=\"secondary\"\n            className=\"rounded-2xl bg-muted/40 p-3 transition-colors has-data-[selected=true]:bg-blue-50\"\n            label={\n              <span className=\"flex items-center gap-3\">\n                <a.icon className=\"size-5 shrink-0 text-muted-foreground\" />\n                <span className=\"flex flex-col\">\n                  <span className=\"text-sm font-medium\">{a.title}</span>\n                  <span className=\"text-xs text-muted-foreground\">{a.description}</span>\n                </span>\n              </span>\n            }\n          />\n        ))}\n      </CheckboxGroup>\n    </div>\n  )\n}\n\nexport { CheckboxGroupFeatures }\n",
+      "description": "Özel bileşen",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/checkbox-group-features.tsx"
+    },
+    {
+      "id": "215",
+      "name": "CheckboxGroupIndeterminate",
+      "category": "Checkbox",
+      "file": "checkbox-group-indeterminate.tsx",
+      "exists": true,
+      "code": "/**\n * CheckboxGroupIndeterminate\n * HeroUI Indeterminate örneği — Select all (saf React).\n * @id 215\n * @category Checkbox\n */\nimport { useState } from \"react\"\nimport { Checkbox } from \"@/components/ui/checkbox\"\nimport { CheckboxGroup } from \"@/components/ui/checkbox-group\"\n\nfunction CheckboxGroupIndeterminate() {\n  const [selected, setSelected] = useState([\"coding\"])\n  const allOptions = [\"coding\", \"design\", \"writing\"]\n  const allSelected = selected.length === allOptions.length\n  const someSelected = selected.length > 0 && !allSelected\n  return (\n    <div>\n      <Checkbox\n        isIndeterminate={someSelected}\n        isSelected={allSelected}\n        onChange={(sel) => setSelected(sel ? allOptions : [])}\n        label=\"Select all\"\n      />\n      <div className=\"ms-6 flex flex-col gap-2\">\n        <CheckboxGroup value={selected} onChange={setSelected}>\n          <Checkbox value=\"coding\" label=\"Coding\" />\n          <Checkbox value=\"design\" label=\"Design\" />\n          <Checkbox value=\"writing\" label=\"Writing\" />\n        </CheckboxGroup>\n      </div>\n    </div>\n  )\n}\n\nexport { CheckboxGroupIndeterminate }\n",
+      "description": "Özel bileşen",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/checkbox-group-indeterminate.tsx"
+    },
+    {
+      "id": "213",
+      "name": "CheckboxGroupOnSurface",
+      "category": "Checkbox",
+      "file": "checkbox-group-on-surface.tsx",
+      "exists": true,
+      "code": "/**\n * CheckboxGroupOnSurface\n * HeroUI In Surface örneği (saf React).\n * @id 213\n * @category Checkbox\n */\nimport { Checkbox } from \"@/components/ui/checkbox\"\nimport { CheckboxGroup } from \"@/components/ui/checkbox-group\"\n\nfunction CheckboxGroupOnSurface() {\n  return (\n    <div className=\"w-full rounded-3xl bg-muted/20 p-6\">\n      <CheckboxGroup name=\"interests\" label=\"Select your interests\" description=\"Choose all that apply\">\n        <Checkbox value=\"coding\" label=\"Coding\" description=\"Love building software\" />\n        <Checkbox value=\"design\" label=\"Design\" description=\"Enjoy creating beautiful interfaces\" />\n        <Checkbox value=\"writing\" label=\"Writing\" description=\"Passionate about content creation\" />\n      </CheckboxGroup>\n    </div>\n  )\n}\n\nexport { CheckboxGroupOnSurface }\n",
+      "description": "Özel bileşen",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/checkbox-group-on-surface.tsx"
+    },
+    {
+      "id": "217",
+      "name": "CheckboxGroupValidation",
+      "category": "Checkbox",
+      "file": "checkbox-group-validation.tsx",
+      "exists": true,
+      "code": "/**\n * CheckboxGroupValidation\n * HeroUI Validation örneği — zorunlu alan (saf React).\n * @id 217\n * @category Checkbox\n */\nimport { useState, type FormEvent } from \"react\"\nimport { Checkbox } from \"@/components/ui/checkbox\"\nimport { CheckboxGroup } from \"@/components/ui/checkbox-group\"\nimport { Button } from \"@/components/ui/button\"\n\nfunction CheckboxGroupValidation() {\n  const [selected, setSelected] = useState<string[]>([])\n  const [error, setError] = useState(\"\")\n  const onSubmit = (e: FormEvent) => {\n    e.preventDefault()\n    if (!selected.length) { setError(\"Lütfen en az bir bildirim yöntemi seçin.\"); return }\n    setError(\"\")\n  }\n  return (\n    <form className=\"flex flex-col gap-4\" onSubmit={onSubmit}>\n      <CheckboxGroup isRequired name=\"preferences\" value={selected} onChange={setSelected} label=\"Preferences\">\n        <Checkbox value=\"email\" label=\"Email notifications\" />\n        <Checkbox value=\"sms\" label=\"SMS notifications\" />\n        <Checkbox value=\"push\" label=\"Push notifications\" />\n      </CheckboxGroup>\n      {error && <p className=\"text-sm text-red-600\">{error}</p>}\n      <Button type=\"submit\" className=\"w-fit\">Submit</Button>\n    </form>\n  )\n}\n\nexport { CheckboxGroupValidation }\n",
+      "description": "Özel bileşen",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/checkbox-group-validation.tsx"
+    },
+    {
+      "id": "197",
+      "name": "CheckboxGroup",
+      "category": "Checkbox",
+      "file": "checkbox-group.tsx",
+      "exists": true,
+      "code": "/**\n * CheckboxGroup\n * HeroUI checkbox-group'ten uyarlanmış — saf React (bağımlılıksız).\n * Birden çok checkbox'ı ortak değer listesiyle yönetir.\n *   <CheckboxGroup label=\"Interests\" value={sel} onChange={setSel}>\n *     <Checkbox value=\"coding\" label=\"Coding\" />\n *   </CheckboxGroup>\n * Özellikler: value/defaultValue/onChange · isDisabled/isRequired · name · variant.\n * @id 197\n * @category Checkbox\n */\nimport { useState, type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { CheckboxGroupContext, useCheckboxGroupContext } from \"./checkbox\"\n\ninterface CheckboxGroupProps {\n  label?: ReactNode\n  description?: ReactNode\n  /** Seçili değerler (kontrollü) */\n  value?: string[]\n  defaultValue?: string[]\n  onChange?: (values: string[]) => void\n  isDisabled?: boolean\n  isRequired?: boolean\n  name?: string\n  variant?: \"primary\" | \"secondary\"\n  className?: string\n  children?: ReactNode\n}\n\nfunction CheckboxGroup({\n  label,\n  description,\n  value,\n  defaultValue,\n  onChange,\n  isDisabled,\n  isRequired,\n  className,\n  children,\n}: CheckboxGroupProps) {\n  const [internal, setInternal] = useState<string[]>(defaultValue ?? [])\n  const controlled = value !== undefined\n  const values = controlled ? value : internal\n\n  const toggle = (v: string) => {\n    if (isDisabled) return\n    const next = values.includes(v) ? values.filter((x) => x !== v) : [...values, v]\n    if (!controlled) setInternal(next)\n    onChange?.(next)\n  }\n\n  return (\n    <CheckboxGroupContext.Provider value={{ values, toggle, groupDisabled: !!isDisabled }}>\n      <div data-slot=\"checkbox-group\" role=\"group\" aria-required={isRequired || undefined}\n        className={cn(\"flex flex-col gap-2\", className)}>\n        {label && <span className=\"text-sm font-medium text-foreground\">{label}</span>}\n        {description && <p className=\"text-xs text-muted-foreground\">{description}</p>}\n        {children}\n      </div>\n    </CheckboxGroupContext.Provider>\n  )\n}\n\n/** CheckboxGroup içinde kullanılmak üzere context'i dışa aktar (Checkbox tarafından kullanılır) */\nexport { CheckboxGroup, useCheckboxGroupContext }\nexport type { CheckboxGroupProps }\n",
+      "description": "Özel bileşen",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/checkbox-group.tsx"
+    },
+    {
+      "id": "207",
+      "name": "CheckboxIndeterminate",
+      "category": "Checkbox",
+      "file": "checkbox-indeterminate.tsx",
+      "exists": true,
+      "code": "/**\n * CheckboxIndeterminate\n * HeroUI Indeterminate örneği (saf React).\n * @id 207\n * @category Checkbox\n */\nimport { useState } from \"react\"\nimport { Checkbox } from \"@/components/ui/checkbox\"\n\nfunction CheckboxIndeterminate() {\n  const [isIndeterminate, setIsIndeterminate] = useState(true)\n  const [isSelected, setIsSelected] = useState(false)\n  return (\n    <Checkbox\n      isIndeterminate={isIndeterminate}\n      isSelected={isSelected}\n      onChange={(selected) => { setIsSelected(selected); setIsIndeterminate(false) }}\n      label=\"Select all\"\n      description=\"Shows indeterminate state (dash icon)\"\n    />\n  )\n}\n\nexport { CheckboxIndeterminate }\n",
+      "description": "Özel bileşen",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/checkbox-indeterminate.tsx"
+    },
+    {
+      "id": "205",
+      "name": "CheckboxInvalid",
+      "category": "Checkbox",
+      "file": "checkbox-invalid.tsx",
+      "exists": true,
+      "code": "/**\n * CheckboxInvalid\n * HeroUI Invalid örneği (saf React).\n * @id 205\n * @category Checkbox\n */\nimport { Checkbox } from \"@/components/ui/checkbox\"\n\nfunction CheckboxInvalid() {\n  return (\n    <Checkbox isInvalid isRequired label=\"I agree to the terms\" description=\"You must accept the terms to continue\" />\n  )\n}\n\nexport { CheckboxInvalid }\n",
+      "description": "Özel bileşen",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/checkbox-invalid.tsx"
+    },
+    {
+      "id": "209",
+      "name": "CheckboxRenderProps",
+      "category": "Checkbox",
+      "file": "checkbox-render-props.tsx",
+      "exists": true,
+      "code": "/**\n * CheckboxRenderProps\n * HeroUI Render Props örneği — duruma göre değişen etiket (saf React).\n * @id 209\n * @category Checkbox\n */\nimport { Checkbox } from \"@/components/ui/checkbox\"\n\nfunction CheckboxRenderProps() {\n  return (\n    <Checkbox\n      label={(s) => (s.isSelected ? \"Terms accepted\" : \"Accept terms\")}\n      description={(s) => (s.isSelected ? \"Thank you for accepting\" : \"Please read and accept the terms\")}\n    />\n  )\n}\n\nexport { CheckboxRenderProps }\n",
+      "description": "Özel bileşen",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/checkbox-render-props.tsx"
+    },
+    {
+      "id": "199",
+      "name": "CheckboxVariants",
+      "category": "Checkbox",
+      "file": "checkbox-variants.tsx",
+      "exists": true,
+      "code": "/**\n * CheckboxVariants\n * HeroUI Variants örneği — primary/secondary (saf React).\n * @id 199\n * @category Checkbox\n */\nimport { Checkbox } from \"@/components/ui/checkbox\"\n\nfunction CheckboxVariants() {\n  return (\n    <div className=\"flex flex-col gap-4\">\n      <div className=\"flex flex-col gap-2\">\n        <p className=\"text-sm font-medium text-muted-foreground\">Primary variant</p>\n        <Checkbox label=\"Primary checkbox\" description=\"Standard styling with default background\" />\n      </div>\n      <div className=\"flex flex-col gap-2\">\n        <p className=\"text-sm font-medium text-muted-foreground\">Secondary variant</p>\n        <Checkbox variant=\"secondary\" label=\"Secondary checkbox\" description=\"Lower emphasis variant for use in surfaces\" />\n      </div>\n    </div>\n  )\n}\n\nexport { CheckboxVariants }\n",
+      "description": "Özel bileşen",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/checkbox-variants.tsx"
+    },
+    {
+      "id": "203",
+      "name": "CheckboxWithDescription",
+      "category": "Checkbox",
+      "file": "checkbox-with-description.tsx",
+      "exists": true,
+      "code": "/**\n * CheckboxWithDescription\n * HeroUI With Description örneği (saf React).\n * @id 203\n * @category Checkbox\n */\nimport { Checkbox } from \"@/components/ui/checkbox\"\n\nfunction CheckboxWithDescription() {\n  return (\n    <Checkbox label=\"Email notifications\" description=\"Get notified when someone mentions you in a comment\" />\n  )\n}\n\nexport { CheckboxWithDescription }\n",
+      "description": "Özel bileşen",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/checkbox-with-description.tsx"
+    },
+    {
+      "id": "196",
+      "name": "Checkbox",
+      "category": "Checkbox",
+      "file": "checkbox.tsx",
+      "exists": true,
+      "code": "/**\n * Checkbox\n * HeroUI checkbox'tan uyarlanmış — saf React (bağımlılıksız).\n * CheckboxGroup içinde kullanılırsa grup state'ini paylaşır (context).\n *   <Checkbox label=\"Accept terms\" defaultSelected onChange={...} />\n *   <Checkbox label={(sel) => sel ? \"Terms accepted\" : \"Accept terms\"} />\n * Özellikler: label (fonksiyon olabilir) · description · isSelected/defaultSelected\n * · isIndeterminate · isDisabled/isInvalid/isRequired · variant · indicator ·\n * name/value (form) · onChange.\n * @id 196\n * @category Checkbox\n */\nimport { createContext, useContext, useState, type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { Check, Minus } from \"@/components/ui/icons\"\n\n/* ---------- Group context ---------- */\n\ninterface GroupCtx {\n  values: string[]\n  toggle: (value: string) => void\n  groupDisabled: boolean\n}\n\nconst CheckboxGroupContext = createContext<GroupCtx | null>(null)\n\nfunction useCheckboxGroupContext(): GroupCtx | null {\n  return useContext(CheckboxGroupContext)\n}\n\ninterface CheckboxState {\n  isSelected: boolean\n  isIndeterminate: boolean\n  isDisabled: boolean\n  isInvalid: boolean\n  isRequired: boolean\n}\n\ninterface CheckboxProps {\n  /** Etiket — fonksiyon verilirse seçim durumunu alır */\n  label?: ReactNode | ((state: CheckboxState) => ReactNode)\n  /** Açıklama — fonksiyon verilirse seçim durumunu alır */\n  description?: ReactNode | ((state: CheckboxState) => ReactNode)\n  /** CheckboxGroup içinde grup değeri; tek başınaysa form değeri */\n  value?: string\n  name?: string\n  isSelected?: boolean\n  defaultSelected?: boolean\n  isIndeterminate?: boolean\n  isDisabled?: boolean\n  isInvalid?: boolean\n  isRequired?: boolean\n  variant?: \"primary\" | \"secondary\"\n  /** Varsayılan işaret yerine özel içerik (fonksiyon state alır) */\n  indicator?: ReactNode | ((state: CheckboxState) => ReactNode)\n  onChange?: (selected: boolean) => void\n  className?: string\n}\n\nfunction Checkbox({\n  label,\n  description,\n  value,\n  name,\n  isSelected,\n  defaultSelected,\n  isIndeterminate,\n  isDisabled,\n  isInvalid,\n  isRequired,\n  variant = \"primary\",\n  indicator,\n  onChange,\n  className,\n}: CheckboxProps) {\n  const group = useCheckboxGroupContext()\n  const [internalSelected, setInternalSelected] = useState(defaultSelected ?? false)\n\n  const inGroup = !!group\n  const selected = inGroup ? group.values.includes(value ?? \"\") : (isSelected ?? internalSelected)\n  const disabled = isDisabled || (inGroup && group.groupDisabled)\n\n  const toggle = () => {\n    if (disabled) return\n    if (inGroup) {\n      group.toggle(value ?? \"\")\n    } else {\n      const next = !selected\n      if (isSelected === undefined) setInternalSelected(next)\n      onChange?.(next)\n    }\n  }\n\n  const state: CheckboxState = {\n    isSelected: selected,\n    isIndeterminate: !!isIndeterminate,\n    isDisabled: disabled,\n    isInvalid: !!isInvalid,\n    isRequired: !!isRequired,\n  }\n\n  const labelNode = typeof label === \"function\" ? label(state) : label\n  const descNode = typeof description === \"function\" ? description(state) : description\n  const indicatorNode =\n    typeof indicator === \"function\" ? indicator(state) : indicator\n\n  return (\n    <div data-slot=\"checkbox\" data-selected={selected || undefined} data-disabled={disabled || undefined} className={cn(\"flex flex-col gap-0.5\", disabled && \"opacity-60\", className)}>\n      <label className=\"group flex w-fit cursor-pointer items-center gap-2.5 select-none\">\n        <input\n          type=\"checkbox\"\n          className=\"sr-only\"\n          name={name}\n          value={value}\n          checked={selected}\n          disabled={disabled}\n          onChange={toggle}\n          aria-invalid={isInvalid || undefined}\n          aria-required={isRequired || undefined}\n        />\n        <span\n          data-slot=\"checkbox-control\"\n          data-selected={selected || undefined}\n          data-indeterminate={isIndeterminate || undefined}\n          data-invalid={isInvalid || undefined}\n          aria-hidden=\"true\"\n          className={cn(\n            \"flex size-4 shrink-0 items-center justify-center rounded-[4px] border transition-colors\",\n            selected\n              ? \"border-blue-600 bg-blue-600 text-white\"\n              : \"border-input bg-background\",\n            variant === \"secondary\" && !selected && \"border-muted-foreground/40\",\n            isInvalid && !selected && \"border-red-500\",\n            \"group-hover:border-black/40\",\n            \"focus-within:ring-3 focus-within:ring-ring/50\"\n          )}\n        >\n          {indicatorNode ?? (selected ? <Check className=\"size-3\" /> : isIndeterminate ? <Minus className=\"size-3\" /> : null)}\n        </span>\n        {labelNode && <span className=\"text-sm text-foreground\">{labelNode}</span>}\n      </label>\n      {descNode && <p className=\"pl-6.5 text-xs text-muted-foreground\">{descNode}</p>}\n    </div>\n  )\n}\n\nexport { Checkbox, CheckboxGroupContext, useCheckboxGroupContext }\nexport type { CheckboxProps, CheckboxState, GroupCtx }\n",
+      "description": "Özel bileşen",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/checkbox.tsx"
     }
   ],
   "layouts": []
