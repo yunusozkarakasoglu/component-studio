@@ -76,6 +76,25 @@ Kullanıcı bir dosya yolu verdiğinde veya "008 Button'ı projeme ekle" dediği
 6. **İkonlar:** `import { Search } from "@/components/ui/icons"` (kendi setimizden — asla lucide-react).
 7. Kullanıcının görevine göre bileşeni ilgili sayfaya/dosyaya ekle; değişiklikleri açıkla.
 
+
+## 5.5) Heroui element entegrasyon akışı (STANDART — kullanıcı .md verdiğinde)
+
+Kullanıcı bir Heroui element `.md` dosyası verdiğinde her zaman şu sırayla ilerle:
+
+1. **Oku** — md'yi `read` ile oku (örnekler + API).
+2. **Listele** — örnekleri başlıklarla çıkar; kullanıcıya kısa plan sun.
+3. **Çevir (saf React)**:
+   - `@heroui/react` → kaldır; `@gravity-ui/icons` → kendi setimizden eşdeğer (birebir ad → anlam → sor)
+   - CDN/URL resimleri → data-URI placeholder (dış kaynak yok)
+   - Compound → sade API (label/description/indicator...); context gerekirse tek context
+   - Karmaşık yardımcılar (@internationalized/date, tailwind-variants...) → kendi mantığın
+4. **Oluştur** — ana bileşen + örnekler (`@id` sıradaki boş, `@category` mevcut/uygun,
+   gerekirse `@subcategory`; çekirdek import ediyorsa `Gerektirir` notu).
+5. **Bağla** — `index.tsx` barrel + `samples.tsx` önizleme + `Bileşen Listesi .txt` (kategori/alt kategori).
+6. **Doğrula** — `cd registry && node build-registry.mjs` → `tsc` → `npm test` → tarayıcı (render + etkileşim).
+7. **Rapor + commit** — kaynak → çeviri kararları → test → kategori/numara; `git add -A && git commit`.
+
+Kullanıcı kategori/alt kategori belirtirse ona uy; belirtmezse içeriğe en uygun mevcut kategoriye koy.
 ## 6) Görev B — Kütüphaneye yeni bileşen ekleme
 
 Kullanıcı bir bileşen (HTML/JSX/TSX) getirdiğinde:
