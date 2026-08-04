@@ -62,7 +62,7 @@ interface CalendarProps {
   /** İlk seçim (bağımsız) */
   defaultValue?: string | string[]
   onChange?: (value: string | string[] | null) => void
-  selectionMode?: "single" | "multiple"
+  selectionMode?: "single" | "multiple" | "range"
   /** Görüntülenen ayı kontrol eder — "YYYY-MM" */
   focusedValue?: string
   onFocusChange?: (value: string) => void
@@ -124,7 +124,17 @@ function Calendar({
   const [fy, fm] = focused.split("-").map(Number)
   const cells = useMemo(() => buildCells(fy, fm, firstDayOfWeek, weeksInMonth), [fy, fm, firstDayOfWeek, weeksInMonth])
 
-  const isSelected = (key: string) => (Array.isArray(selected) ? selected.includes(key) : selected === key)
+  const isRangeEdge = (key: string) =>
+    selectionMode === "range" && Array.isArray(selected) && selected.length === 2 && (key === selected[0] || key === selected[1])
+
+  const isSelected = (key: string) => {
+    if (!Array.isArray(selected)) return selected === key
+    if (selectionMode === "range" && selected.length === 2) {
+      const [start, end] = selected
+      return key >= start && key <= end
+    }
+    return selected.includes(key)
+  }
 
   const select = (key: string) => {
     if (isDisabled || isReadOnly) return
@@ -135,6 +145,16 @@ function Calendar({
     if (isDateUnavailable?.(date)) return
     if (selectionMode === "single") {
       setSelected(isSelected(date) ? null : date)
+    } else if (selectionMode === "range") {
+      const arr = Array.isArray(selected) ? [...selected] : []
+      if (arr.length === 0 || arr.length === 2) {
+        setSelected([date])
+      } else {
+        const start = arr[0]
+        if (date < start) setSelected([date, start])
+        else if (date > start) setSelected([start, date])
+        else setSelected([date])
+      }
     } else {
       const arr = Array.isArray(selected) ? [...selected] : []
       setSelected(arr.includes(date) ? arr.filter((x) => x !== date) : [...arr, date])
@@ -201,8 +221,8 @@ function Calendar({
               className={cn(
                 "relative flex h-8 w-8 items-center justify-center rounded-md text-sm transition-colors outline-none focus-visible:ring-3 focus-visible:ring-ring/50",
                 cell.outside && "text-muted-foreground/40",
-                sel ? "bg-blue-600 font-medium text-white" : "hover:bg-muted",
-                today && !sel && "bg-blue-100 text-blue-700 font-medium",
+                isRangeEdge(cell.key) ? "bg-blue-600 font-medium text-white" : sel ? "bg-blue-100 text-blue-700" : "hover:bg-muted",
+                today && !sel && !isRangeEdge(cell.key) && "bg-blue-100 text-blue-700 font-medium",
                 disabled && "cursor-not-allowed opacity-35 hover:bg-transparent"
               )}
             >
