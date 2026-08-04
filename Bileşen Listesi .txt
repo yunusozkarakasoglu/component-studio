@@ -117,6 +117,33 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `162` AvatarGroup
 - `163` AvatarCustomStyles
 
+### Checkbox
+- `196` Checkbox
+- `197` CheckboxGroup
+- `198` CheckboxBasic
+- `199` CheckboxVariants
+- `200` CheckboxFullRounded
+- `201` CheckboxDisabled
+- `202` CheckboxExternalLabel
+- `203` CheckboxWithDescription
+- `204` CheckboxDefaultSelected
+- `205` CheckboxInvalid
+- `206` CheckboxControlled
+- `207` CheckboxIndeterminate
+- `208` CheckboxForm
+- `209` CheckboxRenderProps
+- `210` CheckboxCustomIndicator
+- `211` CheckboxCustomStyles
+- `212` CheckboxGroupBasic
+- `213` CheckboxGroupOnSurface
+- `214` CheckboxGroupDisabled
+- `215` CheckboxGroupIndeterminate
+- `216` CheckboxGroupControlled
+- `217` CheckboxGroupValidation
+- `218` CheckboxGroupFeatures
+- `219` CheckboxGroupCustomIndicator
+- `220` CheckboxGroupCustomStyles
+
 ### Kartlar
 - `188` Card
 - `189` CardDefault
@@ -143,7 +170,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 108 bileşen (saf React)**
+**Toplam: 133 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
