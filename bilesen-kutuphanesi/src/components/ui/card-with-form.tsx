@@ -2,7 +2,7 @@
  * CardWithForm
  * HeroUI With Form örneği — giriş kartı (saf React, Label + input).
  * @id 194
- * @category Genel
+ * @category Card
  */
 import { useState, type FormEvent } from "react"
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"

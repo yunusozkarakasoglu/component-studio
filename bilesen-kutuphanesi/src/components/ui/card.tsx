@@ -8,7 +8,7 @@
  *     <CardFooter>...</CardFooter>
  *   </Card>
  * @id 188
- * @category Genel
+ * @category Card
  */
 import type { ReactNode } from "react"
 import { cn } from "@/lib/utils"

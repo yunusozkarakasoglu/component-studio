@@ -2,7 +2,7 @@
  * CardVariants
  * HeroUI Variants örneği — 4 semantik varyant (saf React).
  * @id 190
- * @category Genel
+ * @category Card
  */
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-04T19:28:43.172Z",
+  "generatedAt": "2026-08-04T19:29:45.719Z",
   "counts": {
     "components": 108,
     "ready": 108,
@@ -16,6 +16,7 @@
     "Veri Gösterimi",
     "Overlay",
     "Genel",
+    "Card",
     "Breadcrumbs",
     "Özel Komponentler"
   ],
@@ -841,86 +842,6 @@
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/empty-state.tsx"
     },
     {
-      "id": "188",
-      "name": "Card",
-      "category": "Genel",
-      "file": "card.tsx",
-      "exists": true,
-      "code": "/**\n * Card\n * HeroUI card'dan uyarlanmış — saf React (bağımlılıksız).\n * Semantik varyantlar + compound parçalar.\n *   <Card variant=\"secondary\">\n *     <CardHeader><CardTitle/><CardDescription/></CardHeader>\n *     <CardContent>...</CardContent>\n *     <CardFooter>...</CardFooter>\n *   </Card>\n * @id 188\n * @category Genel\n */\nimport type { ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ntype CardVariant = \"transparent\" | \"default\" | \"secondary\" | \"tertiary\"\n\nconst cardVariantClass: Record<CardVariant, string> = {\n  transparent: \"border-transparent bg-transparent p-0\",\n  default: \"border-border bg-card\",\n  secondary: \"border-border bg-muted\",\n  tertiary: \"border-border bg-muted/70\",\n}\n\ninterface CardProps {\n  variant?: CardVariant\n  className?: string\n  children?: ReactNode\n}\n\nfunction Card({ variant = \"default\", className, children }: CardProps) {\n  return (\n    <div data-slot=\"card\" data-variant={variant}\n      className={cn(\"flex flex-col rounded-2xl border p-4\", cardVariantClass[variant], className)}>\n      {children}\n    </div>\n  )\n}\n\ninterface CardSectionProps {\n  className?: string\n  children?: ReactNode\n}\n\nfunction CardHeader({ className, children }: CardSectionProps) {\n  return <div data-slot=\"card-header\" className={cn(\"flex flex-col gap-0.5\", className)}>{children}</div>\n}\n\nfunction CardTitle({ className, children }: CardSectionProps) {\n  return <h3 data-slot=\"card-title\" className={cn(\"text-base font-semibold text-foreground\", className)}>{children}</h3>\n}\n\nfunction CardDescription({ className, children }: CardSectionProps) {\n  return <p data-slot=\"card-description\" className={cn(\"text-sm text-muted-foreground\", className)}>{children}</p>\n}\n\nfunction CardContent({ className, children }: CardSectionProps) {\n  return <div data-slot=\"card-content\" className={cn(\"mt-3 flex-1\", className)}>{children}</div>\n}\n\nfunction CardFooter({ className, children }: CardSectionProps) {\n  return <div data-slot=\"card-footer\" className={cn(\"mt-4 flex items-center gap-2\", className)}>{children}</div>\n}\n\nexport { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }\nexport type { CardProps, CardVariant }\n",
-      "description": "Card",
-      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/card.tsx"
-    },
-    {
-      "id": "189",
-      "name": "CardDefault",
-      "category": "Genel",
-      "file": "card-default.tsx",
-      "exists": true,
-      "code": "/**\n * CardDefault\n * HeroUI Usage örneği — temel kart (saf React).\n * @id 189\n * @category Genel\n */\nimport { Card, CardDescription, CardFooter, CardHeader, CardTitle } from \"@/components/ui/card\"\nimport { CircleDollarSign } from \"@/components/ui/icons\"\n\nfunction CardDefault() {\n  return (\n    <Card className=\"w-[400px]\">\n      <CircleDollarSign aria-label=\"Dolar ikonu\" className=\"mb-2 size-6 text-blue-600\" role=\"img\" />\n      <CardHeader>\n        <CardTitle>Become an Acme Creator!</CardTitle>\n        <CardDescription>\n          Visit the Acme Creator Hub to sign up today and start earning credits from your fans.\n        </CardDescription>\n      </CardHeader>\n      <CardFooter>\n        <a href=\"#\" className=\"text-sm font-medium text-blue-600 hover:underline\">Creator Hub →</a>\n      </CardFooter>\n    </Card>\n  )\n}\n\nexport { CardDefault }\n",
-      "description": "CardDefault",
-      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/card-default.tsx"
-    },
-    {
-      "id": "190",
-      "name": "CardVariants",
-      "category": "Genel",
-      "file": "card-variants.tsx",
-      "exists": true,
-      "code": "/**\n * CardVariants\n * HeroUI Variants örneği — 4 semantik varyant (saf React).\n * @id 190\n * @category Genel\n */\nimport { Card, CardContent, CardDescription, CardHeader, CardTitle } from \"@/components/ui/card\"\n\nfunction CardVariants() {\n  const cards = [\n    { variant: \"transparent\", title: \"Transparent\", desc: \"Minimal prominence, transparent background\" },\n    { variant: \"default\", title: \"Default\", desc: \"Standard card appearance\" },\n    { variant: \"secondary\", title: \"Secondary\", desc: \"Medium prominence\" },\n    { variant: \"tertiary\", title: \"Tertiary\", desc: \"Higher prominence for important content\" },\n  ] as const\n  return (\n    <div className=\"flex flex-col gap-4\">\n      {cards.map((c) => (\n        <Card key={c.title} className=\"w-[320px]\" variant={c.variant}>\n          <CardHeader>\n            <CardTitle>{c.title}</CardTitle>\n            <CardDescription>{c.desc}</CardDescription>\n          </CardHeader>\n          <CardContent><p className=\"text-sm text-muted-foreground\">Kart içeriği</p></CardContent>\n        </Card>\n      ))}\n    </div>\n  )\n}\n\nexport { CardVariants }\n",
-      "description": "CardVariants",
-      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/card-variants.tsx"
-    },
-    {
-      "id": "191",
-      "name": "CardHorizontal",
-      "category": "Genel",
-      "file": "card-horizontal.tsx",
-      "exists": true,
-      "code": "/**\n * CardHorizontal\n * HeroUI Horizontal Layout örneği — yatay kart (saf React, data-URI görsel).\n * @id 191\n * @category Genel\n */\nimport { Card, CardDescription, CardFooter, CardHeader, CardTitle } from \"@/components/ui/card\"\nimport { Button } from \"@/components/ui/button\"\nimport { CloseButton } from \"@/components/ui/close-button\"\n\nconst img = `data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><rect width='240' height='240' fill='#ef4444'/><text x='120' y='130' font-size='48' text-anchor='middle' fill='white' font-family='sans-serif'>🍒</text></svg>`)}`\n\nfunction CardHorizontal() {\n  return (\n    <Card className=\"w-full max-w-md flex-row items-stretch\">\n      <div className=\"relative h-[140px] w-full shrink-0 overflow-hidden rounded-2xl sm:h-[120px] sm:w-[120px]\">\n        <img alt=\"Cherries\" src={img} className=\"absolute inset-0 h-full w-full object-cover\" />\n      </div>\n      <div className=\"relative flex flex-1 flex-col gap-3\">\n        <CardHeader className=\"gap-1\">\n          <CardTitle className=\"pe-8\">Become an ACME Creator!</CardTitle>\n          <CardDescription>Lorem ipsum dolor sit amet consectetur. Sed arcu donec.</CardDescription>\n        </CardHeader>\n        <CardFooter className=\"mt-auto flex w-full flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between\">\n          <div className=\"flex flex-col\">\n            <span className=\"text-sm font-medium\">Only 10 spots</span>\n            <span className=\"text-xs text-muted-foreground\">Submission ends Oct 10.</span>\n          </div>\n          <Button className=\"w-full sm:w-auto\">Apply Now</Button>\n        </CardFooter>\n        <CloseButton className=\"absolute top-2 right-2\" />\n      </div>\n    </Card>\n  )\n}\n\nexport { CardHorizontal }\n",
-      "description": "CardHorizontal",
-      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/card-horizontal.tsx"
-    },
-    {
-      "id": "192",
-      "name": "CardWithAvatar",
-      "category": "Genel",
-      "file": "card-with-avatar.tsx",
-      "exists": true,
-      "code": "/**\n * CardWithAvatar\n * HeroUI With Avatar örneği (saf React — Avatar'ı kullanır).\n * @id 192\n * @category Genel\n */\nimport { Card, CardDescription, CardFooter, CardHeader, CardTitle } from \"@/components/ui/card\"\nimport { Avatar, AvatarFallback, AvatarImage } from \"@/components/ui/avatar\"\n\nconst img = (bg: string, t: string) =>\n  `data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96'><rect width='96' height='96' fill='${bg}'/><text x='48' y='60' font-size='30' text-anchor='middle' fill='white' font-family='sans-serif'>${t}</text></svg>`)}`\n\nfunction CardWithAvatar() {\n  const cards = [\n    { title: \"Indie Hackers\", members: \"148 members\", by: \"Martha\", bg: \"#8b5cf6\" },\n    { title: \"AI Builders\", members: \"362 members\", by: \"John\", bg: \"#3b82f6\" },\n  ]\n  return (\n    <div className=\"flex flex-wrap gap-4\">\n      {cards.map((c) => (\n        <Card key={c.title} className=\"w-[200px] gap-2\">\n          <img alt={c.title} src={img(c.bg, c.title[0])} className=\"aspect-square w-14 rounded-2xl object-cover\" />\n          <CardHeader>\n            <CardTitle>{c.title}</CardTitle>\n            <CardDescription>{c.members}</CardDescription>\n          </CardHeader>\n          <CardFooter className=\"gap-2\">\n            <Avatar className=\"size-5\">\n              <AvatarImage alt={c.by} src={img(\"#ef4444\", c.by[0])} />\n              <AvatarFallback className=\"text-xs\">{c.by[0]}</AvatarFallback>\n            </Avatar>\n            <span className=\"text-xs text-muted-foreground\">By {c.by}</span>\n          </CardFooter>\n        </Card>\n      ))}\n    </div>\n  )\n}\n\nexport { CardWithAvatar }\n",
-      "description": "CardWithAvatar",
-      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/card-with-avatar.tsx"
-    },
-    {
-      "id": "193",
-      "name": "CardWithImages",
-      "category": "Genel",
-      "file": "card-with-images.tsx",
-      "exists": true,
-      "code": "/**\n * CardWithImages\n * HeroUI With Images örneği — sadeleştirilmiş resimli kartlar (saf React, data-URI).\n * @id 193\n * @category Genel\n */\nimport { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from \"@/components/ui/card\"\nimport { Button } from \"@/components/ui/button\"\n\nconst img = (bg: string, t: string) =>\n  `data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='400' height='300' fill='${bg}'/><text x='200' y='160' font-size='60' text-anchor='middle' fill='white' font-family='sans-serif'>${t}</text></svg>`)}`\n\nfunction CardWithImages() {\n  return (\n    <div className=\"flex flex-wrap gap-4\">\n      <Card className=\"relative w-[280px] min-h-[200px] overflow-hidden\">\n        <img alt=\"NEO Home Robot\" src={img(\"#1e293b\", \"🤖\")} className=\"absolute inset-0 h-full w-full object-cover\" />\n        <CardFooter className=\"relative z-10 mt-auto flex items-end justify-between text-white\">\n          <div>\n            <div className=\"text-base font-medium\">NEO</div>\n            <div className=\"text-xs opacity-70\">$499/m</div>\n          </div>\n          <Button className=\"bg-white text-black\" size=\"sm\" variant=\"tertiary\">Get now</Button>\n        </CardFooter>\n      </Card>\n\n      <Card className=\"w-[280px]\" variant=\"transparent\">\n        <CardHeader>\n          <CardTitle className=\"text-sm\">Bridging the Future</CardTitle>\n          <CardDescription className=\"text-xs\">Today, 6:30 PM</CardDescription>\n        </CardHeader>\n        <CardContent><img alt=\"Robot\" src={img(\"#f59e0b\", \"🤖\")} className=\"aspect-video w-full rounded-xl object-cover\" /></CardContent>\n      </Card>\n\n      <Card className=\"w-[280px]\" variant=\"transparent\">\n        <CardHeader>\n          <CardTitle className=\"text-sm\">Avocado Hackathon</CardTitle>\n          <CardDescription className=\"text-xs\">Wed, 4:30 PM</CardDescription>\n        </CardHeader>\n        <CardContent><img alt=\"Avocado\" src={img(\"#22c55e\", \"🥑\")} className=\"aspect-video w-full rounded-xl object-cover\" /></CardContent>\n      </Card>\n    </div>\n  )\n}\n\nexport { CardWithImages }\n",
-      "description": "CardWithImages",
-      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/card-with-images.tsx"
-    },
-    {
-      "id": "194",
-      "name": "CardWithForm",
-      "category": "Genel",
-      "file": "card-with-form.tsx",
-      "exists": true,
-      "code": "/**\n * CardWithForm\n * HeroUI With Form örneği — giriş kartı (saf React, Label + input).\n * @id 194\n * @category Genel\n */\nimport { useState, type FormEvent } from \"react\"\nimport { Card, CardDescription, CardFooter, CardHeader, CardTitle } from \"@/components/ui/card\"\nimport { Button } from \"@/components/ui/button\"\nimport { Label } from \"@/components/ui/label\"\n\nfunction CardWithForm() {\n  const [msg, setMsg] = useState(\"\")\n  const onSubmit = (e: FormEvent<HTMLFormElement>) => {\n    e.preventDefault()\n    setMsg(\"Form submitted successfully!\")\n  }\n  return (\n    <Card className=\"w-full max-w-md\">\n      <CardHeader>\n        <CardTitle>Login</CardTitle>\n        <CardDescription>Enter your credentials to access your account</CardDescription>\n      </CardHeader>\n      <form onSubmit={onSubmit} className=\"flex flex-col gap-4\">\n        <div className=\"flex flex-col gap-1.5\">\n          <Label htmlFor=\"card-email\">Email</Label>\n          <input id=\"card-email\" name=\"email\" type=\"email\" placeholder=\"email@example.com\"\n            className=\"h-10 rounded-lg border border-border bg-background px-3 text-sm outline-none transition-colors focus:border-black/50\" />\n        </div>\n        <div className=\"flex flex-col gap-1.5\">\n          <Label htmlFor=\"card-pass\">Password</Label>\n          <input id=\"card-pass\" name=\"password\" type=\"password\" placeholder=\"••••••••\"\n            className=\"h-10 rounded-lg border border-border bg-background px-3 text-sm outline-none transition-colors focus:border-black/50\" />\n        </div>\n        <CardFooter className=\"mt-2 flex-col gap-2 px-0\">\n          <Button className=\"w-full\" type=\"submit\">Sign In</Button>\n          <a href=\"#\" className=\"text-center text-sm text-muted-foreground hover:text-foreground\">Forgot password?</a>\n        </CardFooter>\n      </form>\n      {msg && <p className=\"mt-2 text-sm text-emerald-600\">{msg}</p>}\n    </Card>\n  )\n}\n\nexport { CardWithForm }\n",
-      "description": "CardWithForm",
-      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/card-with-form.tsx"
-    },
-    {
-      "id": "195",
-      "name": "CardCustomStyles",
-      "category": "Genel",
-      "file": "card-custom-styles.tsx",
-      "exists": true,
-      "code": "/**\n * CardCustomStyles\n * HeroUI Tailwind CSS örneği — Pro kartı (saf React).\n * @id 195\n * @category Genel\n */\nimport { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from \"@/components/ui/card\"\nimport { Button } from \"@/components/ui/button\"\nimport { Check, Star } from \"@/components/ui/icons\"\n\nconst PRO_FEATURES = [\n  \"Unlimited projects and collaborators\",\n  \"Priority support with 24h response\",\n  \"Advanced analytics and exports\",\n] as const\n\nfunction CardCustomStyles() {\n  return (\n    <Card className=\"relative w-full max-w-md overflow-hidden border border-blue-200 bg-gradient-to-br from-blue-50 via-background to-background shadow-lg\">\n      <div aria-hidden=\"true\" className=\"pointer-events-none absolute -top-12 -right-12 size-40 rounded-full bg-blue-400/20 blur-3xl\" />\n      <CardHeader className=\"relative gap-3\">\n        <span className=\"w-fit rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-700\">Recommended</span>\n        <div className=\"flex items-start gap-3\">\n          <div className=\"flex size-10 shrink-0 items-center justify-center rounded-xl bg-blue-100 text-blue-700\">\n            <Star className=\"size-5\" />\n          </div>\n          <div className=\"flex flex-col gap-1\">\n            <CardTitle>Upgrade to Pro</CardTitle>\n            <CardDescription>Unlock team workflows and insights built for growing products.</CardDescription>\n          </div>\n        </div>\n      </CardHeader>\n      <CardContent className=\"relative\">\n        <ul className=\"flex flex-col gap-2\">\n          {PRO_FEATURES.map((f) => (\n            <li key={f} className=\"flex items-center gap-2 text-sm text-muted-foreground\">\n              <Check className=\"size-4 shrink-0 text-blue-600\" />\n              {f}\n            </li>\n          ))}\n        </ul>\n      </CardContent>\n      <CardFooter className=\"relative flex-col gap-2 sm:flex-row\">\n        <Button className=\"w-full\">Upgrade now</Button>\n        <Button className=\"w-full\" variant=\"secondary\">Compare plans</Button>\n      </CardFooter>\n    </Card>\n  )\n}\n\nexport { CardCustomStyles }\n",
-      "description": "CardCustomStyles",
-      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/card-custom-styles.tsx"
-    },
-    {
       "id": "156",
       "name": "Avatar",
       "category": "Genel",
@@ -999,6 +920,86 @@
       "code": "/**\n * AvatarCustomStyles\n * HeroUI Tailwind CSS örneği — yuvarlatılmış avatar (saf React).\n * @id 163\n * @category Genel\n */\nimport { Avatar, AvatarFallback, AvatarImage } from \"@/components/ui/avatar\"\n\nconst src = (bg: string, t: string) =>\n  `data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96'><rect width='96' height='96' fill='${bg}'/><text x='48' y='62' font-size='38' text-anchor='middle' fill='white' font-family='sans-serif'>${t}</text></svg>`)}`\n\nfunction AvatarCustomStyles() {\n  return (\n    <Avatar className=\"rounded-lg\">\n      <AvatarImage alt=\"John Doe\" src={src(\"#3b82f6\", \"JD\")} />\n      <AvatarFallback className=\"rounded-lg\">JD</AvatarFallback>\n    </Avatar>\n  )\n}\n\nexport { AvatarCustomStyles }\n",
       "description": "AvatarCustomStyles",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/avatar-custom-styles.tsx"
+    },
+    {
+      "id": "188",
+      "name": "Card",
+      "category": "Card",
+      "file": "card.tsx",
+      "exists": true,
+      "code": "/**\n * Card\n * HeroUI card'dan uyarlanmış — saf React (bağımlılıksız).\n * Semantik varyantlar + compound parçalar.\n *   <Card variant=\"secondary\">\n *     <CardHeader><CardTitle/><CardDescription/></CardHeader>\n *     <CardContent>...</CardContent>\n *     <CardFooter>...</CardFooter>\n *   </Card>\n * @id 188\n * @category Card\n */\nimport type { ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ntype CardVariant = \"transparent\" | \"default\" | \"secondary\" | \"tertiary\"\n\nconst cardVariantClass: Record<CardVariant, string> = {\n  transparent: \"border-transparent bg-transparent p-0\",\n  default: \"border-border bg-card\",\n  secondary: \"border-border bg-muted\",\n  tertiary: \"border-border bg-muted/70\",\n}\n\ninterface CardProps {\n  variant?: CardVariant\n  className?: string\n  children?: ReactNode\n}\n\nfunction Card({ variant = \"default\", className, children }: CardProps) {\n  return (\n    <div data-slot=\"card\" data-variant={variant}\n      className={cn(\"flex flex-col rounded-2xl border p-4\", cardVariantClass[variant], className)}>\n      {children}\n    </div>\n  )\n}\n\ninterface CardSectionProps {\n  className?: string\n  children?: ReactNode\n}\n\nfunction CardHeader({ className, children }: CardSectionProps) {\n  return <div data-slot=\"card-header\" className={cn(\"flex flex-col gap-0.5\", className)}>{children}</div>\n}\n\nfunction CardTitle({ className, children }: CardSectionProps) {\n  return <h3 data-slot=\"card-title\" className={cn(\"text-base font-semibold text-foreground\", className)}>{children}</h3>\n}\n\nfunction CardDescription({ className, children }: CardSectionProps) {\n  return <p data-slot=\"card-description\" className={cn(\"text-sm text-muted-foreground\", className)}>{children}</p>\n}\n\nfunction CardContent({ className, children }: CardSectionProps) {\n  return <div data-slot=\"card-content\" className={cn(\"mt-3 flex-1\", className)}>{children}</div>\n}\n\nfunction CardFooter({ className, children }: CardSectionProps) {\n  return <div data-slot=\"card-footer\" className={cn(\"mt-4 flex items-center gap-2\", className)}>{children}</div>\n}\n\nexport { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }\nexport type { CardProps, CardVariant }\n",
+      "description": "Card",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/card.tsx"
+    },
+    {
+      "id": "189",
+      "name": "CardDefault",
+      "category": "Card",
+      "file": "card-default.tsx",
+      "exists": true,
+      "code": "/**\n * CardDefault\n * HeroUI Usage örneği — temel kart (saf React).\n * @id 189\n * @category Card\n */\nimport { Card, CardDescription, CardFooter, CardHeader, CardTitle } from \"@/components/ui/card\"\nimport { CircleDollarSign } from \"@/components/ui/icons\"\n\nfunction CardDefault() {\n  return (\n    <Card className=\"w-[400px]\">\n      <CircleDollarSign aria-label=\"Dolar ikonu\" className=\"mb-2 size-6 text-blue-600\" role=\"img\" />\n      <CardHeader>\n        <CardTitle>Become an Acme Creator!</CardTitle>\n        <CardDescription>\n          Visit the Acme Creator Hub to sign up today and start earning credits from your fans.\n        </CardDescription>\n      </CardHeader>\n      <CardFooter>\n        <a href=\"#\" className=\"text-sm font-medium text-blue-600 hover:underline\">Creator Hub →</a>\n      </CardFooter>\n    </Card>\n  )\n}\n\nexport { CardDefault }\n",
+      "description": "CardDefault",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/card-default.tsx"
+    },
+    {
+      "id": "190",
+      "name": "CardVariants",
+      "category": "Card",
+      "file": "card-variants.tsx",
+      "exists": true,
+      "code": "/**\n * CardVariants\n * HeroUI Variants örneği — 4 semantik varyant (saf React).\n * @id 190\n * @category Card\n */\nimport { Card, CardContent, CardDescription, CardHeader, CardTitle } from \"@/components/ui/card\"\n\nfunction CardVariants() {\n  const cards = [\n    { variant: \"transparent\", title: \"Transparent\", desc: \"Minimal prominence, transparent background\" },\n    { variant: \"default\", title: \"Default\", desc: \"Standard card appearance\" },\n    { variant: \"secondary\", title: \"Secondary\", desc: \"Medium prominence\" },\n    { variant: \"tertiary\", title: \"Tertiary\", desc: \"Higher prominence for important content\" },\n  ] as const\n  return (\n    <div className=\"flex flex-col gap-4\">\n      {cards.map((c) => (\n        <Card key={c.title} className=\"w-[320px]\" variant={c.variant}>\n          <CardHeader>\n            <CardTitle>{c.title}</CardTitle>\n            <CardDescription>{c.desc}</CardDescription>\n          </CardHeader>\n          <CardContent><p className=\"text-sm text-muted-foreground\">Kart içeriği</p></CardContent>\n        </Card>\n      ))}\n    </div>\n  )\n}\n\nexport { CardVariants }\n",
+      "description": "CardVariants",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/card-variants.tsx"
+    },
+    {
+      "id": "191",
+      "name": "CardHorizontal",
+      "category": "Card",
+      "file": "card-horizontal.tsx",
+      "exists": true,
+      "code": "/**\n * CardHorizontal\n * HeroUI Horizontal Layout örneği — yatay kart (saf React, data-URI görsel).\n * @id 191\n * @category Card\n */\nimport { Card, CardDescription, CardFooter, CardHeader, CardTitle } from \"@/components/ui/card\"\nimport { Button } from \"@/components/ui/button\"\nimport { CloseButton } from \"@/components/ui/close-button\"\n\nconst img = `data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><rect width='240' height='240' fill='#ef4444'/><text x='120' y='130' font-size='48' text-anchor='middle' fill='white' font-family='sans-serif'>🍒</text></svg>`)}`\n\nfunction CardHorizontal() {\n  return (\n    <Card className=\"w-full max-w-md flex-row items-stretch\">\n      <div className=\"relative h-[140px] w-full shrink-0 overflow-hidden rounded-2xl sm:h-[120px] sm:w-[120px]\">\n        <img alt=\"Cherries\" src={img} className=\"absolute inset-0 h-full w-full object-cover\" />\n      </div>\n      <div className=\"relative flex flex-1 flex-col gap-3\">\n        <CardHeader className=\"gap-1\">\n          <CardTitle className=\"pe-8\">Become an ACME Creator!</CardTitle>\n          <CardDescription>Lorem ipsum dolor sit amet consectetur. Sed arcu donec.</CardDescription>\n        </CardHeader>\n        <CardFooter className=\"mt-auto flex w-full flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between\">\n          <div className=\"flex flex-col\">\n            <span className=\"text-sm font-medium\">Only 10 spots</span>\n            <span className=\"text-xs text-muted-foreground\">Submission ends Oct 10.</span>\n          </div>\n          <Button className=\"w-full sm:w-auto\">Apply Now</Button>\n        </CardFooter>\n        <CloseButton className=\"absolute top-2 right-2\" />\n      </div>\n    </Card>\n  )\n}\n\nexport { CardHorizontal }\n",
+      "description": "CardHorizontal",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/card-horizontal.tsx"
+    },
+    {
+      "id": "192",
+      "name": "CardWithAvatar",
+      "category": "Card",
+      "file": "card-with-avatar.tsx",
+      "exists": true,
+      "code": "/**\n * CardWithAvatar\n * HeroUI With Avatar örneği (saf React — Avatar'ı kullanır).\n * @id 192\n * @category Card\n */\nimport { Card, CardDescription, CardFooter, CardHeader, CardTitle } from \"@/components/ui/card\"\nimport { Avatar, AvatarFallback, AvatarImage } from \"@/components/ui/avatar\"\n\nconst img = (bg: string, t: string) =>\n  `data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96'><rect width='96' height='96' fill='${bg}'/><text x='48' y='60' font-size='30' text-anchor='middle' fill='white' font-family='sans-serif'>${t}</text></svg>`)}`\n\nfunction CardWithAvatar() {\n  const cards = [\n    { title: \"Indie Hackers\", members: \"148 members\", by: \"Martha\", bg: \"#8b5cf6\" },\n    { title: \"AI Builders\", members: \"362 members\", by: \"John\", bg: \"#3b82f6\" },\n  ]\n  return (\n    <div className=\"flex flex-wrap gap-4\">\n      {cards.map((c) => (\n        <Card key={c.title} className=\"w-[200px] gap-2\">\n          <img alt={c.title} src={img(c.bg, c.title[0])} className=\"aspect-square w-14 rounded-2xl object-cover\" />\n          <CardHeader>\n            <CardTitle>{c.title}</CardTitle>\n            <CardDescription>{c.members}</CardDescription>\n          </CardHeader>\n          <CardFooter className=\"gap-2\">\n            <Avatar className=\"size-5\">\n              <AvatarImage alt={c.by} src={img(\"#ef4444\", c.by[0])} />\n              <AvatarFallback className=\"text-xs\">{c.by[0]}</AvatarFallback>\n            </Avatar>\n            <span className=\"text-xs text-muted-foreground\">By {c.by}</span>\n          </CardFooter>\n        </Card>\n      ))}\n    </div>\n  )\n}\n\nexport { CardWithAvatar }\n",
+      "description": "CardWithAvatar",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/card-with-avatar.tsx"
+    },
+    {
+      "id": "193",
+      "name": "CardWithImages",
+      "category": "Card",
+      "file": "card-with-images.tsx",
+      "exists": true,
+      "code": "/**\n * CardWithImages\n * HeroUI With Images örneği — sadeleştirilmiş resimli kartlar (saf React, data-URI).\n * @id 193\n * @category Card\n */\nimport { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from \"@/components/ui/card\"\nimport { Button } from \"@/components/ui/button\"\n\nconst img = (bg: string, t: string) =>\n  `data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='400' height='300' fill='${bg}'/><text x='200' y='160' font-size='60' text-anchor='middle' fill='white' font-family='sans-serif'>${t}</text></svg>`)}`\n\nfunction CardWithImages() {\n  return (\n    <div className=\"flex flex-wrap gap-4\">\n      <Card className=\"relative w-[280px] min-h-[200px] overflow-hidden\">\n        <img alt=\"NEO Home Robot\" src={img(\"#1e293b\", \"🤖\")} className=\"absolute inset-0 h-full w-full object-cover\" />\n        <CardFooter className=\"relative z-10 mt-auto flex items-end justify-between text-white\">\n          <div>\n            <div className=\"text-base font-medium\">NEO</div>\n            <div className=\"text-xs opacity-70\">$499/m</div>\n          </div>\n          <Button className=\"bg-white text-black\" size=\"sm\" variant=\"tertiary\">Get now</Button>\n        </CardFooter>\n      </Card>\n\n      <Card className=\"w-[280px]\" variant=\"transparent\">\n        <CardHeader>\n          <CardTitle className=\"text-sm\">Bridging the Future</CardTitle>\n          <CardDescription className=\"text-xs\">Today, 6:30 PM</CardDescription>\n        </CardHeader>\n        <CardContent><img alt=\"Robot\" src={img(\"#f59e0b\", \"🤖\")} className=\"aspect-video w-full rounded-xl object-cover\" /></CardContent>\n      </Card>\n\n      <Card className=\"w-[280px]\" variant=\"transparent\">\n        <CardHeader>\n          <CardTitle className=\"text-sm\">Avocado Hackathon</CardTitle>\n          <CardDescription className=\"text-xs\">Wed, 4:30 PM</CardDescription>\n        </CardHeader>\n        <CardContent><img alt=\"Avocado\" src={img(\"#22c55e\", \"🥑\")} className=\"aspect-video w-full rounded-xl object-cover\" /></CardContent>\n      </Card>\n    </div>\n  )\n}\n\nexport { CardWithImages }\n",
+      "description": "CardWithImages",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/card-with-images.tsx"
+    },
+    {
+      "id": "194",
+      "name": "CardWithForm",
+      "category": "Card",
+      "file": "card-with-form.tsx",
+      "exists": true,
+      "code": "/**\n * CardWithForm\n * HeroUI With Form örneği — giriş kartı (saf React, Label + input).\n * @id 194\n * @category Card\n */\nimport { useState, type FormEvent } from \"react\"\nimport { Card, CardDescription, CardFooter, CardHeader, CardTitle } from \"@/components/ui/card\"\nimport { Button } from \"@/components/ui/button\"\nimport { Label } from \"@/components/ui/label\"\n\nfunction CardWithForm() {\n  const [msg, setMsg] = useState(\"\")\n  const onSubmit = (e: FormEvent<HTMLFormElement>) => {\n    e.preventDefault()\n    setMsg(\"Form submitted successfully!\")\n  }\n  return (\n    <Card className=\"w-full max-w-md\">\n      <CardHeader>\n        <CardTitle>Login</CardTitle>\n        <CardDescription>Enter your credentials to access your account</CardDescription>\n      </CardHeader>\n      <form onSubmit={onSubmit} className=\"flex flex-col gap-4\">\n        <div className=\"flex flex-col gap-1.5\">\n          <Label htmlFor=\"card-email\">Email</Label>\n          <input id=\"card-email\" name=\"email\" type=\"email\" placeholder=\"email@example.com\"\n            className=\"h-10 rounded-lg border border-border bg-background px-3 text-sm outline-none transition-colors focus:border-black/50\" />\n        </div>\n        <div className=\"flex flex-col gap-1.5\">\n          <Label htmlFor=\"card-pass\">Password</Label>\n          <input id=\"card-pass\" name=\"password\" type=\"password\" placeholder=\"••••••••\"\n            className=\"h-10 rounded-lg border border-border bg-background px-3 text-sm outline-none transition-colors focus:border-black/50\" />\n        </div>\n        <CardFooter className=\"mt-2 flex-col gap-2 px-0\">\n          <Button className=\"w-full\" type=\"submit\">Sign In</Button>\n          <a href=\"#\" className=\"text-center text-sm text-muted-foreground hover:text-foreground\">Forgot password?</a>\n        </CardFooter>\n      </form>\n      {msg && <p className=\"mt-2 text-sm text-emerald-600\">{msg}</p>}\n    </Card>\n  )\n}\n\nexport { CardWithForm }\n",
+      "description": "CardWithForm",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/card-with-form.tsx"
+    },
+    {
+      "id": "195",
+      "name": "CardCustomStyles",
+      "category": "Card",
+      "file": "card-custom-styles.tsx",
+      "exists": true,
+      "code": "/**\n * CardCustomStyles\n * HeroUI Tailwind CSS örneği — Pro kartı (saf React).\n * @id 195\n * @category Card\n */\nimport { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from \"@/components/ui/card\"\nimport { Button } from \"@/components/ui/button\"\nimport { Check, Star } from \"@/components/ui/icons\"\n\nconst PRO_FEATURES = [\n  \"Unlimited projects and collaborators\",\n  \"Priority support with 24h response\",\n  \"Advanced analytics and exports\",\n] as const\n\nfunction CardCustomStyles() {\n  return (\n    <Card className=\"relative w-full max-w-md overflow-hidden border border-blue-200 bg-gradient-to-br from-blue-50 via-background to-background shadow-lg\">\n      <div aria-hidden=\"true\" className=\"pointer-events-none absolute -top-12 -right-12 size-40 rounded-full bg-blue-400/20 blur-3xl\" />\n      <CardHeader className=\"relative gap-3\">\n        <span className=\"w-fit rounded-full bg-blue-100 px-2.5 py-0.5 text-xs font-medium text-blue-700\">Recommended</span>\n        <div className=\"flex items-start gap-3\">\n          <div className=\"flex size-10 shrink-0 items-center justify-center rounded-xl bg-blue-100 text-blue-700\">\n            <Star className=\"size-5\" />\n          </div>\n          <div className=\"flex flex-col gap-1\">\n            <CardTitle>Upgrade to Pro</CardTitle>\n            <CardDescription>Unlock team workflows and insights built for growing products.</CardDescription>\n          </div>\n        </div>\n      </CardHeader>\n      <CardContent className=\"relative\">\n        <ul className=\"flex flex-col gap-2\">\n          {PRO_FEATURES.map((f) => (\n            <li key={f} className=\"flex items-center gap-2 text-sm text-muted-foreground\">\n              <Check className=\"size-4 shrink-0 text-blue-600\" />\n              {f}\n            </li>\n          ))}\n        </ul>\n      </CardContent>\n      <CardFooter className=\"relative flex-col gap-2 sm:flex-row\">\n        <Button className=\"w-full\">Upgrade now</Button>\n        <Button className=\"w-full\" variant=\"secondary\">Compare plans</Button>\n      </CardFooter>\n    </Card>\n  )\n}\n\nexport { CardCustomStyles }\n",
+      "description": "CardCustomStyles",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/card-custom-styles.tsx"
     },
     {
       "id": "091",

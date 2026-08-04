@@ -2,7 +2,7 @@
  * CardWithAvatar
  * HeroUI With Avatar örneği (saf React — Avatar'ı kullanır).
  * @id 192
- * @category Genel
+ * @category Card
  */
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"

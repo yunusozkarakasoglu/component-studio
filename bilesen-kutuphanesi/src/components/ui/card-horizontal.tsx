@@ -2,7 +2,7 @@
  * CardHorizontal
  * HeroUI Horizontal Layout örneği — yatay kart (saf React, data-URI görsel).
  * @id 191
- * @category Genel
+ * @category Card
  */
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"

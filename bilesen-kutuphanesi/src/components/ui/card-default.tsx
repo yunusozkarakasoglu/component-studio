@@ -2,7 +2,7 @@
  * CardDefault
  * HeroUI Usage örneği — temel kart (saf React).
  * @id 189
- * @category Genel
+ * @category Card
  */
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { CircleDollarSign } from "@/components/ui/icons"
