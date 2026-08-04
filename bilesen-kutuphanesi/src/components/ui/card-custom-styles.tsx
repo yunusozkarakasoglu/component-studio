@@ -2,7 +2,7 @@
  * CardCustomStyles
  * HeroUI Tailwind CSS örneği — Pro kartı (saf React).
  * @id 195
- * @category Card
+ * @category Kartlar
  */
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"

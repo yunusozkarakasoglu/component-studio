@@ -117,7 +117,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `162` AvatarGroup
 - `163` AvatarCustomStyles
 
-### Card
+### Kartlar
 - `188` Card
 - `189` CardDefault
 - `190` CardVariants
