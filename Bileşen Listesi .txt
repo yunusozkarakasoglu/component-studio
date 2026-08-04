@@ -21,6 +21,10 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `115` AccordionCustomStyles
 
 ### Alert & Dialog
+- `116` Alert
+- `117` CloseButton
+- `118` AlertBasic
+- `119` AlertCustomStyles
 
 ### Form Elemanları
 
@@ -59,7 +63,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 28 bileşen (saf React)**
+**Toplam: 32 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

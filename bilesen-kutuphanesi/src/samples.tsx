@@ -69,4 +69,8 @@ export const SAMPLES: Record<string, ReactNode> = {
   "113": <U.AccordionRenderFunction />,
   "114": <U.AccordionFaq />,
   "115": <U.AccordionCustomStyles />,
+  "116": <U.Alert />,
+  "117": <U.CloseButton />,
+  "118": <U.AlertBasic />,
+  "119": <U.AlertCustomStyles />,
 }
