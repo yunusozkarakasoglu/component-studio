@@ -164,10 +164,22 @@ function AlertDialogBackdrop({
   setIsKeyboardDismissDisabled,
   setPortalContainer,
 }: AlertDialogBackdropProps) {
-  const ctx = useAlertDialog()
+  const parent = useContext(AlertDialogContext)
+  // Kontrollü kullanımda (<AlertDialog> sarmalayıcısı olmadan) local context kur
+  const localCtx: AlertDialogContextValue = {
+    isOpen: isOpen ?? false,
+    open: () => onOpenChange?.(true),
+    close: () => onOpenChange?.(false),
+    toggle: () => onOpenChange?.(!(isOpen ?? false)),
+    setOpen: (v) => onOpenChange?.(v),
+    backdropVariant: variant,
+    isDismissable,
+    isKeyboardDismissDisabled,
+    portalContainer: UNSTABLE_portalContainer ?? null,
+  }
+  const ctx = parent ?? localCtx
   const dialogRef = useRef<HTMLDivElement>(null)
 
-  // Backdrop prop'larını AlertDialog context'ine ilet (controllu/bağımsız)
   const open = isOpen ?? ctx.isOpen
   const setOpen = onOpenChange ?? ctx.setOpen
   useEffect(() => {
@@ -193,15 +205,19 @@ function AlertDialogBackdrop({
     }
   }, [open, isKeyboardDismissDisabled, setOpen])
 
+  if (!open) return null
+
   const backdropEl = (
-    <div
-      data-slot="alert-dialog-backdrop"
-      data-variant={variant}
-      className={cn("fixed inset-0 z-50 flex items-center justify-center p-4", backdropVariantClass[variant], className)}
-      onClick={() => isDismissable && setOpen(false)}
-    >
-      {children}
-    </div>
+    <AlertDialogContext.Provider value={ctx}>
+      <div
+        data-slot="alert-dialog-backdrop"
+        data-variant={variant}
+        className={cn("fixed inset-0 z-50 flex items-center justify-center p-4", backdropVariantClass[variant], className)}
+        onClick={() => isDismissable && setOpen(false)}
+      >
+        {children}
+      </div>
+    </AlertDialogContext.Provider>
   )
 
   return createPortal(backdropEl, UNSTABLE_portalContainer ?? document.body)

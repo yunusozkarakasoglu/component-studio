@@ -141,7 +141,19 @@ function DrawerBackdrop({
   isOpen,
   onOpenChange,
 }: DrawerBackdropProps) {
-  const ctx = useDrawer()
+  const parent = useContext(DrawerContext)
+  // Kontrollü kullanımda (<Drawer> sarmalayıcısı olmadan) local context kur
+  const [localPlacement, setLocalPlacement] = useState<DrawerPlacement>("bottom")
+  const localCtx: DrawerContextValue = {
+    isOpen: isOpen ?? false,
+    open: () => onOpenChange?.(true),
+    close: () => onOpenChange?.(false),
+    toggle: () => onOpenChange?.(!(isOpen ?? false)),
+    setOpen: (v) => onOpenChange?.(v),
+    placement: localPlacement,
+    setPlacement: setLocalPlacement,
+  }
+  const ctx = parent ?? localCtx
 
   const open = isOpen ?? ctx.isOpen
   const setOpen = onOpenChange ?? ctx.setOpen
@@ -161,22 +173,26 @@ function DrawerBackdrop({
     }
   }, [open, isKeyboardDismissDisabled, setOpen])
 
+  if (!open) return null
+
   return (
-    <div
-      data-slot="drawer-backdrop"
-      data-variant={variant}
-      data-entering=""
-      role="presentation"
-      className={cn(
-        "fixed inset-0 z-50 flex data-[entering]:animate-in data-[entering]:fade-in data-[entering]:duration-200",
-        backdropPos[ctx.placement],
-        backdropVariantClass[variant],
-        className
-      )}
-      onClick={() => isDismissable && setOpen(false)}
-    >
-      {children}
-    </div>
+    <DrawerContext.Provider value={ctx}>
+      <div
+        data-slot="drawer-backdrop"
+        data-variant={variant}
+        data-entering=""
+        role="presentation"
+        className={cn(
+          "fixed inset-0 z-50 flex data-[entering]:animate-in data-[entering]:fade-in data-[entering]:duration-200",
+          backdropPos[ctx.placement],
+          backdropVariantClass[variant],
+          className
+        )}
+        onClick={() => isDismissable && setOpen(false)}
+      >
+        {children}
+      </div>
+    </DrawerContext.Provider>
   )
 }
 
