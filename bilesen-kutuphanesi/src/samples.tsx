@@ -141,4 +141,12 @@ export const SAMPLES: Record<string, ReactNode> = {
   "185": <U.CalendarMultipleMonths />,
   "186": <U.CalendarBooking />,
   "187": <U.CalendarCustomStyles />,
+  "188": <U.Card className="w-64"><U.CardHeader><U.CardTitle>Kart</U.CardTitle><U.CardDescription>Açıklama</U.CardDescription></U.CardHeader></U.Card>,
+  "189": <U.CardDefault />,
+  "190": <U.CardVariants />,
+  "191": <U.CardHorizontal />,
+  "192": <U.CardWithAvatar />,
+  "193": <U.CardWithImages />,
+  "194": <U.CardWithForm />,
+  "195": <U.CardCustomStyles />,
 }
