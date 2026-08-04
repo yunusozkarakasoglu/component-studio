@@ -627,7 +627,7 @@ function EditorModal({
 
 /* ========== ANA UYGULAMA ========== */
 export default function Studio() {
-  const [registry, setRegistry] = useState<{ components: CompRecord[] } | null>(null)
+  const [registry, setRegistry] = useState<{ components: CompRecord[]; categories?: string[] } | null>(null)
   const [q, setQ] = useState("")
   const [cat, setCat] = useState("Tümü")
   const [panelOpen, setPanelOpen] = useState(true)
@@ -647,7 +647,9 @@ export default function Studio() {
 
   const cats = useMemo(() => {
     if (!registry) return []
-    return Array.from(new Set(registry.components.map((c) => c.category)))
+    const sabit = Array.isArray(registry.categories) ? registry.categories : []
+    const mevcut = registry.components.map((c) => c.category)
+    return Array.from(new Set([...sabit, ...mevcut]))
   }, [registry])
 
   const compsInCat = useMemo(() => {
@@ -746,7 +748,10 @@ export default function Studio() {
                           </button>
                           {openCats.has(c) && (
                             <div className="mt-0.5 ml-4 space-y-0.5 border-l border-black/25 pl-2">
-                              {items.map((comp) => (
+                              {items.length === 0 ? (
+                                <div className="px-1.5 py-1 text-[10px] italic text-muted-foreground/60">henüz bileşen yok</div>
+                              ) : (
+                              items.map((comp) => (
                                 <button
                                   key={comp.id}
                                   onClick={() => setEdit({ rec: comp })}
@@ -755,7 +760,7 @@ export default function Studio() {
                                   <span className="font-mono text-[9px] text-muted-foreground/70">{comp.id}</span>
                                   <span className="truncate">{comp.name}</span>
                                 </button>
-                              ))}
+                              )))}
                             </div>
                           )}
                         </div>

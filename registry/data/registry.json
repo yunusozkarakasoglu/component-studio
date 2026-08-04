@@ -1,10 +1,23 @@
 {
-  "generatedAt": "2026-08-04T15:43:12.979Z",
+  "generatedAt": "2026-08-04T16:01:32.112Z",
   "counts": {
     "components": 4,
     "ready": 4,
     "layouts": 0
   },
+  "categories": [
+    "Accordion",
+    "Alert & Dialog",
+    "Form Elemanları",
+    "Renk Bileşenleri",
+    "Butonlar & Aksiyonlar",
+    "Navigasyon",
+    "Takvim",
+    "Veri Gösterimi",
+    "Overlay",
+    "Genel",
+    "Özel Komponentler"
+  ],
   "components": [
     {
       "id": "090",

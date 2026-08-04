@@ -89,10 +89,24 @@ const layouts = layoutsMeta.map((l) => {
   return { ...l, code, path }
 })
 
+/* ---------- Kategori iskeleti (txt'deki ### başlıkları + mevcut kategoriler) ---------- */
+const categories = []
+for (const line of inv.split("\n")) {
+  const catMatch = line.match(/^###\s+(.+)/)
+  if (catMatch) {
+    const c = catMatch[1].trim()
+    if (!categories.includes(c)) categories.push(c)
+  }
+}
+for (const c of components) {
+  if (!categories.includes(c.category)) categories.push(c.category)
+}
+
 /* ---------- JSON çıktı ---------- */
 const registry = {
   generatedAt: new Date().toISOString(),
   counts: { components: components.length, ready: components.filter((c) => c.exists).length, layouts: layouts.length },
+  categories,
   components,
   layouts,
 }

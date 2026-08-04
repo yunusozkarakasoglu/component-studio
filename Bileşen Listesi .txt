@@ -4,16 +4,30 @@ Aşağıdaki bileşenlerin tamamı **saf React**'tir — üçüncü parti UI ba�
 (react + tailwind + kendi ikon seti `@/components/ui/icons` yeterlidir).
 Kopyala → projene yapıştır → çalışır.
 
-### Kategori İskeleti (gelecekte eklenen bileşenler bu başlıklara dağılır)
-
-Accordion · Alert & Dialog · Form Elemanları · Renk Bileşenleri ·
-Butonlar & Aksiyonlar · Navigasyon · Takvim · Veri Gösterimi · Overlay · Genel
+Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanlar
+"henüz bileşen yok" olarak listelenir.
 
 ### Accordion
 - `090` AccordionSimple
 
+### Alert & Dialog
+
+### Form Elemanları
+
+### Renk Bileşenleri
+
+### Butonlar & Aksiyonlar
+
 ### Navigasyon
 - `091` BreadcrumbsSimple
+
+### Takvim
+
+### Veri Gösterimi
+
+### Overlay
+
+### Genel
 
 ### Özel Komponentler
 - `088` DateRangePickerSimple
