@@ -1,6 +1,7 @@
 /**
  * CalendarBooking
  * Real-World örneği — rezervasyon takvimi (saf React).
+ * Gerektirir: calendar
  * @id 186
  * @category Takvim
  */

@@ -4,6 +4,7 @@
  * Tarih seçici — input görünümlü trigger + Calendar popover.
  *   <DatePicker defaultValue="2025-02-14" label="Date" />
  * Değerler içte "YYYY-MM-DD" string.
+ * Gerektirir (ortak çekirdek): calendar
  * @id 267
  * @category Date
  * @subcategory DatePicker

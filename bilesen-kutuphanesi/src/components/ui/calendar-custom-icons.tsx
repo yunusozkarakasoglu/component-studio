@@ -1,6 +1,7 @@
 /**
  * CalendarCustomIcons
  * Custom Navigation Icons örneği — özel ikonlar (saf React, kendi setimizden).
+ * Gerektirir: calendar
  * @id 184
  * @category Takvim
  */

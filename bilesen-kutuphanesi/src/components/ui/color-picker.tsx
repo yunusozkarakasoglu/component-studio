@@ -3,6 +3,7 @@
  * Saf React bileşen (bağımlılıksız).
  * Tetikleyici + popover içinde alan/kaydırıcı/input/örnekler.
  *   <ColorPicker defaultValue="#0485F7" swatches={[...]} />
+ * Gerektirir (ortak çekirdek): color, color-area, color-slider, color-field, color-swatch
  * @id 232
  * @category Colors
  * @subcategory ColorPicker

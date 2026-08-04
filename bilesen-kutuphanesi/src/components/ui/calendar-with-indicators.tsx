@@ -1,6 +1,7 @@
 /**
  * CalendarWithIndicators
  * Cell Indicators örneği — etkinlik noktaları (saf React).
+ * Gerektirir: calendar
  * @id 183
  * @category Takvim
  */

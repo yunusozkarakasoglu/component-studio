@@ -4,6 +4,7 @@
  * Tarih aralığı seçici — trigger + Calendar range popover.
  *   <DateRangePicker defaultValue={["2025-02-01","2025-02-14"]} label="Tarih aralığı" />
  * Değer: [başlangıç, bitiş] — "YYYY-MM-DD" string'leri.
+ * Gerektirir (ortak çekirdek): calendar
  * @id 271
  * @category Date
  * @subcategory DateRange

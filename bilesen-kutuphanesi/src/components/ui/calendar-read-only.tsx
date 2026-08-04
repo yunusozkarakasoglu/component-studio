@@ -1,6 +1,7 @@
 /**
  * CalendarReadOnly
  * Read Only örneği (saf React).
+ * Gerektirir: calendar
  * @id 175
  * @category Takvim
  */

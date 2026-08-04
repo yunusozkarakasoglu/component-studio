@@ -1,6 +1,7 @@
 /**
  * CalendarMinMaxDates
  * Min and Max Dates örneği (saf React).
+ * Gerektirir: calendar
  * @id 178
  * @category Takvim
  */

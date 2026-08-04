@@ -1,6 +1,7 @@
 /**
  * CalendarControlled
  * Controlled örneği — value + kısayollar (saf React).
+ * Gerektirir: calendar
  * @id 177
  * @category Takvim
  */

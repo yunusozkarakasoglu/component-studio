@@ -6,6 +6,7 @@
  *     <Checkbox value="coding" label="Coding" />
  *   </CheckboxGroup>
  * Özellikler: value/defaultValue/onChange · isDisabled/isRequired · name · variant.
+ * Gerektirir (ortak çekirdek): checkbox
  * @id 197
  * @category Checkbox
  */

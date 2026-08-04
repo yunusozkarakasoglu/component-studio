@@ -1,6 +1,7 @@
 /**
  * CalendarCustomStyles
  * Tailwind CSS örneği — özelleştirilmiş görünüm (saf React).
+ * Gerektirir: calendar
  * @id 187
  * @category Takvim
  */

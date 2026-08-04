@@ -140,6 +140,24 @@ pakete referans vermez. Yeniden üretim: `cd bilesen-kutuphanesi && node scripts
 
 **Yeni ikon gerektiğinde:** kendi setimizde var mı kontrol et (yoksa `node scripts/generate-icons.mjs` ile taze üret — lucide'da varsa setimize girer); lucide'da da yoksa özel SVG bileşenini `icons.tsx`'e ekle.
 
+
+## 8.6) Ortak çekirdek bileşenler (bağımlılık kuralı)
+
+Bazı bileşenler "ortak çekirdek"tir — üst düzey bileşenler onları import eder.
+Kopyalarken çekirdeği de kopyalamanız gerekir (JSDoc'ta "Gerektirir:" notu yazar).
+
+| Çekirdek | Kullanan üst düzey bileşenler |
+|---|---|
+| `calendar.tsx` | date-picker, date-range-picker + calendar-* örnekleri |
+| `color.ts` + color-area/slider/field/swatch | color-picker |
+| `checkbox.tsx` | checkbox-group |
+| `button.tsx` | button-* örnekleri |
+| `avatar.tsx` | avatar-* örnekleri |
+| `icons.tsx` / `icons-brand.tsx` | hepsi (SVG gömülü, paket yok) |
+
+Kural: ÖRNEK bileşenler ana bileşeni import edebilir (kullanım gösterimi). ANA
+bileşenler çekirdeği import eder ve bağımlılığı JSDoc'ta belirtir. Kod tekrarı
+yapılmaz — çekirdek tek yerdedir, bug tek yerde düzeltilir.
 ## 9) Önemli notlar (saf React standartları)
 
 - Bileşenler **yalnızca** react + tailwind kullanır — üçüncü parti UI paketi YASAK.

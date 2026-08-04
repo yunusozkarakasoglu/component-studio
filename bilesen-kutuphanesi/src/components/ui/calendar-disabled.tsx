@@ -1,6 +1,7 @@
 /**
  * CalendarDisabled
  * Disabled örneği (saf React).
+ * Gerektirir: calendar
  * @id 174
  * @category Takvim
  */

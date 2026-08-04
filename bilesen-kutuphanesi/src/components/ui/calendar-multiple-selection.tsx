@@ -1,6 +1,7 @@
 /**
  * CalendarMultipleSelection
  * Multiple Selection örneği — birden çok tarih (saf React).
+ * Gerektirir: calendar
  * @id 181
  * @category Takvim
  */

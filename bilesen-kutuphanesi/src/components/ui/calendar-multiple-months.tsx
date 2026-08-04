@@ -2,6 +2,7 @@
  * CalendarMultipleMonths
  * Multiple Months örneği — yan yana iki ay (saf React).
  * İki ayrı Calendar (focusedValue ile 1 ay kaydırılmış) — seçim bağımsızdır.
+ * Gerektirir: calendar
  * @id 185
  * @category Takvim
  */

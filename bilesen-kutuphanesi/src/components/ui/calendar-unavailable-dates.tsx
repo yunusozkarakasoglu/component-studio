@@ -1,6 +1,7 @@
 /**
  * CalendarUnavailableDates
  * Unavailable Dates örneği — hafta sonları engelli (saf React).
+ * Gerektirir: calendar
  * @id 179
  * @category Takvim
  */

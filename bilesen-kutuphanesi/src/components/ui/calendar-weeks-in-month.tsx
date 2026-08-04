@@ -1,6 +1,7 @@
 /**
  * CalendarWeeksInMonth
  * Weeks in Month örneği — sabit 6 hafta (saf React).
+ * Gerektirir: calendar
  * @id 180
  * @category Takvim
  */

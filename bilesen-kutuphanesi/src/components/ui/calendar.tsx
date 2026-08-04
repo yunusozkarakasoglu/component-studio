@@ -107,7 +107,9 @@ function Calendar({
 }: CalendarProps) {
   const [internalValue, setInternalValue] = useState<string | string[] | null>(defaultValue ?? null)
   const now = todayKey()
-  const [internalFocused, setInternalFocused] = useState<string>(now.slice(0, 7))
+  // İlk görüntülenen ay: değer (defaultValue/value) tarihinden başla — aksi halde bugün
+  const initialKey = Array.isArray(defaultValue) ? defaultValue[0] : (defaultValue ?? (Array.isArray(value) ? value[0] : value))
+  const [internalFocused, setInternalFocused] = useState<string>(initialKey?.slice(0, 7) ?? now.slice(0, 7))
 
   const controlled = value !== undefined
   const selected = controlled ? (value ?? null) : internalValue
@@ -121,7 +123,9 @@ function Calendar({
     onChange?.(v)
   }
 
-  const [fy, fm] = focused.split("-").map(Number)
+  // focused "YYYY-MM" (1-index) → fm 0-index (buildCells new Date(y, m) bekler)
+  const [fy, fmm] = focused.split("-").map(Number)
+  const fm = fmm - 1
   const cells = useMemo(() => buildCells(fy, fm, firstDayOfWeek, weeksInMonth), [fy, fm, firstDayOfWeek, weeksInMonth])
 
   const isRangeEdge = (key: string) =>
@@ -221,7 +225,7 @@ function Calendar({
               className={cn(
                 "relative flex h-8 w-8 items-center justify-center rounded-md text-sm transition-colors outline-none focus-visible:ring-3 focus-visible:ring-ring/50",
                 cell.outside && "text-muted-foreground/40",
-                isRangeEdge(cell.key) ? "bg-blue-600 font-medium text-white" : sel ? "bg-blue-100 text-blue-700" : "hover:bg-muted",
+                isRangeEdge(cell.key) ? "bg-blue-600 font-medium text-white" : sel ? "bg-blue-200 text-blue-800" : "hover:bg-muted",
                 today && !sel && !isRangeEdge(cell.key) && "bg-blue-100 text-blue-700 font-medium",
                 disabled && "cursor-not-allowed opacity-35 hover:bg-transparent"
               )}

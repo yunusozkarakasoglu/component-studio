@@ -1,6 +1,7 @@
 /**
  * CalendarBasic
  * Usage örneği — temel takvim (saf React).
+ * Gerektirir: calendar
  * @id 173
  * @category Takvim
  */
