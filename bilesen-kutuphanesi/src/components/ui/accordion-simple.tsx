@@ -29,6 +29,8 @@ interface AccordionSimpleProps {
   isDisabled?: boolean
   /** Item'lar arası ayraç çizgisi (varsayılan: true) */
   divider?: boolean
+  /** Ayraç çizgilerini gizler (HeroUI hideSeparator karşılığı) */
+  hideSeparator?: boolean
   /** Görünüm: default = çizgili liste · surface = kutulu (HeroUI surface) */
   variant?: "default" | "surface"
   className?: string
@@ -41,8 +43,8 @@ interface AccordionSimpleItemProps {
   title: ReactNode
   /** Başlık solundaki ikon (opsiyonel) */
   icon?: ReactNode
-  /** Varsayılan chevron yerine özel gösterge (opsiyonel) */
-  indicator?: ReactNode
+  /** Varsayılan chevron yerine özel gösterge (opsiyonel) — fonksiyon verilirse açık/kapalı durumunu alır */
+  indicator?: ReactNode | ((open: boolean) => ReactNode)
   /** Tek item'ı devre dışı bırakır */
   isDisabled?: boolean
   className?: string
@@ -70,6 +72,7 @@ function AccordionSimple({
   allowsMultiple = false,
   isDisabled = false,
   divider = true,
+  hideSeparator = false,
   variant = "default",
   className,
   children,
@@ -96,9 +99,10 @@ function AccordionSimple({
     [expanded, allowsMultiple, isDisabled, controlled, onChange]
   )
 
+  const effectiveDivider = divider && !hideSeparator
   const ctx = useMemo<AccordionSimpleCtx>(
-    () => ({ expanded, toggle, allowsMultiple, rootDisabled: isDisabled, divider }),
-    [expanded, toggle, allowsMultiple, isDisabled, divider]
+    () => ({ expanded, toggle, allowsMultiple, rootDisabled: isDisabled, divider: effectiveDivider }),
+    [expanded, toggle, allowsMultiple, isDisabled, effectiveDivider]
   )
 
   return (
@@ -152,7 +156,7 @@ function AccordionSimpleItem({
             <span className="truncate">{title}</span>
           </span>
           {indicator ? (
-            indicator
+            typeof indicator === "function" ? indicator(open) : indicator
           ) : (
             <ChevronDown
               data-slot="accordion-simple-indicator"

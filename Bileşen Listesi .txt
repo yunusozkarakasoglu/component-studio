@@ -9,6 +9,16 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ### Accordion
 - `090` AccordionSimple
+- `106` AccordionBasic
+- `107` AccordionSurface
+- `108` AccordionWithoutSeparator
+- `109` AccordionMultiple
+- `110` AccordionDisabled
+- `111` AccordionControlled
+- `112` AccordionCustomIndicator
+- `113` AccordionRenderFunction
+- `114` AccordionFaq
+- `115` AccordionCustomStyles
 
 ### Alert & Dialog
 
@@ -49,7 +59,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 18 bileşen (saf React)**
+**Toplam: 28 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

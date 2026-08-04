@@ -36,10 +36,11 @@ export interface RootInfo {
   rootAt: number
 }
 
-/** start'tan itibaren ilk gerçek JSX kök açılış etiketini bulur (string/{} atlar). */
-function findJsxRoot(source: string, start: number): RootBranch | null {
+/** start..end aralığında ilk gerçek JSX kök açılış etiketini bulur (string/{} atlar). */
+function findJsxRoot(source: string, start: number, end?: number): RootBranch | null {
   let i = start
-  while (i < source.length) {
+  const limit = end ?? source.length
+  while (i < limit) {
     if (source[i] === "<") {
       const tagMatch = source.slice(i + 1).match(/^[A-Za-z][\w.]*/)
       if (tagMatch) {
@@ -124,13 +125,24 @@ export function findRootInfo(source: string): RootInfo {
   const re = /\breturn\b/g
   let m: RegExpExecArray | null
   while ((m = re.exec(source)) !== null) {
-    const first = findJsxRoot(source, m.index)
+    // Bu return'ün ardından, BİR SONRAKİ return'den önce JSX bulunmalı.
+    // Aksi halde yardımcı fonksiyonlardaki erken `return` (örn. if (x) return)
+    // yanlışlıkla kök sanılır ve aradaki kod (&&, ? içeren) koşullu algılanır.
+    const nextRe = /\breturn\b/g
+    nextRe.lastIndex = m.index + 6
+    const next = nextRe.exec(source)
+    const searchEnd = next ? next.index : source.length
+    const first = findJsxRoot(source, m.index, searchEnd)
     if (!first) continue
+    const between = source.slice(m.index, first.at)
+    // Fonksiyon gövdesi / ifade dizisi (süslü parantez veya noktalı virgül) içeren
+    // return'ler kök DEĞİLDİR — yardımcı fonksiyonların erken return'leri (if (x) return)
+    // veya generic tip kullanımları (useMemo<T>) bu sayede atlanır.
+    if (between.includes("{") || between.includes(";")) continue
     // Bulunan kök, BU return'ün hemen sonrasındaki JSX olmalı.
     // Arada başka `return` varsa kök sonraki return'e aittir → bu return'ü atla.
     const tail = source.slice(m.index + "return".length, first.at)
     if (/\breturn\b/.test(tail)) continue
-    const between = source.slice(m.index, first.at)
     // Ternary `?` tespiti: sonraki karakter `.` DEĞİLSE (onChange?. gibi optional
     // chaining ternary sanılmaz). `cond ? <A/> : <B/>` → `? ` ; `a?.b ? …` → ikinci `?`.
     const hasTernary = Array.from(between).some((c, i) => c === "?" && between[i + 1] !== ".")
