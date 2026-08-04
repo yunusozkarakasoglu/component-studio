@@ -217,30 +217,65 @@ function SettingsPanel({ s, set }: { s: StyleState; set: (p: Partial<StyleState>
 
 
 /* ---------- LLM entegrasyon istemi üretici ---------- */
-function buildPrompt(absPath: string, name: string, id: string, category: string, kind: "component" | "layout", task: string): string {
+type DepInfo = {
+  files: { file: string; path: string }[]
+  needsIcons: boolean
+  needsCn: boolean
+}
+
+/** Kaynak kodun @/components/ui ve @/lib/utils import'larından bağımlılık zincirini çözer (recursive). */
+function resolveDeps(code: string, registry: CompRecord[]): DepInfo {
+  const found = new Map<string, string>()
+  let needsIcons = false
+  let needsCn = false
+  const visit = (src: string) => {
+    const re = /from "(@\/components\/ui\/[a-z0-9-]+|@\/lib\/utils)"/g
+    let m: RegExpExecArray | null
+    while ((m = re.exec(src)) !== null) {
+      const imp = m[1]
+      if (imp === "@/lib/utils") { needsCn = true; continue }
+      if (imp === "@/components/ui/icons" || imp === "@/components/ui/icons-brand") { needsIcons = true; continue }
+      const file = imp.split("/").pop() + ".tsx"
+      if (found.has(file)) continue
+      const rec = registry.find((r) => r.file === file)
+      if (rec) { found.set(file, rec.path); visit(rec.code) }
+    }
+  }
+  visit(code)
+  return { files: [...found.entries()].map(([file, path]) => ({ file, path })), needsIcons, needsCn }
+}
+
+function buildPrompt(absPath: string, name: string, id: string, category: string, kind: "component" | "layout", task: string, deps: DepInfo): string {
   const t = task.trim() || "(kullanıcı görevi belirtilmedi — bileşeni projeye ekle ve örnek kullanımını göster)"
   const tur = kind === "layout" ? "sayfa şablonunu" : "bileşeni"
   const baslik = kind === "layout" ? "ŞABLON" : "BİLEŞEN"
+  const depLines = [
+    ...deps.files.map((f) => `- ${f.path}   ← ${f.file}`),
+    deps.needsIcons ? "- <proje>/src/components/ui/icons.tsx   ← kendi ikon setimiz (SVG gömülü)" : "",
+    deps.needsCn ? "- @/lib/utils → cn() util'i (clsx + tailwind-merge)" : "",
+  ].filter(Boolean)
   return `GÖREV: Aşağıdaki ${tur} projeme entegre et ve belirtilen görevi uygula.
 
-DOSYA YOLU: ${absPath}
+ANA DOSYA: ${absPath}
 ${baslik}: ${id} ${name}${category ? ` (${category})` : ""}
+
+BAĞIMLILIK DOSYALARI (ANA DOSYA bunları import ediyor — HEPSİNİ kopyala/uyarla):
+${depLines.join("\n") || "(bağımlılık yok — tek dosya yeterli)"}
 
 KULLANICI GÖREVİ: ${t}
 
 KURALLAR:
-1. DOSYA YOLU'ndaki kodu oku ve olduğu gibi kullan — isimleri ve export'ları değiştirme.
-2. Bağımlılıkları kontrol et, eksikse kur: react-aria-components, class-variance-authority, lucide-react, tw-animate-css, sonner.
-3. "@/" import alias'ı "src" klasörüne işaret etmeli; @/lib/utils içinde cn() olmalı (yoksa ekle).
-4. Tailwind v4 + shadcn tema değişkenleri (index.css) hazır olduğunu varsay; yoksa shadcn init ile kur.
-5. Uygulamayı <Rac> sağlayıcısı ile sarmala (locale="tr-TR").
-6. KULLANICI GÖREVİ'ni uygula ve yaptığın değişiklikleri açıkla.
-7. Yalnızca çalışan, derlenebilir kod üret.`
+1. ANA DOSYA ve BAĞIMLILIK DOSYALARI'nı olduğu gibi kullan — isimleri ve export'ları değiştirme.
+2. Bağımlılık: yalnızca react + tailwind. Üçüncü parti UI paketi KURMA.
+3. "@/" import alias'ı "src" klasörüne işaret etmeli; @/lib/utils içinde cn() olmalı (clsx + tailwind-merge).
+4. Tailwind v4 + şablon tema değişkenleri (index.css) hazır olduğunu varsay.
+5. KULLANICI GÖREVİ'ni uygula ve yaptığın değişiklikleri açıkla.
+6. Yalnızca çalışan, derlenebilir kod üret.`
 }
 
 function PromptDialog({
-  absPath, name, id, category, kind, onClose,
-}: { absPath: string; name: string; id: string; category: string; kind: "component" | "layout"; onClose: () => void }) {
+  absPath, name, id, category, kind, deps, onClose,
+}: { absPath: string; name: string; id: string; category: string; kind: "component" | "layout"; deps: DepInfo; onClose: () => void }) {
   const [task, setTask] = useState("")
   const [prompt, setPrompt] = useState("")
   const [copied, setCopied] = useState(false)
@@ -258,7 +293,7 @@ function PromptDialog({
   }
 
   const generate = () => {
-    const p = buildPrompt(absPath, name, id, category, kind, task)
+    const p = buildPrompt(absPath, name, id, category, kind, task, deps)
     setPrompt(p)
     copy(p)
   }
@@ -396,11 +431,12 @@ function NewComponentDialog({
 
 /* ========== DÜZENLEME MODALI (orijinal + özelleştirilmiş iki alan) ========== */
 function EditorModal({
-  title, subtitle, file, dir, initialCode, preview, absPath, category, kind, onClose, onSaved,
+  title, subtitle, file, dir, initialCode, preview, absPath, category, kind, registry, onClose, onSaved,
 }: {
   title: string; subtitle: string; file: string; dir: "ui" | "layouts"
   initialCode: string; preview: ReactNode
   absPath: string; category: string; kind: "component" | "layout"
+  registry: { components: CompRecord[]; categories?: string[] } | null
   onClose: () => void; onSaved: () => void
 }) {
   const [promptOpen, setPromptOpen] = useState(false)
@@ -420,6 +456,10 @@ function EditorModal({
   const styleAttr = useMemo(
     () => ` style={{\n${STYLE_KEYS.map(([sk, jsKey]) => `    ${jsKey}: "${style[sk]}"`).join(",\n")}\n  }}`,
     [style]
+  )
+  const deps = useMemo(
+    () => (registry ? resolveDeps(code, registry.components) : { files: [], needsIcons: false, needsCn: true }),
+    [code, registry]
   )
   const targetIndex = Math.min(branchIndex, Math.max(0, info.branches.length - 1))
   const fullCode = useMemo(() => {
@@ -496,6 +536,17 @@ function EditorModal({
       </div>
 
       {/* İki alan */}
+      {(deps.files.length > 0 || deps.needsIcons || deps.needsCn) && (
+        <div className="flex shrink-0 flex-wrap items-center gap-1 border-b border-black/20 bg-amber-50 px-4 py-1.5 text-[10px]">
+          <span className="font-bold text-amber-700">🔗 Bağımlılıklar:</span>
+          {deps.files.map((f) => (
+            <span key={f.file} className="rounded bg-amber-100 px-1.5 py-0.5 font-mono" title={f.path}>{f.file}</span>
+          ))}
+          {deps.needsIcons && <span className="rounded bg-amber-100 px-1.5 py-0.5 font-mono" title="Kendi ikon setimiz (SVG gömülü)">icons.tsx</span>}
+          {deps.needsCn && <span className="rounded bg-amber-100 px-1.5 py-0.5 font-mono" title="clsx + tailwind-merge">cn()</span>}
+          <span className="ml-auto text-amber-600">✨ Prompt Oluştur bunları da kopyalar</span>
+        </div>
+      )}
       <div className="grid min-h-0 flex-1 grid-cols-2 gap-3 p-3">
         {/* ① ORİJİNAL: kaynak kod + orijinal önizleme */}
         <section className="flex min-h-0 flex-col overflow-hidden rounded-lg border border-black/35">
@@ -617,6 +668,7 @@ function EditorModal({
           id={compId}
           category={category}
           kind={kind}
+          deps={deps}
           onClose={() => setPromptOpen(false)}
         />
       )}
@@ -850,6 +902,7 @@ export default function Studio() {
       {/* Düzenleme modalı */}
       {edit && (
         <EditorModal
+          registry={registry}
           title={`${edit.rec.id} — ${edit.rec.name}`}
           subtitle={`${edit.rec.category} · LLM referansı: "${edit.rec.id} ${edit.rec.name}"`}
           file={edit.rec.file}
