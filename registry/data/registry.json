@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-04T16:40:35.263Z",
+  "generatedAt": "2026-08-04T16:50:11.080Z",
   "counts": {
-    "components": 47,
-    "ready": 47,
+    "components": 68,
+    "ready": 68,
     "layouts": 0
   },
   "categories": [
@@ -320,6 +320,196 @@
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/alert-dialog-custom-styles.tsx"
     },
     {
+      "id": "135",
+      "name": "Autocomplete",
+      "category": "Form Elemanları",
+      "file": "autocomplete.tsx",
+      "exists": true,
+      "code": "/**\n * Autocomplete\n * HeroUI autocomplete'ten uyarlanmış — saf React (bağımlılıksız).\n * Arama + filtreleme + seçim (single/multiple) tek bileşende:\n *   <Autocomplete items={states} selectionMode=\"single\" value={v} onChange={setV} label=\"State\" />\n * Özellikler: selectionMode · value/onChange (kontrollü) · defaultValue · placeholder\n * · label/description · isDisabled · disabledKeys · fullWidth · variant\n * (primary/secondary) · isOpen/onOpenChange (kontrollü açılış) · allowsEmptyCollection.\n * @id 135\n * @category Form Elemanları\n */\nimport { useEffect, useRef, useState, type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { ChevronsUpDown, Search, X } from \"@/components/ui/icons\"\n\nexport interface AutocompleteItem {\n  id: string\n  name: string\n}\n\ninterface AutocompleteProps {\n  items: AutocompleteItem[]\n  selectionMode?: \"single\" | \"multiple\"\n  /** Kontrollü seçim (single: id | null · multiple: id[] | null) */\n  value?: string | string[] | null\n  /** Bağımsız kullanım için ilk seçim */\n  defaultValue?: string | string[]\n  onChange?: (value: string | string[] | null) => void\n  placeholder?: string\n  label?: ReactNode\n  description?: ReactNode\n  isDisabled?: boolean\n  /** Seçilemeyecek item id'leri */\n  disabledKeys?: string[]\n  fullWidth?: boolean\n  variant?: \"primary\" | \"secondary\"\n  /** Kontrollü açılış */\n  isOpen?: boolean\n  onOpenChange?: (open: boolean) => void\n  /** Boş koleksiyonla da çalışır */\n  allowsEmptyCollection?: boolean\n  className?: string\n}\n\nfunction Autocomplete({\n  items,\n  selectionMode = \"single\",\n  value,\n  defaultValue,\n  onChange,\n  placeholder = \"Select…\",\n  label,\n  description,\n  isDisabled,\n  disabledKeys = [],\n  fullWidth,\n  variant = \"primary\",\n  isOpen,\n  onOpenChange,\n  className,\n}: AutocompleteProps) {\n  const [internalOpen, setInternalOpen] = useState(false)\n  const [internalValue, setInternalValue] = useState<string | string[] | null>(defaultValue ?? null)\n  const [query, setQuery] = useState(\"\")\n  const rootRef = useRef<HTMLDivElement>(null)\n\n  const controlled = value !== undefined\n  const selected = controlled ? (value ?? null) : internalValue\n  const open = isOpen ?? internalOpen\n\n  const setOpen = (v: boolean) => {\n    if (isOpen === undefined) setInternalOpen(v)\n    onOpenChange?.(v)\n  }\n  const setSelected = (v: string | string[] | null) => {\n    if (!controlled) setInternalValue(v)\n    onChange?.(v)\n  }\n\n  // Dış tıklama / ESC ile kapat\n  useEffect(() => {\n    if (!open) return\n    const onDown = (e: MouseEvent) => {\n      if (rootRef.current && !rootRef.current.contains(e.target as Node)) setOpen(false)\n    }\n    const onKey = (e: KeyboardEvent) => {\n      if (e.key === \"Escape\") setOpen(false)\n    }\n    document.addEventListener(\"mousedown\", onDown)\n    document.addEventListener(\"keydown\", onKey)\n    return () => {\n      document.removeEventListener(\"mousedown\", onDown)\n      document.removeEventListener(\"keydown\", onKey)\n    }\n  }, [open])\n\n  const q = query.trim().toLowerCase()\n  const filtered = q\n    ? items.filter((i) => i.name.toLowerCase().includes(q))\n    : items\n\n  const isSelected = (id: string) =>\n    Array.isArray(selected) ? selected.includes(id) : selected === id\n\n  const toggle = (id: string) => {\n    if (isDisabled || disabledKeys.includes(id)) return\n    if (selectionMode === \"single\") {\n      setSelected(selected === id ? null : id)\n      setOpen(false)\n    } else {\n      const arr = Array.isArray(selected) ? [...selected] : []\n      setSelected(arr.includes(id) ? arr.filter((x) => x !== id) : [...arr, id])\n    }\n  }\n\n  const clear = () => {\n    setSelected(selectionMode === \"multiple\" ? [] : null)\n    setQuery(\"\")\n  }\n\n  const selectedItems = items.filter((i) => isSelected(i.id))\n  const triggerLabel =\n    selectionMode === \"single\"\n      ? selectedItems[0]?.name\n      : selectedItems.length > 0\n        ? `${selectedItems.length} seçili`\n        : null\n\n  return (\n    <div ref={rootRef} className={cn(\"relative\", fullWidth && \"w-full\", className)}>\n      {label && (\n        <label className=\"mb-1.5 block text-sm font-medium text-foreground\">{label}</label>\n      )}\n\n      {/* Trigger */}\n      <button\n        type=\"button\"\n        disabled={isDisabled}\n        onClick={() => setOpen(!open)}\n        aria-expanded={open}\n        aria-haspopup=\"listbox\"\n        className={cn(\n          \"flex min-h-10 w-full items-center gap-2 rounded-lg border border-border bg-background px-3 text-left text-sm outline-none transition-colors hover:border-black/40 focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50\",\n          variant === \"primary\" && \"shadow-sm\",\n          open && \"border-black/50\"\n        )}\n      >\n        <span className={cn(\"min-w-0 flex-1 truncate\", !triggerLabel && \"text-muted-foreground\")}>\n          {triggerLabel ?? placeholder}\n        </span>\n        {selectedItems.length > 0 && (\n          <span\n            role=\"button\"\n            tabIndex={-1}\n            aria-label=\"Temizle\"\n            onClick={(e) => {\n              e.stopPropagation()\n              clear()\n            }}\n            className=\"flex size-5 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground\"\n          >\n            <X className=\"size-3.5\" />\n          </span>\n        )}\n        <ChevronsUpDown className={cn(\"size-4 shrink-0 text-muted-foreground transition-transform\", open && \"rotate-180\")} />\n      </button>\n\n      {/* Popover */}\n      {open && (\n        <div\n          role=\"listbox\"\n          className=\"absolute top-full z-40 mt-1.5 w-full min-w-[200px] overflow-hidden rounded-lg border border-border bg-popover text-popover-foreground shadow-lg\"\n        >\n          {/* Arama */}\n          <div className=\"relative border-b border-border\">\n            <Search className=\"pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground\" />\n            <input\n              autoFocus\n              type=\"text\"\n              value={query}\n              onChange={(e) => setQuery(e.target.value)}\n              placeholder=\"Ara…\"\n              className=\"w-full bg-transparent py-2.5 pr-3 pl-9 text-sm outline-none placeholder:text-muted-foreground/60\"\n            />\n          </div>\n\n          {/* Liste */}\n          <div className=\"max-h-60 overflow-y-auto p-1\">\n            {filtered.length === 0 ? (\n              <div className=\"px-3 py-6 text-center text-sm text-muted-foreground\">\n                Sonuç bulunamadı\n              </div>\n            ) : (\n              filtered.map((item) => {\n                const disabled = disabledKeys.includes(item.id)\n                const selectedNow = isSelected(item.id)\n                return (\n                  <div\n                    key={item.id}\n                    role=\"option\"\n                    aria-selected={selectedNow}\n                    onClick={() => toggle(item.id)}\n                    className={cn(\n                      \"flex cursor-pointer items-center justify-between rounded-md px-3 py-2 text-sm transition-colors\",\n                      selectedNow ? \"bg-blue-600 text-white\" : \"hover:bg-muted\",\n                      disabled && \"cursor-not-allowed opacity-40 hover:bg-transparent\"\n                    )}\n                  >\n                    {item.name}\n                    {selectedNow && selectionMode === \"single\" && <CheckMark />}\n                  </div>\n                )\n              })\n            )}\n          </div>\n        </div>\n      )}\n\n      {description && <p className=\"mt-1 text-xs text-muted-foreground\">{description}</p>}\n    </div>\n  )\n}\n\nfunction CheckMark() {\n  return (\n    <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" strokeWidth=\"2.5\" strokeLinecap=\"round\" strokeLinejoin=\"round\" aria-hidden=\"true\">\n      <path d=\"M20 6 9 17l-5-5\" />\n    </svg>\n  )\n}\n\nexport { Autocomplete }\nexport type { AutocompleteProps }\n",
+      "description": "Autocomplete",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/autocomplete.tsx"
+    },
+    {
+      "id": "136",
+      "name": "Label",
+      "category": "Form Elemanları",
+      "file": "label.tsx",
+      "exists": true,
+      "code": "/**\n * Label\n * Form elemanları için etiket (saf React).\n * @id 136\n * @category Form Elemanları\n */\nimport type { LabelHTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\nfunction Label({ className, ...props }: LabelHTMLAttributes<HTMLLabelElement>) {\n  return <label className={cn(\"block text-sm font-medium text-foreground\", className)} {...props} />\n}\n\nexport { Label }\n",
+      "description": "Label",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/label.tsx"
+    },
+    {
+      "id": "137",
+      "name": "SearchField",
+      "category": "Form Elemanları",
+      "file": "search-field.tsx",
+      "exists": true,
+      "code": "/**\n * SearchField\n * Arama alanı — ikon + temizleme butonu (saf React, kendi setimizden ikonlar).\n * @id 137\n * @category Form Elemanları\n */\nimport { useState, type InputHTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { Search, X } from \"@/components/ui/icons\"\n\ninterface SearchFieldProps extends Omit<InputHTMLAttributes<HTMLInputElement>, \"onChange\"> {\n  onChange?: (v: string) => void\n}\n\nfunction SearchField({ value, onChange, className, ...props }: SearchFieldProps) {\n  const [internal, setInternal] = useState(\"\")\n  const val = value ?? internal\n  return (\n    <div className={cn(\"relative\", className)}>\n      <Search className=\"pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground\" />\n      <input\n        type=\"search\"\n        value={val}\n        onChange={(e) => {\n          setInternal(e.target.value)\n          onChange?.(e.target.value)\n        }}\n        className=\"h-10 w-full rounded-lg border border-border bg-background pr-9 pl-9 text-sm outline-none transition-colors focus:border-black/50 focus-visible:ring-3 focus-visible:ring-ring/50\"\n        {...props}\n      />\n      {val ? (\n        <button\n          type=\"button\"\n          aria-label=\"Temizle\"\n          onClick={() => {\n            setInternal(\"\")\n            onChange?.(\"\")\n          }}\n          className=\"absolute top-1/2 right-2.5 flex size-5 -translate-y-1/2 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground\"\n        >\n          <X className=\"size-3.5\" />\n        </button>\n      ) : null}\n    </div>\n  )\n}\n\nexport { SearchField }\nexport type { SearchFieldProps }\n",
+      "description": "SearchField",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/search-field.tsx"
+    },
+    {
+      "id": "138",
+      "name": "ListBox",
+      "category": "Form Elemanları",
+      "file": "list-box.tsx",
+      "exists": true,
+      "code": "/**\n * ListBox\n * Seçenek listesi — ListBox + Item + Section (saf React).\n * @id 138\n * @category Form Elemanları\n */\nimport type { ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface ListBoxProps {\n  className?: string\n  children?: ReactNode\n}\n\nfunction ListBox({ className, children }: ListBoxProps) {\n  return <ul data-slot=\"listbox\" className={cn(\"divide-y divide-border rounded-lg border border-border\", className)}>{children}</ul>\n}\n\ninterface ListBoxItemProps {\n  id?: string\n  textValue?: string\n  className?: string\n  children?: ReactNode\n}\n\nfunction ListBoxItem({ className, children, ...props }: ListBoxItemProps) {\n  return (\n    <li data-slot=\"listbox-item\" className={cn(\"flex cursor-pointer items-center justify-between gap-2 px-3 py-2 text-sm transition-colors hover:bg-muted\", className)} {...props}>\n      {children}\n    </li>\n  )\n}\n\nfunction ListBoxSection({ className, children }: ListBoxProps) {\n  return <li data-slot=\"listbox-section\" className={cn(\"not-last:border-b not-last:border-border\", className)}>{children}</li>\n}\n\nfunction ListBoxItemIndicator({ className }: { className?: string }) {\n  return <span data-slot=\"listbox-item-indicator\" className={cn(\"size-4 rounded-full border border-border\", className)} aria-hidden=\"true\" />\n}\n\nexport { ListBox, ListBoxItem, ListBoxItemIndicator, ListBoxSection }\n",
+      "description": "ListBox",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/list-box.tsx"
+    },
+    {
+      "id": "141",
+      "name": "Description",
+      "category": "Form Elemanları",
+      "file": "description.tsx",
+      "exists": true,
+      "code": "/**\n * Description\n * Form alanı açıklaması (saf React).\n * @id 141\n * @category Form Elemanları\n */\nimport type { HTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\nfunction Description({ className, ...props }: HTMLAttributes<HTMLParagraphElement>) {\n  return <p data-slot=\"description\" className={cn(\"mt-1 text-xs text-muted-foreground\", className)} {...props} />\n}\n\nexport { Description }\n",
+      "description": "Description",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/description.tsx"
+    },
+    {
+      "id": "142",
+      "name": "AutocompleteDefault",
+      "category": "Form Elemanları",
+      "file": "autocomplete-default.tsx",
+      "exists": true,
+      "code": "/**\n * AutocompleteDefault\n * HeroUI Usage örneği — çoklu seçim (saf React).\n * @id 142\n * @category Form Elemanları\n */\nimport { useState } from \"react\"\nimport { Autocomplete } from \"@/components/ui/autocomplete\"\nimport { Label } from \"@/components/ui/label\"\n\nconst states = [\n  { id: \"florida\", name: \"Florida\" }, { id: \"delaware\", name: \"Delaware\" },\n  { id: \"california\", name: \"California\" }, { id: \"texas\", name: \"Texas\" },\n  { id: \"new-york\", name: \"New York\" }, { id: \"washington\", name: \"Washington\" },\n]\n\nfunction AutocompleteDefault() {\n  const [selected, setSelected] = useState<string[]>([])\n  return (\n    <div className=\"w-[256px]\">\n      <Label className=\"mb-1.5\">States to Visit</Label>\n      <Autocomplete items={states} placeholder=\"Select states\" selectionMode=\"multiple\" value={selected} onChange={(v) => setSelected((v ?? []) as string[])} />\n    </div>\n  )\n}\n\nexport { AutocompleteDefault }\n",
+      "description": "AutocompleteDefault",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/autocomplete-default.tsx"
+    },
+    {
+      "id": "143",
+      "name": "AutocompleteVariants",
+      "category": "Form Elemanları",
+      "file": "autocomplete-variants.tsx",
+      "exists": true,
+      "code": "/**\n * AutocompleteVariants\n * HeroUI Variants örneği — primary/secondary × single/multiple (saf React).\n * @id 143\n * @category Form Elemanları\n */\nimport { useState } from \"react\"\nimport { Autocomplete } from \"@/components/ui/autocomplete\"\nimport { Label } from \"@/components/ui/label\"\n\nconst items = [\n  { id: \"option1\", name: \"Option 1\" }, { id: \"option2\", name: \"Option 2\" },\n  { id: \"option3\", name: \"Option 3\" }, { id: \"option4\", name: \"Option 4\" },\n]\n\nfunction AutocompleteVariants() {\n  const [s1, setS1] = useState<string | null>(null)\n  const [s2, setS2] = useState<string | null>(null)\n  const [m1, setM1] = useState<string[]>([])\n  const [m2, setM2] = useState<string[]>([])\n  return (\n    <div className=\"flex flex-col gap-6\">\n      <div>\n        <h3 className=\"mb-2 text-lg font-semibold\">Single Select</h3>\n        <div className=\"flex flex-col gap-4\">\n          <div className=\"w-[256px]\">\n            <Label className=\"mb-1.5\">Primary variant</Label>\n            <Autocomplete items={items} placeholder=\"Select one\" selectionMode=\"single\" value={s1} onChange={(v) => setS1(v as string | null)} />\n          </div>\n          <div className=\"w-[256px]\">\n            <Label className=\"mb-1.5\">Secondary variant</Label>\n            <Autocomplete items={items} placeholder=\"Select one\" selectionMode=\"single\" variant=\"secondary\" value={s2} onChange={(v) => setS2(v as string | null)} />\n          </div>\n        </div>\n      </div>\n      <div>\n        <h3 className=\"mb-2 text-lg font-semibold\">Multiple Select</h3>\n        <div className=\"flex flex-col gap-4\">\n          <div className=\"w-[256px]\">\n            <Label className=\"mb-1.5\">Primary variant</Label>\n            <Autocomplete items={items} placeholder=\"Select multiple\" selectionMode=\"multiple\" value={m1} onChange={(v) => setM1((v ?? []) as string[])} />\n          </div>\n          <div className=\"w-[256px]\">\n            <Label className=\"mb-1.5\">Secondary variant</Label>\n            <Autocomplete items={items} placeholder=\"Select multiple\" selectionMode=\"multiple\" variant=\"secondary\" value={m2} onChange={(v) => setM2((v ?? []) as string[])} />\n          </div>\n        </div>\n      </div>\n    </div>\n  )\n}\n\nexport { AutocompleteVariants }\n",
+      "description": "AutocompleteVariants",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/autocomplete-variants.tsx"
+    },
+    {
+      "id": "144",
+      "name": "AutocompleteFullWidth",
+      "category": "Form Elemanları",
+      "file": "autocomplete-full-width.tsx",
+      "exists": true,
+      "code": "/**\n * AutocompleteFullWidth\n * HeroUI Full Width örneği — tam genişlik + surface (saf React).\n * @id 144\n * @category Form Elemanları\n */\nimport { useState } from \"react\"\nimport { Autocomplete } from \"@/components/ui/autocomplete\"\n\nconst states = [\n  { id: \"florida\", name: \"Florida\" }, { id: \"delaware\", name: \"Delaware\" },\n  { id: \"california\", name: \"California\" }, { id: \"texas\", name: \"Texas\" },\n  { id: \"new-york\", name: \"New York\" }, { id: \"washington\", name: \"Washington\" },\n]\n\nfunction AutocompleteFullWidth() {\n  const [selected, setSelected] = useState<string | null>(null)\n  return (\n    <div className=\"w-[380px] space-y-4 rounded-3xl bg-muted/20 p-6\">\n      <Autocomplete fullWidth items={states} placeholder=\"Select one\" selectionMode=\"single\" variant=\"secondary\" value={selected} onChange={(v) => setSelected(v as string | null)} />\n    </div>\n  )\n}\n\nexport { AutocompleteFullWidth }\n",
+      "description": "AutocompleteFullWidth",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/autocomplete-full-width.tsx"
+    },
+    {
+      "id": "145",
+      "name": "AutocompleteWithDescription",
+      "category": "Form Elemanları",
+      "file": "autocomplete-with-description.tsx",
+      "exists": true,
+      "code": "/**\n * AutocompleteWithDescription\n * HeroUI With Description örneği (saf React).\n * @id 145\n * @category Form Elemanları\n */\nimport { useState } from \"react\"\nimport { Autocomplete } from \"@/components/ui/autocomplete\"\nimport { Description } from \"@/components/ui/description\"\nimport { Label } from \"@/components/ui/label\"\n\nconst states = [\n  { id: \"florida\", name: \"Florida\" }, { id: \"delaware\", name: \"Delaware\" },\n  { id: \"california\", name: \"California\" }, { id: \"texas\", name: \"Texas\" },\n  { id: \"new-york\", name: \"New York\" }, { id: \"washington\", name: \"Washington\" },\n]\n\nfunction AutocompleteWithDescription() {\n  const [selected, setSelected] = useState<string | null>(null)\n  return (\n    <div className=\"w-[256px]\">\n      <Label className=\"mb-1.5\">State</Label>\n      <Autocomplete items={states} placeholder=\"Select one\" selectionMode=\"single\" value={selected} onChange={(v) => setSelected(v as string | null)} />\n      <Description>Select your state of residence</Description>\n    </div>\n  )\n}\n\nexport { AutocompleteWithDescription }\n",
+      "description": "AutocompleteWithDescription",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/autocomplete-with-description.tsx"
+    },
+    {
+      "id": "146",
+      "name": "AutocompleteRequired",
+      "category": "Form Elemanları",
+      "file": "autocomplete-required.tsx",
+      "exists": true,
+      "code": "/**\n * AutocompleteRequired\n * HeroUI Required örneği — zorunlu alan + gönderim simülasyonu (saf React).\n * @id 146\n * @category Form Elemanları\n */\nimport { useState, type FormEvent } from \"react\"\nimport { Autocomplete } from \"@/components/ui/autocomplete\"\nimport { Button } from \"@/components/ui/button\"\nimport { Label } from \"@/components/ui/label\"\n\nconst states = [\n  { id: \"florida\", name: \"Florida\" }, { id: \"delaware\", name: \"Delaware\" },\n  { id: \"california\", name: \"California\" }, { id: \"texas\", name: \"Texas\" },\n]\n\nfunction AutocompleteRequired() {\n  const [state, setState] = useState<string | null>(null)\n  const [msg, setMsg] = useState(\"\")\n  const onSubmit = (e: FormEvent) => {\n    e.preventDefault()\n    setMsg(state ? `Form submitted: ${states.find((s) => s.id === state)?.name}` : \"Lütfen bir eyalet seçin\")\n  }\n  return (\n    <form className=\"flex w-[256px] flex-col gap-4\" onSubmit={onSubmit}>\n      <div>\n        <Label className=\"mb-1.5\">State <span className=\"text-red-500\">*</span></Label>\n        <Autocomplete items={states} placeholder=\"Select one\" selectionMode=\"single\" value={state} onChange={(v) => setState(v as string | null)} />\n      </div>\n      <Button type=\"submit\">Submit</Button>\n      {msg && <p className=\"text-sm text-muted-foreground\">{msg}</p>}\n    </form>\n  )\n}\n\nexport { AutocompleteRequired }\n",
+      "description": "AutocompleteRequired",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/autocomplete-required.tsx"
+    },
+    {
+      "id": "147",
+      "name": "AutocompleteDisabled",
+      "category": "Form Elemanları",
+      "file": "autocomplete-disabled.tsx",
+      "exists": true,
+      "code": "/**\n * AutocompleteDisabled\n * HeroUI Disabled örneği — devre dışı (saf React).\n * @id 147\n * @category Form Elemanları\n */\nimport { Autocomplete } from \"@/components/ui/autocomplete\"\nimport { Label } from \"@/components/ui/label\"\n\nconst states = [\n  { id: \"florida\", name: \"Florida\" }, { id: \"delaware\", name: \"Delaware\" },\n  { id: \"california\", name: \"California\" }, { id: \"texas\", name: \"Texas\" },\n]\n\nfunction AutocompleteDisabled() {\n  return (\n    <div className=\"flex flex-col gap-4\">\n      <div className=\"w-[256px]\">\n        <Label className=\"mb-1.5\">State</Label>\n        <Autocomplete isDisabled defaultValue=\"california\" items={states} placeholder=\"Select one\" selectionMode=\"single\" />\n      </div>\n      <div className=\"w-[256px]\">\n        <Label className=\"mb-1.5\">States</Label>\n        <Autocomplete isDisabled defaultValue={[\"florida\", \"texas\"]} items={states} placeholder=\"Select multiple\" selectionMode=\"multiple\" />\n      </div>\n    </div>\n  )\n}\n\nexport { AutocompleteDisabled }\n",
+      "description": "AutocompleteDisabled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/autocomplete-disabled.tsx"
+    },
+    {
+      "id": "148",
+      "name": "AutocompleteWithDisabledOptions",
+      "category": "Form Elemanları",
+      "file": "autocomplete-with-disabled-options.tsx",
+      "exists": true,
+      "code": "/**\n * AutocompleteWithDisabledOptions\n * HeroUI With Disabled Options örneği (saf React).\n * @id 148\n * @category Form Elemanları\n */\nimport { useState } from \"react\"\nimport { Autocomplete } from \"@/components/ui/autocomplete\"\nimport { Label } from \"@/components/ui/label\"\n\nconst animals = [\n  { id: \"dog\", name: \"Dog\" }, { id: \"cat\", name: \"Cat\" }, { id: \"bird\", name: \"Bird\" },\n  { id: \"kangaroo\", name: \"Kangaroo\" }, { id: \"elephant\", name: \"Elephant\" }, { id: \"tiger\", name: \"Tiger\" },\n]\n\nfunction AutocompleteWithDisabledOptions() {\n  const [selected, setSelected] = useState<string | null>(null)\n  return (\n    <div className=\"w-[256px]\">\n      <Label className=\"mb-1.5\">Animal</Label>\n      <Autocomplete disabledKeys={[\"cat\", \"kangaroo\"]} items={animals} placeholder=\"Select an animal\" selectionMode=\"single\" value={selected} onChange={(v) => setSelected(v as string | null)} />\n    </div>\n  )\n}\n\nexport { AutocompleteWithDisabledOptions }\n",
+      "description": "AutocompleteWithDisabledOptions",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/autocomplete-with-disabled-options.tsx"
+    },
+    {
+      "id": "149",
+      "name": "AutocompleteAllowsEmptyCollection",
+      "category": "Form Elemanları",
+      "file": "autocomplete-allows-empty-collection.tsx",
+      "exists": true,
+      "code": "/**\n * AutocompleteAllowsEmptyCollection\n * HeroUI Allows Empty Collection örneği — boş koleksiyon (saf React).\n * @id 149\n * @category Form Elemanları\n */\nimport { Autocomplete } from \"@/components/ui/autocomplete\"\nimport { Label } from \"@/components/ui/label\"\n\nfunction AutocompleteAllowsEmptyCollection() {\n  return (\n    <div className=\"w-[256px]\">\n      <Label className=\"mb-1.5\">State</Label>\n      <Autocomplete allowsEmptyCollection items={[]} placeholder=\"Select one\" selectionMode=\"single\" />\n    </div>\n  )\n}\n\nexport { AutocompleteAllowsEmptyCollection }\n",
+      "description": "AutocompleteAllowsEmptyCollection",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/autocomplete-allows-empty-collection.tsx"
+    },
+    {
+      "id": "150",
+      "name": "AutocompleteMultipleSelect",
+      "category": "Form Elemanları",
+      "file": "autocomplete-multiple-select.tsx",
+      "exists": true,
+      "code": "/**\n * AutocompleteMultipleSelect\n * HeroUI Multiple Select örneği (saf React).\n * @id 150\n * @category Form Elemanları\n */\nimport { useState } from \"react\"\nimport { Autocomplete } from \"@/components/ui/autocomplete\"\nimport { Label } from \"@/components/ui/label\"\n\nconst states = [\n  { id: \"california\", name: \"California\" }, { id: \"texas\", name: \"Texas\" },\n  { id: \"florida\", name: \"Florida\" }, { id: \"new-york\", name: \"New York\" },\n  { id: \"illinois\", name: \"Illinois\" }, { id: \"pennsylvania\", name: \"Pennsylvania\" },\n]\n\nfunction AutocompleteMultipleSelect() {\n  const [selected, setSelected] = useState<string[]>([])\n  return (\n    <div className=\"w-[256px]\">\n      <Label className=\"mb-1.5\">States</Label>\n      <Autocomplete items={states} placeholder=\"Select states\" selectionMode=\"multiple\" value={selected} onChange={(v) => setSelected((v ?? []) as string[])} />\n    </div>\n  )\n}\n\nexport { AutocompleteMultipleSelect }\n",
+      "description": "AutocompleteMultipleSelect",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/autocomplete-multiple-select.tsx"
+    },
+    {
+      "id": "151",
+      "name": "AutocompleteControlled",
+      "category": "Form Elemanları",
+      "file": "autocomplete-controlled.tsx",
+      "exists": true,
+      "code": "/**\n * AutocompleteControlled\n * HeroUI Controlled örneği (saf React).\n * @id 151\n * @category Form Elemanları\n */\nimport { useState } from \"react\"\nimport { Autocomplete } from \"@/components/ui/autocomplete\"\nimport { Label } from \"@/components/ui/label\"\n\nconst states = [\n  { id: \"california\", name: \"California\" }, { id: \"texas\", name: \"Texas\" },\n  { id: \"florida\", name: \"Florida\" }, { id: \"new-york\", name: \"New York\" },\n]\n\nfunction AutocompleteControlled() {\n  const [state, setState] = useState<string | null>(\"california\")\n  const selectedState = states.find((s) => s.id === state)\n  return (\n    <div className=\"w-[256px] space-y-2\">\n      <Label className=\"mb-1.5\">State (controlled)</Label>\n      <Autocomplete items={states} placeholder=\"Select a state\" selectionMode=\"single\" value={state} onChange={(v) => setState(v as string | null)} />\n      <p className=\"text-sm text-muted-foreground\">Selected: {selectedState?.name || \"None\"}</p>\n    </div>\n  )\n}\n\nexport { AutocompleteControlled }\n",
+      "description": "AutocompleteControlled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/autocomplete-controlled.tsx"
+    },
+    {
+      "id": "152",
+      "name": "AutocompleteControlledMultiple",
+      "category": "Form Elemanları",
+      "file": "autocomplete-controlled-multiple.tsx",
+      "exists": true,
+      "code": "/**\n * AutocompleteControlledMultiple\n * HeroUI Controlled Multiple örneği (saf React).\n * @id 152\n * @category Form Elemanları\n */\nimport { useState } from \"react\"\nimport { Autocomplete } from \"@/components/ui/autocomplete\"\nimport { Label } from \"@/components/ui/label\"\n\nconst items = [\n  { id: \"california\", name: \"California\" }, { id: \"texas\", name: \"Texas\" },\n  { id: \"florida\", name: \"Florida\" }, { id: \"new-york\", name: \"New York\" },\n]\n\nfunction AutocompleteControlledMultiple() {\n  const [selected, setSelected] = useState<string[]>([\"california\", \"texas\"])\n  return (\n    <div className=\"w-[256px] space-y-2\">\n      <Label className=\"mb-1.5\">States</Label>\n      <Autocomplete items={items} placeholder=\"Select states\" selectionMode=\"multiple\" value={selected} onChange={(v) => setSelected((v ?? []) as string[])} />\n      <p className=\"text-sm text-muted-foreground\">Selected: {selected.length ? selected.join(\", \") : \"None\"}</p>\n    </div>\n  )\n}\n\nexport { AutocompleteControlledMultiple }\n",
+      "description": "AutocompleteControlledMultiple",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/autocomplete-controlled-multiple.tsx"
+    },
+    {
+      "id": "153",
+      "name": "AutocompleteControlledOpenState",
+      "category": "Form Elemanları",
+      "file": "autocomplete-controlled-open-state.tsx",
+      "exists": true,
+      "code": "/**\n * AutocompleteControlledOpenState\n * HeroUI Controlled Open State örneği (saf React).\n * @id 153\n * @category Form Elemanları\n */\nimport { useState } from \"react\"\nimport { Autocomplete } from \"@/components/ui/autocomplete\"\nimport { Button } from \"@/components/ui/button\"\n\nconst states = [\n  { id: \"florida\", name: \"Florida\" }, { id: \"delaware\", name: \"Delaware\" },\n  { id: \"california\", name: \"California\" }, { id: \"texas\", name: \"Texas\" },\n]\n\nfunction AutocompleteControlledOpenState() {\n  const [isOpen, setIsOpen] = useState(false)\n  return (\n    <div className=\"w-[256px] space-y-4\">\n      <Autocomplete isOpen={isOpen} onOpenChange={setIsOpen} items={states} placeholder=\"Select one\" selectionMode=\"single\" />\n      <Button variant=\"secondary\" onPress={() => setIsOpen(!isOpen)}>{isOpen ? \"Close\" : \"Open\"} Autocomplete</Button>\n      <p className=\"text-sm text-muted-foreground\">Autocomplete is {isOpen ? \"open\" : \"closed\"}</p>\n    </div>\n  )\n}\n\nexport { AutocompleteControlledOpenState }\n",
+      "description": "AutocompleteControlledOpenState",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/autocomplete-controlled-open-state.tsx"
+    },
+    {
+      "id": "154",
+      "name": "AutocompleteAsynchronousFiltering",
+      "category": "Form Elemanları",
+      "file": "autocomplete-asynchronous-filtering.tsx",
+      "exists": true,
+      "code": "/**\n * AutocompleteAsynchronousFiltering\n * HeroUI Asynchronous Filtering örneği — SWAPI dış API yerine yerel simülasyon\n * (dış kaynak yasağı — setTimeout + yerel veri, saf React).\n * @id 154\n * @category Form Elemanları\n */\nimport { useEffect, useState } from \"react\"\nimport { Autocomplete, type AutocompleteItem } from \"@/components/ui/autocomplete\"\nimport { Label } from \"@/components/ui/label\"\nimport { Spinner } from \"@/components/ui/spinner\"\n\nconst CHARACTERS = [\"Luke Skywalker\", \"Darth Vader\", \"Leia Organa\", \"Han Solo\", \"Yoda\", \"Obi-Wan Kenobi\", \"R2-D2\", \"C-3PO\", \"Boba Fett\", \"Chewbacca\"]\n\nfunction AutocompleteAsynchronousFiltering() {\n  const [items, setItems] = useState<AutocompleteItem[]>([])\n  const [loading, setLoading] = useState(true)\n\n  useEffect(() => {\n    const t = setTimeout(() => {\n      setItems(CHARACTERS.map((name, i) => ({ id: String(i), name })))\n      setLoading(false)\n    }, 1200)\n    return () => clearTimeout(t)\n  }, [])\n\n  return (\n    <div className=\"w-[256px]\">\n      <Label className=\"mb-1.5\">Search a Star Wars character</Label>\n      {loading ? (\n        <div className=\"flex h-10 items-center gap-2 text-sm text-muted-foreground\">\n          <Spinner size=\"sm\" /> Yükleniyor…\n        </div>\n      ) : (\n        <Autocomplete items={items} placeholder=\"Search...\" selectionMode=\"single\" />\n      )}\n    </div>\n  )\n}\n\nexport { AutocompleteAsynchronousFiltering }\n",
+      "description": "AutocompleteAsynchronousFiltering",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/autocomplete-asynchronous-filtering.tsx"
+    },
+    {
+      "id": "155",
+      "name": "AutocompleteOnSurface",
+      "category": "Form Elemanları",
+      "file": "autocomplete-on-surface.tsx",
+      "exists": true,
+      "code": "/**\n * AutocompleteOnSurface\n * HeroUI In Surface örneği — surface üzerinde secondary varyant (saf React).\n * @id 155\n * @category Form Elemanları\n */\nimport { useState } from \"react\"\nimport { Autocomplete } from \"@/components/ui/autocomplete\"\nimport { Label } from \"@/components/ui/label\"\n\nconst states = [\n  { id: \"florida\", name: \"Florida\" }, { id: \"delaware\", name: \"Delaware\" },\n  { id: \"california\", name: \"California\" }, { id: \"texas\", name: \"Texas\" },\n]\n\nfunction AutocompleteOnSurface() {\n  const [selected, setSelected] = useState<string | null>(null)\n  return (\n    <div className=\"w-[320px] rounded-3xl bg-muted/20 p-6\">\n      <Label className=\"mb-1.5\">State</Label>\n      <Autocomplete fullWidth items={states} placeholder=\"Select one\" selectionMode=\"single\" variant=\"secondary\" value={selected} onChange={(v) => setSelected(v as string | null)} />\n    </div>\n  )\n}\n\nexport { AutocompleteOnSurface }\n",
+      "description": "AutocompleteOnSurface",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/autocomplete-on-surface.tsx"
+    },
+    {
       "id": "092",
       "name": "Button",
       "category": "Butonlar & Aksiyonlar",
@@ -478,6 +668,26 @@
       "code": "/**\n * DateRangePickerSimple\n * Template Maker — özel bileşen (HTML'den TSX'e dönüştürüldü)\n * Basit, bağımsız tarih aralığı seçici (takvim + aralık vurgusu + temizle).\n * @id 088\n * @category Takvim\n */\nimport { useMemo, useState } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface DateRangePickerSimpleProps {\n  className?: string\n  /** Başlangıç ve bitiş tarihi (opsiyonel, kontrollü) */\n  value?: { start: Date | null; end: Date | null }\n  /** Seçim değiştiğinde çağrılır */\n  onChange?: (range: { start: Date | null; end: Date | null }) => void\n}\n\nconst DAY_NAMES = [\"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\", \"Sat\", \"Sun\"]\nconst MONTH_NAMES = [\"January\", \"February\", \"March\", \"April\", \"May\", \"June\", \"July\", \"August\", \"September\", \"October\", \"November\", \"December\"]\n\ntype Cell = { day: number; month: number; year: number; other: boolean }\n\nfunction buildCells(view: Date): Cell[] {\n  const firstDay = new Date(view.getFullYear(), view.getMonth(), 1)\n  const startOffset = (firstDay.getDay() + 6) % 7 // Pazartesi=0\n  const daysInMonth = new Date(view.getFullYear(), view.getMonth() + 1, 0).getDate()\n  const prevDays = new Date(view.getFullYear(), view.getMonth(), 0).getDate()\n  const cells: Cell[] = []\n  for (let i = startOffset; i > 0; i--) cells.push({ day: prevDays - i + 1, month: view.getMonth() - 1, year: view.getFullYear(), other: true })\n  for (let d = 1; d <= daysInMonth; d++) cells.push({ day: d, month: view.getMonth(), year: view.getFullYear(), other: false })\n  let next = 1\n  while (cells.length % 7 !== 0) cells.push({ day: next++, month: view.getMonth() + 1, year: view.getFullYear(), other: true })\n  return cells\n}\n\nfunction sameDay(a: Date, b: Date) {\n  return b && a.toDateString() === b.toDateString()\n}\n\nfunction DateRangePickerSimple({ className, value, onChange }: DateRangePickerSimpleProps) {\n  const [view, setView] = useState(() => new Date(2026, 8, 1))\n  const [internal, setInternal] = useState<{ start: Date | null; end: Date | null }>({\n    start: new Date(2026, 8, 1),\n    end: new Date(2026, 8, 9),\n  })\n\n  const range = value ?? internal\n  const setRange = (r: { start: Date | null; end: Date | null }) => {\n    setInternal(r)\n    onChange?.(r)\n  }\n\n  const cells = useMemo(() => buildCells(view), [view])\n\n  const selectDate = (y: number, m: number, d: number) => {\n    const picked = new Date(y, m, d)\n    if (!range.start || (range.start && range.end)) {\n      setRange({ start: picked, end: null })\n    } else if (!range.end) {\n      if (picked < range.start) setRange({ end: range.start, start: picked })\n      else setRange({ start: range.start, end: picked })\n    }\n  }\n\n  const changeMonth = (delta: number) => {\n    setView(new Date(view.getFullYear(), view.getMonth() + delta, 1))\n  }\n\n  const clear = () => setRange({ start: null, end: null })\n\n  return (\n    <div className={cn(\"w-[340px] rounded-[10px] bg-white p-[18px_20px] shadow-[0_2px_12px_rgba(0,0,0,.08)]\", className)}>\n      {/* Üst bar: ay/yıl gezinme + temizle */}\n      <div className=\"mb-3.5 flex items-center justify-center gap-3.5\">\n        <button\n          onClick={() => changeMonth(-1)}\n          aria-label=\"Önceki ay\"\n          className=\"flex h-7 w-7 cursor-pointer items-center justify-center rounded-md border-none bg-slate-100 text-sm text-[#555] transition-colors hover:bg-slate-200\"\n        >‹</button>\n        <span className=\"flex cursor-pointer items-center gap-1 text-[15px] font-semibold text-[#222]\">\n          {MONTH_NAMES[view.getMonth()]}\n          <span className=\"text-xs text-[#888]\">⌄</span>\n        </span>\n        <span className=\"flex cursor-pointer items-center gap-1 text-[15px] font-semibold text-[#222]\">\n          {view.getFullYear()}\n          <span className=\"text-xs text-[#888]\">⌄</span>\n        </span>\n        <button\n          onClick={() => changeMonth(1)}\n          aria-label=\"Sonraki ay\"\n          className=\"flex h-7 w-7 cursor-pointer items-center justify-center rounded-md border-none bg-slate-100 text-sm text-[#555] transition-colors hover:bg-slate-200\"\n        >›</button>\n        <button\n          onClick={clear}\n          title=\"Temizle\"\n          aria-label=\"Seçimi temizle\"\n          className=\"ml-auto flex h-7 w-7 cursor-pointer items-center justify-center rounded-md border-none bg-slate-100 text-sm text-[#555] transition-colors hover:bg-red-100 hover:text-red-600\"\n        >✕</button>\n      </div>\n\n      {/* Gün adları */}\n      <div className=\"mb-1 grid grid-cols-7 text-center\">\n        {DAY_NAMES.map((d) => (\n          <div key={d} className=\"py-1.5 text-xs font-semibold text-[#8b93a1]\">{d}</div>\n        ))}\n      </div>\n\n      {/* Takvim hücreleri */}\n      <div className=\"grid grid-cols-7 gap-y-1.5\">\n        {cells.map((c, idx) => {\n          const date = new Date(c.year, c.month, c.day)\n          const inRange = range.start && range.end && date >= range.start && date <= range.end\n          const isOnlyStart = range.start && !range.end && sameDay(date, range.start)\n          const col = idx % 7\n\n          let cls = \"relative flex h-[34px] cursor-pointer items-center justify-center text-sm text-[#3a3f4b]\"\n          if (c.other) cls += \" text-[#c7cbd3]\"\n          if (inRange) {\n            cls += \" bg-[#0b84fe] text-white\"\n            if (c.other) cls += \" text-white/60\"\n            if (sameDay(date, range.start as Date) || col === 0) cls += \" rounded-l-[17px]\"\n            if (sameDay(date, range.end as Date) || col === 6) cls += \" rounded-r-[17px]\"\n          } else if (isOnlyStart) {\n            cls += \" rounded-l-[17px] rounded-r-[17px] bg-[#0b84fe] text-white\"\n          }\n\n          return (\n            <div key={idx} className={cls} onClick={() => selectDate(c.year, c.month, c.day)}>\n              {c.day}\n            </div>\n          )\n        })}\n      </div>\n    </div>\n  )\n}\n\nexport { DateRangePickerSimple }\nexport type { DateRangePickerSimpleProps }\n",
       "description": "DateRangePickerSimple",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/date-range-picker-simple.tsx"
+    },
+    {
+      "id": "139",
+      "name": "TagGroup",
+      "category": "Veri Gösterimi",
+      "file": "tag-group.tsx",
+      "exists": true,
+      "code": "/**\n * TagGroup\n * Etiket grubu — TagGroup + Tag (saf React).\n * @id 139\n * @category Veri Gösterimi\n */\nimport type { ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { X } from \"@/components/ui/icons\"\n\ninterface TagGroupProps {\n  className?: string\n  children?: ReactNode\n  /** Tag kaldırıldığında çağrılır (Tag id'leri seti) */\n  onRemove?: (keys: Set<string>) => void\n}\n\nfunction TagGroup({ className, children }: TagGroupProps) {\n  return <div data-slot=\"tag-group\" className={cn(\"flex flex-wrap gap-1.5\", className)}>{children}</div>\n}\n\ninterface TagProps {\n  id?: string\n  className?: string\n  children?: ReactNode\n  onRemove?: () => void\n}\n\nfunction Tag({ id, className, children, onRemove }: TagProps) {\n  return (\n    <span data-slot=\"tag\" className={cn(\"inline-flex items-center gap-1 rounded-md bg-muted px-2 py-0.5 text-xs font-medium text-foreground\", className)}>\n      {children}\n      {onRemove && (\n        <button\n          type=\"button\"\n          aria-label={`${id ?? \"\"} kaldır`}\n          onClick={onRemove}\n          className=\"flex size-3.5 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-black/10 hover:text-foreground\"\n        >\n          <X className=\"size-2.5\" />\n        </button>\n      )}\n    </span>\n  )\n}\n\nexport { Tag, TagGroup }\n",
+      "description": "TagGroup",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/tag-group.tsx"
+    },
+    {
+      "id": "140",
+      "name": "EmptyState",
+      "category": "Veri Gösterimi",
+      "file": "empty-state.tsx",
+      "exists": true,
+      "code": "/**\n * EmptyState\n * Boş durum göstergesi — ikon + başlık + açıklama (saf React).\n * @id 140\n * @category Veri Gösterimi\n */\nimport type { ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface EmptyStateProps {\n  icon?: ReactNode\n  title?: ReactNode\n  description?: ReactNode\n  action?: ReactNode\n  className?: string\n}\n\nfunction EmptyState({ icon, title, description, action, className }: EmptyStateProps) {\n  return (\n    <div data-slot=\"empty-state\" className={cn(\"flex flex-col items-center justify-center gap-2 px-4 py-10 text-center\", className)}>\n      {icon && <span className=\"text-muted-foreground/60\">{icon}</span>}\n      {title && <p className=\"text-sm font-medium\">{title}</p>}\n      {description && <p className=\"max-w-sm text-sm text-muted-foreground\">{description}</p>}\n      {action}\n    </div>\n  )\n}\n\nexport { EmptyState }\nexport type { EmptyStateProps }\n",
+      "description": "EmptyState",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/empty-state.tsx"
     },
     {
       "id": "089",

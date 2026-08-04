@@ -42,6 +42,25 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `134` AlertDialogCustomStyles
 
 ### Form Elemanları
+- `135` Autocomplete
+- `136` Label
+- `137` SearchField
+- `138` ListBox
+- `141` Description
+- `142` AutocompleteDefault
+- `143` AutocompleteVariants
+- `144` AutocompleteFullWidth
+- `145` AutocompleteWithDescription
+- `146` AutocompleteRequired
+- `147` AutocompleteDisabled
+- `148` AutocompleteWithDisabledOptions
+- `149` AutocompleteAllowsEmptyCollection
+- `150` AutocompleteMultipleSelect
+- `151` AutocompleteControlled
+- `152` AutocompleteControlledMultiple
+- `153` AutocompleteControlledOpenState
+- `154` AutocompleteAsynchronousFiltering
+- `155` AutocompleteOnSurface
 
 ### Renk Bileşenleri
 
@@ -68,6 +87,8 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `088` DateRangePickerSimple
 
 ### Veri Gösterimi
+- `139` TagGroup
+- `140` EmptyState
 
 ### Overlay
 
@@ -78,7 +99,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 47 bileşen (saf React)**
+**Toplam: 68 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
