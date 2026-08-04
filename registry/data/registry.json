@@ -1,11 +1,12 @@
 {
-  "generatedAt": "2026-08-04T19:44:17.015Z",
+  "generatedAt": "2026-08-04T19:52:58.095Z",
   "counts": {
-    "components": 139,
-    "ready": 139,
+    "components": 158,
+    "ready": 158,
     "layouts": 0
   },
   "categories": [
+    "Colors",
     "Accordion",
     "Alert & Dialog",
     "Form Elemanları",
@@ -22,6 +23,215 @@
     "Özel Komponentler"
   ],
   "components": [
+    {
+      "id": "230",
+      "name": "ColorArea",
+      "category": "Colors",
+      "subcategory": "ColorArea",
+      "file": "color-area.tsx",
+      "exists": true,
+      "code": "/**\n * ColorArea\n * HeroUI color-area'dan uyarlanmış — saf React (bağımlılıksız).\n * 2D renk alanı: x = saturation, y = brightness (varsayılan).\n *   <ColorArea defaultValue=\"rgb(116,52,255)\" />\n * @id 230\n * @category Colors\n * @subcategory ColorArea\n */\nimport { useRef, useState, type PointerEvent } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { Color, parseColor, type ColorChannel } from \"./color\"\n\nfunction ColorArea({\n  value,\n  defaultValue,\n  onChange,\n  xChannel = \"saturation\",\n  yChannel = \"brightness\",\n  isDisabled,\n  showDots,\n  className,\n}: {\n  value?: string\n  defaultValue?: string\n  onChange?: (color: Color) => void\n  xChannel?: ColorChannel\n  yChannel?: ColorChannel\n  isDisabled?: boolean\n  showDots?: boolean\n  className?: string\n}) {\n  const [internal, setInternal] = useState<string>(defaultValue ?? \"hsl(219, 58%, 93%)\")\n  const color = parseColor(value ?? internal)\n  const areaRef = useRef<HTMLDivElement>(null)\n  const dragging = useRef(false)\n\n  const setColor = (c: Color) => {\n    if (!value) setInternal(c.toString(\"css\"))\n    onChange?.(c)\n  }\n\n  const updateFromPointer = (e: PointerEvent) => {\n    const area = areaRef.current\n    if (!area) return\n    const rect = area.getBoundingClientRect()\n    const x = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width))\n    const y = Math.min(1, Math.max(0, 1 - (e.clientY - rect.top) / rect.height))\n    // xChannel 0-100 (saturation), yChannel 0-100 (brightness/lightness)\n    setColor(color.setChannel(xChannel, x * 100).setChannel(yChannel, y * 100))\n  }\n\n  const onPointerDown = (e: PointerEvent) => {\n    if (isDisabled) return\n    dragging.current = true\n    ;(e.target as HTMLElement).setPointerCapture(e.pointerId)\n    updateFromPointer(e)\n  }\n\n  const x = color.getChannel(xChannel) / 100\n  const y = 1 - color.getChannel(yChannel) / 100\n  const hueColor = `hsl(${color.h}, 100%, 50%)`\n\n  return (\n    <div\n      ref={areaRef}\n      data-slot=\"color-area\"\n      data-disabled={isDisabled || undefined}\n      onPointerDown={onPointerDown}\n      onPointerMove={(e) => dragging.current && updateFromPointer(e)}\n      onPointerUp={() => { dragging.current = false }}\n      onPointerCancel={() => { dragging.current = false }}\n      className={cn(\n        \"relative h-44 w-56 cursor-crosshair touch-none rounded-lg ring-1 ring-black/10 select-none\",\n        showDots && \"[background-image:radial-gradient(rgba(255,255,255,0.25)_1px,transparent_1px)] [background-size:8px_8px]\",\n        isDisabled && \"cursor-not-allowed opacity-50\",\n        className\n      )}\n      style={{\n        background: `linear-gradient(to top, #000, transparent), linear-gradient(to right, #fff, ${hueColor})`,\n      }}\n    >\n      <span\n        data-slot=\"color-area-thumb\"\n        className=\"absolute size-4 rounded-full border-2 border-white shadow-md\"\n        style={{ left: `${x * 100}%`, top: `${y * 100}%`, transform: \"translate(-50%,-50%)\" }}\n      />\n    </div>\n  )\n}\n\nexport { ColorArea }\n",
+      "description": "ColorArea",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/color-area.tsx"
+    },
+    {
+      "id": "240",
+      "name": "ColorAreaBasic",
+      "category": "Colors",
+      "subcategory": "ColorArea",
+      "file": "color-area-basic.tsx",
+      "exists": true,
+      "code": "/**\n * ColorAreaBasic\n * HeroUI Usage örneği (saf React).\n * @id 240\n * @category Colors\n * @subcategory ColorArea\n */\nimport { ColorArea } from \"@/components/ui/color-area\"\n\nfunction ColorAreaBasic() {\n  return <ColorArea defaultValue=\"rgb(116, 52, 255)\" />\n}\n\nexport { ColorAreaBasic }\n",
+      "description": "ColorAreaBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/color-area-basic.tsx"
+    },
+    {
+      "id": "241",
+      "name": "ColorAreaWithDots",
+      "category": "Colors",
+      "subcategory": "ColorArea",
+      "file": "color-area-with-dots.tsx",
+      "exists": true,
+      "code": "/**\n * ColorAreaWithDots\n * HeroUI With Dots örneği (saf React).\n * @id 241\n * @category Colors\n * @subcategory ColorArea\n */\nimport { ColorArea } from \"@/components/ui/color-area\"\n\nfunction ColorAreaWithDots() {\n  return <ColorArea showDots defaultValue=\"hsl(200, 100%, 50%)\" />\n}\n\nexport { ColorAreaWithDots }\n",
+      "description": "ColorAreaWithDots",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/color-area-with-dots.tsx"
+    },
+    {
+      "id": "229",
+      "name": "ColorField",
+      "category": "Colors",
+      "subcategory": "ColorField",
+      "file": "color-field.tsx",
+      "exists": true,
+      "code": "/**\n * ColorField\n * HeroUI color-field'ten uyarlanmış — saf React (bağımlılıksız).\n * Hex renk input'u + önizleme swatch'ı + geçerlilik kontrolü.\n *   <ColorField defaultValue=\"#0485F7\" label=\"Color\" onChange={setColor} />\n * @id 229\n * @category Colors\n * @subcategory ColorField\n */\nimport { useState } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { Color, parseColor } from \"./color\"\nimport { ColorSwatch } from \"./color-swatch\"\n\nfunction ColorField({\n  value,\n  defaultValue,\n  onChange,\n  label,\n  description,\n  fullWidth,\n  isDisabled,\n  name,\n  className,\n}: {\n  value?: string | null\n  defaultValue?: string\n  onChange?: (color: Color | null) => void\n  label?: string\n  description?: string\n  fullWidth?: boolean\n  isDisabled?: boolean\n  name?: string\n  className?: string\n}) {\n  const [internal, setInternal] = useState<string | null>(defaultValue ?? null)\n  const [text, setText] = useState<string>(defaultValue ?? \"\")\n  const controlled = value !== undefined\n  const current = controlled ? value : internal\n\n  const commit = (txt: string) => {\n    setText(txt)\n    try {\n      const c = parseColor(txt)\n      if (!controlled) setInternal(c.toString(\"hex\"))\n      onChange?.(c)\n    } catch {\n      /* geçersiz — bekle */\n    }\n  }\n\n  const valid = (() => {\n    try { parseColor(text); return true } catch { return false }\n  })()\n\n  return (\n    <div data-slot=\"color-field\" className={cn(\"flex flex-col gap-1.5\", fullWidth && \"w-full\", isDisabled && \"opacity-60\", className)}>\n      {label && <label className=\"text-sm font-medium text-foreground\">{label}</label>}\n      <div className=\"flex items-center gap-2 rounded-lg border border-border bg-background px-2.5 transition-colors focus-within:border-black/50\">\n        <ColorSwatch color={current ?? \"#000000\"} size=\"sm\" aria-label=\"Renk önizleme\" />\n        <input\n          type=\"text\"\n          name={name}\n          value={text}\n          onChange={(e) => commit(e.target.value)}\n          disabled={isDisabled}\n          spellCheck={false}\n          placeholder=\"#0485F7\"\n          aria-invalid={!valid || undefined}\n          className={cn(\"h-10 min-w-0 flex-1 bg-transparent font-mono text-sm outline-none placeholder:text-muted-foreground/50\", !valid && \"text-red-600\")}\n        />\n      </div>\n      {description && <p className=\"text-xs text-muted-foreground\">{description}</p>}\n    </div>\n  )\n}\n\nexport { ColorField }\n",
+      "description": "ColorField",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/color-field.tsx"
+    },
+    {
+      "id": "238",
+      "name": "ColorFieldBasic",
+      "category": "Colors",
+      "subcategory": "ColorField",
+      "file": "color-field-basic.tsx",
+      "exists": true,
+      "code": "/**\n * ColorFieldBasic\n * HeroUI Usage örneği — hex input + önizleme (saf React).\n * @id 238\n * @category Colors\n * @subcategory ColorField\n */\nimport { ColorField } from \"@/components/ui/color-field\"\n\nfunction ColorFieldBasic() {\n  return <ColorField className=\"w-[280px]\" name=\"color\" defaultValue=\"#0485F7\" label=\"Color\" />\n}\n\nexport { ColorFieldBasic }\n",
+      "description": "ColorFieldBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/color-field-basic.tsx"
+    },
+    {
+      "id": "239",
+      "name": "ColorFieldControlled",
+      "category": "Colors",
+      "subcategory": "ColorField",
+      "file": "color-field-controlled.tsx",
+      "exists": true,
+      "code": "/**\n * ColorFieldControlled\n * HeroUI Controlled örneği (saf React).\n * @id 239\n * @category Colors\n * @subcategory ColorField\n */\nimport { useState } from \"react\"\nimport { ColorField } from \"@/components/ui/color-field\"\nimport { ColorSwatch } from \"@/components/ui/color-swatch\"\nimport { Color } from \"@/components/ui/color\"\n\nfunction ColorFieldControlled() {\n  const [color, setColor] = useState<Color | null>(null)\n  return (\n    <div className=\"flex flex-col gap-3\">\n      <ColorField className=\"w-[280px]\" value={color?.toString(\"css\") ?? null} onChange={setColor} label=\"Color\" />\n      <div className=\"flex items-center gap-2 text-sm text-muted-foreground\">\n        <ColorSwatch color={color?.toString(\"css\") ?? \"#000000\"} size=\"sm\" />\n        Current: <code className=\"font-mono\">{color?.toString(\"hex\") ?? \"(none)\"}</code>\n      </div>\n    </div>\n  )\n}\n\nexport { ColorFieldControlled }\n",
+      "description": "ColorFieldControlled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/color-field-controlled.tsx"
+    },
+    {
+      "id": "232",
+      "name": "ColorPicker",
+      "category": "Colors",
+      "subcategory": "ColorPicker",
+      "file": "color-picker.tsx",
+      "exists": true,
+      "code": "/**\n * ColorPicker\n * HeroUI color-picker'dan uyarlanmış — saf React (bağımlılıksız).\n * Tetikleyici + popover içinde alan/kaydırıcı/input/örnekler.\n *   <ColorPicker defaultValue=\"#0485F7\" swatches={[...]} />\n * @id 232\n * @category Colors\n * @subcategory ColorPicker\n */\nimport { useEffect, useRef, useState } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { ChevronsUpDown } from \"./icons\"\nimport { Color, parseColor } from \"./color\"\nimport { ColorArea } from \"./color-area\"\nimport { ColorField } from \"./color-field\"\nimport { ColorSlider } from \"./color-slider\"\nimport { ColorSwatch } from \"./color-swatch\"\nimport { ColorSwatchPicker } from \"./color-swatch-picker\"\n\nfunction ColorPicker({\n  value,\n  defaultValue,\n  onChange,\n  label,\n  swatches,\n  isDisabled,\n  className,\n}: {\n  value?: string\n  defaultValue?: string\n  onChange?: (color: Color) => void\n  label?: string\n  swatches?: string[]\n  isDisabled?: boolean\n  className?: string\n}) {\n  const [internal, setInternal] = useState<string>(defaultValue ?? \"#0485F7\")\n  const [open, setOpen] = useState(false)\n  const rootRef = useRef<HTMLDivElement>(null)\n  const color = parseColor(value ?? internal)\n\n  const setColor = (c: Color) => {\n    if (!value) setInternal(c.toString(\"css\"))\n    onChange?.(c)\n  }\n\n  useEffect(() => {\n    if (!open) return\n    const onDown = (e: MouseEvent) => {\n      if (rootRef.current && !rootRef.current.contains(e.target as Node)) setOpen(false)\n    }\n    document.addEventListener(\"mousedown\", onDown)\n    return () => document.removeEventListener(\"mousedown\", onDown)\n  }, [open])\n\n  return (\n    <div ref={rootRef} className={cn(\"relative\", className)}>\n      <button\n        type=\"button\"\n        disabled={isDisabled}\n        onClick={() => setOpen(!open)}\n        aria-expanded={open}\n        className={cn(\n          \"flex h-10 w-full items-center gap-2 rounded-lg border border-border bg-background px-2.5 text-sm outline-none transition-colors hover:border-black/40 focus-visible:ring-3 focus-visible:ring-ring/50\",\n          isDisabled && \"cursor-not-allowed opacity-50\"\n        )}\n      >\n        <ColorSwatch color={color.toString(\"css\")} size=\"sm\" />\n        <span className=\"min-w-0 flex-1 truncate text-left font-mono text-xs\">{color.toString(\"hex\")}</span>\n        {label && <span className=\"text-xs text-muted-foreground\">{label}</span>}\n        <ChevronsUpDown className={cn(\"size-4 shrink-0 text-muted-foreground transition-transform\", open && \"rotate-180\")} />\n      </button>\n\n      {open && (\n        <div data-slot=\"color-picker-popover\" className=\"absolute top-full z-40 mt-1.5 w-64 rounded-xl border border-border bg-popover p-3 shadow-lg\">\n          <ColorArea value={color.toString(\"css\")} onChange={setColor} />\n          <div className=\"mt-3 flex flex-col gap-2.5\">\n            <ColorSlider channel=\"hue\" value={color.toString(\"css\")} onChange={setColor} showOutput={false} />\n            <ColorSlider channel=\"saturation\" value={color.toString(\"css\")} onChange={setColor} showOutput={false} />\n          </div>\n          <div className=\"mt-3\">\n            <ColorField value={color.toString(\"css\")} onChange={(c) => c && setColor(c)} />\n          </div>\n          {swatches && swatches.length > 0 && (\n            <div className=\"mt-3 border-t border-border pt-3\">\n              <ColorSwatchPicker\n                colors={swatches}\n                value={[color.toString(\"css\")]}\n                onChange={(vals) => vals.length && setColor(parseColor(vals[vals.length - 1]))}\n              />\n            </div>\n          )}\n        </div>\n      )}\n    </div>\n  )\n}\n\nexport { ColorPicker }\n\n",
+      "description": "ColorPicker",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/color-picker.tsx"
+    },
+    {
+      "id": "244",
+      "name": "ColorPickerControlled",
+      "category": "Colors",
+      "subcategory": "ColorPicker",
+      "file": "color-picker-controlled.tsx",
+      "exists": true,
+      "code": "/**\n * ColorPickerControlled\n * HeroUI Controlled örneği (saf React).\n * @id 244\n * @category Colors\n * @subcategory ColorPicker\n */\nimport { useState } from \"react\"\nimport { ColorPicker } from \"@/components/ui/color-picker\"\nimport { ColorSwatch } from \"@/components/ui/color-swatch\"\nimport { Color } from \"@/components/ui/color\"\n\nfunction ColorPickerControlled() {\n  const [color, setColor] = useState<Color | null>(null)\n  return (\n    <div className=\"flex flex-col gap-3\">\n      <ColorPicker className=\"w-56\" value={color?.toString(\"css\")} onChange={setColor} />\n      <div className=\"flex items-center gap-2 text-sm text-muted-foreground\">\n        <ColorSwatch color={color?.toString(\"css\") ?? \"#000000\"} size=\"sm\" />\n        Current: <code className=\"font-mono\">{color?.toString(\"hex\") ?? \"(none)\"}</code>\n      </div>\n    </div>\n  )\n}\n\nexport { ColorPickerControlled }\n",
+      "description": "ColorPickerControlled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/color-picker-controlled.tsx"
+    },
+    {
+      "id": "245",
+      "name": "ColorPickerWithSwatches",
+      "category": "Colors",
+      "subcategory": "ColorPicker",
+      "file": "color-picker-with-swatches.tsx",
+      "exists": true,
+      "code": "/**\n * ColorPickerWithSwatches\n * HeroUI With Swatches örneği (saf React).\n * @id 245\n * @category Colors\n * @subcategory ColorPicker\n */\nimport { ColorPicker } from \"@/components/ui/color-picker\"\n\nconst swatches = [\"#0485F7\", \"#EF4444\", \"#F59E0B\", \"#10B981\", \"#D946EF\", \"#8B5CF6\", \"#EC4899\", \"#0EA5E9\"]\n\nfunction ColorPickerWithSwatches() {\n  return <ColorPicker className=\"w-56\" defaultValue=\"#0485F7\" label=\"Renk\" swatches={swatches} />\n}\n\nexport { ColorPickerWithSwatches }\n",
+      "description": "ColorPickerWithSwatches",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/color-picker-with-swatches.tsx"
+    },
+    {
+      "id": "228",
+      "name": "ColorSlider",
+      "category": "Colors",
+      "subcategory": "ColorSlider",
+      "file": "color-slider.tsx",
+      "exists": true,
+      "code": "/**\n * ColorSlider\n * HeroUI color-slider'dan uyarlanmış — saf React (bağımlılıksız).\n * Tek renk kanalını ayarlayan kaydırıcı (hue/saturation/lightness/rgb/alpha).\n *   <ColorSlider channel=\"hue\" defaultValue=\"hsl(0,100%,50%)\" label=\"Hue\" />\n * @id 228\n * @category Colors\n * @subcategory ColorSlider\n */\nimport { useRef, useState, type PointerEvent } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { Color, parseColor, type ColorChannel } from \"./color\"\n\nfunction channelGradient(channel: ColorChannel, color: Color): string {\n  switch (channel) {\n    case \"hue\": return \"linear-gradient(to right, hsl(0,100%,50%), hsl(60,100%,50%), hsl(120,100%,50%), hsl(180,100%,50%), hsl(240,100%,50%), hsl(300,100%,50%), hsl(360,100%,50%))\"\n    case \"saturation\": return `linear-gradient(to right, hsl(${color.h},0%,${color.l}%), hsl(${color.h},100%,${color.l}%))`\n    case \"lightness\": return `linear-gradient(to right, hsl(${color.h},${color.s}%,0%), hsl(${color.h},${color.s}%,50%), hsl(${color.h},${color.s}%,100%))`\n    case \"red\": return \"linear-gradient(to right, rgb(0,0,0), rgb(255,0,0))\"\n    case \"green\": return \"linear-gradient(to right, rgb(0,0,0), rgb(0,255,0))\"\n    case \"blue\": return \"linear-gradient(to right, rgb(0,0,0), rgb(0,0,255))\"\n    case \"brightness\": return `linear-gradient(to right, #000, hsl(${color.h},${color.s}%,50%))`\n    case \"alpha\": return \"linear-gradient(to right, transparent, hsl(0,0%,50%))\"\n  }\n}\n\nfunction channelMinMax(channel: ColorChannel): [number, number] {\n  if (channel === \"hue\") return [0, 360]\n  if (channel === \"alpha\") return [0, 1]\n  return [0, 100]\n}\n\nfunction ColorSlider({\n  channel,\n  value,\n  defaultValue,\n  onChange,\n  orientation = \"horizontal\",\n  isDisabled,\n  label,\n  showOutput = true,\n  className,\n}: {\n  channel: ColorChannel\n  value?: string\n  defaultValue?: string\n  onChange?: (color: Color) => void\n  orientation?: \"horizontal\" | \"vertical\"\n  isDisabled?: boolean\n  label?: string\n  showOutput?: boolean\n  className?: string\n}) {\n  const [internal, setInternal] = useState<string>(defaultValue ?? \"hsl(0, 100%, 50%)\")\n  const color = parseColor(value ?? internal)\n  const trackRef = useRef<HTMLDivElement>(null)\n  const dragging = useRef(false)\n\n  const [min, max] = channelMinMax(channel)\n\n  const setChannel = (c: Color) => {\n    if (!value) setInternal(c.toString(\"css\"))\n    onChange?.(c)\n  }\n\n  const updateFromPointer = (e: PointerEvent) => {\n    const track = trackRef.current\n    if (!track) return\n    const rect = track.getBoundingClientRect()\n    const raw = orientation === \"horizontal\"\n      ? (e.clientX - rect.left) / rect.width\n      : 1 - (e.clientY - rect.top) / rect.height\n    const pct = Math.min(1, Math.max(0, raw))\n    const channelValue = min + pct * (max - min)\n    setChannel(color.setChannel(channel, channelValue))\n  }\n\n  const onPointerDown = (e: PointerEvent) => {\n    if (isDisabled) return\n    dragging.current = true\n    ;(e.target as HTMLElement).setPointerCapture(e.pointerId)\n    updateFromPointer(e)\n  }\n  const onPointerMove = (e: PointerEvent) => {\n    if (dragging.current) updateFromPointer(e)\n  }\n  const onPointerUp = () => { dragging.current = false }\n\n  const pct = ((color.getChannel(channel) - min) / (max - min)) * 100\n  const vertical = orientation === \"vertical\"\n\n  return (\n    <div data-slot=\"color-slider\" data-orientation={orientation} data-disabled={isDisabled || undefined}\n      className={cn(\"flex w-full flex-col gap-1.5\", vertical && \"items-center\", isDisabled && \"opacity-50\", className)}>\n      {(label || showOutput) && (\n        <div className=\"flex w-full items-center justify-between text-xs\">\n          {label ? <span className=\"font-medium text-foreground\">{label}</span> : <span />}\n          {showOutput && <output className=\"font-mono text-muted-foreground\">{Math.round(color.getChannel(channel) * 100) / 100}</output>}\n        </div>\n      )}\n      <div\n        ref={trackRef}\n        onPointerDown={onPointerDown}\n        onPointerMove={onPointerMove}\n        onPointerUp={onPointerUp}\n        onPointerCancel={onPointerUp}\n        className={cn(\n          \"relative cursor-pointer touch-none rounded-full ring-1 ring-black/10\",\n          vertical ? \"h-40 w-4\" : \"h-4 w-full\",\n          orientation === \"vertical\" && channelGradient(channel, color).replace(\"to right\", \"to top\")\n        )}\n        style={{ background: channelGradient(channel, color) }}\n      >\n        <span\n          data-slot=\"color-slider-thumb\"\n          className={cn(\n            \"absolute size-4 rounded-full border-2 border-white shadow-md\",\n            vertical ? \"left-1/2 -translate-x-1/2\" : \"top-1/2 -translate-y-1/2\",\n            isDisabled && \"cursor-not-allowed\"\n          )}\n          style={vertical ? { top: `${pct}%`, transform: \"translate(-50%,-50%)\" } : { left: `${pct}%`, transform: \"translate(-50%,-50%)\" }}\n        />\n      </div>\n    </div>\n  )\n}\n\nexport { ColorSlider }\n",
+      "description": "ColorSlider",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/color-slider.tsx"
+    },
+    {
+      "id": "235",
+      "name": "ColorSliderBasic",
+      "category": "Colors",
+      "subcategory": "ColorSlider",
+      "file": "color-slider-basic.tsx",
+      "exists": true,
+      "code": "/**\n * ColorSliderBasic\n * HeroUI Usage örneği — hue kaydırıcı (saf React).\n * @id 235\n * @category Colors\n * @subcategory ColorSlider\n */\nimport { ColorSlider } from \"@/components/ui/color-slider\"\n\nfunction ColorSliderBasic() {\n  return (\n    <div className=\"w-full max-w-xs\">\n      <ColorSlider channel=\"hue\" defaultValue=\"hsl(0, 100%, 50%)\" label=\"Hue\" />\n    </div>\n  )\n}\n\nexport { ColorSliderBasic }\n",
+      "description": "ColorSliderBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/color-slider-basic.tsx"
+    },
+    {
+      "id": "236",
+      "name": "ColorSliderVertical",
+      "category": "Colors",
+      "subcategory": "ColorSlider",
+      "file": "color-slider-vertical.tsx",
+      "exists": true,
+      "code": "/**\n * ColorSliderVertical\n * HeroUI Vertical örneği — dikey kaydırıcılar (saf React).\n * @id 236\n * @category Colors\n * @subcategory ColorSlider\n */\nimport { ColorSlider } from \"@/components/ui/color-slider\"\n\nfunction ColorSliderVertical() {\n  return (\n    <div className=\"flex h-48 gap-4\">\n      <ColorSlider channel=\"hue\" orientation=\"vertical\" defaultValue=\"hsl(0, 100%, 50%)\" showOutput={false} />\n      <ColorSlider channel=\"saturation\" orientation=\"vertical\" defaultValue=\"hsl(0, 100%, 50%)\" showOutput={false} />\n      <ColorSlider channel=\"lightness\" orientation=\"vertical\" defaultValue=\"hsl(0, 100%, 50%)\" showOutput={false} />\n    </div>\n  )\n}\n\nexport { ColorSliderVertical }\n",
+      "description": "ColorSliderVertical",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/color-slider-vertical.tsx"
+    },
+    {
+      "id": "237",
+      "name": "ColorSliderAlpha",
+      "category": "Colors",
+      "subcategory": "ColorSlider",
+      "file": "color-slider-alpha.tsx",
+      "exists": true,
+      "code": "/**\n * ColorSliderAlpha\n * HeroUI Alpha Channel örneği — şeffaflık (saf React).\n * @id 237\n * @category Colors\n * @subcategory ColorSlider\n */\nimport { ColorSlider } from \"@/components/ui/color-slider\"\n\nfunction ColorSliderAlpha() {\n  return (\n    <div className=\"w-full max-w-xs\">\n      <ColorSlider channel=\"alpha\" defaultValue=\"hsla(0, 100%, 50%, 0.5)\" label=\"Alpha\" />\n    </div>\n  )\n}\n\nexport { ColorSliderAlpha }\n",
+      "description": "ColorSliderAlpha",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/color-slider-alpha.tsx"
+    },
+    {
+      "id": "227",
+      "name": "ColorSwatch",
+      "category": "Colors",
+      "subcategory": "ColorSwatch",
+      "file": "color-swatch.tsx",
+      "exists": true,
+      "code": "/**\n * ColorSwatch\n * HeroUI color-swatch'tan uyarlanmış — saf React (bağımlılıksız).\n * Renk önizlemesi: size × shape + şeffaflık dama deseni.\n *   <ColorSwatch color=\"#0485F7\" size=\"lg\" />\n * @id 227\n * @category Colors\n * @subcategory ColorSwatch\n */\nimport { cn } from \"@/lib/utils\"\nimport { parseColor } from \"./color\"\n\nconst swatchSize: Record<string, string> = {\n  xs: \"size-4\",\n  sm: \"size-6\",\n  md: \"size-8\",\n  lg: \"size-9\",\n  xl: \"size-10\",\n}\n\nfunction ColorSwatch({\n  color,\n  colorName,\n  size = \"md\",\n  shape = \"circle\",\n  className,\n  \"aria-label\": ariaLabel,\n}: {\n  color: string\n  colorName?: string\n  size?: \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"\n  shape?: \"circle\" | \"square\"\n  className?: string\n  \"aria-label\"?: string\n}) {\n  const c = parseColor(color)\n  return (\n    <span\n      data-slot=\"color-swatch\"\n      role=\"img\"\n      aria-label={ariaLabel ?? colorName ?? color}\n      title={colorName ?? color}\n      className={cn(\n        \"inline-block shrink-0 border border-black/10 bg-[linear-gradient(45deg,#ccc_25%,transparent_25%,transparent_75%,#ccc_75%),linear-gradient(45deg,#ccc_25%,transparent_25%,transparent_75%,#ccc_75%)] bg-[size:8px_8px] bg-[position:0_0,4px_4px]\",\n        swatchSize[size],\n        shape === \"circle\" ? \"rounded-full\" : \"rounded-md\",\n        className\n      )}\n      style={{ backgroundColor: c.toString(\"css\") }}\n    />\n  )\n}\n\nexport { ColorSwatch }\n",
+      "description": "ColorSwatch",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/color-swatch.tsx"
+    },
+    {
+      "id": "233",
+      "name": "ColorSwatchBasic",
+      "category": "Colors",
+      "subcategory": "ColorSwatch",
+      "file": "color-swatch-basic.tsx",
+      "exists": true,
+      "code": "/**\n * ColorSwatchBasic\n * HeroUI Usage örneği (saf React).\n * @id 233\n * @category Colors\n * @subcategory ColorSwatch\n */\nimport { ColorSwatch } from \"@/components/ui/color-swatch\"\n\nfunction ColorSwatchBasic() {\n  return (\n    <div className=\"flex items-center gap-3\">\n      <ColorSwatch aria-label=\"Blue\" color=\"#0485F7\" />\n      <ColorSwatch aria-label=\"Red\" color=\"#EF4444\" />\n      <ColorSwatch aria-label=\"Amber\" color=\"#F59E0B\" />\n      <ColorSwatch aria-label=\"Green\" color=\"#10B981\" />\n      <ColorSwatch aria-label=\"Fuchsia\" color=\"#D946EF\" />\n    </div>\n  )\n}\n\nexport { ColorSwatchBasic }\n",
+      "description": "ColorSwatchBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/color-swatch-basic.tsx"
+    },
+    {
+      "id": "234",
+      "name": "ColorSwatchSizes",
+      "category": "Colors",
+      "subcategory": "ColorSwatch",
+      "file": "color-swatch-sizes.tsx",
+      "exists": true,
+      "code": "/**\n * ColorSwatchSizes\n * HeroUI Sizes örneği (saf React).\n * @id 234\n * @category Colors\n * @subcategory ColorSwatch\n */\nimport { ColorSwatch } from \"@/components/ui/color-swatch\"\n\nfunction ColorSwatchSizes() {\n  return (\n    <div className=\"flex items-center gap-3\">\n      <ColorSwatch color=\"#0485F7\" size=\"xs\" />\n      <ColorSwatch color=\"#EF4444\" size=\"sm\" />\n      <ColorSwatch color=\"#F59E0B\" size=\"md\" />\n      <ColorSwatch color=\"#10B981\" size=\"lg\" />\n      <ColorSwatch color=\"#D946EF\" size=\"xl\" />\n    </div>\n  )\n}\n\nexport { ColorSwatchSizes }\n",
+      "description": "ColorSwatchSizes",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/color-swatch-sizes.tsx"
+    },
+    {
+      "id": "231",
+      "name": "ColorSwatchPicker",
+      "category": "Colors",
+      "subcategory": "ColorSwatchPicker",
+      "file": "color-swatch-picker.tsx",
+      "exists": true,
+      "code": "/**\n * ColorSwatchPicker\n * HeroUI color-swatch-picker'dan uyarlanmış — saf React (bağımlılıksız).\n * Renk örnekleri listesinden seçim (çoklu destekli).\n *   <ColorSwatchPicker colors={palette} value={sel} onChange={setSel} />\n * @id 231\n * @category Colors\n * @subcategory ColorSwatchPicker\n */\nimport { useState } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { Check } from \"./icons\"\nimport { ColorSwatch } from \"./color-swatch\"\n\nfunction ColorSwatchPicker({\n  colors,\n  value,\n  defaultValue,\n  onChange,\n  layout = \"grid\",\n  isDisabled,\n  className,\n}: {\n  colors: string[]\n  value?: string[]\n  defaultValue?: string[]\n  onChange?: (values: string[]) => void\n  layout?: \"grid\" | \"stack\"\n  isDisabled?: boolean\n  className?: string\n}) {\n  const [internal, setInternal] = useState<string[]>(defaultValue ?? [])\n  const controlled = value !== undefined\n  const selected = controlled ? value : internal\n\n  const toggle = (c: string) => {\n    if (isDisabled) return\n    const next = selected.includes(c) ? selected.filter((x) => x !== c) : [...selected, c]\n    if (!controlled) setInternal(next)\n    onChange?.(next)\n  }\n\n  return (\n    <div\n      data-slot=\"color-swatch-picker\"\n      className={cn(\n        \"flex gap-2\",\n        layout === \"stack\" ? \"flex-col\" : \"flex-wrap\",\n        isDisabled && \"opacity-60\",\n        className\n      )}\n    >\n      {colors.map((c) => {\n        const sel = selected.includes(c)\n        return (\n          <button\n            key={c}\n            type=\"button\"\n            disabled={isDisabled}\n            onClick={() => toggle(c)}\n            aria-pressed={sel}\n            aria-label={c}\n            className={cn(\n              \"relative rounded-full p-0.5 transition-transform\",\n              sel ? \"ring-2 ring-blue-600 ring-offset-2\" : \"hover:scale-110\",\n              isDisabled && \"cursor-not-allowed\"\n            )}\n          >\n            <ColorSwatch color={c} size=\"md\" />\n            {sel && (\n              <span className=\"absolute inset-0 flex items-center justify-center text-white drop-shadow\">\n                <Check className=\"size-4\" />\n              </span>\n            )}\n          </button>\n        )\n      })}\n    </div>\n  )\n}\n\nexport { ColorSwatchPicker }\n",
+      "description": "ColorSwatchPicker",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/color-swatch-picker.tsx"
+    },
+    {
+      "id": "242",
+      "name": "ColorSwatchPickerBasic",
+      "category": "Colors",
+      "subcategory": "ColorSwatchPicker",
+      "file": "color-swatch-picker-basic.tsx",
+      "exists": true,
+      "code": "/**\n * ColorSwatchPickerBasic\n * HeroUI Usage örneği (saf React).\n * @id 242\n * @category Colors\n * @subcategory ColorSwatchPicker\n */\nimport { ColorSwatchPicker } from \"@/components/ui/color-swatch-picker\"\n\nconst palette = [\"#0485F7\", \"#EF4444\", \"#F59E0B\", \"#10B981\", \"#D946EF\"]\n\nfunction ColorSwatchPickerBasic() {\n  return <ColorSwatchPicker colors={palette} />\n}\n\nexport { ColorSwatchPickerBasic }\n",
+      "description": "ColorSwatchPickerBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/color-swatch-picker-basic.tsx"
+    },
+    {
+      "id": "243",
+      "name": "ColorSwatchPickerStack",
+      "category": "Colors",
+      "subcategory": "ColorSwatchPicker",
+      "file": "color-swatch-picker-stack.tsx",
+      "exists": true,
+      "code": "/**\n * ColorSwatchPickerStack\n * HeroUI Stack Layout örneği (saf React).\n * @id 243\n * @category Colors\n * @subcategory ColorSwatchPicker\n */\nimport { ColorSwatchPicker } from \"@/components/ui/color-swatch-picker\"\n\nconst palette = [\"#0485F7\", \"#EF4444\", \"#F59E0B\", \"#10B981\", \"#D946EF\"]\n\nfunction ColorSwatchPickerStack() {\n  return <ColorSwatchPicker colors={palette} layout=\"stack\" defaultValue={[\"#0485F7\"]} />\n}\n\nexport { ColorSwatchPickerStack }\n",
+      "description": "ColorSwatchPickerStack",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/color-swatch-picker-stack.tsx"
+    },
     {
       "id": "090",
       "name": "AccordionSimple",

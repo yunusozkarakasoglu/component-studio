@@ -7,6 +7,33 @@ Kopyala → projene yapıştır → çalışır.
 Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanlar
 "henüz bileşen yok" olarak listelenir.
 
+### Colors
+#### ColorArea
+- `230` ColorArea
+- `240` ColorAreaBasic
+- `241` ColorAreaWithDots
+#### ColorField
+- `229` ColorField
+- `238` ColorFieldBasic
+- `239` ColorFieldControlled
+#### ColorPicker
+- `232` ColorPicker
+- `244` ColorPickerControlled
+- `245` ColorPickerWithSwatches
+#### ColorSlider
+- `228` ColorSlider
+- `235` ColorSliderBasic
+- `236` ColorSliderVertical
+- `237` ColorSliderAlpha
+#### ColorSwatch
+- `227` ColorSwatch
+- `233` ColorSwatchBasic
+- `234` ColorSwatchSizes
+#### ColorSwatchPicker
+- `231` ColorSwatchPicker
+- `242` ColorSwatchPickerBasic
+- `243` ColorSwatchPickerStack
+
 ### Accordion
 - `090` AccordionSimple
 - `106` AccordionBasic
@@ -178,7 +205,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 139 bileşen (saf React)**
+**Toplam: 158 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
