@@ -24,11 +24,14 @@ const inv = readFileSync(INVENTORY, "utf8")
 
 const items = []
 let category = "Genel"
+let subcategory = ""
 for (const line of inv.split("\n")) {
   const catMatch = line.match(/^###\s+(.+)/)
-  if (catMatch) { category = catMatch[1].trim(); continue }
+  if (catMatch) { category = catMatch[1].trim(); subcategory = ""; continue }
+  const subMatch = line.match(/^####\s+(.+)/)
+  if (subMatch) { subcategory = subMatch[1].trim(); continue }
   const itemMatch = line.match(/`(\d+)`\s+([A-Za-z0-9]+)/)
-  if (itemMatch) items.push({ id: itemMatch[1], name: itemMatch[2], category })
+  if (itemMatch) items.push({ id: itemMatch[1], name: itemMatch[2], category, subcategory })
 }
 
 function pascal(s) {
@@ -65,6 +68,7 @@ const components = items.map((item) => {
     const code = readFileSync(join(UI_DIR, f), "utf8")
     const idMatch = code.match(/@id\s+(\d+)/)
     const catMatch = code.match(/@category\s+(.+)/)
+    const subMatch = code.match(/@subcategory\s+(.+)/)
     const descMatch = code.match(/@description\s+(.+)/)
     if (!idMatch) continue
     const slugName = f.slice(0, -4)
@@ -72,6 +76,7 @@ const components = items.map((item) => {
       id: idMatch[1],
       name: pascal(slugName),
       category: catMatch ? catMatch[1].trim() : "Genel",
+      subcategory: subMatch ? subMatch[1].trim() : "",
       file: f,
       exists: true,
       code,

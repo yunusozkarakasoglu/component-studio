@@ -65,6 +65,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 ### Renk Bileşenleri
 
 ### Butonlar & Aksiyonlar
+#### Standart
 - `092` Button
 - `093` Spinner
 - `094` ButtonVariants
@@ -79,6 +80,13 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `103` ButtonRenderFunction
 - `104` ButtonCustomVariants
 - `105` ButtonRipple
+#### Chips
+- `221` Chip
+- `222` ChipBasic
+- `223` ChipVariants
+- `224` ChipStatuses
+- `225` ChipWithIcon
+- `226` ChipCustomStyles
 
 ### Navigasyon
 
@@ -170,7 +178,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 133 bileşen (saf React)**
+**Toplam: 139 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

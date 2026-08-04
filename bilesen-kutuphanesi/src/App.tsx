@@ -5,7 +5,7 @@ import { findRootInfo, injectStyleAt } from "@/lib/findRootInfo"
 import { COMPONENT_META } from "@/components-meta"
 import { SAMPLES } from "./samples"
 
-type CompRecord = { id: string; name: string; category: string; description: string; file: string; code: string; exists: boolean; path: string }
+type CompRecord = { id: string; name: string; category: string; subcategory?: string; description: string; file: string; code: string; exists: boolean; path: string }
 
 /* ---------- Hata sınırı ---------- */
 class ErrorBoundary extends Component<{ children: ReactNode }, { err: Error | null }> {
@@ -632,6 +632,7 @@ export default function Studio() {
   const [cat, setCat] = useState("Tümü")
   const [panelOpen, setPanelOpen] = useState(true)
   const [openCats, setOpenCats] = useState<Set<string>>(new Set())
+  const [subCat, setSubCat] = useState("")
   const [edit, setEdit] = useState<{ rec: CompRecord } | null>(null)
   const [newOpen, setNewOpen] = useState(false)
   const refresh = () => {
@@ -653,11 +654,13 @@ export default function Studio() {
   }, [registry])
 
   const compsInCat = useMemo(() => {
-    const m: Record<string, CompRecord[]> = {}
+    const m: Record<string, Record<string, CompRecord[]>> = {}
     if (!registry) return m
     for (const c of registry.components) {
       if (term && !(c.id.includes(term) || c.name.toLowerCase().includes(term))) continue
-      ;(m[c.category] ||= []).push(c)
+      const sub = c.subcategory || ""
+      ;(m[c.category] ??= {})[sub] ??= []
+      m[c.category][sub].push(c)
     }
     return m
   }, [registry, term])
@@ -667,9 +670,10 @@ export default function Studio() {
     return registry.components.filter(
       (c) =>
         (cat === "Tümü" || c.category === cat) &&
+        (!subCat || c.subcategory === subCat) &&
         (!term || c.id.includes(term) || c.name.toLowerCase().includes(term) || c.description.toLowerCase().includes(term))
     )
-  }, [registry, q, cat])
+  }, [registry, q, cat, subCat])
 
   const toggleCat = (c: string) => {
     setOpenCats((prev) => {
@@ -727,40 +731,58 @@ export default function Studio() {
 
               <div className="min-h-0 flex-1 overflow-y-auto p-2">
                     <button
-                      onClick={() => setCat("Tümü")}
-                      className={`flex w-full items-center justify-between rounded-md px-2 py-1.5 text-left text-xs transition-colors ${cat === "Tümü" ? "bg-blue-600 font-semibold text-white" : "hover:bg-muted"}`}
+                      onClick={() => { setCat("Tümü"); setSubCat("") }}
+                      className={`flex w-full items-center justify-between rounded-md px-2 py-1.5 text-left text-xs transition-colors ${cat === "Tümü" && !subCat ? "bg-blue-600 font-semibold text-white" : "hover:bg-muted"}`}
                     >
                       <span>Tümü</span>
                       <span className={`font-mono text-[10px] ${cat === "Tümü" ? "text-blue-100" : "text-muted-foreground"}`}>{totalComps}</span>
                     </button>
                     {cats.map((c) => {
-                      const items = compsInCat[c] || []
-                      const active = cat === c
+                      const subGroups = compsInCat[c] || {}
+                      const items = Object.values(subGroups).reduce((n, arr) => n + arr.length, 0)
+                      const active = cat === c && !subCat
                       return (
                         <div key={c} className="mt-0.5">
                           <button
-                            onClick={() => { setCat(c); toggleCat(c) }}
+                            onClick={() => { setCat(c); setSubCat(""); toggleCat(c) }}
                             className={`flex w-full items-center gap-1.5 rounded-md px-2 py-1.5 text-left text-xs transition-colors ${active ? "bg-blue-600 font-semibold text-white" : "hover:bg-muted"}`}
                           >
                             <span className={`inline-block text-[9px] transition-transform ${openCats.has(c) ? "rotate-90" : ""}`}>▶</span>
                             <span className="flex-1 truncate">{c}</span>
-                            <span className={`font-mono text-[10px] ${active ? "text-blue-100" : "text-muted-foreground"}`}>{items.length}</span>
+                            <span className={`font-mono text-[10px] ${active ? "text-blue-100" : "text-muted-foreground"}`}>{items}</span>
                           </button>
                           {openCats.has(c) && (
-                            <div className="mt-0.5 ml-4 space-y-0.5 border-l border-black/25 pl-2">
-                              {items.length === 0 ? (
-                                <div className="px-1.5 py-1 text-[10px] italic text-muted-foreground/60">henüz bileşen yok</div>
-                              ) : (
-                              items.map((comp) => (
-                                <button
-                                  key={comp.id}
-                                  onClick={() => setEdit({ rec: comp })}
-                                  className="flex w-full items-center gap-1.5 rounded px-1.5 py-1 text-left text-[11px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                                >
-                                  <span className="font-mono text-[9px] text-muted-foreground/70">{comp.id}</span>
-                                  <span className="truncate">{comp.name}</span>
-                                </button>
-                              )))}
+                            <div className="mt-0.5 ml-4 space-y-1 border-l border-black/25 pl-2">
+                              {Object.entries(subGroups).map(([sub, comps]) => {
+                                const hasSub = sub !== ""
+                                return (
+                                  <div key={sub || "__none__"}>
+                                    {hasSub && (
+                                      <button
+                                        onClick={() => { setCat(c); setSubCat(sub) }}
+                                        className={`flex w-full items-center gap-1.5 rounded px-1.5 py-1 text-left text-[11px] font-medium transition-colors ${subCat === sub && cat === c ? "bg-blue-600 text-white" : "text-foreground hover:bg-muted"}`}
+                                      >
+                                        <span className="flex-1 truncate">{sub}</span>
+                                        <span className={`font-mono text-[9px] ${subCat === sub && cat === c ? "text-blue-100" : "text-muted-foreground"}`}>{comps.length}</span>
+                                      </button>
+                                    )}
+                                    <div className={hasSub ? "ml-3 space-y-0.5 border-l border-black/20 pl-2" : ""}>
+                                      {comps.length === 0 ? (
+                                        <div className="px-1.5 py-1 text-[10px] italic text-muted-foreground/60">henüz bileşen yok</div>
+                                      ) : comps.map((comp) => (
+                                        <button
+                                          key={comp.id}
+                                          onClick={() => setEdit({ rec: comp })}
+                                          className="flex w-full items-center gap-1.5 rounded px-1.5 py-1 text-left text-[11px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                                        >
+                                          <span className="font-mono text-[9px] text-muted-foreground/70">{comp.id}</span>
+                                          <span className="truncate">{comp.name}</span>
+                                        </button>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )
+                              })}
                             </div>
                           )}
                         </div>

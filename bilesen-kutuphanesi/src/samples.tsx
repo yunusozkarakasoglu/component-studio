@@ -174,4 +174,10 @@ export const SAMPLES: Record<string, ReactNode> = {
   "218": <U.CheckboxGroupFeatures />,
   "219": <U.CheckboxGroupCustomIndicator />,
   "220": <U.CheckboxGroupCustomStyles />,
+  "221": <U.Chip color="accent">Chip</U.Chip>,
+  "222": <U.ChipBasic />,
+  "223": <U.ChipVariants />,
+  "224": <U.ChipStatuses />,
+  "225": <U.ChipWithIcon />,
+  "226": <U.ChipCustomStyles />,
 }
