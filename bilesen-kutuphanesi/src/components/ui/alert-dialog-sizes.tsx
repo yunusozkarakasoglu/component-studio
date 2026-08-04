@@ -1,6 +1,6 @@
 /**
  * AlertDialogSizes
- * HeroUI Sizes örneği — xs/sm/md/lg/cover (saf React).
+ * Sizes örneği — xs/sm/md/lg/cover (saf React).
  * @id 124
  * @category Alert & Dialog
  */

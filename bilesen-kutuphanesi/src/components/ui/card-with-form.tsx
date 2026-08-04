@@ -1,6 +1,6 @@
 /**
  * CardWithForm
- * HeroUI With Form örneği — giriş kartı (saf React, Label + input).
+ * With Form örneği — giriş kartı (saf React, Label + input).
  * @id 194
  * @category Kartlar
  */

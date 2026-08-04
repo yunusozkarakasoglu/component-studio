@@ -1,6 +1,6 @@
 /**
  * Alert
- * HeroUI alert'ten uyarlanmış — saf React (bağımlılıksız).
+ * Saf React bileşen (bağımlılıksız).
  * Status: default · accent · success · warning · danger.
  * Compound: <Alert><AlertIndicator /><AlertContent><AlertTitle/><AlertDescription/></AlertContent></Alert>
  * @id 116

@@ -1,6 +1,6 @@
 /**
  * AvatarFallback
- * HeroUI Fallback Content örneği — metin/ikon/delay/özel (saf React).
+ * Fallback Content örneği — metin/ikon/delay/özel (saf React).
  * @id 161
  * @category Genel
  */

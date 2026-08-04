@@ -1,6 +1,6 @@
 /**
  * ButtonVariants
- * HeroUI Variants örneği — 7 varyantın gösterimi (saf React).
+ * Variants örneği — 7 varyantın gösterimi (saf React).
  * @id 094
  * @category Butonlar & Aksiyonlar
  */

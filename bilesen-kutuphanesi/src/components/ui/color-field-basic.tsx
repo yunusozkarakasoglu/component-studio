@@ -1,6 +1,6 @@
 /**
  * ColorFieldBasic
- * HeroUI Usage örneği — hex input + önizleme (saf React).
+ * Usage örneği — hex input + önizleme (saf React).
  * @id 238
  * @category Colors
  * @subcategory ColorField

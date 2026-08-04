@@ -1,6 +1,6 @@
 /**
  * AutocompleteOnSurface
- * HeroUI In Surface örneği — surface üzerinde secondary varyant (saf React).
+ * In Surface örneği — surface üzerinde secondary varyant (saf React).
  * @id 155
  * @category Form Elemanları
  */

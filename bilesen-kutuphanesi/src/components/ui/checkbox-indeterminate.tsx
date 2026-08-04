@@ -1,6 +1,6 @@
 /**
  * CheckboxIndeterminate
- * HeroUI Indeterminate örneği (saf React).
+ * Indeterminate örneği (saf React).
  * @id 207
  * @category Checkbox
  */

@@ -1,6 +1,6 @@
 /**
  * ChipVariants
- * HeroUI Variants örneği — size × variant × color matrisi (sadeleştirilmiş, saf React).
+ * Variants örneği — size × variant × color matrisi (sadeleştirilmiş, saf React).
  * @id 223
  * @category Butonlar & Aksiyonlar
  * @subcategory Chips

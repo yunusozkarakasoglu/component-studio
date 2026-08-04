@@ -1,6 +1,6 @@
 /**
  * AlertBasic
- * HeroUI Usage örneği — 6 alert varyasyonu (saf React).
+ * Usage örneği — 6 alert varyasyonu (saf React).
  * @id 118
  * @category Alert & Dialog
  */

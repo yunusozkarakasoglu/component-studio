@@ -1,6 +1,6 @@
 /**
  * ButtonCustomVariants
- * HeroUI Adding custom variants örneği — tailwind-variants (YASAK bağımlılık)
+ * Adding custom variants örneği — tailwind-variants (YASAK bağımlılık)
  * yerine saf class birleştirme ile özel varyant (saf React).
  * @id 104
  * @category Butonlar & Aksiyonlar

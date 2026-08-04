@@ -1,6 +1,6 @@
 /**
  * CalendarCustomIcons
- * HeroUI Custom Navigation Icons örneği — özel ikonlar (saf React, kendi setimizden).
+ * Custom Navigation Icons örneği — özel ikonlar (saf React, kendi setimizden).
  * @id 184
  * @category Takvim
  */

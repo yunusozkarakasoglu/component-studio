@@ -1,6 +1,6 @@
 /**
  * ColorSwatchPickerStack
- * HeroUI Stack Layout örneği (saf React).
+ * Stack Layout örneği (saf React).
  * @id 243
  * @category Colors
  * @subcategory ColorSwatchPicker

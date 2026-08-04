@@ -1,6 +1,6 @@
 /**
  * CalendarWithIndicators
- * HeroUI Cell Indicators örneği — etkinlik noktaları (saf React).
+ * Cell Indicators örneği — etkinlik noktaları (saf React).
  * @id 183
  * @category Takvim
  */

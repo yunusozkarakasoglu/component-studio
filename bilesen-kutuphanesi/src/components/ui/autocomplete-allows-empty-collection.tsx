@@ -1,6 +1,6 @@
 /**
  * AutocompleteAllowsEmptyCollection
- * HeroUI Allows Empty Collection örneği — boş koleksiyon (saf React).
+ * Allows Empty Collection örneği — boş koleksiyon (saf React).
  * @id 149
  * @category Form Elemanları
  */

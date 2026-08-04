@@ -1,6 +1,6 @@
 /**
  * CheckboxGroupOnSurface
- * HeroUI In Surface örneği (saf React).
+ * In Surface örneği (saf React).
  * @id 213
  * @category Checkbox
  */

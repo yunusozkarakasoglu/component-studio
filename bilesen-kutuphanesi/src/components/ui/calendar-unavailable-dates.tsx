@@ -1,6 +1,6 @@
 /**
  * CalendarUnavailableDates
- * HeroUI Unavailable Dates örneği — hafta sonları engelli (saf React).
+ * Unavailable Dates örneği — hafta sonları engelli (saf React).
  * @id 179
  * @category Takvim
  */

@@ -1,6 +1,6 @@
 /**
  * AlertDialogCustomPortal
- * HeroUI Custom Portal örneği — özel kapsayıcı içinde render (saf React).
+ * Custom Portal örneği — özel kapsayıcı içinde render (saf React).
  * UNSTABLE_portalContainer → createPortal.
  * @id 133
  * @category Alert & Dialog

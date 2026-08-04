@@ -1,6 +1,6 @@
 /**
  * Checkbox
- * HeroUI checkbox'tan uyarlanmış — saf React (bağımlılıksız).
+ * Saf React bileşen (bağımlılıksız).
  * CheckboxGroup içinde kullanılırsa grup state'ini paylaşır (context).
  *   <Checkbox label="Accept terms" defaultSelected onChange={...} />
  *   <Checkbox label={(sel) => sel ? "Terms accepted" : "Accept terms"} />

@@ -1,6 +1,6 @@
 /**
  * CheckboxCustomIndicator
- * HeroUI Custom Indicator örneği — kalp/artı/çizgi işaretleri (saf React).
+ * Custom Indicator örneği — kalp/artı/çizgi işaretleri (saf React).
  * @id 210
  * @category Checkbox
  */

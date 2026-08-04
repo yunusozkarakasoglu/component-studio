@@ -1,6 +1,6 @@
 /**
  * ColorSliderVertical
- * HeroUI Vertical örneği — dikey kaydırıcılar (saf React).
+ * Vertical örneği — dikey kaydırıcılar (saf React).
  * @id 236
  * @category Colors
  * @subcategory ColorSlider

@@ -1,6 +1,6 @@
 /**
  * AlertDialogCustomBackdrop
- * HeroUI Custom Backdrop örneği — gradyan arka plan (saf React).
+ * Custom Backdrop örneği — gradyan arka plan (saf React).
  * @id 129
  * @category Alert & Dialog
  */

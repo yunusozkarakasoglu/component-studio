@@ -1,6 +1,6 @@
 /**
  * ButtonRipple
- * HeroUI Ripple Effect örneği — m3-ripple (YASAK bağımlılık) yerine
+ * Ripple Effect örneği — m3-ripple (YASAK bağımlılık) yerine
  * saf CSS ripple: pointerdown'da dalga span'i eklenir, animasyon biter silinir.
  * @id 105
  * @category Butonlar & Aksiyonlar

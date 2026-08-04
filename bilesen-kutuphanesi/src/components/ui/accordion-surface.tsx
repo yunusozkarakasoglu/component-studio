@@ -1,6 +1,6 @@
 /**
  * AccordionSurface
- * HeroUI Surface örneği — kutulu görünüm + ikonlar (saf React).
+ * Surface örneği — kutulu görünüm + ikonlar (saf React).
  * @id 107
  * @category Accordion
  */

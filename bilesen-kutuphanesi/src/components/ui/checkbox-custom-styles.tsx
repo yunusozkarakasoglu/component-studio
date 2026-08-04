@@ -1,6 +1,6 @@
 /**
  * CheckboxCustomStyles
- * HeroUI Tailwind CSS örneği — özel renk (saf React).
+ * Tailwind CSS örneği — özel renk (saf React).
  * @id 211
  * @category Checkbox
  */

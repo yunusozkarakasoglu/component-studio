@@ -1,6 +1,6 @@
 /**
  * BreadcrumbsCustomSeparator
- * HeroUI Custom Separator örneği — özel ayraç (saf React, kendi setimizden).
+ * Custom Separator örneği — özel ayraç (saf React, kendi setimizden).
  * @id 169
  * @category Breadcrumbs
  */

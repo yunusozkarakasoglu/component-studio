@@ -1,6 +1,6 @@
 /**
  * AlertDialogControlled
- * HeroUI Controlled State örneği — useState + useOverlayState (saf React).
+ * Controlled State örneği — useState + useOverlayState (saf React).
  * @id 125
  * @category Alert & Dialog
  */

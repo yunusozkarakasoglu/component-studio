@@ -1,6 +1,6 @@
 /**
  * AccordionDisabled
- * HeroUI Disabled State örneği — tümü devre dışı + tek item devre dışı (saf React).
+ * Disabled State örneği — tümü devre dışı + tek item devre dışı (saf React).
  * @id 110
  * @category Accordion
  */

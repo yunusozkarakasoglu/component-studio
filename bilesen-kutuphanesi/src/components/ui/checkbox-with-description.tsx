@@ -1,6 +1,6 @@
 /**
  * CheckboxWithDescription
- * HeroUI With Description örneği (saf React).
+ * With Description örneği (saf React).
  * @id 203
  * @category Checkbox
  */

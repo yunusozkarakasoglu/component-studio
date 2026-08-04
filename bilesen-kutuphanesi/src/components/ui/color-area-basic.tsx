@@ -1,6 +1,6 @@
 /**
  * ColorAreaBasic
- * HeroUI Usage örneği (saf React).
+ * Usage örneği (saf React).
  * @id 240
  * @category Colors
  * @subcategory ColorArea

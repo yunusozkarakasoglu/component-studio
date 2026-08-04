@@ -1,6 +1,6 @@
 /**
  * CalendarWeeksInMonth
- * HeroUI Weeks in Month örneği — sabit 6 hafta (saf React).
+ * Weeks in Month örneği — sabit 6 hafta (saf React).
  * @id 180
  * @category Takvim
  */

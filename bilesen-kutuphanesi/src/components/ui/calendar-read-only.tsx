@@ -1,6 +1,6 @@
 /**
  * CalendarReadOnly
- * HeroUI Read Only örneği (saf React).
+ * Read Only örneği (saf React).
  * @id 175
  * @category Takvim
  */

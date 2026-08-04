@@ -1,6 +1,6 @@
 /**
  * CheckboxFullRounded
- * HeroUI Full Rounded örneği — boyutlar (saf React, className ile).
+ * Full Rounded örneği — boyutlar (saf React, className ile).
  * @id 200
  * @category Checkbox
  */

@@ -1,6 +1,6 @@
 /**
  * AccordionSimple
- * HeroUI accordion'dan uyarlanmış — saf React implementasyonu (RAC bağımsız).
+ * Saf React bileşen implementasyonu (RAC bağımsız).
  * Compound API yerine sade API:
  *   <AccordionSimple>
  *     <AccordionSimpleItem title="Başlık" icon={<…/>} isDisabled>içerik</AccordionSimpleItem>
@@ -29,9 +29,9 @@ interface AccordionSimpleProps {
   isDisabled?: boolean
   /** Item'lar arası ayraç çizgisi (varsayılan: true) */
   divider?: boolean
-  /** Ayraç çizgilerini gizler (HeroUI hideSeparator karşılığı) */
+  /** Ayraç çizgilerini gizler (bileşen kütüphanesi hideSeparator karşılığı) */
   hideSeparator?: boolean
-  /** Görünüm: default = çizgili liste · surface = kutulu (HeroUI surface) */
+  /** Görünüm: default = çizgili liste · surface = kutulu (bileşen kütüphanesi surface) */
   variant?: "default" | "surface"
   className?: string
   children?: ReactNode

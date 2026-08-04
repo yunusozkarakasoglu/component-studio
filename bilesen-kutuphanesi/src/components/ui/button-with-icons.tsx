@@ -1,6 +1,6 @@
 /**
  * ButtonWithIcons
- * HeroUI With Icons örneği — ikonlu butonlar (saf React, kendi ikon setimiz).
+ * With Icons örneği — ikonlu butonlar (saf React, kendi ikon setimiz).
  * GravityUI eşleştirmesi: Globe→Globe, Plus→Plus, Envelope→Mail, TrashBin→Trash2.
  * @id 096
  * @category Butonlar & Aksiyonlar

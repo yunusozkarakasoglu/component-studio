@@ -1,6 +1,6 @@
 /**
  * CardHorizontal
- * HeroUI Horizontal Layout örneği — yatay kart (saf React, data-URI görsel).
+ * Horizontal Layout örneği — yatay kart (saf React, data-URI görsel).
  * @id 191
  * @category Kartlar
  */

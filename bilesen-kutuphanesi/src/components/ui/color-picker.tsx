@@ -1,6 +1,6 @@
 /**
  * ColorPicker
- * HeroUI color-picker'dan uyarlanmış — saf React (bağımlılıksız).
+ * Saf React bileşen (bağımlılıksız).
  * Tetikleyici + popover içinde alan/kaydırıcı/input/örnekler.
  *   <ColorPicker defaultValue="#0485F7" swatches={[...]} />
  * @id 232

@@ -1,6 +1,6 @@
 /**
  * ChipWithIcon
- * HeroUI With Icons örneği (saf React, kendi setimizden).
+ * With Icons örneği (saf React, kendi setimizden).
  * @id 225
  * @category Butonlar & Aksiyonlar
  * @subcategory Chips

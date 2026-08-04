@@ -1,6 +1,6 @@
 /**
  * ButtonIconOnly
- * HeroUI Icon Only örneği — yalnızca ikon içeren butonlar (saf React).
+ * Icon Only örneği — yalnızca ikon içeren butonlar (saf React).
  * GravityUI eşleştirmesi: Ellipsis→Ellipsis, Gear→Settings, TrashBin→Trash2.
  * @id 097
  * @category Butonlar & Aksiyonlar

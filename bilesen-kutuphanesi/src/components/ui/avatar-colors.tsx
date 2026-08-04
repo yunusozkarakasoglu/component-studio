@@ -1,6 +1,6 @@
 /**
  * AvatarColors
- * HeroUI Colors örneği — 5 renk (saf React).
+ * Colors örneği — 5 renk (saf React).
  * @id 159
  * @category Genel
  */

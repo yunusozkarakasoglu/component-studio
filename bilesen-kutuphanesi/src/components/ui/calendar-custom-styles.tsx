@@ -1,6 +1,6 @@
 /**
  * CalendarCustomStyles
- * HeroUI Tailwind CSS örneği — özelleştirilmiş görünüm (saf React).
+ * Tailwind CSS örneği — özelleştirilmiş görünüm (saf React).
  * @id 187
  * @category Takvim
  */

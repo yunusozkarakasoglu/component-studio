@@ -1,6 +1,6 @@
 /**
  * AutocompleteControlled
- * HeroUI Controlled örneği (saf React).
+ * Controlled örneği (saf React).
  * @id 151
  * @category Form Elemanları
  */

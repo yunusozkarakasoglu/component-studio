@@ -1,6 +1,6 @@
 /**
  * ButtonSizes
- * HeroUI Sizes örneği — sm / md / lg (saf React).
+ * Sizes örneği — sm / md / lg (saf React).
  * @id 095
  * @category Butonlar & Aksiyonlar
  */

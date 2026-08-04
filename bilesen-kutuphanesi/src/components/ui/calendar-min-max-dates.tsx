@@ -1,6 +1,6 @@
 /**
  * CalendarMinMaxDates
- * HeroUI Min and Max Dates örneği (saf React).
+ * Min and Max Dates örneği (saf React).
  * @id 178
  * @category Takvim
  */

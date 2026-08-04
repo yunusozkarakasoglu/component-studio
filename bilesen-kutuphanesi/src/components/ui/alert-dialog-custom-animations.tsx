@@ -1,6 +1,6 @@
 /**
  * AlertDialogCustomAnimations
- * HeroUI Custom Animations örneği — animasyonlu dialog (saf React).
+ * Custom Animations örneği — animasyonlu dialog (saf React).
  * tw-animate yok; basit CSS transition ile giriş animasyonu.
  * @id 132
  * @category Alert & Dialog

@@ -1,6 +1,6 @@
 /**
  * BreadcrumbsDisabled
- * HeroUI Disabled State örneği (saf React).
+ * Disabled State örneği (saf React).
  * @id 168
  * @category Breadcrumbs
  */

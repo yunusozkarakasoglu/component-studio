@@ -1,6 +1,6 @@
 /**
  * CheckboxRenderProps
- * HeroUI Render Props örneği — duruma göre değişen etiket (saf React).
+ * Render Props örneği — duruma göre değişen etiket (saf React).
  * @id 209
  * @category Checkbox
  */

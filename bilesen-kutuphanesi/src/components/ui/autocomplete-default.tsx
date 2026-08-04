@@ -1,6 +1,6 @@
 /**
  * AutocompleteDefault
- * HeroUI Usage örneği — çoklu seçim (saf React).
+ * Usage örneği — çoklu seçim (saf React).
  * @id 142
  * @category Form Elemanları
  */

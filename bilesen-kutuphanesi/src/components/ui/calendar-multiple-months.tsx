@@ -1,6 +1,6 @@
 /**
  * CalendarMultipleMonths
- * HeroUI Multiple Months örneği — yan yana iki ay (saf React).
+ * Multiple Months örneği — yan yana iki ay (saf React).
  * İki ayrı Calendar (focusedValue ile 1 ay kaydırılmış) — seçim bağımsızdır.
  * @id 185
  * @category Takvim

@@ -1,6 +1,6 @@
 /**
  * AutocompleteWithDescription
- * HeroUI With Description örneği (saf React).
+ * With Description örneği (saf React).
  * @id 145
  * @category Form Elemanları
  */

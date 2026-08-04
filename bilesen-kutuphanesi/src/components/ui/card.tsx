@@ -1,6 +1,6 @@
 /**
  * Card
- * HeroUI card'dan uyarlanmış — saf React (bağımlılıksız).
+ * Saf React bileşen (bağımlılıksız).
  * Semantik varyantlar + compound parçalar.
  *   <Card variant="secondary">
  *     <CardHeader><CardTitle/><CardDescription/></CardHeader>

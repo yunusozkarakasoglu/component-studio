@@ -1,6 +1,6 @@
 /**
  * BreadcrumbsBasic
- * HeroUI Usage örneği (saf React).
+ * Usage örneği (saf React).
  * @id 165
  * @category Breadcrumbs
  */

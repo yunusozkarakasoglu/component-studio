@@ -1,6 +1,6 @@
 /**
  * AvatarGroup
- * HeroUI Avatar Group örneği — üst üste binen avatarlar + sayaç (saf React).
+ * Avatar Group örneği — üst üste binen avatarlar + sayaç (saf React).
  * @id 162
  * @category Genel
  */

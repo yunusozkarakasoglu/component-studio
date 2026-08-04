@@ -1,6 +1,6 @@
 /**
  * CheckboxControlled
- * HeroUI Controlled örneği (saf React).
+ * Controlled örneği (saf React).
  * @id 206
  * @category Checkbox
  */

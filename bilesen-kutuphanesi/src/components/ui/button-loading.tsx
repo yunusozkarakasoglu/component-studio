@@ -1,6 +1,6 @@
 /**
  * ButtonLoading
- * HeroUI Loading örneği — isPending + Spinner + render prop (saf React).
+ * Loading örneği — isPending + Spinner + render prop (saf React).
  * @id 098
  * @category Butonlar & Aksiyonlar
  */

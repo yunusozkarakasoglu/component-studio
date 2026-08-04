@@ -1,6 +1,6 @@
 /**
  * CalendarBooking
- * HeroUI Real-World örneği — rezervasyon takvimi (saf React).
+ * Real-World örneği — rezervasyon takvimi (saf React).
  * @id 186
  * @category Takvim
  */

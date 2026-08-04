@@ -1,6 +1,6 @@
 /**
  * BreadcrumbsRenderFunction
- * HeroUI Render Function örneği — kök element özelleştirme (saf React).
+ * Render Function örneği — kök element özelleştirme (saf React).
  * @id 170
  * @category Breadcrumbs
  */

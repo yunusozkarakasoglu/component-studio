@@ -1,6 +1,6 @@
 /**
  * ColorField
- * HeroUI color-field'ten uyarlanmış — saf React (bağımlılıksız).
+ * Saf React bileşen (bağımlılıksız).
  * Hex renk input'u + önizleme swatch'ı + geçerlilik kontrolü.
  *   <ColorField defaultValue="#0485F7" label="Color" onChange={setColor} />
  * @id 229

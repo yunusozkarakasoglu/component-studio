@@ -1,6 +1,6 @@
 /**
  * CheckboxForm
- * HeroUI Form Integration örneği (saf React).
+ * Form Integration örneği (saf React).
  * @id 208
  * @category Checkbox
  */

@@ -1,6 +1,6 @@
 /**
  * CheckboxGroupFeatures
- * HeroUI Features and Add-ons örneği — ikonlu kart checkbox'lar (saf React).
+ * Features and Add-ons örneği — ikonlu kart checkbox'lar (saf React).
  * @id 218
  * @category Checkbox
  */

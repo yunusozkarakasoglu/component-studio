@@ -1,6 +1,6 @@
 /**
  * BreadcrumbsSimple
- * HeroUI breadcrumbs'dan uyarlanmış — saf React implementasyonu (RAC bağımsız).
+ * Saf React bileşen implementasyonu (RAC bağımsız).
  * Otomatik chevron ayracı; son item "current" sayfa olarak işaretlenir.
  *   <BreadcrumbsSimple className="rounded-lg bg-muted/50 px-3 py-2">
  *     <BreadcrumbsSimpleItem href="#">Home</BreadcrumbsSimpleItem>

@@ -1,6 +1,6 @@
 /**
  * AlertDialogCustomIcon
- * HeroUI Custom Icon örneği — LockOpen (GravityUI→lucide eşleştirmesi, saf React).
+ * Custom Icon örneği — LockOpen (GravityUI→lucide eşleştirmesi, saf React).
  * @id 126
  * @category Alert & Dialog
  */

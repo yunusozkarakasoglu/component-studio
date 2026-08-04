@@ -1,6 +1,6 @@
 /**
  * AutocompleteVariants
- * HeroUI Variants örneği — primary/secondary × single/multiple (saf React).
+ * Variants örneği — primary/secondary × single/multiple (saf React).
  * @id 143
  * @category Form Elemanları
  */

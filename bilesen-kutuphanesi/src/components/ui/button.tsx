@@ -1,6 +1,6 @@
 /**
  * Button
- * HeroUI button'dan uyarlanmış — saf React (bağımlılıksız).
+ * Saf React bileşen (bağımlılıksız).
  * Variant · size · fullWidth · isDisabled · isPending · isIconOnly · onPress · render.
  * children bir fonksiyon olarak verilirse render prop deseni (state ile) çalışır.
  *   <Button onPress={() => ...}>Click me</Button>
@@ -21,7 +21,7 @@ interface ButtonState {
 }
 
 interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children" | "onClick"> {
-  /** Görsel varyant (HeroUI uyumlu) */
+  /** Görsel varyant (bileşen kütüphanesi uyumlu) */
   variant?: "primary" | "secondary" | "tertiary" | "outline" | "ghost" | "danger" | "danger-soft"
   /** Boyut */
   size?: "sm" | "md" | "lg"
@@ -33,7 +33,7 @@ interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "chi
   isPending?: boolean
   /** Yalnızca ikon içerir (kare boyut) */
   isIconOnly?: boolean
-  /** Basıldığında çağrılır (HeroUI onPress karşılığı) */
+  /** Basıldığında çağrılır (bileşen kütüphanesi onPress karşılığı) */
   onPress?: () => void
   /** Varsayılan DOM elementini özel render ile değiştirir */
   render?: (props: Record<string, unknown>, state: ButtonState) => ReactNode

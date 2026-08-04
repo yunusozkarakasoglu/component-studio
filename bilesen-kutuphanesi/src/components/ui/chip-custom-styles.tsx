@@ -1,6 +1,6 @@
 /**
  * ChipCustomStyles
- * HeroUI Tailwind CSS örneği — özel durumlar (saf React).
+ * Tailwind CSS örneği — özel durumlar (saf React).
  * @id 226
  * @category Butonlar & Aksiyonlar
  * @subcategory Chips

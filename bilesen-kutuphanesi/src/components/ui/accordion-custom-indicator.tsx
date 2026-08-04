@@ -1,6 +1,6 @@
 /**
  * AccordionCustomIndicator
- * HeroUI Custom Indicator örneği — özel gösterge ikonları (saf React).
+ * Custom Indicator örneği — özel gösterge ikonları (saf React).
  * GravityUI eşleştirmesi: CircleChevronDown→ChevronDownCircle.
  * indicator fonksiyon olarak verilirse açık/kapalı durumunu alır.
  * @id 112

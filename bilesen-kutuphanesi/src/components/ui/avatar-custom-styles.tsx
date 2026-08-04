@@ -1,6 +1,6 @@
 /**
  * AvatarCustomStyles
- * HeroUI Tailwind CSS örneği — yuvarlatılmış avatar (saf React).
+ * Tailwind CSS örneği — yuvarlatılmış avatar (saf React).
  * @id 163
  * @category Genel
  */

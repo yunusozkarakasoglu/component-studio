@@ -1,6 +1,6 @@
 /**
  * AvatarBasic
- * HeroUI Usage örneği — resim + fallback (saf React, placeholder data-URI).
+ * Usage örneği — resim + fallback (saf React, placeholder data-URI).
  * @id 157
  * @category Genel
  */

@@ -1,6 +1,6 @@
 /**
  * ButtonSocial
- * HeroUI Social Buttons örneği — Google/GitHub/Apple (saf React).
+ * Social Buttons örneği — Google/GitHub/Apple (saf React).
  * @iconify/react (CDN) YASAK — marka logoları kendi setimizden (icons-brand).
  * @id 102
  * @category Butonlar & Aksiyonlar

@@ -1,6 +1,6 @@
 /**
  * CheckboxGroupDisabled
- * HeroUI Disabled örneği (saf React).
+ * Disabled örneği (saf React).
  * @id 214
  * @category Checkbox
  */

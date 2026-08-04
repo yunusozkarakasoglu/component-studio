@@ -1,6 +1,6 @@
 /**
  * AccordionWithoutSeparator
- * HeroUI Without Separator örneği — ayraçsız (saf React).
+ * Without Separator örneği — ayraçsız (saf React).
  * @id 108
  * @category Accordion
  */

@@ -1,6 +1,6 @@
 /**
  * AlertDialogBackdropVariants
- * HeroUI Backdrop Variants örneği — opaque/blur/transparent (saf React).
+ * Backdrop Variants örneği — opaque/blur/transparent (saf React).
  * @id 128
  * @category Alert & Dialog
  */

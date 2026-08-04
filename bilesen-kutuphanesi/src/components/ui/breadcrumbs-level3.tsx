@@ -1,6 +1,6 @@
 /**
  * BreadcrumbsLevel3
- * HeroUI Navigation Levels örneği — 3 seviye (saf React).
+ * Navigation Levels örneği — 3 seviye (saf React).
  * @id 167
  * @category Breadcrumbs
  */

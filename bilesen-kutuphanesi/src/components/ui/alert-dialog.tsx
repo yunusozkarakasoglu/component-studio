@@ -1,6 +1,6 @@
 /**
  * AlertDialog
- * HeroUI alert-dialog'dan uyarlanmış — saf React (bağımlılıksız).
+ * Saf React bileşen (bağımlılıksız).
  * Kritik onay diyalogları: trigger + backdrop + compound parçalar.
  *   <AlertDialog>
  *     <Button>Delete Project</Button>
@@ -53,7 +53,7 @@ interface OverlayState {
   setOpen: (v: boolean) => void
 }
 
-/** HeroUI useOverlayState karşılığı — saf React hook */
+/** bileşen kütüphanesi useOverlayState karşılığı — saf React hook */
 function useOverlayState({ defaultOpen = false, onOpenChange }: { defaultOpen?: boolean; onOpenChange?: (v: boolean) => void } = {}): OverlayState {
   const [isOpen, setOpenState] = useState(defaultOpen)
   const setOpen = useCallback((v: boolean) => { setOpenState(v); onOpenChange?.(v) }, [onOpenChange])

@@ -1,6 +1,6 @@
 /**
  * CheckboxGroupValidation
- * HeroUI Validation örneği — zorunlu alan (saf React).
+ * Validation örneği — zorunlu alan (saf React).
  * @id 217
  * @category Checkbox
  */

@@ -1,6 +1,6 @@
 /**
  * ColorArea
- * HeroUI color-area'dan uyarlanmış — saf React (bağımlılıksız).
+ * Saf React bileşen (bağımlılıksız).
  * 2D renk alanı: x = saturation, y = brightness (varsayılan).
  *   <ColorArea defaultValue="rgb(116,52,255)" />
  * @id 230

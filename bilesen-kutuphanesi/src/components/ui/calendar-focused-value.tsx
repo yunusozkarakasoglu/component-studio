@@ -1,6 +1,6 @@
 /**
  * CalendarFocusedValue
- * HeroUI Focused Value örneği — görüntülenen ayı programatik kontrol (saf React).
+ * Focused Value örneği — görüntülenen ayı programatik kontrol (saf React).
  * @id 182
  * @category Takvim
  */

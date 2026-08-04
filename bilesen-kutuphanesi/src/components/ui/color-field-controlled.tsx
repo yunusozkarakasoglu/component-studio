@@ -1,6 +1,6 @@
 /**
  * ColorFieldControlled
- * HeroUI Controlled örneği (saf React).
+ * Controlled örneği (saf React).
  * @id 239
  * @category Colors
  * @subcategory ColorField

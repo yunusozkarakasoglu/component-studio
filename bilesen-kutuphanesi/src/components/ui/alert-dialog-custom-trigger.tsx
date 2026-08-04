@@ -1,6 +1,6 @@
 /**
  * AlertDialogCustomTrigger
- * HeroUI Custom Trigger örneği — kart tarzı tetikleyici (saf React).
+ * Custom Trigger örneği — kart tarzı tetikleyici (saf React).
  * @id 127
  * @category Alert & Dialog
  */

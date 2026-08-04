@@ -1,6 +1,6 @@
 /**
  * CalendarMultipleSelection
- * HeroUI Multiple Selection örneği — birden çok tarih (saf React).
+ * Multiple Selection örneği — birden çok tarih (saf React).
  * @id 181
  * @category Takvim
  */

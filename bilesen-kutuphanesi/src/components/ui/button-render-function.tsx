@@ -1,6 +1,6 @@
 /**
  * ButtonRenderFunction
- * HeroUI Render Function örneği — varsayılan DOM elementini özel render ile değiştirir (saf React).
+ * Render Function örneği — varsayılan DOM elementini özel render ile değiştirir (saf React).
  * @id 103
  * @category Butonlar & Aksiyonlar
  */

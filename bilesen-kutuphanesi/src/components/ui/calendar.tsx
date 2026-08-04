@@ -1,6 +1,6 @@
 /**
  * Calendar
- * HeroUI calendar'dan uyarlanmış — saf React (bağımlılıksız).
+ * Saf React bileşen (bağımlılıksız).
  * @internationalized/date YOK — kendi tarih mantığı (Date tabanlı), tarihler "YYYY-MM-DD".
  *   <Calendar value={date} onChange={setDate} minValue={today} isDateUnavailable={fn} />
  * Özellikler: selectionMode (single/multiple) · value/defaultValue/onChange ·

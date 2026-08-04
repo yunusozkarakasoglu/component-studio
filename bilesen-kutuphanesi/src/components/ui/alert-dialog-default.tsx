@@ -1,6 +1,6 @@
 /**
  * AlertDialogDefault
- * HeroUI Usage örneği — temel alert dialog (saf React).
+ * Usage örneği — temel alert dialog (saf React).
  * @id 121
  * @category Alert & Dialog
  */

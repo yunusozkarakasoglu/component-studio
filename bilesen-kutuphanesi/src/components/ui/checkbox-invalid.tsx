@@ -1,6 +1,6 @@
 /**
  * CheckboxInvalid
- * HeroUI Invalid örneği (saf React).
+ * Invalid örneği (saf React).
  * @id 205
  * @category Checkbox
  */

@@ -1,6 +1,6 @@
 /**
  * AccordionControlled
- * HeroUI Controlled örneği — kontrollü açık item + önceki/sonraki navigasyon (saf React).
+ * Controlled örneği — kontrollü açık item + önceki/sonraki navigasyon (saf React).
  * useDisclosureGroupNavigation (Heroui'ye özel) yerine saf useState.
  * @id 111
  * @category Accordion
@@ -11,8 +11,8 @@ import { Button } from "@/components/ui/button"
 import { ChevronDown, ChevronUp } from "@/components/ui/icons"
 
 const items = [
-  { id: "getting-started", title: "Getting Started", content: "Learn the basics of HeroUI and how to integrate it into your React project." },
-  { id: "core-concepts", title: "Core Concepts", content: "Understand the fundamental concepts behind HeroUI." },
+  { id: "getting-started", title: "Getting Started", content: "Learn the basics and how to integrate it into your React project." },
+  { id: "core-concepts", title: "Core Concepts", content: "Understand the fundamental concepts." },
   { id: "advanced-usage", title: "Advanced Usage", content: "Explore advanced features like custom variants." },
 ]
 

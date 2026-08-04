@@ -1,6 +1,6 @@
 /**
  * ColorSwatch
- * HeroUI color-swatch'tan uyarlanmış — saf React (bağımlılıksız).
+ * Saf React bileşen (bağımlılıksız).
  * Renk önizlemesi: size × shape + şeffaflık dama deseni.
  *   <ColorSwatch color="#0485F7" size="lg" />
  * @id 227

@@ -1,6 +1,6 @@
 /**
  * AlertDialogCloseMethods
- * HeroUI Close Methods örneği — render props close() (saf React).
+ * Close Methods örneği — render props close() (saf React).
  * @id 131
  * @category Alert & Dialog
  */

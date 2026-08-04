@@ -1,6 +1,6 @@
 /**
  * AutocompleteDisabled
- * HeroUI Disabled örneği — devre dışı (saf React).
+ * Disabled örneği — devre dışı (saf React).
  * @id 147
  * @category Form Elemanları
  */

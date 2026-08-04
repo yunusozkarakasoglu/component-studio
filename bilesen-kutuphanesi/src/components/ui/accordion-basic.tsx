@@ -1,6 +1,6 @@
 /**
  * AccordionBasic
- * HeroUI Usage örneği — ikonlu FAQ accordion (saf React).
+ * Usage örneği — ikonlu FAQ accordion (saf React).
  * GravityUI eşleştirmesi: PlanetEarth→Earth, ArrowsRotateLeft→RotateCcw.
  * @id 106
  * @category Accordion

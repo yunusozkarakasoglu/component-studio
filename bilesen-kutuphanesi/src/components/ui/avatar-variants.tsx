@@ -1,6 +1,6 @@
 /**
  * AvatarVariants
- * HeroUI Variants örneği — letter/letter-soft/icon/icon-soft/img × 5 renk (saf React).
+ * Variants örneği — letter/letter-soft/icon/icon-soft/img × 5 renk (saf React).
  * @id 160
  * @category Genel
  */

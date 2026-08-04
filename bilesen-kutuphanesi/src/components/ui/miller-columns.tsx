@@ -1,6 +1,6 @@
 /**
  * MillerColumns
- * Template Maker — özel bileşen (React + Tailwind Miller Columns navigatörü)
+ * Component Studio — özel bileşen (React + Tailwind Miller Columns navigatörü)
  * Hiyerarşik veriyi sütunlar halinde gezinme (dosya yöneticisi tarzı).
  * @id 089
  * @category Özel Komponentler

@@ -1,6 +1,6 @@
 /**
  * ChipBasic
- * HeroUI Usage örneği — renkler (saf React).
+ * Usage örneği — renkler (saf React).
  * @id 222
  * @category Butonlar & Aksiyonlar
  * @subcategory Chips

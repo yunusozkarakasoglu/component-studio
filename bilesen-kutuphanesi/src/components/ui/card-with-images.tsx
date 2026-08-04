@@ -1,6 +1,6 @@
 /**
  * CardWithImages
- * HeroUI With Images örneği — sadeleştirilmiş resimli kartlar (saf React, data-URI).
+ * With Images örneği — sadeleştirilmiş resimli kartlar (saf React, data-URI).
  * @id 193
  * @category Kartlar
  */

@@ -1,6 +1,6 @@
 /**
  * ButtonFullWidth
- * HeroUI Full Width örneği — tam genişlik (saf React).
+ * Full Width örneği — tam genişlik (saf React).
  * @id 100
  * @category Butonlar & Aksiyonlar
  */

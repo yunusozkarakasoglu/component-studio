@@ -1,6 +1,6 @@
 /**
  * CardDefault
- * HeroUI Usage örneği — temel kart (saf React).
+ * Usage örneği — temel kart (saf React).
  * @id 189
  * @category Kartlar
  */

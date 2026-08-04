@@ -1,6 +1,6 @@
 /**
  * AutocompleteFullWidth
- * HeroUI Full Width örneği — tam genişlik + surface (saf React).
+ * Full Width örneği — tam genişlik + surface (saf React).
  * @id 144
  * @category Form Elemanları
  */

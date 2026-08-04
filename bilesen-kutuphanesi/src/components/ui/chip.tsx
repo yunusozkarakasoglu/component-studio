@@ -1,6 +1,6 @@
 /**
  * Chip
- * HeroUI chip'ten uyarlanmış — saf React (bağımlılıksız).
+ * Saf React bileşen (bağımlılıksız).
  * Küçük bilgi rozetleri: color × variant × size.
  *   <Chip color="success" variant="soft"><Check /> <ChipLabel>Active</ChipLabel></Chip>
  * @id 221

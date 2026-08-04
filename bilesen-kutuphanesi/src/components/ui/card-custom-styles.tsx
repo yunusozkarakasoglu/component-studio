@@ -1,6 +1,6 @@
 /**
  * CardCustomStyles
- * HeroUI Tailwind CSS örneği — Pro kartı (saf React).
+ * Tailwind CSS örneği — Pro kartı (saf React).
  * @id 195
  * @category Kartlar
  */

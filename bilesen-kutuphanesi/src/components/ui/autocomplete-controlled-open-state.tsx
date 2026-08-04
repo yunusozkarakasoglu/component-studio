@@ -1,6 +1,6 @@
 /**
  * AutocompleteControlledOpenState
- * HeroUI Controlled Open State örneği (saf React).
+ * Controlled Open State örneği (saf React).
  * @id 153
  * @category Form Elemanları
  */

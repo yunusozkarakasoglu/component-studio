@@ -1,6 +1,6 @@
 /**
  * CloseButton
- * HeroUI CloseButton — kapatma butonu (saf React).
+ * bileşen kütüphanesi CloseButton — kapatma butonu (saf React).
  * <CloseButton onPress={() => setOpen(false)} />
  * @id 117
  * @category Alert & Dialog
@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils"
 import { X } from "@/components/ui/icons"
 
 interface CloseButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children"> {
-  /** HeroUI onPress karşılığı */
+  /** bileşen kütüphanesi onPress karşılığı */
   onPress?: () => void
 }
 

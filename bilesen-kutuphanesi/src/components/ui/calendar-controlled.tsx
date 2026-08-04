@@ -1,6 +1,6 @@
 /**
  * CalendarControlled
- * HeroUI Controlled örneği — value + kısayollar (saf React).
+ * Controlled örneği — value + kısayollar (saf React).
  * @id 177
  * @category Takvim
  */

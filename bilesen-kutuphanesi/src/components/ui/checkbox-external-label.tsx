@@ -1,6 +1,6 @@
 /**
  * CheckboxExternalLabel
- * HeroUI External Label örneği — dış etiket (saf React).
+ * External Label örneği — dış etiket (saf React).
  * @id 202
  * @category Checkbox
  */

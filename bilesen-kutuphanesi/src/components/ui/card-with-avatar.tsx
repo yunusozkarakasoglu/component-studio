@@ -1,6 +1,6 @@
 /**
  * CardWithAvatar
- * HeroUI With Avatar örneği (saf React — Avatar'ı kullanır).
+ * With Avatar örneği (saf React — Avatar'ı kullanır).
  * @id 192
  * @category Kartlar
  */

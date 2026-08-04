@@ -1,6 +1,6 @@
 /**
  * ColorAreaWithDots
- * HeroUI With Dots örneği (saf React).
+ * With Dots örneği (saf React).
  * @id 241
  * @category Colors
  * @subcategory ColorArea

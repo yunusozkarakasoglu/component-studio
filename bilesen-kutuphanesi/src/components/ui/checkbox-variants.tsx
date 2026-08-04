@@ -1,6 +1,6 @@
 /**
  * CheckboxVariants
- * HeroUI Variants örneği — primary/secondary (saf React).
+ * Variants örneği — primary/secondary (saf React).
  * @id 199
  * @category Checkbox
  */

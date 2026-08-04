@@ -1,6 +1,6 @@
 /**
  * CalendarBasic
- * HeroUI Usage örneği — temel takvim (saf React).
+ * Usage örneği — temel takvim (saf React).
  * @id 173
  * @category Takvim
  */

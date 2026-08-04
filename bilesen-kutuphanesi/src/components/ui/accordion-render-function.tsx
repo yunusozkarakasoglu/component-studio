@@ -1,6 +1,6 @@
 /**
  * AccordionRenderFunction
- * HeroUI Render Function örneği — data-custom attribute gösterimi (saf React).
+ * Render Function örneği — data-custom attribute gösterimi (saf React).
  * Heroui'nin render prop'u yerine bileşenlerin data-slot/data-custom attribute'ları.
  * @id 113
  * @category Accordion

@@ -1,6 +1,6 @@
 /**
  * AlertDialogCustomStyles
- * HeroUI Tailwind CSS örneği — özelleştirilmiş dialog (saf React).
+ * Tailwind CSS örneği — özelleştirilmiş dialog (saf React).
  * @id 134
  * @category Alert & Dialog
  */

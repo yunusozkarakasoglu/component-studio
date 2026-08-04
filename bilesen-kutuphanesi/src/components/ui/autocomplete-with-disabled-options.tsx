@@ -1,6 +1,6 @@
 /**
  * AutocompleteWithDisabledOptions
- * HeroUI With Disabled Options örneği (saf React).
+ * With Disabled Options örneği (saf React).
  * @id 148
  * @category Form Elemanları
  */

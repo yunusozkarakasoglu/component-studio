@@ -1,6 +1,6 @@
 /**
  * BreadcrumbsCustomStyles
- * HeroUI Tailwind CSS örneği — kutulu görünüm (saf React).
+ * Tailwind CSS örneği — kutulu görünüm (saf React).
  * @id 171
  * @category Breadcrumbs
  */

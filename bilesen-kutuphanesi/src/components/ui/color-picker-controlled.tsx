@@ -1,6 +1,6 @@
 /**
  * ColorPickerControlled
- * HeroUI Controlled örneği (saf React).
+ * Controlled örneği (saf React).
  * @id 244
  * @category Colors
  * @subcategory ColorPicker

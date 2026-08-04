@@ -1,6 +1,6 @@
 /**
  * AccordionFaq
- * HeroUI FAQ Layout örneği — kategorili SSS (saf React).
+ * FAQ Layout örneği — kategorili SSS (saf React).
  * @id 114
  * @category Accordion
  */

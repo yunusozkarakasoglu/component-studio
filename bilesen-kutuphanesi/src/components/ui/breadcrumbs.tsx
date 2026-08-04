@@ -1,6 +1,6 @@
 /**
  * Breadcrumbs
- * HeroUI breadcrumbs'tan uyarlanmış — saf React (bağımlılıksız).
+ * Saf React bileşen (bağımlılıksız).
  * Otomatik ayraç (separator) · isDisabled · özel separator · render.
  *   <Breadcrumbs>
  *     <BreadcrumbsItem href="#">Home</BreadcrumbsItem>

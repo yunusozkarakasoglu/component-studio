@@ -1,6 +1,6 @@
 /**
  * ColorSwatchPicker
- * HeroUI color-swatch-picker'dan uyarlanmış — saf React (bağımlılıksız).
+ * Saf React bileşen (bağımlılıksız).
  * Renk örnekleri listesinden seçim (çoklu destekli).
  *   <ColorSwatchPicker colors={palette} value={sel} onChange={setSel} />
  * @id 231

@@ -1,6 +1,6 @@
 /**
  * CheckboxDefaultSelected
- * HeroUI Default Selected örneği (saf React).
+ * Default Selected örneği (saf React).
  * @id 204
  * @category Checkbox
  */

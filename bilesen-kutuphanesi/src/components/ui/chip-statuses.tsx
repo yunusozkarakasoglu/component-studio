@@ -1,6 +1,6 @@
 /**
  * ChipStatuses
- * HeroUI Statuses örneği — durum rozetleri (saf React).
+ * Statuses örneği — durum rozetleri (saf React).
  * @id 224
  * @category Butonlar & Aksiyonlar
  * @subcategory Chips

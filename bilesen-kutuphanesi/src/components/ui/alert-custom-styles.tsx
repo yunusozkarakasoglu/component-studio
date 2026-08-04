@@ -1,6 +1,6 @@
 /**
  * AlertCustomStyles
- * HeroUI Tailwind CSS örneği — özelleştirilmiş warning alert (saf React).
+ * Tailwind CSS örneği — özelleştirilmiş warning alert (saf React).
  * @id 119
  * @category Alert & Dialog
  */

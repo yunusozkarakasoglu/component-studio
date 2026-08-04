@@ -1,6 +1,6 @@
 /**
  * CheckboxGroupIndeterminate
- * HeroUI Indeterminate örneği — Select all (saf React).
+ * Indeterminate örneği — Select all (saf React).
  * @id 215
  * @category Checkbox
  */

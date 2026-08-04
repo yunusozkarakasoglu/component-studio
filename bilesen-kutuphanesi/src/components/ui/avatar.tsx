@@ -1,6 +1,6 @@
 /**
  * Avatar
- * HeroUI avatar'dan uyarlanmış — saf React (bağımlılıksız).
+ * Saf React bileşen (bağımlılıksız).
  * Resim + fallback (metin/ikon) + size/color/variant.
  *   <Avatar size="lg" color="success">
  *     <AvatarImage src="..." alt="..." />

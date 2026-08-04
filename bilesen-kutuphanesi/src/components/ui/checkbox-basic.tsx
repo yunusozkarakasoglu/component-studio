@@ -1,6 +1,6 @@
 /**
  * CheckboxBasic
- * HeroUI Usage örneği (saf React).
+ * Usage örneği (saf React).
  * @id 198
  * @category Checkbox
  */

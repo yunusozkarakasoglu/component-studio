@@ -1,6 +1,6 @@
 /**
  * ColorSwatchPickerBasic
- * HeroUI Usage örneği (saf React).
+ * Usage örneği (saf React).
  * @id 242
  * @category Colors
  * @subcategory ColorSwatchPicker

@@ -1,6 +1,6 @@
 /**
  * AlertDialogPlacements
- * HeroUI Placements örneği — auto/top/center/bottom (saf React).
+ * Placements örneği — auto/top/center/bottom (saf React).
  * @id 123
  * @category Alert & Dialog
  */

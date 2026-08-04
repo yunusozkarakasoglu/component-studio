@@ -1,6 +1,6 @@
 /**
  * CheckboxGroup
- * HeroUI checkbox-group'ten uyarlanmış — saf React (bağımlılıksız).
+ * Saf React bileşen (bağımlılıksız).
  * Birden çok checkbox'ı ortak değer listesiyle yönetir.
  *   <CheckboxGroup label="Interests" value={sel} onChange={setSel}>
  *     <Checkbox value="coding" label="Coding" />

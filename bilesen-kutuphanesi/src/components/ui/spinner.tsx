@@ -1,6 +1,6 @@
 /**
  * Spinner
- * HeroUI loading durumu için — dönen yükleme göstergesi (saf React).
+ * bileşen kütüphanesi loading durumu için — dönen yükleme göstergesi (saf React).
  * Button isPending durumunda içerik olarak kullanılır.
  * @id 093
  * @category Butonlar & Aksiyonlar

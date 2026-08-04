@@ -1,6 +1,6 @@
 /**
  * Autocomplete
- * HeroUI autocomplete'ten uyarlanmış — saf React (bağımlılıksız).
+ * Saf React bileşen (bağımlılıksız).
  * Arama + filtreleme + seçim (single/multiple) tek bileşende:
  *   <Autocomplete items={states} selectionMode="single" value={v} onChange={setV} label="State" />
  * Özellikler: selectionMode · value/onChange (kontrollü) · defaultValue · placeholder

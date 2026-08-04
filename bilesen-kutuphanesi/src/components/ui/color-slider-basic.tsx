@@ -1,6 +1,6 @@
 /**
  * ColorSliderBasic
- * HeroUI Usage örneği — hue kaydırıcı (saf React).
+ * Usage örneği — hue kaydırıcı (saf React).
  * @id 235
  * @category Colors
  * @subcategory ColorSlider

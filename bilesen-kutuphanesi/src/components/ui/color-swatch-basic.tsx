@@ -1,6 +1,6 @@
 /**
  * ColorSwatchBasic
- * HeroUI Usage örneği (saf React).
+ * Usage örneği (saf React).
  * @id 233
  * @category Colors
  * @subcategory ColorSwatch

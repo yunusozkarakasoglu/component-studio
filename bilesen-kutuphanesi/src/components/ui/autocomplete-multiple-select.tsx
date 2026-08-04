@@ -1,6 +1,6 @@
 /**
  * AutocompleteMultipleSelect
- * HeroUI Multiple Select örneği (saf React).
+ * Multiple Select örneği (saf React).
  * @id 150
  * @category Form Elemanları
  */

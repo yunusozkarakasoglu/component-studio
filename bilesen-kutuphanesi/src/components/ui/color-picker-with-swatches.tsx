@@ -1,6 +1,6 @@
 /**
  * ColorPickerWithSwatches
- * HeroUI With Swatches örneği (saf React).
+ * With Swatches örneği (saf React).
  * @id 245
  * @category Colors
  * @subcategory ColorPicker

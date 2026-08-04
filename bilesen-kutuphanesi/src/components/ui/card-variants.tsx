@@ -1,6 +1,6 @@
 /**
  * CardVariants
- * HeroUI Variants örneği — 4 semantik varyant (saf React).
+ * Variants örneği — 4 semantik varyant (saf React).
  * @id 190
  * @category Kartlar
  */

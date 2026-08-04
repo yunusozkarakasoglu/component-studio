@@ -1,6 +1,6 @@
 /**
  * ColorSliderAlpha
- * HeroUI Alpha Channel örneği — şeffaflık (saf React).
+ * Alpha Channel örneği — şeffaflık (saf React).
  * @id 237
  * @category Colors
  * @subcategory ColorSlider

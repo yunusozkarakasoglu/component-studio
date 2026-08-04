@@ -1,6 +1,6 @@
 /**
  * CalendarDisabled
- * HeroUI Disabled örneği (saf React).
+ * Disabled örneği (saf React).
  * @id 174
  * @category Takvim
  */

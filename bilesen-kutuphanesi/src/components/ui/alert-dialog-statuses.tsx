@@ -1,6 +1,6 @@
 /**
  * AlertDialogStatuses
- * HeroUI Statuses örneği — 4 durum (saf React).
+ * Statuses örneği — 4 durum (saf React).
  * @id 122
  * @category Alert & Dialog
  */

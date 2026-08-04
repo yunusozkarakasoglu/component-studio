@@ -1,6 +1,6 @@
 /**
  * CalendarDefaultValue
- * HeroUI Default Value örneği — önceden seçili tarih (saf React).
+ * Default Value örneği — önceden seçili tarih (saf React).
  * @id 176
  * @category Takvim
  */

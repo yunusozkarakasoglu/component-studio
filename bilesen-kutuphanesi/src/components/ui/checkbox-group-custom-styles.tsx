@@ -1,6 +1,6 @@
 /**
  * CheckboxGroupCustomStyles
- * HeroUI Tailwind CSS örneği (saf React).
+ * Tailwind CSS örneği (saf React).
  * @id 220
  * @category Checkbox
  */

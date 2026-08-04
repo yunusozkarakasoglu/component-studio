@@ -1,6 +1,6 @@
 /**
  * AutocompleteAsynchronousFiltering
- * HeroUI Asynchronous Filtering örneği — SWAPI dış API yerine yerel simülasyon
+ * Asynchronous Filtering örneği — SWAPI dış API yerine yerel simülasyon
  * (dış kaynak yasağı — setTimeout + yerel veri, saf React).
  * @id 154
  * @category Form Elemanları

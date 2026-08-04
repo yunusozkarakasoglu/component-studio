@@ -1,6 +1,6 @@
 /**
  * ButtonDisabled
- * HeroUI Disabled State örneği — devre dışı butonlar (saf React).
+ * Disabled State örneği — devre dışı butonlar (saf React).
  * @id 101
  * @category Butonlar & Aksiyonlar
  */

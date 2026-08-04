@@ -1,6 +1,6 @@
 /**
  * ColorSlider
- * HeroUI color-slider'dan uyarlanmış — saf React (bağımlılıksız).
+ * Saf React bileşen (bağımlılıksız).
  * Tek renk kanalını ayarlayan kaydırıcı (hue/saturation/lightness/rgb/alpha).
  *   <ColorSlider channel="hue" defaultValue="hsl(0,100%,50%)" label="Hue" />
  * @id 228

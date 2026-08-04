@@ -1,6 +1,6 @@
 /**
  * AutocompleteRequired
- * HeroUI Required örneği — zorunlu alan + gönderim simülasyonu (saf React).
+ * Required örneği — zorunlu alan + gönderim simülasyonu (saf React).
  * @id 146
  * @category Form Elemanları
  */

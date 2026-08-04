@@ -1,6 +1,6 @@
 /**
  * CheckboxGroupCustomIndicator
- * HeroUI With Custom Indicator örneği — X işareti (saf React).
+ * With Custom Indicator örneği — X işareti (saf React).
  * @id 219
  * @category Checkbox
  */

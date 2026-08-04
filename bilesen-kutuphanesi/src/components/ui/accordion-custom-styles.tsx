@@ -1,6 +1,6 @@
 /**
  * AccordionCustomStyles
- * HeroUI Tailwind CSS örneği — CDN resimleri (iconUrl) YASAK; ikonlar kendi setimizden.
+ * Tailwind CSS örneği — CDN resimleri (iconUrl) YASAK; ikonlar kendi setimizden.
  * Eşleştirme: bell-small→Bell, compass-small→Compass, mint-collective→Sparkles.
  * @id 115
  * @category Accordion

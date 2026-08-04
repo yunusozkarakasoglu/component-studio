@@ -1,6 +1,6 @@
 /**
  * ColorSwatchSizes
- * HeroUI Sizes örneği (saf React).
+ * Sizes örneği (saf React).
  * @id 234
  * @category Colors
  * @subcategory ColorSwatch

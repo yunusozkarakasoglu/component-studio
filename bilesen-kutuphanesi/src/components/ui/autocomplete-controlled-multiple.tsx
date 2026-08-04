@@ -1,6 +1,6 @@
 /**
  * AutocompleteControlledMultiple
- * HeroUI Controlled Multiple örneği (saf React).
+ * Controlled Multiple örneği (saf React).
  * @id 152
  * @category Form Elemanları
  */

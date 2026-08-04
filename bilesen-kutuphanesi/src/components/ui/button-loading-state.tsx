@@ -1,6 +1,6 @@
 /**
  * ButtonLoadingState
- * HeroUI Loading State örneği — kontrollü yükleme durumu (saf React).
+ * Loading State örneği — kontrollü yükleme durumu (saf React).
  * @id 099
  * @category Butonlar & Aksiyonlar
  */

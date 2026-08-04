@@ -1,6 +1,6 @@
 /**
  * AlertDialogDismissBehavior
- * HeroUI Dismiss Behavior örneği — isDismissable + isKeyboardDismissDisabled (saf React).
+ * Dismiss Behavior örneği — isDismissable + isKeyboardDismissDisabled (saf React).
  * @id 130
  * @category Alert & Dialog
  */
