@@ -45,4 +45,18 @@ export const SAMPLES: Record<string, ReactNode> = {
       <U.BreadcrumbsSimpleItem>Laptop</U.BreadcrumbsSimpleItem>
     </U.BreadcrumbsSimple>
   ),
+  "092": <U.Button onPress={() => console.log("pressed")}>Click me</U.Button>,
+  "093": <U.Spinner size="md" />,
+  "094": <U.ButtonVariants />,
+  "095": <U.ButtonSizes />,
+  "096": <U.ButtonWithIcons />,
+  "097": <U.ButtonIconOnly />,
+  "098": <U.ButtonLoading />,
+  "099": <U.ButtonLoadingState />,
+  "100": <U.ButtonFullWidth />,
+  "101": <U.ButtonDisabled />,
+  "102": <U.ButtonSocial />,
+  "103": <U.ButtonRenderFunction />,
+  "104": <U.ButtonCustomVariantsDemo />,
+  "105": <U.ButtonRipple />,
 }

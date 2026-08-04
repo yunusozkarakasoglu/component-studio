@@ -3,7 +3,7 @@
  * Template Maker — özel bileşen (HTML'den TSX'e dönüştürüldü)
  * Basit, bağımsız tarih aralığı seçici (takvim + aralık vurgusu + temizle).
  * @id 088
- * @category Özel Komponentler
+ * @category Takvim
  */
 import { useMemo, useState } from "react"
 import { cn } from "@/lib/utils"

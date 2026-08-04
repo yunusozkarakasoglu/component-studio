@@ -17,11 +17,26 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 ### Renk Bileşenleri
 
 ### Butonlar & Aksiyonlar
+- `092` Button
+- `093` Spinner
+- `094` ButtonVariants
+- `095` ButtonSizes
+- `096` ButtonWithIcons
+- `097` ButtonIconOnly
+- `098` ButtonLoading
+- `099` ButtonLoadingState
+- `100` ButtonFullWidth
+- `101` ButtonDisabled
+- `102` ButtonSocial
+- `103` ButtonRenderFunction
+- `104` ButtonCustomVariants
+- `105` ButtonRipple
 
 ### Navigasyon
 - `091` BreadcrumbsSimple
 
 ### Takvim
+- `088` DateRangePickerSimple
 
 ### Veri Gösterimi
 
@@ -30,12 +45,11 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 ### Genel
 
 ### Özel Komponentler
-- `088` DateRangePickerSimple
 - `089` MillerColumns
 
 ---
 
-**Toplam: 4 bileşen (saf React)**
+**Toplam: 18 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
