@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-04T23:53:30.282Z",
+  "generatedAt": "2026-08-04T23:57:41.700Z",
   "counts": {
-    "components": 214,
-    "ready": 214,
+    "components": 221,
+    "ready": 221,
     "layouts": 0
   },
   "categories": [
@@ -1105,17 +1105,6 @@
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input.tsx"
     },
     {
-      "id": "300",
-      "name": "TextArea",
-      "category": "Form Elemanları",
-      "subcategory": "",
-      "file": "textarea.tsx",
-      "exists": true,
-      "code": "/**\n * TextArea\n * Saf React bileşen (bağımlılıksız).\n * Çok satırlı metin girişi — TextField içinde veya bağımsız kullanılabilir.\n *   <TextArea rows={4} placeholder=\"Mesajınız\" />  |  <TextField><TextArea /></TextField>\n * Özellikler: TextField context'ine uyum · primary/secondary variant · red invalid.\n * @id 300\n * @category Form Elemanları\n */\nimport type { TextareaHTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { useTextField } from \"@/components/ui/text-field\"\n\ninterface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {\n  variant?: \"primary\" | \"secondary\"\n}\n\nfunction TextArea({ className, variant: variantProp, onChange, onFocus, onBlur, ...props }: TextAreaProps) {\n  const ctx = useTextField()\n\n  const variant = variantProp ?? ctx?.variant ?? \"primary\"\n  const invalid = ctx?.isInvalid ?? (props[\"aria-invalid\"] === true || props[\"aria-invalid\"] === \"true\")\n\n  return (\n    <textarea\n      data-slot=\"text-area\"\n      data-variant={variant}\n      value={ctx ? ctx.value : props.value}\n      onChange={(e) => {\n        if (ctx) ctx.setValue(e.target.value)\n        onChange?.(e)\n      }}\n      onFocus={(e) => {\n        ctx?.setFocusWithin(true)\n        onFocus?.(e)\n      }}\n      onBlur={(e) => {\n        ctx?.setFocusWithin(false)\n        onBlur?.(e)\n      }}\n      disabled={ctx ? ctx.isDisabled : props.disabled}\n      readOnly={ctx ? ctx.isReadOnly : props.readOnly}\n      required={ctx ? ctx.isRequired : props.required}\n      name={ctx ? ctx.name : props.name}\n      autoFocus={ctx ? ctx.autoFocus : props.autoFocus}\n      aria-invalid={invalid || undefined}\n      className={cn(\n        \"min-h-20 w-full resize-y rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground\",\n        \"focus:border-ring focus:ring-3 focus:ring-ring/40\",\n        variant === \"secondary\" && \"border-transparent bg-muted/60\",\n        invalid && \"border-red-500 focus:border-red-500 focus:ring-red-500/30\",\n        \"disabled:cursor-not-allowed disabled:opacity-60\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { TextArea }\nexport type { TextAreaProps }\n",
-      "description": "TextArea",
-      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/textarea.tsx"
-    },
-    {
       "id": "301",
       "name": "FieldError",
       "category": "Form Elemanları",
@@ -1279,6 +1268,94 @@
       "code": "/**\n * TextFieldCustomStyles\n * Özelleştirilmiş alan örneği (saf React).\n * @id 298\n * @category Form Elemanları\n * @subcategory TextField\n */\nimport { Input } from \"@/components/ui/input\"\nimport { Label } from \"@/components/ui/label\"\nimport { TextField } from \"@/components/ui/text-field\"\n\nconst fieldClass =\n  \"rounded-xl border border-border/80 bg-background shadow-sm ring-1 ring-black/5 transition-[box-shadow,border-color] focus-visible:ring-2 focus-visible:ring-neutral-400/25 dark:ring-white/10 dark:focus-visible:ring-neutral-500/30\"\n\nfunction TextFieldCustomStyles() {\n  return (\n    <TextField className=\"w-full max-w-64 gap-1.5\" name=\"email\" type=\"email\">\n      <Label className=\"font-medium text-neutral-800 dark:text-neutral-100\">Email</Label>\n      <Input\n        className={`text-sm text-neutral-800 placeholder:text-neutral-400 dark:text-neutral-100 dark:placeholder:text-neutral-500 ${fieldClass}`}\n        placeholder=\"you@email.com\"\n      />\n    </TextField>\n  )\n}\n\nexport { TextFieldCustomStyles }\n",
       "description": "TextFieldCustomStyles",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/text-field-custom-styles.tsx"
+    },
+    {
+      "id": "300",
+      "name": "TextArea",
+      "category": "Form Elemanları",
+      "subcategory": "TextArea",
+      "file": "textarea.tsx",
+      "exists": true,
+      "code": "/**\n * TextArea\n * Saf React bileşen (bağımlılıksız).\n * Çok satırlı metin girişi — TextField içinde veya bağımsız kullanılabilir.\n *   <TextArea rows={4} placeholder=\"Mesajınız\" />  |  <TextField><TextArea /></TextField>\n * Özellikler: TextField context'ine uyum · primary/secondary variant · red invalid.\n * @id 300\n * @category Form Elemanları\n */\nimport type { TextareaHTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { useTextField } from \"@/components/ui/text-field\"\n\ninterface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {\n  variant?: \"primary\" | \"secondary\"\n  /** Konteynerinin tam genişliğini alsın */\n  fullWidth?: boolean\n}\n\nfunction TextArea({ className, variant: variantProp, fullWidth = false, rows = 3, onChange, onFocus, onBlur, ...props }: TextAreaProps) {\n  const ctx = useTextField()\n\n  const variant = variantProp ?? ctx?.variant ?? \"primary\"\n  const invalid = ctx?.isInvalid ?? (props[\"aria-invalid\"] === true || props[\"aria-invalid\"] === \"true\")\n\n  return (\n    <textarea\n      data-slot=\"text-area\"\n      data-variant={variant}\n      value={ctx ? ctx.value : props.value}\n      onChange={(e) => {\n        if (ctx) ctx.setValue(e.target.value)\n        onChange?.(e)\n      }}\n      onFocus={(e) => {\n        ctx?.setFocusWithin(true)\n        onFocus?.(e)\n      }}\n      onBlur={(e) => {\n        ctx?.setFocusWithin(false)\n        onBlur?.(e)\n      }}\n      disabled={ctx ? ctx.isDisabled : props.disabled}\n      readOnly={ctx ? ctx.isReadOnly : props.readOnly}\n      required={ctx ? ctx.isRequired : props.required}\n      name={ctx ? ctx.name : props.name}\n      autoFocus={ctx ? ctx.autoFocus : props.autoFocus}\n      aria-invalid={invalid || undefined}\n      className={cn(\n        \"min-h-20 w-full resize-y rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground\",\n        \"focus:border-ring focus:ring-3 focus:ring-ring/40\",\n        variant === \"secondary\" && \"border-transparent bg-muted/60\",\n        invalid && \"border-red-500 focus:border-red-500 focus:ring-red-500/30\",\n        \"disabled:cursor-not-allowed disabled:opacity-60\",\n        className\n      )}\n      rows={rows}\n      {...props}\n    />\n  )\n}\n\nexport { TextArea }\nexport type { TextAreaProps }\n",
+      "description": "TextArea",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/textarea.tsx"
+    },
+    {
+      "id": "302",
+      "name": "TextAreaBasic",
+      "category": "Form Elemanları",
+      "subcategory": "TextArea",
+      "file": "textarea-basic.tsx",
+      "exists": true,
+      "code": "/**\n * TextAreaBasic\n * Temel örnek: bağımsız textarea (saf React).\n * @id 302\n * @category Form Elemanları\n * @subcategory TextArea\n */\nimport { TextArea } from \"@/components/ui/textarea\"\n\nfunction TextAreaBasic() {\n  return (\n    <TextArea\n      aria-label=\"Quick project update\"\n      className=\"h-32 w-96\"\n      placeholder=\"Share a quick project update...\"\n    />\n  )\n}\n\nexport { TextAreaBasic }\n",
+      "description": "TextAreaBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/textarea-basic.tsx"
+    },
+    {
+      "id": "303",
+      "name": "TextAreaVariants",
+      "category": "Form Elemanları",
+      "subcategory": "TextArea",
+      "file": "textarea-variants.tsx",
+      "exists": true,
+      "code": "/**\n * TextAreaVariants\n * primary/secondary variant örneği (saf React).\n * @id 303\n * @category Form Elemanları\n * @subcategory TextArea\n */\nimport { TextArea } from \"@/components/ui/textarea\"\n\nfunction TextAreaVariants() {\n  return (\n    <div className=\"flex w-[280px] flex-col gap-2\">\n      <TextArea fullWidth placeholder=\"Primary textarea\" variant=\"primary\" />\n      <TextArea fullWidth placeholder=\"Secondary textarea\" variant=\"secondary\" />\n    </div>\n  )\n}\n\nexport { TextAreaVariants }\n",
+      "description": "TextAreaVariants",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/textarea-variants.tsx"
+    },
+    {
+      "id": "304",
+      "name": "TextAreaOnSurface",
+      "category": "Form Elemanları",
+      "subcategory": "TextArea",
+      "file": "textarea-on-surface.tsx",
+      "exists": true,
+      "code": "/**\n * TextAreaOnSurface\n * Yüzey (Surface) üzerinde secondary variant örneği (saf React).\n * Surface bileşeni olmadığından yüzey div ile simüle edilir.\n * @id 304\n * @category Form Elemanları\n * @subcategory TextArea\n */\nimport { TextArea } from \"@/components/ui/textarea\"\n\nfunction TextAreaOnSurface() {\n  return (\n    <div className=\"w-full rounded-3xl bg-muted/40 p-6\">\n      <TextArea\n        className=\"w-full min-w-[280px]\"\n        placeholder=\"Describe your product\"\n        variant=\"secondary\"\n      />\n    </div>\n  )\n}\n\nexport { TextAreaOnSurface }\n",
+      "description": "TextAreaOnSurface",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/textarea-on-surface.tsx"
+    },
+    {
+      "id": "305",
+      "name": "TextAreaFullWidth",
+      "category": "Form Elemanları",
+      "subcategory": "TextArea",
+      "file": "textarea-full-width.tsx",
+      "exists": true,
+      "code": "/**\n * TextAreaFullWidth\n * Tam genişlik örneği (saf React).\n * @id 305\n * @category Form Elemanları\n * @subcategory TextArea\n */\nimport { TextArea } from \"@/components/ui/textarea\"\n\nfunction TextAreaFullWidth() {\n  return (\n    <div className=\"w-[400px] space-y-3\">\n      <TextArea fullWidth placeholder=\"Full width textarea\" />\n    </div>\n  )\n}\n\nexport { TextAreaFullWidth }\n",
+      "description": "TextAreaFullWidth",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/textarea-full-width.tsx"
+    },
+    {
+      "id": "306",
+      "name": "TextAreaControlled",
+      "category": "Form Elemanları",
+      "subcategory": "TextArea",
+      "file": "textarea-controlled.tsx",
+      "exists": true,
+      "code": "/**\n * TextAreaControlled\n * Kontrollü örnek — karakter sayacı (saf React).\n * @id 306\n * @category Form Elemanları\n * @subcategory TextArea\n */\nimport { useState } from \"react\"\nimport { Description } from \"@/components/ui/description\"\nimport { TextArea } from \"@/components/ui/textarea\"\n\nfunction TextAreaControlled() {\n  const [value, setValue] = useState(\"\")\n\n  return (\n    <div className=\"flex w-96 flex-col gap-2\">\n      <TextArea\n        aria-describedby=\"textarea-controlled-description\"\n        aria-label=\"Announcement\"\n        placeholder=\"Compose an announcement...\"\n        value={value}\n        onChange={(event) => setValue(event.target.value)}\n      />\n      <Description id=\"textarea-controlled-description\">\n        Characters: {value.length} / 280\n      </Description>\n    </div>\n  )\n}\n\nexport { TextAreaControlled }\n",
+      "description": "TextAreaControlled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/textarea-controlled.tsx"
+    },
+    {
+      "id": "307",
+      "name": "TextAreaRows",
+      "category": "Form Elemanları",
+      "subcategory": "TextArea",
+      "file": "textarea-rows.tsx",
+      "exists": true,
+      "code": "/**\n * TextAreaRows\n * Satır sayısı ve yeniden boyutlandırma örneği (saf React).\n * @id 307\n * @category Form Elemanları\n * @subcategory TextArea\n */\nimport type { CSSProperties } from \"react\"\nimport { Label } from \"@/components/ui/label\"\nimport { TextArea } from \"@/components/ui/textarea\"\n\nconst resizeStyle: CSSProperties = { resize: \"vertical\" }\n\nfunction TextAreaRows() {\n  return (\n    <div className=\"flex w-96 flex-col gap-4\">\n      <div className=\"flex flex-col gap-2\">\n        <Label htmlFor=\"textarea-rows-3\">Short feedback</Label>\n        <TextArea\n          aria-label=\"Short feedback\"\n          id=\"textarea-rows-3\"\n          placeholder=\"This week's highlights...\"\n          rows={3}\n        />\n      </div>\n      <div className=\"flex flex-col gap-2\">\n        <Label htmlFor=\"textarea-rows-6\">Detailed notes</Label>\n        <TextArea\n          aria-label=\"Detailed notes\"\n          id=\"textarea-rows-6\"\n          placeholder=\"Write out the full meeting notes...\"\n          rows={6}\n          style={resizeStyle}\n        />\n      </div>\n    </div>\n  )\n}\n\nexport { TextAreaRows }\n",
+      "description": "TextAreaRows",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/textarea-rows.tsx"
+    },
+    {
+      "id": "308",
+      "name": "TextAreaCustomStyles",
+      "category": "Form Elemanları",
+      "subcategory": "TextArea",
+      "file": "textarea-custom-styles.tsx",
+      "exists": true,
+      "code": "/**\n * TextAreaCustomStyles\n * Özelleştirilmiş textarea örneği (saf React).\n * @id 308\n * @category Form Elemanları\n * @subcategory TextArea\n */\nimport { TextArea } from \"@/components/ui/textarea\"\n\nconst fieldClass =\n  \"rounded-xl border border-border/80 bg-background shadow-sm ring-1 ring-black/5 transition-[box-shadow,border-color] focus-visible:ring-2 focus-visible:ring-neutral-400/25 dark:ring-white/10 dark:focus-visible:ring-neutral-500/30\"\n\nfunction TextAreaCustomStyles() {\n  return (\n    <TextArea\n      aria-label=\"Notes\"\n      className={`h-28 w-full max-w-xs text-sm text-neutral-800 placeholder:text-neutral-400 dark:text-neutral-100 dark:placeholder:text-neutral-500 ${fieldClass}`}\n      placeholder=\"Add a note...\"\n    />\n  )\n}\n\nexport { TextAreaCustomStyles }\n",
+      "description": "TextAreaCustomStyles",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/textarea-custom-styles.tsx"
     },
     {
       "id": "092",

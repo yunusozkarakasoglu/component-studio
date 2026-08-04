@@ -13,9 +13,11 @@ import { useTextField } from "@/components/ui/text-field"
 
 interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   variant?: "primary" | "secondary"
+  /** Konteynerinin tam genişliğini alsın */
+  fullWidth?: boolean
 }
 
-function TextArea({ className, variant: variantProp, onChange, onFocus, onBlur, ...props }: TextAreaProps) {
+function TextArea({ className, variant: variantProp, fullWidth = false, rows = 3, onChange, onFocus, onBlur, ...props }: TextAreaProps) {
   const ctx = useTextField()
 
   const variant = variantProp ?? ctx?.variant ?? "primary"
@@ -52,6 +54,7 @@ function TextArea({ className, variant: variantProp, onChange, onFocus, onBlur, 
         "disabled:cursor-not-allowed disabled:opacity-60",
         className
       )}
+      rows={rows}
       {...props}
     />
   )

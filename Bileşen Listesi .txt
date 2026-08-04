@@ -125,7 +125,6 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `154` AutocompleteAsynchronousFiltering
 - `155` AutocompleteOnSurface
 - `299` Input
-- `300` TextArea
 - `301` FieldError
 #### TextField
 - `285` TextField
@@ -142,6 +141,15 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `296` TextFieldInputTypes
 - `297` TextFieldRenderFunction
 - `298` TextFieldCustomStyles
+#### TextArea
+- `300` TextArea
+- `302` TextAreaBasic
+- `303` TextAreaVariants
+- `304` TextAreaOnSurface
+- `305` TextAreaFullWidth
+- `306` TextAreaControlled
+- `307` TextAreaRows
+- `308` TextAreaCustomStyles
 
 ### Renk Bileşenleri
 
@@ -271,7 +279,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 214 bileşen (saf React)**
+**Toplam: 221 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

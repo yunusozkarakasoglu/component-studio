@@ -255,4 +255,11 @@ export const SAMPLES: Record<string, ReactNode> = {
   "299": <U.Input />,
   "300": <U.TextArea />,
   "301": <U.FieldError />,
+  "302": <U.TextAreaBasic />,
+  "303": <U.TextAreaVariants />,
+  "304": <U.TextAreaOnSurface />,
+  "305": <U.TextAreaFullWidth />,
+  "306": <U.TextAreaControlled />,
+  "307": <U.TextAreaRows />,
+  "308": <U.TextAreaCustomStyles />,
 }
