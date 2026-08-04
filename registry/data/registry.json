@@ -1,11 +1,12 @@
 {
-  "generatedAt": "2026-08-04T19:56:14.285Z",
+  "generatedAt": "2026-08-04T20:01:31.020Z",
   "counts": {
-    "components": 158,
-    "ready": 158,
+    "components": 174,
+    "ready": 174,
     "layouts": 0
   },
   "categories": [
+    "Combobox",
     "Colors",
     "Accordion",
     "Alert & Dialog",
@@ -23,6 +24,182 @@
     "Özel Komponentler"
   ],
   "components": [
+    {
+      "id": "246",
+      "name": "Combobox",
+      "category": "Combobox",
+      "subcategory": "",
+      "file": "combobox.tsx",
+      "exists": true,
+      "code": "/**\n * Combobox\n * Saf React bileşen (bağımlılıksız).\n * Metin girişi + listbox: yazınca filtre + popover açılır, seçim geri döner.\n *   <Combobox items={animals} label=\"Favorite Animal\" placeholder=\"Search...\" />\n * Özellikler: selectedKey/defaultSelectedKey/onSelectionChange ·\n * inputValue/defaultInputValue/onInputChange · selectionMode (single/multiple) ·\n * disabledKeys · defaultFilter · allowsCustomValue · allowsEmptyCollection ·\n * menuTrigger (focus/input/manual) · isDisabled/isRequired · fullWidth.\n * @id 246\n * @category Combobox\n */\nimport { useEffect, useRef, useState, type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { ChevronsUpDown, X } from \"@/components/ui/icons\"\n\nexport interface ComboboxItem {\n  id: string\n  name: string\n}\n\ntype MenuTrigger = \"focus\" | \"input\" | \"manual\"\n\nfunction Combobox({\n  items,\n  selectedKey,\n  defaultSelectedKey,\n  onSelectionChange,\n  inputValue,\n  defaultInputValue,\n  onInputChange,\n  selectionMode = \"single\",\n  disabledKeys = [],\n  defaultFilter,\n  isDisabled,\n  isRequired,\n  name,\n  allowsCustomValue,\n  allowsEmptyCollection,\n  menuTrigger = \"focus\",\n  fullWidth,\n  label,\n  description,\n  placeholder = \"Seç…\",\n  className,\n}: {\n  items: ComboboxItem[]\n  selectedKey?: string | string[] | null\n  defaultSelectedKey?: string | string[]\n  onSelectionChange?: (key: string | string[] | null) => void\n  inputValue?: string\n  defaultInputValue?: string\n  onInputChange?: (value: string) => void\n  selectionMode?: \"single\" | \"multiple\"\n  disabledKeys?: string[]\n  defaultFilter?: (text: string, inputValue: string) => boolean\n  isDisabled?: boolean\n  isRequired?: boolean\n  /** Form gönderiminde kullanılan input adı */\n  name?: string\n  allowsCustomValue?: boolean\n  allowsEmptyCollection?: boolean\n  menuTrigger?: MenuTrigger\n  fullWidth?: boolean\n  label?: ReactNode\n  description?: ReactNode\n  placeholder?: string\n  className?: string\n}) {\n  const [internalKey, setInternalKey] = useState<string | string[] | null>(defaultSelectedKey ?? null)\n  const [internalInput, setInternalInput] = useState(defaultInputValue ?? \"\")\n  const [open, setOpen] = useState(false)\n  const rootRef = useRef<HTMLDivElement>(null)\n  const inputRef = useRef<HTMLInputElement>(null)\n\n  const controlledKey = selectedKey !== undefined\n  const selected = controlledKey ? selectedKey : internalKey\n  const controlledInput = inputValue !== undefined\n  const input = controlledInput ? inputValue : internalInput\n\n  const setKey = (k: string | string[] | null) => {\n    if (!controlledKey) setInternalKey(k)\n    onSelectionChange?.(k)\n  }\n  const setInput = (v: string) => {\n    if (!controlledInput) setInternalInput(v)\n    onInputChange?.(v)\n  }\n\n  // Dış tıklama / ESC\n  useEffect(() => {\n    if (!open) return\n    const onDown = (e: MouseEvent) => {\n      if (rootRef.current && !rootRef.current.contains(e.target as Node)) setOpen(false)\n    }\n    const onKey = (e: KeyboardEvent) => {\n      if (e.key === \"Escape\") { setOpen(false); inputRef.current?.focus() }\n    }\n    document.addEventListener(\"mousedown\", onDown)\n    document.addEventListener(\"keydown\", onKey)\n    return () => {\n      document.removeEventListener(\"mousedown\", onDown)\n      document.removeEventListener(\"keydown\", onKey)\n    }\n  }, [open])\n\n  const filter = defaultFilter ?? ((text: string, q: string) => text.toLowerCase().includes(q.toLowerCase()))\n  const filtered = allowsEmptyCollection ? items : items.filter((i) => filter(i.name, input))\n\n  const isSelected = (id: string) => (Array.isArray(selected) ? selected.includes(id) : selected === id)\n\n  const select = (id: string) => {\n    if (isDisabled || disabledKeys.includes(id)) return\n    const item = items.find((i) => i.id === id)\n    if (selectionMode === \"single\") {\n      setKey(id)\n      setInput(item?.name ?? id)\n      setOpen(false)\n      inputRef.current?.focus()\n    } else {\n      const arr = Array.isArray(selected) ? [...selected] : []\n      setKey(arr.includes(id) ? arr.filter((x) => x !== id) : [...arr, id])\n    }\n  }\n\n  const selectedItems = items.filter((i) => isSelected(i.id))\n  const showValue = selectionMode === \"multiple\" && selectedItems.length > 0\n\n  return (\n    <div ref={rootRef} className={cn(\"relative flex flex-col gap-1.5\", fullWidth && \"w-full\", isDisabled && \"opacity-60\", className)}>\n      {label && <label className=\"text-sm font-medium text-foreground\">{label}</label>}\n\n      <div className=\"relative\">\n        <input\n          ref={inputRef}\n          type=\"text\"\n          name={name}\n          value={input}\n          disabled={isDisabled}\n          required={isRequired || undefined}\n          placeholder={placeholder}\n          onFocus={() => menuTrigger !== \"manual\" && setOpen(true)}\n          onChange={(e) => {\n            setInput(e.target.value)\n            if (menuTrigger === \"input\" || menuTrigger === \"focus\") setOpen(true)\n          }}\n          role=\"combobox\"\n          aria-expanded={open}\n          aria-haspopup=\"listbox\"\n          className={cn(\n            \"h-10 w-full rounded-lg border border-border bg-background px-3 pr-9 text-sm outline-none transition-colors focus:border-black/50 focus-visible:ring-3 focus-visible:ring-ring/50\",\n            isDisabled && \"cursor-not-allowed\"\n          )}\n        />\n        <button\n          type=\"button\"\n          tabIndex={-1}\n          aria-label=\"Seçenekleri aç\"\n          disabled={isDisabled}\n          onClick={() => setOpen(!open)}\n          className=\"absolute top-1/2 right-2 flex -translate-y-1/2 items-center justify-center rounded p-1 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground\"\n        >\n          <ChevronsUpDown className={cn(\"size-4 transition-transform\", open && \"rotate-180\")} />\n        </button>\n      </div>\n\n      {/* Çoklu seçim tag'leri */}\n      {showValue && (\n        <div className=\"flex flex-wrap gap-1.5\">\n          {selectedItems.map((item) => (\n            <span key={item.id} className=\"inline-flex items-center gap-1 rounded-md bg-muted px-2 py-0.5 text-xs font-medium\">\n              {item.name}\n              <button\n                type=\"button\"\n                aria-label={`${item.name} kaldır`}\n                onClick={() => select(item.id)}\n                className=\"flex size-3.5 items-center justify-center rounded-full text-muted-foreground hover:bg-black/10 hover:text-foreground\"\n              >\n                <X className=\"size-2.5\" />\n              </button>\n            </span>\n          ))}\n        </div>\n      )}\n\n      {open && (\n        <div\n          role=\"listbox\"\n          className=\"absolute top-full z-40 mt-1.5 w-full min-w-[200px] rounded-lg border border-border bg-popover p-1 text-popover-foreground shadow-lg\"\n        >\n          {filtered.length === 0 ? (\n            <div className=\"px-3 py-6 text-center text-sm text-muted-foreground\">\n              {allowsCustomValue ? \"Özel değer yazabilirsiniz\" : \"Sonuç bulunamadı\"}\n            </div>\n          ) : (\n            filtered.map((item) => {\n              const disabled = disabledKeys.includes(item.id)\n              const sel = isSelected(item.id)\n              return (\n                <div\n                  key={item.id}\n                  role=\"option\"\n                  aria-selected={sel}\n                  onClick={() => select(item.id)}\n                  className={cn(\n                    \"flex cursor-pointer items-center justify-between rounded-md px-3 py-2 text-sm transition-colors\",\n                    sel ? \"bg-blue-600 text-white\" : \"hover:bg-muted\",\n                    disabled && \"cursor-not-allowed opacity-40 hover:bg-transparent\"\n                  )}\n                >\n                  {item.name}\n                </div>\n              )\n            })\n          )}\n        </div>\n      )}\n\n      {description && <p className=\"text-xs text-muted-foreground\">{description}</p>}\n    </div>\n  )\n}\n\nexport { Combobox }\n",
+      "description": "Combobox",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/combobox.tsx"
+    },
+    {
+      "id": "247",
+      "name": "ComboboxDefault",
+      "category": "Combobox",
+      "subcategory": "",
+      "file": "combobox-default.tsx",
+      "exists": true,
+      "code": "/**\n * ComboboxDefault\n * Kullanım örneği — temel combo box (saf React).\n * @id 247\n * @category Combobox\n */\nimport { Combobox } from \"@/components/ui/combobox\"\n\nconst animals = [\n  { id: \"aardvark\", name: \"Aardvark\" }, { id: \"cat\", name: \"Cat\" }, { id: \"dog\", name: \"Dog\" },\n  { id: \"kangaroo\", name: \"Kangaroo\" }, { id: \"panda\", name: \"Panda\" }, { id: \"snake\", name: \"Snake\" },\n]\n\nfunction ComboboxDefault() {\n  return <Combobox className=\"w-[256px]\" items={animals} label=\"Favorite Animal\" placeholder=\"Search animals...\" />\n}\n\nexport { ComboboxDefault }\n",
+      "description": "ComboboxDefault",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/combobox-default.tsx"
+    },
+    {
+      "id": "248",
+      "name": "ComboboxFullWidth",
+      "category": "Combobox",
+      "subcategory": "",
+      "file": "combobox-full-width.tsx",
+      "exists": true,
+      "code": "/**\n * ComboboxFullWidth\n * Tam genişlik örneği (saf React).\n * @id 248\n * @category Combobox\n */\nimport { Combobox } from \"@/components/ui/combobox\"\n\nconst animals = [\n  { id: \"aardvark\", name: \"Aardvark\" }, { id: \"cat\", name: \"Cat\" }, { id: \"dog\", name: \"Dog\" },\n]\n\nfunction ComboboxFullWidth() {\n  return (\n    <div className=\"w-[400px]\">\n      <Combobox fullWidth items={animals} label=\"Favorite Animal\" placeholder=\"Search animals...\" />\n    </div>\n  )\n}\n\nexport { ComboboxFullWidth }\n",
+      "description": "ComboboxFullWidth",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/combobox-full-width.tsx"
+    },
+    {
+      "id": "249",
+      "name": "ComboboxWithDescription",
+      "category": "Combobox",
+      "subcategory": "",
+      "file": "combobox-with-description.tsx",
+      "exists": true,
+      "code": "/**\n * ComboboxWithDescription\n * Açıklamalı örnek (saf React).\n * @id 249\n * @category Combobox\n */\nimport { Combobox } from \"@/components/ui/combobox\"\n\nconst animals = [\n  { id: \"aardvark\", name: \"Aardvark\" }, { id: \"cat\", name: \"Cat\" }, { id: \"dog\", name: \"Dog\" },\n  { id: \"kangaroo\", name: \"Kangaroo\" }, { id: \"panda\", name: \"Panda\" }, { id: \"snake\", name: \"Snake\" },\n]\n\nfunction ComboboxWithDescription() {\n  return (\n    <Combobox\n      className=\"w-[256px]\"\n      items={animals}\n      label=\"Favorite Animal\"\n      placeholder=\"Search animals...\"\n      description=\"Search and select your favorite animal\"\n    />\n  )\n}\n\nexport { ComboboxWithDescription }\n",
+      "description": "ComboboxWithDescription",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/combobox-with-description.tsx"
+    },
+    {
+      "id": "250",
+      "name": "ComboboxRequired",
+      "category": "Combobox",
+      "subcategory": "",
+      "file": "combobox-required.tsx",
+      "exists": true,
+      "code": "/**\n * ComboboxRequired\n * Zorunlu alan örneği (saf React).\n * @id 250\n * @category Combobox\n */\nimport { useState, type FormEvent } from \"react\"\nimport { Combobox } from \"@/components/ui/combobox\"\nimport { Button } from \"@/components/ui/button\"\n\nconst animals = [\n  { id: \"aardvark\", name: \"Aardvark\" }, { id: \"cat\", name: \"Cat\" }, { id: \"dog\", name: \"Dog\" },\n]\n\nfunction ComboboxRequired() {\n  const [msg, setMsg] = useState(\"\")\n  const onSubmit = (e: FormEvent<HTMLFormElement>) => {\n    e.preventDefault()\n    const data = new FormData(e.currentTarget)\n    setMsg(\"Gönderildi: \" + (data.get(\"animal\")?.toString() || \"(boş)\"))\n  }\n  return (\n    <form className=\"flex w-[256px] flex-col gap-4\" onSubmit={onSubmit}>\n      <Combobox isRequired name=\"animal\" items={animals} label=\"Favorite Animal\" placeholder=\"Search animals...\" />\n      <Button type=\"submit\" className=\"w-fit\">Submit</Button>\n      {msg && <p className=\"text-sm text-muted-foreground\">{msg}</p>}\n    </form>\n  )\n}\n\nexport { ComboboxRequired }\n",
+      "description": "ComboboxRequired",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/combobox-required.tsx"
+    },
+    {
+      "id": "251",
+      "name": "ComboboxDisabled",
+      "category": "Combobox",
+      "subcategory": "",
+      "file": "combobox-disabled.tsx",
+      "exists": true,
+      "code": "/**\n * ComboboxDisabled\n * Devre dışı örnek (saf React).\n * @id 251\n * @category Combobox\n */\nimport { Combobox } from \"@/components/ui/combobox\"\n\nconst animals = [\n  { id: \"aardvark\", name: \"Aardvark\" }, { id: \"cat\", name: \"Cat\" }, { id: \"dog\", name: \"Dog\" },\n]\n\nfunction ComboboxDisabled() {\n  return (\n    <Combobox isDisabled defaultSelectedKey=\"cat\" className=\"w-[256px]\" items={animals} label=\"Favorite Animal\" placeholder=\"Search animals...\" />\n  )\n}\n\nexport { ComboboxDisabled }\n",
+      "description": "ComboboxDisabled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/combobox-disabled.tsx"
+    },
+    {
+      "id": "252",
+      "name": "ComboboxWithDisabledOptions",
+      "category": "Combobox",
+      "subcategory": "",
+      "file": "combobox-with-disabled-options.tsx",
+      "exists": true,
+      "code": "/**\n * ComboboxWithDisabledOptions\n * Seçilemez seçenekler örneği (saf React).\n * @id 252\n * @category Combobox\n */\nimport { Combobox } from \"@/components/ui/combobox\"\n\nconst animals = [\n  { id: \"dog\", name: \"Dog\" }, { id: \"cat\", name: \"Cat\" }, { id: \"bird\", name: \"Bird\" },\n  { id: \"kangaroo\", name: \"Kangaroo\" }, { id: \"elephant\", name: \"Elephant\" }, { id: \"tiger\", name: \"Tiger\" },\n]\n\nfunction ComboboxWithDisabledOptions() {\n  return <Combobox className=\"w-[256px]\" disabledKeys={[\"cat\", \"kangaroo\"]} items={animals} label=\"Animal\" placeholder=\"Search animals...\" />\n}\n\nexport { ComboboxWithDisabledOptions }\n",
+      "description": "ComboboxWithDisabledOptions",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/combobox-with-disabled-options.tsx"
+    },
+    {
+      "id": "253",
+      "name": "ComboboxControlled",
+      "category": "Combobox",
+      "subcategory": "",
+      "file": "combobox-controlled.tsx",
+      "exists": true,
+      "code": "/**\n * ComboboxControlled\n * Kontrollü seçim örneği (saf React).\n * @id 253\n * @category Combobox\n */\nimport { useState } from \"react\"\nimport { Combobox } from \"@/components/ui/combobox\"\n\nconst animals = [\n  { id: \"cat\", name: \"Cat\" }, { id: \"dog\", name: \"Dog\" }, { id: \"bird\", name: \"Bird\" },\n  { id: \"fish\", name: \"Fish\" }, { id: \"hamster\", name: \"Hamster\" },\n]\n\nfunction ComboboxControlled() {\n  const [selectedKey, setSelectedKey] = useState<string | null>(\"cat\")\n  const selected = animals.find((a) => a.id === selectedKey)\n  return (\n    <div className=\"w-[256px] space-y-2\">\n      <Combobox items={animals} label=\"Animal (controlled)\" selectedKey={selectedKey} onSelectionChange={(k) => setSelectedKey(k as string | null)} />\n      <p className=\"text-sm text-muted-foreground\">Selected: {selected?.name || \"None\"}</p>\n    </div>\n  )\n}\n\nexport { ComboboxControlled }\n",
+      "description": "ComboboxControlled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/combobox-controlled.tsx"
+    },
+    {
+      "id": "254",
+      "name": "ComboboxControlledInput",
+      "category": "Combobox",
+      "subcategory": "",
+      "file": "combobox-controlled-input.tsx",
+      "exists": true,
+      "code": "/**\n * ComboboxControlledInput\n * Kontrollü input değeri örneği (saf React).\n * @id 254\n * @category Combobox\n */\nimport { useState } from \"react\"\nimport { Combobox } from \"@/components/ui/combobox\"\n\nconst animals = [\n  { id: \"aardvark\", name: \"Aardvark\" }, { id: \"cat\", name: \"Cat\" }, { id: \"dog\", name: \"Dog\" },\n  { id: \"kangaroo\", name: \"Kangaroo\" }, { id: \"panda\", name: \"Panda\" }, { id: \"snake\", name: \"Snake\" },\n]\n\nfunction ComboboxControlledInput() {\n  const [inputValue, setInputValue] = useState(\"\")\n  return (\n    <div className=\"w-[256px] space-y-2\">\n      <Combobox items={animals} label=\"Search (controlled input)\" inputValue={inputValue} onInputChange={setInputValue} placeholder=\"Type to search...\" />\n      <p className=\"text-sm text-muted-foreground\">Input value: {inputValue || \"(empty)\"}</p>\n    </div>\n  )\n}\n\nexport { ComboboxControlledInput }\n",
+      "description": "ComboboxControlledInput",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/combobox-controlled-input.tsx"
+    },
+    {
+      "id": "255",
+      "name": "ComboboxAsyncLoading",
+      "category": "Combobox",
+      "subcategory": "",
+      "file": "combobox-async-loading.tsx",
+      "exists": true,
+      "code": "/**\n * ComboboxAsyncLoading\n * Asenkron yükleme örneği — dış API yok, yerel simülasyon (saf React).\n * @id 255\n * @category Combobox\n */\nimport { useEffect, useState } from \"react\"\nimport { Combobox, type ComboboxItem } from \"@/components/ui/combobox\"\nimport { Spinner } from \"@/components/ui/spinner\"\n\nconst CHARACTERS = [\"Luke Skywalker\", \"Darth Vader\", \"Leia Organa\", \"Han Solo\", \"Yoda\", \"Obi-Wan Kenobi\"]\n\nfunction ComboboxAsyncLoading() {\n  const [items, setItems] = useState<ComboboxItem[]>([])\n  const [loading, setLoading] = useState(true)\n  useEffect(() => {\n    const t = setTimeout(() => {\n      setItems(CHARACTERS.map((n, i) => ({ id: String(i), name: n })))\n      setLoading(false)\n    }, 1200)\n    return () => clearTimeout(t)\n  }, [])\n  if (loading) {\n    return (\n      <div className=\"flex h-10 w-[256px] items-center gap-2 text-sm text-muted-foreground\">\n        <Spinner size=\"sm\" /> Yükleniyor…\n      </div>\n    )\n  }\n  return <Combobox allowsEmptyCollection className=\"w-[256px]\" items={items} label=\"Pick a Character\" placeholder=\"Star Wars characters...\" />\n}\n\nexport { ComboboxAsyncLoading }\n",
+      "description": "ComboboxAsyncLoading",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/combobox-async-loading.tsx"
+    },
+    {
+      "id": "256",
+      "name": "ComboboxDefaultSelectedKey",
+      "category": "Combobox",
+      "subcategory": "",
+      "file": "combobox-default-selected-key.tsx",
+      "exists": true,
+      "code": "/**\n * ComboboxDefaultSelectedKey\n * Varsayılan seçim örneği (saf React).\n * @id 256\n * @category Combobox\n */\nimport { Combobox } from \"@/components/ui/combobox\"\n\nconst animals = [\n  { id: \"aardvark\", name: \"Aardvark\" }, { id: \"cat\", name: \"Cat\" }, { id: \"dog\", name: \"Dog\" },\n  { id: \"kangaroo\", name: \"Kangaroo\" }, { id: \"panda\", name: \"Panda\" }, { id: \"snake\", name: \"Snake\" },\n]\n\nfunction ComboboxDefaultSelectedKey() {\n  return <Combobox className=\"w-[256px]\" defaultSelectedKey=\"cat\" items={animals} label=\"Favorite Animal\" placeholder=\"Search animals...\" />\n}\n\nexport { ComboboxDefaultSelectedKey }\n",
+      "description": "ComboboxDefaultSelectedKey",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/combobox-default-selected-key.tsx"
+    },
+    {
+      "id": "257",
+      "name": "ComboboxAllowsCustomValue",
+      "category": "Combobox",
+      "subcategory": "",
+      "file": "combobox-allows-custom-value.tsx",
+      "exists": true,
+      "code": "/**\n * ComboboxAllowsCustomValue\n * Özel değer örneği — listede olmayan değer yazılabilir (saf React).\n * @id 257\n * @category Combobox\n */\nimport { Combobox } from \"@/components/ui/combobox\"\n\nconst animals = [\n  { id: \"aardvark\", name: \"Aardvark\" }, { id: \"cat\", name: \"Cat\" }, { id: \"dog\", name: \"Dog\" },\n  { id: \"kangaroo\", name: \"Kangaroo\" }, { id: \"panda\", name: \"Panda\" }, { id: \"snake\", name: \"Snake\" },\n]\n\nfunction ComboboxAllowsCustomValue() {\n  return (\n    <Combobox\n      allowsCustomValue\n      className=\"w-[256px]\"\n      items={animals}\n      label=\"Favorite Animal\"\n      placeholder=\"Search or type an animal...\"\n      description=\"You can type any animal name, even if it's not in the list\"\n    />\n  )\n}\n\nexport { ComboboxAllowsCustomValue }\n",
+      "description": "ComboboxAllowsCustomValue",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/combobox-allows-custom-value.tsx"
+    },
+    {
+      "id": "258",
+      "name": "ComboboxCustomFiltering",
+      "category": "Combobox",
+      "subcategory": "",
+      "file": "combobox-custom-filtering.tsx",
+      "exists": true,
+      "code": "/**\n * ComboboxCustomFiltering\n * Özel filtre örneği (saf React).\n * @id 258\n * @category Combobox\n */\nimport { Combobox } from \"@/components/ui/combobox\"\n\nconst animals = [\n  { id: \"cat\", name: \"Cat\" }, { id: \"dog\", name: \"Dog\" }, { id: \"bird\", name: \"Bird\" },\n  { id: \"fish\", name: \"Fish\" }, { id: \"hamster\", name: \"Hamster\" },\n]\n\nfunction ComboboxCustomFiltering() {\n  return (\n    <Combobox\n      className=\"w-[256px]\"\n      items={animals}\n      label=\"Animal (custom filter)\"\n      defaultFilter={(text, inputValue) => {\n        if (!inputValue) return true\n        return text.toLowerCase().includes(inputValue.toLowerCase())\n      }}\n    />\n  )\n}\n\nexport { ComboboxCustomFiltering }\n",
+      "description": "ComboboxCustomFiltering",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/combobox-custom-filtering.tsx"
+    },
+    {
+      "id": "259",
+      "name": "ComboboxMultipleSelection",
+      "category": "Combobox",
+      "subcategory": "",
+      "file": "combobox-multiple-selection.tsx",
+      "exists": true,
+      "code": "/**\n * ComboboxMultipleSelection\n * Çoklu seçim örneği — seçilenler tag olarak gösterilir (saf React).\n * @id 259\n * @category Combobox\n */\nimport { Combobox } from \"@/components/ui/combobox\"\n\nconst animals = [\n  { id: \"aardvark\", name: \"Aardvark\" }, { id: \"cat\", name: \"Cat\" }, { id: \"dog\", name: \"Dog\" },\n  { id: \"kangaroo\", name: \"Kangaroo\" }, { id: \"panda\", name: \"Panda\" }, { id: \"snake\", name: \"Snake\" },\n]\n\nfunction ComboboxMultipleSelection() {\n  return <Combobox className=\"w-[256px]\" selectionMode=\"multiple\" items={animals} label=\"Favorite Animals\" placeholder=\"Search animals...\" />\n}\n\nexport { ComboboxMultipleSelection }\n",
+      "description": "ComboboxMultipleSelection",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/combobox-multiple-selection.tsx"
+    },
+    {
+      "id": "260",
+      "name": "ComboboxOnSurface",
+      "category": "Combobox",
+      "subcategory": "",
+      "file": "combobox-on-surface.tsx",
+      "exists": true,
+      "code": "/**\n * ComboboxOnSurface\n * Surface üzerinde örnek (saf React).\n * @id 260\n * @category Combobox\n */\nimport { Combobox } from \"@/components/ui/combobox\"\n\nconst animals = [\n  { id: \"aardvark\", name: \"Aardvark\" }, { id: \"cat\", name: \"Cat\" }, { id: \"dog\", name: \"Dog\" },\n  { id: \"kangaroo\", name: \"Kangaroo\" }, { id: \"panda\", name: \"Panda\" }, { id: \"snake\", name: \"Snake\" },\n]\n\nfunction ComboboxOnSurface() {\n  return (\n    <div className=\"w-[320px] rounded-3xl bg-muted/20 p-6\">\n      <Combobox fullWidth items={animals} label=\"Favorite Animal\" placeholder=\"Search animals...\" />\n    </div>\n  )\n}\n\nexport { ComboboxOnSurface }\n",
+      "description": "ComboboxOnSurface",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/combobox-on-surface.tsx"
+    },
+    {
+      "id": "261",
+      "name": "ComboboxCustomStyles",
+      "category": "Combobox",
+      "subcategory": "",
+      "file": "combobox-custom-styles.tsx",
+      "exists": true,
+      "code": "/**\n * ComboboxCustomStyles\n * Özelleştirilmiş görünüm örneği (saf React).\n * @id 261\n * @category Combobox\n */\nimport { Combobox } from \"@/components/ui/combobox\"\n\nconst frameworks = [\n  { id: \"react\", name: \"React\" }, { id: \"vue\", name: \"Vue\" }, { id: \"svelte\", name: \"Svelte\" },\n]\n\nfunction ComboboxCustomStyles() {\n  return <Combobox className=\"w-64\" items={frameworks} label=\"Framework\" placeholder=\"Search...\" />\n}\n\nexport { ComboboxCustomStyles }\n",
+      "description": "ComboboxCustomStyles",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/combobox-custom-styles.tsx"
+    },
     {
       "id": "230",
       "name": "ColorArea",

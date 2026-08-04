@@ -7,6 +7,24 @@ Kopyala → projene yapıştır → çalışır.
 Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanlar
 "henüz bileşen yok" olarak listelenir.
 
+### Combobox
+- `246` Combobox
+- `247` ComboboxDefault
+- `248` ComboboxFullWidth
+- `249` ComboboxWithDescription
+- `250` ComboboxRequired
+- `251` ComboboxDisabled
+- `252` ComboboxWithDisabledOptions
+- `253` ComboboxControlled
+- `254` ComboboxControlledInput
+- `255` ComboboxAsyncLoading
+- `256` ComboboxDefaultSelectedKey
+- `257` ComboboxAllowsCustomValue
+- `258` ComboboxCustomFiltering
+- `259` ComboboxMultipleSelection
+- `260` ComboboxOnSurface
+- `261` ComboboxCustomStyles
+
 ### Colors
 #### ColorArea
 - `230` ColorArea
@@ -205,7 +223,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 158 bileşen (saf React)**
+**Toplam: 174 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
