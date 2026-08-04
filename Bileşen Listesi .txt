@@ -178,6 +178,18 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ### Overlay
 
+### Panel & Drawer
+- `275` Drawer
+- `276` DrawerBasic
+- `277` DrawerPlacements
+- `278` DrawerNonDismissable
+- `279` DrawerScrollable
+- `280` DrawerControlled
+- `281` DrawerWithForm
+- `282` DrawerNavigation
+- `283` DrawerBackdropVariants
+- `284` DrawerCustomStyles
+
 ### Genel
 - `156` Avatar
 - `157` AvatarBasic
@@ -241,7 +253,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 187 bileşen (saf React)**
+**Toplam: 197 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

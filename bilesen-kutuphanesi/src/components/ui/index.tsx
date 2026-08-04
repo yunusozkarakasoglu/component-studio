@@ -193,3 +193,26 @@ export * from "./date-picker-controlled"
 export * from "./date-range-picker-basic"
 export * from "./date-range-picker-disabled"
 export * from "./date-range-picker-controlled"
+export {
+  Drawer,
+  DrawerBackdrop,
+  DrawerBody,
+  DrawerCloseTrigger,
+  DrawerContent,
+  DrawerDialog,
+  DrawerFooter,
+  DrawerHandle,
+  DrawerHeader,
+  DrawerHeading,
+  useDrawer,
+} from "./drawer"
+export type { DrawerBackdropVariant, DrawerContentProps, DrawerOverlayState, DrawerPlacement } from "./drawer"
+export * from "./drawer-basic"
+export * from "./drawer-placements"
+export * from "./drawer-non-dismissable"
+export * from "./drawer-scrollable"
+export * from "./drawer-controlled"
+export * from "./drawer-with-form"
+export * from "./drawer-navigation"
+export * from "./drawer-backdrop-variants"
+export * from "./drawer-custom-styles"
