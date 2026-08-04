@@ -42,7 +42,9 @@ function pascal(s) {
 function slug(name) {
   const overrides = { ComboBox: "combobox", Textfield: "text-field" }
   if (overrides[name]) return overrides[name]
-  return name.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase()
+  // "TextArea" tek kelime kabul edilir (text-area değil textarea)
+  const normalized = name.replace(/TextArea/g, "Textarea")
+  return normalized.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase()
 }
 
 /* ---------- Bileşen dosyalarını oku (envanter) ---------- */
