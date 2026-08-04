@@ -27,7 +27,7 @@ let category = "Genel"
 for (const line of inv.split("\n")) {
   const catMatch = line.match(/^###\s+(.+)/)
   if (catMatch) { category = catMatch[1].trim(); continue }
-  const itemMatch = line.match(/`(\d+)`\s+([A-Za-z]+)/)
+  const itemMatch = line.match(/`(\d+)`\s+([A-Za-z0-9]+)/)
   if (itemMatch) items.push({ id: itemMatch[1], name: itemMatch[2], category })
 }
 
