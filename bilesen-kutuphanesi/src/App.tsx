@@ -249,10 +249,12 @@ function buildPrompt(absPath: string, name: string, id: string, category: string
   const t = task.trim() || "(kullanıcı görevi belirtilmedi — bileşeni projeye ekle ve örnek kullanımını göster)"
   const tur = kind === "layout" ? "sayfa şablonunu" : "bileşeni"
   const baslik = kind === "layout" ? "ŞABLON" : "BİLEŞEN"
+  const uiDir = absPath.includes("/") ? absPath.slice(0, absPath.lastIndexOf("/")) : absPath
   const depLines = [
     ...deps.files.map((f) => `- ${f.path}   ← ${f.file}`),
-    deps.needsIcons ? "- <proje>/src/components/ui/icons.tsx   ← kendi ikon setimiz (SVG gömülü)" : "",
-    deps.needsCn ? "- @/lib/utils → cn() util'i (clsx + tailwind-merge)" : "",
+    deps.needsIcons ? `- ${uiDir}/icons.tsx   ← kendi ikon setimiz (SVG gömülü — HER bileşen için gerekli)` : "",
+    deps.needsIcons ? `- ${uiDir}/icons-brand.tsx   ← marka ikonları (yalnızca import ediliyorsa)` : "",
+    deps.needsCn ? `- @/lib/utils → cn() util'i — projede yoksa OLUŞTUR: (...c) => c.filter(Boolean).join(" ") (basit versiyon yeterli)` : "",
   ].filter(Boolean)
   return `GÖREV: Aşağıdaki ${tur} projeme entegre et ve belirtilen görevi uygula.
 
@@ -266,8 +268,8 @@ KULLANICI GÖREVİ: ${t}
 
 KURALLAR:
 1. ANA DOSYA ve BAĞIMLILIK DOSYALARI'nı olduğu gibi kullan — isimleri ve export'ları değiştirme.
-2. Bağımlılık: yalnızca react + tailwind. Üçüncü parti UI paketi KURMA.
-3. "@/" import alias'ı "src" klasörüne işaret etmeli; @/lib/utils içinde cn() olmalı (clsx + tailwind-merge).
+2. Bağımlılık: yalnızca react + tailwind. Üçüncü parti UI paketi KURMA (cn() için clsx/tailwind-merge gerekli DEĞİL — basit join yeterli).
+3. "@/" import alias'ı "src" klasörüne işaret etmeli; @/lib/utils içinde cn() olmalı (projede varsa kullan, yoksa basit join oluştur — clsx/tailwind-merge şart değil).
 4. Tailwind v4 + şablon tema değişkenleri (index.css) hazır olduğunu varsay.
 5. KULLANICI GÖREVİ'ni uygula ve yaptığın değişiklikleri açıkla.
 6. Yalnızca çalışan, derlenebilir kod üret.`
