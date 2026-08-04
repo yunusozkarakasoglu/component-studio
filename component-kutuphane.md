@@ -16,10 +16,9 @@ Bu kılavuz, offline React bileşen kütüphanesinin nasıl açılacağını ve 
 Kategorilere ayrılmış, aranabilir, düzenlenebilir, özelleştirilebilir, genişletilebilir bir
 **offline React bileşen kütüphanesi** — **saf React** (üçüncü parti UI bağımlılığı YOK).
 
-- Bileşen sayısı: 89+ (87 envanter + özel eklenenler)
-- Sayfa şablonları: 10
-- Her bileşen: tek dosya, named export, interface dosya başında, bağımsız import
-- Her bileşenin dosya başında `@id` ve `@category` etiketleri vardır
+- Bileşen sayısı: 187 · 18 kategori · alt kategori ağacı (`Kategori ▸ Alt Kategori ▸ Bileşen`)
+- Her bileşen: tek dosya, named export, interface dosya başında
+- Dosya başında zorunlu etiketler: `@id` + `@category` (+ gerekirse `@subcategory`, `Gerektirir`)
 
 ## 2) Kütüphaneyi açma (kullanıcı istediğinde)
 
@@ -39,13 +38,15 @@ Bileşene tıklayınca: canlı önizleme + kod düzenleme + 📂 Path Kopyala + 
 <kök>/
 ├── component-kutuphane.md      ← bu kılavuz
 ├── yollar.mjs                  ← dinamik yol çözümleyici (node yollar.mjs)
-├── Bileşen Listesi .txt        ← envanter (87 bileşen + numaralar + kategoriler)
+├── Bileşen Listesi .txt        ← envanter kaynağı (### Kategori, #### Alt Kategori)
 ├── bilesen-kutuphanesi/
 │   ├── src/components/ui/*.tsx ← BİLEŞENLER (her biri tek dosya)
-│   ├── src/layouts/*.tsx       ← SAYFA ŞABLONLARI
+│   │   ├── icons.tsx           ← KENDİ ikon seti (SVG gömülü, paket yok)
+│   │   ├── icons-brand.tsx     ← marka ikonları (Google/GitHub/Apple)
+│   │   └── color.ts            ← ortak renk çekirdeği (bileşen değil)
 │   ├── src/samples.tsx         ← galeri önizlemeleri
 │   ├── src/components/ui/index.tsx ← çatı (barrel) export
-│   └── scripts/generate-missing.mjs
+│   └── scripts/generate-icons.mjs ← ikon seti üretici
 └── registry/
     ├── build-registry.mjs      ← veri tabanı üretici
     └── data/registry.json      ← bileşen + şablon kayıtları (path dahil)
@@ -53,23 +54,26 @@ Bileşene tıklayınca: canlı önizleme + kod düzenleme + 📂 Path Kopyala + 
 
 ## 4) Bileşen numaralandırma
 
-- Numaralar benzersiz kimliklerdir (001-087 envanter, 088+ özel eklemeler)
-- Sıralama alfabetiktir (001 Accordion → 087 Tooltip); kategoriler etiket grubudur
-- Yeni bileşen → sıradaki boş numara (ör. 090)
+- Numaralar benzersiz kimliklerdir (mevcut en yüksek + 1)
+- Kategori ve alt kategori, dosyadaki `@category` / `@subcategory` etiketlerinden gelir
+- Yeni bileşen → sıradaki boş numara
 
 ## 5) Görev A — Kullanıcının projesine bileşen entegre etme
 
 Kullanıcı bir dosya yolu verdiğinde veya "008 Button'ı projeme ekle" dediğinde:
 
 1. **Dosyayı oku** (`read` ile) — bileşeni olduğu gibi kullan, isimleri/export'ları değiştirme.
-2. **Bağımlılık gerekmez** — bileşen saf React'tir (yalnızca react + tailwind + `@/lib/utils` içinde `cn()`).
-   İkonlar kendi setimizden: `@/components/ui/icons` (SVG gömülü, paket bağımlılığı yok).
+2. **Bağımlılık zincirini çöz** — import'lardan (`@/components/ui/x`) recursive takip + JSDoc "Gerektirir:" notu:
+   - Üst düzey bileşen (date-picker vb.) çekirdeği de kopyalar (calendar, color.ts, checkbox, button…)
+   - `icons.tsx` / `icons-brand.tsx` → her bileşen için gerekli (SVG gömülü)
+   - `@/lib/utils` → `cn()` util'i (clsx + tailwind-merge)
+   Stüdyodaki ✨ Prompt Oluştur bu listeyi **tam yollarla** üretir — prompt'taki BAĞIMLILIK
+   DOSYALARI bölümündeki her dosyayı kopyala.
 3. **Import düzeni:** `@/*` alias'ı projenin `src/` klasörüne işaret etmeli;
    `@/lib/utils` içinde `cn()` olmalı (yoksa ekle).
-4. **Tema:** Tailwind v4 + shadcn tema değişkenleri (`index.css`) hazır olduğunu varsay;
-   yoksa shadcn init kurulumunu yap.
+4. **Tema:** Tailwind v4 + şablon tema değişkenleri (`index.css`) hazır olduğunu varsay.
 5. **Bağımsız çalışır** — sağlayıcı/context sarmalayıcı gerekmez; kopyala → kullan.
-6. **İkonlar:** `import { Search } from "@/components/ui/icons"` (lucide-react).
+6. **İkonlar:** `import { Search } from "@/components/ui/icons"` (kendi setimizden — asla lucide-react).
 7. Kullanıcının görevine göre bileşeni ilgili sayfaya/dosyaya ekle; değişiklikleri açıkla.
 
 ## 6) Görev B — Kütüphaneye yeni bileşen ekleme
@@ -77,7 +81,8 @@ Kullanıcı bir dosya yolu verdiğinde veya "008 Button'ı projeme ekle" dediği
 Kullanıcı bir bileşen (HTML/JSX/TSX) getirdiğinde:
 
 1. Dosyayı `<kök>/bilesen-kutuphanesi/src/components/ui/<kebab-ad>.tsx` olarak oluştur:
-   - Dosya başına JSDoc: `@id <sıradaki boş numara>` + `@category <mevcut veya yeni kategori>`
+   - Dosya başına JSDoc: `@id <sıradaki boş numara>` + `@category <kategori>` (+ `@subcategory <alt kategori>` gerekirse)
+   - Üst düzey bileşen çekirdeği import ediyorsa: `Gerektirir (ortak çekirdek): <dosya>` notu ekle
    - React + TypeScript, named export, interface dosya başında
    - JSX ise TSX'e çevir (class→className, style→object, self-closing...)
 2. `src/components/ui/index.tsx` barrel'ine `export * from "./<kebab-ad>"` ekle.

@@ -3,6 +3,9 @@
 # Kullanım: ./kutuphane-durdur.sh
 PORT=5800
 PID=$(ss -tlnp 2>/dev/null | grep ":$PORT " | grep -oE 'pid=[0-9]+' | head -1 | cut -d= -f2)
+if [ -z "$PID" ] && command -v lsof >/dev/null 2>&1; then
+  PID=$(lsof -ti:"$PORT" 2>/dev/null | head -1)
+fi
 if [ -n "$PID" ]; then
   kill "$PID" 2>/dev/null
   echo "✓ Kütüphane durduruldu (pid $PID)"
