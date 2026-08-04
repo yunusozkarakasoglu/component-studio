@@ -1,0 +1,48 @@
+/**
+ * Bileşen önizleme örnekleri (samples)
+ * Saf React kütüphanesi — yalnızca bağımlılıksız bileşenlerin canlı önizlemeleri.
+ * Katalog stüdyosu bu haritayı kullanır.
+ */
+import type { ReactNode } from "react"
+import * as U from "@/components/ui"
+import { Box, CreditCard, Earth, Receipt, RotateCcw, ShoppingBag } from "@/components/ui/icons"
+
+export const SAMPLES: Record<string, ReactNode> = {
+  "088": (
+    <U.DateRangePickerSimple />
+  ),
+  "089": (
+    <div className="h-64 w-full overflow-hidden rounded-md border border-black/25">
+      <U.MillerColumns data={U.SAMPLE_DATA} />
+    </div>
+  ),
+  "090": (
+    <U.AccordionSimple className="w-full max-w-sm" variant="surface" divider={false} defaultValue={["a"]}>
+      <U.AccordionSimpleItem itemKey="a" title="How do I place an order?" icon={<ShoppingBag />}>
+        Browse our products, add items to your cart, and proceed to checkout.
+      </U.AccordionSimpleItem>
+      <U.AccordionSimpleItem itemKey="b" title="Can I modify or cancel my order?" icon={<Receipt />}>
+        Yes, you can modify or cancel your order before it&apos;s shipped.
+      </U.AccordionSimpleItem>
+      <U.AccordionSimpleItem itemKey="c" title="What payment methods do you accept?" icon={<CreditCard />}>
+        We accept all major credit cards, including Visa, Mastercard, and American Express.
+      </U.AccordionSimpleItem>
+      <U.AccordionSimpleItem itemKey="d" title="How much does shipping cost?" icon={<Box />}>
+        Shipping costs vary based on your location and the size of your order.
+      </U.AccordionSimpleItem>
+      <U.AccordionSimpleItem itemKey="e" title="Do you ship internationally?" icon={<Earth />}>
+        Yes, we ship to most countries. Please check our shipping rates and policies.
+      </U.AccordionSimpleItem>
+      <U.AccordionSimpleItem itemKey="f" title="How do I request a refund?" icon={<RotateCcw />}>
+        If you&apos;re not satisfied, you can request a refund within 30 days of purchase.
+      </U.AccordionSimpleItem>
+    </U.AccordionSimple>
+  ),
+  "091": (
+    <U.BreadcrumbsSimple className="rounded-lg bg-muted/50 px-3 py-2">
+      <U.BreadcrumbsSimpleItem href="#">Home</U.BreadcrumbsSimpleItem>
+      <U.BreadcrumbsSimpleItem href="#">Products</U.BreadcrumbsSimpleItem>
+      <U.BreadcrumbsSimpleItem>Laptop</U.BreadcrumbsSimpleItem>
+    </U.BreadcrumbsSimple>
+  ),
+}

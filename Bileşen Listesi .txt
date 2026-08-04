@@ -1,0 +1,30 @@
+## Bileşen Envanteri — Saf React Kütüphanesi
+
+Aşağıdaki bileşenlerin tamamı **saf React**'tir — üçüncü parti UI bağımlılığı YOKTUR
+(react + tailwind + kendi ikon seti `@/components/ui/icons` yeterlidir).
+Kopyala → projene yapıştır → çalışır.
+
+### Kategori İskeleti (gelecekte eklenen bileşenler bu başlıklara dağılır)
+
+Accordion · Alert & Dialog · Form Elemanları · Renk Bileşenleri ·
+Butonlar & Aksiyonlar · Navigasyon · Takvim · Veri Gösterimi · Overlay · Genel
+
+### Accordion
+- `090` AccordionSimple
+
+### Navigasyon
+- `091` BreadcrumbsSimple
+
+### Özel Komponentler
+- `088` DateRangePickerSimple
+- `089` MillerColumns
+
+---
+
+**Toplam: 4 bileşen (saf React)**
+
+Her bileşen:
+- Tek dosya, named export, interface dosya başında.
+- `@id` + `@category` JSDoc etiketi dosya başında.
+- Bağımsız import edilebilir, yan etkisiz.
+- İkonlar kendi setimizden: `import { Search } from "@/components/ui/icons"`

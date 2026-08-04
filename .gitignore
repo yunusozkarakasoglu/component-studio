@@ -1,0 +1,14 @@
+# Bağımlılıklar
+node_modules/
+
+# Build
+dist/
+*.tsbuildinfo
+node_modules/.tmp/
+
+# Loglar
+*.log
+/tmp/
+
+# Sistem
+.DS_Store
