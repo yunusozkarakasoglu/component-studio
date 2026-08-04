@@ -81,7 +81,6 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `105` ButtonRipple
 
 ### Navigasyon
-- `091` BreadcrumbsSimple
 
 ### Takvim
 - `088` DateRangePickerSimple
@@ -93,13 +92,32 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 ### Overlay
 
 ### Genel
+- `156` Avatar
+- `157` AvatarBasic
+- `158` AvatarSizes
+- `159` AvatarColors
+- `160` AvatarVariants
+- `161` AvatarFallback
+- `162` AvatarGroup
+- `163` AvatarCustomStyles
+
+### Breadcrumbs
+- `091` BreadcrumbsSimple
+- `164` Breadcrumbs
+- `165` BreadcrumbsBasic
+- `166` BreadcrumbsLevel2
+- `167` BreadcrumbsLevel3
+- `168` BreadcrumbsDisabled
+- `169` BreadcrumbsCustomSeparator
+- `170` BreadcrumbsRenderFunction
+- `171` BreadcrumbsCustomStyles
 
 ### Özel Komponentler
 - `089` MillerColumns
 
 ---
 
-**Toplam: 68 bileşen (saf React)**
+**Toplam: 84 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

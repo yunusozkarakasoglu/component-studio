@@ -7,7 +7,7 @@
  *     <BreadcrumbsSimpleItem>Laptop</BreadcrumbsSimpleItem>
  *   </BreadcrumbsSimple>
  * @id 091
- * @category Navigasyon
+ * @category Breadcrumbs
  */
 import { Children, cloneElement, isValidElement, type ReactNode } from "react"
 import { cn } from "@/lib/utils"

@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-04T16:50:11.080Z",
+  "generatedAt": "2026-08-04T19:20:42.633Z",
   "counts": {
-    "components": 68,
-    "ready": 68,
+    "components": 86,
+    "ready": 84,
     "layouts": 0
   },
   "categories": [
@@ -16,6 +16,7 @@
     "Veri Gösterimi",
     "Overlay",
     "Genel",
+    "Breadcrumbs",
     "Özel Komponentler"
   ],
   "components": [
@@ -650,16 +651,6 @@
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/button-ripple.tsx"
     },
     {
-      "id": "091",
-      "name": "BreadcrumbsSimple",
-      "category": "Navigasyon",
-      "file": "breadcrumbs-simple.tsx",
-      "exists": true,
-      "code": "/**\n * BreadcrumbsSimple\n * HeroUI breadcrumbs'dan uyarlanmış — saf React implementasyonu (RAC bağımsız).\n * Otomatik chevron ayracı; son item \"current\" sayfa olarak işaretlenir.\n *   <BreadcrumbsSimple className=\"rounded-lg bg-muted/50 px-3 py-2\">\n *     <BreadcrumbsSimpleItem href=\"#\">Home</BreadcrumbsSimpleItem>\n *     <BreadcrumbsSimpleItem>Laptop</BreadcrumbsSimpleItem>\n *   </BreadcrumbsSimple>\n * @id 091\n * @category Navigasyon\n */\nimport { Children, cloneElement, isValidElement, type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { ChevronRight } from \"@/components/ui/icons\"\n\ninterface BreadcrumbsSimpleProps {\n  className?: string\n  children?: ReactNode\n}\n\ninterface BreadcrumbsSimpleItemProps {\n  /** Verilirse <a> olarak render edilir; verilmezse current (son) sayfa olarak <span> */\n  href?: string\n  className?: string\n  children?: ReactNode\n}\n\nfunction BreadcrumbsSimple({ className, children }: BreadcrumbsSimpleProps) {\n  const items = Children.toArray(children)\n  return (\n    <nav aria-label=\"breadcrumb\" className={cn(\"text-sm\", className)}>\n      <ol className=\"flex flex-wrap items-center gap-1.5\">\n        {items.map((child, i) => (\n          <li key={i} className=\"flex items-center gap-1.5\">\n            {i > 0 && (\n              <ChevronRight className=\"size-4 shrink-0 text-muted-foreground/50\" aria-hidden=\"true\" />\n            )}\n            {i === items.length - 1 && isValidElement(child)\n              ? cloneElement(child, { \"aria-current\": \"page\" } as object)\n              : child}\n          </li>\n        ))}\n      </ol>\n    </nav>\n  )\n}\n\nfunction BreadcrumbsSimpleItem({ href, className, children }: BreadcrumbsSimpleItemProps) {\n  if (href) {\n    return (\n      <a\n        href={href}\n        className={cn(\n          \"rounded text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50\",\n          className\n        )}\n      >\n        {children}\n      </a>\n    )\n  }\n  return <span className={cn(\"font-medium text-foreground\", className)}>{children}</span>\n}\n\nexport { BreadcrumbsSimple, BreadcrumbsSimpleItem }\nexport type { BreadcrumbsSimpleProps, BreadcrumbsSimpleItemProps }\n",
-      "description": "BreadcrumbsSimple",
-      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/breadcrumbs-simple.tsx"
-    },
-    {
       "id": "088",
       "name": "DateRangePickerSimple",
       "category": "Takvim",
@@ -690,6 +681,176 @@
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/empty-state.tsx"
     },
     {
+      "id": "156",
+      "name": "Avatar",
+      "category": "Genel",
+      "file": "avatar.tsx",
+      "exists": true,
+      "code": "/**\n * Avatar\n * HeroUI avatar'dan uyarlanmış — saf React (bağımlılıksız).\n * Resim + fallback (metin/ikon) + size/color/variant.\n *   <Avatar size=\"lg\" color=\"success\">\n *     <AvatarImage src=\"...\" alt=\"...\" />\n *     <AvatarFallback>JD</AvatarFallback>\n *   </Avatar>\n * Resim yüklenene kadar / hata durumunda Fallback gösterilir; delayMs ile\n * flash önlenir. Dış kaynak kuralı: src URL'sini kullanıcı verir.\n * @id 156\n * @category Genel\n */\nimport { createContext, useContext, useEffect, useState, type ImgHTMLAttributes, type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ntype AvatarSize = \"sm\" | \"md\" | \"lg\"\ntype AvatarColor = \"default\" | \"accent\" | \"success\" | \"warning\" | \"danger\"\n\nconst avatarSizeClass: Record<AvatarSize, string> = {\n  sm: \"size-8\",\n  md: \"size-10\",\n  lg: \"size-12\",\n}\n\nconst fallbackColorClass: Record<AvatarColor, string> = {\n  default: \"bg-muted text-muted-foreground\",\n  accent: \"bg-blue-100 text-blue-700\",\n  success: \"bg-emerald-100 text-emerald-700\",\n  warning: \"bg-amber-100 text-amber-700\",\n  danger: \"bg-red-100 text-red-700\",\n}\n\ninterface AvatarContextValue {\n  imgState: \"loading\" | \"loaded\" | \"error\"\n  setImgState: (s: \"loading\" | \"loaded\" | \"error\") => void\n  color: AvatarColor\n  variant: \"default\" | \"soft\"\n}\n\nconst AvatarContext = createContext<AvatarContextValue | null>(null)\n\nfunction useAvatar(): AvatarContextValue {\n  const ctx = useContext(AvatarContext)\n  if (!ctx) throw new Error(\"Avatar parçaları <Avatar> içinde kullanılmalı\")\n  return ctx\n}\n\ninterface AvatarProps {\n  size?: AvatarSize\n  color?: AvatarColor\n  /** soft = daha açık fallback arka planı */\n  variant?: \"default\" | \"soft\"\n  className?: string\n  children?: ReactNode\n}\n\nfunction Avatar({ size = \"md\", color = \"default\", variant = \"default\", className, children }: AvatarProps) {\n  const [imgState, setImgState] = useState<\"loading\" | \"loaded\" | \"error\">(\"loading\")\n  return (\n    <AvatarContext.Provider value={{ imgState, setImgState, color, variant }}>\n      <span data-slot=\"avatar\" data-size={size} data-color={color}\n        className={cn(\"relative inline-flex shrink-0 overflow-hidden rounded-full align-middle\", avatarSizeClass[size], className)}>\n        {children}\n      </span>\n    </AvatarContext.Provider>\n  )\n}\n\nfunction AvatarImage({ className, onLoad, onError, ...props }: ImgHTMLAttributes<HTMLImageElement>) {\n  const ctx = useAvatar()\n  return (\n    <img\n      className={cn(\"aspect-square size-full object-cover\", className)}\n      onLoad={(e) => { ctx.setImgState(\"loaded\"); onLoad?.(e) }}\n      onError={(e) => { ctx.setImgState(\"error\"); onError?.(e) }}\n      {...props}\n    />\n  )\n}\n\ninterface AvatarFallbackProps {\n  /** Fallback görünmeden önceki bekleme (resim yükleme flash'ını önler) */\n  delayMs?: number\n  className?: string\n  children?: ReactNode\n}\n\nfunction AvatarFallback({ delayMs = 0, className, children }: AvatarFallbackProps) {\n  const ctx = useAvatar()\n  const [visible, setVisible] = useState(delayMs === 0)\n  useEffect(() => {\n    if (delayMs > 0) {\n      const t = setTimeout(() => setVisible(true), delayMs)\n      return () => clearTimeout(t)\n    }\n  }, [delayMs])\n  if (ctx.imgState === \"loaded\") return null\n  if (!visible) return null\n  return (\n    <span\n      data-slot=\"avatar-fallback\"\n      className={cn(\n        \"flex size-full items-center justify-center text-sm font-medium\",\n        ctx.variant === \"soft\" ? \"bg-muted/50 text-foreground\" : fallbackColorClass[ctx.color],\n        className\n      )}\n    >\n      {children}\n    </span>\n  )\n}\n\nexport { Avatar, AvatarFallback, AvatarImage }\nexport type { AvatarColor, AvatarProps, AvatarSize }\n",
+      "description": "Avatar",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/avatar.tsx"
+    },
+    {
+      "id": "157",
+      "name": "AvatarBasic",
+      "category": "Genel",
+      "file": "avatar-basic.tsx",
+      "exists": true,
+      "code": "/**\n * AvatarBasic\n * HeroUI Usage örneği — resim + fallback (saf React, placeholder data-URI).\n * @id 157\n * @category Genel\n */\nimport { Avatar, AvatarFallback, AvatarImage } from \"@/components/ui/avatar\"\n\nconst src = (bg: string, t: string) =>\n  `data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96'><rect width='96' height='96' fill='${bg}'/><text x='48' y='62' font-size='38' text-anchor='middle' fill='white' font-family='sans-serif'>${t}</text></svg>`)}`\n\nfunction AvatarBasic() {\n  return (\n    <div className=\"flex items-center gap-4\">\n      <Avatar>\n        <AvatarImage alt=\"John Doe\" src={src(\"#3b82f6\", \"JD\")} />\n        <AvatarFallback>JD</AvatarFallback>\n      </Avatar>\n      <Avatar>\n        <AvatarImage alt=\"Blue\" src={src(\"#8b5cf6\", \"B\")} />\n        <AvatarFallback>B</AvatarFallback>\n      </Avatar>\n      <Avatar>\n        <AvatarFallback>JR</AvatarFallback>\n      </Avatar>\n    </div>\n  )\n}\n\nexport { AvatarBasic }\n",
+      "description": "AvatarBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/avatar-basic.tsx"
+    },
+    {
+      "id": "158",
+      "name": "AvatarSizes",
+      "category": "Genel",
+      "file": "avatar-sizes.tsx",
+      "exists": true,
+      "code": "/**\n * AvatarSizes\n * HeroUI Sizes örneği — sm/md/lg (saf React).\n * @id 158\n * @category Genel\n */\nimport { Avatar, AvatarFallback, AvatarImage } from \"@/components/ui/avatar\"\n\nconst src = (bg: string, t: string) =>\n  `data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96'><rect width='96' height='96' fill='${bg}'/><text x='48' y='62' font-size='38' text-anchor='middle' fill='white' font-family='sans-serif'>${t}</text></svg>`)}`\n\nfunction AvatarSizes() {\n  return (\n    <div className=\"flex items-center gap-4\">\n      <Avatar size=\"sm\">\n        <AvatarImage alt=\"Small\" src={src(\"#3b82f6\", \"SM\")} />\n        <AvatarFallback>SM</AvatarFallback>\n      </Avatar>\n      <Avatar size=\"md\">\n        <AvatarImage alt=\"Medium\" src={src(\"#8b5cf6\", \"MD\")} />\n        <AvatarFallback>MD</AvatarFallback>\n      </Avatar>\n      <Avatar size=\"lg\">\n        <AvatarImage alt=\"Large\" src={src(\"#ef4444\", \"LG\")} />\n        <AvatarFallback>LG</AvatarFallback>\n      </Avatar>\n    </div>\n  )\n}\n\nexport { AvatarSizes }\n",
+      "description": "AvatarSizes",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/avatar-sizes.tsx"
+    },
+    {
+      "id": "159",
+      "name": "AvatarColors",
+      "category": "Genel",
+      "file": "avatar-colors.tsx",
+      "exists": true,
+      "code": "/**\n * AvatarColors\n * HeroUI Colors örneği — 5 renk (saf React).\n * @id 159\n * @category Genel\n */\nimport { Avatar, AvatarFallback } from \"@/components/ui/avatar\"\n\nfunction AvatarColors() {\n  return (\n    <div className=\"flex items-center gap-4\">\n      <Avatar color=\"default\"><AvatarFallback>DF</AvatarFallback></Avatar>\n      <Avatar color=\"accent\"><AvatarFallback>AC</AvatarFallback></Avatar>\n      <Avatar color=\"success\"><AvatarFallback>SC</AvatarFallback></Avatar>\n      <Avatar color=\"warning\"><AvatarFallback>WR</AvatarFallback></Avatar>\n      <Avatar color=\"danger\"><AvatarFallback>DG</AvatarFallback></Avatar>\n    </div>\n  )\n}\n\nexport { AvatarColors }\n",
+      "description": "AvatarColors",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/avatar-colors.tsx"
+    },
+    {
+      "id": "160",
+      "name": "AvatarVariants",
+      "category": "Genel",
+      "file": "avatar-variants.tsx",
+      "exists": true,
+      "code": "/**\n * AvatarVariants\n * HeroUI Variants örneği — letter/letter-soft/icon/icon-soft/img × 5 renk (saf React).\n * @id 160\n * @category Genel\n */\nimport { Avatar, AvatarFallback, AvatarImage } from \"@/components/ui/avatar\"\nimport { User } from \"@/components/ui/icons\"\n\nconst colors = [\"accent\", \"default\", \"success\", \"warning\", \"danger\"] as const\n\nconst src = (bg: string, t: string) =>\n  `data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96'><rect width='96' height='96' fill='${bg}'/><text x='48' y='62' font-size='38' text-anchor='middle' fill='white' font-family='sans-serif'>${t}</text></svg>`)}`\n\nconst imgSrcs = [\"#3b82f6\", \"#8b5cf6\", \"#10b981\", \"#f59e0b\", \"#ef4444\"]\n\nfunction AvatarVariants() {\n  const variants = [\n    { label: \"letter\", content: \"AG\", type: \"letter\" },\n    { label: \"letter soft\", content: \"AG\", type: \"letter\", soft: true },\n    { label: \"icon\", content: <User className=\"size-5\" />, type: \"icon\" },\n    { label: \"icon soft\", content: <User className=\"size-5\" />, type: \"icon\", soft: true },\n    { label: \"img\", content: \"\", type: \"img\" },\n  ] as const\n  return (\n    <div className=\"flex flex-col gap-4\">\n      <div className=\"flex items-center gap-3\">\n        <div className=\"w-24 shrink-0\" />\n        {colors.map((c) => <div key={c} className=\"w-20 shrink-0 text-center text-xs capitalize text-muted-foreground\">{c}</div>)}\n      </div>\n      {variants.map((v) => (\n        <div key={v.label} className=\"flex items-center gap-3\">\n          <div className=\"w-24 shrink-0 text-sm text-muted-foreground\">{v.label}</div>\n          {colors.map((c) => (\n            <div key={c} className=\"flex w-20 justify-center\">\n              <Avatar color={c} variant={(v as any).soft ? \"soft\" : \"default\"}>\n                {v.type === \"img\" ? (\n                  <>\n                    <AvatarImage alt={`Avatar ${c}`} src={src(imgSrcs[colors.indexOf(c)], c[0].toUpperCase())} />\n                    <AvatarFallback>{c[0].toUpperCase()}</AvatarFallback>\n                  </>\n                ) : (\n                  <AvatarFallback>{v.content}</AvatarFallback>\n                )}\n              </Avatar>\n            </div>\n          ))}\n        </div>\n      ))}\n    </div>\n  )\n}\n\nexport { AvatarVariants }\n",
+      "description": "AvatarVariants",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/avatar-variants.tsx"
+    },
+    {
+      "id": "161",
+      "name": "AvatarFallback",
+      "category": "Genel",
+      "file": "avatar-fallback.tsx",
+      "exists": true,
+      "code": "/**\n * AvatarFallback\n * HeroUI Fallback Content örneği — metin/ikon/delay/özel (saf React).\n * @id 161\n * @category Genel\n */\nimport { Avatar, AvatarFallback, AvatarImage } from \"@/components/ui/avatar\"\nimport { User } from \"@/components/ui/icons\"\n\nfunction AvatarFallbackDemo() {\n  return (\n    <div className=\"flex items-center gap-4\">\n      <Avatar>\n        <AvatarFallback>JD</AvatarFallback>\n      </Avatar>\n      <Avatar>\n        <AvatarFallback><User className=\"size-5\" /></AvatarFallback>\n      </Avatar>\n      <Avatar>\n        <AvatarImage alt=\"Delayed\" src=\"https://invalid-url.example/image.jpg\" />\n        <AvatarFallback delayMs={600}>NA</AvatarFallback>\n      </Avatar>\n      <Avatar>\n        <AvatarFallback className=\"bg-gradient-to-br from-pink-500 to-purple-500 text-white\">GB</AvatarFallback>\n      </Avatar>\n    </div>\n  )\n}\n\nexport { AvatarFallbackDemo }\n",
+      "description": "AvatarFallback",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/avatar-fallback.tsx"
+    },
+    {
+      "id": "162",
+      "name": "AvatarGroup",
+      "category": "Genel",
+      "file": "avatar-group.tsx",
+      "exists": true,
+      "code": "/**\n * AvatarGroup\n * HeroUI Avatar Group örneği — üst üste binen avatarlar + sayaç (saf React).\n * @id 162\n * @category Genel\n */\nimport { Avatar, AvatarFallback, AvatarImage } from \"@/components/ui/avatar\"\n\nconst src = (bg: string, t: string) =>\n  `data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96'><rect width='96' height='96' fill='${bg}'/><text x='48' y='62' font-size='34' text-anchor='middle' fill='white' font-family='sans-serif'>${t}</text></svg>`)}`\n\nconst users = [\n  { id: 1, bg: \"#3b82f6\", name: \"John Doe\" },\n  { id: 2, bg: \"#10b981\", name: \"Kate Wilson\" },\n  { id: 3, bg: \"#8b5cf6\", name: \"Emily Chen\" },\n  { id: 4, bg: \"#f97316\", name: \"Michael Brown\" },\n  { id: 5, bg: \"#ef4444\", name: \"Olivia Davis\" },\n]\n\nfunction AvatarGroup() {\n  const initials = (name: string) => name.split(\" \").map((n) => n[0]).join(\"\")\n  return (\n    <div className=\"flex flex-col gap-6\">\n      <div className=\"flex -space-x-2\">\n        {users.slice(0, 4).map((u) => (\n          <Avatar key={u.id} className=\"ring-2 ring-background\">\n            <AvatarImage alt={u.name} src={src(u.bg, initials(u.name))} />\n            <AvatarFallback>{initials(u.name)}</AvatarFallback>\n          </Avatar>\n        ))}\n      </div>\n      <div className=\"flex -space-x-2\">\n        {users.slice(0, 3).map((u) => (\n          <Avatar key={u.id} className=\"ring-2 ring-background\">\n            <AvatarImage alt={u.name} src={src(u.bg, initials(u.name))} />\n            <AvatarFallback>{initials(u.name)}</AvatarFallback>\n          </Avatar>\n        ))}\n        <Avatar className=\"ring-2 ring-background\">\n          <AvatarFallback className=\"text-xs\">+{users.length - 3}</AvatarFallback>\n        </Avatar>\n      </div>\n    </div>\n  )\n}\n\nexport { AvatarGroup }\n",
+      "description": "AvatarGroup",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/avatar-group.tsx"
+    },
+    {
+      "id": "163",
+      "name": "AvatarCustomStyles",
+      "category": "Genel",
+      "file": "avatar-custom-styles.tsx",
+      "exists": true,
+      "code": "/**\n * AvatarCustomStyles\n * HeroUI Tailwind CSS örneği — yuvarlatılmış avatar (saf React).\n * @id 163\n * @category Genel\n */\nimport { Avatar, AvatarFallback, AvatarImage } from \"@/components/ui/avatar\"\n\nconst src = (bg: string, t: string) =>\n  `data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96'><rect width='96' height='96' fill='${bg}'/><text x='48' y='62' font-size='38' text-anchor='middle' fill='white' font-family='sans-serif'>${t}</text></svg>`)}`\n\nfunction AvatarCustomStyles() {\n  return (\n    <Avatar className=\"rounded-lg\">\n      <AvatarImage alt=\"John Doe\" src={src(\"#3b82f6\", \"JD\")} />\n      <AvatarFallback className=\"rounded-lg\">JD</AvatarFallback>\n    </Avatar>\n  )\n}\n\nexport { AvatarCustomStyles }\n",
+      "description": "AvatarCustomStyles",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/avatar-custom-styles.tsx"
+    },
+    {
+      "id": "091",
+      "name": "BreadcrumbsSimple",
+      "category": "Breadcrumbs",
+      "file": "breadcrumbs-simple.tsx",
+      "exists": true,
+      "code": "/**\n * BreadcrumbsSimple\n * HeroUI breadcrumbs'dan uyarlanmış — saf React implementasyonu (RAC bağımsız).\n * Otomatik chevron ayracı; son item \"current\" sayfa olarak işaretlenir.\n *   <BreadcrumbsSimple className=\"rounded-lg bg-muted/50 px-3 py-2\">\n *     <BreadcrumbsSimpleItem href=\"#\">Home</BreadcrumbsSimpleItem>\n *     <BreadcrumbsSimpleItem>Laptop</BreadcrumbsSimpleItem>\n *   </BreadcrumbsSimple>\n * @id 091\n * @category Breadcrumbs\n */\nimport { Children, cloneElement, isValidElement, type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { ChevronRight } from \"@/components/ui/icons\"\n\ninterface BreadcrumbsSimpleProps {\n  className?: string\n  children?: ReactNode\n}\n\ninterface BreadcrumbsSimpleItemProps {\n  /** Verilirse <a> olarak render edilir; verilmezse current (son) sayfa olarak <span> */\n  href?: string\n  className?: string\n  children?: ReactNode\n}\n\nfunction BreadcrumbsSimple({ className, children }: BreadcrumbsSimpleProps) {\n  const items = Children.toArray(children)\n  return (\n    <nav aria-label=\"breadcrumb\" className={cn(\"text-sm\", className)}>\n      <ol className=\"flex flex-wrap items-center gap-1.5\">\n        {items.map((child, i) => (\n          <li key={i} className=\"flex items-center gap-1.5\">\n            {i > 0 && (\n              <ChevronRight className=\"size-4 shrink-0 text-muted-foreground/50\" aria-hidden=\"true\" />\n            )}\n            {i === items.length - 1 && isValidElement(child)\n              ? cloneElement(child, { \"aria-current\": \"page\" } as object)\n              : child}\n          </li>\n        ))}\n      </ol>\n    </nav>\n  )\n}\n\nfunction BreadcrumbsSimpleItem({ href, className, children }: BreadcrumbsSimpleItemProps) {\n  if (href) {\n    return (\n      <a\n        href={href}\n        className={cn(\n          \"rounded text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50\",\n          className\n        )}\n      >\n        {children}\n      </a>\n    )\n  }\n  return <span className={cn(\"font-medium text-foreground\", className)}>{children}</span>\n}\n\nexport { BreadcrumbsSimple, BreadcrumbsSimpleItem }\nexport type { BreadcrumbsSimpleProps, BreadcrumbsSimpleItemProps }\n",
+      "description": "BreadcrumbsSimple",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/breadcrumbs-simple.tsx"
+    },
+    {
+      "id": "164",
+      "name": "Breadcrumbs",
+      "category": "Breadcrumbs",
+      "file": "breadcrumbs.tsx",
+      "exists": true,
+      "code": "/**\n * Breadcrumbs\n * HeroUI breadcrumbs'tan uyarlanmış — saf React (bağımlılıksız).\n * Otomatik ayraç (separator) · isDisabled · özel separator · render.\n *   <Breadcrumbs>\n *     <BreadcrumbsItem href=\"#\">Home</BreadcrumbsItem>\n *     <BreadcrumbsItem>Laptop</BreadcrumbsItem>\n *   </Breadcrumbs>\n * href'siz son item otomatik \"current\" sayfa olur (aria-current=\"page\").\n * @id 164\n * @category Breadcrumbs\n */\nimport { Children, cloneElement, isValidElement, type ReactElement, type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { ChevronRight } from \"@/components/ui/icons\"\n\ninterface BreadcrumbsProps {\n  /** Item'lar arası ayraç (varsayılan: chevron-right) */\n  separator?: ReactNode\n  /** Tüm linkleri devre dışı bırakır */\n  isDisabled?: boolean\n  /** Kök nav elementini özel render ile değiştirir */\n  render?: (props: Record<string, unknown>) => ReactNode\n  className?: string\n  children?: ReactNode\n}\n\nfunction Breadcrumbs({ separator, isDisabled, render, className, children }: BreadcrumbsProps) {\n  const items = Children.toArray(children)\n\n  const navProps: Record<string, unknown> = {\n    \"aria-label\": \"breadcrumb\",\n    className: cn(\"flex flex-wrap items-center gap-1.5 text-sm\", className),\n    \"data-disabled\": isDisabled || undefined,\n  }\n\n  const content = (\n    <ol className=\"flex flex-wrap items-center gap-1.5\">\n      {items.map((child, i) => {\n        const last = i === items.length - 1\n        const item = isValidElement(child)\n          ? cloneElement(child as ReactElement, { isLast: last, isDisabled } as Record<string, unknown>)\n          : child\n        return (\n          <li key={i} className=\"flex items-center gap-1.5\">\n            {i > 0 && (\n              <span aria-hidden=\"true\" className=\"text-muted-foreground/60\">\n                {separator ?? <ChevronRight className=\"size-4\" />}\n              </span>\n            )}\n            {item}\n          </li>\n        )\n      })}\n    </ol>\n  )\n\n  if (render) return <>{render({ ...navProps, children: content })}</>\n  return <nav {...navProps}>{content}</nav>\n}\n\ninterface BreadcrumbsItemProps {\n  /** Verilirse <a>; verilmezse current sayfa (<span aria-current=\"page\">) */\n  href?: string\n  className?: string\n  children?: ReactNode\n  /** (iç) Son item işareti */\n  isLast?: boolean\n  isDisabled?: boolean\n}\n\nfunction BreadcrumbsItem({ href, className, children, isDisabled }: BreadcrumbsItemProps) {\n  if (href) {\n    return (\n      <a\n        href={href}\n        aria-disabled={isDisabled || undefined}\n        className={cn(\n          \"rounded text-muted-foreground outline-none transition-colors hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50\",\n          isDisabled && \"pointer-events-none opacity-50\",\n          className\n        )}\n      >\n        {children}\n      </a>\n    )\n  }\n  return (\n    <span aria-current=\"page\" className={cn(\"font-medium text-foreground\", className)}>\n      {children}\n    </span>\n  )\n}\n\nexport { Breadcrumbs, BreadcrumbsItem }\nexport type { BreadcrumbsItemProps, BreadcrumbsProps }\n",
+      "description": "Breadcrumbs",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/breadcrumbs.tsx"
+    },
+    {
+      "id": "165",
+      "name": "BreadcrumbsBasic",
+      "category": "Breadcrumbs",
+      "file": "breadcrumbs-basic.tsx",
+      "exists": true,
+      "code": "/**\n * BreadcrumbsBasic\n * HeroUI Usage örneği (saf React).\n * @id 165\n * @category Breadcrumbs\n */\nimport { Breadcrumbs, BreadcrumbsItem } from \"@/components/ui/breadcrumbs\"\n\nfunction BreadcrumbsBasic() {\n  return (\n    <Breadcrumbs>\n      <BreadcrumbsItem href=\"#\">Home</BreadcrumbsItem>\n      <BreadcrumbsItem href=\"#\">Products</BreadcrumbsItem>\n      <BreadcrumbsItem href=\"#\">Electronics</BreadcrumbsItem>\n      <BreadcrumbsItem>Laptop</BreadcrumbsItem>\n    </Breadcrumbs>\n  )\n}\n\nexport { BreadcrumbsBasic }\n",
+      "description": "BreadcrumbsBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/breadcrumbs-basic.tsx"
+    },
+    {
+      "id": "166",
+      "name": "BreadcrumbsLevel",
+      "category": "Breadcrumbs",
+      "file": "breadcrumbs-level.tsx",
+      "exists": false,
+      "code": "",
+      "description": "",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/breadcrumbs-level.tsx"
+    },
+    {
+      "id": "167",
+      "name": "BreadcrumbsLevel",
+      "category": "Breadcrumbs",
+      "file": "breadcrumbs-level.tsx",
+      "exists": false,
+      "code": "",
+      "description": "",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/breadcrumbs-level.tsx"
+    },
+    {
+      "id": "168",
+      "name": "BreadcrumbsDisabled",
+      "category": "Breadcrumbs",
+      "file": "breadcrumbs-disabled.tsx",
+      "exists": true,
+      "code": "/**\n * BreadcrumbsDisabled\n * HeroUI Disabled State örneği (saf React).\n * @id 168\n * @category Breadcrumbs\n */\nimport { Breadcrumbs, BreadcrumbsItem } from \"@/components/ui/breadcrumbs\"\n\nfunction BreadcrumbsDisabled() {\n  return (\n    <Breadcrumbs isDisabled>\n      <BreadcrumbsItem href=\"#\">Home</BreadcrumbsItem>\n      <BreadcrumbsItem href=\"#\">Products</BreadcrumbsItem>\n      <BreadcrumbsItem href=\"#\">Electronics</BreadcrumbsItem>\n      <BreadcrumbsItem>Laptop</BreadcrumbsItem>\n    </Breadcrumbs>\n  )\n}\n\nexport { BreadcrumbsDisabled }\n",
+      "description": "BreadcrumbsDisabled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/breadcrumbs-disabled.tsx"
+    },
+    {
+      "id": "169",
+      "name": "BreadcrumbsCustomSeparator",
+      "category": "Breadcrumbs",
+      "file": "breadcrumbs-custom-separator.tsx",
+      "exists": true,
+      "code": "/**\n * BreadcrumbsCustomSeparator\n * HeroUI Custom Separator örneği — özel ayraç (saf React, kendi setimizden).\n * @id 169\n * @category Breadcrumbs\n */\nimport { Breadcrumbs, BreadcrumbsItem } from \"@/components/ui/breadcrumbs\"\nimport { ArrowRight } from \"@/components/ui/icons\"\n\nfunction BreadcrumbsCustomSeparator() {\n  return (\n    <Breadcrumbs separator={<ArrowRight className=\"size-3.5\" />}>\n      <BreadcrumbsItem href=\"#\">Home</BreadcrumbsItem>\n      <BreadcrumbsItem href=\"#\">Products</BreadcrumbsItem>\n      <BreadcrumbsItem href=\"#\">Electronics</BreadcrumbsItem>\n      <BreadcrumbsItem>Laptop</BreadcrumbsItem>\n    </Breadcrumbs>\n  )\n}\n\nexport { BreadcrumbsCustomSeparator }\n",
+      "description": "BreadcrumbsCustomSeparator",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/breadcrumbs-custom-separator.tsx"
+    },
+    {
+      "id": "170",
+      "name": "BreadcrumbsRenderFunction",
+      "category": "Breadcrumbs",
+      "file": "breadcrumbs-render-function.tsx",
+      "exists": true,
+      "code": "/**\n * BreadcrumbsRenderFunction\n * HeroUI Render Function örneği — kök element özelleştirme (saf React).\n * @id 170\n * @category Breadcrumbs\n */\nimport { Breadcrumbs, BreadcrumbsItem } from \"@/components/ui/breadcrumbs\"\n\nfunction BreadcrumbsRenderFunction() {\n  return (\n    <Breadcrumbs\n      render={(props) => (\n        <ol {...(props as React.OlHTMLAttributes<HTMLOListElement>)} data-custom=\"foo\" />\n      )}\n    >\n      <BreadcrumbsItem>Home</BreadcrumbsItem>\n      <BreadcrumbsItem>Products</BreadcrumbsItem>\n      <BreadcrumbsItem>Laptop</BreadcrumbsItem>\n    </Breadcrumbs>\n  )\n}\n\nexport { BreadcrumbsRenderFunction }\n",
+      "description": "BreadcrumbsRenderFunction",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/breadcrumbs-render-function.tsx"
+    },
+    {
+      "id": "171",
+      "name": "BreadcrumbsCustomStyles",
+      "category": "Breadcrumbs",
+      "file": "breadcrumbs-custom-styles.tsx",
+      "exists": true,
+      "code": "/**\n * BreadcrumbsCustomStyles\n * HeroUI Tailwind CSS örneği — kutulu görünüm (saf React).\n * @id 171\n * @category Breadcrumbs\n */\nimport { Breadcrumbs, BreadcrumbsItem } from \"@/components/ui/breadcrumbs\"\n\nfunction BreadcrumbsCustomStyles() {\n  return (\n    <Breadcrumbs className=\"rounded-lg bg-muted/50 px-3 py-2\">\n      <BreadcrumbsItem className=\"hover:text-accent-foreground\" href=\"#\">Home</BreadcrumbsItem>\n      <BreadcrumbsItem className=\"hover:text-accent-foreground\" href=\"#\">Products</BreadcrumbsItem>\n      <BreadcrumbsItem>Laptop</BreadcrumbsItem>\n    </Breadcrumbs>\n  )\n}\n\nexport { BreadcrumbsCustomStyles }\n",
+      "description": "BreadcrumbsCustomStyles",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/breadcrumbs-custom-styles.tsx"
+    },
+    {
       "id": "089",
       "name": "MillerColumns",
       "category": "Özel Komponentler",
@@ -698,6 +859,26 @@
       "code": "/**\n * MillerColumns\n * Template Maker — özel bileşen (React + Tailwind Miller Columns navigatörü)\n * Hiyerarşik veriyi sütunlar halinde gezinme (dosya yöneticisi tarzı).\n * @id 089\n * @category Özel Komponentler\n */\nimport { Fragment, useCallback, useEffect, useMemo, useRef, useState } from \"react\"\n\n/* ---------- Tipler ---------- */\nexport interface TreeNode {\n  id: string\n  label?: string\n  title?: string\n  children?: TreeNode[]\n}\n\nexport interface MillerColumnsProps {\n  /** Ağaç verisi (id + çocuklar; label/title görüntülenir) */\n  data: TreeNode[]\n  /** Başlangıç yolu, örn. [\"eng\",\"fe\",\"react\"] */\n  initialPath?: string[]\n  /** Her gezinmede çağrılır: (path, son node) */\n  onChange?: (path: string[], node: TreeNode | null) => void\n  /** Kök için ekstra sınıflar */\n  className?: string\n}\n\n/* ---------- Yardımcılar ---------- */\nfunction getLabel(node: TreeNode | null | undefined): string {\n  return node?.label ?? node?.title ?? node?.id ?? \"\"\n}\n\nfunction findById(nodes: TreeNode[], id: string): TreeNode | null {\n  for (const n of nodes) {\n    if (n.id === id) return n\n    const found = findById(n.children || [], id)\n    if (found) return found\n  }\n  return null\n}\n\nfunction getNodesByPath(roots: TreeNode[], path: string[]): (TreeNode | null)[] {\n  const out: (TreeNode | null)[] = []\n  let cur = roots\n  for (const id of path) {\n    const node = cur.find((n) => n.id === id) || null\n    out.push(node)\n    if (node) cur = node.children || []\n    else break\n  }\n  return out\n}\n\n/* ---------- Alt bileşenler ---------- */\nfunction ChevronRight() {\n  return (\n    <svg\n      width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\"\n      stroke=\"currentColor\" strokeWidth=\"2\" strokeLinecap=\"round\"\n      strokeLinejoin=\"round\" aria-hidden=\"true\"\n    >\n      <polyline points=\"9 18 15 12 9 6\" />\n    </svg>\n  )\n}\n\nfunction Breadcrumb({\n  path, nodes, onCrumbClick,\n}: { path: string[]; nodes: (TreeNode | null)[]; onCrumbClick: (i: number) => void }) {\n  if (path.length === 0) {\n    return (\n      <div className=\"flex h-8 items-center gap-1 border-b border-slate-200 bg-slate-50 px-4\" aria-label=\"Breadcrumb\">\n        <span className=\"font-mono text-[11px] uppercase tracking-widest text-slate-400\">\n          / root\n        </span>\n      </div>\n    )\n  }\n  return (\n    <nav\n      aria-label=\"Breadcrumb\"\n      className=\"flex h-8 items-center gap-1 overflow-x-auto border-b border-slate-200 bg-slate-50 px-4\"\n    >\n      <button\n        type=\"button\"\n        onClick={() => onCrumbClick(-1)}\n        className=\"flex-shrink-0 font-mono text-[11px] uppercase tracking-wider text-slate-500 transition-colors hover:text-slate-300\"\n      >\n        root\n      </button>\n      {nodes.map((node, i) =>\n        node ? (\n          <Fragment key={node.id}>\n            <span className=\"flex-shrink-0 text-[11px] text-slate-400\">/</span>\n            <button\n              type=\"button\"\n              onClick={() => onCrumbClick(i)}\n              aria-current={i === nodes.length - 1 ? \"page\" : undefined}\n              className={`flex-shrink-0 font-mono text-[11px] uppercase tracking-wider transition-colors ${\n                i === nodes.length - 1 ? \"text-blue-600\" : \"text-slate-500 hover:text-slate-800\"\n              }`}\n            >\n              {getLabel(node)}\n            </button>\n          </Fragment>\n        ) : null\n      )}\n    </nav>\n  )\n}\n\nfunction ColumnItem({\n  node, depth, isSelected, onClick,\n}: { node: TreeNode; depth: number; isSelected: boolean; onClick: () => void }) {\n  const hasChildren = (node.children || []).length > 0\n  return (\n    <button\n      type=\"button\"\n      role=\"treeitem\"\n      aria-level={depth + 1}\n      aria-selected={isSelected}\n      aria-expanded={hasChildren ? true : undefined}\n      onClick={onClick}\n      className={`group relative flex w-full items-center justify-between px-3 py-2 text-left font-mono transition-colors ${\n        isSelected ? \"bg-blue-600 text-white\" : \"text-slate-500 hover:bg-slate-100 hover:text-slate-900\"\n      }`}\n    >\n      {isSelected && <span className=\"absolute left-0 top-0 h-full w-0.5 bg-blue-500\" />}\n      <span className=\"truncate pr-2 text-[13px]\">{getLabel(node)}</span>\n      {hasChildren && (\n        <span className={`flex-shrink-0 transition-colors ${isSelected ? \"text-white\" : \"text-slate-400 group-hover:text-slate-400\"}`}>\n          <ChevronRight />\n        </span>\n      )}\n    </button>\n  )\n}\n\nfunction ColumnPanel({\n  nodes, selectedId, headerLabel, depth, isLeaf, onSelect,\n}: {\n  nodes: TreeNode[]; selectedId: string | null; headerLabel: string\n  depth: number; isLeaf: boolean; onSelect: (node: TreeNode) => void\n}) {\n  return (\n    <section\n      aria-label={headerLabel}\n      className=\"miller-col-enter flex w-72 flex-shrink-0 flex-col border-r border-slate-200\"\n      style={{ backgroundColor: \"#f8fafc\" }}\n    >\n      <div className=\"flex-shrink-0 border-b border-slate-200 bg-slate-50 px-3 py-2\">\n        <div className=\"text-[10px] font-semibold uppercase tracking-widest text-slate-500\">\n          {headerLabel}\n        </div>\n        <div className=\"mt-0.5 font-mono text-[10px] text-slate-400\">depth/{depth}</div>\n      </div>\n      {isLeaf ? (\n        <div className=\"flex flex-1 items-center justify-center p-4\">\n          <div className=\"text-center\">\n            <div className=\"mb-1 text-[11px] uppercase tracking-wider text-slate-500\">Terminal node</div>\n            <div className=\"font-mono text-[12px] text-slate-400\">no children</div>\n          </div>\n        </div>\n      ) : nodes.length === 0 ? (\n        <div className=\"flex flex-1 items-center justify-center font-mono text-[12px] text-slate-400\">empty</div>\n      ) : (\n        <div className=\"miller-vscroll flex-1 overflow-y-auto py-1\" role=\"group\">\n          {nodes.map((node) => (\n            <ColumnItem\n              key={node.id}\n              node={node}\n              depth={depth}\n              isSelected={node.id === selectedId}\n              onClick={() => onSelect(node)}\n            />\n          ))}\n        </div>\n      )}\n    </section>\n  )\n}\n\n/* ---------- Ana bileşen ---------- */\nexport function MillerColumns({\n  data, initialPath = [], onChange, className = \"\",\n}: MillerColumnsProps) {\n  const [path, setPath] = useState<string[]>(() => initialPath)\n\n  const onChangeRef = useRef(onChange)\n  useEffect(() => {\n    onChangeRef.current = onChange\n  }, [onChange])\n\n  useEffect(() => {\n    if (!onChangeRef.current) return\n    const last = path.length > 0 ? findById(data, path[path.length - 1]) : null\n    onChangeRef.current(path, last)\n  }, [path, data])\n\n  const pathNodes = useMemo(() => getNodesByPath(data, path), [data, path])\n\n  const columns = useMemo(() => {\n    const cols: { nodes: TreeNode[]; headerLabel: string; depth: number; selectedId: string | null; isLeaf: boolean }[] = [\n      { nodes: data, headerLabel: \"All\", depth: 0, selectedId: path[0] ?? null, isLeaf: false },\n    ]\n    let cur = data\n    for (let i = 0; i < path.length; i++) {\n      const node = cur.find((n) => n.id === path[i])\n      if (!node) break\n      const kids = node.children || []\n      if (kids.length === 0) {\n        cols.push({ nodes: [], headerLabel: getLabel(node), depth: i + 1, selectedId: null, isLeaf: true })\n        break\n      }\n      cols.push({ nodes: kids, headerLabel: getLabel(node), depth: i + 1, selectedId: path[i + 1] ?? null, isLeaf: false })\n      cur = kids\n    }\n    return cols\n  }, [data, path])\n\n  const columnKey = (col: { depth: number }) =>\n    col.depth === 0 ? \"__root__\" : path.slice(0, col.depth).join(\"/\")\n\n  const scrollRef = useRef<HTMLDivElement | null>(null)\n  useEffect(() => {\n    const c = scrollRef.current\n    if (!c) return\n    const raf = requestAnimationFrame(() => {\n      c.scrollTo({ left: c.scrollWidth, behavior: \"smooth\" })\n    })\n    return () => cancelAnimationFrame(raf)\n  }, [path])\n\n  const handleSelect = useCallback((depth: number, node: TreeNode) => {\n    setPath((prev) => [...prev.slice(0, depth), node.id])\n  }, [])\n\n  const handleCrumb = useCallback((idx: number) => {\n    setPath((prev) => (idx < 0 ? [] : prev.slice(0, idx + 1)))\n  }, [])\n\n  return (\n    <div className={`flex h-full w-full flex-col bg-white text-slate-800 ${className}`}>\n      <Breadcrumb path={path} nodes={pathNodes} onCrumbClick={handleCrumb} />\n      <div\n        ref={scrollRef}\n        className=\"miller-hscroll flex flex-1 flex-row overflow-x-auto overflow-y-hidden\"\n        role=\"tree\"\n        aria-label=\"Miller columns navigator\"\n      >\n        {columns.map((col) => (\n          <ColumnPanel\n            key={columnKey(col)}\n            nodes={col.nodes}\n            selectedId={col.selectedId}\n            headerLabel={col.headerLabel}\n            depth={col.depth}\n            isLeaf={col.isLeaf}\n            onSelect={(node) => handleSelect(col.depth, node)}\n          />\n        ))}\n        <div className=\"w-px flex-shrink-0\" />\n      </div>\n\n      <style>{`\n        .miller-hscroll { scrollbar-width: thin; scrollbar-color: #cbd5e1 transparent; }\n        .miller-hscroll::-webkit-scrollbar { height: 4px; }\n        .miller-hscroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 2px; }\n        .miller-vscroll { scrollbar-width: thin; scrollbar-color: #cbd5e1 transparent; }\n        .miller-vscroll::-webkit-scrollbar { width: 4px; }\n        .miller-vscroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 2px; }\n        @keyframes miller-slide-in {\n          from { opacity: 0; transform: translateX(16px); }\n          to { opacity: 1; transform: translateX(0); }\n        }\n        .miller-col-enter { animation: miller-slide-in 120ms ease-out forwards; }\n      `}</style>\n    </div>\n  )\n}\n\n/* ---------- Örnek veri (önizleme/demo için) ---------- */\nexport const SAMPLE_DATA: TreeNode[] = [\n  {\n    id: \"eng\", label: \"Engineering\",\n    children: [\n      {\n        id: \"fe\", label: \"Frontend\",\n        children: [\n          {\n            id: \"react\", label: \"React\",\n            children: [\n              { id: \"hooks\", label: \"Hooks\", children: [\n                { id: \"useState\", label: \"useState\" },\n                { id: \"useEffect\", label: \"useEffect\" },\n                { id: \"useMemo\", label: \"useMemo\" },\n              ] },\n              { id: \"router\", label: \"Router\" },\n              { id: \"ssr\", label: \"SSR\" },\n            ],\n          },\n          { id: \"vue\", label: \"Vue\" },\n          { id: \"svelte\", label: \"Svelte\" },\n        ],\n      },\n      {\n        id: \"be\", label: \"Backend\",\n        children: [\n          { id: \"node\", label: \"Node.js\" },\n          { id: \"py\", label: \"Python\" },\n          { id: \"go\", label: \"Go\" },\n        ],\n      },\n    ],\n  },\n  {\n    id: \"design\", label: \"Design\",\n    children: [\n      { id: \"ux\", label: \"UX Research\" },\n      { id: \"ui\", label: \"UI Design\" },\n      { id: \"brand\", label: \"Brand\" },\n    ],\n  },\n  {\n    id: \"ops\", label: \"Operations\",\n    children: [\n      { id: \"ci\", label: \"CI/CD\" },\n      { id: \"mon\", label: \"Monitoring\" },\n      { id: \"sec\", label: \"Security\" },\n    ],\n  },\n]\n",
       "description": "MillerColumns",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/miller-columns.tsx"
+    },
+    {
+      "id": "166",
+      "name": "BreadcrumbsLevel2",
+      "category": "Breadcrumbs",
+      "file": "breadcrumbs-level2.tsx",
+      "exists": true,
+      "code": "/**\n * BreadcrumbsLevel2\n * HeroUI Navigation Levels örneği — 2 seviye (saf React).\n * @id 166\n * @category Breadcrumbs\n */\nimport { Breadcrumbs, BreadcrumbsItem } from \"@/components/ui/breadcrumbs\"\n\nfunction BreadcrumbsLevel2() {\n  return (\n    <Breadcrumbs>\n      <BreadcrumbsItem href=\"#\">Home</BreadcrumbsItem>\n      <BreadcrumbsItem>Current Page</BreadcrumbsItem>\n    </Breadcrumbs>\n  )\n}\n\nexport { BreadcrumbsLevel2 }\n",
+      "description": "Özel bileşen",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/breadcrumbs-level2.tsx"
+    },
+    {
+      "id": "167",
+      "name": "BreadcrumbsLevel3",
+      "category": "Breadcrumbs",
+      "file": "breadcrumbs-level3.tsx",
+      "exists": true,
+      "code": "/**\n * BreadcrumbsLevel3\n * HeroUI Navigation Levels örneği — 3 seviye (saf React).\n * @id 167\n * @category Breadcrumbs\n */\nimport { Breadcrumbs, BreadcrumbsItem } from \"@/components/ui/breadcrumbs\"\n\nfunction BreadcrumbsLevel3() {\n  return (\n    <Breadcrumbs>\n      <BreadcrumbsItem href=\"#\">Home</BreadcrumbsItem>\n      <BreadcrumbsItem href=\"#\">Category</BreadcrumbsItem>\n      <BreadcrumbsItem>Current Page</BreadcrumbsItem>\n    </Breadcrumbs>\n  )\n}\n\nexport { BreadcrumbsLevel3 }\n",
+      "description": "Özel bileşen",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/breadcrumbs-level3.tsx"
     }
   ],
   "layouts": []
