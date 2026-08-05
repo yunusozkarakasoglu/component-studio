@@ -1,4 +1,34 @@
-# "+ Yeni Bileşen" Ekleme Akışı — Plan v2 (sihirbaz)
+# "+ Yeni Bileşen" Ekleme Akışı — Plan v3 (2 sütunlu sihirbaz)
+
+> Karar: 2 sütunlu düzen — SOL: terminal (pi sohbet + canlı akış) · SAĞ: önizleme
+> + alt alan (pencere/dosya seçenekleri). Ayrı route. Pi SDK köprüsü (terminalde gerçek pi).
+
+## Yerleşim (2 sütun)
+
+```
+┌────────────────────────┬───────────────────────────┐
+│  SOL — TERMİNAL        │  SAĞ — ÖNİZLEME           │
+│  pi sohbet             │  canlı render (workbench) │
+│  (konuşma balonları)   │                           │
+│  pi'nin canlı akışı:   ├───────────────────────────┤
+│  araç çağrıları,       │  ALT — PENCERE & DOSYA    │
+│  komut çıktıları       │  Bileşen adı · kategori    │
+│  dosya yazımları       │  Hedef dosya (önizleme)   │
+│                        │  [Test Et] [Doğrula]      │
+│                        │  [Kaydet] [Vazgeç]        │
+└────────────────────────┴───────────────────────────┘
+```
+
+## Kararlar (benim belirlediklerim)
+
+- **Kayıt konumu:** `src/components/ui/<kebab>.tsx` (tek dosya) — otomatik JSDoc @id/@category
+- **Test Et:** tsc (workbench) + yasak import/ikon/slug kontrolü (kapsamlı kontrol kuralları) → rapor
+- **Doğrula:** render kontrolü + bağımlılık zinciri dosyaları var mı + envanter tutarlılığı
+- **Kayıt:** iki aşama — önce dosya yazılır, sonra "Registry'ye ekle?" onayı; "Sonra" → Bekleyen rozeti
+- **Terminal:** pi SDK köprüsü (vite /api/pi + SSE), cwd=Component-studio, tembel başlatma
+
+---
+**ESKİ PLAN (v2) — referans:**
 
 > Amaç: **Adımlı sihirbaz** — mevcut stüdyo arayüzünden **ayrı, farklı bir ekran**.
 > Kullanıcı her adımda seçimlerle ilerler. Temiz çalışma ortamı prensibi.
