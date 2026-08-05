@@ -6,7 +6,8 @@
  * @subcategory ShadcnInput
  * @source shadcn
  */
-import { ShadcnField, ShadcnFieldGroup, ShadcnFieldLabel, ShadcnInput } from "@/components/ui/shadcn-input"
+import { ShadcnField, ShadcnFieldGroup, ShadcnFieldLabel } from "@/components/ui/shadcn-field"
+import { ShadcnInput } from "@/components/ui/shadcn-input"
 
 function ShadcnInputGrid() {
   return (

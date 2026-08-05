@@ -6,7 +6,8 @@
  * @subcategory ShadcnInput
  * @source shadcn
  */
-import { ShadcnField, ShadcnFieldDescription, ShadcnFieldLabel, ShadcnInput } from "@/components/ui/shadcn-input"
+import { ShadcnField, ShadcnFieldDescription, ShadcnFieldLabel } from "@/components/ui/shadcn-field"
+import { ShadcnInput } from "@/components/ui/shadcn-input"
 
 function ShadcnInputFile() {
   return (

@@ -7,7 +7,8 @@
  * @source shadcn
  */
 import { Button } from "@/components/ui/button"
-import { ShadcnField, ShadcnInput } from "@/components/ui/shadcn-input"
+import { ShadcnField } from "@/components/ui/shadcn-field"
+import { ShadcnInput } from "@/components/ui/shadcn-input"
 
 function ShadcnInputInline() {
   return (

@@ -8,7 +8,7 @@
  */
 import { Button } from "@/components/ui/button"
 import { ShadcnButtonGroup } from "@/components/ui/shadcn-button-group"
-import { ShadcnField, ShadcnFieldLabel } from "@/components/ui/shadcn-input"
+import { ShadcnField, ShadcnFieldLabel } from "@/components/ui/shadcn-field"
 import { ShadcnInput } from "@/components/ui/shadcn-input"
 
 function ShadcnInputButtonGroup() {

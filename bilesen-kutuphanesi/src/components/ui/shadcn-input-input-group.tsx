@@ -7,7 +7,7 @@
  * @source shadcn
  */
 import { Info } from "@/components/ui/icons"
-import { ShadcnField, ShadcnFieldLabel } from "@/components/ui/shadcn-input"
+import { ShadcnField, ShadcnFieldLabel } from "@/components/ui/shadcn-field"
 import { ShadcnInputGroup, ShadcnInputGroupAddon, ShadcnInputGroupInput, ShadcnInputGroupText } from "@/components/ui/shadcn-input-group"
 
 function ShadcnInputInputGroup() {
