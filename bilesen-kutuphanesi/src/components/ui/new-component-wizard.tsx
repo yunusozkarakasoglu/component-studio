@@ -81,6 +81,8 @@ function NewComponentWizard({ registry, onClose }: NewComponentWizardProps) {
   })
   const [libSel, setLibSel] = useState<string[]>([])
   const [libQ, setLibQ] = useState("")
+  const [copied, setCopied] = useState(false)
+  const [applyText, setApplyText] = useState("")
   const termRef = useRef<HTMLDivElement>(null)
 
   // workbench değişiminde tam sayfa yenileme olmasın (sihirbaz state'i korunur)
@@ -157,6 +159,28 @@ function NewComponentWizard({ registry, onClose }: NewComponentWizardProps) {
       push({ role: "system", text: "✗ " + String((e as Error).message || e) })
     }
     setBusy(false)
+  }
+
+  /* ---------- Koda Uygula (AI yanıtından kod bloğu ayıkla) ---------- */
+  const applyFromText = async () => {
+    if (!applyText.trim()) return
+    const m = applyText.match(/```tsx\s*([\s\S]*?)```/) || applyText.match(/```(?:jsx|ts)?\s*([\s\S]*?)```/)
+    const code = (m ? m[1] : applyText).trim()
+    await fetch("/api/workbench/save", {
+      method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ code }),
+    })
+    setApplyText("")
+    setPreviewKey((k) => k + 1)
+    push({ role: "system", text: "✓ AI yanıtı workbench'e uygulandı — önizleme güncellendi." })
+  }
+
+  /* ---------- Mevcut kodu kopyala (kendi AI'nızda konuşmak için) ---------- */
+  const copyCurrentCode = async () => {
+    const wb = await fetch("/api/workbench/read").then((r) => r.json()).catch(() => ({ code: "" }))
+    try {
+      await navigator.clipboard.writeText(wb.code || "")
+      setCopied(true); setTimeout(() => setCopied(false), 2000)
+    } catch { /* kopyalama yok */ }
   }
 
   /* ---------- Önizle ---------- */
@@ -280,18 +304,34 @@ function NewComponentWizard({ registry, onClose }: NewComponentWizardProps) {
               ))}
               {busy && <div className="animate-pulse text-neutral-400">pi çalışıyor…</div>}
             </div>
-            <div className="flex shrink-0 gap-1.5 border-t border-border p-2">
-              <input value={input} onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && sendToPi(input)}
-                placeholder={mode === "llm" ? "Tanım yazın… (örn: solda ikon, sağda metinli bildirim kartı)" : "pi'ye mesaj…"}
-                className={cn(STYLE.input, "h-8 flex-1 text-xs")} />
-              <button onClick={() => sendToPi(input)} disabled={busy} className={cn(STYLE.btn, STYLE.primary, "h-8 px-3 text-xs")}>
-                {busy ? "…" : "Gönder"}
-              </button>
-              {mode === "kutuphane" && libSel.length > 0 && (
-                <button onClick={() => sendToPi("Şu kütüphane bileşenlerini kullanarak yeni bir bileşen oluştur: " + libSel.join(", ") + ". Bunları birleştirerek kullanışlı bir bileşen tasarla.")}
-                  disabled={busy} className={cn(STYLE.btn, STYLE.secondary, "h-8 px-3 text-xs")}>Pi'ye Bağla</button>
-              )}
+            <div className="flex shrink-0 flex-col gap-1.5 border-t border-border p-2">
+              {/* Komut satırı — istekler buradan girer, pi izole workbench'te çalışır */}
+              <div className="flex items-center gap-1.5">
+                <span className="text-xs font-bold text-emerald-600">$</span>
+                <input value={input} onChange={(e) => setInput(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && sendToPi(input)}
+                  placeholder={mode === "llm" ? "isteğinizi yazın → pi izole workbench'te üretir (örn: solda ikon, sağda metinli bildirim kartı)" : "pi'ye mesaj…"}
+                  className={cn(STYLE.input, "h-8 flex-1 font-mono text-xs")} />
+                <button onClick={() => sendToPi(input)} disabled={busy} className={cn(STYLE.btn, STYLE.primary, "h-8 px-3 text-xs")}>
+                  {busy ? "…" : "⏎"}
+                </button>
+                {mode === "kutuphane" && libSel.length > 0 && (
+                  <button onClick={() => sendToPi("Şu kütüphane bileşenlerini kullanarak yeni bir bileşen oluştur: " + libSel.join(", ") + ". Bunları birleştirerek kullanışlı bir bileşen tasarla.")}
+                    disabled={busy} className={cn(STYLE.btn, STYLE.secondary, "h-8 px-3 text-xs")}>Pi'ye Bağla</button>
+                )}
+              </div>
+              {/* Araçlar: kendi AI'nızda konuşmak için kodu al / AI yanıtını uygula */}
+              <div className="flex items-center gap-1.5">
+                <button onClick={copyCurrentCode} className={cn(STYLE.btn, STYLE.ghost, "h-7 px-2 text-[11px]")}>
+                  {copied ? "✓ Kopyalandı" : "📋 Kodu Kopyala"}
+                </button>
+                <input value={applyText} onChange={(e) => setApplyText(e.target.value)}
+                  placeholder="Kendi AI'nızın yanıtını buraya yapıştırın → Koda Uygula"
+                  className={cn(STYLE.input, "h-7 flex-1 text-[11px]")} />
+                <button onClick={applyFromText} disabled={!applyText.trim()} className={cn(STYLE.btn, STYLE.secondary, "h-7 px-2 text-[11px]")}>
+                  📥 Koda Uygula
+                </button>
+              </div>
             </div>
           </div>
         </aside>

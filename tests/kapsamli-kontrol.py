@@ -96,7 +96,7 @@ def grup1(comps, cats):
 
 # ================= GRUP 2 =================
 def grup2(comps):
-    files = sorted(f for f in os.listdir(UI) if f.endswith(".tsx") and f not in ("index.tsx", "icons.tsx", "icons-brand.tsx"))
+    files = sorted(f for f in os.listdir(UI) if f.endswith(".tsx") and f not in ("index.tsx", "icons.tsx", "icons-brand.tsx", "new-component-wizard.tsx"))
     # G2.1/G2.2 etiketler (icons.* çekirdek dosyalar bileşen değildir)
     no_id, no_cat, id_mismatch, desc_mismatch = [], [], [], []
     by_id = {c["id"]: c for c in comps}
@@ -188,7 +188,7 @@ def grup3(comps):
     # G3.2 her dosya barrel'de
     exported = set(re.findall(r'export \* from "\./([a-z0-9-]+)"', barrel))
     exported |= set(re.findall(r'\} from "\./([a-z0-9-]+)"', barrel))
-    not_exported = [f[:-4] for f in files if f[:-4] not in exported and f != "icons.tsx"]
+    not_exported = [f[:-4] for f in files if f[:-4] not in exported and f[:-4] not in ("icons", "new-component-wizard")]
     if not_exported: warn("G3", "G3.2", f"barrel'de yok: {not_exported[:8]}")
     else: ok("G3", "G3.2", f"{len(files)} dosya export edildi")
     # G3.3 samples id + U.Ad

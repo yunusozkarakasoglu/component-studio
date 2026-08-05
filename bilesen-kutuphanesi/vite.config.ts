@@ -80,6 +80,14 @@ Kurallar: 1) Çalışma klasörü src/workbench/current/ — index.tsx'e tek dos
         })
       })
 
+      server.middlewares.use("/api/workbench/read", (_req, res) => {
+        try {
+          const idx = path.join(WB_DIR, "index.tsx")
+          res.setHeader("Content-Type", "application/json")
+          res.end(JSON.stringify({ ok: true, code: existsSync(idx) ? readFileSync(idx, "utf8") : "" }))
+        } catch (e: unknown) { res.statusCode = 500; res.end(JSON.stringify({ ok: false, error: String((e as Error).message || e) })) }
+      })
+
       server.middlewares.use("/api/workbench/clear", (_req, res) => {
         try { rmSync(WB_DIR, { recursive: true, force: true }); res.end(JSON.stringify({ ok: true })) }
         catch (e: unknown) { res.statusCode = 500; res.end(JSON.stringify({ ok: false, error: String((e as Error).message || e) })) }
