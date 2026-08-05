@@ -124,7 +124,6 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `153` AutocompleteControlledOpenState
 - `154` AutocompleteAsynchronousFiltering
 - `155` AutocompleteOnSurface
-- `299` Input
 - `301` FieldError
 #### TextField
 - `285` TextField
@@ -169,6 +168,15 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `324` NumberFieldChevrons
 - `325` NumberFieldRenderFunction
 - `326` NumberFieldCustomStyles
+#### Input
+- `299` Input
+- `327` InputBasic
+- `328` InputVariants
+- `329` InputOnSurface
+- `330` InputFullWidth
+- `331` InputTypes
+- `332` InputControlled
+- `333` InputCustomStyles
 
 ### Renk Bileşenleri
 
@@ -298,7 +306,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 239 bileşen (saf React)**
+**Toplam: 246 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

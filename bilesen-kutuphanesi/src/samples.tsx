@@ -280,4 +280,11 @@ export const SAMPLES: Record<string, ReactNode> = {
   "324": <U.NumberFieldChevrons />,
   "325": <U.NumberFieldRenderFunction />,
   "326": <U.NumberFieldCustomStyles />,
+  "327": <U.InputBasic />,
+  "328": <U.InputVariants />,
+  "329": <U.InputOnSurface />,
+  "330": <U.InputFullWidth />,
+  "331": <U.InputTypes />,
+  "332": <U.InputControlled />,
+  "333": <U.InputCustomStyles />,
 }

@@ -14,9 +14,11 @@ import { useTextField } from "@/components/ui/text-field"
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   variant?: "primary" | "secondary"
+  /** Konteynerinin tam genişliğini alsın (API uyumu; varsayılan w-full) */
+  fullWidth?: boolean
 }
 
-function Input({ className, variant: variantProp, onChange, onFocus, onBlur, ...props }: InputProps) {
+function Input({ className, variant: variantProp, fullWidth = false, onChange, onFocus, onBlur, ...props }: InputProps) {
   const ctx = useTextField()
 
   const variant = variantProp ?? ctx?.variant ?? "primary"

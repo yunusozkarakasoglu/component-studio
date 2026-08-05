@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-05T00:00:42.549Z",
+  "generatedAt": "2026-08-05T00:03:50.367Z",
   "counts": {
-    "components": 239,
-    "ready": 239,
+    "components": 246,
+    "ready": 246,
     "layouts": 0
   },
   "categories": [
@@ -1094,17 +1094,6 @@
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/autocomplete-on-surface.tsx"
     },
     {
-      "id": "299",
-      "name": "Input",
-      "category": "Form Elemanları",
-      "subcategory": "",
-      "file": "input.tsx",
-      "exists": true,
-      "code": "/**\n * Input\n * Saf React bileşen (bağımlılıksız).\n * Tek satır metin girişi — TextField içinde veya bağımsız kullanılabilir.\n *   <Input placeholder=\"Ad\" />   |   <TextField><Label>…</Label><Input /></TextField>\n * Özellikler: TextField context'ine uyum (value/onChange/disabled/invalid/required/\n * name/type/variant) · primary/secondary variant · red invalid durumu · focus ring.\n * @id 299\n * @category Form Elemanları\n */\nimport type { InputHTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { useTextField } from \"@/components/ui/text-field\"\n\ninterface InputProps extends InputHTMLAttributes<HTMLInputElement> {\n  variant?: \"primary\" | \"secondary\"\n}\n\nfunction Input({ className, variant: variantProp, onChange, onFocus, onBlur, ...props }: InputProps) {\n  const ctx = useTextField()\n\n  const variant = variantProp ?? ctx?.variant ?? \"primary\"\n  const invalid = ctx?.isInvalid ?? (props[\"aria-invalid\"] === true || props[\"aria-invalid\"] === \"true\")\n\n  return (\n    <input\n      data-slot=\"input\"\n      data-variant={variant}\n      value={ctx ? ctx.value : props.value}\n      onChange={(e) => {\n        if (ctx) ctx.setValue(e.target.value)\n        onChange?.(e)\n      }}\n      onFocus={(e) => {\n        ctx?.setFocusWithin(true)\n        onFocus?.(e)\n      }}\n      onBlur={(e) => {\n        ctx?.setFocusWithin(false)\n        onBlur?.(e)\n      }}\n      disabled={ctx ? ctx.isDisabled : props.disabled}\n      readOnly={ctx ? ctx.isReadOnly : props.readOnly}\n      required={ctx ? ctx.isRequired : props.required}\n      name={ctx ? ctx.name : props.name}\n      type={ctx ? ctx.type : (props.type ?? \"text\")}\n      autoFocus={ctx ? ctx.autoFocus : props.autoFocus}\n      aria-invalid={invalid || undefined}\n      className={cn(\n        \"h-10 w-full rounded-lg border border-border bg-background px-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground\",\n        \"focus:border-ring focus:ring-3 focus:ring-ring/40\",\n        variant === \"secondary\" && \"border-transparent bg-muted/60\",\n        invalid && \"border-red-500 focus:border-red-500 focus:ring-red-500/30\",\n        \"disabled:cursor-not-allowed disabled:opacity-60\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Input }\nexport type { InputProps }\n",
-      "description": "Input",
-      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input.tsx"
-    },
-    {
       "id": "301",
       "name": "FieldError",
       "category": "Form Elemanları",
@@ -1463,7 +1452,7 @@
       "subcategory": "NumberField",
       "file": "number-field-controlled.tsx",
       "exists": true,
-      "code": "/**\n * NumberFieldControlled\n * Kontrollü örnek — değer senkronizasyonu + butonlar (saf React).\n * @id 318\n * @category Form Elemanları\n * @subcategory NumberField\n */\nimport { useState } from \"react\"\nimport { Button } from \"@/components/ui/button\"\nimport { Description } from \"@/components/ui/description\"\nimport { Label } from \"@/components/ui/label\"\nimport { NumberField, NumberFieldDecrementButton, NumberFieldGroup, NumberFieldIncrementButton, NumberFieldInput } from \"@/components/ui/number-field\"\n\nfunction NumberFieldControlled() {\n  const [value, setValue] = useState(1024)\n\n  return (\n    <div className=\"flex w-full max-w-64 flex-col gap-4\">\n      <NumberField minValue={0} name=\"width\" value={value} onChange={setValue}>\n        <Label>Width</Label>\n        <NumberFieldGroup>\n          <NumberFieldDecrementButton />\n          <NumberFieldInput className=\"w-[120px]\" />\n          <NumberFieldIncrementButton />\n        </NumberFieldGroup>\n        <Description>Current value: {value}</Description>\n      </NumberField>\n      <div className=\"flex gap-2\">\n        <Button variant=\"tertiary\" onPress={() => setValue(0)}>\n          Reset to 0\n        </Button>\n        <Button variant=\"tertiary\" onPress={() => setValue(2048)}>\n          Set to 2048\n        </Button>\n      </div>\n    </div>\n  )\n}\n\nexport { NumberFieldControlled }\n",
+      "code": "/**\n * NumberFieldControlled\n * Kontrollü örnek — değer senkronizasyonu + butonlar (saf React).\n * @id 318\n * @category Form Elemanları\n * @subcategory NumberField\n */\nimport { useState } from \"react\"\nimport { Button } from \"@/components/ui/button\"\nimport { Description } from \"@/components/ui/description\"\nimport { Label } from \"@/components/ui/label\"\nimport { NumberField, NumberFieldDecrementButton, NumberFieldGroup, NumberFieldIncrementButton, NumberFieldInput } from \"@/components/ui/number-field\"\n\nfunction NumberFieldControlled() {\n  const [value, setValue] = useState(1024)\n\n  return (\n    <div className=\"flex w-full max-w-64 flex-col gap-4\">\n      <NumberField minValue={0} name=\"width\" value={value} onChange={(v) => setValue(v ?? 0)}>\n        <Label>Width</Label>\n        <NumberFieldGroup>\n          <NumberFieldDecrementButton />\n          <NumberFieldInput className=\"w-[120px]\" />\n          <NumberFieldIncrementButton />\n        </NumberFieldGroup>\n        <Description>Current value: {value}</Description>\n      </NumberField>\n      <div className=\"flex gap-2\">\n        <Button variant=\"tertiary\" onPress={() => setValue(0)}>\n          Reset to 0\n        </Button>\n        <Button variant=\"tertiary\" onPress={() => setValue(2048)}>\n          Set to 2048\n        </Button>\n      </div>\n    </div>\n  )\n}\n\nexport { NumberFieldControlled }\n",
       "description": "NumberFieldControlled",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/number-field-controlled.tsx"
     },
@@ -1554,6 +1543,94 @@
       "code": "/**\n * NumberFieldCustomStyles\n * Özelleştirilmiş örnek — gruplu düzen (saf React).\n * @id 326\n * @category Form Elemanları\n * @subcategory NumberField\n */\nimport { Label } from \"@/components/ui/label\"\nimport { NumberField, NumberFieldDecrementButton, NumberFieldGroup, NumberFieldIncrementButton, NumberFieldInput } from \"@/components/ui/number-field\"\n\nfunction NumberFieldCustomStyles() {\n  return (\n    <NumberField\n      className=\"w-full max-w-48\"\n      defaultValue={2}\n      minValue={1}\n      name=\"guests\"\n      variant=\"secondary\"\n    >\n      <Label className=\"font-medium text-foreground\">Guests</Label>\n      <NumberFieldGroup className=\"rounded-xl bg-muted/60\">\n        <NumberFieldDecrementButton className=\"text-muted-foreground hover:text-foreground\" />\n        <NumberFieldInput className=\"text-center tabular-nums\" />\n        <NumberFieldIncrementButton className=\"text-muted-foreground hover:text-foreground\" />\n      </NumberFieldGroup>\n    </NumberField>\n  )\n}\n\nexport { NumberFieldCustomStyles }\n",
       "description": "NumberFieldCustomStyles",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/number-field-custom-styles.tsx"
+    },
+    {
+      "id": "299",
+      "name": "Input",
+      "category": "Form Elemanları",
+      "subcategory": "Input",
+      "file": "input.tsx",
+      "exists": true,
+      "code": "/**\n * Input\n * Saf React bileşen (bağımlılıksız).\n * Tek satır metin girişi — TextField içinde veya bağımsız kullanılabilir.\n *   <Input placeholder=\"Ad\" />   |   <TextField><Label>…</Label><Input /></TextField>\n * Özellikler: TextField context'ine uyum (value/onChange/disabled/invalid/required/\n * name/type/variant) · primary/secondary variant · red invalid durumu · focus ring.\n * @id 299\n * @category Form Elemanları\n */\nimport type { InputHTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { useTextField } from \"@/components/ui/text-field\"\n\ninterface InputProps extends InputHTMLAttributes<HTMLInputElement> {\n  variant?: \"primary\" | \"secondary\"\n}\n\nfunction Input({ className, variant: variantProp, onChange, onFocus, onBlur, ...props }: InputProps) {\n  const ctx = useTextField()\n\n  const variant = variantProp ?? ctx?.variant ?? \"primary\"\n  const invalid = ctx?.isInvalid ?? (props[\"aria-invalid\"] === true || props[\"aria-invalid\"] === \"true\")\n\n  return (\n    <input\n      data-slot=\"input\"\n      data-variant={variant}\n      value={ctx ? ctx.value : props.value}\n      onChange={(e) => {\n        if (ctx) ctx.setValue(e.target.value)\n        onChange?.(e)\n      }}\n      onFocus={(e) => {\n        ctx?.setFocusWithin(true)\n        onFocus?.(e)\n      }}\n      onBlur={(e) => {\n        ctx?.setFocusWithin(false)\n        onBlur?.(e)\n      }}\n      disabled={ctx ? ctx.isDisabled : props.disabled}\n      readOnly={ctx ? ctx.isReadOnly : props.readOnly}\n      required={ctx ? ctx.isRequired : props.required}\n      name={ctx ? ctx.name : props.name}\n      type={ctx ? ctx.type : (props.type ?? \"text\")}\n      autoFocus={ctx ? ctx.autoFocus : props.autoFocus}\n      aria-invalid={invalid || undefined}\n      className={cn(\n        \"h-10 w-full rounded-lg border border-border bg-background px-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground\",\n        \"focus:border-ring focus:ring-3 focus:ring-ring/40\",\n        variant === \"secondary\" && \"border-transparent bg-muted/60\",\n        invalid && \"border-red-500 focus:border-red-500 focus:ring-red-500/30\",\n        \"disabled:cursor-not-allowed disabled:opacity-60\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Input }\nexport type { InputProps }\n",
+      "description": "Input",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input.tsx"
+    },
+    {
+      "id": "327",
+      "name": "InputBasic",
+      "category": "Form Elemanları",
+      "subcategory": "Input",
+      "file": "input-basic.tsx",
+      "exists": true,
+      "code": "/**\n * InputBasic\n * Temel örnek: bağımsız tek satır giriş (saf React).\n * @id 327\n * @category Form Elemanları\n * @subcategory Input\n */\nimport { Input } from \"@/components/ui/input\"\n\nfunction InputBasic() {\n  return <Input aria-label=\"Name\" className=\"w-64\" placeholder=\"Enter your name\" />\n}\n\nexport { InputBasic }\n",
+      "description": "InputBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-basic.tsx"
+    },
+    {
+      "id": "328",
+      "name": "InputVariants",
+      "category": "Form Elemanları",
+      "subcategory": "Input",
+      "file": "input-variants.tsx",
+      "exists": true,
+      "code": "/**\n * InputVariants\n * primary/secondary variant örneği (saf React).\n * @id 328\n * @category Form Elemanları\n * @subcategory Input\n */\nimport { Input } from \"@/components/ui/input\"\n\nfunction InputVariants() {\n  return (\n    <div className=\"flex w-[240px] flex-col gap-2\">\n      <Input fullWidth placeholder=\"Primary input\" variant=\"primary\" />\n      <Input fullWidth placeholder=\"Secondary input\" variant=\"secondary\" />\n    </div>\n  )\n}\n\nexport { InputVariants }\n",
+      "description": "InputVariants",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-variants.tsx"
+    },
+    {
+      "id": "329",
+      "name": "InputOnSurface",
+      "category": "Form Elemanları",
+      "subcategory": "Input",
+      "file": "input-on-surface.tsx",
+      "exists": true,
+      "code": "/**\n * InputOnSurface\n * Yüzey (Surface) üzerinde secondary variant örneği (saf React).\n * Yüzey div ile simüle edilir.\n * @id 329\n * @category Form Elemanları\n * @subcategory Input\n */\nimport { Input } from \"@/components/ui/input\"\n\nfunction InputOnSurface() {\n  return (\n    <div className=\"flex h-[180px] w-[280px] items-center justify-center rounded-3xl bg-muted/40 p-4\">\n      <Input className=\"w-full\" placeholder=\"Your name\" variant=\"secondary\" />\n    </div>\n  )\n}\n\nexport { InputOnSurface }\n",
+      "description": "InputOnSurface",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-on-surface.tsx"
+    },
+    {
+      "id": "330",
+      "name": "InputFullWidth",
+      "category": "Form Elemanları",
+      "subcategory": "Input",
+      "file": "input-full-width.tsx",
+      "exists": true,
+      "code": "/**\n * InputFullWidth\n * Tam genişlik örneği (saf React).\n * @id 330\n * @category Form Elemanları\n * @subcategory Input\n */\nimport { Input } from \"@/components/ui/input\"\n\nfunction InputFullWidth() {\n  return (\n    <div className=\"w-[400px] space-y-3\">\n      <Input fullWidth placeholder=\"Full width input\" />\n    </div>\n  )\n}\n\nexport { InputFullWidth }\n",
+      "description": "InputFullWidth",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-full-width.tsx"
+    },
+    {
+      "id": "331",
+      "name": "InputTypes",
+      "category": "Form Elemanları",
+      "subcategory": "Input",
+      "file": "input-types.tsx",
+      "exists": true,
+      "code": "/**\n * InputTypes\n * Giriş tipleri örneği: email/number/password (saf React).\n * @id 331\n * @category Form Elemanları\n * @subcategory Input\n */\nimport { Input } from \"@/components/ui/input\"\nimport { Label } from \"@/components/ui/label\"\n\nfunction InputTypes() {\n  return (\n    <div className=\"flex w-80 flex-col gap-4\">\n      <div className=\"flex flex-col gap-1\">\n        <Label htmlFor=\"input-type-email\">Email</Label>\n        <Input id=\"input-type-email\" placeholder=\"jane@example.com\" type=\"email\" />\n      </div>\n      <div className=\"flex flex-col gap-1\">\n        <Label htmlFor=\"input-type-number\">Age</Label>\n        <Input id=\"input-type-number\" min={0} placeholder=\"30\" type=\"number\" />\n      </div>\n      <div className=\"flex flex-col gap-1\">\n        <Label htmlFor=\"input-type-password\">Password</Label>\n        <Input id=\"input-type-password\" placeholder=\"••••••••\" type=\"password\" />\n      </div>\n    </div>\n  )\n}\n\nexport { InputTypes }\n",
+      "description": "InputTypes",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-types.tsx"
+    },
+    {
+      "id": "332",
+      "name": "InputControlled",
+      "category": "Form Elemanları",
+      "subcategory": "Input",
+      "file": "input-controlled.tsx",
+      "exists": true,
+      "code": "/**\n * InputControlled\n * Kontrollü örnek — domain önizlemesi (saf React).\n * @id 332\n * @category Form Elemanları\n * @subcategory Input\n */\nimport { useState } from \"react\"\nimport { Input } from \"@/components/ui/input\"\n\nfunction InputControlled() {\n  const [value, setValue] = useState(\"heroui.com\")\n\n  return (\n    <div className=\"flex w-80 flex-col gap-2\">\n      <Input\n        aria-label=\"Domain\"\n        placeholder=\"domain\"\n        value={value}\n        onChange={(event) => setValue(event.target.value)}\n      />\n      <span className=\"px-1 text-sm text-muted-foreground\">\n        https://{value || \"your-domain\"}\n      </span>\n    </div>\n  )\n}\n\nexport { InputControlled }\n",
+      "description": "InputControlled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-controlled.tsx"
+    },
+    {
+      "id": "333",
+      "name": "InputCustomStyles",
+      "category": "Form Elemanları",
+      "subcategory": "Input",
+      "file": "input-custom-styles.tsx",
+      "exists": true,
+      "code": "/**\n * InputCustomStyles\n * Özelleştirilmiş giriş örneği (saf React).\n * @id 333\n * @category Form Elemanları\n * @subcategory Input\n */\nimport { Input } from \"@/components/ui/input\"\n\nfunction InputCustomStyles() {\n  return (\n    <Input\n      aria-label=\"Search projects\"\n      className=\"w-64 rounded-xl border border-border/80 bg-background text-foreground placeholder:text-muted-foreground\"\n      placeholder=\"Search projects...\"\n    />\n  )\n}\n\nexport { InputCustomStyles }\n",
+      "description": "InputCustomStyles",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-custom-styles.tsx"
     },
     {
       "id": "092",
