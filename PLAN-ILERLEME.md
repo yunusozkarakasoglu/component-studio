@@ -75,8 +75,8 @@
 
 ## ⬜ Adım 6 — Takvim + Combobox + Date (3 element)
 
-- [ ] **30. RangeCalendar** — range-calendar-hero-ui.md → Takvim
-- [ ] **31. Select** — select-hero-ui.md → Combobox
+- [x] **30. RangeCalendar** — range-calendar-hero-ui.md → Takvim (561 + 562-567)
+- [x] **31. Select** — select-hero-ui.md → Combobox (568 + 569-578)
 - [ ] **32. TimeField** — time-field-hero-ui.md → Date (alt: TimeField)
 
 ## ⬜ Adım 7 — Genel (4 element)
@@ -93,4 +93,4 @@
 - Boş kategoriler dolar: **Navigasyon**, **Overlay**, **Veri Gösterimi** (kısmen dolu).
 - Yeni kategoriler: **Seçim**, **Yükleme & İlerleme**.
 
-**İlerleme:** ✅ 40/56 aile (Adım 5: 5/5 ✅) · ⬜ 16/56 kaldı — sonraki id: **561**
+**İlerleme:** ✅ 42/56 aile (Adım 6: 2/3) · ⬜ 14/56 kaldı — sonraki id: **579**

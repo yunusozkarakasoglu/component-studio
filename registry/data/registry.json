@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-05T01:27:49.631Z",
+  "generatedAt": "2026-08-05T01:30:31.196Z",
   "counts": {
-    "components": 473,
-    "ready": 473,
+    "components": 491,
+    "ready": 491,
     "layouts": 0
   },
   "categories": [
@@ -4141,6 +4141,204 @@
       "code": "/**\n * MeterCustomStyles\n * Özelleştirilmiş örnek (saf React).\n * @id 560\n * @category Yükleme & İlerleme\n * @subcategory Meter\n */\nimport { Label } from \"@/components/ui/label\"\nimport { Meter, MeterFill, MeterOutput, MeterTrack } from \"@/components/ui/meter\"\n\nfunction MeterCustomStyles() {\n  return (\n    <Meter aria-label=\"Disk\" className=\"w-64\" value={85} color=\"danger\" size=\"lg\">\n      <div className=\"flex w-full items-center justify-between\">\n        <Label className=\"text-xs\">Disk usage</Label>\n        <MeterOutput className=\"text-xs font-medium text-red-600\" />\n      </div>\n      <MeterTrack className=\"h-2.5 rounded-full bg-red-100\">\n        <MeterFill className=\"rounded-full bg-gradient-to-r from-amber-500 to-red-600\" />\n      </MeterTrack>\n    </Meter>\n  )\n}\n\nexport { MeterCustomStyles }\n",
       "description": "MeterCustomStyles",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/meter-custom-styles.tsx"
+    },
+    {
+      "id": "561",
+      "name": "RangeCalendar",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "RangeCalendar",
+      "file": "range-calendar.tsx",
+      "exists": true,
+      "code": "/**\n * RangeCalendar\n * Saf React bileşen (bağımlılıksız).\n * Tarih aralığı seçimli takvim — Calendar'ın range modu.\n *   <RangeCalendar value={[start, end]} onChange={setRange} />\n * Özellikler: value ([\"YYYY-MM-DD\",\"YYYY-MM-DD\"]) · defaultValue · onChange ·\n * minValue/maxValue · isDateUnavailable · isDisabled · focusedValue.\n * @id 561\n * @category Takvim\n * @subcategory RangeCalendar\n */\nimport { Calendar, type CalendarProps } from \"@/components/ui/calendar\"\n\ntype RangeCalendarProps = Omit<CalendarProps, \"selectionMode\">\n\nfunction RangeCalendar(props: RangeCalendarProps) {\n  return <Calendar {...props} selectionMode=\"range\" />\n}\n\nexport { RangeCalendar }\nexport type { RangeCalendarProps }\n",
+      "description": "RangeCalendar",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/range-calendar.tsx"
+    },
+    {
+      "id": "562",
+      "name": "RangeCalendarBasic",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "RangeCalendar",
+      "file": "range-calendar-basic.tsx",
+      "exists": true,
+      "code": "/**\n * RangeCalendarBasic\n * Temel örnek: tarih aralığı seçimi (saf React).\n * @id 562\n * @category Takvim\n * @subcategory RangeCalendar\n */\nimport { RangeCalendar } from \"@/components/ui/range-calendar\"\n\nfunction RangeCalendarBasic() {\n  return <RangeCalendar aria-label=\"Tatil tarihleri\" />\n}\n\nexport { RangeCalendarBasic }\n",
+      "description": "RangeCalendarBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/range-calendar-basic.tsx"
+    },
+    {
+      "id": "563",
+      "name": "RangeCalendarDisabled",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "RangeCalendar",
+      "file": "range-calendar-disabled.tsx",
+      "exists": true,
+      "code": "/**\n * RangeCalendarDisabled\n * Devre dışı örnek (saf React).\n * @id 563\n * @category Takvim\n * @subcategory RangeCalendar\n */\nimport { RangeCalendar } from \"@/components/ui/range-calendar\"\n\nfunction RangeCalendarDisabled() {\n  return <RangeCalendar aria-label=\"Tarih aralığı\" isDisabled />\n}\n\nexport { RangeCalendarDisabled }\n",
+      "description": "RangeCalendarDisabled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/range-calendar-disabled.tsx"
+    },
+    {
+      "id": "564",
+      "name": "RangeCalendarDefaultValue",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "RangeCalendar",
+      "file": "range-calendar-default-value.tsx",
+      "exists": true,
+      "code": "/**\n * RangeCalendarDefaultValue\n * Varsayılan değerli örnek (saf React).\n * @id 564\n * @category Takvim\n * @subcategory RangeCalendar\n */\nimport { RangeCalendar } from \"@/components/ui/range-calendar\"\n\nfunction RangeCalendarDefaultValue() {\n  return <RangeCalendar aria-label=\"Proje süresi\" defaultValue={[\"2025-02-01\", \"2025-02-14\"]} />\n}\n\nexport { RangeCalendarDefaultValue }\n",
+      "description": "RangeCalendarDefaultValue",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/range-calendar-default-value.tsx"
+    },
+    {
+      "id": "565",
+      "name": "RangeCalendarControlled",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "RangeCalendar",
+      "file": "range-calendar-controlled.tsx",
+      "exists": true,
+      "code": "/**\n * RangeCalendarControlled\n * Kontrollü örnek — seçilen aralık gösterimi (saf React).\n * @id 565\n * @category Takvim\n * @subcategory RangeCalendar\n */\nimport { useState } from \"react\"\nimport { RangeCalendar } from \"@/components/ui/range-calendar\"\n\nfunction RangeCalendarControlled() {\n  const [range, setRange] = useState<[string, string] | null>([\"2025-02-01\", \"2025-02-14\"])\n\n  return (\n    <div className=\"flex flex-col gap-3\">\n      <RangeCalendar value={range} onChange={(v) => setRange(Array.isArray(v) && v.length === 2 ? [v[0], v[1]] : null)} />\n      <p className=\"text-sm text-muted-foreground\">\n        Aralık:{\" \"}\n        <code className=\"font-mono\">\n          {range ? `${range[0]} → ${range[1]}` : \"(seçilmedi)\"}\n        </code>\n      </p>\n    </div>\n  )\n}\n\nexport { RangeCalendarControlled }\n",
+      "description": "RangeCalendarControlled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/range-calendar-controlled.tsx"
+    },
+    {
+      "id": "566",
+      "name": "RangeCalendarMinMax",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "RangeCalendar",
+      "file": "range-calendar-min-max.tsx",
+      "exists": true,
+      "code": "/**\n * RangeCalendarMinMax\n * Min/max tarih kısıtı örneği (saf React).\n * @id 566\n * @category Takvim\n * @subcategory RangeCalendar\n */\nimport { RangeCalendar } from \"@/components/ui/range-calendar\"\n\nfunction RangeCalendarMinMax() {\n  return <RangeCalendar aria-label=\"Rezervasyon\" minValue=\"2025-01-01\" maxValue=\"2025-12-31\" />\n}\n\nexport { RangeCalendarMinMax }\n",
+      "description": "RangeCalendarMinMax",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/range-calendar-min-max.tsx"
+    },
+    {
+      "id": "567",
+      "name": "RangeCalendarUnavailable",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "RangeCalendar",
+      "file": "range-calendar-unavailable.tsx",
+      "exists": true,
+      "code": "/**\n * RangeCalendarUnavailable\n * Kullanılamayan tarihler örneği — hafta sonları (saf React).\n * @id 567\n * @category Takvim\n * @subcategory RangeCalendar\n */\nimport { RangeCalendar } from \"@/components/ui/range-calendar\"\n\nfunction RangeCalendarUnavailable() {\n  const isWeekend = (date: string) => {\n    const d = new Date(date)\n    const day = d.getDay()\n    return day === 0 || day === 6\n  }\n\n  return <RangeCalendar aria-label=\"Toplantı tarihleri\" isDateUnavailable={isWeekend} />\n}\n\nexport { RangeCalendarUnavailable }\n",
+      "description": "RangeCalendarUnavailable",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/range-calendar-unavailable.tsx"
+    },
+    {
+      "id": "568",
+      "name": "Select",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "Select",
+      "file": "select.tsx",
+      "exists": true,
+      "code": "/**\n * Select\n * Saf React bileşen (bağımlılıksız).\n * Açılır seçim alanı — Trigger/Value/Indicator/Popover compound.\n *   <Select className=\"w-[256px]\" placeholder=\"Seçin\">\n *     <Label>State</Label>\n *     <SelectTrigger>\n *       <SelectValue />\n *       <SelectIndicator />\n *     </SelectTrigger>\n *     <SelectPopover>\n *       <ListBox>\n *         <ListBoxItem id=\"florida\" textValue=\"Florida\">Florida<ListBoxItemIndicator /></ListBoxItem>\n *       </ListBox>\n *     </SelectPopover>\n *   </Select>\n * Özellikler: value/defaultValue/onChange (id) · placeholder · isDisabled ·\n * isRequired · isInvalid · variant (primary/secondary) · multiple ·\n * dışarı tıklama kapatma · seçili öğe işareti (data-selected).\n * @id 568\n * @category Combobox\n * @subcategory Select\n */\nimport { createContext, useContext, useState, type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { Check, ChevronDown } from \"@/components/ui/icons\"\n\n/* ---------- Types ---------- */\n\ntype SelectVariant = \"primary\" | \"secondary\"\n\ninterface SelectValueItem {\n  id: string\n  label: string\n}\n\ninterface SelectContextValue {\n  value: SelectValueItem | null\n  select: (id: string, label: string) => void\n  isOpen: boolean\n  open: () => void\n  close: () => void\n  placeholder?: string\n  isDisabled: boolean\n  isInvalid: boolean\n  variant: SelectVariant\n  multiple: boolean\n  selectedIds: string[]\n}\n\nconst SelectContext = createContext<SelectContextValue | null>(null)\n\nfunction useSelect(): SelectContextValue {\n  const ctx = useContext(SelectContext)\n  if (!ctx) throw new Error(\"useSelect, <Select> içinde kullanılmalı\")\n  return ctx\n}\n\ninterface SelectProps {\n  children?: ReactNode\n  className?: string\n  value?: string | string[] | null\n  defaultValue?: string | string[] | null\n  onChange?: (value: string | string[] | null) => void\n  placeholder?: string\n  isDisabled?: boolean\n  isRequired?: boolean\n  isInvalid?: boolean\n  variant?: SelectVariant\n  multiple?: boolean\n  \"aria-label\"?: string\n}\n\nfunction Select({\n  children,\n  className,\n  value: valueProp,\n  defaultValue,\n  onChange,\n  placeholder,\n  isDisabled = false,\n  isRequired = false,\n  isInvalid = false,\n  variant = \"primary\",\n  multiple = false,\n  ...aria\n}: SelectProps) {\n  const [internalValue, setInternalValue] = useState<string | string[] | null>(defaultValue ?? null)\n  const [labels, setLabels] = useState<Record<string, string>>({})\n  const [isOpen, setIsOpen] = useState(false)\n\n  const value = valueProp !== undefined ? valueProp : internalValue\n\n  const setValue = (v: string | string[] | null) => {\n    if (!valueProp) setInternalValue(v)\n    onChange?.(v)\n  }\n\n  const selectedIds = Array.isArray(value) ? value : value ? [value] : []\n  const selectedItems: SelectValueItem[] = selectedIds\n    .map((id) => ({ id, label: labels[id] ?? id }))\n    .filter((i) => i.id)\n\n  const select = (id: string, label: string) => {\n    const nextLabels = { ...labels, [id]: label }\n    setLabels(nextLabels)\n    if (multiple) {\n      const next = selectedIds.includes(id) ? selectedIds.filter((k) => k !== id) : [...selectedIds, id]\n      setValue(next.length ? next : null)\n    } else {\n      setValue(selectedIds.includes(id) ? null : id)\n      setIsOpen(false)\n    }\n  }\n\n  const contextValue: SelectContextValue = {\n    value: selectedItems[0] ?? null,\n    select,\n    isOpen,\n    open: () => !isDisabled && setIsOpen(true),\n    close: () => setIsOpen(false),\n    placeholder,\n    isDisabled,\n    isInvalid,\n    variant,\n    multiple,\n    selectedIds,\n  }\n\n  return (\n    <SelectContext.Provider value={contextValue}>\n      <div data-slot=\"select\" className={cn(\"flex flex-col gap-1.5\", className)} {...aria}>\n        {children}\n      </div>\n    </SelectContext.Provider>\n  )\n}\n\n/* ---------- Trigger ---------- */\n\ninterface SelectTriggerProps {\n  children?: ReactNode\n  className?: string\n}\n\nfunction SelectTrigger({ children, className }: SelectTriggerProps) {\n  const ctx = useSelect()\n  return (\n    <button\n      type=\"button\"\n      data-slot=\"select-trigger\"\n      role=\"combobox\"\n      aria-expanded={ctx.isOpen}\n      aria-invalid={ctx.isInvalid || undefined}\n      disabled={ctx.isDisabled}\n      onClick={ctx.isOpen ? ctx.close : ctx.open}\n      className={cn(\n        \"inline-flex h-10 w-full items-center justify-between gap-2 rounded-lg border border-border bg-background px-3 text-sm text-foreground transition-colors outline-none\",\n        \"hover:bg-muted/40 focus-visible:ring-3 focus-visible:ring-ring/40\",\n        ctx.variant === \"secondary\" && \"border-transparent bg-muted/60\",\n        ctx.isOpen && \"border-ring ring-3 ring-ring/40\",\n        ctx.isInvalid && \"border-red-500 focus-visible:ring-red-500/30\",\n        ctx.isDisabled && \"cursor-not-allowed opacity-60\",\n        className\n      )}\n    >\n      {children}\n    </button>\n  )\n}\n\n/* ---------- Value ---------- */\n\ninterface SelectValueProps {\n  className?: string\n  placeholder?: string\n}\n\nfunction SelectValue({ className, placeholder }: SelectValueProps) {\n  const ctx = useSelect()\n  const text = ctx.value ? ctx.value.label : (placeholder ?? ctx.placeholder ?? \"Seçin…\")\n  return (\n    <span data-slot=\"select-value\" className={cn(\"flex-1 truncate text-left\", !ctx.value && \"text-muted-foreground\", className)}>\n      {text}\n    </span>\n  )\n}\n\n/* ---------- Indicator ---------- */\n\ninterface SelectIndicatorProps {\n  className?: string\n}\n\nfunction SelectIndicator({ className }: SelectIndicatorProps) {\n  const ctx = useSelect()\n  return (\n    <span data-slot=\"select-indicator\" className={cn(\"flex shrink-0 items-center text-muted-foreground transition-transform\", ctx.isOpen && \"rotate-180\", className)}>\n      <ChevronDown className=\"size-4\" />\n    </span>\n  )\n}\n\n/* ---------- Popover ---------- */\n\ninterface SelectPopoverProps {\n  children?: ReactNode\n  className?: string\n}\n\nfunction SelectPopover({ children, className }: SelectPopoverProps) {\n  const ctx = useSelect()\n\n  const handleClick = (e: React.MouseEvent) => {\n    const item = (e.target as HTMLElement).closest(\"[data-slot=listbox-item]\") as HTMLElement | null\n    if (!item) return\n    if (item.classList.contains(\"pointer-events-none\")) return\n    const id = item.id || item.textContent?.trim() || \"\"\n    const label = item.textContent?.trim() || id\n    ctx.select(id, label)\n  }\n\n  if (!ctx.isOpen) return null\n\n  return (\n    <div\n      data-slot=\"select-popover\"\n      data-entering=\"\"\n      className={cn(\n        \"absolute z-50 mt-1 w-full min-w-40 rounded-lg border border-border bg-background shadow-xl\",\n        \"data-[entering]:animate-in data-[entering]:fade-in-0 data-[entering]:zoom-in-95 data-[entering]:duration-150\",\n        className\n      )}\n      onClick={handleClick}\n    >\n      {children}\n    </div>\n  )\n}\n\n/* ---------- Seçim işareti (ListBoxItemIndicator ile birlikte) ---------- */\n\ninterface SelectItemIndicatorProps {\n  className?: string\n}\n\nfunction SelectItemIndicator({ className }: SelectItemIndicatorProps) {\n  const ctx = useSelect()\n  return <Check className={cn(\"size-4\", className)} />\n}\n\nexport { Select, SelectIndicator, SelectItemIndicator, SelectPopover, SelectTrigger, SelectValue, useSelect }\nexport type { SelectIndicatorProps, SelectPopoverProps, SelectProps, SelectTriggerProps, SelectValueProps, SelectVariant }\n",
+      "description": "Select",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/select.tsx"
+    },
+    {
+      "id": "569",
+      "name": "SelectDefault",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "Select",
+      "file": "select-default.tsx",
+      "exists": true,
+      "code": "/**\n * SelectDefault\n * Temel örnek: eyalet seçimi (saf React).\n * @id 569\n * @category Combobox\n * @subcategory Select\n */\nimport { Label } from \"@/components/ui/label\"\nimport { ListBox, ListBoxItem, ListBoxItemIndicator } from \"@/components/ui/list-box\"\nimport { Select, SelectIndicator, SelectPopover, SelectTrigger, SelectValue } from \"@/components/ui/select\"\n\nconst STATES = [\"Florida\", \"Delaware\", \"California\", \"Texas\", \"New York\", \"Washington\"]\n\nfunction SelectDefault() {\n  return (\n    <Select className=\"relative w-[256px]\" placeholder=\"Select one\">\n      <Label>State</Label>\n      <SelectTrigger>\n        <SelectValue />\n        <SelectIndicator />\n      </SelectTrigger>\n      <SelectPopover>\n        <ListBox>\n          {STATES.map((s) => (\n            <ListBoxItem key={s} id={s.toLowerCase()} textValue={s}>\n              {s}\n              <ListBoxItemIndicator />\n            </ListBoxItem>\n          ))}\n        </ListBox>\n      </SelectPopover>\n    </Select>\n  )\n}\n\nexport { SelectDefault }\n",
+      "description": "SelectDefault",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/select-default.tsx"
+    },
+    {
+      "id": "570",
+      "name": "SelectVariants",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "Select",
+      "file": "select-variants.tsx",
+      "exists": true,
+      "code": "/**\n * SelectVariants\n * primary/secondary variant örneği (saf React).\n * @id 570\n * @category Combobox\n * @subcategory Select\n */\nimport { Label } from \"@/components/ui/label\"\nimport { ListBox, ListBoxItem, ListBoxItemIndicator } from \"@/components/ui/list-box\"\nimport { Select, SelectIndicator, SelectPopover, SelectTrigger, SelectValue } from \"@/components/ui/select\"\n\nconst OPTIONS = [\"Option 1\", \"Option 2\", \"Option 3\"]\n\nfunction SelectVariants() {\n  return (\n    <div className=\"flex flex-col gap-4\">\n      {([\"primary\", \"secondary\"] as const).map((variant) => (\n        <Select key={variant} className=\"relative w-[256px]\" placeholder=\"Select one\" variant={variant}>\n          <Label className=\"capitalize\">{variant} variant</Label>\n          <SelectTrigger>\n            <SelectValue />\n            <SelectIndicator />\n          </SelectTrigger>\n          <SelectPopover>\n            <ListBox>\n              {OPTIONS.map((o) => (\n                <ListBoxItem key={o} id={o.toLowerCase()} textValue={o}>\n                  {o}\n                  <ListBoxItemIndicator />\n                </ListBoxItem>\n              ))}\n            </ListBox>\n          </SelectPopover>\n        </Select>\n      ))}\n    </div>\n  )\n}\n\nexport { SelectVariants }\n",
+      "description": "SelectVariants",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/select-variants.tsx"
+    },
+    {
+      "id": "571",
+      "name": "SelectFullWidth",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "Select",
+      "file": "select-full-width.tsx",
+      "exists": true,
+      "code": "/**\n * SelectFullWidth\n * Tam genişlik örneği (saf React).\n * @id 571\n * @category Combobox\n * @subcategory Select\n */\nimport { Label } from \"@/components/ui/label\"\nimport { ListBox, ListBoxItem, ListBoxItemIndicator } from \"@/components/ui/list-box\"\nimport { Select, SelectIndicator, SelectPopover, SelectTrigger, SelectValue } from \"@/components/ui/select\"\n\nconst OPTIONS = [\"Free\", \"Pro\", \"Team\", \"Enterprise\"]\n\nfunction SelectFullWidth() {\n  return (\n    <div className=\"w-[400px]\">\n      <Select className=\"relative\" placeholder=\"Select a plan\">\n        <Label>Plan</Label>\n        <SelectTrigger>\n          <SelectValue />\n          <SelectIndicator />\n        </SelectTrigger>\n        <SelectPopover>\n          <ListBox>\n            {OPTIONS.map((o) => (\n              <ListBoxItem key={o} id={o.toLowerCase()} textValue={o}>\n                {o}\n                <ListBoxItemIndicator />\n              </ListBoxItem>\n            ))}\n          </ListBox>\n        </SelectPopover>\n      </Select>\n    </div>\n  )\n}\n\nexport { SelectFullWidth }\n",
+      "description": "SelectFullWidth",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/select-full-width.tsx"
+    },
+    {
+      "id": "572",
+      "name": "SelectWithDescription",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "Select",
+      "file": "select-with-description.tsx",
+      "exists": true,
+      "code": "/**\n * SelectWithDescription\n * Açıklamalı örnek (saf React).\n * @id 572\n * @category Combobox\n * @subcategory Select\n */\nimport { Description } from \"@/components/ui/description\"\nimport { Label } from \"@/components/ui/label\"\nimport { ListBox, ListBoxItem, ListBoxItemIndicator } from \"@/components/ui/list-box\"\nimport { Select, SelectIndicator, SelectPopover, SelectTrigger, SelectValue } from \"@/components/ui/select\"\n\nconst OPTIONS = [\"English\", \"Türkçe\", \"Deutsch\", \"Français\"]\n\nfunction SelectWithDescription() {\n  return (\n    <Select className=\"relative w-[256px]\" placeholder=\"Select language\">\n      <Label>Language</Label>\n      <SelectTrigger>\n        <SelectValue />\n        <SelectIndicator />\n      </SelectTrigger>\n      <SelectPopover>\n        <ListBox>\n          {OPTIONS.map((o) => (\n            <ListBoxItem key={o} id={o.toLowerCase()} textValue={o}>\n              {o}\n              <ListBoxItemIndicator />\n            </ListBoxItem>\n          ))}\n        </ListBox>\n      </SelectPopover>\n      <Description>Used for emails and notifications</Description>\n    </Select>\n  )\n}\n\nexport { SelectWithDescription }\n",
+      "description": "SelectWithDescription",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/select-with-description.tsx"
+    },
+    {
+      "id": "573",
+      "name": "SelectRequired",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "Select",
+      "file": "select-required.tsx",
+      "exists": true,
+      "code": "/**\n * SelectRequired\n * Zorunlu alan örneği (saf React).\n * @id 573\n * @category Combobox\n * @subcategory Select\n */\nimport { Label } from \"@/components/ui/label\"\nimport { ListBox, ListBoxItem, ListBoxItemIndicator } from \"@/components/ui/list-box\"\nimport { Select, SelectIndicator, SelectPopover, SelectTrigger, SelectValue } from \"@/components/ui/select\"\n\nconst OPTIONS = [\"Starter\", \"Pro\", \"Teams\"]\n\nfunction SelectRequired() {\n  return (\n    <Select className=\"relative w-[256px]\" placeholder=\"Choose a plan\" isRequired>\n      <Label>Plan</Label>\n      <SelectTrigger>\n        <SelectValue />\n        <SelectIndicator />\n      </SelectTrigger>\n      <SelectPopover>\n        <ListBox>\n          {OPTIONS.map((o) => (\n            <ListBoxItem key={o} id={o.toLowerCase()} textValue={o}>\n              {o}\n              <ListBoxItemIndicator />\n            </ListBoxItem>\n          ))}\n        </ListBox>\n      </SelectPopover>\n    </Select>\n  )\n}\n\nexport { SelectRequired }\n",
+      "description": "SelectRequired",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/select-required.tsx"
+    },
+    {
+      "id": "574",
+      "name": "SelectDisabled",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "Select",
+      "file": "select-disabled.tsx",
+      "exists": true,
+      "code": "/**\n * SelectDisabled\n * Devre dışı örnek (saf React).\n * @id 574\n * @category Combobox\n * @subcategory Select\n */\nimport { Label } from \"@/components/ui/label\"\nimport { ListBox, ListBoxItem, ListBoxItemIndicator } from \"@/components/ui/list-box\"\nimport { Select, SelectIndicator, SelectPopover, SelectTrigger, SelectValue } from \"@/components/ui/select\"\n\nconst OPTIONS = [\"Free\", \"Pro\", \"Team\"]\n\nfunction SelectDisabled() {\n  return (\n    <Select className=\"relative w-[256px]\" placeholder=\"Select a plan\" isDisabled>\n      <Label>Plan</Label>\n      <SelectTrigger>\n        <SelectValue />\n        <SelectIndicator />\n      </SelectTrigger>\n      <SelectPopover>\n        <ListBox>\n          {OPTIONS.map((o) => (\n            <ListBoxItem key={o} id={o.toLowerCase()} textValue={o}>\n              {o}\n              <ListBoxItemIndicator />\n            </ListBoxItem>\n          ))}\n        </ListBox>\n      </SelectPopover>\n    </Select>\n  )\n}\n\nexport { SelectDisabled }\n",
+      "description": "SelectDisabled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/select-disabled.tsx"
+    },
+    {
+      "id": "575",
+      "name": "SelectWithDisabledOptions",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "Select",
+      "file": "select-with-disabled-options.tsx",
+      "exists": true,
+      "code": "/**\n * SelectWithDisabledOptions\n * Devre dışı seçenekli örnek (saf React).\n * @id 575\n * @category Combobox\n * @subcategory Select\n */\nimport { Label } from \"@/components/ui/label\"\nimport { ListBox, ListBoxItem, ListBoxItemIndicator } from \"@/components/ui/list-box\"\nimport { Select, SelectIndicator, SelectPopover, SelectTrigger, SelectValue } from \"@/components/ui/select\"\n\nconst OPTIONS = [\n  { label: \"Free\", disabled: false },\n  { label: \"Pro\", disabled: false },\n  { label: \"Team (unavailable)\", disabled: true },\n  { label: \"Enterprise\", disabled: false },\n]\n\nfunction SelectWithDisabledOptions() {\n  return (\n    <Select className=\"relative w-[256px]\" placeholder=\"Select a plan\">\n      <Label>Plan</Label>\n      <SelectTrigger>\n        <SelectValue />\n        <SelectIndicator />\n      </SelectTrigger>\n      <SelectPopover>\n        <ListBox>\n          {OPTIONS.map((o) => (\n            <ListBoxItem\n              key={o.label}\n              id={o.label.toLowerCase()}\n              textValue={o.label}\n              className={o.disabled ? \"pointer-events-none cursor-not-allowed opacity-50\" : undefined}\n            >\n              {o.label}\n              <ListBoxItemIndicator />\n            </ListBoxItem>\n          ))}\n        </ListBox>\n      </SelectPopover>\n    </Select>\n  )\n}\n\nexport { SelectWithDisabledOptions }\n",
+      "description": "SelectWithDisabledOptions",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/select-with-disabled-options.tsx"
+    },
+    {
+      "id": "576",
+      "name": "SelectMultiple",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "Select",
+      "file": "select-multiple.tsx",
+      "exists": true,
+      "code": "/**\n * SelectMultiple\n * Çoklu seçim örneği (saf React).\n * @id 576\n * @category Combobox\n * @subcategory Select\n */\nimport { Label } from \"@/components/ui/label\"\nimport { ListBox, ListBoxItem, ListBoxItemIndicator } from \"@/components/ui/list-box\"\nimport { Select, SelectIndicator, SelectPopover, SelectTrigger, SelectValue } from \"@/components/ui/select\"\n\nconst OPTIONS = [\"Design\", \"Engineering\", \"Marketing\", \"Sales\", \"Support\"]\n\nfunction SelectMultiple() {\n  return (\n    <Select className=\"relative w-[256px]\" placeholder=\"Select departments\" multiple>\n      <Label>Departments</Label>\n      <SelectTrigger>\n        <SelectValue />\n        <SelectIndicator />\n      </SelectTrigger>\n      <SelectPopover>\n        <ListBox>\n          {OPTIONS.map((o) => (\n            <ListBoxItem key={o} id={o.toLowerCase()} textValue={o}>\n              {o}\n              <ListBoxItemIndicator />\n            </ListBoxItem>\n          ))}\n        </ListBox>\n      </SelectPopover>\n    </Select>\n  )\n}\n\nexport { SelectMultiple }\n",
+      "description": "SelectMultiple",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/select-multiple.tsx"
+    },
+    {
+      "id": "577",
+      "name": "SelectControlled",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "Select",
+      "file": "select-controlled.tsx",
+      "exists": true,
+      "code": "/**\n * SelectControlled\n * Kontrollü örnek — seçim gösterimi (saf React).\n * @id 577\n * @category Combobox\n * @subcategory Select\n */\nimport { useState } from \"react\"\nimport { Label } from \"@/components/ui/label\"\nimport { ListBox, ListBoxItem, ListBoxItemIndicator } from \"@/components/ui/list-box\"\nimport { Select, SelectIndicator, SelectPopover, SelectTrigger, SelectValue } from \"@/components/ui/select\"\n\nconst OPTIONS = [\"Overview\", \"Analytics\", \"Reports\"]\n\nfunction SelectControlled() {\n  const [value, setValue] = useState<string | null>(\"analytics\")\n\n  return (\n    <div className=\"flex flex-col gap-3\">\n      <Select className=\"relative w-[256px]\" placeholder=\"Choose a view\" value={value} onChange={(v) => setValue(Array.isArray(v) ? v[0] : v)}>\n        <Label>View</Label>\n        <SelectTrigger>\n          <SelectValue />\n          <SelectIndicator />\n        </SelectTrigger>\n        <SelectPopover>\n          <ListBox>\n            {OPTIONS.map((o) => (\n              <ListBoxItem key={o} id={o.toLowerCase()} textValue={o}>\n                {o}\n                <ListBoxItemIndicator />\n              </ListBoxItem>\n            ))}\n          </ListBox>\n        </SelectPopover>\n      </Select>\n      <p className=\"text-sm text-muted-foreground\">\n        Selected: <span className=\"font-medium text-foreground\">{value ?? \"(none)\"}</span>\n      </p>\n    </div>\n  )\n}\n\nexport { SelectControlled }\n",
+      "description": "SelectControlled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/select-controlled.tsx"
+    },
+    {
+      "id": "578",
+      "name": "SelectCustomStyles",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "Select",
+      "file": "select-custom-styles.tsx",
+      "exists": true,
+      "code": "/**\n * SelectCustomStyles\n * Özelleştirilmiş örnek (saf React).\n * @id 578\n * @category Combobox\n * @subcategory Select\n */\nimport { Label } from \"@/components/ui/label\"\nimport { ListBox, ListBoxItem, ListBoxItemIndicator } from \"@/components/ui/list-box\"\nimport { Select, SelectIndicator, SelectPopover, SelectTrigger, SelectValue } from \"@/components/ui/select\"\n\nconst OPTIONS = [\"Light\", \"Dark\", \"System\"]\n\nfunction SelectCustomStyles() {\n  return (\n    <Select className=\"relative w-[256px]\" placeholder=\"Theme\" variant=\"secondary\">\n      <Label className=\"font-medium text-foreground\">Theme</Label>\n      <SelectTrigger className=\"rounded-xl bg-muted/50\">\n        <SelectValue />\n        <SelectIndicator />\n      </SelectTrigger>\n      <SelectPopover>\n        <ListBox className=\"rounded-xl border-blue-500/20\">\n          {OPTIONS.map((o) => (\n            <ListBoxItem key={o} id={o.toLowerCase()} textValue={o} className=\"hover:bg-blue-500/5\">\n              {o}\n              <ListBoxItemIndicator className=\"border-blue-400\" />\n            </ListBoxItem>\n          ))}\n        </ListBox>\n      </SelectPopover>\n    </Select>\n  )\n}\n\nexport { SelectCustomStyles }\n",
+      "description": "SelectCustomStyles",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/select-custom-styles.tsx"
     },
     {
       "id": "092",
