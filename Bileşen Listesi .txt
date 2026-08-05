@@ -357,6 +357,17 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `491` PaginationWithSummary
 - `492` PaginationCustomIcons
 - `493` PaginationCustomStyles
+#### Tabs
+- `494` Tabs
+- `495` TabsBasic
+- `496` TabsVertical
+- `497` TabsDisabled
+- `498` TabsWithSeparator
+- `499` TabsSecondary
+- `500` TabsSecondaryVertical
+- `501` TabsOverflow
+- `502` TabsRenderFunction
+- `503` TabsCustomStyles
 
 ### Renk Bileşenleri
 
@@ -486,7 +497,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 406 bileşen (saf React)**
+**Toplam: 416 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

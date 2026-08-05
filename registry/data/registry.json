@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-05T01:10:39.762Z",
+  "generatedAt": "2026-08-05T01:13:29.997Z",
   "counts": {
-    "components": 406,
-    "ready": 406,
+    "components": 416,
+    "ready": 416,
     "layouts": 0
   },
   "categories": [
@@ -3392,6 +3392,116 @@
       "code": "/**\n * PaginationCustomStyles\n * Özelleştirilmiş örnek — gruplu düzen (saf React).\n * @id 493\n * @category Navigasyon\n * @subcategory Pagination\n */\nimport { useState } from \"react\"\nimport { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationNextIcon, PaginationPrevious, PaginationPreviousIcon } from \"@/components/ui/pagination\"\n\nconst linkClass = \"text-muted-foreground hover:bg-muted hover:text-foreground\"\nconst activeClass = \"bg-blue-600 text-white hover:bg-blue-600\"\n\nfunction PaginationCustomStyles() {\n  const [page, setPage] = useState(2)\n\n  return (\n    <Pagination className=\"justify-center\">\n      <PaginationContent className=\"gap-1 rounded-xl bg-muted/40 p-1\">\n        <PaginationItem>\n          <PaginationPrevious\n            className={linkClass}\n            isDisabled={page === 1}\n            onPress={() => setPage((p) => p - 1)}\n          >\n            <PaginationPreviousIcon />\n          </PaginationPrevious>\n        </PaginationItem>\n        {[1, 2, 3].map((p) => (\n          <PaginationItem key={p}>\n            <PaginationLink\n              className={p === page ? activeClass : linkClass}\n              isActive={p === page}\n              onPress={() => setPage(p)}\n            >\n              {p}\n            </PaginationLink>\n          </PaginationItem>\n        ))}\n        <PaginationItem>\n          <PaginationNext\n            className={linkClass}\n            isDisabled={page === 3}\n            onPress={() => setPage((p) => p + 1)}\n          >\n            <PaginationNextIcon />\n          </PaginationNext>\n        </PaginationItem>\n      </PaginationContent>\n    </Pagination>\n  )\n}\n\nexport { PaginationCustomStyles }\n",
       "description": "PaginationCustomStyles",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/pagination-custom-styles.tsx"
+    },
+    {
+      "id": "494",
+      "name": "Tabs",
+      "category": "Navigasyon",
+      "subcategory": "Tabs",
+      "file": "tabs.tsx",
+      "exists": true,
+      "code": "/**\n * Tabs\n * Saf React bileşen (bağımlılıksız).\n * İçeriği sekmeler halinde düzenler — List/ListContainer/Tab/Indicator/Panel.\n *   <Tabs defaultSelectedKey=\"overview\">\n *     <TabsListContainer>\n *       <TabsList aria-label=\"Options\">\n *         <TabsTab id=\"overview\">Overview<TabsIndicator /></TabsTab>\n *         <TabsTab id=\"analytics\">Analytics<TabsIndicator /></TabsTab>\n *       </TabsList>\n *     </TabsListContainer>\n *     <TabsPanel id=\"overview\">…</TabsPanel>\n *     <TabsPanel id=\"analytics\">…</TabsPanel>\n *   </Tabs>\n * Özellikler: variant (primary/secondary — underline) · orientation\n * (horizontal/vertical) · selectedKey/defaultSelectedKey/onSelectionChange ·\n * isDisabled · render prop · aria-selected · data-selected.\n * @id 494\n * @category Navigasyon\n * @subcategory Tabs\n */\nimport {\n  createContext,\n  useContext,\n  useState,\n  type ReactNode,\n} from \"react\"\nimport { cn } from \"@/lib/utils\"\n\n/* ---------- Types ---------- */\n\ntype TabsVariant = \"primary\" | \"secondary\"\ntype TabsOrientation = \"horizontal\" | \"vertical\"\n\ninterface TabsContextValue {\n  selectedKey: string\n  select: (key: string) => void\n  variant: TabsVariant\n  orientation: TabsOrientation\n}\n\nconst TabsContext = createContext<TabsContextValue | null>(null)\n\nfunction useTabs(): TabsContextValue {\n  const ctx = useContext(TabsContext)\n  if (!ctx) throw new Error(\"useTabs, <Tabs> içinde kullanılmalı\")\n  return ctx\n}\n\n/* ---------- Tabs ---------- */\n\ninterface TabsProps {\n  children?: ReactNode\n  className?: string\n  variant?: TabsVariant\n  orientation?: TabsOrientation\n  selectedKey?: string\n  defaultSelectedKey?: string\n  onSelectionChange?: (key: string) => void\n  render?: (props: Record<string, unknown>) => ReactNode\n}\n\nfunction Tabs({\n  children,\n  className,\n  variant = \"primary\",\n  orientation = \"horizontal\",\n  selectedKey: selectedKeyProp,\n  defaultSelectedKey = \"\",\n  onSelectionChange,\n  render,\n}: TabsProps) {\n  const [internalKey, setInternalKey] = useState(defaultSelectedKey)\n  const selectedKey = selectedKeyProp ?? internalKey\n\n  const select = (key: string) => {\n    setInternalKey(key)\n    onSelectionChange?.(key)\n  }\n\n  const contextValue: TabsContextValue = { selectedKey, select, variant, orientation }\n\n  const rootProps: Record<string, unknown> = {\n    \"data-slot\": \"tabs\",\n    \"data-orientation\": orientation,\n    \"data-variant\": variant,\n    className: cn(\"flex\", orientation === \"vertical\" ? \"flex-row gap-4\" : \"flex-col gap-3\", className),\n  }\n\n  return (\n    <TabsContext.Provider value={contextValue}>\n      {render ? render({ ...rootProps, children }) : <div {...rootProps}>{children}</div>}\n    </TabsContext.Provider>\n  )\n}\n\n/* ---------- ListContainer ---------- */\n\ninterface TabsListContainerProps {\n  children?: ReactNode\n  className?: string\n}\n\nfunction TabsListContainer({ children, className }: TabsListContainerProps) {\n  const ctx = useTabs()\n  return (\n    <div data-slot=\"tabs-list-container\" className={cn(\"overflow-x-auto\", ctx.orientation === \"vertical\" && \"overflow-y-auto\", className)}>\n      {children}\n    </div>\n  )\n}\n\n/* ---------- List ---------- */\n\ninterface TabsListProps {\n  children?: ReactNode\n  className?: string\n  \"aria-label\"?: string\n}\n\nfunction TabsList({ children, className, ...aria }: TabsListProps) {\n  const ctx = useTabs()\n  return (\n    <div\n      data-slot=\"tabs-list\"\n      role=\"tablist\"\n      aria-orientation={ctx.orientation}\n      className={cn(\n        \"inline-flex w-max items-center gap-1 rounded-xl border border-border bg-background p-1\",\n        ctx.orientation === \"vertical\" && \"flex-col items-stretch\",\n        ctx.variant === \"secondary\" && \"rounded-none border-0 border-b border-border bg-transparent p-0\",\n        className\n      )}\n      {...aria}\n    >\n      {children}\n    </div>\n  )\n}\n\n/* ---------- Tab ---------- */\n\ninterface TabsTabProps {\n  children?: ReactNode\n  className?: string\n  id: string\n  isDisabled?: boolean\n}\n\nfunction TabsTab({ children, className, id, isDisabled = false }: TabsTabProps) {\n  const ctx = useTabs()\n  const selected = ctx.selectedKey === id\n\n  return (\n    <button\n      type=\"button\"\n      role=\"tab\"\n      data-slot=\"tabs-tab\"\n      aria-selected={selected}\n      aria-disabled={isDisabled || undefined}\n      disabled={isDisabled}\n      onClick={() => !isDisabled && ctx.select(id)}\n      className={cn(\n        \"relative inline-flex h-9 items-center justify-center rounded-lg px-4 text-sm font-medium text-muted-foreground transition-colors outline-none\",\n        \"hover:bg-muted hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50\",\n        selected && ctx.variant === \"primary\" && \"bg-foreground text-background hover:bg-foreground hover:text-background\",\n        selected && ctx.variant === \"secondary\" && \"text-foreground\",\n        isDisabled && \"cursor-not-allowed opacity-50 hover:bg-transparent hover:text-muted-foreground\",\n        ctx.orientation === \"vertical\" && \"w-full justify-start\",\n        className\n      )}\n    >\n      {children}\n    </button>\n  )\n}\n\n/* ---------- Indicator ---------- */\n\ninterface TabsIndicatorProps {\n  className?: string\n}\n\nfunction TabsIndicator({ className }: TabsIndicatorProps) {\n  return <span data-slot=\"tabs-indicator\" aria-hidden=\"true\" className={cn(\"absolute inset-x-2 bottom-0.5 h-0.5 rounded-full bg-current opacity-80\", className)} />\n}\n\n/* ---------- Separator ---------- */\n\ninterface TabsSeparatorProps {\n  className?: string\n}\n\nfunction TabsSeparator({ className }: TabsSeparatorProps) {\n  return <span data-slot=\"tabs-separator\" aria-hidden=\"true\" className={cn(\"mx-1 h-4 w-px bg-border\", className)} />\n}\n\n/* ---------- Panel ---------- */\n\ninterface TabsPanelProps {\n  children?: ReactNode\n  className?: string\n  id: string\n}\n\nfunction TabsPanel({ children, className, id }: TabsPanelProps) {\n  const ctx = useTabs()\n  const selected = ctx.selectedKey === id\n  return (\n    <div\n      data-slot=\"tabs-panel\"\n      role=\"tabpanel\"\n      data-selected={selected ? \"true\" : undefined}\n      className={cn(\"text-sm text-muted-foreground\", !selected && \"hidden\", className)}\n    >\n      {children}\n    </div>\n  )\n}\n\nexport { Tabs, TabsIndicator, TabsList, TabsListContainer, TabsPanel, TabsSeparator, TabsTab, useTabs }\nexport type { TabsIndicatorProps, TabsListProps, TabsOrientation, TabsPanelProps, TabsProps, TabsTabProps, TabsVariant }\n",
+      "description": "Tabs",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/tabs.tsx"
+    },
+    {
+      "id": "495",
+      "name": "TabsBasic",
+      "category": "Navigasyon",
+      "subcategory": "Tabs",
+      "file": "tabs-basic.tsx",
+      "exists": true,
+      "code": "/**\n * TabsBasic\n * Temel örnek: 3 sekme + panel (saf React).\n * @id 495\n * @category Navigasyon\n * @subcategory Tabs\n */\nimport { Tabs, TabsIndicator, TabsList, TabsListContainer, TabsPanel, TabsTab } from \"@/components/ui/tabs\"\n\nfunction TabsBasic() {\n  return (\n    <Tabs className=\"w-full max-w-md\" defaultSelectedKey=\"overview\">\n      <TabsListContainer>\n        <TabsList aria-label=\"Options\">\n          <TabsTab id=\"overview\">Overview<TabsIndicator /></TabsTab>\n          <TabsTab id=\"analytics\">Analytics<TabsIndicator /></TabsTab>\n          <TabsTab id=\"reports\">Reports<TabsIndicator /></TabsTab>\n        </TabsList>\n      </TabsListContainer>\n      <TabsPanel className=\"pt-4\" id=\"overview\">\n        <p>View your project overview and recent activity.</p>\n      </TabsPanel>\n      <TabsPanel className=\"pt-4\" id=\"analytics\">\n        <p>Track your metrics and analyze performance data.</p>\n      </TabsPanel>\n      <TabsPanel className=\"pt-4\" id=\"reports\">\n        <p>Generate and download detailed reports.</p>\n      </TabsPanel>\n    </Tabs>\n  )\n}\n\nexport { TabsBasic }\n",
+      "description": "TabsBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/tabs-basic.tsx"
+    },
+    {
+      "id": "496",
+      "name": "TabsVertical",
+      "category": "Navigasyon",
+      "subcategory": "Tabs",
+      "file": "tabs-vertical.tsx",
+      "exists": true,
+      "code": "/**\n * TabsVertical\n * Dikey sekme örneği (saf React).\n * @id 496\n * @category Navigasyon\n * @subcategory Tabs\n */\nimport { Tabs, TabsIndicator, TabsList, TabsListContainer, TabsPanel, TabsTab } from \"@/components/ui/tabs\"\n\nfunction TabsVertical() {\n  return (\n    <Tabs className=\"w-full max-w-md\" defaultSelectedKey=\"profile\" orientation=\"vertical\">\n      <TabsListContainer>\n        <TabsList aria-label=\"Settings\">\n          <TabsTab id=\"profile\">Profile<TabsIndicator /></TabsTab>\n          <TabsTab id=\"security\">Security<TabsIndicator /></TabsTab>\n          <TabsTab id=\"notifications\">Notifications<TabsIndicator /></TabsTab>\n        </TabsList>\n      </TabsListContainer>\n      <TabsPanel className=\"pt-1\" id=\"profile\">\n        <p>Manage your profile information and preferences.</p>\n      </TabsPanel>\n      <TabsPanel className=\"pt-1\" id=\"security\">\n        <p>Password, two-factor authentication and sessions.</p>\n      </TabsPanel>\n      <TabsPanel className=\"pt-1\" id=\"notifications\">\n        <p>Choose how and when we notify you.</p>\n      </TabsPanel>\n    </Tabs>\n  )\n}\n\nexport { TabsVertical }\n",
+      "description": "TabsVertical",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/tabs-vertical.tsx"
+    },
+    {
+      "id": "497",
+      "name": "TabsDisabled",
+      "category": "Navigasyon",
+      "subcategory": "Tabs",
+      "file": "tabs-disabled.tsx",
+      "exists": true,
+      "code": "/**\n * TabsDisabled\n * Devre dışı sekme örneği (saf React).\n * @id 497\n * @category Navigasyon\n * @subcategory Tabs\n */\nimport { Tabs, TabsIndicator, TabsList, TabsListContainer, TabsPanel, TabsTab } from \"@/components/ui/tabs\"\n\nfunction TabsDisabled() {\n  return (\n    <Tabs className=\"w-full max-w-md\" defaultSelectedKey=\"general\">\n      <TabsListContainer>\n        <TabsList aria-label=\"Settings\">\n          <TabsTab id=\"general\">General<TabsIndicator /></TabsTab>\n          <TabsTab id=\"advanced\" isDisabled>Advanced<TabsIndicator /></TabsTab>\n          <TabsTab id=\"beta\">Beta<TabsIndicator /></TabsTab>\n        </TabsList>\n      </TabsListContainer>\n      <TabsPanel className=\"pt-4\" id=\"general\">\n        <p>General settings — works as expected.</p>\n      </TabsPanel>\n      <TabsPanel className=\"pt-4\" id=\"advanced\">\n        <p>Advanced settings — disabled tab, not reachable.</p>\n      </TabsPanel>\n      <TabsPanel className=\"pt-4\" id=\"beta\">\n        <p>Beta features — try the latest experiments.</p>\n      </TabsPanel>\n    </Tabs>\n  )\n}\n\nexport { TabsDisabled }\n",
+      "description": "TabsDisabled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/tabs-disabled.tsx"
+    },
+    {
+      "id": "498",
+      "name": "TabsWithSeparator",
+      "category": "Navigasyon",
+      "subcategory": "Tabs",
+      "file": "tabs-with-separator.tsx",
+      "exists": true,
+      "code": "/**\n * TabsWithSeparator\n * Ayraçlı sekme örneği (saf React).\n * @id 498\n * @category Navigasyon\n * @subcategory Tabs\n */\nimport { Tabs, TabsIndicator, TabsList, TabsListContainer, TabsPanel, TabsSeparator, TabsTab } from \"@/components/ui/tabs\"\n\nfunction TabsWithSeparator() {\n  return (\n    <Tabs className=\"w-full max-w-md\" defaultSelectedKey=\"edit\">\n      <TabsListContainer>\n        <TabsList aria-label=\"Editor tools\">\n          <TabsTab id=\"edit\">Edit<TabsIndicator /></TabsTab>\n          <TabsTab id=\"view\">\n            <TabsSeparator />\n            View\n            <TabsIndicator />\n          </TabsTab>\n          <TabsTab id=\"export\">\n            <TabsSeparator />\n            Export\n            <TabsIndicator />\n          </TabsTab>\n        </TabsList>\n      </TabsListContainer>\n      <TabsPanel className=\"pt-4\" id=\"edit\">\n        <p>Edit mode — modify your document.</p>\n      </TabsPanel>\n      <TabsPanel className=\"pt-4\" id=\"view\">\n        <p>View mode — read-only preview.</p>\n      </TabsPanel>\n      <TabsPanel className=\"pt-4\" id=\"export\">\n        <p>Export your document in multiple formats.</p>\n      </TabsPanel>\n    </Tabs>\n  )\n}\n\nexport { TabsWithSeparator }\n",
+      "description": "TabsWithSeparator",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/tabs-with-separator.tsx"
+    },
+    {
+      "id": "499",
+      "name": "TabsSecondary",
+      "category": "Navigasyon",
+      "subcategory": "Tabs",
+      "file": "tabs-secondary.tsx",
+      "exists": true,
+      "code": "/**\n * TabsSecondary\n * Secondary (underline) variant örneği (saf React).\n * @id 499\n * @category Navigasyon\n * @subcategory Tabs\n */\nimport { Tabs, TabsIndicator, TabsList, TabsListContainer, TabsPanel, TabsTab } from \"@/components/ui/tabs\"\n\nfunction TabsSecondary() {\n  return (\n    <Tabs className=\"w-full max-w-md\" defaultSelectedKey=\"preview\" variant=\"secondary\">\n      <TabsListContainer>\n        <TabsList aria-label=\"Document\">\n          <TabsTab id=\"preview\">Preview<TabsIndicator /></TabsTab>\n          <TabsTab id=\"code\">Code<TabsIndicator /></TabsTab>\n          <TabsTab id=\"history\">History<TabsIndicator /></TabsTab>\n        </TabsList>\n      </TabsListContainer>\n      <TabsPanel className=\"pt-4\" id=\"preview\">\n        <p>Live preview of your document.</p>\n      </TabsPanel>\n      <TabsPanel className=\"pt-4\" id=\"code\">\n        <p>Raw markdown source.</p>\n      </TabsPanel>\n      <TabsPanel className=\"pt-4\" id=\"history\">\n        <p>Revision history and changes.</p>\n      </TabsPanel>\n    </Tabs>\n  )\n}\n\nexport { TabsSecondary }\n",
+      "description": "TabsSecondary",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/tabs-secondary.tsx"
+    },
+    {
+      "id": "500",
+      "name": "TabsSecondaryVertical",
+      "category": "Navigasyon",
+      "subcategory": "Tabs",
+      "file": "tabs-secondary-vertical.tsx",
+      "exists": true,
+      "code": "/**\n * TabsSecondaryVertical\n * Secondary + dikey örnek (saf React).\n * @id 500\n * @category Navigasyon\n * @subcategory Tabs\n */\nimport { Tabs, TabsIndicator, TabsList, TabsListContainer, TabsPanel, TabsTab } from \"@/components/ui/tabs\"\n\nfunction TabsSecondaryVertical() {\n  return (\n    <Tabs className=\"w-full max-w-md\" defaultSelectedKey=\"account\" orientation=\"vertical\" variant=\"secondary\">\n      <TabsListContainer>\n        <TabsList aria-label=\"Account\">\n          <TabsTab id=\"account\">Account<TabsIndicator /></TabsTab>\n          <TabsTab id=\"billing\">Billing<TabsIndicator /></TabsTab>\n          <TabsTab id=\"team\">Team<TabsIndicator /></TabsTab>\n        </TabsList>\n      </TabsListContainer>\n      <TabsPanel className=\"pt-1\" id=\"account\">\n        <p>Account details and email preferences.</p>\n      </TabsPanel>\n      <TabsPanel className=\"pt-1\" id=\"billing\">\n        <p>Invoices, payment methods and plans.</p>\n      </TabsPanel>\n      <TabsPanel className=\"pt-1\" id=\"team\">\n        <p>Invite members and manage roles.</p>\n      </TabsPanel>\n    </Tabs>\n  )\n}\n\nexport { TabsSecondaryVertical }\n",
+      "description": "TabsSecondaryVertical",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/tabs-secondary-vertical.tsx"
+    },
+    {
+      "id": "501",
+      "name": "TabsOverflow",
+      "category": "Navigasyon",
+      "subcategory": "Tabs",
+      "file": "tabs-overflow.tsx",
+      "exists": true,
+      "code": "/**\n * TabsOverflow\n * Taşma örneği — çok sayıda sekme (saf React).\n * @id 501\n * @category Navigasyon\n * @subcategory Tabs\n */\nimport { Tabs, TabsIndicator, TabsList, TabsListContainer, TabsPanel, TabsTab } from \"@/components/ui/tabs\"\n\nconst TABS = [\"Overview\", \"Analytics\", \"Reports\", \"Customers\", \"Products\", \"Orders\", \"Settings\", \"Billing\", \"Team\", \"Integrations\", \"API\", \"Docs\"]\n\nfunction TabsOverflow() {\n  return (\n    <Tabs className=\"w-full max-w-md\" defaultSelectedKey=\"overview\">\n      <TabsListContainer>\n        <TabsList aria-label=\"Dashboard\">\n          {TABS.map((t, i) => (\n            <TabsTab key={t.toLowerCase()} id={t.toLowerCase()}>\n              {t}\n              <TabsIndicator />\n            </TabsTab>\n          ))}\n        </TabsList>\n      </TabsListContainer>\n      {TABS.map((t, i) => (\n        <TabsPanel className=\"pt-4\" id={t.toLowerCase()} key={t}>\n          <p>{t} panel content — {i + 1} of {TABS.length} sections.</p>\n        </TabsPanel>\n      ))}\n    </Tabs>\n  )\n}\n\nexport { TabsOverflow }\n",
+      "description": "TabsOverflow",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/tabs-overflow.tsx"
+    },
+    {
+      "id": "502",
+      "name": "TabsRenderFunction",
+      "category": "Navigasyon",
+      "subcategory": "Tabs",
+      "file": "tabs-render-function.tsx",
+      "exists": true,
+      "code": "/**\n * TabsRenderFunction\n * render prop örneği — kök DOM override (saf React).\n * @id 502\n * @category Navigasyon\n * @subcategory Tabs\n */\nimport { Tabs, TabsIndicator, TabsList, TabsListContainer, TabsPanel, TabsTab } from \"@/components/ui/tabs\"\n\nfunction TabsRenderFunction() {\n  return (\n    <Tabs className=\"w-full max-w-md\" defaultSelectedKey=\"getting-started\" render={(props) => <div {...props} data-custom=\"foo\" />}>\n      <TabsListContainer>\n        <TabsList aria-label=\"Options\">\n          <TabsTab id=\"getting-started\">\n            Getting Started\n            <TabsIndicator />\n          </TabsTab>\n          <TabsTab id=\"components\">\n            Components\n            <TabsIndicator />\n          </TabsTab>\n          <TabsTab id=\"releases\">\n            Releases\n            <TabsIndicator />\n          </TabsTab>\n        </TabsList>\n      </TabsListContainer>\n      <TabsPanel className=\"pt-4\" id=\"getting-started\">\n        <p>View your project overview and recent activity.</p>\n      </TabsPanel>\n      <TabsPanel className=\"pt-4\" id=\"components\">\n        <p>Browse the component library and API docs.</p>\n      </TabsPanel>\n      <TabsPanel className=\"pt-4\" id=\"releases\">\n        <p>Release notes and version history.</p>\n      </TabsPanel>\n    </Tabs>\n  )\n}\n\nexport { TabsRenderFunction }\n",
+      "description": "TabsRenderFunction",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/tabs-render-function.tsx"
+    },
+    {
+      "id": "503",
+      "name": "TabsCustomStyles",
+      "category": "Navigasyon",
+      "subcategory": "Tabs",
+      "file": "tabs-custom-styles.tsx",
+      "exists": true,
+      "code": "/**\n * TabsCustomStyles\n * Özelleştirilmiş örnek — faturalama döngüsü (saf React).\n * @id 503\n * @category Navigasyon\n * @subcategory Tabs\n */\nimport { Tabs, TabsIndicator, TabsList, TabsListContainer, TabsPanel, TabsTab } from \"@/components/ui/tabs\"\n\nconst listClassName =\n  \"rounded-xl border border-blue-500/10 bg-blue-500/5 p-1 [&_[data-slot=tabs-tab]]:rounded-lg [&_[data-slot=tabs-tab]]:bg-transparent [&_[data-slot=tabs-tab]]:text-muted-foreground [&_[data-slot=tabs-tab]]:data-[selected=true]:bg-blue-600 [&_[data-slot=tabs-tab]]:data-[selected=true]:text-white\"\n\nfunction TabsCustomStyles() {\n  return (\n    <Tabs className=\"w-full max-w-sm\" defaultSelectedKey=\"yearly\">\n      <TabsListContainer className=\"rounded-none bg-transparent\">\n        <TabsList aria-label=\"Billing cycle\" className={listClassName}>\n          <TabsTab id=\"monthly\">\n            Monthly\n            <TabsIndicator />\n          </TabsTab>\n          <TabsTab id=\"yearly\">\n            Yearly\n            <TabsIndicator />\n          </TabsTab>\n        </TabsList>\n      </TabsListContainer>\n      <TabsPanel className=\"pt-3 text-sm text-muted-foreground\" id=\"monthly\">\n        Billed monthly, cancel anytime.\n      </TabsPanel>\n      <TabsPanel className=\"pt-3 text-sm text-muted-foreground\" id=\"yearly\">\n        Save 20% with annual billing.\n      </TabsPanel>\n    </Tabs>\n  )\n}\n\nexport { TabsCustomStyles }\n",
+      "description": "TabsCustomStyles",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/tabs-custom-styles.tsx"
     },
     {
       "id": "092",
