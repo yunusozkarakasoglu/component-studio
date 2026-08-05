@@ -73,11 +73,11 @@
 - [x] **28. Skeleton** — skeleton-hero-ui.md → Yükleme & İlerleme (546 + 547-553)
 - [x] **29. Meter** — meter-hero-ui.md → Yükleme & İlerleme (554 + 555-560)
 
-## ⬜ Adım 6 — Takvim + Combobox + Date (3 element)
+## ✅ Adım 6 — Takvim + Combobox + Date (3 element) — TAMAMLANDI
 
 - [x] **30. RangeCalendar** — range-calendar-hero-ui.md → Takvim (561 + 562-567)
 - [x] **31. Select** — select-hero-ui.md → Combobox (568 + 569-578)
-- [ ] **32. TimeField** — time-field-hero-ui.md → Date (alt: TimeField)
+- [x] **32. TimeField** — time-field-hero-ui.md → Date/TimeField (579 + 580-588)
 
 ## ⬜ Adım 7 — Genel (4 element)
 
@@ -93,4 +93,4 @@
 - Boş kategoriler dolar: **Navigasyon**, **Overlay**, **Veri Gösterimi** (kısmen dolu).
 - Yeni kategoriler: **Seçim**, **Yükleme & İlerleme**.
 
-**İlerleme:** ✅ 42/56 aile (Adım 6: 2/3) · ⬜ 14/56 kaldı — sonraki id: **579**
+**İlerleme:** ✅ 43/56 aile (Adım 6: 3/3 ✅) · ⬜ 13/56 kaldı — sonraki id: **589**
