@@ -39,8 +39,8 @@
 - [x] **6. InputOTP** — form/input-OTP-hero-ui.md → Form Elemanları (355 + 356-366)
 - [x] **7. Fieldset** — form/fieldsets-hero-ui.md → Form Elemanları (367 + 368-370)
 - [x] **8. Form** — form/form-hero-ui.md → Form Elemanları (371 + 372-374)
-- [ ] **9. ErrorMessage** — Message/error-message-hero-ui.md → Form Elemanları
-- [ ] **10. FieldErrorMessage** — Message/field-error-message-hero-ui.md → Form Elemanları
+- [x] **9. ErrorMessage** — Message/error-message-hero-ui.md → Form Elemanları (375-377)
+- [x] **10. FieldErrorMessage** — Message/field-error-message-hero-ui.md → Form Elemanları (301 geliştirme + 378-380)
 - [ ] **11. Slider** — slider-hero-ui.md → Form Elemanları
 
 ## ⬜ Adım 2 — Seçim *(yeni kategori)* (4 element)
@@ -93,4 +93,4 @@
 - Boş kategoriler dolar: **Navigasyon**, **Overlay**, **Veri Gösterimi** (kısmen dolu).
 - Yeni kategoriler: **Seçim**, **Yükleme & İlerleme**.
 
-**İlerleme:** ✅ 21/56 aile (Adım 1: 8/11) · ⬜ 35/56 kaldı — sonraki id: **375**
+**İlerleme:** ✅ 21/56 aile (Adım 1: 10/11) · ⬜ 35/56 kaldı — sonraki id: **381**

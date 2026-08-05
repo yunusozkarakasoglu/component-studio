@@ -6,13 +6,19 @@
  * @id 301
  * @category Form Elemanları
  */
-import type { HTMLAttributes } from "react"
+import type { HTMLAttributes, ReactNode } from "react"
 import { cn } from "@/lib/utils"
 import { useTextField } from "@/components/ui/text-field"
 
-interface FieldErrorProps extends HTMLAttributes<HTMLParagraphElement> {
+interface FieldErrorValidation {
+  /** Geçerli doğrulama hataları (validate() mesajları) */
+  validationErrors: string[]
+}
+
+interface FieldErrorProps extends Omit<HTMLAttributes<HTMLParagraphElement>, "children"> {
   /** Bağımsız kullanımda her zaman göster (varsayılan). TextField içinde yalnızca invalid iken. */
   alwaysVisible?: boolean
+  children?: ReactNode | ((validation: FieldErrorValidation) => ReactNode)
 }
 
 function FieldError({ className, alwaysVisible = false, children, ...props }: FieldErrorProps) {
@@ -21,8 +27,14 @@ function FieldError({ className, alwaysVisible = false, children, ...props }: Fi
   // TextField içinde: yalnızca isInvalid iken render et
   if (ctx && !ctx.isInvalid && !alwaysVisible) return null
 
+  // children fonksiyon ise doğrulama nesnesiyle çağır
+  const resolved =
+    typeof children === "function"
+      ? children({ validationErrors: ctx?.errorMessage ? [ctx.errorMessage] : [] })
+      : children
+
   // children yoksa validate()'den gelen hata mesajını göster
-  const message = children ?? ctx?.errorMessage
+  const message = resolved ?? ctx?.errorMessage
   if (message == null) return null
 
   return (
