@@ -16,7 +16,7 @@
  * @category Form Elemanları
  * @subcategory Fieldset
  */
-import type { FieldsetHTMLAttributes, HTMLAttributes, ReactNode } from "react"
+import type { FieldsetHTMLAttributes, HTMLAttributes } from "react"
 import { cn } from "@/lib/utils"
 
 /* ---------- Root ---------- */
