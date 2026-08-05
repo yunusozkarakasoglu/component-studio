@@ -397,6 +397,25 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `527` TableEmptyState
 - `528` TableCustomCells
 - `529` TableCustomStyles
+### Yükleme & İlerleme
+#### ProgressBar
+- `530` ProgressBar
+- `531` ProgressBarBasic
+- `532` ProgressBarSizes
+- `533` ProgressBarColors
+- `534` ProgressBarWithoutLabel
+- `535` ProgressBarIndeterminate
+- `536` ProgressBarCustomValue
+- `537` ProgressBarCustomStyles
+#### ProgressCircle
+- `538` ProgressCircle
+- `539` ProgressCircleBasic
+- `540` ProgressCircleSizes
+- `541` ProgressCircleColors
+- `542` ProgressCircleIndeterminate
+- `543` ProgressCircleWithLabel
+- `544` ProgressCircleCustomSvg
+- `545` ProgressCircleCustomStyles
 
 ### Renk Bileşenleri
 
@@ -526,7 +545,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 442 bileşen (saf React)**
+**Toplam: 458 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

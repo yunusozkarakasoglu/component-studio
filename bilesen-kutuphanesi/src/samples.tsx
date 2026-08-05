@@ -497,4 +497,24 @@ export const SAMPLES: Record<string, ReactNode> = {
   "527": <U.TableEmptyState />,
   "528": <U.TableCustomCells />,
   "529": <U.TableCustomStyles />,
+  "530": (
+    <U.ProgressBar aria-label="Loading" className="w-64" value={60}>
+      <U.ProgressBarTrack><U.ProgressBarFill /></U.ProgressBarTrack>
+    </U.ProgressBar>
+  ),
+  "531": <U.ProgressBarBasic />,
+  "532": <U.ProgressBarSizes />,
+  "533": <U.ProgressBarColors />,
+  "534": <U.ProgressBarWithoutLabel />,
+  "535": <U.ProgressBarIndeterminate />,
+  "536": <U.ProgressBarCustomValue />,
+  "537": <U.ProgressBarCustomStyles />,
+  "538": <U.ProgressCircle aria-label="Loading" value={60}><U.ProgressCircleSvg /></U.ProgressCircle>,
+  "539": <U.ProgressCircleBasic />,
+  "540": <U.ProgressCircleSizes />,
+  "541": <U.ProgressCircleColors />,
+  "542": <U.ProgressCircleIndeterminate />,
+  "543": <U.ProgressCircleWithLabel />,
+  "544": <U.ProgressCircleCustomSvg />,
+  "545": <U.ProgressCircleCustomStyles />,
 }

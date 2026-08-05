@@ -68,8 +68,8 @@
 ## ⬜ Adım 5 — Veri Gösterimi + Yükleme & İlerleme *(yeni)* (5 element)
 
 - [x] **25. Table** — table-hero-ui.md → Veri Gösterimi (519 + 520-529)
-- [ ] **26. ProgressBar** — progress-bar-hero-ui.md → Yükleme & İlerleme
-- [ ] **27. ProgressCircle** — progress-circle-hero-ui.md → Yükleme & İlerleme
+- [x] **26. ProgressBar** — progress-bar-hero-ui.md → Yükleme & İlerleme (530 + 531-537)
+- [x] **27. ProgressCircle** — progress-circle-hero-ui.md → Yükleme & İlerleme (538 + 539-545)
 - [ ] **28. Skeleton** — skeleton-hero-ui.md → Yükleme & İlerleme
 - [ ] **29. Meter** — meter-hero-ui.md → Yükleme & İlerleme
 
@@ -93,4 +93,4 @@
 - Boş kategoriler dolar: **Navigasyon**, **Overlay**, **Veri Gösterimi** (kısmen dolu).
 - Yeni kategoriler: **Seçim**, **Yükleme & İlerleme**.
 
-**İlerleme:** ✅ 36/56 aile (Adım 5: 1/5) · ⬜ 20/56 kaldı — sonraki id: **530**
+**İlerleme:** ✅ 38/56 aile (Adım 5: 3/5) · ⬜ 18/56 kaldı — sonraki id: **546**

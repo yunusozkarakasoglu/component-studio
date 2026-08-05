@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-05T01:20:49.579Z",
+  "generatedAt": "2026-08-05T01:23:05.180Z",
   "counts": {
-    "components": 442,
-    "ready": 442,
+    "components": 458,
+    "ready": 458,
     "layouts": 0
   },
   "categories": [
@@ -15,6 +15,7 @@
     "Seçim",
     "Overlay",
     "Navigasyon",
+    "Yükleme & İlerleme",
     "Renk Bileşenleri",
     "Butonlar & Aksiyonlar",
     "Takvim",
@@ -3788,6 +3789,182 @@
       "code": "/**\n * TableCustomStyles\n * Özelleştirilmiş tablo örneği (saf React).\n * @id 529\n * @category Veri Gösterimi\n * @subcategory Table\n */\nimport { Table, TableBody, TableCell, TableColumn, TableContent, TableHeader, TableRow, TableScrollContainer } from \"@/components/ui/table\"\n\nconst ROWS = [\n  [\"Kate Moore\", \"CEO\", \"kate@acme.com\"],\n  [\"John Smith\", \"CTO\", \"john@acme.com\"],\n  [\"Sara Johnson\", \"CMO\", \"sara@acme.com\"],\n] as const\n\nfunction TableCustomStyles() {\n  return (\n    <Table className=\"overflow-hidden rounded-xl border border-border shadow-sm\">\n      <TableScrollContainer>\n        <TableContent aria-label=\"Team\" className=\"min-w-[480px]\">\n          <TableHeader className=\"bg-muted/60\">\n            <TableColumn isRowHeader>Name</TableColumn>\n            <TableColumn>Role</TableColumn>\n            <TableColumn>Email</TableColumn>\n          </TableHeader>\n          <TableBody>\n            {ROWS.map((row) => (\n              <TableRow key={row[0]} className=\"odd:bg-background even:bg-muted/20 hover:bg-blue-500/5\">\n                <TableCell className=\"font-medium text-blue-700\">{row[0]}</TableCell>\n                <TableCell>{row[1]}</TableCell>\n                <TableCell className=\"font-mono text-xs\">{row[2]}</TableCell>\n              </TableRow>\n            ))}\n          </TableBody>\n        </TableContent>\n      </TableScrollContainer>\n    </Table>\n  )\n}\n\nexport { TableCustomStyles }\n",
       "description": "TableCustomStyles",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/table-custom-styles.tsx"
+    },
+    {
+      "id": "530",
+      "name": "ProgressBar",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "ProgressBar",
+      "file": "progress-bar.tsx",
+      "exists": true,
+      "code": "/**\n * ProgressBar\n * Saf React bileşen (bağımlılıksız).\n * Yatay ilerleme çubuğu — Label/Output/Track/Fill compound.\n *   <ProgressBar aria-label=\"Loading\" className=\"w-64\" value={60}>\n *     <Label>Loading</Label>\n *     <ProgressBarOutput />\n *     <ProgressBarTrack>\n *       <ProgressBarFill />\n *     </ProgressBarTrack>\n *   </ProgressBar>\n * Özellikler: value/min/max · isIndeterminate (belirsiz) · size (sm/md/lg) ·\n * color (default/accent/success/warning/danger) · role=progressbar +\n * aria-valuenow.\n * @id 530\n * @category Yükleme & İlerleme\n * @subcategory ProgressBar\n */\nimport { createContext, useContext, type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\n/* ---------- Types ---------- */\n\ntype ProgressBarSize = \"sm\" | \"md\" | \"lg\"\ntype ProgressColor = \"default\" | \"accent\" | \"success\" | \"warning\" | \"danger\"\n\ninterface ProgressBarContextValue {\n  value: number\n  min: number\n  max: number\n  isIndeterminate: boolean\n  size: ProgressBarSize\n  color: ProgressColor\n}\n\nconst ProgressBarContext = createContext<ProgressBarContextValue | null>(null)\n\nfunction useProgressBar(): ProgressBarContextValue {\n  const ctx = useContext(ProgressBarContext)\n  if (!ctx) throw new Error(\"useProgressBar, <ProgressBar> içinde kullanılmalı\")\n  return ctx\n}\n\ninterface ProgressBarProps {\n  children?: ReactNode\n  className?: string\n  value: number\n  min?: number\n  max?: number\n  isIndeterminate?: boolean\n  size?: ProgressBarSize\n  color?: ProgressColor\n  \"aria-label\"?: string\n}\n\nconst trackSizeClass: Record<ProgressBarSize, string> = {\n  sm: \"h-1.5\",\n  md: \"h-2\",\n  lg: \"h-3\",\n}\n\nconst fillColorClass: Record<ProgressColor, string> = {\n  default: \"bg-foreground\",\n  accent: \"bg-blue-600\",\n  success: \"bg-emerald-600\",\n  warning: \"bg-amber-500\",\n  danger: \"bg-red-600\",\n}\n\nfunction ProgressBar({\n  children,\n  className,\n  value,\n  min = 0,\n  max = 100,\n  isIndeterminate = false,\n  size = \"md\",\n  color = \"default\",\n  ...aria\n}: ProgressBarProps) {\n  const contextValue: ProgressBarContextValue = { value, min, max, isIndeterminate, size, color }\n  return (\n    <ProgressBarContext.Provider value={contextValue}>\n      <div\n        data-slot=\"progress-bar\"\n        role=\"progressbar\"\n        aria-valuenow={isIndeterminate ? undefined : value}\n        aria-valuemin={min}\n        aria-valuemax={max}\n        className={cn(\"flex flex-col gap-1.5\", className)}\n        {...aria}\n      >\n        {children}\n      </div>\n    </ProgressBarContext.Provider>\n  )\n}\n\n/* ---------- Output ---------- */\n\ninterface ProgressBarOutputProps {\n  className?: string\n}\n\nfunction ProgressBarOutput({ className }: ProgressBarOutputProps) {\n  const ctx = useProgressBar()\n  const pct = Math.round(((ctx.value - ctx.min) / (ctx.max - ctx.min)) * 100)\n  return <output data-slot=\"progress-bar-output\" className={cn(\"text-sm text-muted-foreground\", className)}>{ctx.isIndeterminate ? \"…\" : `${pct}%`}</output>\n}\n\n/* ---------- Track ---------- */\n\ninterface ProgressBarTrackProps {\n  children?: ReactNode\n  className?: string\n}\n\nfunction ProgressBarTrack({ children, className }: ProgressBarTrackProps) {\n  const ctx = useProgressBar()\n  return (\n    <div\n      data-slot=\"progress-bar-track\"\n      className={cn(\"w-full overflow-hidden rounded-full bg-muted\", trackSizeClass[ctx.size], className)}\n    >\n      {children}\n    </div>\n  )\n}\n\n/* ---------- Fill ---------- */\n\ninterface ProgressBarFillProps {\n  className?: string\n}\n\nfunction ProgressBarFill({ className }: ProgressBarFillProps) {\n  const ctx = useProgressBar()\n  const pct = Math.max(0, Math.min(100, ((ctx.value - ctx.min) / (ctx.max - ctx.min)) * 100))\n  return (\n    <div\n      data-slot=\"progress-bar-fill\"\n      data-indeterminate={ctx.isIndeterminate ? \"true\" : undefined}\n      className={cn(\n        \"h-full rounded-full transition-[width] duration-300\",\n        fillColorClass[ctx.color],\n        ctx.isIndeterminate && \"w-1/3 animate-pulse\",\n        className\n      )}\n      style={ctx.isIndeterminate ? undefined : { width: `${pct}%` }}\n    />\n  )\n}\n\nexport { ProgressBar, ProgressBarFill, ProgressBarOutput, ProgressBarTrack, useProgressBar }\nexport type { ProgressBarFillProps, ProgressBarOutputProps, ProgressBarProps, ProgressBarSize, ProgressColor }\n",
+      "description": "ProgressBar",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/progress-bar.tsx"
+    },
+    {
+      "id": "531",
+      "name": "ProgressBarBasic",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "ProgressBar",
+      "file": "progress-bar-basic.tsx",
+      "exists": true,
+      "code": "/**\n * ProgressBarBasic\n * Temel örnek (saf React).\n * @id 531\n * @category Yükleme & İlerleme\n * @subcategory ProgressBar\n */\nimport { Label } from \"@/components/ui/label\"\nimport { ProgressBar, ProgressBarFill, ProgressBarOutput, ProgressBarTrack } from \"@/components/ui/progress-bar\"\n\nfunction ProgressBarBasic() {\n  return (\n    <ProgressBar aria-label=\"Loading\" className=\"w-64\" value={60}>\n      <Label>Loading</Label>\n      <ProgressBarOutput />\n      <ProgressBarTrack>\n        <ProgressBarFill />\n      </ProgressBarTrack>\n    </ProgressBar>\n  )\n}\n\nexport { ProgressBarBasic }\n",
+      "description": "ProgressBarBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/progress-bar-basic.tsx"
+    },
+    {
+      "id": "532",
+      "name": "ProgressBarSizes",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "ProgressBar",
+      "file": "progress-bar-sizes.tsx",
+      "exists": true,
+      "code": "/**\n * ProgressBarSizes\n * Boyut örneği: sm/md/lg (saf React).\n * @id 532\n * @category Yükleme & İlerleme\n * @subcategory ProgressBar\n */\nimport { Label } from \"@/components/ui/label\"\nimport { ProgressBar, ProgressBarFill, ProgressBarTrack } from \"@/components/ui/progress-bar\"\n\nfunction ProgressBarSizes() {\n  return (\n    <div className=\"flex w-64 flex-col gap-6\">\n      {([\"sm\", \"md\", \"lg\"] as const).map((size) => (\n        <div key={size} className=\"flex flex-col gap-1\">\n          <Label className=\"capitalize\">{size}</Label>\n          <ProgressBar aria-label={size} value={45} size={size}>\n            <ProgressBarTrack>\n              <ProgressBarFill />\n            </ProgressBarTrack>\n          </ProgressBar>\n        </div>\n      ))}\n    </div>\n  )\n}\n\nexport { ProgressBarSizes }\n",
+      "description": "ProgressBarSizes",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/progress-bar-sizes.tsx"
+    },
+    {
+      "id": "533",
+      "name": "ProgressBarColors",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "ProgressBar",
+      "file": "progress-bar-colors.tsx",
+      "exists": true,
+      "code": "/**\n * ProgressBarColors\n * Renk örneği: accent/success/warning/danger (saf React).\n * @id 533\n * @category Yükleme & İlerleme\n * @subcategory ProgressBar\n */\nimport { Label } from \"@/components/ui/label\"\nimport { ProgressBar, ProgressBarFill, ProgressBarTrack, type ProgressColor } from \"@/components/ui/progress-bar\"\n\nconst COLORS: { color: ProgressColor; label: string }[] = [\n  { color: \"accent\", label: \"Accent\" },\n  { color: \"success\", label: \"Success\" },\n  { color: \"warning\", label: \"Warning\" },\n  { color: \"danger\", label: \"Danger\" },\n]\n\nfunction ProgressBarColors() {\n  return (\n    <div className=\"flex w-64 flex-col gap-4\">\n      {COLORS.map(({ color, label }) => (\n        <div key={color} className=\"flex flex-col gap-1\">\n          <Label>{label}</Label>\n          <ProgressBar aria-label={label} value={55} color={color}>\n            <ProgressBarTrack>\n              <ProgressBarFill />\n            </ProgressBarTrack>\n          </ProgressBar>\n        </div>\n      ))}\n    </div>\n  )\n}\n\nexport { ProgressBarColors }\n",
+      "description": "ProgressBarColors",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/progress-bar-colors.tsx"
+    },
+    {
+      "id": "534",
+      "name": "ProgressBarWithoutLabel",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "ProgressBar",
+      "file": "progress-bar-without-label.tsx",
+      "exists": true,
+      "code": "/**\n * ProgressBarWithoutLabel\n * Etiketsiz örnek — yalnızca çubuk (saf React).\n * @id 534\n * @category Yükleme & İlerleme\n * @subcategory ProgressBar\n */\nimport { ProgressBar, ProgressBarFill, ProgressBarTrack } from \"@/components/ui/progress-bar\"\n\nfunction ProgressBarWithoutLabel() {\n  return (\n    <ProgressBar aria-label=\"Uploading\" className=\"w-64\" value={75}>\n      <ProgressBarTrack>\n        <ProgressBarFill />\n      </ProgressBarTrack>\n    </ProgressBar>\n  )\n}\n\nexport { ProgressBarWithoutLabel }\n",
+      "description": "ProgressBarWithoutLabel",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/progress-bar-without-label.tsx"
+    },
+    {
+      "id": "535",
+      "name": "ProgressBarIndeterminate",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "ProgressBar",
+      "file": "progress-bar-indeterminate.tsx",
+      "exists": true,
+      "code": "/**\n * ProgressBarIndeterminate\n * Belirsiz (indeterminate) örnek (saf React).\n * @id 535\n * @category Yükleme & İlerleme\n * @subcategory ProgressBar\n */\nimport { Label } from \"@/components/ui/label\"\nimport { ProgressBar, ProgressBarFill, ProgressBarTrack } from \"@/components/ui/progress-bar\"\n\nfunction ProgressBarIndeterminate() {\n  return (\n    <ProgressBar aria-label=\"Processing\" className=\"w-64\" value={0} isIndeterminate>\n      <Label>Processing…</Label>\n      <ProgressBarTrack>\n        <ProgressBarFill />\n      </ProgressBarTrack>\n    </ProgressBar>\n  )\n}\n\nexport { ProgressBarIndeterminate }\n",
+      "description": "ProgressBarIndeterminate",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/progress-bar-indeterminate.tsx"
+    },
+    {
+      "id": "536",
+      "name": "ProgressBarCustomValue",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "ProgressBar",
+      "file": "progress-bar-custom-value.tsx",
+      "exists": true,
+      "code": "/**\n * ProgressBarCustomValue\n * Özel değer aralığı örneği — min/max (saf React).\n * @id 536\n * @category Yükleme & İlerleme\n * @subcategory ProgressBar\n */\nimport { Label } from \"@/components/ui/label\"\nimport { ProgressBar, ProgressBarFill, ProgressBarOutput, ProgressBarTrack } from \"@/components/ui/progress-bar\"\n\nfunction ProgressBarCustomValue() {\n  return (\n    <ProgressBar aria-label=\"Memory usage\" className=\"w-64\" value={8} min={0} max={16}>\n      <Label>Memory usage (GB)</Label>\n      <ProgressBarOutput />\n      <ProgressBarTrack>\n        <ProgressBarFill />\n      </ProgressBarTrack>\n    </ProgressBar>\n  )\n}\n\nexport { ProgressBarCustomValue }\n",
+      "description": "ProgressBarCustomValue",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/progress-bar-custom-value.tsx"
+    },
+    {
+      "id": "537",
+      "name": "ProgressBarCustomStyles",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "ProgressBar",
+      "file": "progress-bar-custom-styles.tsx",
+      "exists": true,
+      "code": "/**\n * ProgressBarCustomStyles\n * Özelleştirilmiş örnek (saf React).\n * @id 537\n * @category Yükleme & İlerleme\n * @subcategory ProgressBar\n */\nimport { Label } from \"@/components/ui/label\"\nimport { ProgressBar, ProgressBarFill, ProgressBarOutput, ProgressBarTrack } from \"@/components/ui/progress-bar\"\n\nfunction ProgressBarCustomStyles() {\n  return (\n    <ProgressBar aria-label=\"Upload\" className=\"w-64\" value={80} color=\"accent\" size=\"lg\">\n      <div className=\"flex w-full items-center justify-between\">\n        <Label className=\"text-xs\">Uploading video…</Label>\n        <ProgressBarOutput className=\"text-xs font-medium text-blue-700\" />\n      </div>\n      <ProgressBarTrack className=\"h-2.5 rounded-full bg-blue-100\">\n        <ProgressBarFill className=\"rounded-full bg-gradient-to-r from-blue-500 to-purple-600\" />\n      </ProgressBarTrack>\n    </ProgressBar>\n  )\n}\n\nexport { ProgressBarCustomStyles }\n",
+      "description": "ProgressBarCustomStyles",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/progress-bar-custom-styles.tsx"
+    },
+    {
+      "id": "538",
+      "name": "ProgressCircle",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "ProgressCircle",
+      "file": "progress-circle.tsx",
+      "exists": true,
+      "code": "/**\n * ProgressCircle\n * Saf React bileşen (bağımlılıksız).\n * Dairesel ilerleme göstergesi — SVG stroke-dasharray.\n *   <ProgressCircle aria-label=\"Loading\" value={60} />\n * Özellikler: value/min/max · isIndeterminate (dönen) · size (sm/md/lg) ·\n * color (default/accent/success/warning/danger) · children (içerik/label) ·\n * role=progressbar + aria-valuenow.\n * @id 538\n * @category Yükleme & İlerleme\n * @subcategory ProgressCircle\n */\nimport { createContext, useContext, type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\n/* ---------- Types ---------- */\n\ntype ProgressCircleSize = \"sm\" | \"md\" | \"lg\"\ntype ProgressCircleColor = \"default\" | \"accent\" | \"success\" | \"warning\" | \"danger\"\n\ninterface ProgressCircleContextValue {\n  value: number\n  min: number\n  max: number\n  isIndeterminate: boolean\n  size: ProgressCircleSize\n  color: ProgressCircleColor\n}\n\nconst ProgressCircleContext = createContext<ProgressCircleContextValue | null>(null)\n\nfunction useProgressCircle(): ProgressCircleContextValue {\n  const ctx = useContext(ProgressCircleContext)\n  if (!ctx) throw new Error(\"useProgressCircle, <ProgressCircle> içinde kullanılmalı\")\n  return ctx\n}\n\ninterface ProgressCircleProps {\n  children?: ReactNode\n  className?: string\n  value: number\n  min?: number\n  max?: number\n  isIndeterminate?: boolean\n  size?: ProgressCircleSize\n  color?: ProgressCircleColor\n  \"aria-label\"?: string\n}\n\nconst circleSizeClass: Record<ProgressCircleSize, string> = {\n  sm: \"size-6\",\n  md: \"size-8\",\n  lg: \"size-10\",\n}\n\nconst circleColorClass: Record<ProgressCircleColor, string> = {\n  default: \"text-foreground\",\n  accent: \"text-blue-600\",\n  success: \"text-emerald-600\",\n  warning: \"text-amber-500\",\n  danger: \"text-red-600\",\n}\n\nfunction ProgressCircle({\n  children,\n  className,\n  value,\n  min = 0,\n  max = 100,\n  isIndeterminate = false,\n  size = \"md\",\n  color = \"default\",\n  ...aria\n}: ProgressCircleProps) {\n  const contextValue: ProgressCircleContextValue = { value, min, max, isIndeterminate, size, color }\n  return (\n    <ProgressCircleContext.Provider value={contextValue}>\n      <div\n        data-slot=\"progress-circle\"\n        role=\"progressbar\"\n        aria-valuenow={isIndeterminate ? undefined : value}\n        aria-valuemin={min}\n        aria-valuemax={max}\n        className={cn(\"relative inline-flex items-center justify-center\", circleSizeClass[size], className)}\n        {...aria}\n      >\n        {children}\n      </div>\n    </ProgressCircleContext.Provider>\n  )\n}\n\n/* ---------- Svg (görsel halka) ---------- */\n\ninterface ProgressCircleSvgProps {\n  className?: string\n}\n\nfunction ProgressCircleSvg({ className }: ProgressCircleSvgProps) {\n  const ctx = useProgressCircle()\n  const R = 15.9155 // çevre 100 birim (dasharray yüzdeyi doğrudan verir)\n  const pct = Math.max(0, Math.min(100, ((ctx.value - ctx.min) / (ctx.max - ctx.min)) * 100))\n\n  return (\n    <svg\n      data-slot=\"progress-circle-svg\"\n      viewBox=\"0 0 36 36\"\n      className={cn(\"size-full -rotate-90\", ctx.isIndeterminate && \"animate-spin\", circleColorClass[ctx.color], className)}\n      aria-hidden=\"true\"\n    >\n      <circle cx=\"18\" cy=\"18\" r={R} fill=\"none\" strokeWidth=\"3.5\" className=\"stroke-muted\" />\n      <circle\n        cx=\"18\"\n        cy=\"18\"\n        r={R}\n        fill=\"none\"\n        strokeWidth=\"3.5\"\n        strokeLinecap=\"round\"\n        className=\"stroke-current\"\n        strokeDasharray={ctx.isIndeterminate ? \"30 70\" : `${pct} ${100 - pct}`}\n      />\n    </svg>\n  )\n}\n\n/* ---------- Label (içerik) ---------- */\n\ninterface ProgressCircleLabelProps {\n  className?: string\n}\n\nfunction ProgressCircleLabel({ className }: ProgressCircleLabelProps) {\n  const ctx = useProgressCircle()\n  const pct = Math.round(((ctx.value - ctx.min) / (ctx.max - ctx.min)) * 100)\n  return (\n    <span data-slot=\"progress-circle-label\" className={cn(\"absolute text-[10px] font-semibold\", className)}>\n      {ctx.isIndeterminate ? \"…\" : `${pct}%`}\n    </span>\n  )\n}\n\nexport { ProgressCircle, ProgressCircleLabel, ProgressCircleSvg, useProgressCircle }\nexport type { ProgressCircleColor, ProgressCircleLabelProps, ProgressCircleProps, ProgressCircleSize }\n",
+      "description": "ProgressCircle",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/progress-circle.tsx"
+    },
+    {
+      "id": "539",
+      "name": "ProgressCircleBasic",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "ProgressCircle",
+      "file": "progress-circle-basic.tsx",
+      "exists": true,
+      "code": "/**\n * ProgressCircleBasic\n * Temel örnek (saf React).\n * @id 539\n * @category Yükleme & İlerleme\n * @subcategory ProgressCircle\n */\nimport { ProgressCircle, ProgressCircleSvg } from \"@/components/ui/progress-circle\"\n\nfunction ProgressCircleBasic() {\n  return (\n    <ProgressCircle aria-label=\"Loading\" value={60}>\n      <ProgressCircleSvg />\n    </ProgressCircle>\n  )\n}\n\nexport { ProgressCircleBasic }\n",
+      "description": "ProgressCircleBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/progress-circle-basic.tsx"
+    },
+    {
+      "id": "540",
+      "name": "ProgressCircleSizes",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "ProgressCircle",
+      "file": "progress-circle-sizes.tsx",
+      "exists": true,
+      "code": "/**\n * ProgressCircleSizes\n * Boyut örneği: sm/md/lg (saf React).\n * @id 540\n * @category Yükleme & İlerleme\n * @subcategory ProgressCircle\n */\nimport { ProgressCircle, ProgressCircleSvg } from \"@/components/ui/progress-circle\"\n\nfunction ProgressCircleSizes() {\n  return (\n    <div className=\"flex items-center gap-6\">\n      {([\"sm\", \"md\", \"lg\"] as const).map((size) => (\n        <ProgressCircle key={size} aria-label={size} value={45} size={size}>\n          <ProgressCircleSvg />\n        </ProgressCircle>\n      ))}\n    </div>\n  )\n}\n\nexport { ProgressCircleSizes }\n",
+      "description": "ProgressCircleSizes",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/progress-circle-sizes.tsx"
+    },
+    {
+      "id": "541",
+      "name": "ProgressCircleColors",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "ProgressCircle",
+      "file": "progress-circle-colors.tsx",
+      "exists": true,
+      "code": "/**\n * ProgressCircleColors\n * Renk örneği: accent/success/warning/danger (saf React).\n * @id 541\n * @category Yükleme & İlerleme\n * @subcategory ProgressCircle\n */\nimport { ProgressCircle, ProgressCircleSvg, type ProgressCircleColor } from \"@/components/ui/progress-circle\"\n\nconst COLORS: ProgressCircleColor[] = [\"accent\", \"success\", \"warning\", \"danger\"]\n\nfunction ProgressCircleColors() {\n  return (\n    <div className=\"flex items-center gap-6\">\n      {COLORS.map((color) => (\n        <ProgressCircle key={color} aria-label={color} value={55} color={color}>\n          <ProgressCircleSvg />\n        </ProgressCircle>\n      ))}\n    </div>\n  )\n}\n\nexport { ProgressCircleColors }\n",
+      "description": "ProgressCircleColors",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/progress-circle-colors.tsx"
+    },
+    {
+      "id": "542",
+      "name": "ProgressCircleIndeterminate",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "ProgressCircle",
+      "file": "progress-circle-indeterminate.tsx",
+      "exists": true,
+      "code": "/**\n * ProgressCircleIndeterminate\n * Belirsiz (dönen) örnek (saf React).\n * @id 542\n * @category Yükleme & İlerleme\n * @subcategory ProgressCircle\n */\nimport { ProgressCircle, ProgressCircleSvg } from \"@/components/ui/progress-circle\"\n\nfunction ProgressCircleIndeterminate() {\n  return (\n    <ProgressCircle aria-label=\"Processing\" value={0} isIndeterminate>\n      <ProgressCircleSvg />\n    </ProgressCircle>\n  )\n}\n\nexport { ProgressCircleIndeterminate }\n",
+      "description": "ProgressCircleIndeterminate",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/progress-circle-indeterminate.tsx"
+    },
+    {
+      "id": "543",
+      "name": "ProgressCircleWithLabel",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "ProgressCircle",
+      "file": "progress-circle-with-label.tsx",
+      "exists": true,
+      "code": "/**\n * ProgressCircleWithLabel\n * İçinde yüzde etiketli örnek (saf React).\n * @id 543\n * @category Yükleme & İlerleme\n * @subcategory ProgressCircle\n */\nimport { ProgressCircle, ProgressCircleLabel, ProgressCircleSvg } from \"@/components/ui/progress-circle\"\n\nfunction ProgressCircleWithLabel() {\n  return (\n    <ProgressCircle aria-label=\"Download\" value={70} size=\"lg\">\n      <ProgressCircleSvg />\n      <ProgressCircleLabel />\n    </ProgressCircle>\n  )\n}\n\nexport { ProgressCircleWithLabel }\n",
+      "description": "ProgressCircleWithLabel",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/progress-circle-with-label.tsx"
+    },
+    {
+      "id": "544",
+      "name": "ProgressCircleCustomSvg",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "ProgressCircle",
+      "file": "progress-circle-custom-svg.tsx",
+      "exists": true,
+      "code": "/**\n * ProgressCircleCustomSvg\n * Özel SVG prop'ları örneği — kalın halka (saf React).\n * @id 544\n * @category Yükleme & İlerleme\n * @subcategory ProgressCircle\n */\nimport { ProgressCircle, ProgressCircleSvg } from \"@/components/ui/progress-circle\"\n\nfunction ProgressCircleCustomSvg() {\n  return (\n    <ProgressCircle aria-label=\"Storage\" className=\"size-12\" value={85} color=\"accent\">\n      <svg viewBox=\"0 0 36 36\" className=\"size-full -rotate-90 text-blue-600\" aria-hidden=\"true\">\n        <circle cx=\"18\" cy=\"18\" r=\"15.9155\" fill=\"none\" strokeWidth=\"5\" className=\"stroke-blue-100\" />\n        <circle\n          cx=\"18\"\n          cy=\"18\"\n          r=\"15.9155\"\n          fill=\"none\"\n          strokeWidth=\"5\"\n          strokeLinecap=\"round\"\n          className=\"stroke-current\"\n          strokeDasharray=\"85 15\"\n        />\n      </svg>\n    </ProgressCircle>\n  )\n}\n\nexport { ProgressCircleCustomSvg }\n",
+      "description": "ProgressCircleCustomSvg",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/progress-circle-custom-svg.tsx"
+    },
+    {
+      "id": "545",
+      "name": "ProgressCircleCustomStyles",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "ProgressCircle",
+      "file": "progress-circle-custom-styles.tsx",
+      "exists": true,
+      "code": "/**\n * ProgressCircleCustomStyles\n * Özelleştirilmiş örnek (saf React).\n * @id 545\n * @category Yükleme & İlerleme\n * @subcategory ProgressCircle\n */\nimport { ProgressCircle, ProgressCircleLabel, ProgressCircleSvg } from \"@/components/ui/progress-circle\"\n\nfunction ProgressCircleCustomStyles() {\n  return (\n    <div className=\"flex items-center gap-4\">\n      <ProgressCircle aria-label=\"Battery\" className=\"size-14\" value={65} color=\"success\">\n        <ProgressCircleSvg className=\"text-emerald-600\" />\n        <ProgressCircleLabel className=\"text-[11px] font-bold text-emerald-700\" />\n      </ProgressCircle>\n      <div className=\"flex flex-col\">\n        <p className=\"text-sm font-medium text-foreground\">Battery health</p>\n        <p className=\"text-xs text-muted-foreground\">65% — good condition</p>\n      </div>\n    </div>\n  )\n}\n\nexport { ProgressCircleCustomStyles }\n",
+      "description": "ProgressCircleCustomStyles",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/progress-circle-custom-styles.tsx"
     },
     {
       "id": "092",
