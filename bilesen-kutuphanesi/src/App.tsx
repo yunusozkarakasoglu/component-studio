@@ -704,7 +704,12 @@ export default function Studio() {
     if (!registry) return []
     const sabit = Array.isArray(registry.categories) ? registry.categories : []
     const mevcut = registry.components.map((c) => c.category)
-    return Array.from(new Set([...sabit, ...mevcut]))
+    const all = Array.from(new Set([...sabit, ...mevcut]))
+    // Öncelikli kategoriler en başta: Genel, Özel Komponentler — sonra A-Z
+    const priority = ["Genel", "Özel Komponentler"]
+    const rest = all.filter((c) => !priority.includes(c))
+    rest.sort((a, b) => a.localeCompare(b, "tr"))
+    return [...priority.filter((p) => all.includes(p)), ...rest]
   }, [registry])
 
   const compsInCat = useMemo(() => {
