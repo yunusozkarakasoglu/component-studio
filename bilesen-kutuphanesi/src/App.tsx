@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils"
 import { findRootInfo, injectStyleAt } from "@/lib/findRootInfo"
 import { COMPONENT_META } from "@/components-meta"
 import { SAMPLES } from "./samples"
+import { NewComponentWizard } from "@/components/ui/new-component-wizard"
 
 type CompRecord = { id: string; name: string; category: string; subcategory?: string; description: string; file: string; code: string; exists: boolean; path: string }
 
@@ -682,6 +683,16 @@ function EditorModal({
 /* ========== ANA UYGULAMA ========== */
 export default function Studio() {
   const [registry, setRegistry] = useState<{ components: CompRecord[]; categories?: string[] } | null>(null)
+  const [wizardOpen, setWizardOpen] = useState(() => window.location.hash === "#/yeni-bilesen")
+  const [pendingCount, setPendingCount] = useState(0)
+
+  // hash route: #/yeni-bilesen → sihirbaz
+  useEffect(() => {
+    const h = () => { setWizardOpen(window.location.hash === "#/yeni-bilesen") }
+    window.addEventListener("hashchange", h)
+    try { setPendingCount(JSON.parse(localStorage.getItem("wb-pending") || "[]").length) } catch { /* boş */ }
+    return () => window.removeEventListener("hashchange", h)
+  }, [])
   const [q, setQ] = useState("")
   const [cat, setCat] = useState("Tümü")
   const [panelOpen, setPanelOpen] = useState(true)
@@ -755,6 +766,15 @@ export default function Studio() {
     (c) => !term || c.id.includes(term) || c.name.toLowerCase().includes(term)
   ).length
 
+  if (wizardOpen && registry) {
+    return (
+      <NewComponentWizard
+        registry={registry}
+        onClose={() => { window.location.hash = ""; setWizardOpen(false) }}
+      />
+    )
+  }
+
   return (
     <>
       <div className="flex h-screen flex-col overflow-hidden bg-background">
@@ -777,6 +797,15 @@ export default function Studio() {
           </div>
           <div className="hidden items-center gap-2 text-[11px] text-muted-foreground sm:flex">
             <span>💾 Kaydet → HMR</span><span>·</span><span>🔄 DB Yenile</span>
+            {pendingCount > 0 && (
+              <button
+                onClick={() => { if (window.confirm(pendingCount + " bekleyen kayıt var. Kayıt defterine eklensin mi?")) { fetch("/api/rebuild-registry").then(() => { try { localStorage.removeItem("wb-pending") } catch {} ; setPendingCount(0) }) } }}
+                className="rounded-full bg-amber-500/15 px-2 py-0.5 font-medium text-amber-700 hover:bg-amber-500/25"
+                title="Bekleyen kayıtlar (workbench'ten kaydedildi, registry'ye eklenmedi)"
+              >
+                ⏳ Bekleyen: {pendingCount}
+              </button>
+            )}
           </div>
         </header>
 
@@ -785,6 +814,12 @@ export default function Studio() {
           {panelOpen && (
             <aside className="flex w-60 shrink-0 flex-col border-r border-black/30 bg-background min-h-0">
               <div className="shrink-0 space-y-2 border-b border-black/30 p-2.5">
+                <button
+                  onClick={() => { window.location.hash = "#/yeni-bilesen" }}
+                  className="flex w-full items-center justify-center gap-1.5 rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
+                >
+                  + Yeni Bileşen
+                </button>
                 <SearchField aria-label="Ara" value={q} onChange={setQ} placeholder="Ara: 008, buton, renk…" className="h-8 border-black/40 text-xs" />
               </div>
 
