@@ -177,6 +177,28 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `331` InputTypes
 - `332` InputControlled
 - `333` InputCustomStyles
+#### InputGroup
+- `334` InputGroup
+- `335` InputGroupDefault
+- `336` InputGroupVariants
+- `337` InputGroupOnSurface
+- `338` InputGroupWithLoadingSuffix
+- `339` InputGroupRequired
+- `340` InputGroupDisabled
+- `341` InputGroupFullWidth
+- `342` InputGroupWithTextPrefix
+- `343` InputGroupWithTextSuffix
+- `344` InputGroupIconPrefixTextSuffix
+- `345` InputGroupWithCopySuffix
+- `346` InputGroupIconPrefixCopySuffix
+- `347` InputGroupPasswordToggle
+- `348` InputGroupWithBadgeSuffix
+- `349` InputGroupInvalid
+- `350` InputGroupWithPrefixIcon
+- `351` InputGroupWithSuffixIcon
+- `352` InputGroupWithPrefixAndSuffix
+- `353` InputGroupWithTextArea
+- `354` InputGroupCustomStyles
 
 ### Renk Bileşenleri
 
@@ -306,7 +328,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 246 bileşen (saf React)**
+**Toplam: 267 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

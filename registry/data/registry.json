@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-05T00:03:50.367Z",
+  "generatedAt": "2026-08-05T00:09:45.715Z",
   "counts": {
-    "components": 246,
-    "ready": 246,
+    "components": 267,
+    "ready": 267,
     "layouts": 0
   },
   "categories": [
@@ -1551,7 +1551,7 @@
       "subcategory": "Input",
       "file": "input.tsx",
       "exists": true,
-      "code": "/**\n * Input\n * Saf React bileşen (bağımlılıksız).\n * Tek satır metin girişi — TextField içinde veya bağımsız kullanılabilir.\n *   <Input placeholder=\"Ad\" />   |   <TextField><Label>…</Label><Input /></TextField>\n * Özellikler: TextField context'ine uyum (value/onChange/disabled/invalid/required/\n * name/type/variant) · primary/secondary variant · red invalid durumu · focus ring.\n * @id 299\n * @category Form Elemanları\n */\nimport type { InputHTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { useTextField } from \"@/components/ui/text-field\"\n\ninterface InputProps extends InputHTMLAttributes<HTMLInputElement> {\n  variant?: \"primary\" | \"secondary\"\n}\n\nfunction Input({ className, variant: variantProp, onChange, onFocus, onBlur, ...props }: InputProps) {\n  const ctx = useTextField()\n\n  const variant = variantProp ?? ctx?.variant ?? \"primary\"\n  const invalid = ctx?.isInvalid ?? (props[\"aria-invalid\"] === true || props[\"aria-invalid\"] === \"true\")\n\n  return (\n    <input\n      data-slot=\"input\"\n      data-variant={variant}\n      value={ctx ? ctx.value : props.value}\n      onChange={(e) => {\n        if (ctx) ctx.setValue(e.target.value)\n        onChange?.(e)\n      }}\n      onFocus={(e) => {\n        ctx?.setFocusWithin(true)\n        onFocus?.(e)\n      }}\n      onBlur={(e) => {\n        ctx?.setFocusWithin(false)\n        onBlur?.(e)\n      }}\n      disabled={ctx ? ctx.isDisabled : props.disabled}\n      readOnly={ctx ? ctx.isReadOnly : props.readOnly}\n      required={ctx ? ctx.isRequired : props.required}\n      name={ctx ? ctx.name : props.name}\n      type={ctx ? ctx.type : (props.type ?? \"text\")}\n      autoFocus={ctx ? ctx.autoFocus : props.autoFocus}\n      aria-invalid={invalid || undefined}\n      className={cn(\n        \"h-10 w-full rounded-lg border border-border bg-background px-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground\",\n        \"focus:border-ring focus:ring-3 focus:ring-ring/40\",\n        variant === \"secondary\" && \"border-transparent bg-muted/60\",\n        invalid && \"border-red-500 focus:border-red-500 focus:ring-red-500/30\",\n        \"disabled:cursor-not-allowed disabled:opacity-60\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Input }\nexport type { InputProps }\n",
+      "code": "/**\n * Input\n * Saf React bileşen (bağımlılıksız).\n * Tek satır metin girişi — TextField içinde veya bağımsız kullanılabilir.\n *   <Input placeholder=\"Ad\" />   |   <TextField><Label>…</Label><Input /></TextField>\n * Özellikler: TextField context'ine uyum (value/onChange/disabled/invalid/required/\n * name/type/variant) · primary/secondary variant · red invalid durumu · focus ring.\n * @id 299\n * @category Form Elemanları\n */\nimport type { InputHTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { useTextField } from \"@/components/ui/text-field\"\n\ninterface InputProps extends InputHTMLAttributes<HTMLInputElement> {\n  variant?: \"primary\" | \"secondary\"\n  /** Konteynerinin tam genişliğini alsın (API uyumu; varsayılan w-full) */\n  fullWidth?: boolean\n}\n\nfunction Input({ className, variant: variantProp, fullWidth = false, onChange, onFocus, onBlur, ...props }: InputProps) {\n  const ctx = useTextField()\n\n  const variant = variantProp ?? ctx?.variant ?? \"primary\"\n  const invalid = ctx?.isInvalid ?? (props[\"aria-invalid\"] === true || props[\"aria-invalid\"] === \"true\")\n\n  return (\n    <input\n      data-slot=\"input\"\n      data-variant={variant}\n      value={ctx ? ctx.value : props.value}\n      onChange={(e) => {\n        if (ctx) ctx.setValue(e.target.value)\n        onChange?.(e)\n      }}\n      onFocus={(e) => {\n        ctx?.setFocusWithin(true)\n        onFocus?.(e)\n      }}\n      onBlur={(e) => {\n        ctx?.setFocusWithin(false)\n        onBlur?.(e)\n      }}\n      disabled={ctx ? ctx.isDisabled : props.disabled}\n      readOnly={ctx ? ctx.isReadOnly : props.readOnly}\n      required={ctx ? ctx.isRequired : props.required}\n      name={ctx ? ctx.name : props.name}\n      type={ctx ? ctx.type : (props.type ?? \"text\")}\n      autoFocus={ctx ? ctx.autoFocus : props.autoFocus}\n      aria-invalid={invalid || undefined}\n      className={cn(\n        \"h-10 w-full rounded-lg border border-border bg-background px-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground\",\n        \"focus:border-ring focus:ring-3 focus:ring-ring/40\",\n        variant === \"secondary\" && \"border-transparent bg-muted/60\",\n        invalid && \"border-red-500 focus:border-red-500 focus:ring-red-500/30\",\n        \"disabled:cursor-not-allowed disabled:opacity-60\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Input }\nexport type { InputProps }\n",
       "description": "Input",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input.tsx"
     },
@@ -1631,6 +1631,237 @@
       "code": "/**\n * InputCustomStyles\n * Özelleştirilmiş giriş örneği (saf React).\n * @id 333\n * @category Form Elemanları\n * @subcategory Input\n */\nimport { Input } from \"@/components/ui/input\"\n\nfunction InputCustomStyles() {\n  return (\n    <Input\n      aria-label=\"Search projects\"\n      className=\"w-64 rounded-xl border border-border/80 bg-background text-foreground placeholder:text-muted-foreground\"\n      placeholder=\"Search projects...\"\n    />\n  )\n}\n\nexport { InputCustomStyles }\n",
       "description": "InputCustomStyles",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-custom-styles.tsx"
+    },
+    {
+      "id": "334",
+      "name": "InputGroup",
+      "category": "Form Elemanları",
+      "subcategory": "InputGroup",
+      "file": "input-group.tsx",
+      "exists": true,
+      "code": "/**\n * InputGroup\n * Saf React bileşen (bağımlılıksız).\n * Prefix/suffix elemanlı giriş grubu — TextField içinde kullanılır.\n *   <TextField name=\"email\">\n *     <Label>Email</Label>\n *     <InputGroup>\n *       <InputGroupPrefix><Mail className=\"size-4\" /></InputGroupPrefix>\n *       <InputGroupInput placeholder=\"name@email.com\" />\n *       <InputGroupSuffix>USD</InputGroupSuffix>\n *     </InputGroup>\n *   </TextField>\n * Özellikler: variant (primary/secondary) · fullWidth · TextField context'ine uyum\n * (value/onChange/invalid/disabled/required) · Input veya TextArea · prefix/suffix.\n * @id 334\n * @category Form Elemanları\n * @subcategory InputGroup\n */\nimport type { InputHTMLAttributes, ReactNode, TextareaHTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { useTextField } from \"@/components/ui/text-field\"\n\n/* ---------- Root ---------- */\n\ninterface InputGroupProps {\n  children?: ReactNode\n  className?: string\n  variant?: \"primary\" | \"secondary\"\n  fullWidth?: boolean\n}\n\nfunction InputGroup({ children, className, variant: variantProp, fullWidth = false }: InputGroupProps) {\n  const ctx = useTextField()\n  const variant = variantProp ?? ctx?.variant ?? \"primary\"\n  const invalid = ctx?.isInvalid ?? false\n  const disabled = ctx?.isDisabled ?? false\n\n  return (\n    <div\n      data-slot=\"input-group\"\n      data-variant={variant}\n      data-invalid={invalid ? \"true\" : undefined}\n      data-disabled={disabled ? \"true\" : undefined}\n      className={cn(\n        \"inline-flex min-h-10 w-full items-center overflow-hidden rounded-lg border border-border bg-background text-sm transition-colors\",\n        \"focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/40\",\n        variant === \"secondary\" && \"border-transparent bg-muted/60\",\n        invalid && \"border-red-500 focus-within:border-red-500 focus-within:ring-red-500/30\",\n        disabled && \"cursor-not-allowed opacity-60\",\n        !fullWidth && \"max-w-full\",\n        className\n      )}\n    >\n      {children}\n    </div>\n  )\n}\n\n/* ---------- Input ---------- */\n\ninterface InputGroupInputProps extends InputHTMLAttributes<HTMLInputElement> {}\n\nfunction InputGroupInput({ className, onChange, ...props }: InputGroupInputProps) {\n  const ctx = useTextField()\n\n  return (\n    <input\n      data-slot=\"input-group-input\"\n      value={ctx ? ctx.value : props.value}\n      onChange={(e) => {\n        if (ctx) ctx.setValue(e.target.value)\n        onChange?.(e)\n      }}\n      disabled={ctx ? ctx.isDisabled : props.disabled}\n      readOnly={ctx ? ctx.isReadOnly : props.readOnly}\n      required={ctx ? ctx.isRequired : props.required}\n      name={ctx ? ctx.name : props.name}\n      autoFocus={ctx ? ctx.autoFocus : props.autoFocus}\n      aria-invalid={ctx?.isInvalid || undefined}\n      className={cn(\n        \"h-9 w-full min-w-0 flex-1 rounded-none border-0 bg-transparent px-3 py-2 text-sm text-foreground outline-none placeholder:text-muted-foreground\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\n/* ---------- TextArea ---------- */\n\ninterface InputGroupTextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {}\n\nfunction InputGroupTextArea({ className, onChange, rows = 3, ...props }: InputGroupTextAreaProps) {\n  const ctx = useTextField()\n\n  return (\n    <textarea\n      data-slot=\"input-group-textarea\"\n      value={ctx ? ctx.value : props.value}\n      onChange={(e) => {\n        if (ctx) ctx.setValue(e.target.value)\n        onChange?.(e)\n      }}\n      disabled={ctx ? ctx.isDisabled : props.disabled}\n      readOnly={ctx ? ctx.isReadOnly : props.readOnly}\n      required={ctx ? ctx.isRequired : props.required}\n      name={ctx ? ctx.name : props.name}\n      aria-invalid={ctx?.isInvalid || undefined}\n      rows={rows}\n      className={cn(\n        \"min-h-9 w-full min-w-0 flex-1 resize-y rounded-none border-0 bg-transparent px-3 py-2 text-sm text-foreground outline-none placeholder:text-muted-foreground\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\n/* ---------- Prefix / Suffix ---------- */\n\ninterface InputGroupAffixProps {\n  children?: ReactNode\n  className?: string\n}\n\nfunction InputGroupPrefix({ children, className }: InputGroupAffixProps) {\n  return (\n    <div data-slot=\"input-group-prefix\" className={cn(\"flex h-full shrink-0 items-center gap-1 px-3 text-muted-foreground\", className)}>\n      {children}\n    </div>\n  )\n}\n\nfunction InputGroupSuffix({ children, className }: InputGroupAffixProps) {\n  return (\n    <div data-slot=\"input-group-suffix\" className={cn(\"flex h-full shrink-0 items-center gap-1 px-3 text-muted-foreground\", className)}>\n      {children}\n    </div>\n  )\n}\n\nexport { InputGroup, InputGroupInput, InputGroupPrefix, InputGroupSuffix, InputGroupTextArea }\nexport type { InputGroupAffixProps, InputGroupProps }\n",
+      "description": "InputGroup",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-group.tsx"
+    },
+    {
+      "id": "335",
+      "name": "InputGroupDefault",
+      "category": "Form Elemanları",
+      "subcategory": "InputGroup",
+      "file": "input-group-default.tsx",
+      "exists": true,
+      "code": "/**\n * InputGroupDefault\n * Temel örnek: ikon prefix'li giriş grubu (saf React).\n * İkon kendi setimizden (Mail — GravityUI Envelope karşılığı).\n * @id 335\n * @category Form Elemanları\n * @subcategory InputGroup\n */\nimport { Mail } from \"@/components/ui/icons\"\nimport { InputGroup, InputGroupInput, InputGroupPrefix } from \"@/components/ui/input-group\"\nimport { Label } from \"@/components/ui/label\"\nimport { TextField } from \"@/components/ui/text-field\"\n\nfunction InputGroupDefault() {\n  return (\n    <TextField className=\"w-full max-w-[280px]\" name=\"email\">\n      <Label>Email address</Label>\n      <InputGroup>\n        <InputGroupPrefix>\n          <Mail className=\"size-4 text-muted-foreground\" />\n        </InputGroupPrefix>\n        <InputGroupInput className=\"w-full max-w-[280px]\" placeholder=\"name@email.com\" />\n      </InputGroup>\n    </TextField>\n  )\n}\n\nexport { InputGroupDefault }\n",
+      "description": "InputGroupDefault",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-group-default.tsx"
+    },
+    {
+      "id": "336",
+      "name": "InputGroupVariants",
+      "category": "Form Elemanları",
+      "subcategory": "InputGroup",
+      "file": "input-group-variants.tsx",
+      "exists": true,
+      "code": "/**\n * InputGroupVariants\n * primary/secondary variant örneği (saf React).\n * @id 336\n * @category Form Elemanları\n * @subcategory InputGroup\n */\nimport { Mail } from \"@/components/ui/icons\"\nimport { InputGroup, InputGroupInput, InputGroupPrefix } from \"@/components/ui/input-group\"\nimport { Label } from \"@/components/ui/label\"\nimport { TextField } from \"@/components/ui/text-field\"\n\nfunction InputGroupVariants() {\n  return (\n    <div className=\"flex flex-col gap-4\">\n      <TextField className=\"w-[280px]\" name=\"primary\">\n        <Label>Primary variant</Label>\n        <InputGroup variant=\"primary\">\n          <InputGroupPrefix>\n            <Mail className=\"size-4 text-muted-foreground\" />\n          </InputGroupPrefix>\n          <InputGroupInput placeholder=\"name@email.com\" />\n        </InputGroup>\n      </TextField>\n      <TextField className=\"w-[280px]\" name=\"secondary\">\n        <Label>Secondary variant</Label>\n        <InputGroup variant=\"secondary\">\n          <InputGroupPrefix>\n            <Mail className=\"size-4 text-muted-foreground\" />\n          </InputGroupPrefix>\n          <InputGroupInput placeholder=\"name@email.com\" />\n        </InputGroup>\n      </TextField>\n    </div>\n  )\n}\n\nexport { InputGroupVariants }\n",
+      "description": "InputGroupVariants",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-group-variants.tsx"
+    },
+    {
+      "id": "337",
+      "name": "InputGroupOnSurface",
+      "category": "Form Elemanları",
+      "subcategory": "InputGroup",
+      "file": "input-group-on-surface.tsx",
+      "exists": true,
+      "code": "/**\n * InputGroupOnSurface\n * Yüzey (Surface) üzerinde secondary variant örneği (saf React).\n * @id 337\n * @category Form Elemanları\n * @subcategory InputGroup\n */\nimport { Description } from \"@/components/ui/description\"\nimport { Mail } from \"@/components/ui/icons\"\nimport { InputGroup, InputGroupInput, InputGroupPrefix } from \"@/components/ui/input-group\"\nimport { Label } from \"@/components/ui/label\"\nimport { TextField } from \"@/components/ui/text-field\"\n\nfunction InputGroupOnSurface() {\n  return (\n    <div className=\"rounded-2xl bg-muted/40 p-6\">\n      <TextField className=\"w-full max-w-[280px]\" name=\"email\">\n        <Label>Email address</Label>\n        <InputGroup variant=\"secondary\">\n          <InputGroupPrefix>\n            <Mail className=\"size-4 text-muted-foreground\" />\n          </InputGroupPrefix>\n          <InputGroupInput className=\"w-full max-w-[280px]\" placeholder=\"name@email.com\" />\n        </InputGroup>\n        <Description>We&apos;ll never share this with anyone else</Description>\n      </TextField>\n    </div>\n  )\n}\n\nexport { InputGroupOnSurface }\n",
+      "description": "InputGroupOnSurface",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-group-on-surface.tsx"
+    },
+    {
+      "id": "338",
+      "name": "InputGroupWithLoadingSuffix",
+      "category": "Form Elemanları",
+      "subcategory": "InputGroup",
+      "file": "input-group-with-loading-suffix.tsx",
+      "exists": true,
+      "code": "/**\n * InputGroupWithLoadingSuffix\n * Suffix'te yükleme spinner örneği (saf React).\n * @id 338\n * @category Form Elemanları\n * @subcategory InputGroup\n */\nimport { InputGroup, InputGroupInput, InputGroupSuffix } from \"@/components/ui/input-group\"\nimport { Spinner } from \"@/components/ui/spinner\"\nimport { TextField } from \"@/components/ui/text-field\"\n\nfunction InputGroupWithLoadingSuffix() {\n  return (\n    <TextField className=\"w-full max-w-[280px]\" defaultValue=\"Sending...\" name=\"status\">\n      <InputGroup>\n        <InputGroupInput className=\"w-full max-w-[280px]\" />\n        <InputGroupSuffix>\n          <Spinner className=\"size-4\" />\n        </InputGroupSuffix>\n      </InputGroup>\n    </TextField>\n  )\n}\n\nexport { InputGroupWithLoadingSuffix }\n",
+      "description": "InputGroupWithLoadingSuffix",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-group-with-loading-suffix.tsx"
+    },
+    {
+      "id": "339",
+      "name": "InputGroupRequired",
+      "category": "Form Elemanları",
+      "subcategory": "InputGroup",
+      "file": "input-group-required.tsx",
+      "exists": true,
+      "code": "/**\n * InputGroupRequired\n * Zorunlu alan örnekleri — metin prefix/suffix (saf React).\n * @id 339\n * @category Form Elemanları\n * @subcategory InputGroup\n */\nimport { Description } from \"@/components/ui/description\"\nimport { Mail } from \"@/components/ui/icons\"\nimport { InputGroup, InputGroupInput, InputGroupPrefix, InputGroupSuffix } from \"@/components/ui/input-group\"\nimport { Label } from \"@/components/ui/label\"\nimport { TextField } from \"@/components/ui/text-field\"\n\nfunction InputGroupRequired() {\n  return (\n    <div className=\"flex flex-col gap-4\">\n      <TextField isRequired className=\"w-full max-w-[280px]\" name=\"email\">\n        <Label>Email address</Label>\n        <InputGroup>\n          <InputGroupPrefix>\n            <Mail className=\"size-4 text-muted-foreground\" />\n          </InputGroupPrefix>\n          <InputGroupInput className=\"w-full max-w-[280px]\" placeholder=\"name@email.com\" />\n        </InputGroup>\n      </TextField>\n      <TextField isRequired className=\"w-full max-w-[280px]\" name=\"price\">\n        <Label>Set a price</Label>\n        <InputGroup>\n          <InputGroupPrefix>$</InputGroupPrefix>\n          <InputGroupInput className=\"w-full max-w-[200px]\" placeholder=\"0\" type=\"number\" />\n          <InputGroupSuffix>USD</InputGroupSuffix>\n        </InputGroup>\n        <Description>What customers would pay</Description>\n      </TextField>\n    </div>\n  )\n}\n\nexport { InputGroupRequired }\n",
+      "description": "InputGroupRequired",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-group-required.tsx"
+    },
+    {
+      "id": "340",
+      "name": "InputGroupDisabled",
+      "category": "Form Elemanları",
+      "subcategory": "InputGroup",
+      "file": "input-group-disabled.tsx",
+      "exists": true,
+      "code": "/**\n * InputGroupDisabled\n * Devre dışı alan örnekleri (saf React).\n * @id 340\n * @category Form Elemanları\n * @subcategory InputGroup\n */\nimport { Mail } from \"@/components/ui/icons\"\nimport { InputGroup, InputGroupInput, InputGroupPrefix, InputGroupSuffix } from \"@/components/ui/input-group\"\nimport { Label } from \"@/components/ui/label\"\nimport { TextField } from \"@/components/ui/text-field\"\n\nfunction InputGroupDisabled() {\n  return (\n    <div className=\"flex flex-col gap-4\">\n      <TextField isDisabled className=\"w-full max-w-[280px]\" defaultValue=\"name@email.com\" name=\"email\">\n        <Label>Email address</Label>\n        <InputGroup>\n          <InputGroupPrefix>\n            <Mail className=\"size-4 text-muted-foreground\" />\n          </InputGroupPrefix>\n          <InputGroupInput className=\"w-full max-w-[280px]\" />\n        </InputGroup>\n      </TextField>\n      <TextField isDisabled className=\"w-full max-w-[280px]\" defaultValue=\"10\" name=\"price\">\n        <Label>Set a price</Label>\n        <InputGroup>\n          <InputGroupPrefix>$</InputGroupPrefix>\n          <InputGroupInput className=\"w-full max-w-[200px]\" type=\"number\" />\n          <InputGroupSuffix>USD</InputGroupSuffix>\n        </InputGroup>\n      </TextField>\n    </div>\n  )\n}\n\nexport { InputGroupDisabled }\n",
+      "description": "InputGroupDisabled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-group-disabled.tsx"
+    },
+    {
+      "id": "341",
+      "name": "InputGroupFullWidth",
+      "category": "Form Elemanları",
+      "subcategory": "InputGroup",
+      "file": "input-group-full-width.tsx",
+      "exists": true,
+      "code": "/**\n * InputGroupFullWidth\n * Tam genişlik örneği — ikon prefix/suffix (saf React).\n * @id 341\n * @category Form Elemanları\n * @subcategory InputGroup\n */\nimport { Eye, Mail } from \"@/components/ui/icons\"\nimport { InputGroup, InputGroupInput, InputGroupPrefix, InputGroupSuffix } from \"@/components/ui/input-group\"\nimport { Label } from \"@/components/ui/label\"\nimport { TextField } from \"@/components/ui/text-field\"\n\nfunction InputGroupFullWidth() {\n  return (\n    <div className=\"w-[400px] space-y-4\">\n      <TextField fullWidth name=\"email\">\n        <Label>Email address</Label>\n        <InputGroup fullWidth>\n          <InputGroupPrefix>\n            <Mail className=\"size-4 text-muted-foreground\" />\n          </InputGroupPrefix>\n          <InputGroupInput placeholder=\"name@email.com\" />\n        </InputGroup>\n      </TextField>\n      <TextField fullWidth name=\"password\">\n        <Label>Password</Label>\n        <InputGroup fullWidth>\n          <InputGroupInput placeholder=\"Enter password\" type=\"password\" />\n          <InputGroupSuffix>\n            <Eye className=\"size-4 text-muted-foreground\" />\n          </InputGroupSuffix>\n        </InputGroup>\n      </TextField>\n    </div>\n  )\n}\n\nexport { InputGroupFullWidth }\n",
+      "description": "InputGroupFullWidth",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-group-full-width.tsx"
+    },
+    {
+      "id": "342",
+      "name": "InputGroupWithTextPrefix",
+      "category": "Form Elemanları",
+      "subcategory": "InputGroup",
+      "file": "input-group-with-text-prefix.tsx",
+      "exists": true,
+      "code": "/**\n * InputGroupWithTextPrefix\n * Metin prefix örneği: https:// (saf React).\n * @id 342\n * @category Form Elemanları\n * @subcategory InputGroup\n */\nimport { InputGroup, InputGroupInput, InputGroupPrefix } from \"@/components/ui/input-group\"\nimport { Label } from \"@/components/ui/label\"\nimport { TextField } from \"@/components/ui/text-field\"\n\nfunction InputGroupWithTextPrefix() {\n  return (\n    <TextField className=\"w-full max-w-[280px]\" defaultValue=\"heroui.com\" name=\"website\">\n      <Label>Website</Label>\n      <InputGroup>\n        <InputGroupPrefix>https://</InputGroupPrefix>\n        <InputGroupInput className=\"w-full max-w-[280px]\" />\n      </InputGroup>\n    </TextField>\n  )\n}\n\nexport { InputGroupWithTextPrefix }\n",
+      "description": "InputGroupWithTextPrefix",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-group-with-text-prefix.tsx"
+    },
+    {
+      "id": "343",
+      "name": "InputGroupWithTextSuffix",
+      "category": "Form Elemanları",
+      "subcategory": "InputGroup",
+      "file": "input-group-with-text-suffix.tsx",
+      "exists": true,
+      "code": "/**\n * InputGroupWithTextSuffix\n * Metin suffix örneği: .com (saf React).\n * @id 343\n * @category Form Elemanları\n * @subcategory InputGroup\n */\nimport { InputGroup, InputGroupInput, InputGroupSuffix } from \"@/components/ui/input-group\"\nimport { Label } from \"@/components/ui/label\"\nimport { TextField } from \"@/components/ui/text-field\"\n\nfunction InputGroupWithTextSuffix() {\n  return (\n    <TextField className=\"w-full max-w-[280px]\" defaultValue=\"heroui\" name=\"website\">\n      <Label>Website</Label>\n      <InputGroup>\n        <InputGroupInput className=\"w-full max-w-[280px]\" />\n        <InputGroupSuffix>.com</InputGroupSuffix>\n      </InputGroup>\n    </TextField>\n  )\n}\n\nexport { InputGroupWithTextSuffix }\n",
+      "description": "InputGroupWithTextSuffix",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-group-with-text-suffix.tsx"
+    },
+    {
+      "id": "344",
+      "name": "InputGroupIconPrefixTextSuffix",
+      "category": "Form Elemanları",
+      "subcategory": "InputGroup",
+      "file": "input-group-icon-prefix-text-suffix.tsx",
+      "exists": true,
+      "code": "/**\n * InputGroupIconPrefixTextSuffix\n * İkon prefix + metin suffix kombinasyonu (saf React).\n * @id 344\n * @category Form Elemanları\n * @subcategory InputGroup\n */\nimport { Globe } from \"@/components/ui/icons\"\nimport { InputGroup, InputGroupInput, InputGroupPrefix, InputGroupSuffix } from \"@/components/ui/input-group\"\nimport { Label } from \"@/components/ui/label\"\nimport { TextField } from \"@/components/ui/text-field\"\n\nfunction InputGroupIconPrefixTextSuffix() {\n  return (\n    <TextField className=\"w-full max-w-[280px]\" defaultValue=\"heroui\" name=\"website\">\n      <Label>Website</Label>\n      <InputGroup>\n        <InputGroupPrefix>\n          <Globe className=\"size-4 text-muted-foreground\" />\n        </InputGroupPrefix>\n        <InputGroupInput className=\"w-full max-w-[280px]\" />\n        <InputGroupSuffix>.com</InputGroupSuffix>\n      </InputGroup>\n    </TextField>\n  )\n}\n\nexport { InputGroupIconPrefixTextSuffix }\n",
+      "description": "InputGroupIconPrefixTextSuffix",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-group-icon-prefix-text-suffix.tsx"
+    },
+    {
+      "id": "345",
+      "name": "InputGroupWithCopySuffix",
+      "category": "Form Elemanları",
+      "subcategory": "InputGroup",
+      "file": "input-group-with-copy-suffix.tsx",
+      "exists": true,
+      "code": "/**\n * InputGroupWithCopySuffix\n * Kopyalama butonlu suffix örneği (saf React).\n * @id 345\n * @category Form Elemanları\n * @subcategory InputGroup\n */\nimport { useState } from \"react\"\nimport { Button } from \"@/components/ui/button\"\nimport { Check, Copy } from \"@/components/ui/icons\"\nimport { InputGroup, InputGroupInput, InputGroupSuffix } from \"@/components/ui/input-group\"\nimport { Label } from \"@/components/ui/label\"\nimport { TextField } from \"@/components/ui/text-field\"\n\nfunction InputGroupWithCopySuffix() {\n  const [copied, setCopied] = useState(false)\n\n  const handleCopy = () => {\n    navigator.clipboard?.writeText(\"heroui.com\").catch(() => {})\n    setCopied(true)\n    setTimeout(() => setCopied(false), 1500)\n  }\n\n  return (\n    <TextField className=\"w-full max-w-[280px]\" defaultValue=\"heroui.com\" name=\"website\">\n      <Label>Website</Label>\n      <InputGroup>\n        <InputGroupInput className=\"w-full max-w-[280px]\" />\n        <InputGroupSuffix className=\"pe-1\">\n          <Button isIconOnly aria-label={copied ? \"Kopyalandı\" : \"Kopyala\"} size=\"sm\" variant=\"ghost\" onPress={handleCopy}>\n            {copied ? <Check className=\"size-4\" /> : <Copy className=\"size-4\" />}\n          </Button>\n        </InputGroupSuffix>\n      </InputGroup>\n    </TextField>\n  )\n}\n\nexport { InputGroupWithCopySuffix }\n",
+      "description": "InputGroupWithCopySuffix",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-group-with-copy-suffix.tsx"
+    },
+    {
+      "id": "346",
+      "name": "InputGroupIconPrefixCopySuffix",
+      "category": "Form Elemanları",
+      "subcategory": "InputGroup",
+      "file": "input-group-icon-prefix-copy-suffix.tsx",
+      "exists": true,
+      "code": "/**\n * InputGroupIconPrefixCopySuffix\n * İkon prefix + kopyalama butonu kombinasyonu (saf React).\n * @id 346\n * @category Form Elemanları\n * @subcategory InputGroup\n */\nimport { useState } from \"react\"\nimport { Button } from \"@/components/ui/button\"\nimport { Check, Copy, Globe } from \"@/components/ui/icons\"\nimport { InputGroup, InputGroupInput, InputGroupPrefix, InputGroupSuffix } from \"@/components/ui/input-group\"\nimport { Label } from \"@/components/ui/label\"\nimport { TextField } from \"@/components/ui/text-field\"\n\nfunction InputGroupIconPrefixCopySuffix() {\n  const [copied, setCopied] = useState(false)\n\n  const handleCopy = () => {\n    navigator.clipboard?.writeText(\"heroui.com\").catch(() => {})\n    setCopied(true)\n    setTimeout(() => setCopied(false), 1500)\n  }\n\n  return (\n    <TextField className=\"w-full max-w-[280px]\" defaultValue=\"heroui.com\" name=\"website\">\n      <Label>Website</Label>\n      <InputGroup>\n        <InputGroupPrefix>\n          <Globe className=\"size-4 text-muted-foreground\" />\n        </InputGroupPrefix>\n        <InputGroupInput className=\"w-full max-w-[280px]\" />\n        <InputGroupSuffix className=\"pe-1\">\n          <Button isIconOnly aria-label={copied ? \"Kopyalandı\" : \"Kopyala\"} size=\"sm\" variant=\"ghost\" onPress={handleCopy}>\n            {copied ? <Check className=\"size-4\" /> : <Copy className=\"size-4\" />}\n          </Button>\n        </InputGroupSuffix>\n      </InputGroup>\n    </TextField>\n  )\n}\n\nexport { InputGroupIconPrefixCopySuffix }\n",
+      "description": "InputGroupIconPrefixCopySuffix",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-group-icon-prefix-copy-suffix.tsx"
+    },
+    {
+      "id": "347",
+      "name": "InputGroupPasswordToggle",
+      "category": "Form Elemanları",
+      "subcategory": "InputGroup",
+      "file": "input-group-password-toggle.tsx",
+      "exists": true,
+      "code": "/**\n * InputGroupPasswordToggle\n * Şifre görünürlük değiştirme örneği (saf React).\n * @id 347\n * @category Form Elemanları\n * @subcategory InputGroup\n */\nimport { useState } from \"react\"\nimport { Button } from \"@/components/ui/button\"\nimport { Eye, EyeOff } from \"@/components/ui/icons\"\nimport { InputGroup, InputGroupInput, InputGroupSuffix } from \"@/components/ui/input-group\"\nimport { Label } from \"@/components/ui/label\"\nimport { TextField } from \"@/components/ui/text-field\"\n\nfunction InputGroupPasswordToggle() {\n  const [isVisible, setIsVisible] = useState(false)\n\n  return (\n    <TextField className=\"w-full max-w-[280px]\" name=\"password\">\n      <Label>Password</Label>\n      <InputGroup>\n        <InputGroupInput\n          className=\"w-full max-w-[280px]\"\n          type={isVisible ? \"text\" : \"password\"}\n          defaultValue={isVisible ? \"87$2h.3diua\" : \"\"}\n          placeholder={isVisible ? \"\" : \"••••••••\"}\n        />\n        <InputGroupSuffix className=\"pe-1\">\n          <Button\n            isIconOnly\n            aria-label={isVisible ? \"Hide password\" : \"Show password\"}\n            size=\"sm\"\n            variant=\"ghost\"\n            onPress={() => setIsVisible(!isVisible)}\n          >\n            {isVisible ? <Eye className=\"size-4\" /> : <EyeOff className=\"size-4\" />}\n          </Button>\n        </InputGroupSuffix>\n      </InputGroup>\n    </TextField>\n  )\n}\n\nexport { InputGroupPasswordToggle }\n",
+      "description": "InputGroupPasswordToggle",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-group-password-toggle.tsx"
+    },
+    {
+      "id": "348",
+      "name": "InputGroupWithBadgeSuffix",
+      "category": "Form Elemanları",
+      "subcategory": "InputGroup",
+      "file": "input-group-with-badge-suffix.tsx",
+      "exists": true,
+      "code": "/**\n * InputGroupWithBadgeSuffix\n * Rozet (Chip) suffix örneği (saf React).\n * @id 348\n * @category Form Elemanları\n * @subcategory InputGroup\n */\nimport { Chip, ChipLabel } from \"@/components/ui/chip\"\nimport { InputGroup, InputGroupInput, InputGroupSuffix } from \"@/components/ui/input-group\"\nimport { TextField } from \"@/components/ui/text-field\"\n\nfunction InputGroupWithBadgeSuffix() {\n  return (\n    <TextField aria-label=\"Email address\" className=\"w-full max-w-[280px]\" name=\"email\">\n      <InputGroup>\n        <InputGroupInput className=\"w-full max-w-[280px]\" placeholder=\"Email address\" />\n        <InputGroupSuffix className=\"pe-2\">\n          <Chip color=\"accent\" size=\"md\" variant=\"soft\">\n            <ChipLabel>Pro</ChipLabel>\n          </Chip>\n        </InputGroupSuffix>\n      </InputGroup>\n    </TextField>\n  )\n}\n\nexport { InputGroupWithBadgeSuffix }\n",
+      "description": "InputGroupWithBadgeSuffix",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-group-with-badge-suffix.tsx"
+    },
+    {
+      "id": "349",
+      "name": "InputGroupInvalid",
+      "category": "Form Elemanları",
+      "subcategory": "InputGroup",
+      "file": "input-group-invalid.tsx",
+      "exists": true,
+      "code": "/**\n * InputGroupInvalid\n * Doğrulama hatası örnekleri (saf React).\n * @id 349\n * @category Form Elemanları\n * @subcategory InputGroup\n */\nimport { FieldError } from \"@/components/ui/field-error\"\nimport { Mail } from \"@/components/ui/icons\"\nimport { InputGroup, InputGroupInput, InputGroupPrefix, InputGroupSuffix } from \"@/components/ui/input-group\"\nimport { Label } from \"@/components/ui/label\"\nimport { TextField } from \"@/components/ui/text-field\"\n\nfunction InputGroupInvalid() {\n  return (\n    <div className=\"flex flex-col gap-4\">\n      <TextField isInvalid isRequired className=\"w-full max-w-[280px]\" name=\"email\">\n        <Label>Email address</Label>\n        <InputGroup>\n          <InputGroupPrefix>\n            <Mail className=\"size-4 text-muted-foreground\" />\n          </InputGroupPrefix>\n          <InputGroupInput className=\"w-full max-w-[280px]\" placeholder=\"name@email.com\" />\n        </InputGroup>\n        <FieldError>Please enter a valid email address</FieldError>\n      </TextField>\n      <TextField isInvalid isRequired className=\"w-full max-w-[280px]\" name=\"price\">\n        <Label>Set a price</Label>\n        <InputGroup>\n          <InputGroupPrefix>$</InputGroupPrefix>\n          <InputGroupInput className=\"w-full max-w-[200px]\" placeholder=\"0\" type=\"number\" />\n          <InputGroupSuffix>USD</InputGroupSuffix>\n        </InputGroup>\n        <FieldError>Price must be greater than 0</FieldError>\n      </TextField>\n    </div>\n  )\n}\n\nexport { InputGroupInvalid }\n",
+      "description": "InputGroupInvalid",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-group-invalid.tsx"
+    },
+    {
+      "id": "350",
+      "name": "InputGroupWithPrefixIcon",
+      "category": "Form Elemanları",
+      "subcategory": "InputGroup",
+      "file": "input-group-with-prefix-icon.tsx",
+      "exists": true,
+      "code": "/**\n * InputGroupWithPrefixIcon\n * İkon prefix örneği (saf React).\n * @id 350\n * @category Form Elemanları\n * @subcategory InputGroup\n */\nimport { Description } from \"@/components/ui/description\"\nimport { Mail } from \"@/components/ui/icons\"\nimport { InputGroup, InputGroupInput, InputGroupPrefix } from \"@/components/ui/input-group\"\nimport { Label } from \"@/components/ui/label\"\nimport { TextField } from \"@/components/ui/text-field\"\n\nfunction InputGroupWithPrefixIcon() {\n  return (\n    <TextField className=\"w-full max-w-[280px]\" name=\"email\">\n      <Label>Email address</Label>\n      <InputGroup>\n        <InputGroupPrefix>\n          <Mail className=\"size-4 text-muted-foreground\" />\n        </InputGroupPrefix>\n        <InputGroupInput className=\"w-full max-w-[280px]\" placeholder=\"name@email.com\" />\n      </InputGroup>\n      <Description>We&apos;ll never share this with anyone else</Description>\n    </TextField>\n  )\n}\n\nexport { InputGroupWithPrefixIcon }\n",
+      "description": "InputGroupWithPrefixIcon",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-group-with-prefix-icon.tsx"
+    },
+    {
+      "id": "351",
+      "name": "InputGroupWithSuffixIcon",
+      "category": "Form Elemanları",
+      "subcategory": "InputGroup",
+      "file": "input-group-with-suffix-icon.tsx",
+      "exists": true,
+      "code": "/**\n * InputGroupWithSuffixIcon\n * İkon suffix örneği (saf React).\n * @id 351\n * @category Form Elemanları\n * @subcategory InputGroup\n */\nimport { Description } from \"@/components/ui/description\"\nimport { Mail } from \"@/components/ui/icons\"\nimport { InputGroup, InputGroupInput, InputGroupSuffix } from \"@/components/ui/input-group\"\nimport { Label } from \"@/components/ui/label\"\nimport { TextField } from \"@/components/ui/text-field\"\n\nfunction InputGroupWithSuffixIcon() {\n  return (\n    <TextField className=\"w-full max-w-[280px]\" name=\"email\">\n      <Label>Email address</Label>\n      <InputGroup>\n        <InputGroupInput className=\"w-full max-w-[280px]\" placeholder=\"name@email.com\" />\n        <InputGroupSuffix>\n          <Mail className=\"size-4 text-muted-foreground\" />\n        </InputGroupSuffix>\n      </InputGroup>\n      <Description>We don&apos;t send spam</Description>\n    </TextField>\n  )\n}\n\nexport { InputGroupWithSuffixIcon }\n",
+      "description": "InputGroupWithSuffixIcon",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-group-with-suffix-icon.tsx"
+    },
+    {
+      "id": "352",
+      "name": "InputGroupWithPrefixAndSuffix",
+      "category": "Form Elemanları",
+      "subcategory": "InputGroup",
+      "file": "input-group-with-prefix-and-suffix.tsx",
+      "exists": true,
+      "code": "/**\n * InputGroupWithPrefixAndSuffix\n * Metin prefix + suffix kombinasyonu (saf React).\n * @id 352\n * @category Form Elemanları\n * @subcategory InputGroup\n */\nimport { Description } from \"@/components/ui/description\"\nimport { InputGroup, InputGroupInput, InputGroupPrefix, InputGroupSuffix } from \"@/components/ui/input-group\"\nimport { Label } from \"@/components/ui/label\"\nimport { TextField } from \"@/components/ui/text-field\"\n\nfunction InputGroupWithPrefixAndSuffix() {\n  return (\n    <TextField className=\"w-full max-w-[280px]\" defaultValue=\"10\" name=\"price\">\n      <Label>Set a price</Label>\n      <InputGroup>\n        <InputGroupPrefix>$</InputGroupPrefix>\n        <InputGroupInput className=\"w-full max-w-[200px]\" type=\"number\" />\n        <InputGroupSuffix>USD</InputGroupSuffix>\n      </InputGroup>\n      <Description>What customers would pay</Description>\n    </TextField>\n  )\n}\n\nexport { InputGroupWithPrefixAndSuffix }\n",
+      "description": "InputGroupWithPrefixAndSuffix",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-group-with-prefix-and-suffix.tsx"
+    },
+    {
+      "id": "353",
+      "name": "InputGroupWithTextArea",
+      "category": "Form Elemanları",
+      "subcategory": "InputGroup",
+      "file": "input-group-with-textarea.tsx",
+      "exists": true,
+      "code": "/**\n * InputGroupWithTextArea\n * TextArea'lı giriş grubu örneği — prompt alanı (saf React).\n * Tooltip bileşeni gelmediği için butonlar tooltipsiz kullanılır.\n * @id 353\n * @category Form Elemanları\n * @subcategory InputGroup\n */\nimport { useState } from \"react\"\nimport { Button } from \"@/components/ui/button\"\nimport { ArrowUp, AtSign, Mic, Plus, Plug } from \"@/components/ui/icons\"\nimport { InputGroup, InputGroupPrefix, InputGroupSuffix, InputGroupTextArea } from \"@/components/ui/input-group\"\nimport { TextField } from \"@/components/ui/text-field\"\n\nfunction InputGroupWithTextArea() {\n  const [value, setValue] = useState(\"\")\n  const [isSubmitting, setIsSubmitting] = useState(false)\n\n  const handleSubmit = () => {\n    if (!value.trim()) return\n    setIsSubmitting(true)\n    setTimeout(() => {\n      setIsSubmitting(false)\n      setValue(\"\")\n    }, 1000)\n  }\n\n  return (\n    <TextField fullWidth aria-label=\"Prompt input\" className=\"w-sm sm:w-lg\" name=\"prompt\">\n      <InputGroup fullWidth className=\"flex flex-col gap-2 rounded-3xl py-2\">\n        <InputGroupPrefix className=\"px-3 py-0\">\n          <Button aria-label=\"Add context\" size=\"sm\" variant=\"outline\">\n            <AtSign />\n            Add Context\n          </Button>\n        </InputGroupPrefix>\n        <InputGroupTextArea\n          className=\"w-full resize-none px-3.5 py-0\"\n          placeholder=\"Assign tasks or ask anything...\"\n          rows={5}\n          value={value}\n          onChange={(event) => setValue(event.target.value)}\n        />\n        <InputGroupSuffix className=\"flex w-full items-center gap-1.5 px-3 py-0\">\n          <Button isIconOnly aria-label=\"Attach file\" size=\"sm\" variant=\"tertiary\">\n            <Plus />\n          </Button>\n          <Button isIconOnly aria-label=\"Connect Apps\" size=\"sm\" variant=\"tertiary\">\n            <Plug />\n          </Button>\n          <div className=\"ms-auto flex items-center gap-1.5\">\n            <Button isIconOnly aria-label=\"Voice input\" size=\"sm\" variant=\"ghost\">\n              <Mic />\n            </Button>\n            <Button\n              isIconOnly\n              aria-label=\"Send prompt\"\n              isDisabled={!value.trim()}\n              isPending={isSubmitting}\n              onPress={handleSubmit}\n            >\n              {({ isPending }) => (isPending ? <ArrowUp /> : <ArrowUp />)}\n            </Button>\n          </div>\n        </InputGroupSuffix>\n      </InputGroup>\n    </TextField>\n  )\n}\n\nexport { InputGroupWithTextArea }\n",
+      "description": "InputGroupWithTextArea",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-group-with-textarea.tsx"
+    },
+    {
+      "id": "354",
+      "name": "InputGroupCustomStyles",
+      "category": "Form Elemanları",
+      "subcategory": "InputGroup",
+      "file": "input-group-custom-styles.tsx",
+      "exists": true,
+      "code": "/**\n * InputGroupCustomStyles\n * Özelleştirilmiş örnek (saf React).\n * @id 354\n * @category Form Elemanları\n * @subcategory InputGroup\n */\nimport { Mail } from \"@/components/ui/icons\"\nimport { InputGroup, InputGroupInput, InputGroupPrefix } from \"@/components/ui/input-group\"\nimport { Label } from \"@/components/ui/label\"\nimport { TextField } from \"@/components/ui/text-field\"\n\nfunction InputGroupCustomStyles() {\n  return (\n    <TextField className=\"w-full max-w-xs\" name=\"email\">\n      <Label>Work email</Label>\n      <InputGroup className=\"rounded-xl border border-border/80 bg-background shadow-sm\">\n        <InputGroupPrefix>\n          <Mail className=\"size-4 text-muted-foreground\" />\n        </InputGroupPrefix>\n        <InputGroupInput placeholder=\"you@company.com\" />\n      </InputGroup>\n    </TextField>\n  )\n}\n\nexport { InputGroupCustomStyles }\n",
+      "description": "InputGroupCustomStyles",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-group-custom-styles.tsx"
     },
     {
       "id": "092",
