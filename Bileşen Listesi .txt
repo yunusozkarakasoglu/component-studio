@@ -320,6 +320,18 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `458` TooltipCustomTrigger
 - `459` TooltipRenderFunction
 - `460` TooltipCustomStyles
+#### Toast
+- `461` Toast
+- `462` ToastDefault
+- `463` ToastSimple
+- `464` ToastVariants
+- `465` ToastCustomIndicator
+- `466` ToastPromise
+- `467` ToastCallbacks
+- `468` ToastCustomQueue
+- `469` ToastPlacements
+- `470` ToastCustomToast
+- `471` ToastCustomStyles
 
 ### Renk Bileşenleri
 
@@ -449,7 +461,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 373 bileşen (saf React)**
+**Toplam: 384 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
