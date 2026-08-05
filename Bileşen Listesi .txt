@@ -385,6 +385,18 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `516` ToolbarAttached
 - `517` ToolbarWithButtonGroup
 - `518` ToolbarCustomStyles
+#### Table
+- `519` Table
+- `520` TableBasic
+- `521` TableSecondaryVariant
+- `522` TableSorting
+- `523` TableSelection
+- `524` TableExpandableRows
+- `525` TablePagination
+- `526` TableColumnResizing
+- `527` TableEmptyState
+- `528` TableCustomCells
+- `529` TableCustomStyles
 
 ### Renk Bileşenleri
 
@@ -514,7 +526,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 431 bileşen (saf React)**
+**Toplam: 442 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
