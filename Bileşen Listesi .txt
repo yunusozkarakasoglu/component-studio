@@ -304,6 +304,14 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `444` ModalCustomAnimations
 - `445` ModalCustomPortal
 - `446` ModalCustomStyles
+#### Popover
+- `447` Popover
+- `448` PopoverBasic
+- `449` PopoverWithArrow
+- `450` PopoverInteractive
+- `451` PopoverPlacement
+- `452` PopoverRenderFunction
+- `453` PopoverCustomStyles
 
 ### Renk Bileşenleri
 
@@ -433,7 +441,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 359 bileşen (saf React)**
+**Toplam: 366 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

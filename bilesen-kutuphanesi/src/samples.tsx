@@ -414,4 +414,11 @@ export const SAMPLES: Record<string, ReactNode> = {
   "444": <U.ModalCustomAnimations />,
   "445": <U.ModalCustomPortal />,
   "446": <U.ModalCustomStyles />,
+  "447": <U.Popover />,
+  "448": <U.PopoverBasic />,
+  "449": <U.PopoverWithArrow />,
+  "450": <U.PopoverInteractive />,
+  "451": <U.PopoverPlacement />,
+  "452": <U.PopoverRenderFunction />,
+  "453": <U.PopoverCustomStyles />,
 }
