@@ -230,6 +230,15 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `378` FieldErrorBasic
 - `379` FieldErrorDynamic
 - `380` FieldErrorCustom
+#### Slider
+- `381` Slider
+- `382` SliderDefault
+- `383` SliderDisabled
+- `384` SliderVertical
+- `385` SliderRange
+- `386` SliderRenderFunction
+- `387` SliderCustomStyles
+- `388` SliderControlled
 
 ### Renk Bileşenleri
 
@@ -359,7 +368,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 293 bileşen (saf React)**
+**Toplam: 301 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

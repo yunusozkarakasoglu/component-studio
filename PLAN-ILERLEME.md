@@ -29,7 +29,7 @@
 - [x] **Spinner** — spinner-hero-ui.md → Butonlar & Aksiyonlar (093) *(opsiyonel: Yükleme'ye taşınacak)*
 - [x] **TagGroup** — tags-group-hero-ui.md → Veri Gösterimi (139)
 
-## ⬜ Adım 1 — Form Elemanları (11 element)
+## ✅ Adım 1 — Form Elemanları (11 element) — TAMAMLANDI
 
 - [x] **1. TextField** — text-field-hero-ui.md (+ form/text-field-hero-ui.md) → Form Elemanları (285-298 + Input/TextArea/FieldError çekirdek)
 - [x] **2. TextArea** — text-area-hero-ui.md (+ form/text-area-hero-ui.md) → Form Elemanları (300 çekirdek + 302-308)
@@ -41,7 +41,7 @@
 - [x] **8. Form** — form/form-hero-ui.md → Form Elemanları (371 + 372-374)
 - [x] **9. ErrorMessage** — Message/error-message-hero-ui.md → Form Elemanları (375-377)
 - [x] **10. FieldErrorMessage** — Message/field-error-message-hero-ui.md → Form Elemanları (301 geliştirme + 378-380)
-- [ ] **11. Slider** — slider-hero-ui.md → Form Elemanları
+- [x] **11. Slider** — slider-hero-ui.md → Form Elemanları (381 + 382-388)
 
 ## ⬜ Adım 2 — Seçim *(yeni kategori)* (4 element)
 
@@ -93,4 +93,4 @@
 - Boş kategoriler dolar: **Navigasyon**, **Overlay**, **Veri Gösterimi** (kısmen dolu).
 - Yeni kategoriler: **Seçim**, **Yükleme & İlerleme**.
 
-**İlerleme:** ✅ 21/56 aile (Adım 1: 10/11) · ⬜ 35/56 kaldı — sonraki id: **381**
+**İlerleme:** ✅ 22/56 aile (Adım 1: 11/11 ✅) · ⬜ 34/56 kaldı — sonraki id: **389**

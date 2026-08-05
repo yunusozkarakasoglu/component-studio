@@ -348,4 +348,12 @@ export const SAMPLES: Record<string, ReactNode> = {
   "378": <U.FieldErrorBasic />,
   "379": <U.FieldErrorDynamic />,
   "380": <U.FieldErrorCustom />,
+  "381": <U.Slider />,
+  "382": <U.SliderDefault />,
+  "383": <U.SliderDisabled />,
+  "384": <U.SliderVertical />,
+  "385": <U.SliderRange />,
+  "386": <U.SliderRenderFunction />,
+  "387": <U.SliderCustomStyles />,
+  "388": <U.SliderControlled />,
 }
