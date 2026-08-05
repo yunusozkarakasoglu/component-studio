@@ -13,3 +13,4 @@ node_modules/.tmp/
 # Sistem
 .DS_Store
 src/workbench/current
+bilesen-kutuphanesi/src/workbench/current
