@@ -46,6 +46,7 @@ interface TextFieldContextValue extends TextFieldRenderProps {
   setValue: (v: string) => void
   name?: string
   type?: string
+  minLength?: number
   variant: TextFieldVariant
   fullWidth: boolean
   autoFocus?: boolean
@@ -80,6 +81,7 @@ interface TextFieldProps {
   name?: string
   autoFocus?: boolean
   type?: string
+  minLength?: number
   variant?: TextFieldVariant
 }
 
@@ -101,6 +103,7 @@ function TextField({
   name,
   autoFocus,
   type,
+  minLength,
   variant = "primary",
 }: TextFieldProps) {
   const [internalValue, setInternalValue] = useState(defaultValue)
@@ -142,6 +145,7 @@ function TextField({
     setValue,
     name,
     type,
+    minLength,
     variant,
     fullWidth,
     autoFocus,

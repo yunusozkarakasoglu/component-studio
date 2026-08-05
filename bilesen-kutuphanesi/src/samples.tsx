@@ -338,4 +338,8 @@ export const SAMPLES: Record<string, ReactNode> = {
   "368": <U.FieldsetBasic />,
   "369": <U.FieldsetOnSurface />,
   "370": <U.FieldsetCustomStyles />,
+  "371": <U.Form />,
+  "372": <U.FormBasic />,
+  "373": <U.FormRenderFunction />,
+  "374": <U.FormCustomStyles />,
 }

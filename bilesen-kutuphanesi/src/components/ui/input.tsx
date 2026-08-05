@@ -46,6 +46,7 @@ function Input({ className, variant: variantProp, fullWidth = false, onChange, o
       required={ctx ? ctx.isRequired : props.required}
       name={ctx ? ctx.name : props.name}
       type={ctx ? ctx.type : (props.type ?? "text")}
+      minLength={ctx ? ctx.minLength : props.minLength}
       autoFocus={ctx ? ctx.autoFocus : props.autoFocus}
       aria-invalid={invalid || undefined}
       className={cn(
