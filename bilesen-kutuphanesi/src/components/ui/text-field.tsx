@@ -50,6 +50,8 @@ interface TextFieldContextValue extends TextFieldRenderProps {
   fullWidth: boolean
   autoFocus?: boolean
   setFocusWithin: (v: boolean) => void
+  /** validate()'den gelen hata mesajı (FieldError children'sız kullanımda gösterilir) */
+  errorMessage?: string
 }
 
 const TextFieldContext = createContext<TextFieldContextValue | null>(null)
@@ -122,6 +124,7 @@ function TextField({
   }, [value, validate])
 
   const resolvedInvalid = isInvalid ?? validateError != null
+  const errorMessage = validateError ?? undefined
 
   const renderProps: TextFieldRenderProps = {
     isDisabled,
@@ -143,6 +146,7 @@ function TextField({
     fullWidth,
     autoFocus,
     setFocusWithin,
+    errorMessage,
   }
 
   const rootProps: Record<string, unknown> = {

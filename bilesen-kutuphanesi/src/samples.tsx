@@ -334,4 +334,8 @@ export const SAMPLES: Record<string, ReactNode> = {
   "364": <U.InputOTPWithPattern />,
   "365": <U.InputOTPWithValidation />,
   "366": <U.InputOTPCustomStyles />,
+  "367": <U.Fieldset />,
+  "368": <U.FieldsetBasic />,
+  "369": <U.FieldsetOnSurface />,
+  "370": <U.FieldsetCustomStyles />,
 }

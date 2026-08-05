@@ -15,11 +15,15 @@ interface FieldErrorProps extends HTMLAttributes<HTMLParagraphElement> {
   alwaysVisible?: boolean
 }
 
-function FieldError({ className, alwaysVisible = false, ...props }: FieldErrorProps) {
+function FieldError({ className, alwaysVisible = false, children, ...props }: FieldErrorProps) {
   const ctx = useTextField()
 
   // TextField içinde: yalnızca isInvalid iken render et
   if (ctx && !ctx.isInvalid && !alwaysVisible) return null
+
+  // children yoksa validate()'den gelen hata mesajını göster
+  const message = children ?? ctx?.errorMessage
+  if (message == null) return null
 
   return (
     <p
@@ -27,7 +31,9 @@ function FieldError({ className, alwaysVisible = false, ...props }: FieldErrorPr
       role="alert"
       className={cn("mt-1 text-xs text-red-500", className)}
       {...props}
-    />
+    >
+      {message}
+    </p>
   )
 }
 
