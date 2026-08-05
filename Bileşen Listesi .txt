@@ -270,6 +270,23 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `414` SwitchRenderProps
 - `415` SwitchRenderFunction
 - `416` SwitchCustomStyles
+#### ToggleButton
+- `417` ToggleButton
+- `418` ToggleButtonBasic
+- `419` ToggleButtonVariants
+- `420` ToggleButtonIconOnly
+- `421` ToggleButtonSizes
+- `422` ToggleButtonDisabled
+- `423` ToggleButtonControlled
+- `424` ToggleButtonCustomStyles
+#### ToggleButtonGroup
+- `425` ToggleButtonGroup
+- `426` ToggleButtonGroupBasic
+- `427` ToggleButtonGroupSizes
+- `428` ToggleButtonGroupOrientation
+- `429` ToggleButtonGroupFullWidth
+- `430` ToggleButtonGroupDisabled
+- `431` ToggleButtonGroupWithoutSeparator
 
 ### Renk Bileşenleri
 
@@ -399,7 +416,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 329 bileşen (saf React)**
+**Toplam: 344 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

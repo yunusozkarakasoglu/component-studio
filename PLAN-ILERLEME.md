@@ -43,12 +43,12 @@
 - [x] **10. FieldErrorMessage** — Message/field-error-message-hero-ui.md → Form Elemanları (301 geliştirme + 378-380)
 - [x] **11. Slider** — slider-hero-ui.md → Form Elemanları (381 + 382-388)
 
-## ⬜ Adım 2 — Seçim *(yeni kategori)* (4 element)
+## ✅ Adım 2 — Seçim (4 element) — TAMAMLANDI
 
 - [x] **12. RadioGroup** — radio-button-hero-ui.md → Seçim (389 + 390-400)
 - [x] **13. Switch** — switch-hero-ui.md → Seçim (401 + 402-416)
-- [ ] **14. ToggleButton** — toggle-button-hero-ui.md → Seçim
-- [ ] **15. ToggleButtonGroup** — toggle-button-group-hero-ui.md → Seçim
+- [x] **14. ToggleButton** — toggle-button-hero-ui.md → Seçim (417 + 418-424)
+- [x] **15. ToggleButtonGroup** — toggle-button-group-hero-ui.md → Seçim (425 + 426-431)
 
 ## ⬜ Adım 3 — Overlay (5 element)
 
@@ -93,4 +93,4 @@
 - Boş kategoriler dolar: **Navigasyon**, **Overlay**, **Veri Gösterimi** (kısmen dolu).
 - Yeni kategoriler: **Seçim**, **Yükleme & İlerleme**.
 
-**İlerleme:** ✅ 24/56 aile (Adım 2: 2/4) · ⬜ 32/56 kaldı — sonraki id: **417**
+**İlerleme:** ✅ 26/56 aile (Adım 2: 4/4 ✅) · ⬜ 30/56 kaldı — sonraki id: **432**
