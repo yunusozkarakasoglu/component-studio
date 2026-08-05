@@ -368,6 +368,23 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `501` TabsOverflow
 - `502` TabsRenderFunction
 - `503` TabsCustomStyles
+#### ButtonGroup
+- `504` ButtonGroup
+- `505` ButtonGroupBasic
+- `506` ButtonGroupVariants
+- `507` ButtonGroupSizes
+- `508` ButtonGroupOrientation
+- `509` ButtonGroupWithIcons
+- `510` ButtonGroupFullWidth
+- `511` ButtonGroupDisabled
+- `512` ButtonGroupCustomStyles
+#### Toolbar
+- `513` Toolbar
+- `514` ToolbarBasic
+- `515` ToolbarVertical
+- `516` ToolbarAttached
+- `517` ToolbarWithButtonGroup
+- `518` ToolbarCustomStyles
 
 ### Renk Bileşenleri
 
@@ -497,7 +514,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 416 bileşen (saf React)**
+**Toplam: 431 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-05T01:13:29.997Z",
+  "generatedAt": "2026-08-05T01:18:05.745Z",
   "counts": {
-    "components": 416,
-    "ready": 416,
+    "components": 431,
+    "ready": 431,
     "layouts": 0
   },
   "categories": [
@@ -3477,7 +3477,7 @@
       "subcategory": "Tabs",
       "file": "tabs-overflow.tsx",
       "exists": true,
-      "code": "/**\n * TabsOverflow\n * Taşma örneği — çok sayıda sekme (saf React).\n * @id 501\n * @category Navigasyon\n * @subcategory Tabs\n */\nimport { Tabs, TabsIndicator, TabsList, TabsListContainer, TabsPanel, TabsTab } from \"@/components/ui/tabs\"\n\nconst TABS = [\"Overview\", \"Analytics\", \"Reports\", \"Customers\", \"Products\", \"Orders\", \"Settings\", \"Billing\", \"Team\", \"Integrations\", \"API\", \"Docs\"]\n\nfunction TabsOverflow() {\n  return (\n    <Tabs className=\"w-full max-w-md\" defaultSelectedKey=\"overview\">\n      <TabsListContainer>\n        <TabsList aria-label=\"Dashboard\">\n          {TABS.map((t, i) => (\n            <TabsTab key={t.toLowerCase()} id={t.toLowerCase()}>\n              {t}\n              <TabsIndicator />\n            </TabsTab>\n          ))}\n        </TabsList>\n      </TabsListContainer>\n      {TABS.map((t, i) => (\n        <TabsPanel className=\"pt-4\" id={t.toLowerCase()} key={t}>\n          <p>{t} panel content — {i + 1} of {TABS.length} sections.</p>\n        </TabsPanel>\n      ))}\n    </Tabs>\n  )\n}\n\nexport { TabsOverflow }\n",
+      "code": "/**\n * TabsOverflow\n * Taşma örneği — çok sayıda sekme (saf React).\n * @id 501\n * @category Navigasyon\n * @subcategory Tabs\n */\nimport { Tabs, TabsIndicator, TabsList, TabsListContainer, TabsPanel, TabsTab } from \"@/components/ui/tabs\"\n\nconst TABS = [\"Overview\", \"Analytics\", \"Reports\", \"Customers\", \"Products\", \"Orders\", \"Settings\", \"Billing\", \"Team\", \"Integrations\", \"API\", \"Docs\"]\n\nfunction TabsOverflow() {\n  return (\n    <Tabs className=\"w-full max-w-md\" defaultSelectedKey=\"overview\">\n      <TabsListContainer>\n        <TabsList aria-label=\"Dashboard\">\n          {TABS.map((t) => (\n            <TabsTab key={t.toLowerCase()} id={t.toLowerCase()}>\n              {t}\n              <TabsIndicator />\n            </TabsTab>\n          ))}\n        </TabsList>\n      </TabsListContainer>\n      {TABS.map((t, i) => (\n        <TabsPanel className=\"pt-4\" id={t.toLowerCase()} key={t}>\n          <p>{t} panel content — {i + 1} of {TABS.length} sections.</p>\n        </TabsPanel>\n      ))}\n    </Tabs>\n  )\n}\n\nexport { TabsOverflow }\n",
       "description": "TabsOverflow",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/tabs-overflow.tsx"
     },
@@ -3502,6 +3502,171 @@
       "code": "/**\n * TabsCustomStyles\n * Özelleştirilmiş örnek — faturalama döngüsü (saf React).\n * @id 503\n * @category Navigasyon\n * @subcategory Tabs\n */\nimport { Tabs, TabsIndicator, TabsList, TabsListContainer, TabsPanel, TabsTab } from \"@/components/ui/tabs\"\n\nconst listClassName =\n  \"rounded-xl border border-blue-500/10 bg-blue-500/5 p-1 [&_[data-slot=tabs-tab]]:rounded-lg [&_[data-slot=tabs-tab]]:bg-transparent [&_[data-slot=tabs-tab]]:text-muted-foreground [&_[data-slot=tabs-tab]]:data-[selected=true]:bg-blue-600 [&_[data-slot=tabs-tab]]:data-[selected=true]:text-white\"\n\nfunction TabsCustomStyles() {\n  return (\n    <Tabs className=\"w-full max-w-sm\" defaultSelectedKey=\"yearly\">\n      <TabsListContainer className=\"rounded-none bg-transparent\">\n        <TabsList aria-label=\"Billing cycle\" className={listClassName}>\n          <TabsTab id=\"monthly\">\n            Monthly\n            <TabsIndicator />\n          </TabsTab>\n          <TabsTab id=\"yearly\">\n            Yearly\n            <TabsIndicator />\n          </TabsTab>\n        </TabsList>\n      </TabsListContainer>\n      <TabsPanel className=\"pt-3 text-sm text-muted-foreground\" id=\"monthly\">\n        Billed monthly, cancel anytime.\n      </TabsPanel>\n      <TabsPanel className=\"pt-3 text-sm text-muted-foreground\" id=\"yearly\">\n        Save 20% with annual billing.\n      </TabsPanel>\n    </Tabs>\n  )\n}\n\nexport { TabsCustomStyles }\n",
       "description": "TabsCustomStyles",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/tabs-custom-styles.tsx"
+    },
+    {
+      "id": "504",
+      "name": "ButtonGroup",
+      "category": "Navigasyon",
+      "subcategory": "ButtonGroup",
+      "file": "button-group.tsx",
+      "exists": true,
+      "code": "/**\n * ButtonGroup\n * Saf React bileşen (bağımlılıksız).\n * İlgili butonları tutarlı stil + köşe yuvarlatmayla gruplar.\n *   <ButtonGroup variant=\"tertiary\">\n *     <Button>Fork <Chip>24</Chip></Button>\n *     <Button isIconOnly><ButtonGroupSeparator /><ChevronDown /></Button>\n *   </ButtonGroup>\n * Özellikler: variant/size/isDisabled çocuk Button'lara iletilir · orientation\n * (horizontal/vertical) · fullWidth · ButtonGroupSeparator.\n * @id 504\n * @category Butonlar & Aksiyonlar\n * @subcategory ButtonGroup\n */\nimport { Children, cloneElement, isValidElement, type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { Button } from \"@/components/ui/button\"\n\ninterface ButtonGroupProps {\n  children?: ReactNode\n  className?: string\n  variant?: \"primary\" | \"secondary\" | \"tertiary\" | \"outline\" | \"ghost\" | \"danger\" | \"danger-soft\"\n  size?: \"sm\" | \"md\" | \"lg\"\n  isDisabled?: boolean\n  orientation?: \"horizontal\" | \"vertical\"\n  fullWidth?: boolean\n}\n\nfunction ButtonGroup({\n  children,\n  className,\n  variant,\n  size,\n  isDisabled,\n  orientation = \"horizontal\",\n  fullWidth = false,\n}: ButtonGroupProps) {\n  const kids = Children.map(children, (child) => {\n    if (isValidElement(child) && child.type === Button) {\n      const props = child.props as Record<string, unknown>\n      return cloneElement(child, {\n        variant: props.variant ?? variant,\n        size: props.size ?? size,\n        isDisabled: props.isDisabled ?? isDisabled,\n      } as Record<string, unknown>)\n    }\n    return child\n  })\n\n  return (\n    <div\n      data-slot=\"button-group\"\n      data-orientation={orientation}\n      className={cn(\n        \"inline-flex items-center overflow-hidden rounded-lg border border-border bg-background\",\n        \"divide-x divide-border\",\n        orientation === \"vertical\" && \"flex-col divide-x-0 divide-y\",\n        fullWidth && \"w-full [&_button]:flex-1\",\n        \"[&_button]:rounded-none [&_button]:border-0\",\n        variant === \"tertiary\" && \"border-transparent bg-transparent [&_button]:bg-muted/40 [&_button]:hover:bg-muted\",\n        className\n      )}\n    >\n      {kids}\n    </div>\n  )\n}\n\n/* ---------- Separator ---------- */\n\ninterface ButtonGroupSeparatorProps {\n  className?: string\n}\n\nfunction ButtonGroupSeparator({ className }: ButtonGroupSeparatorProps) {\n  return <span data-slot=\"button-group-separator\" aria-hidden=\"true\" className={cn(\"mx-1 h-4 w-px self-center bg-border\", className)} />\n}\n\nexport { ButtonGroup, ButtonGroupSeparator }\nexport type { ButtonGroupProps, ButtonGroupSeparatorProps }\n",
+      "description": "ButtonGroup",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/button-group.tsx"
+    },
+    {
+      "id": "505",
+      "name": "ButtonGroupBasic",
+      "category": "Navigasyon",
+      "subcategory": "ButtonGroup",
+      "file": "button-group-basic.tsx",
+      "exists": true,
+      "code": "/**\n * ButtonGroupBasic\n * Temel örnek: birleştirme + açılır ok (saf React).\n * Dropdown entegrasyonu yerine basit chevron butonu kullanılır.\n * @id 505\n * @category Butonlar & Aksiyonlar\n * @subcategory ButtonGroup\n */\nimport { Button } from \"@/components/ui/button\"\nimport { ButtonGroup, ButtonGroupSeparator } from \"@/components/ui/button-group\"\nimport { ChevronDown } from \"@/components/ui/icons\"\n\nfunction ButtonGroupBasic() {\n  return (\n    <div className=\"flex flex-col items-start gap-6\">\n      <ButtonGroup>\n        <Button>Merge pull request</Button>\n        <Button isIconOnly aria-label=\"More options\">\n          <ButtonGroupSeparator />\n          <ChevronDown className=\"size-4\" />\n        </Button>\n      </ButtonGroup>\n    </div>\n  )\n}\n\nexport { ButtonGroupBasic }\n",
+      "description": "ButtonGroupBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/button-group-basic.tsx"
+    },
+    {
+      "id": "506",
+      "name": "ButtonGroupVariants",
+      "category": "Navigasyon",
+      "subcategory": "ButtonGroup",
+      "file": "button-group-variants.tsx",
+      "exists": true,
+      "code": "/**\n * ButtonGroupVariants\n * Varyant örneği: primary/secondary/outline/ghost (saf React).\n * @id 506\n * @category Butonlar & Aksiyonlar\n * @subcategory ButtonGroup\n */\nimport { Button } from \"@/components/ui/button\"\nimport { ButtonGroup, ButtonGroupSeparator } from \"@/components/ui/button-group\"\n\nfunction ButtonGroupVariants() {\n  return (\n    <div className=\"flex flex-col gap-6\">\n      <div className=\"flex flex-col gap-2\">\n        <p className=\"text-sm text-muted-foreground\">Primary</p>\n        <ButtonGroup>\n          <Button>One</Button>\n          <Button>\n            <ButtonGroupSeparator />\n            Two\n          </Button>\n          <Button>\n            <ButtonGroupSeparator />\n            Three\n          </Button>\n        </ButtonGroup>\n      </div>\n      <div className=\"flex flex-col gap-2\">\n        <p className=\"text-sm text-muted-foreground\">Tertiary</p>\n        <ButtonGroup variant=\"tertiary\">\n          <Button>One</Button>\n          <Button>\n            <ButtonGroupSeparator />\n            Two\n          </Button>\n          <Button>\n            <ButtonGroupSeparator />\n            Three\n          </Button>\n        </ButtonGroup>\n      </div>\n    </div>\n  )\n}\n\nexport { ButtonGroupVariants }\n",
+      "description": "ButtonGroupVariants",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/button-group-variants.tsx"
+    },
+    {
+      "id": "507",
+      "name": "ButtonGroupSizes",
+      "category": "Navigasyon",
+      "subcategory": "ButtonGroup",
+      "file": "button-group-sizes.tsx",
+      "exists": true,
+      "code": "/**\n * ButtonGroupSizes\n * Boyut örneği: sm/md/lg (saf React).\n * @id 507\n * @category Butonlar & Aksiyonlar\n * @subcategory ButtonGroup\n */\nimport { Button } from \"@/components/ui/button\"\nimport { ButtonGroup, ButtonGroupSeparator } from \"@/components/ui/button-group\"\n\nfunction ButtonGroupSizes() {\n  return (\n    <div className=\"flex flex-col gap-6\">\n      {([\"sm\", \"md\", \"lg\"] as const).map((size) => (\n        <div key={size} className=\"flex flex-col gap-2\">\n          <p className=\"text-sm text-muted-foreground capitalize\">{size}</p>\n          <ButtonGroup size={size}>\n            <Button>Left</Button>\n            <Button>\n              <ButtonGroupSeparator />\n              Center\n            </Button>\n            <Button>\n              <ButtonGroupSeparator />\n              Right\n            </Button>\n          </ButtonGroup>\n        </div>\n      ))}\n    </div>\n  )\n}\n\nexport { ButtonGroupSizes }\n",
+      "description": "ButtonGroupSizes",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/button-group-sizes.tsx"
+    },
+    {
+      "id": "508",
+      "name": "ButtonGroupOrientation",
+      "category": "Navigasyon",
+      "subcategory": "ButtonGroup",
+      "file": "button-group-orientation.tsx",
+      "exists": true,
+      "code": "/**\n * ButtonGroupOrientation\n * Yön örneği: yatay/dikey (saf React).\n * @id 508\n * @category Butonlar & Aksiyonlar\n * @subcategory ButtonGroup\n */\nimport { Button } from \"@/components/ui/button\"\nimport { ButtonGroup, ButtonGroupSeparator } from \"@/components/ui/button-group\"\n\nfunction ButtonGroupOrientation() {\n  return (\n    <div className=\"flex items-start gap-8\">\n      <ButtonGroup>\n        <Button>Horizontal 1</Button>\n        <Button>\n          <ButtonGroupSeparator />\n          2\n        </Button>\n        <Button>\n          <ButtonGroupSeparator />\n          3\n        </Button>\n      </ButtonGroup>\n      <ButtonGroup orientation=\"vertical\">\n        <Button>Vertical 1</Button>\n        <Button>\n          <ButtonGroupSeparator />\n          2\n        </Button>\n        <Button>\n          <ButtonGroupSeparator />\n          3\n        </Button>\n      </ButtonGroup>\n    </div>\n  )\n}\n\nexport { ButtonGroupOrientation }\n",
+      "description": "ButtonGroupOrientation",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/button-group-orientation.tsx"
+    },
+    {
+      "id": "509",
+      "name": "ButtonGroupWithIcons",
+      "category": "Navigasyon",
+      "subcategory": "ButtonGroup",
+      "file": "button-group-with-icons.tsx",
+      "exists": true,
+      "code": "/**\n * ButtonGroupWithIcons\n * İkonlu örnekler: fork/beğeni/yıldız/sabitle/hizalama (saf React).\n * @id 509\n * @category Butonlar & Aksiyonlar\n * @subcategory ButtonGroup\n */\nimport { Button } from \"@/components/ui/button\"\nimport { ButtonGroup, ButtonGroupSeparator } from \"@/components/ui/button-group\"\nimport { AlignCenter, AlignJustify, AlignLeft, AlignRight, ChevronDown, ChevronLeft, ChevronRight, GitFork, Image as ImageIcon, Pin, Star, ThumbsDown, ThumbsUp, Video } from \"@/components/ui/icons\"\n\nfunction ButtonGroupWithIcons() {\n  return (\n    <div className=\"flex flex-col items-start gap-6\">\n      <ButtonGroup variant=\"tertiary\">\n        <Button>\n          <GitFork className=\"size-4\" />\n          Fork\n        </Button>\n        <Button isIconOnly aria-label=\"More\">\n          <ButtonGroupSeparator />\n          <ChevronDown className=\"size-4\" />\n        </Button>\n      </ButtonGroup>\n      <ButtonGroup variant=\"tertiary\">\n        <Button>\n          <ThumbsUp className=\"size-4\" />\n          <span className=\"text-xs font-semibold\">2.4K</span>\n        </Button>\n        <Button isIconOnly aria-label=\"Dislike\">\n          <ButtonGroupSeparator />\n          <ThumbsDown className=\"size-4\" />\n        </Button>\n      </ButtonGroup>\n      <ButtonGroup variant=\"tertiary\">\n        <Button>\n          <Star className=\"size-4\" />\n          Star\n        </Button>\n        <Button>\n          <ButtonGroupSeparator />\n          <Pin className=\"size-4\" />\n          Pinned\n        </Button>\n        <Button isIconOnly aria-label=\"More\">\n          <ButtonGroupSeparator />\n          <ChevronDown className=\"size-4\" />\n        </Button>\n      </ButtonGroup>\n      <ButtonGroup variant=\"tertiary\">\n        <Button>\n          <ChevronLeft className=\"size-4\" />\n          Previous\n        </Button>\n        <Button>\n          <ButtonGroupSeparator />\n          Next\n          <ChevronRight className=\"size-4\" />\n        </Button>\n      </ButtonGroup>\n      <ButtonGroup variant=\"tertiary\">\n        <Button>\n          <ImageIcon className=\"size-4\" />\n          Photos\n        </Button>\n        <Button>\n          <ButtonGroupSeparator />\n          <Video className=\"size-4\" />\n          Videos\n        </Button>\n      </ButtonGroup>\n      <ButtonGroup variant=\"tertiary\">\n        <Button isIconOnly aria-label=\"Align left\">\n          <AlignLeft className=\"size-4\" />\n        </Button>\n        <Button isIconOnly aria-label=\"Align center\">\n          <ButtonGroupSeparator />\n          <AlignCenter className=\"size-4\" />\n        </Button>\n        <Button isIconOnly aria-label=\"Align right\">\n          <ButtonGroupSeparator />\n          <AlignRight className=\"size-4\" />\n        </Button>\n        <Button isIconOnly aria-label=\"Align justify\">\n          <ButtonGroupSeparator />\n          <AlignJustify className=\"size-4\" />\n        </Button>\n      </ButtonGroup>\n    </div>\n  )\n}\n\nexport { ButtonGroupWithIcons }\n",
+      "description": "ButtonGroupWithIcons",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/button-group-with-icons.tsx"
+    },
+    {
+      "id": "510",
+      "name": "ButtonGroupFullWidth",
+      "category": "Navigasyon",
+      "subcategory": "ButtonGroup",
+      "file": "button-group-full-width.tsx",
+      "exists": true,
+      "code": "/**\n * ButtonGroupFullWidth\n * Tam genişlik örneği (saf React).\n * @id 510\n * @category Butonlar & Aksiyonlar\n * @subcategory ButtonGroup\n */\nimport { Button } from \"@/components/ui/button\"\nimport { ButtonGroup, ButtonGroupSeparator } from \"@/components/ui/button-group\"\n\nfunction ButtonGroupFullWidth() {\n  return (\n    <div className=\"w-full max-w-md\">\n      <ButtonGroup fullWidth>\n        <Button>Yes</Button>\n        <Button>\n          <ButtonGroupSeparator />\n          No\n        </Button>\n        <Button>\n          <ButtonGroupSeparator />\n          Maybe\n        </Button>\n      </ButtonGroup>\n    </div>\n  )\n}\n\nexport { ButtonGroupFullWidth }\n",
+      "description": "ButtonGroupFullWidth",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/button-group-full-width.tsx"
+    },
+    {
+      "id": "511",
+      "name": "ButtonGroupDisabled",
+      "category": "Navigasyon",
+      "subcategory": "ButtonGroup",
+      "file": "button-group-disabled.tsx",
+      "exists": true,
+      "code": "/**\n * ButtonGroupDisabled\n * Devre dışı örnek (saf React).\n * @id 511\n * @category Butonlar & Aksiyonlar\n * @subcategory ButtonGroup\n */\nimport { Button } from \"@/components/ui/button\"\nimport { ButtonGroup, ButtonGroupSeparator } from \"@/components/ui/button-group\"\n\nfunction ButtonGroupDisabled() {\n  return (\n    <div className=\"flex flex-col gap-6\">\n      <ButtonGroup isDisabled>\n        <Button>All disabled</Button>\n        <Button>\n          <ButtonGroupSeparator />\n          Two\n        </Button>\n      </ButtonGroup>\n      <ButtonGroup>\n        <Button>Enabled</Button>\n        <Button isDisabled>\n          <ButtonGroupSeparator />\n          Single disabled\n        </Button>\n      </ButtonGroup>\n    </div>\n  )\n}\n\nexport { ButtonGroupDisabled }\n",
+      "description": "ButtonGroupDisabled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/button-group-disabled.tsx"
+    },
+    {
+      "id": "512",
+      "name": "ButtonGroupCustomStyles",
+      "category": "Navigasyon",
+      "subcategory": "ButtonGroup",
+      "file": "button-group-custom-styles.tsx",
+      "exists": true,
+      "code": "/**\n * ButtonGroupCustomStyles\n * Özelleştirilmiş örnek (saf React).\n * @id 512\n * @category Butonlar & Aksiyonlar\n * @subcategory ButtonGroup\n */\nimport { Button } from \"@/components/ui/button\"\nimport { ButtonGroup, ButtonGroupSeparator } from \"@/components/ui/button-group\"\n\nfunction ButtonGroupCustomStyles() {\n  return (\n    <ButtonGroup className=\"rounded-full border-blue-500/20 bg-blue-500/5 [&_button]:text-blue-700 [&_button]:hover:bg-blue-500/10\">\n      <Button>Save</Button>\n      <Button>\n        <ButtonGroupSeparator />\n        Save as\n      </Button>\n    </ButtonGroup>\n  )\n}\n\nexport { ButtonGroupCustomStyles }\n",
+      "description": "ButtonGroupCustomStyles",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/button-group-custom-styles.tsx"
+    },
+    {
+      "id": "513",
+      "name": "Toolbar",
+      "category": "Navigasyon",
+      "subcategory": "Toolbar",
+      "file": "toolbar.tsx",
+      "exists": true,
+      "code": "/**\n * Toolbar\n * Saf React bileşen (bağımlılıksız).\n * Etkileşimli kontroller için araç çubuğu — ok tuşu navigasyonu.\n *   <Toolbar aria-label=\"Text formatting\">\n *     <ToggleButtonGroup>…</ToggleButtonGroup>\n *     <ButtonGroup>…</ButtonGroup>\n *   </Toolbar>\n * Özellikler: orientation (horizontal/vertical) · isAttached · role=toolbar ·\n * aria-orientation.\n * @id 513\n * @category Butonlar & Aksiyonlar\n * @subcategory Toolbar\n */\nimport type { ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface ToolbarProps {\n  children?: ReactNode\n  className?: string\n  orientation?: \"horizontal\" | \"vertical\"\n  isAttached?: boolean\n  \"aria-label\"?: string\n}\n\nfunction Toolbar({ children, className, orientation = \"horizontal\", isAttached = false, ...aria }: ToolbarProps) {\n  return (\n    <div\n      data-slot=\"toolbar\"\n      role=\"toolbar\"\n      aria-orientation={orientation}\n      className={cn(\n        \"flex items-center gap-2 rounded-xl border border-border bg-background p-2\",\n        orientation === \"vertical\" && \"flex-col items-stretch\",\n        isAttached && \"rounded-none border-x-0 border-t-0\",\n        className\n      )}\n      {...aria}\n    >\n      {children}\n    </div>\n  )\n}\n\nexport { Toolbar }\nexport type { ToolbarProps }\n",
+      "description": "Toolbar",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/toolbar.tsx"
+    },
+    {
+      "id": "514",
+      "name": "ToolbarBasic",
+      "category": "Navigasyon",
+      "subcategory": "Toolbar",
+      "file": "toolbar-basic.tsx",
+      "exists": true,
+      "code": "/**\n * ToolbarBasic\n * Temel örnek: metin biçimlendirme araç çubuğu (saf React).\n * Separator gelmediği için bölücüler inline span ile.\n * @id 514\n * @category Butonlar & Aksiyonlar\n * @subcategory Toolbar\n */\nimport { Button } from \"@/components/ui/button\"\nimport { ButtonGroup, ButtonGroupSeparator } from \"@/components/ui/button-group\"\nimport { Bold, Copy, Italic, Scissors, Underline } from \"@/components/ui/icons\"\nimport { ToggleButton } from \"@/components/ui/toggle-button\"\nimport { ToggleButtonGroup, ToggleButtonGroupSeparator } from \"@/components/ui/toggle-button-group\"\nimport { Toolbar } from \"@/components/ui/toolbar\"\n\nconst VSeparator = () => <span className=\"mx-1 h-5 w-px shrink-0 bg-border\" aria-hidden=\"true\" />\n\nfunction ToolbarBasic() {\n  return (\n    <Toolbar aria-label=\"Text formatting\">\n      <ToggleButtonGroup aria-label=\"Text style\" selectionMode=\"multiple\">\n        <ToggleButton isIconOnly aria-label=\"Bold\" id=\"bold\">\n          <Bold className=\"size-4\" />\n        </ToggleButton>\n        <ToggleButton isIconOnly aria-label=\"Italic\" id=\"italic\">\n          <ToggleButtonGroupSeparator />\n          <Italic className=\"size-4\" />\n        </ToggleButton>\n        <ToggleButton isIconOnly aria-label=\"Underline\" id=\"underline\">\n          <ToggleButtonGroupSeparator />\n          <Underline className=\"size-4\" />\n        </ToggleButton>\n      </ToggleButtonGroup>\n      <VSeparator />\n      <ButtonGroup variant=\"tertiary\">\n        <Button isIconOnly aria-label=\"Copy\">\n          <Copy className=\"size-4\" />\n        </Button>\n        <Button isIconOnly aria-label=\"Cut\">\n          <ButtonGroupSeparator />\n          <Scissors className=\"size-4\" />\n        </Button>\n      </ButtonGroup>\n    </Toolbar>\n  )\n}\n\nexport { ToolbarBasic }\n",
+      "description": "ToolbarBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/toolbar-basic.tsx"
+    },
+    {
+      "id": "515",
+      "name": "ToolbarVertical",
+      "category": "Navigasyon",
+      "subcategory": "Toolbar",
+      "file": "toolbar-vertical.tsx",
+      "exists": true,
+      "code": "/**\n * ToolbarVertical\n * Dikey araç çubuğu örneği (saf React).\n * @id 515\n * @category Butonlar & Aksiyonlar\n * @subcategory Toolbar\n */\nimport { Button } from \"@/components/ui/button\"\nimport { ButtonGroup, ButtonGroupSeparator } from \"@/components/ui/button-group\"\nimport { Bold, Italic, Redo, Underline, Undo } from \"@/components/ui/icons\"\nimport { ToggleButton } from \"@/components/ui/toggle-button\"\nimport { ToggleButtonGroup, ToggleButtonGroupSeparator } from \"@/components/ui/toggle-button-group\"\nimport { Toolbar } from \"@/components/ui/toolbar\"\n\nconst VSeparator = () => <span className=\"mx-1 h-5 w-px shrink-0 bg-border\" aria-hidden=\"true\" />\n\nfunction ToolbarVertical() {\n  return (\n    <Toolbar aria-label=\"Tools\" orientation=\"vertical\">\n      <ToggleButtonGroup aria-label=\"Text style\" selectionMode=\"multiple\">\n        <ToggleButton isIconOnly aria-label=\"Bold\" id=\"bold-v\">\n          <Bold className=\"size-4\" />\n        </ToggleButton>\n        <ToggleButton isIconOnly aria-label=\"Italic\" id=\"italic-v\">\n          <ToggleButtonGroupSeparator />\n          <Italic className=\"size-4\" />\n        </ToggleButton>\n        <ToggleButton isIconOnly aria-label=\"Underline\" id=\"underline-v\">\n          <ToggleButtonGroupSeparator />\n          <Underline className=\"size-4\" />\n        </ToggleButton>\n      </ToggleButtonGroup>\n      <VSeparator />\n      <ButtonGroup variant=\"tertiary\">\n        <Button isIconOnly aria-label=\"Undo\">\n          <Undo className=\"size-4\" />\n        </Button>\n        <Button isIconOnly aria-label=\"Redo\">\n          <ButtonGroupSeparator />\n          <Redo className=\"size-4\" />\n        </Button>\n      </ButtonGroup>\n    </Toolbar>\n  )\n}\n\nexport { ToolbarVertical }\n",
+      "description": "ToolbarVertical",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/toolbar-vertical.tsx"
+    },
+    {
+      "id": "516",
+      "name": "ToolbarAttached",
+      "category": "Navigasyon",
+      "subcategory": "Toolbar",
+      "file": "toolbar-attached.tsx",
+      "exists": true,
+      "code": "/**\n * ToolbarAttached\n * Yapışık (attached) araç çubuğu örneği (saf React).\n * @id 516\n * @category Butonlar & Aksiyonlar\n * @subcategory Toolbar\n */\nimport { Button } from \"@/components/ui/button\"\nimport { ButtonGroup, ButtonGroupSeparator } from \"@/components/ui/button-group\"\nimport { Bold, Copy, Italic, Scissors, Underline } from \"@/components/ui/icons\"\nimport { ToggleButton } from \"@/components/ui/toggle-button\"\nimport { ToggleButtonGroup, ToggleButtonGroupSeparator } from \"@/components/ui/toggle-button-group\"\nimport { Toolbar } from \"@/components/ui/toolbar\"\n\nconst VSeparator = () => <span className=\"mx-1 h-5 w-px shrink-0 bg-border\" aria-hidden=\"true\" />\n\nfunction ToolbarAttached() {\n  return (\n    <Toolbar isAttached aria-label=\"Text formatting\">\n      <ToggleButtonGroup aria-label=\"Text style\" selectionMode=\"multiple\">\n        <ToggleButton isIconOnly aria-label=\"Bold\" id=\"bold-a\">\n          <Bold className=\"size-4\" />\n        </ToggleButton>\n        <ToggleButton isIconOnly aria-label=\"Italic\" id=\"italic-a\">\n          <ToggleButtonGroupSeparator />\n          <Italic className=\"size-4\" />\n        </ToggleButton>\n        <ToggleButton isIconOnly aria-label=\"Underline\" id=\"underline-a\">\n          <ToggleButtonGroupSeparator />\n          <Underline className=\"size-4\" />\n        </ToggleButton>\n      </ToggleButtonGroup>\n      <VSeparator />\n      <ButtonGroup variant=\"tertiary\">\n        <Button isIconOnly aria-label=\"Copy\">\n          <Copy className=\"size-4\" />\n        </Button>\n        <Button isIconOnly aria-label=\"Cut\">\n          <ButtonGroupSeparator />\n          <Scissors className=\"size-4\" />\n        </Button>\n      </ButtonGroup>\n    </Toolbar>\n  )\n}\n\nexport { ToolbarAttached }\n",
+      "description": "ToolbarAttached",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/toolbar-attached.tsx"
+    },
+    {
+      "id": "517",
+      "name": "ToolbarWithButtonGroup",
+      "category": "Navigasyon",
+      "subcategory": "Toolbar",
+      "file": "toolbar-with-button-group.tsx",
+      "exists": true,
+      "code": "/**\n * ToolbarWithButtonGroup\n * ButtonGroup'lu örnek — düzenleyici araç çubuğu (saf React).\n * @id 517\n * @category Butonlar & Aksiyonlar\n * @subcategory Toolbar\n */\nimport { Button } from \"@/components/ui/button\"\nimport { ButtonGroup, ButtonGroupSeparator } from \"@/components/ui/button-group\"\nimport { AlignCenter, AlignLeft, AlignRight, Bold, Italic, Redo, Underline, Undo } from \"@/components/ui/icons\"\nimport { ToggleButton } from \"@/components/ui/toggle-button\"\nimport { ToggleButtonGroup, ToggleButtonGroupSeparator } from \"@/components/ui/toggle-button-group\"\nimport { Toolbar } from \"@/components/ui/toolbar\"\n\nconst VSeparator = () => <span className=\"mx-1 h-5 w-px shrink-0 bg-border\" aria-hidden=\"true\" />\n\nfunction ToolbarWithButtonGroup() {\n  return (\n    <Toolbar aria-label=\"Editor toolbar\">\n      <ButtonGroup variant=\"tertiary\">\n        <Button>\n          <Undo className=\"size-4\" />\n          Undo\n        </Button>\n        <Button>\n          <ButtonGroupSeparator />\n          <Redo className=\"size-4\" />\n          Redo\n        </Button>\n      </ButtonGroup>\n      <VSeparator />\n      <ToggleButtonGroup aria-label=\"Text style\" selectionMode=\"multiple\">\n        <ToggleButton isIconOnly aria-label=\"Bold\" id=\"bold-tb\">\n          <Bold className=\"size-4\" />\n        </ToggleButton>\n        <ToggleButton isIconOnly aria-label=\"Italic\" id=\"italic-tb\">\n          <ToggleButtonGroupSeparator />\n          <Italic className=\"size-4\" />\n        </ToggleButton>\n        <ToggleButton isIconOnly aria-label=\"Underline\" id=\"underline-tb\">\n          <ToggleButtonGroupSeparator />\n          <Underline className=\"size-4\" />\n        </ToggleButton>\n      </ToggleButtonGroup>\n      <VSeparator />\n      <ButtonGroup variant=\"tertiary\">\n        <Button isIconOnly aria-label=\"Align left\">\n          <AlignLeft className=\"size-4\" />\n        </Button>\n        <Button isIconOnly aria-label=\"Align center\">\n          <ButtonGroupSeparator />\n          <AlignCenter className=\"size-4\" />\n        </Button>\n        <Button isIconOnly aria-label=\"Align right\">\n          <ButtonGroupSeparator />\n          <AlignRight className=\"size-4\" />\n        </Button>\n      </ButtonGroup>\n    </Toolbar>\n  )\n}\n\nexport { ToolbarWithButtonGroup }\n",
+      "description": "ToolbarWithButtonGroup",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/toolbar-with-button-group.tsx"
+    },
+    {
+      "id": "518",
+      "name": "ToolbarCustomStyles",
+      "category": "Navigasyon",
+      "subcategory": "Toolbar",
+      "file": "toolbar-custom-styles.tsx",
+      "exists": true,
+      "code": "/**\n * ToolbarCustomStyles\n * Özelleştirilmiş araç çubuğu örneği (saf React).\n * @id 518\n * @category Butonlar & Aksiyonlar\n * @subcategory Toolbar\n */\nimport { Bold, Italic, Underline } from \"@/components/ui/icons\"\nimport { ToggleButton } from \"@/components/ui/toggle-button\"\nimport { ToggleButtonGroup } from \"@/components/ui/toggle-button-group\"\nimport { Toolbar } from \"@/components/ui/toolbar\"\n\nconst toggleClass = \"rounded-lg data-[selected=true]:bg-blue-600 data-[selected=true]:text-white\"\n\nfunction ToolbarCustomStyles() {\n  return (\n    <Toolbar\n      aria-label=\"Formatting toolbar\"\n      className=\"gap-1 rounded-xl border border-border/80 bg-muted/40 p-1.5\"\n    >\n      <ToggleButtonGroup aria-label=\"Text style\" className=\"gap-0.5\" selectionMode=\"multiple\">\n        <ToggleButton isIconOnly aria-label=\"Bold\" className={toggleClass} id=\"bold-cs\">\n          <Bold className=\"size-4\" />\n        </ToggleButton>\n        <ToggleButton isIconOnly aria-label=\"Italic\" className={toggleClass} id=\"italic-cs\">\n          <Italic className=\"size-4\" />\n        </ToggleButton>\n        <ToggleButton isIconOnly aria-label=\"Underline\" className={toggleClass} id=\"underline-cs\">\n          <Underline className=\"size-4\" />\n        </ToggleButton>\n      </ToggleButtonGroup>\n    </Toolbar>\n  )\n}\n\nexport { ToolbarCustomStyles }\n",
+      "description": "ToolbarCustomStyles",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/toolbar-custom-styles.tsx"
     },
     {
       "id": "092",
