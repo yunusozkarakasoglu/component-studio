@@ -65,13 +65,13 @@
 - [x] **23. ButtonGroup** — button-group--hero-ui.md → Butonlar & Aksiyonlar (504 + 505-512)
 - [x] **24. Toolbar** — toolbar-hero-ui.md → Butonlar & Aksiyonlar (513 + 514-518)
 
-## ⬜ Adım 5 — Veri Gösterimi + Yükleme & İlerleme *(yeni)* (5 element)
+## ✅ Adım 5 — Veri Gösterimi + Yükleme & İlerleme (5 element) — TAMAMLANDI
 
 - [x] **25. Table** — table-hero-ui.md → Veri Gösterimi (519 + 520-529)
 - [x] **26. ProgressBar** — progress-bar-hero-ui.md → Yükleme & İlerleme (530 + 531-537)
 - [x] **27. ProgressCircle** — progress-circle-hero-ui.md → Yükleme & İlerleme (538 + 539-545)
-- [ ] **28. Skeleton** — skeleton-hero-ui.md → Yükleme & İlerleme
-- [ ] **29. Meter** — meter-hero-ui.md → Yükleme & İlerleme
+- [x] **28. Skeleton** — skeleton-hero-ui.md → Yükleme & İlerleme (546 + 547-553)
+- [x] **29. Meter** — meter-hero-ui.md → Yükleme & İlerleme (554 + 555-560)
 
 ## ⬜ Adım 6 — Takvim + Combobox + Date (3 element)
 
@@ -93,4 +93,4 @@
 - Boş kategoriler dolar: **Navigasyon**, **Overlay**, **Veri Gösterimi** (kısmen dolu).
 - Yeni kategoriler: **Seçim**, **Yükleme & İlerleme**.
 
-**İlerleme:** ✅ 38/56 aile (Adım 5: 3/5) · ⬜ 18/56 kaldı — sonraki id: **546**
+**İlerleme:** ✅ 40/56 aile (Adım 5: 5/5 ✅) · ⬜ 16/56 kaldı — sonraki id: **561**

@@ -517,4 +517,23 @@ export const SAMPLES: Record<string, ReactNode> = {
   "543": <U.ProgressCircleWithLabel />,
   "544": <U.ProgressCircleCustomSvg />,
   "545": <U.ProgressCircleCustomStyles />,
+  "546": <U.Skeleton />,
+  "547": <U.SkeletonBasic />,
+  "548": <U.SkeletonTextContent />,
+  "549": <U.SkeletonUserProfile />,
+  "550": <U.SkeletonList />,
+  "551": <U.SkeletonGrid />,
+  "552": <U.SkeletonSingleShimmer />,
+  "553": <U.SkeletonAnimationTypes />,
+  "554": (
+    <U.Meter aria-label="Storage" className="w-64" value={60}>
+      <U.MeterTrack><U.MeterFill /></U.MeterTrack>
+    </U.Meter>
+  ),
+  "555": <U.MeterBasic />,
+  "556": <U.MeterSizes />,
+  "557": <U.MeterColors />,
+  "558": <U.MeterWithoutLabel />,
+  "559": <U.MeterCustomValue />,
+  "560": <U.MeterCustomStyles />,
 }

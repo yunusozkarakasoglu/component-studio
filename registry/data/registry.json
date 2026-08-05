@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-05T01:23:05.180Z",
+  "generatedAt": "2026-08-05T01:25:47.715Z",
   "counts": {
-    "components": 458,
-    "ready": 458,
+    "components": 473,
+    "ready": 473,
     "layouts": 0
   },
   "categories": [
@@ -3951,7 +3951,7 @@
       "subcategory": "ProgressCircle",
       "file": "progress-circle-custom-svg.tsx",
       "exists": true,
-      "code": "/**\n * ProgressCircleCustomSvg\n * Özel SVG prop'ları örneği — kalın halka (saf React).\n * @id 544\n * @category Yükleme & İlerleme\n * @subcategory ProgressCircle\n */\nimport { ProgressCircle, ProgressCircleSvg } from \"@/components/ui/progress-circle\"\n\nfunction ProgressCircleCustomSvg() {\n  return (\n    <ProgressCircle aria-label=\"Storage\" className=\"size-12\" value={85} color=\"accent\">\n      <svg viewBox=\"0 0 36 36\" className=\"size-full -rotate-90 text-blue-600\" aria-hidden=\"true\">\n        <circle cx=\"18\" cy=\"18\" r=\"15.9155\" fill=\"none\" strokeWidth=\"5\" className=\"stroke-blue-100\" />\n        <circle\n          cx=\"18\"\n          cy=\"18\"\n          r=\"15.9155\"\n          fill=\"none\"\n          strokeWidth=\"5\"\n          strokeLinecap=\"round\"\n          className=\"stroke-current\"\n          strokeDasharray=\"85 15\"\n        />\n      </svg>\n    </ProgressCircle>\n  )\n}\n\nexport { ProgressCircleCustomSvg }\n",
+      "code": "/**\n * ProgressCircleCustomSvg\n * Özel SVG prop'ları örneği — kalın halka (saf React).\n * @id 544\n * @category Yükleme & İlerleme\n * @subcategory ProgressCircle\n */\nimport { ProgressCircle } from \"@/components/ui/progress-circle\"\n\nfunction ProgressCircleCustomSvg() {\n  return (\n    <ProgressCircle aria-label=\"Storage\" className=\"size-12\" value={85} color=\"accent\">\n      <svg viewBox=\"0 0 36 36\" className=\"size-full -rotate-90 text-blue-600\" aria-hidden=\"true\">\n        <circle cx=\"18\" cy=\"18\" r=\"15.9155\" fill=\"none\" strokeWidth=\"5\" className=\"stroke-blue-100\" />\n        <circle\n          cx=\"18\"\n          cy=\"18\"\n          r=\"15.9155\"\n          fill=\"none\"\n          strokeWidth=\"5\"\n          strokeLinecap=\"round\"\n          className=\"stroke-current\"\n          strokeDasharray=\"85 15\"\n        />\n      </svg>\n    </ProgressCircle>\n  )\n}\n\nexport { ProgressCircleCustomSvg }\n",
       "description": "ProgressCircleCustomSvg",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/progress-circle-custom-svg.tsx"
     },
@@ -3965,6 +3965,171 @@
       "code": "/**\n * ProgressCircleCustomStyles\n * Özelleştirilmiş örnek (saf React).\n * @id 545\n * @category Yükleme & İlerleme\n * @subcategory ProgressCircle\n */\nimport { ProgressCircle, ProgressCircleLabel, ProgressCircleSvg } from \"@/components/ui/progress-circle\"\n\nfunction ProgressCircleCustomStyles() {\n  return (\n    <div className=\"flex items-center gap-4\">\n      <ProgressCircle aria-label=\"Battery\" className=\"size-14\" value={65} color=\"success\">\n        <ProgressCircleSvg className=\"text-emerald-600\" />\n        <ProgressCircleLabel className=\"text-[11px] font-bold text-emerald-700\" />\n      </ProgressCircle>\n      <div className=\"flex flex-col\">\n        <p className=\"text-sm font-medium text-foreground\">Battery health</p>\n        <p className=\"text-xs text-muted-foreground\">65% — good condition</p>\n      </div>\n    </div>\n  )\n}\n\nexport { ProgressCircleCustomStyles }\n",
       "description": "ProgressCircleCustomStyles",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/progress-circle-custom-styles.tsx"
+    },
+    {
+      "id": "546",
+      "name": "Skeleton",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "Skeleton",
+      "file": "skeleton.tsx",
+      "exists": true,
+      "code": "/**\n * Skeleton\n * Saf React bileşen (bağımlılıksız).\n * Yüklenen içerik için iskelet yer tutucu.\n *   <Skeleton className=\"h-32 rounded-lg\" />\n *   <Skeleton className=\"h-3 w-3/5 rounded-lg\" />\n * Özellikler: animation (pulse/wave/none) · className ile boyut/şekil.\n * @id 546\n * @category Yükleme & İlerleme\n * @subcategory Skeleton\n */\nimport type { HTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ntype SkeletonAnimation = \"pulse\" | \"wave\" | \"none\"\n\ninterface SkeletonProps extends HTMLAttributes<HTMLDivElement> {\n  animation?: SkeletonAnimation\n}\n\nconst animationClass: Record<SkeletonAnimation, string> = {\n  pulse: \"animate-pulse\",\n  wave: \"relative overflow-hidden after:absolute after:inset-0 after:-translate-x-full after:animate-shimmer after:bg-linear-to-r after:from-transparent after:via-white/40 after:to-transparent\",\n  none: \"\",\n}\n\nfunction Skeleton({ className, animation = \"pulse\", ...props }: SkeletonProps) {\n  return (\n    <div\n      data-slot=\"skeleton\"\n      data-animation={animation}\n      aria-hidden=\"true\"\n      className={cn(\"bg-muted\", animationClass[animation], className)}\n      {...props}\n    />\n  )\n}\n\nexport { Skeleton }\nexport type { SkeletonAnimation, SkeletonProps }\n",
+      "description": "Skeleton",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/skeleton.tsx"
+    },
+    {
+      "id": "547",
+      "name": "SkeletonBasic",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "Skeleton",
+      "file": "skeleton-basic.tsx",
+      "exists": true,
+      "code": "/**\n * SkeletonBasic\n * Temel örnek: kart iskeleti (saf React).\n * @id 547\n * @category Yükleme & İlerleme\n * @subcategory Skeleton\n */\nimport { Skeleton } from \"@/components/ui/skeleton\"\n\nfunction SkeletonBasic() {\n  return (\n    <div className=\"w-[250px] space-y-5 rounded-lg bg-background p-4 shadow-sm\">\n      <Skeleton className=\"h-32 rounded-lg\" />\n      <div className=\"space-y-3\">\n        <Skeleton className=\"h-3 w-3/5 rounded-lg\" />\n        <Skeleton className=\"h-3 w-4/5 rounded-lg\" />\n        <Skeleton className=\"h-3 w-2/5 rounded-lg\" />\n      </div>\n    </div>\n  )\n}\n\nexport { SkeletonBasic }\n",
+      "description": "SkeletonBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/skeleton-basic.tsx"
+    },
+    {
+      "id": "548",
+      "name": "SkeletonTextContent",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "Skeleton",
+      "file": "skeleton-text-content.tsx",
+      "exists": true,
+      "code": "/**\n * SkeletonTextContent\n * Metin içeriği iskeleti örneği (saf React).\n * @id 548\n * @category Yükleme & İlerleme\n * @subcategory Skeleton\n */\nimport { Skeleton } from \"@/components/ui/skeleton\"\n\nfunction SkeletonTextContent() {\n  return (\n    <div className=\"w-[320px] space-y-2.5\">\n      <Skeleton className=\"h-4 w-1/2 rounded-md\" />\n      <Skeleton className=\"h-3 w-full rounded-md\" />\n      <Skeleton className=\"h-3 w-full rounded-md\" />\n      <Skeleton className=\"h-3 w-4/5 rounded-md\" />\n      <Skeleton className=\"h-3 w-3/5 rounded-md\" />\n    </div>\n  )\n}\n\nexport { SkeletonTextContent }\n",
+      "description": "SkeletonTextContent",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/skeleton-text-content.tsx"
+    },
+    {
+      "id": "549",
+      "name": "SkeletonUserProfile",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "Skeleton",
+      "file": "skeleton-user-profile.tsx",
+      "exists": true,
+      "code": "/**\n * SkeletonUserProfile\n * Kullanıcı profili iskeleti örneği (saf React).\n * @id 549\n * @category Yükleme & İlerleme\n * @subcategory Skeleton\n */\nimport { Skeleton } from \"@/components/ui/skeleton\"\n\nfunction SkeletonUserProfile() {\n  return (\n    <div className=\"flex w-[300px] items-center gap-4 rounded-lg border border-border bg-background p-4\">\n      <Skeleton className=\"size-12 rounded-full\" />\n      <div className=\"flex flex-1 flex-col gap-2\">\n        <Skeleton className=\"h-4 w-1/2 rounded-md\" />\n        <Skeleton className=\"h-3 w-2/3 rounded-md\" />\n      </div>\n    </div>\n  )\n}\n\nexport { SkeletonUserProfile }\n",
+      "description": "SkeletonUserProfile",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/skeleton-user-profile.tsx"
+    },
+    {
+      "id": "550",
+      "name": "SkeletonList",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "Skeleton",
+      "file": "skeleton-list.tsx",
+      "exists": true,
+      "code": "/**\n * SkeletonList\n * Liste iskeleti örneği (saf React).\n * @id 550\n * @category Yükleme & İlerleme\n * @subcategory Skeleton\n */\nimport { Skeleton } from \"@/components/ui/skeleton\"\n\nfunction SkeletonList() {\n  return (\n    <div className=\"w-[300px] space-y-3\">\n      {Array.from({ length: 4 }).map((_, i) => (\n        <div key={i} className=\"flex items-center gap-3\">\n          <Skeleton className=\"size-8 rounded-full\" />\n          <div className=\"flex flex-1 flex-col gap-1.5\">\n            <Skeleton className=\"h-3 w-1/3 rounded-md\" />\n            <Skeleton className=\"h-3 w-1/2 rounded-md\" />\n          </div>\n        </div>\n      ))}\n    </div>\n  )\n}\n\nexport { SkeletonList }\n",
+      "description": "SkeletonList",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/skeleton-list.tsx"
+    },
+    {
+      "id": "551",
+      "name": "SkeletonGrid",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "Skeleton",
+      "file": "skeleton-grid.tsx",
+      "exists": true,
+      "code": "/**\n * SkeletonGrid\n * Izgara iskeleti örneği (saf React).\n * @id 551\n * @category Yükleme & İlerleme\n * @subcategory Skeleton\n */\nimport { Skeleton } from \"@/components/ui/skeleton\"\n\nfunction SkeletonGrid() {\n  return (\n    <div className=\"grid w-full max-w-sm grid-cols-2 gap-4\">\n      {Array.from({ length: 4 }).map((_, i) => (\n        <div key={i} className=\"space-y-2.5 rounded-lg border border-border p-3\">\n          <Skeleton className=\"h-20 rounded-md\" />\n          <Skeleton className=\"h-3 w-3/4 rounded-md\" />\n          <Skeleton className=\"h-3 w-1/2 rounded-md\" />\n        </div>\n      ))}\n    </div>\n  )\n}\n\nexport { SkeletonGrid }\n",
+      "description": "SkeletonGrid",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/skeleton-grid.tsx"
+    },
+    {
+      "id": "552",
+      "name": "SkeletonSingleShimmer",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "Skeleton",
+      "file": "skeleton-single-shimmer.tsx",
+      "exists": true,
+      "code": "/**\n * SkeletonSingleShimmer\n * Tek satır shimmer örneği (saf React).\n * @id 552\n * @category Yükleme & İlerleme\n * @subcategory Skeleton\n */\nimport { Skeleton } from \"@/components/ui/skeleton\"\n\nfunction SkeletonSingleShimmer() {\n  return (\n    <div className=\"flex w-[300px] flex-col gap-3\">\n      <Skeleton className=\"h-24 rounded-lg\" animation=\"wave\" />\n      <Skeleton className=\"h-3 w-2/3 rounded-md\" animation=\"wave\" />\n    </div>\n  )\n}\n\nexport { SkeletonSingleShimmer }\n",
+      "description": "SkeletonSingleShimmer",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/skeleton-single-shimmer.tsx"
+    },
+    {
+      "id": "553",
+      "name": "SkeletonAnimationTypes",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "Skeleton",
+      "file": "skeleton-animation-types.tsx",
+      "exists": true,
+      "code": "/**\n * SkeletonAnimationTypes\n * Animasyon türleri örneği: pulse/wave/none (saf React).\n * @id 553\n * @category Yükleme & İlerleme\n * @subcategory Skeleton\n */\nimport { Skeleton } from \"@/components/ui/skeleton\"\n\nfunction SkeletonAnimationTypes() {\n  return (\n    <div className=\"flex w-[300px] flex-col gap-4\">\n      <div className=\"flex flex-col gap-1.5\">\n        <p className=\"text-xs text-muted-foreground\">Pulse (varsayılan)</p>\n        <Skeleton className=\"h-8 rounded-md\" animation=\"pulse\" />\n      </div>\n      <div className=\"flex flex-col gap-1.5\">\n        <p className=\"text-xs text-muted-foreground\">Wave</p>\n        <Skeleton className=\"h-8 rounded-md\" animation=\"wave\" />\n      </div>\n      <div className=\"flex flex-col gap-1.5\">\n        <p className=\"text-xs text-muted-foreground\">None</p>\n        <Skeleton className=\"h-8 rounded-md\" animation=\"none\" />\n      </div>\n    </div>\n  )\n}\n\nexport { SkeletonAnimationTypes }\n",
+      "description": "SkeletonAnimationTypes",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/skeleton-animation-types.tsx"
+    },
+    {
+      "id": "554",
+      "name": "Meter",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "Meter",
+      "file": "meter.tsx",
+      "exists": true,
+      "code": "/**\n * Meter\n * Saf React bileşen (bağımlılıksız).\n * Eşik değerli ilerleme ölçer — Label/Output/Track/Fill compound.\n *   <Meter aria-label=\"Storage\" className=\"w-64\" value={60}>\n *     <Label>Storage</Label>\n *     <MeterOutput />\n *     <MeterTrack><MeterFill /></MeterTrack>\n *   </Meter>\n * Özellikler: value/min/max · size (sm/md/lg) · color · role=meter +\n * aria-valuenow · output yüzde gösterimi.\n * @id 554\n * @category Yükleme & İlerleme\n * @subcategory Meter\n */\nimport { createContext, useContext, type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\n/* ---------- Types ---------- */\n\ntype MeterSize = \"sm\" | \"md\" | \"lg\"\ntype MeterColor = \"default\" | \"accent\" | \"success\" | \"warning\" | \"danger\"\n\ninterface MeterContextValue {\n  value: number\n  min: number\n  max: number\n  size: MeterSize\n  color: MeterColor\n}\n\nconst MeterContext = createContext<MeterContextValue | null>(null)\n\nfunction useMeter(): MeterContextValue {\n  const ctx = useContext(MeterContext)\n  if (!ctx) throw new Error(\"useMeter, <Meter> içinde kullanılmalı\")\n  return ctx\n}\n\ninterface MeterProps {\n  children?: ReactNode\n  className?: string\n  value: number\n  min?: number\n  max?: number\n  size?: MeterSize\n  color?: MeterColor\n  \"aria-label\"?: string\n}\n\nconst meterSizeClass: Record<MeterSize, string> = {\n  sm: \"h-1.5\",\n  md: \"h-2\",\n  lg: \"h-3\",\n}\n\nconst meterColorClass: Record<MeterColor, string> = {\n  default: \"bg-foreground\",\n  accent: \"bg-blue-600\",\n  success: \"bg-emerald-600\",\n  warning: \"bg-amber-500\",\n  danger: \"bg-red-600\",\n}\n\nfunction Meter({ children, className, value, min = 0, max = 100, size = \"md\", color = \"default\", ...aria }: MeterProps) {\n  const contextValue: MeterContextValue = { value, min, max, size, color }\n  return (\n    <MeterContext.Provider value={contextValue}>\n      <div\n        data-slot=\"meter\"\n        role=\"meter\"\n        aria-valuenow={value}\n        aria-valuemin={min}\n        aria-valuemax={max}\n        className={cn(\"flex flex-col gap-1.5\", className)}\n        {...aria}\n      >\n        {children}\n      </div>\n    </MeterContext.Provider>\n  )\n}\n\n/* ---------- Output ---------- */\n\nfunction MeterOutput({ className }: { className?: string }) {\n  const ctx = useMeter()\n  const pct = Math.round(((ctx.value - ctx.min) / (ctx.max - ctx.min)) * 100)\n  return <output data-slot=\"meter-output\" className={cn(\"text-sm text-muted-foreground\", className)}>{pct}%</output>\n}\n\n/* ---------- Track ---------- */\n\nfunction MeterTrack({ children, className }: { children?: ReactNode; className?: string }) {\n  const ctx = useMeter()\n  return (\n    <div data-slot=\"meter-track\" className={cn(\"w-full overflow-hidden rounded-full bg-muted\", meterSizeClass[ctx.size], className)}>\n      {children}\n    </div>\n  )\n}\n\n/* ---------- Fill ---------- */\n\nfunction MeterFill({ className }: { className?: string }) {\n  const ctx = useMeter()\n  const pct = Math.max(0, Math.min(100, ((ctx.value - ctx.min) / (ctx.max - ctx.min)) * 100))\n  return (\n    <div\n      data-slot=\"meter-fill\"\n      className={cn(\"h-full rounded-full transition-[width] duration-300\", meterColorClass[ctx.color], className)}\n      style={{ width: `${pct}%` }}\n    />\n  )\n}\n\nexport { Meter, MeterFill, MeterOutput, MeterTrack, useMeter }\nexport type { MeterColor, MeterFillProps, MeterOutputProps, MeterProps, MeterSize }\n",
+      "description": "Meter",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/meter.tsx"
+    },
+    {
+      "id": "555",
+      "name": "MeterBasic",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "Meter",
+      "file": "meter-basic.tsx",
+      "exists": true,
+      "code": "/**\n * MeterBasic\n * Temel örnek: depolama ölçer (saf React).\n * @id 555\n * @category Yükleme & İlerleme\n * @subcategory Meter\n */\nimport { Label } from \"@/components/ui/label\"\nimport { Meter, MeterFill, MeterOutput, MeterTrack } from \"@/components/ui/meter\"\n\nfunction MeterBasic() {\n  return (\n    <Meter aria-label=\"Storage\" className=\"w-64\" value={60}>\n      <Label>Storage</Label>\n      <MeterOutput />\n      <MeterTrack>\n        <MeterFill />\n      </MeterTrack>\n    </Meter>\n  )\n}\n\nexport { MeterBasic }\n",
+      "description": "MeterBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/meter-basic.tsx"
+    },
+    {
+      "id": "556",
+      "name": "MeterSizes",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "Meter",
+      "file": "meter-sizes.tsx",
+      "exists": true,
+      "code": "/**\n * MeterSizes\n * Boyut örneği: sm/md/lg (saf React).\n * @id 556\n * @category Yükleme & İlerleme\n * @subcategory Meter\n */\nimport { Label } from \"@/components/ui/label\"\nimport { Meter, MeterFill, MeterTrack } from \"@/components/ui/meter\"\n\nfunction MeterSizes() {\n  return (\n    <div className=\"flex w-64 flex-col gap-6\">\n      {([\"sm\", \"md\", \"lg\"] as const).map((size) => (\n        <div key={size} className=\"flex flex-col gap-1\">\n          <Label className=\"capitalize\">{size}</Label>\n          <Meter aria-label={size} value={45} size={size}>\n            <MeterTrack>\n              <MeterFill />\n            </MeterTrack>\n          </Meter>\n        </div>\n      ))}\n    </div>\n  )\n}\n\nexport { MeterSizes }\n",
+      "description": "MeterSizes",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/meter-sizes.tsx"
+    },
+    {
+      "id": "557",
+      "name": "MeterColors",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "Meter",
+      "file": "meter-colors.tsx",
+      "exists": true,
+      "code": "/**\n * MeterColors\n * Renk örneği: accent/success/warning/danger (saf React).\n * @id 557\n * @category Yükleme & İlerleme\n * @subcategory Meter\n */\nimport { Label } from \"@/components/ui/label\"\nimport { Meter, MeterFill, MeterTrack, type MeterColor } from \"@/components/ui/meter\"\n\nconst COLORS: { color: MeterColor; label: string }[] = [\n  { color: \"accent\", label: \"Accent\" },\n  { color: \"success\", label: \"Success\" },\n  { color: \"warning\", label: \"Warning\" },\n  { color: \"danger\", label: \"Danger\" },\n]\n\nfunction MeterColors() {\n  return (\n    <div className=\"flex w-64 flex-col gap-4\">\n      {COLORS.map(({ color, label }) => (\n        <div key={color} className=\"flex flex-col gap-1\">\n          <Label>{label}</Label>\n          <Meter aria-label={label} value={55} color={color}>\n            <MeterTrack>\n              <MeterFill />\n            </MeterTrack>\n          </Meter>\n        </div>\n      ))}\n    </div>\n  )\n}\n\nexport { MeterColors }\n",
+      "description": "MeterColors",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/meter-colors.tsx"
+    },
+    {
+      "id": "558",
+      "name": "MeterWithoutLabel",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "Meter",
+      "file": "meter-without-label.tsx",
+      "exists": true,
+      "code": "/**\n * MeterWithoutLabel\n * Etiketsiz örnek — yalnızca ölçer (saf React).\n * @id 558\n * @category Yükleme & İlerleme\n * @subcategory Meter\n */\nimport { Meter, MeterFill, MeterTrack } from \"@/components/ui/meter\"\n\nfunction MeterWithoutLabel() {\n  return (\n    <Meter aria-label=\"Bandwidth\" className=\"w-64\" value={75}>\n      <MeterTrack>\n        <MeterFill />\n      </MeterTrack>\n    </Meter>\n  )\n}\n\nexport { MeterWithoutLabel }\n",
+      "description": "MeterWithoutLabel",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/meter-without-label.tsx"
+    },
+    {
+      "id": "559",
+      "name": "MeterCustomValue",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "Meter",
+      "file": "meter-custom-value.tsx",
+      "exists": true,
+      "code": "/**\n * MeterCustomValue\n * Özel değer aralığı örneği — min/max (saf React).\n * @id 559\n * @category Yükleme & İlerleme\n * @subcategory Meter\n */\nimport { Label } from \"@/components/ui/label\"\nimport { Meter, MeterFill, MeterOutput, MeterTrack } from \"@/components/ui/meter\"\n\nfunction MeterCustomValue() {\n  return (\n    <Meter aria-label=\"CPU\" className=\"w-64\" value={3.2} min={0} max={4}>\n      <Label>CPU cores in use</Label>\n      <MeterOutput />\n      <MeterTrack>\n        <MeterFill />\n      </MeterTrack>\n    </Meter>\n  )\n}\n\nexport { MeterCustomValue }\n",
+      "description": "MeterCustomValue",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/meter-custom-value.tsx"
+    },
+    {
+      "id": "560",
+      "name": "MeterCustomStyles",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "Meter",
+      "file": "meter-custom-styles.tsx",
+      "exists": true,
+      "code": "/**\n * MeterCustomStyles\n * Özelleştirilmiş örnek (saf React).\n * @id 560\n * @category Yükleme & İlerleme\n * @subcategory Meter\n */\nimport { Label } from \"@/components/ui/label\"\nimport { Meter, MeterFill, MeterOutput, MeterTrack } from \"@/components/ui/meter\"\n\nfunction MeterCustomStyles() {\n  return (\n    <Meter aria-label=\"Disk\" className=\"w-64\" value={85} color=\"danger\" size=\"lg\">\n      <div className=\"flex w-full items-center justify-between\">\n        <Label className=\"text-xs\">Disk usage</Label>\n        <MeterOutput className=\"text-xs font-medium text-red-600\" />\n      </div>\n      <MeterTrack className=\"h-2.5 rounded-full bg-red-100\">\n        <MeterFill className=\"rounded-full bg-gradient-to-r from-amber-500 to-red-600\" />\n      </MeterTrack>\n    </Meter>\n  )\n}\n\nexport { MeterCustomStyles }\n",
+      "description": "MeterCustomStyles",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/meter-custom-styles.tsx"
     },
     {
       "id": "092",

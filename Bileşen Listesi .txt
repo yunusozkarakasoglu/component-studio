@@ -416,6 +416,23 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `543` ProgressCircleWithLabel
 - `544` ProgressCircleCustomSvg
 - `545` ProgressCircleCustomStyles
+#### Skeleton
+- `546` Skeleton
+- `547` SkeletonBasic
+- `548` SkeletonTextContent
+- `549` SkeletonUserProfile
+- `550` SkeletonList
+- `551` SkeletonGrid
+- `552` SkeletonSingleShimmer
+- `553` SkeletonAnimationTypes
+#### Meter
+- `554` Meter
+- `555` MeterBasic
+- `556` MeterSizes
+- `557` MeterColors
+- `558` MeterWithoutLabel
+- `559` MeterCustomValue
+- `560` MeterCustomStyles
 
 ### Renk Bileşenleri
 
@@ -545,7 +562,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 458 bileşen (saf React)**
+**Toplam: 473 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
