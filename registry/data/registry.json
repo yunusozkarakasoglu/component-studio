@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-05T00:09:45.715Z",
+  "generatedAt": "2026-08-05T00:14:32.300Z",
   "counts": {
-    "components": 267,
-    "ready": 267,
+    "components": 279,
+    "ready": 279,
     "layouts": 0
   },
   "categories": [
@@ -1862,6 +1862,138 @@
       "code": "/**\n * InputGroupCustomStyles\n * Özelleştirilmiş örnek (saf React).\n * @id 354\n * @category Form Elemanları\n * @subcategory InputGroup\n */\nimport { Mail } from \"@/components/ui/icons\"\nimport { InputGroup, InputGroupInput, InputGroupPrefix } from \"@/components/ui/input-group\"\nimport { Label } from \"@/components/ui/label\"\nimport { TextField } from \"@/components/ui/text-field\"\n\nfunction InputGroupCustomStyles() {\n  return (\n    <TextField className=\"w-full max-w-xs\" name=\"email\">\n      <Label>Work email</Label>\n      <InputGroup className=\"rounded-xl border border-border/80 bg-background shadow-sm\">\n        <InputGroupPrefix>\n          <Mail className=\"size-4 text-muted-foreground\" />\n        </InputGroupPrefix>\n        <InputGroupInput placeholder=\"you@company.com\" />\n      </InputGroup>\n    </TextField>\n  )\n}\n\nexport { InputGroupCustomStyles }\n",
       "description": "InputGroupCustomStyles",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-group-custom-styles.tsx"
+    },
+    {
+      "id": "355",
+      "name": "InputOTP",
+      "category": "Form Elemanları",
+      "subcategory": "InputOTP",
+      "file": "input-otp.tsx",
+      "exists": true,
+      "code": "/**\n * InputOTP\n * Saf React bileşen (bağımlılıksız).\n * Tek seferlik doğrulama kodu girişi — gizli input + görsel slotlar.\n *   <InputOTP maxLength={6} onComplete={(code) => ...}>\n *     <InputOTPGroup>\n *       <InputOTPSlot index={0} />\n *       <InputOTPSlot index={1} />\n *       <InputOTPSlot index={2} />\n *     </InputOTPGroup>\n *     <InputOTPSeparator />\n *     <InputOTPGroup>\n *       <InputOTPSlot index={3} />\n *       <InputOTPSlot index={4} />\n *       <InputOTPSlot index={5} />\n *     </InputOTPGroup>\n *   </InputOTP>\n * Özellikler: value/defaultValue/onChange (kontrollü) · onComplete · maxLength ·\n * pattern (REGEXP_ONLY_*) · isDisabled · isInvalid · name · variant\n * (primary/secondary) · data-active/filled/disabled/invalid.\n * @id 355\n * @category Form Elemanları\n * @subcategory InputOTP\n */\nimport {\n  createContext,\n  useContext,\n  useRef,\n  useState,\n  type ReactNode,\n} from \"react\"\nimport { cn } from \"@/lib/utils\"\n\n/* ---------- Pattern'ler ---------- */\n\nconst REGEXP_ONLY_DIGITS = /^\\d+$/\nconst REGEXP_ONLY_CHARS = /^[a-zA-Z]+$/\nconst REGEXP_ONLY_DIGITS_AND_CHARS = /^[a-zA-Z0-9]+$/\n\n/* ---------- Types ---------- */\n\ntype InputOTPVariant = \"primary\" | \"secondary\"\n\ninterface InputOTPContextValue {\n  value: string\n  maxLength: number\n  isDisabled: boolean\n  isInvalid: boolean\n  variant: InputOTPVariant\n  focused: boolean\n  setFocused: (v: boolean) => void\n}\n\nconst InputOTPContext = createContext<InputOTPContextValue | null>(null)\n\nfunction useInputOTP(): InputOTPContextValue {\n  const ctx = useContext(InputOTPContext)\n  if (!ctx) throw new Error(\"useInputOTP, <InputOTP> içinde kullanılmalı\")\n  return ctx\n}\n\ninterface InputOTPProps {\n  children?: ReactNode\n  className?: string\n  /** Zorunlu: slot sayısı */\n  maxLength: number\n  value?: string\n  defaultValue?: string\n  onChange?: (value: string) => void\n  onComplete?: (value: string) => void\n  isDisabled?: boolean\n  isInvalid?: boolean\n  pattern?: RegExp\n  name?: string\n  autoFocus?: boolean\n  variant?: InputOTPVariant\n  placeholder?: string\n}\n\nfunction InputOTP({\n  children,\n  className,\n  maxLength,\n  value: valueProp,\n  defaultValue = \"\",\n  onChange,\n  onComplete,\n  isDisabled = false,\n  isInvalid = false,\n  pattern,\n  name,\n  autoFocus,\n  variant = \"primary\",\n}: InputOTPProps) {\n  const [internalValue, setInternalValue] = useState(defaultValue)\n  const [focused, setFocused] = useState(false)\n  const inputRef = useRef<HTMLInputElement>(null)\n\n  const value = valueProp ?? internalValue\n\n  const handleChange = (raw: string) => {\n    let next = raw\n    if (pattern && !pattern.test(next)) {\n      // pattern'e uymuyorsa: eski değerden uyumlu parçayı koru (sadece kabul edilebilirleri al)\n      next = raw.split(\"\").filter((c) => pattern.test(c)).join(\"\")\n    }\n    next = next.slice(0, maxLength)\n    setInternalValue(next)\n    onChange?.(next)\n    if (next.length === maxLength) onComplete?.(next)\n  }\n\n  const contextValue: InputOTPContextValue = {\n    value,\n    maxLength,\n    isDisabled,\n    isInvalid,\n    variant,\n    focused,\n    setFocused,\n  }\n\n  return (\n    <InputOTPContext.Provider value={contextValue}>\n      <div\n        data-slot=\"input-otp\"\n        data-disabled={isDisabled ? \"true\" : undefined}\n        data-invalid={isInvalid ? \"true\" : undefined}\n        className={cn(\"flex flex-col gap-3\", className)}\n      >\n        <input\n          ref={inputRef}\n          type=\"text\"\n          inputMode=\"numeric\"\n          autoComplete=\"one-time-code\"\n          value={value}\n          onChange={(e) => handleChange(e.target.value)}\n          onFocus={() => setFocused(true)}\n          onBlur={() => setFocused(false)}\n          disabled={isDisabled}\n          name={name}\n          autoFocus={autoFocus}\n          aria-invalid={isInvalid || undefined}\n          className=\"sr-only\"\n          tabIndex={0}\n        />\n        <div\n          className=\"flex items-center gap-2\"\n          onClick={() => !isDisabled && inputRef.current?.focus()}\n          role=\"group\"\n          aria-label=\"Doğrulama kodu\"\n        >\n          {children}\n        </div>\n      </div>\n    </InputOTPContext.Provider>\n  )\n}\n\n/* ---------- Group ---------- */\n\ninterface InputOTPGroupProps {\n  children?: ReactNode\n  className?: string\n}\n\nfunction InputOTPGroup({ children, className }: InputOTPGroupProps) {\n  return <div data-slot=\"input-otp-group\" className={cn(\"flex items-center gap-2\", className)}>{children}</div>\n}\n\n/* ---------- Slot ---------- */\n\ninterface InputOTPSlotProps {\n  /** Sıfır tabanlı slot indeksi */\n  index: number\n  className?: string\n}\n\nfunction InputOTPSlot({ index, className }: InputOTPSlotProps) {\n  const ctx = useInputOTP()\n  const char = ctx.value[index] ?? \"\"\n  const isActive = ctx.focused && index === ctx.value.length\n  const isFilled = ctx.value.length > index\n\n  return (\n    <div\n      data-slot=\"input-otp-slot\"\n      data-active={isActive ? \"true\" : undefined}\n      data-filled={isFilled ? \"true\" : undefined}\n      data-disabled={ctx.isDisabled ? \"true\" : undefined}\n      data-invalid={ctx.isInvalid ? \"true\" : undefined}\n      className={cn(\n        \"flex size-11 items-center justify-center rounded-lg border border-border bg-background text-base font-semibold text-foreground tabular-nums\",\n        \"transition-colors\",\n        variantClass[ctx.variant],\n        isActive && \"border-ring ring-3 ring-ring/40\",\n        ctx.isInvalid && \"border-red-500 ring-3 ring-red-500/20\",\n        ctx.isDisabled && \"cursor-not-allowed opacity-60\",\n        className\n      )}\n    >\n      {isActive ? <span className=\"animate-pulse\">|</span> : char}\n    </div>\n  )\n}\n\nconst variantClass: Record<InputOTPVariant, string> = {\n  primary: \"\",\n  secondary: \"border-transparent bg-muted/60\",\n}\n\n/* ---------- Separator ---------- */\n\ninterface InputOTPSeparatorProps {\n  className?: string\n}\n\nfunction InputOTPSeparator({ className }: InputOTPSeparatorProps) {\n  return <div data-slot=\"input-otp-separator\" aria-hidden=\"true\" className={cn(\"h-1 w-2 rounded-full bg-border\", className)} />\n}\n\nexport {\n  InputOTP,\n  InputOTPGroup,\n  InputOTPSeparator,\n  InputOTPSlot,\n  REGEXP_ONLY_CHARS,\n  REGEXP_ONLY_DIGITS,\n  REGEXP_ONLY_DIGITS_AND_CHARS,\n  useInputOTP,\n}\nexport type { InputOTPGroupProps, InputOTPProps, InputOTPSlotProps }\n",
+      "description": "InputOTP",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-otp.tsx"
+    },
+    {
+      "id": "356",
+      "name": "InputOTPBasic",
+      "category": "Form Elemanları",
+      "subcategory": "InputOTP",
+      "file": "input-otp-basic.tsx",
+      "exists": true,
+      "code": "/**\n * InputOTPBasic\n * Temel örnek: 3+3 gruplu doğrulama kodu (saf React).\n * @id 356\n * @category Form Elemanları\n * @subcategory InputOTP\n */\nimport { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from \"@/components/ui/input-otp\"\nimport { Label } from \"@/components/ui/label\"\n\nfunction InputOTPBasic() {\n  return (\n    <div className=\"flex w-[280px] flex-col gap-2\">\n      <div className=\"flex flex-col gap-1\">\n        <Label>Verify account</Label>\n        <p className=\"text-sm text-muted-foreground\">We&apos;ve sent a code to a****@gmail.com</p>\n      </div>\n      <InputOTP maxLength={6}>\n        <InputOTPGroup>\n          <InputOTPSlot index={0} />\n          <InputOTPSlot index={1} />\n          <InputOTPSlot index={2} />\n        </InputOTPGroup>\n        <InputOTPSeparator />\n        <InputOTPGroup>\n          <InputOTPSlot index={3} />\n          <InputOTPSlot index={4} />\n          <InputOTPSlot index={5} />\n        </InputOTPGroup>\n      </InputOTP>\n      <div className=\"flex items-center gap-[5px] px-1 pt-1\">\n        <p className=\"text-sm text-muted-foreground\">Didn&apos;t receive a code?</p>\n        <a className=\"text-sm text-foreground underline\" href=\"#\">\n          Resend\n        </a>\n      </div>\n    </div>\n  )\n}\n\nexport { InputOTPBasic }\n",
+      "description": "InputOTPBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-otp-basic.tsx"
+    },
+    {
+      "id": "357",
+      "name": "InputOTPVariants",
+      "category": "Form Elemanları",
+      "subcategory": "InputOTP",
+      "file": "input-otp-variants.tsx",
+      "exists": true,
+      "code": "/**\n * InputOTPVariants\n * primary/secondary variant örneği (saf React).\n * @id 357\n * @category Form Elemanları\n * @subcategory InputOTP\n */\nimport { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from \"@/components/ui/input-otp\"\nimport { Label } from \"@/components/ui/label\"\n\nfunction InputOTPVariants() {\n  return (\n    <div className=\"flex flex-col gap-6\">\n      <div className=\"flex flex-col gap-2\">\n        <Label>Primary variant</Label>\n        <InputOTP maxLength={6} variant=\"primary\">\n          <InputOTPGroup>\n            <InputOTPSlot index={0} />\n            <InputOTPSlot index={1} />\n            <InputOTPSlot index={2} />\n          </InputOTPGroup>\n          <InputOTPSeparator />\n          <InputOTPGroup>\n            <InputOTPSlot index={3} />\n            <InputOTPSlot index={4} />\n            <InputOTPSlot index={5} />\n          </InputOTPGroup>\n        </InputOTP>\n      </div>\n      <div className=\"flex flex-col gap-2\">\n        <Label>Secondary variant</Label>\n        <InputOTP maxLength={6} variant=\"secondary\">\n          <InputOTPGroup>\n            <InputOTPSlot index={0} />\n            <InputOTPSlot index={1} />\n            <InputOTPSlot index={2} />\n          </InputOTPGroup>\n          <InputOTPSeparator />\n          <InputOTPGroup>\n            <InputOTPSlot index={3} />\n            <InputOTPSlot index={4} />\n            <InputOTPSlot index={5} />\n          </InputOTPGroup>\n        </InputOTP>\n      </div>\n    </div>\n  )\n}\n\nexport { InputOTPVariants }\n",
+      "description": "InputOTPVariants",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-otp-variants.tsx"
+    },
+    {
+      "id": "358",
+      "name": "InputOTPOnSurface",
+      "category": "Form Elemanları",
+      "subcategory": "InputOTP",
+      "file": "input-otp-on-surface.tsx",
+      "exists": true,
+      "code": "/**\n * InputOTPOnSurface\n * Yüzey (Surface) üzerinde secondary variant örneği (saf React).\n * @id 358\n * @category Form Elemanları\n * @subcategory InputOTP\n */\nimport { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from \"@/components/ui/input-otp\"\nimport { Label } from \"@/components/ui/label\"\n\nfunction InputOTPOnSurface() {\n  return (\n    <div className=\"flex w-full flex-col gap-2 rounded-3xl bg-muted/40 p-6\">\n      <div className=\"flex flex-col gap-1\">\n        <Label>Verify account</Label>\n        <p className=\"text-sm text-muted-foreground\">We&apos;ve sent a code to a****@gmail.com</p>\n      </div>\n      <InputOTP maxLength={6} variant=\"secondary\">\n        <InputOTPGroup>\n          <InputOTPSlot index={0} />\n          <InputOTPSlot index={1} />\n          <InputOTPSlot index={2} />\n        </InputOTPGroup>\n        <InputOTPSeparator />\n        <InputOTPGroup>\n          <InputOTPSlot index={3} />\n          <InputOTPSlot index={4} />\n          <InputOTPSlot index={5} />\n        </InputOTPGroup>\n      </InputOTP>\n      <div className=\"flex items-center gap-[5px] px-1 pt-1\">\n        <p className=\"text-sm text-muted-foreground\">Didn&apos;t receive a code?</p>\n        <a className=\"text-sm text-foreground underline\" href=\"#\">\n          Resend\n        </a>\n      </div>\n    </div>\n  )\n}\n\nexport { InputOTPOnSurface }\n",
+      "description": "InputOTPOnSurface",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-otp-on-surface.tsx"
+    },
+    {
+      "id": "359",
+      "name": "InputOTPDisabled",
+      "category": "Form Elemanları",
+      "subcategory": "InputOTP",
+      "file": "input-otp-disabled.tsx",
+      "exists": true,
+      "code": "/**\n * InputOTPDisabled\n * Devre dışı örnek (saf React).\n * @id 359\n * @category Form Elemanları\n * @subcategory InputOTP\n */\nimport { Description } from \"@/components/ui/description\"\nimport { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from \"@/components/ui/input-otp\"\nimport { Label } from \"@/components/ui/label\"\n\nfunction InputOTPDisabled() {\n  return (\n    <div className=\"flex w-[280px] flex-col gap-2\">\n      <Label>Verify account</Label>\n      <Description>Code verification is currently disabled</Description>\n      <InputOTP isDisabled maxLength={6}>\n        <InputOTPGroup>\n          <InputOTPSlot index={0} />\n          <InputOTPSlot index={1} />\n          <InputOTPSlot index={2} />\n        </InputOTPGroup>\n        <InputOTPSeparator />\n        <InputOTPGroup>\n          <InputOTPSlot index={3} />\n          <InputOTPSlot index={4} />\n          <InputOTPSlot index={5} />\n        </InputOTPGroup>\n      </InputOTP>\n    </div>\n  )\n}\n\nexport { InputOTPDisabled }\n",
+      "description": "InputOTPDisabled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-otp-disabled.tsx"
+    },
+    {
+      "id": "360",
+      "name": "InputOTPFourDigits",
+      "category": "Form Elemanları",
+      "subcategory": "InputOTP",
+      "file": "input-otp-four-digits.tsx",
+      "exists": true,
+      "code": "/**\n * InputOTPFourDigits\n * 4 haneli PIN örneği (saf React).\n * @id 360\n * @category Form Elemanları\n * @subcategory InputOTP\n */\nimport { InputOTP, InputOTPGroup, InputOTPSlot } from \"@/components/ui/input-otp\"\nimport { Label } from \"@/components/ui/label\"\n\nfunction InputOTPFourDigits() {\n  return (\n    <div className=\"flex w-[280px] flex-col gap-2\">\n      <Label>Enter PIN</Label>\n      <InputOTP maxLength={4}>\n        <InputOTPGroup>\n          <InputOTPSlot index={0} />\n          <InputOTPSlot index={1} />\n          <InputOTPSlot index={2} />\n          <InputOTPSlot index={3} />\n        </InputOTPGroup>\n      </InputOTP>\n    </div>\n  )\n}\n\nexport { InputOTPFourDigits }\n",
+      "description": "InputOTPFourDigits",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-otp-four-digits.tsx"
+    },
+    {
+      "id": "361",
+      "name": "InputOTPControlled",
+      "category": "Form Elemanları",
+      "subcategory": "InputOTP",
+      "file": "input-otp-controlled.tsx",
+      "exists": true,
+      "code": "/**\n * InputOTPControlled\n * Kontrollü örnek — değer göstergesi + temizleme (saf React).\n * @id 361\n * @category Form Elemanları\n * @subcategory InputOTP\n */\nimport { useState } from \"react\"\nimport { Description } from \"@/components/ui/description\"\nimport { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from \"@/components/ui/input-otp\"\nimport { Label } from \"@/components/ui/label\"\n\nfunction InputOTPControlled() {\n  const [value, setValue] = useState(\"\")\n\n  return (\n    <div className=\"flex w-[280px] flex-col gap-2\">\n      <Label>Verify account</Label>\n      <InputOTP maxLength={6} value={value} onChange={setValue}>\n        <InputOTPGroup>\n          <InputOTPSlot index={0} />\n          <InputOTPSlot index={1} />\n          <InputOTPSlot index={2} />\n        </InputOTPGroup>\n        <InputOTPSeparator />\n        <InputOTPGroup>\n          <InputOTPSlot index={3} />\n          <InputOTPSlot index={4} />\n          <InputOTPSlot index={5} />\n        </InputOTPGroup>\n      </InputOTP>\n      <Description>\n        {value.length > 0 ? (\n          <>\n            Value: {value} ({value.length}/6) •{\" \"}\n            <button className=\"font-medium text-foreground underline\" onClick={() => setValue(\"\")}>\n              Clear\n            </button>\n          </>\n        ) : (\n          \"Enter a 6-digit code\"\n        )}\n      </Description>\n    </div>\n  )\n}\n\nexport { InputOTPControlled }\n",
+      "description": "InputOTPControlled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-otp-controlled.tsx"
+    },
+    {
+      "id": "362",
+      "name": "InputOTPOnComplete",
+      "category": "Form Elemanları",
+      "subcategory": "InputOTP",
+      "file": "input-otp-on-complete.tsx",
+      "exists": true,
+      "code": "/**\n * InputOTPOnComplete\n * onComplete örneği — kod tamamlanınca doğrulama (saf React).\n * Form gelmediği için native <form> kullanılır.\n * @id 362\n * @category Form Elemanları\n * @subcategory InputOTP\n */\nimport { useState, type FormEvent } from \"react\"\nimport { Button } from \"@/components/ui/button\"\nimport { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from \"@/components/ui/input-otp\"\nimport { Label } from \"@/components/ui/label\"\nimport { Spinner } from \"@/components/ui/spinner\"\n\nfunction InputOTPOnComplete() {\n  const [value, setValue] = useState(\"\")\n  const [isComplete, setIsComplete] = useState(false)\n  const [isSubmitting, setIsSubmitting] = useState(false)\n\n  const handleComplete = (code: string) => {\n    setIsComplete(true)\n    console.log(\"Code complete:\", code)\n  }\n\n  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {\n    e.preventDefault()\n    setIsSubmitting(true)\n    setTimeout(() => {\n      setIsSubmitting(false)\n      setValue(\"\")\n      setIsComplete(false)\n    }, 2000)\n  }\n\n  return (\n    <form className=\"flex w-[280px] flex-col gap-2\" onSubmit={handleSubmit}>\n      <Label>Verify account</Label>\n      <InputOTP\n        maxLength={6}\n        value={value}\n        onComplete={handleComplete}\n        onChange={(val) => {\n          setValue(val)\n          setIsComplete(false)\n        }}\n      >\n        <InputOTPGroup>\n          <InputOTPSlot index={0} />\n          <InputOTPSlot index={1} />\n          <InputOTPSlot index={2} />\n        </InputOTPGroup>\n        <InputOTPSeparator />\n        <InputOTPGroup>\n          <InputOTPSlot index={3} />\n          <InputOTPSlot index={4} />\n          <InputOTPSlot index={5} />\n        </InputOTPGroup>\n      </InputOTP>\n      <Button className=\"mt-2 w-full\" isDisabled={!isComplete} isPending={isSubmitting} type=\"submit\" variant=\"primary\">\n        {isSubmitting ? (\n          <>\n            <Spinner size=\"sm\" />\n            Verifying...\n          </>\n        ) : (\n          \"Verify Code\"\n        )}\n      </Button>\n    </form>\n  )\n}\n\nexport { InputOTPOnComplete }\n",
+      "description": "InputOTPOnComplete",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-otp-on-complete.tsx"
+    },
+    {
+      "id": "363",
+      "name": "InputOTPFormExample",
+      "category": "Form Elemanları",
+      "subcategory": "InputOTP",
+      "file": "input-otp-form-example.tsx",
+      "exists": true,
+      "code": "/**\n * InputOTPFormExample\n * İki faktörlü doğrulama formu örneği (saf React).\n * @id 363\n * @category Form Elemanları\n * @subcategory InputOTP\n */\nimport { useState, type FormEvent } from \"react\"\nimport { Button } from \"@/components/ui/button\"\nimport { Description } from \"@/components/ui/description\"\nimport { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from \"@/components/ui/input-otp\"\nimport { Label } from \"@/components/ui/label\"\nimport { Spinner } from \"@/components/ui/spinner\"\n\nfunction InputOTPFormExample() {\n  const [value, setValue] = useState(\"\")\n  const [error, setError] = useState(\"\")\n  const [isSubmitting, setIsSubmitting] = useState(false)\n\n  const handleSubmit = (e: FormEvent) => {\n    e.preventDefault()\n    setError(\"\")\n\n    if (value.length !== 6) {\n      setError(\"Please enter all 6 digits\")\n      return\n    }\n\n    setIsSubmitting(true)\n\n    setTimeout(() => {\n      if (value === \"123456\") {\n        console.log(\"Code verified successfully!\")\n        setValue(\"\")\n      } else {\n        setError(\"Invalid code. Please try again.\")\n      }\n      setIsSubmitting(false)\n    }, 1500)\n  }\n\n  return (\n    <form className=\"flex w-[280px] flex-col gap-4\" onSubmit={handleSubmit}>\n      <div className=\"flex flex-col gap-2\">\n        <Label>Two-factor authentication</Label>\n        <Description>Enter the 6-digit code from your authenticator app</Description>\n        <InputOTP\n          isInvalid={!!error}\n          maxLength={6}\n          value={value}\n          onChange={(val) => {\n            setValue(val)\n            setError(\"\")\n          }}\n        >\n          <InputOTPGroup>\n            <InputOTPSlot index={0} />\n            <InputOTPSlot index={1} />\n            <InputOTPSlot index={2} />\n          </InputOTPGroup>\n          <InputOTPSeparator />\n          <InputOTPGroup>\n            <InputOTPSlot index={3} />\n            <InputOTPSlot index={4} />\n            <InputOTPSlot index={5} />\n          </InputOTPGroup>\n        </InputOTP>\n        <span className={`text-xs text-red-500 ${error ? \"visible\" : \"invisible\"}`} id=\"code-error\" role=\"alert\">\n          {error}\n        </span>\n      </div>\n      <Button className=\"w-full\" isDisabled={value.length !== 6} isPending={isSubmitting} type=\"submit\" variant=\"primary\">\n        {isSubmitting ? (\n          <>\n            <Spinner size=\"sm\" />\n            Verifying...\n          </>\n        ) : (\n          \"Verify\"\n        )}\n      </Button>\n      <div className=\"flex items-center justify-center gap-1\">\n        <p className=\"text-sm text-muted-foreground\">Having trouble?</p>\n        <a className=\"text-sm text-foreground underline\" href=\"#\">\n          Use backup code\n        </a>\n      </div>\n    </form>\n  )\n}\n\nexport { InputOTPFormExample }\n",
+      "description": "InputOTPFormExample",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-otp-form-example.tsx"
+    },
+    {
+      "id": "364",
+      "name": "InputOTPWithPattern",
+      "category": "Form Elemanları",
+      "subcategory": "InputOTP",
+      "file": "input-otp-with-pattern.tsx",
+      "exists": true,
+      "code": "/**\n * InputOTPWithPattern\n * Harf kısıtlamalı örnek (REGEXP_ONLY_CHARS — saf React).\n * @id 364\n * @category Form Elemanları\n * @subcategory InputOTP\n */\nimport { Description } from \"@/components/ui/description\"\nimport { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot, REGEXP_ONLY_CHARS } from \"@/components/ui/input-otp\"\nimport { Label } from \"@/components/ui/label\"\n\nfunction InputOTPWithPattern() {\n  return (\n    <div className=\"flex w-[280px] flex-col gap-2\">\n      <Label>Enter code (letters only)</Label>\n      <Description>Only alphabetic characters are allowed</Description>\n      <InputOTP maxLength={6} pattern={REGEXP_ONLY_CHARS}>\n        <InputOTPGroup>\n          <InputOTPSlot index={0} />\n          <InputOTPSlot index={1} />\n          <InputOTPSlot index={2} />\n        </InputOTPGroup>\n        <InputOTPSeparator />\n        <InputOTPGroup>\n          <InputOTPSlot index={3} />\n          <InputOTPSlot index={4} />\n          <InputOTPSlot index={5} />\n        </InputOTPGroup>\n      </InputOTP>\n    </div>\n  )\n}\n\nexport { InputOTPWithPattern }\n",
+      "description": "InputOTPWithPattern",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-otp-with-pattern.tsx"
+    },
+    {
+      "id": "365",
+      "name": "InputOTPWithValidation",
+      "category": "Form Elemanları",
+      "subcategory": "InputOTP",
+      "file": "input-otp-with-validation.tsx",
+      "exists": true,
+      "code": "/**\n * InputOTPWithValidation\n * Form doğrulama örneği — 123456 kodu (saf React).\n * @id 365\n * @category Form Elemanları\n * @subcategory InputOTP\n */\nimport { useState, type FormEvent } from \"react\"\nimport { Button } from \"@/components/ui/button\"\nimport { Description } from \"@/components/ui/description\"\nimport { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from \"@/components/ui/input-otp\"\nimport { Label } from \"@/components/ui/label\"\n\nfunction InputOTPWithValidation() {\n  const [value, setValue] = useState(\"\")\n  const [isInvalid, setIsInvalid] = useState(false)\n\n  const onSubmit = (e: FormEvent<HTMLFormElement>) => {\n    e.preventDefault()\n    const formData = new FormData(e.currentTarget)\n    const code = formData.get(\"code\")\n\n    if (code !== \"123456\") {\n      setIsInvalid(true)\n      return\n    }\n\n    setIsInvalid(false)\n    setValue(\"\")\n    alert(\"Code verified successfully!\")\n  }\n\n  const handleChange = (val: string) => {\n    setValue(val)\n    setIsInvalid(false)\n  }\n\n  return (\n    <div className=\"flex w-[280px] flex-col gap-2\">\n      <form className=\"flex flex-col gap-2\" onSubmit={onSubmit}>\n        <Label>Verify account</Label>\n        <Description>Hint: The code is 123456</Description>\n        <InputOTP\n          aria-describedby={isInvalid ? \"code-error\" : undefined}\n          isInvalid={isInvalid}\n          maxLength={6}\n          name=\"code\"\n          value={value}\n          onChange={handleChange}\n        >\n          <InputOTPGroup>\n            <InputOTPSlot index={0} />\n            <InputOTPSlot index={1} />\n            <InputOTPSlot index={2} />\n          </InputOTPGroup>\n          <InputOTPSeparator />\n          <InputOTPGroup>\n            <InputOTPSlot index={3} />\n            <InputOTPSlot index={4} />\n            <InputOTPSlot index={5} />\n          </InputOTPGroup>\n        </InputOTP>\n        <span className={`text-xs text-red-500 ${isInvalid ? \"visible\" : \"invisible\"}`} id=\"code-error\" role=\"alert\">\n          Invalid code. Please try again.\n        </span>\n        <Button isDisabled={value.length !== 6} type=\"submit\">\n          Submit\n        </Button>\n      </form>\n    </div>\n  )\n}\n\nexport { InputOTPWithValidation }\n",
+      "description": "InputOTPWithValidation",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-otp-with-validation.tsx"
+    },
+    {
+      "id": "366",
+      "name": "InputOTPCustomStyles",
+      "category": "Form Elemanları",
+      "subcategory": "InputOTP",
+      "file": "input-otp-custom-styles.tsx",
+      "exists": true,
+      "code": "/**\n * InputOTPCustomStyles\n * Özelleştirilmiş slot örneği (saf React).\n * @id 366\n * @category Form Elemanları\n * @subcategory InputOTP\n */\nimport { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from \"@/components/ui/input-otp\"\nimport { Label } from \"@/components/ui/label\"\n\nconst slotClass =\n  \"rounded-xl border-border/80 bg-muted/60 data-[active=true]:border-blue-400 data-[active=true]:bg-blue-50\"\n\nfunction InputOTPCustomStyles() {\n  return (\n    <div className=\"flex w-72 flex-col gap-2\">\n      <Label>Verify account</Label>\n      <InputOTP maxLength={6}>\n        <InputOTPGroup>\n          <InputOTPSlot className={slotClass} index={0} />\n          <InputOTPSlot className={slotClass} index={1} />\n          <InputOTPSlot className={slotClass} index={2} />\n        </InputOTPGroup>\n        <InputOTPSeparator className=\"bg-border\" />\n        <InputOTPGroup>\n          <InputOTPSlot className={slotClass} index={3} />\n          <InputOTPSlot className={slotClass} index={4} />\n          <InputOTPSlot className={slotClass} index={5} />\n        </InputOTPGroup>\n      </InputOTP>\n      <a className=\"text-sm text-blue-600 underline\" href=\"#\">\n        Resend code\n      </a>\n    </div>\n  )\n}\n\nexport { InputOTPCustomStyles }\n",
+      "description": "InputOTPCustomStyles",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/input-otp-custom-styles.tsx"
     },
     {
       "id": "092",

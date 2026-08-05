@@ -43,8 +43,10 @@ function slug(name) {
   const overrides = { ComboBox: "combobox", Textfield: "text-field" }
   if (overrides[name]) return overrides[name]
   // "TextArea" tek kelime kabul edilir (text-area değil textarea)
-  const normalized = name.replace(/TextArea/g, "Textarea")
-  return normalized.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase()
+  let n = name.replace(/TextArea/g, "Textarea")
+  // All-caps kısaltmaları ayır: "InputOTPBasic" → "Input-Otp-Basic"
+  n = n.replace(/([A-Z]+)([A-Z][a-z])/g, "$1-$2")
+  return n.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase()
 }
 
 /* ---------- Bileşen dosyalarını oku (envanter) ---------- */

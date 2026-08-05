@@ -199,6 +199,19 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `352` InputGroupWithPrefixAndSuffix
 - `353` InputGroupWithTextArea
 - `354` InputGroupCustomStyles
+#### InputOTP
+- `355` InputOTP
+- `356` InputOTPBasic
+- `357` InputOTPVariants
+- `358` InputOTPOnSurface
+- `359` InputOTPDisabled
+- `360` InputOTPFourDigits
+- `361` InputOTPControlled
+- `362` InputOTPOnComplete
+- `363` InputOTPFormExample
+- `364` InputOTPWithPattern
+- `365` InputOTPWithValidation
+- `366` InputOTPCustomStyles
 
 ### Renk Bileşenleri
 
@@ -328,7 +341,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 267 bileşen (saf React)**
+**Toplam: 279 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

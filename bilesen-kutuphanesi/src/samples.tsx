@@ -308,4 +308,30 @@ export const SAMPLES: Record<string, ReactNode> = {
   "352": <U.InputGroupWithPrefixAndSuffix />,
   "353": <U.InputGroupWithTextArea />,
   "354": <U.InputGroupCustomStyles />,
+  "355": (
+    <U.InputOTP maxLength={6}>
+      <U.InputOTPGroup>
+        <U.InputOTPSlot index={0} />
+        <U.InputOTPSlot index={1} />
+        <U.InputOTPSlot index={2} />
+      </U.InputOTPGroup>
+      <U.InputOTPSeparator />
+      <U.InputOTPGroup>
+        <U.InputOTPSlot index={3} />
+        <U.InputOTPSlot index={4} />
+        <U.InputOTPSlot index={5} />
+      </U.InputOTPGroup>
+    </U.InputOTP>
+  ),
+  "356": <U.InputOTPBasic />,
+  "357": <U.InputOTPVariants />,
+  "358": <U.InputOTPOnSurface />,
+  "359": <U.InputOTPDisabled />,
+  "360": <U.InputOTPFourDigits />,
+  "361": <U.InputOTPControlled />,
+  "362": <U.InputOTPOnComplete />,
+  "363": <U.InputOTPFormExample />,
+  "364": <U.InputOTPWithPattern />,
+  "365": <U.InputOTPWithValidation />,
+  "366": <U.InputOTPCustomStyles />,
 }
