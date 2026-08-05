@@ -79,12 +79,12 @@
 - [x] **31. Select** — select-hero-ui.md → Combobox (568 + 569-578)
 - [x] **32. TimeField** — time-field-hero-ui.md → Date/TimeField (579 + 580-588)
 
-## ⬜ Adım 7 — Genel (4 element)
+## ✅ Adım 7 — Genel (4 element) — TAMAMLANDI
 
-- [ ] **33. Separator** — seperator-hero-ui.md → Genel
-- [ ] **34. ScrollShadow** — scrool-shadow-hero-ui.md → Genel
-- [ ] **35. Typography** — Typography-hero-ui.md → Genel
-- [ ] **36. KeyboardShortcuts** — klavye-kısayollar-hero-ui.md → Genel
+- [x] **33. Separator** — seperator-hero-ui.md → Genel (589 + 590-594)
+- [x] **34. ScrollShadow** — scrool-shadow-hero-ui.md → Genel (595 + 596-601)
+- [x] **35. Typography** — Typography-hero-ui.md → Genel (602 + 603-607)
+- [x] **36. KeyboardShortcuts** — klavye-kısayollar-hero-ui.md → Genel (608 Kbd + 609-614)
 
 ## ⚠️ Notlar
 - **Surface** — kullanıcı listesinde var ama klasörde `.md` yok (indirilmedi; dosya gelince eklenir).
@@ -93,4 +93,4 @@
 - Boş kategoriler dolar: **Navigasyon**, **Overlay**, **Veri Gösterimi** (kısmen dolu).
 - Yeni kategoriler: **Seçim**, **Yükleme & İlerleme**.
 
-**İlerleme:** ✅ 43/56 aile (Adım 6: 3/3 ✅) · ⬜ 13/56 kaldı — sonraki id: **589**
+**İlerleme:** ✅ 56/56 aile — TÜM ELEMENTLER TAMAMLANDI 🎉

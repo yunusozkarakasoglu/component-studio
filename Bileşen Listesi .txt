@@ -465,6 +465,36 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `586` TimeFieldRequired
 - `587` TimeFieldDisabled
 - `588` TimeFieldFullWidth
+#### Separator
+- `589` Separator
+- `590` SeparatorBasic
+- `591` SeparatorVariants
+- `592` SeparatorWithSurface
+- `593` SeparatorVertical
+- `594` SeparatorWithContent
+#### ScrollShadow
+- `595` ScrollShadow
+- `596` ScrollShadowBasic
+- `597` ScrollShadowOrientation
+- `598` ScrollShadowShadowSize
+- `599` ScrollShadowWithCard
+- `600` ScrollShadowHideScrollBar
+- `601` ScrollShadowVisibilityChange
+#### Typography
+- `602` Typography
+- `603` TypographyScale
+- `604` TypographyPrimitives
+- `605` TypographyProse
+- `606` TypographyRenderProps
+- `607` TypographyCustomStyles
+#### KeyboardShortcuts
+- `608` Kbd
+- `609` KbdBasic
+- `610` KbdVariants
+- `611` KbdNavigationKeys
+- `612` KbdInlineUsage
+- `613` KbdInstructionalText
+- `614` KbdSpecialKeys
 
 ### Renk Bileşenleri
 
@@ -593,7 +623,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 501 bileşen (saf React)**
+**Toplam: 527 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
