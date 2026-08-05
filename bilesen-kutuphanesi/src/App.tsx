@@ -689,6 +689,13 @@ export default function Studio() {
   const [pendingCount, setPendingCount] = useState(0)
   const [view, setView] = useState<"dashboard" | "bilesenler" | "layoutlar">("dashboard")
   const [source, setSource] = useState<"tumu" | "heroui" | "mantine" | "shadcn">("tumu")
+  const [newMenu, setNewMenu] = useState(false)
+
+  // + Yeni → tip seçimi
+  const handleNew = (t: "component" | "layout" | "page") => {
+    if (t === "component") { window.location.hash = "#/yeni-bilesen" }
+    else { window.alert(t === "layout" ? "📐 Layout sihirbazı hazırlanıyor — yakında." : "📄 Sayfa sihirbazı hazırlanıyor — yakında.") }
+  }
 
   // hash route: #/yeni-bilesen → sihirbaz
   useEffect(() => {
@@ -807,8 +814,26 @@ export default function Studio() {
               </button>
             ))}
           </nav>
-          <div className="hidden items-center gap-2 text-[11px] text-muted-foreground sm:flex">
+          <div className="relative hidden items-center gap-2 text-[11px] text-muted-foreground sm:flex">
             <span>💾 Kaydet → HMR</span><span>·</span><span>🔄 DB Yenile</span>
+            {/* + Yeni — global header'da tek buton */}
+            <span className="mx-1 h-4 w-px bg-black/20" />
+            <button
+              onClick={() => setNewMenu((v) => !v)}
+              className="inline-flex items-center gap-1 rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
+            >
+              + Yeni
+            </button>
+            {newMenu && (
+              <div className="absolute right-0 top-full z-50 mt-1.5 w-44 overflow-hidden rounded-lg border border-border bg-background py-1 shadow-xl">
+                {([["component", "🧩 Bileşen"], ["layout", "📐 Layout"], ["page", "📄 Sayfa"]] as const).map(([t, l]) => (
+                  <button key={t} onClick={() => { setNewMenu(false); handleNew(t) }}
+                    className="flex w-full items-center gap-2 px-3 py-2 text-left text-sm text-foreground transition-colors hover:bg-muted">
+                    {l}
+                  </button>
+                ))}
+              </div>
+            )}
             {pendingCount > 0 && (
               <button
                 onClick={() => { if (window.confirm(pendingCount + " bekleyen kayıt var. Kayıt defterine eklensin mi?")) { fetch("/api/rebuild-registry").then(() => { try { localStorage.removeItem("wb-pending") } catch {} ; setPendingCount(0) }) } }}
@@ -838,8 +863,8 @@ export default function Studio() {
           {/* SOL PANEL */}
           {(view === "dashboard" || view === "layoutlar") && (
             view === "dashboard"
-              ? <DashboardView registry={registry} onOpenCategory={(c) => { setView("bilesenler"); setCat(c); setSubCat("") }} onNewComponent={() => { window.location.hash = "#/yeni-bilesen" }} />
-              : <LayoutsView layouts={[]} onNewComponent={() => { window.location.hash = "#/yeni-bilesen" }} />
+              ? <DashboardView registry={registry} onOpenCategory={(c) => { setView("bilesenler"); setCat(c); setSubCat("") }} />
+              : <LayoutsView layouts={[]} />
           )}
 
           {view === "bilesenler" && panelOpen && (
@@ -859,12 +884,6 @@ export default function Studio() {
                     {source === "mantine" ? "Mantine kaynak klasörü hazır — bileşenler entegrasyon bekliyor (Masaüstü/mantine-components-setup)." : "shadcn/ui kaynak klasörü hazır — bileşenler entegrasyon bekliyor (Masaüstü/shadcn-components-setup)."}
                   </p>
                 )}
-                <button
-                  onClick={() => { window.location.hash = "#/yeni-bilesen" }}
-                  className="flex w-full items-center justify-center gap-1.5 rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
-                >
-                  + Yeni Bileşen
-                </button>
                 <SearchField aria-label="Ara" value={q} onChange={setQ} placeholder="Ara: 008, buton, renk…" className="h-8 border-black/40 text-xs" />
               </div>
 

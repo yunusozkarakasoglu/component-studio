@@ -12,10 +12,9 @@ interface LayoutLike {
 
 interface LayoutsViewProps {
   layouts: LayoutLike[]
-  onNewComponent: () => void
 }
 
-function LayoutsView({ layouts, onNewComponent }: LayoutsViewProps) {
+function LayoutsView({ layouts }: LayoutsViewProps) {
   const temas = ["Tema 1", "Tema 2"]
 
   return (
@@ -25,10 +24,7 @@ function LayoutsView({ layouts, onNewComponent }: LayoutsViewProps) {
           <h1 className="text-xl font-bold text-foreground">Layoutlar</h1>
           <p className="text-sm text-muted-foreground">Sayfa şablonları — sol panel + header + içerik yapıları</p>
         </div>
-        <button onClick={onNewComponent}
-          className="inline-flex items-center justify-center rounded-md bg-blue-600 px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-blue-700">
-          + Yeni Layout
-        </button>
+        <span className="text-xs text-muted-foreground">Yeni oluşturma için üstteki <b>+ Yeni</b> butonu</span>
       </div>
 
       {layouts.length === 0 && (

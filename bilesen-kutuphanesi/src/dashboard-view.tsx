@@ -16,7 +16,6 @@ interface CompLike {
 interface DashboardViewProps {
   registry: { components: CompLike[]; categories?: string[] } | null
   onOpenCategory: (category: string) => void
-  onNewComponent: () => void
 }
 
 const STYLE = {
@@ -35,7 +34,7 @@ function Kpi({ label, value, hint }: { label: string; value: ReactNode; hint?: s
   )
 }
 
-function DashboardView({ registry, onOpenCategory, onNewComponent }: DashboardViewProps) {
+function DashboardView({ registry, onOpenCategory }: DashboardViewProps) {
   const comps = registry?.components ?? []
   const cats = registry?.categories ?? []
 
@@ -68,7 +67,7 @@ function DashboardView({ registry, onOpenCategory, onNewComponent }: DashboardVi
           <h1 className="text-xl font-bold text-foreground">Genel Bakış</h1>
           <p className="text-sm text-muted-foreground">Kütüphane istatistikleri ve kısayollar</p>
         </div>
-        <button onClick={onNewComponent} className={STYLE.btn}>+ Yeni Bileşen</button>
+        <span className="text-xs text-muted-foreground">Yeni oluşturma için üstteki <b>+ Yeni</b> butonu</span>
       </div>
 
       {/* İstatistikler */}
