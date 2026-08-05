@@ -287,6 +287,23 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `429` ToggleButtonGroupFullWidth
 - `430` ToggleButtonGroupDisabled
 - `431` ToggleButtonGroupWithoutSeparator
+### Overlay
+#### Modal
+- `432` Modal
+- `433` ModalDefault
+- `434` ModalSizes
+- `435` ModalPlacements
+- `436` ModalScrollBehavior
+- `437` ModalControlled
+- `438` ModalWithForm
+- `439` ModalCustomTrigger
+- `440` ModalBackdropVariants
+- `441` ModalCustomBackdrop
+- `442` ModalDismissBehavior
+- `443` ModalCloseMethods
+- `444` ModalCustomAnimations
+- `445` ModalCustomPortal
+- `446` ModalCustomStyles
 
 ### Renk Bileşenleri
 
@@ -416,7 +433,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 344 bileşen (saf React)**
+**Toplam: 359 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
