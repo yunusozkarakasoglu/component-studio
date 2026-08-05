@@ -54,7 +54,7 @@
 
 - [x] **16. Modal** — modal-hero-ui.md → Overlay (432 + 433-446)
 - [x] **17. Popover** — popover-hero-ui.md → Overlay (447 + 448-453)
-- [ ] **18. Tooltip** — tooltip-hero-ui.md → Overlay
+- [x] **18. Tooltip** — tooltip-hero-ui.md → Overlay (454 + 455-460)
 - [ ] **19. Toast** — toast-hero-ui.md → Overlay
 - [ ] **20. Menu** — menu/menu-dropdown-hero-ui.md → Overlay
 
@@ -93,4 +93,4 @@
 - Boş kategoriler dolar: **Navigasyon**, **Overlay**, **Veri Gösterimi** (kısmen dolu).
 - Yeni kategoriler: **Seçim**, **Yükleme & İlerleme**.
 
-**İlerleme:** ✅ 28/56 aile (Adım 3: 2/5) · ⬜ 28/56 kaldı — sonraki id: **454**
+**İlerleme:** ✅ 29/56 aile (Adım 3: 3/5) · ⬜ 27/56 kaldı — sonraki id: **461**

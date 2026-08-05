@@ -421,4 +421,11 @@ export const SAMPLES: Record<string, ReactNode> = {
   "451": <U.PopoverPlacement />,
   "452": <U.PopoverRenderFunction />,
   "453": <U.PopoverCustomStyles />,
+  "454": <U.Tooltip />,
+  "455": <U.TooltipBasic />,
+  "456": <U.TooltipPlacement />,
+  "457": <U.TooltipWithArrow />,
+  "458": <U.TooltipCustomTrigger />,
+  "459": <U.TooltipRenderFunction />,
+  "460": <U.TooltipCustomStyles />,
 }

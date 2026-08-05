@@ -312,6 +312,14 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `451` PopoverPlacement
 - `452` PopoverRenderFunction
 - `453` PopoverCustomStyles
+#### Tooltip
+- `454` Tooltip
+- `455` TooltipBasic
+- `456` TooltipPlacement
+- `457` TooltipWithArrow
+- `458` TooltipCustomTrigger
+- `459` TooltipRenderFunction
+- `460` TooltipCustomStyles
 
 ### Renk Bileşenleri
 
@@ -441,7 +449,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 366 bileşen (saf React)**
+**Toplam: 373 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
