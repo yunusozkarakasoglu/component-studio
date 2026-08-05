@@ -465,8 +465,6 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `577` SelectControlled
 - `578` SelectCustomStyles
 
-### Renk Bileşenleri
-
 ### Butonlar & Aksiyonlar
 #### Standart
 - `092` Button
