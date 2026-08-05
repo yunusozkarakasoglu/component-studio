@@ -363,7 +363,21 @@ export * from "./toggle-button-group-orientation"
 export * from "./toggle-button-group-full-width"
 export * from "./toggle-button-group-disabled"
 export * from "./toggle-button-group-without-separator"
-export * from "./modal"
+export {
+  Modal,
+  ModalBackdrop,
+  ModalBody,
+  ModalCloseTrigger,
+  ModalContainer,
+  ModalDialog,
+  ModalFooter,
+  ModalHeader,
+  ModalHeading,
+  ModalIcon,
+  ModalTrigger,
+  useModal,
+} from "./modal"
+export type { ModalContainerProps, ModalDialogProps, ModalPlacement, ModalProps, ModalScroll, ModalSize } from "./modal"
 export * from "./modal-default"
 export * from "./modal-sizes"
 export * from "./modal-placements"
