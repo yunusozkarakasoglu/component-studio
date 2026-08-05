@@ -2,7 +2,7 @@
  * TimeFieldOnSurface
  * Yüzey (Surface) üzerinde secondary variant örneği (saf React).
  * @id 584
- * @category Date
+ * @category Tarih
  * @subcategory TimeField
  */
 import { Label } from "@/components/ui/label"

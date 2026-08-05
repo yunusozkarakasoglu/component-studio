@@ -2,7 +2,7 @@
  * DateRangePickerDisabled
  * Devre dışı örnek (saf React).
  * @id 273
- * @category Date
+ * @category Tarih
  * @subcategory DateRange
  */
 import { DateRangePicker } from "@/components/ui/date-range-picker"

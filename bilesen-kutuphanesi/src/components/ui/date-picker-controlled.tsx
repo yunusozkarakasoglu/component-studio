@@ -2,7 +2,7 @@
  * DatePickerControlled
  * Kontrollü örnek (saf React).
  * @id 270
- * @category Date
+ * @category Tarih
  * @subcategory DatePicker
  */
 import { useState } from "react"

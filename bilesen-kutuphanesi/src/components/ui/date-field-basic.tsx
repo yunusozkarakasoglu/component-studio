@@ -2,7 +2,7 @@
  * DateFieldBasic
  * Kullanım örneği — temel tarih girişi (saf React).
  * @id 263
- * @category Date
+ * @category Tarih
  * @subcategory DateField
  */
 import { DateField } from "@/components/ui/date-field"

@@ -2,7 +2,7 @@
  * TimeFieldWithDescription
  * Açıklamalı örnek (saf React).
  * @id 585
- * @category Date
+ * @category Tarih
  * @subcategory TimeField
  */
 import { Description } from "@/components/ui/description"

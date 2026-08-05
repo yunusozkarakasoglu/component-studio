@@ -2,7 +2,7 @@
  * DatePickerDisabled
  * Devre dışı örnek (saf React).
  * @id 269
- * @category Date
+ * @category Tarih
  * @subcategory DatePicker
  */
 import { DatePicker } from "@/components/ui/date-picker"

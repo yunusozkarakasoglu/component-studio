@@ -14,7 +14,7 @@
  * isRequired · variant (primary/secondary) · saat/dakika segmentleri (input) ·
  * 12/24 saat biçimi (12 saatte AM/PM segmenti).
  * @id 579
- * @category Date
+ * @category Tarih
  * @subcategory TimeField
  */
 import { createContext, useContext, useState, type ReactNode } from "react"

@@ -2,7 +2,7 @@
  * TimeFieldWithSuffixIcon
  * İkon suffix'li örnek (saf React).
  * @id 582
- * @category Date
+ * @category Tarih
  * @subcategory TimeField
  */
 import { Clock } from "@/components/ui/icons"

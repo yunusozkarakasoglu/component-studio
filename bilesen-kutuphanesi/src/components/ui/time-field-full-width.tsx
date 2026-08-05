@@ -2,7 +2,7 @@
  * TimeFieldFullWidth
  * Tam genişlik örneği (saf React).
  * @id 588
- * @category Date
+ * @category Tarih
  * @subcategory TimeField
  */
 import { Label } from "@/components/ui/label"

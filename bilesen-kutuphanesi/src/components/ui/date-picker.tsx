@@ -6,7 +6,7 @@
  * Değerler içte "YYYY-MM-DD" string.
  * Gerektirir (ortak çekirdek): calendar
  * @id 267
- * @category Date
+ * @category Tarih
  * @subcategory DatePicker
  */
 import { useEffect, useRef, useState } from "react"

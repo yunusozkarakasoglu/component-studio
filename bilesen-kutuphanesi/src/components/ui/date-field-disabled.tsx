@@ -2,7 +2,7 @@
  * DateFieldDisabled
  * Devre dışı örnek (saf React).
  * @id 265
- * @category Date
+ * @category Tarih
  * @subcategory DateField
  */
 import { DateField } from "@/components/ui/date-field"

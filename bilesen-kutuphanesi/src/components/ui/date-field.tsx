@@ -5,7 +5,7 @@
  *   <DateField defaultValue="2025-02-14" label="Date" />
  * Değerler içte "YYYY-MM-DD" string.
  * @id 262
- * @category Date
+ * @category Tarih
  * @subcategory DateField
  */
 import { useState } from "react"

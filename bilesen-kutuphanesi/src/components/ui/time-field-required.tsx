@@ -2,7 +2,7 @@
  * TimeFieldRequired
  * Zorunlu alan örneği (saf React).
  * @id 586
- * @category Date
+ * @category Tarih
  * @subcategory TimeField
  */
 import { Label } from "@/components/ui/label"

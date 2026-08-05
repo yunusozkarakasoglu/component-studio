@@ -2,7 +2,7 @@
  * DateFieldControlled
  * Kontrollü örnek (saf React).
  * @id 266
- * @category Date
+ * @category Tarih
  * @subcategory DateField
  */
 import { useState } from "react"

@@ -2,7 +2,7 @@
  * DateRangePickerBasic
  * Kullanım örneği — tarih aralığı (saf React).
  * @id 272
- * @category Date
+ * @category Tarih
  * @subcategory DateRange
  */
 import { DateRangePicker } from "@/components/ui/date-range-picker"

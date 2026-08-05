@@ -6,7 +6,7 @@
  * Değer: [başlangıç, bitiş] — "YYYY-MM-DD" string'leri.
  * Gerektirir (ortak çekirdek): calendar
  * @id 271
- * @category Date
+ * @category Tarih
  * @subcategory DateRange
  */
 import { useEffect, useRef, useState } from "react"

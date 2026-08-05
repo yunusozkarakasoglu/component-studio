@@ -2,7 +2,7 @@
  * DateFieldVariants
  * Çeşitler örneği — varsayılan + surface (saf React).
  * @id 264
- * @category Date
+ * @category Tarih
  * @subcategory DateField
  */
 import { DateField } from "@/components/ui/date-field"

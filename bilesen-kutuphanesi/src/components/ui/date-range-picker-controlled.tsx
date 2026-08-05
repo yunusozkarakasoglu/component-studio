@@ -2,7 +2,7 @@
  * DateRangePickerControlled
  * Kontrollü örnek (saf React).
  * @id 274
- * @category Date
+ * @category Tarih
  * @subcategory DateRange
  */
 import { useState } from "react"

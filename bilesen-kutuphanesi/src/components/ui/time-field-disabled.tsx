@@ -2,7 +2,7 @@
  * TimeFieldDisabled
  * Devre dışı örnek (saf React).
  * @id 587
- * @category Date
+ * @category Tarih
  * @subcategory TimeField
  */
 import { Label } from "@/components/ui/label"

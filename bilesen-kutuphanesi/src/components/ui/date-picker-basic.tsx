@@ -2,7 +2,7 @@
  * DatePickerBasic
  * Kullanım örneği — tarih seçici (saf React).
  * @id 268
- * @category Date
+ * @category Tarih
  * @subcategory DatePicker
  */
 import { DatePicker } from "@/components/ui/date-picker"
