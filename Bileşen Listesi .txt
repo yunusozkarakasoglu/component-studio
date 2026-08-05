@@ -345,6 +345,18 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `481` MenuCustomTrigger
 - `482` MenuLongPress
 - `483` MenuWithKeyboardShortcuts
+### Navigasyon
+#### Pagination
+- `484` Pagination
+- `485` PaginationBasic
+- `486` PaginationSizes
+- `487` PaginationDisabled
+- `488` PaginationSimple
+- `489` PaginationControlled
+- `490` PaginationWithEllipsis
+- `491` PaginationWithSummary
+- `492` PaginationCustomIcons
+- `493` PaginationCustomStyles
 
 ### Renk Bileşenleri
 
@@ -474,7 +486,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 396 bileşen (saf React)**
+**Toplam: 406 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

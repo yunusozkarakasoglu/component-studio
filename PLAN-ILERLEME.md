@@ -60,7 +60,7 @@
 
 ## ⬜ Adım 4 — Navigasyon + Butonlar (4 element)
 
-- [ ] **21. Pagination** — pagination-hero-ui.md → Navigasyon
+- [x] **21. Pagination** — pagination-hero-ui.md → Navigasyon (484 + 485-493)
 - [ ] **22. Tabs** — tabs-hero-ui.md → Navigasyon
 - [ ] **23. ButtonGroup** — button-group--hero-ui.md → Butonlar & Aksiyonlar
 - [ ] **24. Toolbar** — toolbar-hero-ui.md → Butonlar & Aksiyonlar
@@ -93,4 +93,4 @@
 - Boş kategoriler dolar: **Navigasyon**, **Overlay**, **Veri Gösterimi** (kısmen dolu).
 - Yeni kategoriler: **Seçim**, **Yükleme & İlerleme**.
 
-**İlerleme:** ✅ 31/56 aile (Adım 3: 5/5 ✅) · ⬜ 25/56 kaldı — sonraki id: **484**
+**İlerleme:** ✅ 32/56 aile (Adım 4: 1/4) · ⬜ 24/56 kaldı — sonraki id: **494**
