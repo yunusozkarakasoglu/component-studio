@@ -61,7 +61,8 @@ const components = items.map((item) => {
     const m = code.match(/\/\*\*\n \* (.+?)\n/) // JSDoc ilk satır
     if (m) description = m[1].trim()
   }
-  return { ...item, file, exists, code, description, path: join(UI_DIR, file) }
+  const srcMatch = code.match(/@source\s+(.+)/)
+  return { ...item, source: srcMatch ? srcMatch[1].trim() : "heroui", file, exists, code, description, path: join(UI_DIR, file) }
 })
 
 /* ---------- Özel (kullanıcı) bileşenleri: @id/@category etiketli dosyalar ---------- */
@@ -73,6 +74,7 @@ const components = items.map((item) => {
     const idMatch = code.match(/@id\s+(\d+)/)
     const catMatch = code.match(/@category\s+(.+)/)
     const subMatch = code.match(/@subcategory\s+(.+)/)
+    const srcMatch = code.match(/@source\s+(.+)/)
     const descMatch = code.match(/@description\s+(.+)/)
     if (!idMatch) continue
     const slugName = f.slice(0, -4)
@@ -81,6 +83,7 @@ const components = items.map((item) => {
       name: pascal(slugName),
       category: catMatch ? catMatch[1].trim() : "Genel",
       subcategory: subMatch ? subMatch[1].trim() : "",
+      source: srcMatch ? srcMatch[1].trim() : "heroui",
       file: f,
       exists: true,
       code,

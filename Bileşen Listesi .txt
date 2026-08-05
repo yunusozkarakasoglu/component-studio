@@ -249,6 +249,26 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `386` SliderRenderFunction
 - `387` SliderCustomStyles
 - `388` SliderControlled
+#### ShadcnInput
+- `615` ShadcnInput
+- `616` ShadcnField
+- `617` ShadcnInputGroup
+- `618` ShadcnButtonGroup
+- `619` ShadcnInputBasic
+- `620` ShadcnInputField
+- `621` ShadcnInputFieldgroup
+- `622` ShadcnInputDisabled
+- `623` ShadcnInputInvalid
+- `624` ShadcnInputFile
+- `625` ShadcnInputInline
+- `626` ShadcnInputGrid
+- `627` ShadcnInputRequired
+- `628` ShadcnInputBadge
+- `629` ShadcnInputInputGroup
+- `630` ShadcnInputButtonGroup
+- `631` ShadcnInputForm
+- `632` ShadcnInputRtl
+
 ### Seçim
 #### RadioGroup
 - `389` RadioGroup
@@ -559,6 +579,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `613` KbdInstructionalText
 - `614` KbdSpecialKeys
 
+
 - `156` Avatar
 - `157` AvatarBasic
 - `158` AvatarSizes
@@ -621,7 +642,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 527 bileşen (saf React)**
+**Toplam: 545 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

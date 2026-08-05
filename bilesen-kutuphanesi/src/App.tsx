@@ -8,7 +8,7 @@ import { NewComponentWizard } from "@/components/ui/new-component-wizard"
 import { DashboardView } from "./dashboard-view"
 import { LayoutsView } from "./layouts-view"
 
-type CompRecord = { id: string; name: string; category: string; subcategory?: string; description: string; file: string; code: string; exists: boolean; path: string }
+type CompRecord = { id: string; name: string; category: string; subcategory?: string; source?: string; description: string; file: string; code: string; exists: boolean; path: string }
 
 /* ---------- Hata sınırı ---------- */
 class ErrorBoundary extends Component<{ children: ReactNode }, { err: Error | null }> {
@@ -722,6 +722,10 @@ export default function Studio() {
 
   const term = q.toLowerCase().trim()
 
+  // Kaynak filtresi: tumu → hepsi · heroui → heroui/boş · mantine/shadcn → eşleşen
+  const sourceOk = (c: { source?: string }) =>
+    source === "tumu" || (source === "heroui" ? (c.source ?? "heroui") === "heroui" : (c.source ?? "heroui") === source)
+
   const cats = useMemo(() => {
     if (!registry) return []
     const sabit = Array.isArray(registry.categories) ? registry.categories : []
@@ -738,6 +742,7 @@ export default function Studio() {
     const m: Record<string, Record<string, CompRecord[]>> = {}
     if (!registry) return m
     for (const c of registry.components) {
+      if (!sourceOk(c)) continue
       if (term && !(c.id.includes(term) || c.name.toLowerCase().includes(term))) continue
       const sub = c.subcategory || ""
       ;(m[c.category] ??= {})[sub] ??= []
@@ -750,6 +755,7 @@ export default function Studio() {
     if (!registry) return []
     return registry.components.filter(
       (c) =>
+        sourceOk(c) &&
         (cat === "Tümü" || c.category === cat) &&
         (!subCat || c.subcategory === subCat) &&
         (!term || c.id.includes(term) || c.name.toLowerCase().includes(term) || c.description.toLowerCase().includes(term))
