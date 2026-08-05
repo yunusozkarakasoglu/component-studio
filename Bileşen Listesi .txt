@@ -253,6 +253,23 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `398` RadioGroupCustomIndicator
 - `399` RadioGroupRenderFunction
 - `400` RadioGroupCustomStyles
+#### Switch
+- `401` Switch
+- `402` SwitchBasic
+- `403` SwitchSizes
+- `404` SwitchWithIcons
+- `405` SwitchDisabled
+- `406` SwitchWithoutLabel
+- `407` SwitchWithDescription
+- `408` SwitchDefaultSelected
+- `409` SwitchControlled
+- `410` SwitchLabelPosition
+- `411` SwitchGroup
+- `412` SwitchGroupHorizontal
+- `413` SwitchForm
+- `414` SwitchRenderProps
+- `415` SwitchRenderFunction
+- `416` SwitchCustomStyles
 
 ### Renk Bileşenleri
 
@@ -382,7 +399,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 313 bileşen (saf React)**
+**Toplam: 329 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
