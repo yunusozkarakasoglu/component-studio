@@ -45,7 +45,7 @@
 
 ## ⬜ Adım 2 — Seçim *(yeni kategori)* (4 element)
 
-- [ ] **12. RadioGroup** — radio-button-hero-ui.md → Seçim
+- [x] **12. RadioGroup** — radio-button-hero-ui.md → Seçim (389 + 390-400)
 - [ ] **13. Switch** — switch-hero-ui.md → Seçim
 - [ ] **14. ToggleButton** — toggle-button-hero-ui.md → Seçim
 - [ ] **15. ToggleButtonGroup** — toggle-button-group-hero-ui.md → Seçim
@@ -93,4 +93,4 @@
 - Boş kategoriler dolar: **Navigasyon**, **Overlay**, **Veri Gösterimi** (kısmen dolu).
 - Yeni kategoriler: **Seçim**, **Yükleme & İlerleme**.
 
-**İlerleme:** ✅ 22/56 aile (Adım 1: 11/11 ✅) · ⬜ 34/56 kaldı — sonraki id: **389**
+**İlerleme:** ✅ 23/56 aile (Adım 2: 1/4) · ⬜ 33/56 kaldı — sonraki id: **401**
