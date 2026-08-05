@@ -5,6 +5,8 @@ import { findRootInfo, injectStyleAt } from "@/lib/findRootInfo"
 import { COMPONENT_META } from "@/components-meta"
 import { SAMPLES } from "./samples"
 import { NewComponentWizard } from "@/components/ui/new-component-wizard"
+import { DashboardView } from "./dashboard-view"
+import { LayoutsView } from "./layouts-view"
 
 type CompRecord = { id: string; name: string; category: string; subcategory?: string; description: string; file: string; code: string; exists: boolean; path: string }
 
@@ -685,6 +687,8 @@ export default function Studio() {
   const [registry, setRegistry] = useState<{ components: CompRecord[]; categories?: string[] } | null>(null)
   const [wizardOpen, setWizardOpen] = useState(() => window.location.hash === "#/yeni-bilesen")
   const [pendingCount, setPendingCount] = useState(0)
+  const [view, setView] = useState<"dashboard" | "bilesenler" | "layoutlar">("dashboard")
+  const [source, setSource] = useState<"tumu" | "heroui" | "mantine" | "shadcn">("tumu")
 
   // hash route: #/yeni-bilesen → sihirbaz
   useEffect(() => {
@@ -795,6 +799,14 @@ export default function Studio() {
               </Text>
             </div>
           </div>
+          <nav className="flex items-center gap-1 rounded-lg border border-black/25 bg-muted/30 p-0.5">
+            {([["dashboard", "📊 Dashboard"], ["bilesenler", "🧩 Bileşenler"], ["layoutlar", "📐 Layoutlar"]] as const).map(([v, l]) => (
+              <button key={v} onClick={() => setView(v)}
+                className={cn("rounded-md px-2.5 py-1 text-xs font-medium transition-colors", view === v ? "bg-blue-600 text-white" : "text-foreground hover:bg-muted")}>
+                {l}
+              </button>
+            ))}
+          </nav>
           <div className="hidden items-center gap-2 text-[11px] text-muted-foreground sm:flex">
             <span>💾 Kaydet → HMR</span><span>·</span><span>🔄 DB Yenile</span>
             {pendingCount > 0 && (
@@ -809,11 +821,44 @@ export default function Studio() {
           </div>
         </header>
 
+        {/* Breadcrumb — konum göstergesi */}
+        <div className="flex shrink-0 items-center gap-1 border-b border-black/20 bg-muted/20 px-4 py-1 text-[11px] text-muted-foreground">
+          <span className="font-medium text-foreground">{view === "dashboard" ? "📊 Dashboard" : view === "layoutlar" ? "📐 Layoutlar" : "🧩 Bileşenler"}</span>
+          {view === "bilesenler" && (
+            <>
+              {cat !== "Tümü" && <><span>/</span><button onClick={() => { setCat("Tümü"); setSubCat("") }} className="hover:underline">{cat}</button></>}
+              {subCat && <><span>/</span><span className="text-foreground">{subCat}</span></>}
+              {edit?.rec?.name && <><span>/</span><span className="font-medium text-foreground">{edit.rec.name}</span></>}
+            </>
+          )}
+          <span className="ml-auto">kaynak: <button onClick={() => setSource(source === "tumu" ? "tumu" : "tumu")} className="hover:underline">{source}</button></span>
+        </div>
+
         <div className="flex min-h-0 flex-1">
           {/* SOL PANEL */}
-          {panelOpen && (
+          {(view === "dashboard" || view === "layoutlar") && (
+            view === "dashboard"
+              ? <DashboardView registry={registry} onOpenCategory={(c) => { setView("bilesenler"); setCat(c); setSubCat("") }} onNewComponent={() => { window.location.hash = "#/yeni-bilesen" }} />
+              : <LayoutsView layouts={[]} onNewComponent={() => { window.location.hash = "#/yeni-bilesen" }} />
+          )}
+
+          {view === "bilesenler" && panelOpen && (
             <aside className="flex w-60 shrink-0 flex-col border-r border-black/30 bg-background min-h-0">
               <div className="shrink-0 space-y-2 border-b border-black/30 p-2.5">
+                {/* Kaynak filtre — bileşen kaynakları */}
+                <div className="flex gap-1 rounded-lg border border-black/25 bg-muted/30 p-0.5">
+                  {([["tumu", "Tümü"], ["heroui", "HeroUI"], ["mantine", "Mantine"], ["shadcn", "shadcn"]] as const).map(([v, l]) => (
+                    <button key={v} onClick={() => setSource(v)}
+                      className={cn("flex-1 rounded-md px-1.5 py-1 text-[10px] font-medium transition-colors", source === v ? "bg-blue-600 text-white" : "text-foreground hover:bg-muted")}>
+                      {l}
+                    </button>
+                  ))}
+                </div>
+                {source !== "tumu" && source !== "heroui" && (
+                  <p className="rounded-md bg-amber-500/10 px-2 py-1.5 text-[10px] text-amber-700">
+                    {source === "mantine" ? "Mantine kaynak klasörü hazır — bileşenler entegrasyon bekliyor (Masaüstü/mantine-components-setup)." : "shadcn/ui kaynak klasörü hazır — bileşenler entegrasyon bekliyor (Masaüstü/shadcn-components-setup)."}
+                  </p>
+                )}
                 <button
                   onClick={() => { window.location.hash = "#/yeni-bilesen" }}
                   className="flex w-full items-center justify-center gap-1.5 rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
@@ -896,6 +941,7 @@ export default function Studio() {
           )}
 
           {/* ANA ALAN */}
+          {view === "bilesenler" && (
           <main className="min-h-0 flex-1 overflow-y-auto p-4">
             {filtered.length ? (
                 <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
@@ -928,6 +974,7 @@ export default function Studio() {
                 <Text className="py-16 text-center text-sm text-muted-foreground">Sonuç yok</Text>
               )}
           </main>
+          )}
         </div>
       </div>
 
