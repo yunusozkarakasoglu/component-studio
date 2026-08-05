@@ -332,6 +332,19 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `469` ToastPlacements
 - `470` ToastCustomToast
 - `471` ToastCustomStyles
+#### Menu
+- `472` Menu
+- `473` MenuDefault
+- `474` MenuWithIcons
+- `475` MenuWithDescriptions
+- `476` MenuDisabledItems
+- `477` MenuWithSections
+- `478` MenuMultipleSelection
+- `479` MenuControlled
+- `480` MenuSingleSelection
+- `481` MenuCustomTrigger
+- `482` MenuLongPress
+- `483` MenuWithKeyboardShortcuts
 
 ### Renk Bileşenleri
 
@@ -461,7 +474,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 384 bileşen (saf React)**
+**Toplam: 396 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
