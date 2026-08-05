@@ -33,7 +33,7 @@
 
 - [x] **1. TextField** — text-field-hero-ui.md (+ form/text-field-hero-ui.md) → Form Elemanları (285-298 + Input/TextArea/FieldError çekirdek)
 - [x] **2. TextArea** — text-area-hero-ui.md (+ form/text-area-hero-ui.md) → Form Elemanları (300 çekirdek + 302-308)
-- [ ] **3. NumberField** — form/number-field-hero-ui.md → Form Elemanları
+- [x] **3. NumberField** — form/number-field-hero-ui.md → Form Elemanları (309 + 310-326)
 - [ ] **4. Input** — form/input-hero-ui.md → Form Elemanları
 - [ ] **5. InputGroup** — form/input-group-hero-ui.md → Form Elemanları
 - [ ] **6. InputOTP** — form/input-OTP-hero-ui.md → Form Elemanları
@@ -93,4 +93,4 @@
 - Boş kategoriler dolar: **Navigasyon**, **Overlay**, **Veri Gösterimi** (kısmen dolu).
 - Yeni kategoriler: **Seçim**, **Yükleme & İlerleme**.
 
-**İlerleme:** ✅ 21/56 aile (Adım 1: 2/11) · ⬜ 35/56 kaldı — sonraki id: **309**
+**İlerleme:** ✅ 21/56 aile (Adım 1: 3/11) · ⬜ 35/56 kaldı — sonraki id: **327**
