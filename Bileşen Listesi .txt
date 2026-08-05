@@ -398,6 +398,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `528` TableCustomCells
 - `529` TableCustomStyles
 ### Yükleme & İlerleme
+- `093` Spinner
 #### ProgressBar
 - `530` ProgressBar
 - `531` ProgressBarBasic
@@ -439,7 +440,6 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 ### Butonlar & Aksiyonlar
 #### Standart
 - `092` Button
-- `093` Spinner
 - `094` ButtonVariants
 - `095` ButtonSizes
 - `096` ButtonWithIcons

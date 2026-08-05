@@ -26,7 +26,7 @@
 - [x] **Drawer** — pannel-drawer-hero-ui.md → Panel & Drawer (275-284)
 - [x] **ListBox** — listbox-hero-ui.md → Form Elemanları (138)
 - [x] **SearchField** — form/search-field-hero-ui.md → Form Elemanları (137)
-- [x] **Spinner** — spinner-hero-ui.md → Butonlar & Aksiyonlar (093) *(opsiyonel: Yükleme'ye taşınacak)*
+- [x] **Spinner** — spinner-hero-ui.md → Yükleme & İlerleme (093) ✅ taşındı
 - [x] **TagGroup** — tags-group-hero-ui.md → Veri Gösterimi (139)
 
 ## ✅ Adım 1 — Form Elemanları (11 element) — TAMAMLANDI

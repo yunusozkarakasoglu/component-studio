@@ -3,7 +3,7 @@
  * bileşen kütüphanesi loading durumu için — dönen yükleme göstergesi (saf React).
  * Button isPending durumunda içerik olarak kullanılır.
  * @id 093
- * @category Butonlar & Aksiyonlar
+ * @category Yükleme & İlerleme
  */
 import { cn } from "@/lib/utils"
 import { Loader2 } from "@/components/ui/icons"
