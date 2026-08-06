@@ -874,7 +874,7 @@ export default function Studio() {
               : <LayoutsView layouts={[]} />
           )}
 
-          {view === "bilesenler" && panelOpen && (
+          {view === "bilesenler" && panelOpen && galleryView === "kart" && (
             <aside className="flex w-60 shrink-0 flex-col border-r border-black/30 bg-background min-h-0">
               <div className="shrink-0 space-y-2 border-b border-black/30 p-2.5">
                 {/* Kaynak filtre — bileşen kaynakları */}
@@ -972,8 +972,25 @@ export default function Studio() {
           {view === "bilesenler" && (
           <main className="min-h-0 flex-1 overflow-y-auto p-4">
             {/* Görünüm değiştirici: Kart / Tablo */}
-            <div className="mb-3 flex items-center justify-between">
-              <Text className="text-xs text-muted-foreground">{filtered.length} bileşen{source !== "tumu" && ` · kaynak: ${source}`}</Text>
+            <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
+                <Text className="text-xs text-muted-foreground">{filtered.length} bileşen{source !== "tumu" && ` · kaynak: ${source}`}</Text>
+                {galleryView === "tablo" && (
+                  <>
+                    <SearchField aria-label="Ara" value={q} onChange={setQ} placeholder="Ara: 008, buton, renk…" className="h-8 w-56 border-black/40 text-xs" />
+                    {/* 4 ana kaynak hızlı filtre */}
+                    <div className="flex gap-1 rounded-lg border border-black/25 bg-muted/30 p-0.5">
+                      {([["heroui", "HeroUI"], ["mantine", "Mantine"], ["shadcn", "shadcn"], ["ozel", "Özel"]] as const).map(([v, l]) => (
+                        <button key={v} onClick={() => setSource(source === v ? "tumu" : v)}
+                          className={cn("rounded-md px-2 py-1 text-[11px] font-medium transition-colors",
+                            source === v ? "bg-blue-600 text-white" : "text-foreground hover:bg-muted")}>
+                          {l}
+                        </button>
+                      ))}
+                    </div>
+                  </>
+                )}
+              </div>
               <div className="flex gap-1 rounded-lg border border-black/25 bg-muted/30 p-0.5">
                 {([["kart", "▦ Kart"], ["tablo", "☰ Tablo"]] as const).map(([v, l]) => (
                   <button key={v} onClick={() => setGalleryView(v)}
