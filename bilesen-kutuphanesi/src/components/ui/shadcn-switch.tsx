@@ -12,7 +12,7 @@
 import type { InputHTMLAttributes } from "react"
 import { cn } from "@/lib/utils"
 
-interface ShadcnSwitchProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "onChange" | "checked" | "defaultChecked"> {
+interface ShadcnSwitchProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "onChange" | "checked" | "defaultChecked" | "size"> {
   checked?: boolean
   defaultChecked?: boolean
   onCheckedChange?: (checked: boolean) => void
