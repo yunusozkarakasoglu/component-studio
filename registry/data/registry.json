@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-05T10:08:27.949Z",
+  "generatedAt": "2026-08-06T11:15:10.355Z",
   "counts": {
-    "components": 545,
-    "ready": 545,
+    "components": 548,
+    "ready": 548,
     "layouts": 0
   },
   "categories": [
@@ -2774,6 +2774,42 @@
       "code": "/**\n * ShadcnInputRtl\n * Sağdan sola (RTL) input örneği (saf React, shadcn kaynaklı).\n * @id 632\n * @category Form Elemanları\n * @subcategory ShadcnInput\n * @source shadcn\n */\nimport { ShadcnField, ShadcnFieldLabel } from \"@/components/ui/shadcn-field\"\nimport { ShadcnInput } from \"@/components/ui/shadcn-input\"\n\nfunction ShadcnInputRtl() {\n  return (\n    <ShadcnField className=\"w-full max-w-72\" dir=\"rtl\">\n      <ShadcnFieldLabel htmlFor=\"input-rtl\">الاسم</ShadcnFieldLabel>\n      <ShadcnInput id=\"input-rtl\" placeholder=\"أدخل اسمك\" className=\"text-right\" />\n    </ShadcnField>\n  )\n}\n\nexport { ShadcnInputRtl }\n",
       "description": "ShadcnInputRtl",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-input-rtl.tsx"
+    },
+    {
+      "id": "633",
+      "name": "ShadcnLabel",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnLabel",
+      "source": "shadcn",
+      "file": "shadcn-label.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnLabel\n * Saf React bileşen (bağımlılıksız) — shadcn/ui kaynaklı.\n * Erişilebilir etiket — kontrollerle ilişkilendirilir (htmlFor).\n *   <ShadcnLabel htmlFor=\"email\">Your email address</ShadcnLabel>\n * @id 633\n * @category Form Elemanları\n * @subcategory ShadcnLabel\n * @source shadcn\n */\nimport type { LabelHTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface ShadcnLabelProps extends LabelHTMLAttributes<HTMLLabelElement> {}\n\nfunction ShadcnLabel({ className, ...props }: ShadcnLabelProps) {\n  return (\n    <label\n      data-slot=\"shadcn-label\"\n      className={cn(\n        \"text-sm font-medium text-foreground\",\n        \"group-data-disabled:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { ShadcnLabel }\nexport type { ShadcnLabelProps }\n",
+      "description": "ShadcnLabel",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-label.tsx"
+    },
+    {
+      "id": "634",
+      "name": "ShadcnLabelDemo",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnLabel",
+      "source": "shadcn",
+      "file": "shadcn-label-demo.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnLabelDemo\n * Temel örnek — checkbox + etiket (saf React, shadcn kaynaklı).\n * Checkbox bileşeni ayrı element olduğundan native input kullanılır.\n * @id 634\n * @category Form Elemanları\n * @subcategory ShadcnLabel\n * @source shadcn\n */\nimport { ShadcnLabel } from \"@/components/ui/shadcn-label\"\n\nfunction ShadcnLabelDemo() {\n  return (\n    <div className=\"flex items-center gap-2\">\n      <input id=\"terms\" type=\"checkbox\" className=\"size-4 accent-blue-600\" />\n      <ShadcnLabel htmlFor=\"terms\">Accept terms and conditions</ShadcnLabel>\n    </div>\n  )\n}\n\nexport { ShadcnLabelDemo }\n",
+      "description": "ShadcnLabelDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-label-demo.tsx"
+    },
+    {
+      "id": "635",
+      "name": "ShadcnLabelRtl",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnLabel",
+      "source": "shadcn",
+      "file": "shadcn-label-rtl.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnLabelRtl\n * RTL örneği — Arapça etiket (saf React, shadcn kaynaklı).\n * @id 635\n * @category Form Elemanları\n * @subcategory ShadcnLabel\n * @source shadcn\n */\nimport { ShadcnLabel } from \"@/components/ui/shadcn-label\"\n\nfunction ShadcnLabelRtl() {\n  return (\n    <div className=\"flex items-center gap-2\" dir=\"rtl\">\n      <input id=\"terms-rtl\" type=\"checkbox\" className=\"size-4 accent-blue-600\" />\n      <ShadcnLabel htmlFor=\"terms-rtl\">قبول الشروط والأحكام</ShadcnLabel>\n    </div>\n  )\n}\n\nexport { ShadcnLabelRtl }\n",
+      "description": "ShadcnLabelRtl",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-label-rtl.tsx"
     },
     {
       "id": "389",

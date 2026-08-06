@@ -268,6 +268,10 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `630` ShadcnInputButtonGroup
 - `631` ShadcnInputForm
 - `632` ShadcnInputRtl
+#### ShadcnLabel
+- `633` ShadcnLabel
+- `634` ShadcnLabelDemo
+- `635` ShadcnLabelRtl
 
 ### Seçim
 #### RadioGroup
@@ -642,7 +646,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 545 bileşen (saf React)**
+**Toplam: 548 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

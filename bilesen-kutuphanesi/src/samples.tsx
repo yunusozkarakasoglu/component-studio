@@ -608,4 +608,7 @@ export const SAMPLES: Record<string, ReactNode> = {
   "630": <U.ShadcnInputButtonGroup />,
   "631": <U.ShadcnInputForm />,
   "632": <U.ShadcnInputRtl />,
+  "633": <U.ShadcnLabel />,
+  "634": <U.ShadcnLabelDemo />,
+  "635": <U.ShadcnLabelRtl />,
 }
