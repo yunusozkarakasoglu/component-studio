@@ -611,4 +611,11 @@ export const SAMPLES: Record<string, ReactNode> = {
   "633": <U.ShadcnLabel />,
   "634": <U.ShadcnLabelDemo />,
   "635": <U.ShadcnLabelRtl />,
+  "636": <U.ShadcnTextarea />,
+  "637": <U.ShadcnTextareaDemo />,
+  "638": <U.ShadcnTextareaField />,
+  "639": <U.ShadcnTextareaDisabled />,
+  "640": <U.ShadcnTextareaInvalid />,
+  "641": <U.ShadcnTextareaButton />,
+  "642": <U.ShadcnTextareaRtl />,
 }

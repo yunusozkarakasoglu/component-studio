@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-06T11:15:10.355Z",
+  "generatedAt": "2026-08-06T11:30:51.805Z",
   "counts": {
-    "components": 548,
-    "ready": 548,
+    "components": 555,
+    "ready": 555,
     "layouts": 0
   },
   "categories": [
@@ -2810,6 +2810,90 @@
       "code": "/**\n * ShadcnLabelRtl\n * RTL örneği — Arapça etiket (saf React, shadcn kaynaklı).\n * @id 635\n * @category Form Elemanları\n * @subcategory ShadcnLabel\n * @source shadcn\n */\nimport { ShadcnLabel } from \"@/components/ui/shadcn-label\"\n\nfunction ShadcnLabelRtl() {\n  return (\n    <div className=\"flex items-center gap-2\" dir=\"rtl\">\n      <input id=\"terms-rtl\" type=\"checkbox\" className=\"size-4 accent-blue-600\" />\n      <ShadcnLabel htmlFor=\"terms-rtl\">قبول الشروط والأحكام</ShadcnLabel>\n    </div>\n  )\n}\n\nexport { ShadcnLabelRtl }\n",
       "description": "ShadcnLabelRtl",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-label-rtl.tsx"
+    },
+    {
+      "id": "636",
+      "name": "ShadcnTextarea",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnTextarea",
+      "source": "shadcn",
+      "file": "shadcn-textarea.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnTextarea\n * Saf React bileşen (bağımlılıksız) — shadcn/ui kaynaklı.\n * Çok satırlı metin alanı.\n *   <ShadcnTextarea placeholder=\"Type your message here.\" />\n * @id 636\n * @category Form Elemanları\n * @subcategory ShadcnTextarea\n * @source shadcn\n */\nimport type { TextareaHTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface ShadcnTextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {}\n\nfunction ShadcnTextarea({ className, ...props }: ShadcnTextareaProps) {\n  return (\n    <textarea\n      data-slot=\"shadcn-textarea\"\n      className={cn(\n        \"flex min-h-16 w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground shadow-xs transition-colors outline-none\",\n        \"placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/40\",\n        \"disabled:cursor-not-allowed disabled:opacity-50\",\n        \"aria-invalid:border-red-500 aria-invalid:focus-visible:ring-red-500/30\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { ShadcnTextarea }\nexport type { ShadcnTextareaProps }\n",
+      "description": "ShadcnTextarea",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-textarea.tsx"
+    },
+    {
+      "id": "637",
+      "name": "ShadcnTextareaDemo",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnTextarea",
+      "source": "shadcn",
+      "file": "shadcn-textarea-demo.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnTextareaDemo\n * Temel örnek — placeholder'lı metin alanı (saf React, shadcn kaynaklı).\n * @id 637\n * @category Form Elemanları\n * @subcategory ShadcnTextarea\n * @source shadcn\n */\nimport { ShadcnTextarea } from \"@/components/ui/shadcn-textarea\"\n\nfunction ShadcnTextareaDemo() {\n  return <ShadcnTextarea placeholder=\"Type your message here.\" />\n}\n\nexport { ShadcnTextareaDemo }\n",
+      "description": "ShadcnTextareaDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-textarea-demo.tsx"
+    },
+    {
+      "id": "638",
+      "name": "ShadcnTextareaField",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnTextarea",
+      "source": "shadcn",
+      "file": "shadcn-textarea-field.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnTextareaField\n * Field compound örneği — etiket + açıklama + metin alanı (saf React, shadcn kaynaklı).\n * @id 638\n * @category Form Elemanları\n * @subcategory ShadcnTextarea\n * @source shadcn\n */\nimport { ShadcnField, ShadcnFieldDescription, ShadcnFieldLabel } from \"@/components/ui/shadcn-field\"\nimport { ShadcnTextarea } from \"@/components/ui/shadcn-textarea\"\n\nfunction ShadcnTextareaField() {\n  return (\n    <ShadcnField>\n      <ShadcnFieldLabel htmlFor=\"textarea-message\">Message</ShadcnFieldLabel>\n      <ShadcnFieldDescription>Enter your message below.</ShadcnFieldDescription>\n      <ShadcnTextarea id=\"textarea-message\" placeholder=\"Type your message here.\" />\n    </ShadcnField>\n  )\n}\n\nexport { ShadcnTextareaField }\n",
+      "description": "ShadcnTextareaField",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-textarea-field.tsx"
+    },
+    {
+      "id": "639",
+      "name": "ShadcnTextareaDisabled",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnTextarea",
+      "source": "shadcn",
+      "file": "shadcn-textarea-disabled.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnTextareaDisabled\n * Devre dışı örnek — data-disabled + disabled (saf React, shadcn kaynaklı).\n * @id 639\n * @category Form Elemanları\n * @subcategory ShadcnTextarea\n * @source shadcn\n */\nimport { ShadcnField, ShadcnFieldLabel } from \"@/components/ui/shadcn-field\"\nimport { ShadcnTextarea } from \"@/components/ui/shadcn-textarea\"\n\nfunction ShadcnTextareaDisabled() {\n  return (\n    <ShadcnField data-disabled>\n      <ShadcnFieldLabel htmlFor=\"textarea-disabled\">Message</ShadcnFieldLabel>\n      <ShadcnTextarea id=\"textarea-disabled\" placeholder=\"Type your message here.\" disabled />\n    </ShadcnField>\n  )\n}\n\nexport { ShadcnTextareaDisabled }\n",
+      "description": "ShadcnTextareaDisabled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-textarea-disabled.tsx"
+    },
+    {
+      "id": "640",
+      "name": "ShadcnTextareaInvalid",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnTextarea",
+      "source": "shadcn",
+      "file": "shadcn-textarea-invalid.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnTextareaInvalid\n * Geçersiz örnek — data-invalid + aria-invalid (saf React, shadcn kaynaklı).\n * @id 640\n * @category Form Elemanları\n * @subcategory ShadcnTextarea\n * @source shadcn\n */\nimport { ShadcnField, ShadcnFieldDescription, ShadcnFieldLabel } from \"@/components/ui/shadcn-field\"\nimport { ShadcnTextarea } from \"@/components/ui/shadcn-textarea\"\n\nfunction ShadcnTextareaInvalid() {\n  return (\n    <ShadcnField data-invalid>\n      <ShadcnFieldLabel htmlFor=\"textarea-invalid\">Message</ShadcnFieldLabel>\n      <ShadcnTextarea id=\"textarea-invalid\" placeholder=\"Type your message here.\" aria-invalid />\n      <ShadcnFieldDescription>Please enter a valid message.</ShadcnFieldDescription>\n    </ShadcnField>\n  )\n}\n\nexport { ShadcnTextareaInvalid }\n",
+      "description": "ShadcnTextareaInvalid",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-textarea-invalid.tsx"
+    },
+    {
+      "id": "641",
+      "name": "ShadcnTextareaButton",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnTextarea",
+      "source": "shadcn",
+      "file": "shadcn-textarea-button.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnTextareaButton\n * Butonlu örnek — metin alanı + gönder butonu (saf React, shadcn kaynaklı).\n * Buton: kütüphanenin mevcut Button'ı (Heroui — saf React).\n * @id 641\n * @category Form Elemanları\n * @subcategory ShadcnTextarea\n * @source shadcn\n */\nimport { Button } from \"@/components/ui/button\"\nimport { ShadcnTextarea } from \"@/components/ui/shadcn-textarea\"\n\nfunction ShadcnTextareaButton() {\n  return (\n    <div className=\"grid w-full gap-2\">\n      <ShadcnTextarea placeholder=\"Type your message here.\" />\n      <Button className=\"w-fit\">Send message</Button>\n    </div>\n  )\n}\n\nexport { ShadcnTextareaButton }\n",
+      "description": "ShadcnTextareaButton",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-textarea-button.tsx"
+    },
+    {
+      "id": "642",
+      "name": "ShadcnTextareaRtl",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnTextarea",
+      "source": "shadcn",
+      "file": "shadcn-textarea-rtl.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnTextareaRtl\n * RTL örneği — Arapça metin alanı (saf React, shadcn kaynaklı).\n * @id 642\n * @category Form Elemanları\n * @subcategory ShadcnTextarea\n * @source shadcn\n */\nimport { ShadcnField, ShadcnFieldDescription, ShadcnFieldLabel } from \"@/components/ui/shadcn-field\"\nimport { ShadcnTextarea } from \"@/components/ui/shadcn-textarea\"\n\nfunction ShadcnTextareaRtl() {\n  return (\n    <ShadcnField dir=\"rtl\" className=\"w-full max-w-xs\">\n      <ShadcnFieldLabel htmlFor=\"feedback\" dir=\"rtl\">التعليقات</ShadcnFieldLabel>\n      <ShadcnTextarea id=\"feedback\" dir=\"rtl\" placeholder=\"تعليقاتك تساعدنا على التحسين...\" rows={4} />\n      <ShadcnFieldDescription dir=\"rtl\">شاركنا أفكارك حول خدمتنا.</ShadcnFieldDescription>\n    </ShadcnField>\n  )\n}\n\nexport { ShadcnTextareaRtl }\n",
+      "description": "ShadcnTextareaRtl",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-textarea-rtl.tsx"
     },
     {
       "id": "389",

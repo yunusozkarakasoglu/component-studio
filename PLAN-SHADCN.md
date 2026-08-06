@@ -36,7 +36,8 @@
 ### Adım 1 — Form Elemanları (9 element)
 - [x] **Input** — 615-632 (çekirdek + Field compound + InputGroup + ButtonGroup + 14 örnek)
 - [x] **Label** — 633-635 (çekirdek + Demo + RTL)
-Textarea → Kbd → Field → Input Group → Input OTP → Native Select → Slider
+- [x] **Textarea** — 636-642 (çekirdek + Demo/Field/Disabled/Invalid/Button/RTL)
+Kbd → Field → Input Group → Input OTP → Native Select → Slider
 
 ### Adım 2 — Seçim (5)
 Checkbox → Switch → Radio Group → Toggle → Toggle Group
