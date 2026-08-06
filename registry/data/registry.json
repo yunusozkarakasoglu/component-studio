@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-06T12:12:49.484Z",
+  "generatedAt": "2026-08-06T12:15:32.645Z",
   "counts": {
-    "components": 620,
-    "ready": 620,
+    "components": 628,
+    "ready": 628,
     "layouts": 0
   },
   "categories": [
@@ -3674,6 +3674,102 @@
       "code": "/**\n * ShadcnCheckboxRtl\n * RTL örneği — Arapça onay kutusu (saf React, shadcn kaynaklı).\n * @id 708\n * @category Checkbox\n * @subcategory ShadcnCheckbox\n * @source shadcn\n */\nimport { ShadcnCheckbox } from \"@/components/ui/shadcn-checkbox\"\nimport { ShadcnField, ShadcnFieldGroup, ShadcnFieldLabel } from \"@/components/ui/shadcn-field\"\n\nfunction ShadcnCheckboxRtl() {\n  return (\n    <ShadcnFieldGroup className=\"mx-auto w-56\" dir=\"rtl\">\n      <ShadcnField orientation=\"horizontal\">\n        <ShadcnCheckbox id=\"shadcn-terms-checkbox-rtl\" name=\"terms-checkbox-rtl\" />\n        <ShadcnFieldLabel htmlFor=\"shadcn-terms-checkbox-rtl\" dir=\"rtl\">\n          أوافق على الشروط والأحكام\n        </ShadcnFieldLabel>\n      </ShadcnField>\n    </ShadcnFieldGroup>\n  )\n}\n\nexport { ShadcnCheckboxRtl }\n",
       "description": "ShadcnCheckboxRtl",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-checkbox-rtl.tsx"
+    },
+    {
+      "id": "709",
+      "name": "ShadcnSwitch",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSwitch",
+      "source": "shadcn",
+      "file": "shadcn-switch.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSwitch\n * Saf React bileşen (bağımlılıksız) — shadcn/ui kaynaklı.\n * Açma/kapama anahtarı — kontrollü veya kontrollüsüz.\n *   <ShadcnSwitch id=\"airplane-mode\" defaultChecked />\n * size: sm | default (varsayılan).\n * @id 709\n * @category Switch\n * @subcategory ShadcnSwitch\n * @source shadcn\n */\nimport type { InputHTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface ShadcnSwitchProps extends Omit<InputHTMLAttributes<HTMLInputElement>, \"onChange\" | \"checked\" | \"defaultChecked\"> {\n  checked?: boolean\n  defaultChecked?: boolean\n  onCheckedChange?: (checked: boolean) => void\n  isDisabled?: boolean\n  size?: \"sm\" | \"default\"\n}\n\nfunction ShadcnSwitch({\n  className,\n  checked,\n  defaultChecked,\n  onCheckedChange,\n  isDisabled,\n  size = \"default\",\n  type,\n  ...props\n}: ShadcnSwitchProps) {\n  return (\n    <label\n      data-slot=\"shadcn-switch\"\n      className={cn(\n        \"inline-flex cursor-pointer items-center\",\n        isDisabled && \"cursor-not-allowed opacity-50\",\n        className\n      )}\n    >\n      <input\n        type=\"checkbox\"\n        className=\"peer sr-only\"\n        checked={checked}\n        defaultChecked={defaultChecked}\n        disabled={isDisabled}\n        onChange={(e) => onCheckedChange?.(e.target.checked)}\n        {...props}\n      />\n      <span\n        className={cn(\n          \"relative inline-flex shrink-0 items-center rounded-full border-2 border-transparent bg-muted-foreground/30 transition-colors\",\n          \"peer-checked:bg-blue-600\",\n          \"peer-focus-visible:ring-3 peer-focus-visible:ring-ring/40\",\n          \"aria-invalid:border-red-500\",\n          size === \"default\" && \"h-5 w-9\",\n          size === \"sm\" && \"h-4 w-7\"\n        )}\n      >\n        <span\n          className={cn(\n            \"pointer-events-none block rounded-full bg-white shadow-lg transition-transform\",\n            size === \"default\" && \"size-4 peer-checked:translate-x-4\",\n            size === \"sm\" && \"size-3 peer-checked:translate-x-3\"\n          )}\n        />\n      </span>\n    </label>\n  )\n}\n\nexport { ShadcnSwitch }\nexport type { ShadcnSwitchProps }\n",
+      "description": "ShadcnSwitch",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-switch.tsx"
+    },
+    {
+      "id": "710",
+      "name": "ShadcnSwitchDemo",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSwitch",
+      "source": "shadcn",
+      "file": "shadcn-switch-demo.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSwitchDemo\n * Temel örnek — uçak modu (saf React, shadcn kaynaklı).\n * @id 710\n * @category Switch\n * @subcategory ShadcnSwitch\n * @source shadcn\n */\nimport { ShadcnLabel } from \"@/components/ui/shadcn-label\"\nimport { ShadcnSwitch } from \"@/components/ui/shadcn-switch\"\n\nfunction ShadcnSwitchDemo() {\n  return (\n    <div className=\"flex items-center space-x-2\">\n      <ShadcnSwitch id=\"shadcn-airplane-mode\" />\n      <ShadcnLabel htmlFor=\"shadcn-airplane-mode\">Airplane Mode</ShadcnLabel>\n    </div>\n  )\n}\n\nexport { ShadcnSwitchDemo }\n",
+      "description": "ShadcnSwitchDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-switch-demo.tsx"
+    },
+    {
+      "id": "711",
+      "name": "ShadcnSwitchDescription",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSwitch",
+      "source": "shadcn",
+      "file": "shadcn-switch-description.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSwitchDescription\n * Açıklamalı anahtar (saf React, shadcn kaynaklı).\n * @id 711\n * @category Switch\n * @subcategory ShadcnSwitch\n * @source shadcn\n */\nimport {\n  ShadcnField,\n  ShadcnFieldContent,\n  ShadcnFieldDescription,\n  ShadcnFieldLabel,\n} from \"@/components/ui/shadcn-field\"\nimport { ShadcnSwitch } from \"@/components/ui/shadcn-switch\"\n\nfunction ShadcnSwitchDescription() {\n  return (\n    <ShadcnField orientation=\"horizontal\" className=\"max-w-sm\">\n      <ShadcnFieldContent>\n        <ShadcnFieldLabel htmlFor=\"shadcn-switch-focus-mode\">\n          Share across devices\n        </ShadcnFieldLabel>\n        <ShadcnFieldDescription>\n          Focus is shared across devices, and turns off when you leave the app.\n        </ShadcnFieldDescription>\n      </ShadcnFieldContent>\n      <ShadcnSwitch id=\"shadcn-switch-focus-mode\" />\n    </ShadcnField>\n  )\n}\n\nexport { ShadcnSwitchDescription }\n",
+      "description": "ShadcnSwitchDescription",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-switch-description.tsx"
+    },
+    {
+      "id": "712",
+      "name": "ShadcnSwitchChoiceCard",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSwitch",
+      "source": "shadcn",
+      "file": "shadcn-switch-choice-card.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSwitchChoiceCard\n * Tıklanabilir kart — FieldLabel tüm alanı sarar (saf React, shadcn kaynaklı).\n * @id 712\n * @category Switch\n * @subcategory ShadcnSwitch\n * @source shadcn\n */\nimport {\n  ShadcnField,\n  ShadcnFieldContent,\n  ShadcnFieldDescription,\n  ShadcnFieldGroup,\n  ShadcnFieldLabel,\n  ShadcnFieldTitle,\n} from \"@/components/ui/shadcn-field\"\nimport { ShadcnSwitch } from \"@/components/ui/shadcn-switch\"\n\nfunction ShadcnSwitchChoiceCard() {\n  return (\n    <ShadcnFieldGroup className=\"w-full max-w-sm\">\n      <ShadcnFieldLabel htmlFor=\"shadcn-switch-share\" className=\"cursor-pointer rounded-md border border-border p-3 transition-colors hover:bg-muted/50\">\n        <ShadcnField orientation=\"horizontal\">\n          <ShadcnFieldContent>\n            <ShadcnFieldTitle>Share across devices</ShadcnFieldTitle>\n            <ShadcnFieldDescription>\n              Focus is shared across devices, and turns off when you leave the app.\n            </ShadcnFieldDescription>\n          </ShadcnFieldContent>\n          <ShadcnSwitch id=\"shadcn-switch-share\" />\n        </ShadcnField>\n      </ShadcnFieldLabel>\n      <ShadcnFieldLabel htmlFor=\"shadcn-switch-notifications\" className=\"cursor-pointer rounded-md border border-border p-3 transition-colors hover:bg-muted/50\">\n        <ShadcnField orientation=\"horizontal\">\n          <ShadcnFieldContent>\n            <ShadcnFieldTitle>Enable notifications</ShadcnFieldTitle>\n            <ShadcnFieldDescription>\n              Receive notifications when focus mode is enabled or disabled.\n            </ShadcnFieldDescription>\n          </ShadcnFieldContent>\n          <ShadcnSwitch id=\"shadcn-switch-notifications\" defaultChecked />\n        </ShadcnField>\n      </ShadcnFieldLabel>\n    </ShadcnFieldGroup>\n  )\n}\n\nexport { ShadcnSwitchChoiceCard }\n",
+      "description": "ShadcnSwitchChoiceCard",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-switch-choice-card.tsx"
+    },
+    {
+      "id": "713",
+      "name": "ShadcnSwitchDisabled",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSwitch",
+      "source": "shadcn",
+      "file": "shadcn-switch-disabled.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSwitchDisabled\n * Devre dışı anahtar (saf React, shadcn kaynaklı).\n * @id 713\n * @category Switch\n * @subcategory ShadcnSwitch\n * @source shadcn\n */\nimport { ShadcnField, ShadcnFieldLabel } from \"@/components/ui/shadcn-field\"\nimport { ShadcnSwitch } from \"@/components/ui/shadcn-switch\"\n\nfunction ShadcnSwitchDisabled() {\n  return (\n    <ShadcnField orientation=\"horizontal\" data-disabled className=\"w-fit\">\n      <ShadcnSwitch id=\"shadcn-switch-disabled-unchecked\" isDisabled />\n      <ShadcnFieldLabel htmlFor=\"shadcn-switch-disabled-unchecked\">Disabled</ShadcnFieldLabel>\n    </ShadcnField>\n  )\n}\n\nexport { ShadcnSwitchDisabled }\n",
+      "description": "ShadcnSwitchDisabled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-switch-disabled.tsx"
+    },
+    {
+      "id": "714",
+      "name": "ShadcnSwitchInvalid",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSwitch",
+      "source": "shadcn",
+      "file": "shadcn-switch-invalid.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSwitchInvalid\n * Geçersiz durum (saf React, shadcn kaynaklı).\n * @id 714\n * @category Switch\n * @subcategory ShadcnSwitch\n * @source shadcn\n */\nimport {\n  ShadcnField,\n  ShadcnFieldContent,\n  ShadcnFieldDescription,\n  ShadcnFieldLabel,\n} from \"@/components/ui/shadcn-field\"\nimport { ShadcnSwitch } from \"@/components/ui/shadcn-switch\"\n\nfunction ShadcnSwitchInvalid() {\n  return (\n    <ShadcnField orientation=\"horizontal\" className=\"max-w-sm\" data-invalid>\n      <ShadcnFieldContent>\n        <ShadcnFieldLabel htmlFor=\"shadcn-switch-terms\">\n          Accept terms and conditions\n        </ShadcnFieldLabel>\n        <ShadcnFieldDescription>\n          You must accept the terms and conditions to continue.\n        </ShadcnFieldDescription>\n      </ShadcnFieldContent>\n      <ShadcnSwitch id=\"shadcn-switch-terms\" aria-invalid />\n    </ShadcnField>\n  )\n}\n\nexport { ShadcnSwitchInvalid }\n",
+      "description": "ShadcnSwitchInvalid",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-switch-invalid.tsx"
+    },
+    {
+      "id": "715",
+      "name": "ShadcnSwitchSizes",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSwitch",
+      "source": "shadcn",
+      "file": "shadcn-switch-sizes.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSwitchSizes\n * Boyutlar — küçük ve varsayılan (saf React, shadcn kaynaklı).\n * @id 715\n * @category Switch\n * @subcategory ShadcnSwitch\n * @source shadcn\n */\nimport { ShadcnField, ShadcnFieldGroup, ShadcnFieldLabel } from \"@/components/ui/shadcn-field\"\nimport { ShadcnSwitch } from \"@/components/ui/shadcn-switch\"\n\nfunction ShadcnSwitchSizes() {\n  return (\n    <ShadcnFieldGroup className=\"w-full max-w-[10rem]\">\n      <ShadcnField orientation=\"horizontal\">\n        <ShadcnSwitch id=\"shadcn-switch-size-sm\" size=\"sm\" />\n        <ShadcnFieldLabel htmlFor=\"shadcn-switch-size-sm\">Small</ShadcnFieldLabel>\n      </ShadcnField>\n      <ShadcnField orientation=\"horizontal\">\n        <ShadcnSwitch id=\"shadcn-switch-size-default\" size=\"default\" />\n        <ShadcnFieldLabel htmlFor=\"shadcn-switch-size-default\">Default</ShadcnFieldLabel>\n      </ShadcnField>\n    </ShadcnFieldGroup>\n  )\n}\n\nexport { ShadcnSwitchSizes }\n",
+      "description": "ShadcnSwitchSizes",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-switch-sizes.tsx"
+    },
+    {
+      "id": "716",
+      "name": "ShadcnSwitchRtl",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSwitch",
+      "source": "shadcn",
+      "file": "shadcn-switch-rtl.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSwitchRtl\n * RTL örneği — Arapça anahtar (saf React, shadcn kaynaklı).\n * @id 716\n * @category Switch\n * @subcategory ShadcnSwitch\n * @source shadcn\n */\nimport { ShadcnField, ShadcnFieldGroup, ShadcnFieldLabel } from \"@/components/ui/shadcn-field\"\nimport { ShadcnSwitch } from \"@/components/ui/shadcn-switch\"\n\nfunction ShadcnSwitchRtl() {\n  return (\n    <ShadcnFieldGroup className=\"w-fit\" dir=\"rtl\">\n      <ShadcnField orientation=\"horizontal\">\n        <ShadcnSwitch id=\"shadcn-switch-rtl\" />\n        <ShadcnFieldLabel htmlFor=\"shadcn-switch-rtl\" dir=\"rtl\">\n          وضع الطيران\n        </ShadcnFieldLabel>\n      </ShadcnField>\n    </ShadcnFieldGroup>\n  )\n}\n\nexport { ShadcnSwitchRtl }\n",
+      "description": "ShadcnSwitchRtl",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-switch-rtl.tsx"
     },
     {
       "id": "389",

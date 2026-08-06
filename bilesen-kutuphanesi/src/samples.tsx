@@ -683,4 +683,12 @@ export const SAMPLES: Record<string, ReactNode> = {
   "706": <U.ShadcnCheckboxGroup />,
   "707": <U.ShadcnCheckboxInTable />,
   "708": <U.ShadcnCheckboxRtl />,
+  "709": <U.ShadcnSwitch />,
+  "710": <U.ShadcnSwitchDemo />,
+  "711": <U.ShadcnSwitchDescription />,
+  "712": <U.ShadcnSwitchChoiceCard />,
+  "713": <U.ShadcnSwitchDisabled />,
+  "714": <U.ShadcnSwitchInvalid />,
+  "715": <U.ShadcnSwitchSizes />,
+  "716": <U.ShadcnSwitchRtl />,
 }
