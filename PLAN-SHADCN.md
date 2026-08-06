@@ -70,7 +70,8 @@
 ### ✅ Adım 3 tamamlandı (4 element, 31 bileşen)
 
 ### Adım 4 — Overlay + Panel (10)
-Dialog → Popover → Tooltip → Hover Card → Dropdown Menu → Context Menu → Toast → Sheet → Drawer → Sidebar
+- [x] **Dialog** — 782-788 (8 compound + 6 örnek)
+Popover → Tooltip → Hover Card → Dropdown Menu → Context Menu → Toast → Sheet → Drawer → Sidebar
 
 ### Adım 5 — Navigasyon + Akordeon + Uyarı (9)
 Tabs → Pagination → Breadcrumb → Navigation Menu → Menubar → Accordion → Collapsible → Alert → Alert Dialog

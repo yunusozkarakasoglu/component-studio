@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-06T12:41:10.143Z",
+  "generatedAt": "2026-08-06T12:44:05.565Z",
   "counts": {
-    "components": 692,
-    "ready": 692,
+    "components": 699,
+    "ready": 699,
     "layouts": 0
   },
   "categories": [
@@ -4538,6 +4538,90 @@
       "code": "/**\n * ShadcnBadgeRtl\n * RTL örneği — Arapça rozetler (saf React, shadcn kaynaklı).\n * @id 781\n * @category Kartlar\n * @subcategory ShadcnBadge\n * @source shadcn\n */\nimport { ShadcnBadge } from \"@/components/ui/shadcn-badge\"\n\nfunction ShadcnBadgeRtl() {\n  return (\n    <div className=\"flex flex-wrap gap-2\" dir=\"rtl\">\n      <ShadcnBadge>جديد</ShadcnBadge>\n      <ShadcnBadge variant=\"secondary\">ثانوي</ShadcnBadge>\n      <ShadcnBadge variant=\"outline\">مخطط تفصيلي</ShadcnBadge>\n    </div>\n  )\n}\n\nexport { ShadcnBadgeRtl }\n",
       "description": "ShadcnBadgeRtl",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-badge-rtl.tsx"
+    },
+    {
+      "id": "782",
+      "name": "ShadcnDialog",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnDialog",
+      "source": "shadcn",
+      "file": "shadcn-dialog.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnDialog familyası\n * Saf React bileşen (bağımlılıksız) — shadcn/ui kaynaklı.\n * Dialog + Trigger + Content + Header/Title/Description + Footer + Close.\n *   <ShadcnDialog>\n *     <ShadcnDialogTrigger>Open Dialog</ShadcnDialogTrigger>\n *     <ShadcnDialogContent>\n *       <ShadcnDialogHeader>\n *         <ShadcnDialogTitle>…</ShadcnDialogTitle>\n *         <ShadcnDialogDescription>…</ShadcnDialogDescription>\n *       </ShadcnDialogHeader>\n *     </ShadcnDialogContent>\n *   </ShadcnDialog>\n * Özellikler: open/onOpenChange (kontrollü) · showCloseButton.\n * @id 782\n * @category Overlay\n * @subcategory ShadcnDialog\n * @source shadcn\n */\nimport { createContext, useContext, useState, type HTMLAttributes, type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { X } from \"@/components/ui/icons\"\n\ninterface DialogContextValue {\n  open: boolean\n  setOpen: (open: boolean) => void\n}\n\nconst DialogContext = createContext<DialogContextValue | null>(null)\n\nfunction useShadcnDialog(): DialogContextValue {\n  const ctx = useContext(DialogContext)\n  if (!ctx) throw new Error(\"ShadcnDialog parçaları, ShadcnDialog içinde kullanılmalı\")\n  return ctx\n}\n\ninterface ShadcnDialogProps {\n  children?: ReactNode\n  open?: boolean\n  defaultOpen?: boolean\n  onOpenChange?: (open: boolean) => void\n}\n\nfunction ShadcnDialog({ children, open, defaultOpen, onOpenChange }: ShadcnDialogProps) {\n  const [internal, setInternal] = useState(!!defaultOpen)\n  const isOpen = open !== undefined ? open : internal\n  const setOpen = (v: boolean) => {\n    if (open === undefined) setInternal(v)\n    onOpenChange?.(v)\n  }\n  return <DialogContext.Provider value={{ open: isOpen, setOpen }}>{children}</DialogContext.Provider>\n}\n\ninterface ShadcnDialogTriggerProps extends HTMLAttributes<HTMLButtonElement> {}\n\nfunction ShadcnDialogTrigger({ className, children, onClick, ...props }: ShadcnDialogTriggerProps) {\n  const ctx = useShadcnDialog()\n  return (\n    <button\n      type=\"button\"\n      data-slot=\"shadcn-dialog-trigger\"\n      onClick={(e) => {\n        ctx.setOpen(true)\n        onClick?.(e)\n      }}\n      className={cn(\n        \"inline-flex h-9 items-center justify-center rounded-md border border-border bg-background px-4 text-sm font-medium text-foreground transition-colors outline-none\",\n        \"hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/40\",\n        className\n      )}\n      {...props}\n    >\n      {children}\n    </button>\n  )\n}\n\ninterface ShadcnDialogContentProps extends HTMLAttributes<HTMLDivElement> {\n  showCloseButton?: boolean\n}\n\nfunction ShadcnDialogContent({ className, showCloseButton = true, children, ...props }: ShadcnDialogContentProps) {\n  const ctx = useShadcnDialog()\n  if (!ctx.open) return null\n\n  return (\n    <div data-slot=\"shadcn-dialog\" className=\"fixed inset-0 z-50 flex items-center justify-center p-4\">\n      <div className=\"absolute inset-0 bg-black/50\" onClick={() => ctx.setOpen(false)} />\n      <div\n        role=\"dialog\"\n        aria-modal=\"true\"\n        className={cn(\n          \"relative z-10 w-full max-w-lg rounded-xl border border-border bg-background p-6 text-foreground shadow-lg\",\n          className\n        )}\n        {...props}\n      >\n        {showCloseButton && (\n          <button\n            type=\"button\"\n            aria-label=\"Close\"\n            onClick={() => ctx.setOpen(false)}\n            className=\"absolute right-4 top-4 inline-flex size-7 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground\"\n          >\n            <X className=\"size-4\" />\n          </button>\n        )}\n        {children}\n      </div>\n    </div>\n  )\n}\n\ninterface ShadcnDialogHeaderProps extends HTMLAttributes<HTMLDivElement> {}\n\nfunction ShadcnDialogHeader({ className, ...props }: ShadcnDialogHeaderProps) {\n  return <div data-slot=\"shadcn-dialog-header\" className={cn(\"mb-4 flex flex-col gap-1.5\", className)} {...props} />\n}\n\ninterface ShadcnDialogTitleProps extends HTMLAttributes<HTMLHeadingElement> {}\n\nfunction ShadcnDialogTitle({ className, ...props }: ShadcnDialogTitleProps) {\n  return <h2 data-slot=\"shadcn-dialog-title\" className={cn(\"text-lg font-semibold leading-none\", className)} {...props} />\n}\n\ninterface ShadcnDialogDescriptionProps extends HTMLAttributes<HTMLParagraphElement> {}\n\nfunction ShadcnDialogDescription({ className, ...props }: ShadcnDialogDescriptionProps) {\n  return <p data-slot=\"shadcn-dialog-description\" className={cn(\"text-sm text-muted-foreground\", className)} {...props} />\n}\n\ninterface ShadcnDialogFooterProps extends HTMLAttributes<HTMLDivElement> {}\n\nfunction ShadcnDialogFooter({ className, ...props }: ShadcnDialogFooterProps) {\n  return <div data-slot=\"shadcn-dialog-footer\" className={cn(\"mt-4 flex justify-end gap-2\", className)} {...props} />\n}\n\ninterface ShadcnDialogCloseProps extends HTMLAttributes<HTMLButtonElement> {}\n\nfunction ShadcnDialogClose({ className, children, onClick, ...props }: ShadcnDialogCloseProps) {\n  const ctx = useShadcnDialog()\n  return (\n    <button\n      type=\"button\"\n      data-slot=\"shadcn-dialog-close\"\n      onClick={(e) => {\n        ctx.setOpen(false)\n        onClick?.(e)\n      }}\n      className={cn(\n        \"inline-flex h-9 items-center justify-center rounded-md border border-border bg-background px-4 text-sm font-medium text-foreground transition-colors outline-none\",\n        \"hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/40\",\n        className\n      )}\n      {...props}\n    >\n      {children}\n    </button>\n  )\n}\n\nexport {\n  ShadcnDialog,\n  ShadcnDialogClose,\n  ShadcnDialogContent,\n  ShadcnDialogDescription,\n  ShadcnDialogFooter,\n  ShadcnDialogHeader,\n  ShadcnDialogTitle,\n  ShadcnDialogTrigger,\n}\nexport type {\n  ShadcnDialogCloseProps,\n  ShadcnDialogContentProps,\n  ShadcnDialogDescriptionProps,\n  ShadcnDialogFooterProps,\n  ShadcnDialogHeaderProps,\n  ShadcnDialogProps,\n  ShadcnDialogTitleProps,\n  ShadcnDialogTriggerProps,\n}\n",
+      "description": "ShadcnDialog familyası",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-dialog.tsx"
+    },
+    {
+      "id": "783",
+      "name": "ShadcnDialogDemo",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnDialog",
+      "source": "shadcn",
+      "file": "shadcn-dialog-demo.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnDialogDemo\n * Temel örnek — profil düzenleme (saf React, shadcn kaynaklı).\n * @id 783\n * @category Overlay\n * @subcategory ShadcnDialog\n * @source shadcn\n */\nimport { ShadcnButton } from \"@/components/ui/shadcn-button\"\nimport {\n  ShadcnDialog,\n  ShadcnDialogContent,\n  ShadcnDialogDescription,\n  ShadcnDialogFooter,\n  ShadcnDialogHeader,\n  ShadcnDialogTitle,\n  ShadcnDialogTrigger,\n} from \"@/components/ui/shadcn-dialog\"\nimport { ShadcnField, ShadcnFieldGroup } from \"@/components/ui/shadcn-field\"\nimport { ShadcnInput } from \"@/components/ui/shadcn-input\"\nimport { ShadcnLabel } from \"@/components/ui/shadcn-label\"\n\nfunction ShadcnDialogDemo() {\n  return (\n    <ShadcnDialog>\n      <form>\n        <ShadcnDialogTrigger>Open Dialog</ShadcnDialogTrigger>\n        <ShadcnDialogContent className=\"sm:max-w-sm\">\n          <ShadcnDialogHeader>\n            <ShadcnDialogTitle>Edit profile</ShadcnDialogTitle>\n            <ShadcnDialogDescription>\n              Make changes to your profile here. Click save when you&apos;re done.\n            </ShadcnDialogDescription>\n          </ShadcnDialogHeader>\n          <ShadcnFieldGroup>\n            <ShadcnField>\n              <ShadcnLabel htmlFor=\"dialog-name\">Name</ShadcnLabel>\n              <ShadcnInput id=\"dialog-name\" name=\"name\" defaultValue=\"Pedro Duarte\" />\n            </ShadcnField>\n            <ShadcnField>\n              <ShadcnLabel htmlFor=\"dialog-username\">Username</ShadcnLabel>\n              <ShadcnInput id=\"dialog-username\" name=\"username\" defaultValue=\"@peduarte\" />\n            </ShadcnField>\n          </ShadcnFieldGroup>\n          <ShadcnDialogFooter>\n            <ShadcnButton type=\"submit\">Save changes</ShadcnButton>\n          </ShadcnDialogFooter>\n        </ShadcnDialogContent>\n      </form>\n    </ShadcnDialog>\n  )\n}\n\nexport { ShadcnDialogDemo }\n",
+      "description": "ShadcnDialogDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-dialog-demo.tsx"
+    },
+    {
+      "id": "784",
+      "name": "ShadcnDialogCloseButton",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnDialog",
+      "source": "shadcn",
+      "file": "shadcn-dialog-close-button.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnDialogCloseButton\n * Özel kapatma butonu — paylaşım linki (saf React, shadcn kaynaklı).\n * @id 784\n * @category Overlay\n * @subcategory ShadcnDialog\n * @source shadcn\n */\nimport {\n  ShadcnDialog,\n  ShadcnDialogClose,\n  ShadcnDialogContent,\n  ShadcnDialogDescription,\n  ShadcnDialogFooter,\n  ShadcnDialogHeader,\n  ShadcnDialogTitle,\n  ShadcnDialogTrigger,\n} from \"@/components/ui/shadcn-dialog\"\nimport { ShadcnInput } from \"@/components/ui/shadcn-input\"\nimport { ShadcnLabel } from \"@/components/ui/shadcn-label\"\n\nfunction ShadcnDialogCloseButton() {\n  return (\n    <ShadcnDialog>\n      <ShadcnDialogTrigger>Share</ShadcnDialogTrigger>\n      <ShadcnDialogContent className=\"sm:max-w-md\">\n        <ShadcnDialogHeader>\n          <ShadcnDialogTitle>Share link</ShadcnDialogTitle>\n          <ShadcnDialogDescription>\n            Anyone who has this link will be able to view this.\n          </ShadcnDialogDescription>\n        </ShadcnDialogHeader>\n        <div className=\"flex items-center gap-2\">\n          <div className=\"grid flex-1 gap-2\">\n            <ShadcnLabel htmlFor=\"dialog-link\" className=\"sr-only\">Link</ShadcnLabel>\n            <ShadcnInput id=\"dialog-link\" defaultValue=\"https://ui.shadcn.com/docs/installation\" readOnly />\n          </div>\n        </div>\n        <ShadcnDialogFooter className=\"sm:justify-start\">\n          <ShadcnDialogClose>Close</ShadcnDialogClose>\n        </ShadcnDialogFooter>\n      </ShadcnDialogContent>\n    </ShadcnDialog>\n  )\n}\n\nexport { ShadcnDialogCloseButton }\n",
+      "description": "ShadcnDialogCloseButton",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-dialog-close-button.tsx"
+    },
+    {
+      "id": "785",
+      "name": "ShadcnDialogNoCloseButton",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnDialog",
+      "source": "shadcn",
+      "file": "shadcn-dialog-no-close-button.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnDialogNoCloseButton\n * Kapatma butonu olmayan dialog (saf React, shadcn kaynaklı).\n * @id 785\n * @category Overlay\n * @subcategory ShadcnDialog\n * @source shadcn\n */\nimport {\n  ShadcnDialog,\n  ShadcnDialogContent,\n  ShadcnDialogDescription,\n  ShadcnDialogHeader,\n  ShadcnDialogTitle,\n  ShadcnDialogTrigger,\n} from \"@/components/ui/shadcn-dialog\"\n\nfunction ShadcnDialogNoCloseButton() {\n  return (\n    <ShadcnDialog>\n      <ShadcnDialogTrigger>No Close Button</ShadcnDialogTrigger>\n      <ShadcnDialogContent showCloseButton={false}>\n        <ShadcnDialogHeader>\n          <ShadcnDialogTitle>No Close Button</ShadcnDialogTitle>\n          <ShadcnDialogDescription>\n            This dialog doesn&apos;t have a close button in the top-right corner.\n          </ShadcnDialogDescription>\n        </ShadcnDialogHeader>\n      </ShadcnDialogContent>\n    </ShadcnDialog>\n  )\n}\n\nexport { ShadcnDialogNoCloseButton }\n",
+      "description": "ShadcnDialogNoCloseButton",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-dialog-no-close-button.tsx"
+    },
+    {
+      "id": "786",
+      "name": "ShadcnDialogStickyFooter",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnDialog",
+      "source": "shadcn",
+      "file": "shadcn-dialog-sticky-footer.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnDialogStickyFooter\n * Yapışkan ayak — içerik kayarken görünür kalır (saf React, shadcn kaynaklı).\n * @id 786\n * @category Overlay\n * @subcategory ShadcnDialog\n * @source shadcn\n */\nimport {\n  ShadcnDialog,\n  ShadcnDialogClose,\n  ShadcnDialogContent,\n  ShadcnDialogDescription,\n  ShadcnDialogFooter,\n  ShadcnDialogHeader,\n  ShadcnDialogTitle,\n  ShadcnDialogTrigger,\n} from \"@/components/ui/shadcn-dialog\"\n\nconst LOREM =\n  \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\"\n\nfunction ShadcnDialogStickyFooter() {\n  return (\n    <ShadcnDialog>\n      <ShadcnDialogTrigger>Sticky Footer</ShadcnDialogTrigger>\n      <ShadcnDialogContent>\n        <ShadcnDialogHeader>\n          <ShadcnDialogTitle>Sticky Footer</ShadcnDialogTitle>\n          <ShadcnDialogDescription>\n            This dialog has a sticky footer that stays visible while the content scrolls.\n          </ShadcnDialogDescription>\n        </ShadcnDialogHeader>\n        <div className=\"max-h-[50vh] overflow-y-auto\">\n          {Array.from({ length: 10 }).map((_, index) => (\n            <p key={index} className=\"mb-4 leading-normal\">{LOREM}</p>\n          ))}\n        </div>\n        <ShadcnDialogFooter>\n          <ShadcnDialogClose>Close</ShadcnDialogClose>\n        </ShadcnDialogFooter>\n      </ShadcnDialogContent>\n    </ShadcnDialog>\n  )\n}\n\nexport { ShadcnDialogStickyFooter }\n",
+      "description": "ShadcnDialogStickyFooter",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-dialog-sticky-footer.tsx"
+    },
+    {
+      "id": "787",
+      "name": "ShadcnDialogScrollableContent",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnDialog",
+      "source": "shadcn",
+      "file": "shadcn-dialog-scrollable-content.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnDialogScrollableContent\n * Kaydırılabilir içerik — başlık sabit (saf React, shadcn kaynaklı).\n * @id 787\n * @category Overlay\n * @subcategory ShadcnDialog\n * @source shadcn\n */\nimport {\n  ShadcnDialog,\n  ShadcnDialogContent,\n  ShadcnDialogDescription,\n  ShadcnDialogHeader,\n  ShadcnDialogTitle,\n  ShadcnDialogTrigger,\n} from \"@/components/ui/shadcn-dialog\"\n\nconst LOREM =\n  \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\"\n\nfunction ShadcnDialogScrollableContent() {\n  return (\n    <ShadcnDialog>\n      <ShadcnDialogTrigger>Scrollable Content</ShadcnDialogTrigger>\n      <ShadcnDialogContent>\n        <ShadcnDialogHeader>\n          <ShadcnDialogTitle>Scrollable Content</ShadcnDialogTitle>\n          <ShadcnDialogDescription>\n            This is a dialog with scrollable content.\n          </ShadcnDialogDescription>\n        </ShadcnDialogHeader>\n        <div className=\"max-h-[50vh] overflow-y-auto\">\n          {Array.from({ length: 10 }).map((_, index) => (\n            <p key={index} className=\"mb-4 leading-normal\">{LOREM}</p>\n          ))}\n        </div>\n      </ShadcnDialogContent>\n    </ShadcnDialog>\n  )\n}\n\nexport { ShadcnDialogScrollableContent }\n",
+      "description": "ShadcnDialogScrollableContent",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-dialog-scrollable-content.tsx"
+    },
+    {
+      "id": "788",
+      "name": "ShadcnDialogRtl",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnDialog",
+      "source": "shadcn",
+      "file": "shadcn-dialog-rtl.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnDialogRtl\n * RTL örneği — Arapça dialog (saf React, shadcn kaynaklı).\n * @id 788\n * @category Overlay\n * @subcategory ShadcnDialog\n * @source shadcn\n */\nimport {\n  ShadcnDialog,\n  ShadcnDialogClose,\n  ShadcnDialogContent,\n  ShadcnDialogDescription,\n  ShadcnDialogFooter,\n  ShadcnDialogHeader,\n  ShadcnDialogTitle,\n  ShadcnDialogTrigger,\n} from \"@/components/ui/shadcn-dialog\"\n\nfunction ShadcnDialogRtl() {\n  return (\n    <ShadcnDialog>\n      <ShadcnDialogTrigger>افتح الحوار</ShadcnDialogTrigger>\n      <ShadcnDialogContent className=\"sm:max-w-sm\" dir=\"rtl\">\n        <ShadcnDialogHeader>\n          <ShadcnDialogTitle>تعديل الملف الشخصي</ShadcnDialogTitle>\n          <ShadcnDialogDescription>\n            قم بإجراء التغييرات على ملفك الشخصي هنا.\n          </ShadcnDialogDescription>\n        </ShadcnDialogHeader>\n        <ShadcnDialogFooter>\n          <ShadcnDialogClose>إغلاق</ShadcnDialogClose>\n        </ShadcnDialogFooter>\n      </ShadcnDialogContent>\n    </ShadcnDialog>\n  )\n}\n\nexport { ShadcnDialogRtl }\n",
+      "description": "ShadcnDialogRtl",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-dialog-rtl.tsx"
     },
     {
       "id": "389",

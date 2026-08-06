@@ -755,4 +755,11 @@ export const SAMPLES: Record<string, ReactNode> = {
   "779": <U.ShadcnBadgeAsLink />,
   "780": <U.ShadcnBadgeCustomColors />,
   "781": <U.ShadcnBadgeRtl />,
+  "782": <U.ShadcnDialog />,
+  "783": <U.ShadcnDialogDemo />,
+  "784": <U.ShadcnDialogCloseButton />,
+  "785": <U.ShadcnDialogNoCloseButton />,
+  "786": <U.ShadcnDialogStickyFooter />,
+  "787": <U.ShadcnDialogScrollableContent />,
+  "788": <U.ShadcnDialogRtl />,
 }

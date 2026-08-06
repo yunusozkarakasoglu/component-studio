@@ -432,6 +432,14 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `779` ShadcnBadgeAsLink
 - `780` ShadcnBadgeCustomColors
 - `781` ShadcnBadgeRtl
+#### ShadcnDialog
+- `782` ShadcnDialog + Trigger/Content/Header/Title/Description/Footer/Close
+- `783` ShadcnDialogDemo
+- `784` ShadcnDialogCloseButton
+- `785` ShadcnDialogNoCloseButton
+- `786` ShadcnDialogStickyFooter
+- `787` ShadcnDialogScrollableContent
+- `788` ShadcnDialogRtl
 
 ### Seçim
 #### RadioGroup
@@ -806,7 +814,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 692 bileşen (saf React)**
+**Toplam: 699 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
