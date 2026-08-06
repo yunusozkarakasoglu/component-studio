@@ -60,7 +60,8 @@
 ### ✅ Adım 2 tamamlandı (5 element, 42 bileşen)
 
 ### Adım 3 — Butonlar + Kartlar (4)
-Button → Button Group → Card → Badge
+- [x] **Button** — 741-754 (ShadcnButton çekirdek + 13 örnek)
+Button Group → Card → Badge
 
 ### Adım 4 — Overlay + Panel (10)
 Dialog → Popover → Tooltip → Hover Card → Dropdown Menu → Context Menu → Toast → Sheet → Drawer → Sidebar
