@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-06T12:02:09.602Z",
+  "generatedAt": "2026-08-06T12:06:59.235Z",
   "counts": {
-    "components": 597,
-    "ready": 597,
+    "components": 603,
+    "ready": 603,
     "layouts": 0
   },
   "categories": [
@@ -3299,7 +3299,7 @@
       "source": "shadcn",
       "file": "shadcn-input-otp-pattern.tsx",
       "exists": true,
-      "code": "/**\n * ShadcnInputOTPPattern\n * Sadece rakam deseni (saf React, shadcn kaynaklı).\n * InputOTP: kütüphanenin mevcut bileşeni (Heroui — saf React, API uyumlu).\n * @id 677\n * @category Form Elemanları\n * @subcategory ShadcnInputOTP\n * @source shadcn\n */\nimport { InputOTP, InputOTPGroup, InputOTPSlot } from \"@/components/ui/input-otp\"\nimport { ShadcnField, ShadcnFieldLabel } from \"@/components/ui/shadcn-field\"\n\nconst REGEXP_ONLY_DIGITS = /^\\d+$/\n\nfunction ShadcnInputOTPPattern() {\n  return (\n    <ShadcnField className=\"w-fit\">\n      <ShadcnFieldLabel htmlFor=\"shadcn-otp-digits\">Digits Only</ShadcnFieldLabel>\n      <InputOTP id=\"shadcn-otp-digits\" maxLength={6} pattern={REGEXP_ONLY_DIGITS}>\n        <InputOTPGroup>\n          <InputOTPSlot index={0} />\n          <InputOTPSlot index={1} />\n          <InputOTPSlot index={2} />\n          <InputOTPSlot index={3} />\n          <InputOTPSlot index={4} />\n          <InputOTPSlot index={5} />\n        </InputOTPGroup>\n      </InputOTP>\n    </ShadcnField>\n  )\n}\n\nexport { ShadcnInputOTPPattern }\n",
+      "code": "/**\n * ShadcnInputOTPPattern\n * Sadece rakam deseni (saf React, shadcn kaynaklı).\n * InputOTP: kütüphanenin mevcut bileşeni (Heroui — saf React, API uyumlu).\n * @id 677\n * @category Form Elemanları\n * @subcategory ShadcnInputOTP\n * @source shadcn\n */\nimport { InputOTP, InputOTPGroup, InputOTPSlot } from \"@/components/ui/input-otp\"\nimport { ShadcnField, ShadcnFieldLabel } from \"@/components/ui/shadcn-field\"\n\nconst REGEXP_ONLY_DIGITS = /^\\d+$/\n\nfunction ShadcnInputOTPPattern() {\n  return (\n    <ShadcnField className=\"w-fit\">\n      <ShadcnFieldLabel htmlFor=\"shadcn-otp-digits\">Digits Only</ShadcnFieldLabel>\n      <InputOTP maxLength={6} pattern={REGEXP_ONLY_DIGITS}>\n        <InputOTPGroup>\n          <InputOTPSlot index={0} />\n          <InputOTPSlot index={1} />\n          <InputOTPSlot index={2} />\n          <InputOTPSlot index={3} />\n          <InputOTPSlot index={4} />\n          <InputOTPSlot index={5} />\n        </InputOTPGroup>\n      </InputOTP>\n    </ShadcnField>\n  )\n}\n\nexport { ShadcnInputOTPPattern }\n",
       "description": "ShadcnInputOTPPattern",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-input-otp-pattern.tsx"
     },
@@ -3323,7 +3323,7 @@
       "source": "shadcn",
       "file": "shadcn-input-otp-disabled.tsx",
       "exists": true,
-      "code": "/**\n * ShadcnInputOTPDisabled\n * Devre dışı OTP (saf React, shadcn kaynaklı).\n * @id 679\n * @category Form Elemanları\n * @subcategory ShadcnInputOTP\n * @source shadcn\n */\nimport { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from \"@/components/ui/input-otp\"\n\nfunction ShadcnInputOTPDisabled() {\n  return (\n    <InputOTP id=\"shadcn-otp-disabled\" maxLength={6} isDisabled value=\"123456\">\n      <InputOTPGroup>\n        <InputOTPSlot index={0} />\n        <InputOTPSlot index={1} />\n        <InputOTPSlot index={2} />\n      </InputOTPGroup>\n      <InputOTPSeparator />\n      <InputOTPGroup>\n        <InputOTPSlot index={3} />\n        <InputOTPSlot index={4} />\n        <InputOTPSlot index={5} />\n      </InputOTPGroup>\n    </InputOTP>\n  )\n}\n\nexport { ShadcnInputOTPDisabled }\n",
+      "code": "/**\n * ShadcnInputOTPDisabled\n * Devre dışı OTP (saf React, shadcn kaynaklı).\n * @id 679\n * @category Form Elemanları\n * @subcategory ShadcnInputOTP\n * @source shadcn\n */\nimport { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from \"@/components/ui/input-otp\"\n\nfunction ShadcnInputOTPDisabled() {\n  return (\n    <InputOTP maxLength={6} isDisabled value=\"123456\">\n      <InputOTPGroup>\n        <InputOTPSlot index={0} />\n        <InputOTPSlot index={1} />\n        <InputOTPSlot index={2} />\n      </InputOTPGroup>\n      <InputOTPSeparator />\n      <InputOTPGroup>\n        <InputOTPSlot index={3} />\n        <InputOTPSlot index={4} />\n        <InputOTPSlot index={5} />\n      </InputOTPGroup>\n    </InputOTP>\n  )\n}\n\nexport { ShadcnInputOTPDisabled }\n",
       "description": "ShadcnInputOTPDisabled",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-input-otp-disabled.tsx"
     },
@@ -3383,7 +3383,7 @@
       "source": "shadcn",
       "file": "shadcn-input-otp-form.tsx",
       "exists": true,
-      "code": "/**\n * ShadcnInputOTPForm\n * Form içinde OTP — gönder butonu (saf React, shadcn kaynaklı).\n * Button: kütüphanenin mevcut bileşeni (Heroui — saf React).\n * @id 684\n * @category Form Elemanları\n * @subcategory ShadcnInputOTP\n * @source shadcn\n */\nimport { useState, type FormEvent } from \"react\"\nimport { Button } from \"@/components/ui/button\"\nimport { InputOTP, InputOTPGroup, InputOTPSlot } from \"@/components/ui/input-otp\"\nimport {\n  ShadcnField,\n  ShadcnFieldDescription,\n  ShadcnFieldLabel,\n} from \"@/components/ui/shadcn-field\"\n\nfunction ShadcnInputOTPForm() {\n  const [value, setValue] = useState(\"\")\n\n  function onSubmit(e: FormEvent<HTMLFormElement>) {\n    e.preventDefault()\n    alert(`OTP submitted: ${value}`)\n  }\n\n  return (\n    <form onSubmit={onSubmit} className=\"space-y-4\">\n      <ShadcnField>\n        <ShadcnFieldLabel htmlFor=\"shadcn-otp-form\">One-Time Password</ShadcnFieldLabel>\n        <InputOTP id=\"shadcn-otp-form\" maxLength={6} value={value} onChange={setValue}>\n          <InputOTPGroup>\n            <InputOTPSlot index={0} />\n            <InputOTPSlot index={1} />\n            <InputOTPSlot index={2} />\n            <InputOTPSlot index={3} />\n            <InputOTPSlot index={4} />\n            <InputOTPSlot index={5} />\n          </InputOTPGroup>\n        </InputOTP>\n        <ShadcnFieldDescription>\n          Enter the 6-digit code sent to your email.\n        </ShadcnFieldDescription>\n      </ShadcnField>\n      <Button type=\"submit\" className=\"w-fit\">Verify</Button>\n    </form>\n  )\n}\n\nexport { ShadcnInputOTPForm }\n",
+      "code": "/**\n * ShadcnInputOTPForm\n * Form içinde OTP — gönder butonu (saf React, shadcn kaynaklı).\n * Button: kütüphanenin mevcut bileşeni (Heroui — saf React).\n * @id 684\n * @category Form Elemanları\n * @subcategory ShadcnInputOTP\n * @source shadcn\n */\nimport { useState, type FormEvent } from \"react\"\nimport { Button } from \"@/components/ui/button\"\nimport { InputOTP, InputOTPGroup, InputOTPSlot } from \"@/components/ui/input-otp\"\nimport {\n  ShadcnField,\n  ShadcnFieldDescription,\n  ShadcnFieldLabel,\n} from \"@/components/ui/shadcn-field\"\n\nfunction ShadcnInputOTPForm() {\n  const [value, setValue] = useState(\"\")\n\n  function onSubmit(e: FormEvent<HTMLFormElement>) {\n    e.preventDefault()\n    alert(`OTP submitted: ${value}`)\n  }\n\n  return (\n    <form onSubmit={onSubmit} className=\"space-y-4\">\n      <ShadcnField>\n        <ShadcnFieldLabel htmlFor=\"shadcn-otp-form\">One-Time Password</ShadcnFieldLabel>\n        <InputOTP maxLength={6} value={value} onChange={setValue}>\n          <InputOTPGroup>\n            <InputOTPSlot index={0} />\n            <InputOTPSlot index={1} />\n            <InputOTPSlot index={2} />\n            <InputOTPSlot index={3} />\n            <InputOTPSlot index={4} />\n            <InputOTPSlot index={5} />\n          </InputOTPGroup>\n        </InputOTP>\n        <ShadcnFieldDescription>\n          Enter the 6-digit code sent to your email.\n        </ShadcnFieldDescription>\n      </ShadcnField>\n      <Button type=\"submit\" className=\"w-fit\">Verify</Button>\n    </form>\n  )\n}\n\nexport { ShadcnInputOTPForm }\n",
       "description": "ShadcnInputOTPForm",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-input-otp-form.tsx"
     },
@@ -3398,6 +3398,78 @@
       "code": "/**\n * ShadcnInputOTPRtl\n * RTL örneği — Arapça OTP (saf React, shadcn kaynaklı).\n * @id 685\n * @category Form Elemanları\n * @subcategory ShadcnInputOTP\n * @source shadcn\n */\nimport { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from \"@/components/ui/input-otp\"\n\nfunction ShadcnInputOTPRtl() {\n  return (\n    <div dir=\"rtl\">\n      <InputOTP maxLength={6}>\n        <InputOTPGroup>\n          <InputOTPSlot index={0} />\n          <InputOTPSlot index={1} />\n          <InputOTPSlot index={2} />\n        </InputOTPGroup>\n        <InputOTPSeparator />\n        <InputOTPGroup>\n          <InputOTPSlot index={3} />\n          <InputOTPSlot index={4} />\n          <InputOTPSlot index={5} />\n        </InputOTPGroup>\n      </InputOTP>\n    </div>\n  )\n}\n\nexport { ShadcnInputOTPRtl }\n",
       "description": "ShadcnInputOTPRtl",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-input-otp-rtl.tsx"
+    },
+    {
+      "id": "686",
+      "name": "ShadcnNativeSelect",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnNativeSelect",
+      "source": "shadcn",
+      "file": "shadcn-native-select.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnNativeSelect + Option + OptGroup\n * Saf React bileşen (bağımlılıksız) — shadcn/ui kaynaklı.\n * Tarayıcı yerel select'i, tasarım sistemine uygun stilli.\n *   <ShadcnNativeSelect>\n *     <ShadcnNativeSelectOption value=\"todo\">Todo</ShadcnNativeSelectOption>\n *     <ShadcnNativeSelectOptGroup label=\"Engineering\">…</ShadcnNativeSelectOptGroup>\n *   </ShadcnNativeSelect>\n * @id 686\n * @category Form Elemanları\n * @subcategory ShadcnNativeSelect\n * @source shadcn\n */\nimport type { OptgroupHTMLAttributes, OptionHTMLAttributes, SelectHTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\nconst CHEVRON_SVG =\n  \"url(\\\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2371717a' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m6 9 6 6 6-6'/%3E%3C/svg%3E\\\")\"\n\ninterface ShadcnNativeSelectProps extends SelectHTMLAttributes<HTMLSelectElement> {}\n\nfunction ShadcnNativeSelect({ className, style, ...props }: ShadcnNativeSelectProps) {\n  return (\n    <select\n      data-slot=\"shadcn-native-select\"\n      className={cn(\n        \"flex h-9 w-full cursor-pointer appearance-none rounded-md border border-border bg-background px-3 pr-8 text-sm text-foreground shadow-xs transition-colors outline-none\",\n        \"bg-no-repeat bg-[position:right_0.75rem_center] bg-[size:1rem]\",\n        \"placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/40\",\n        \"aria-invalid:border-red-500\",\n        \"disabled:cursor-not-allowed disabled:opacity-50\",\n        className\n      )}\n      style={{ backgroundImage: CHEVRON_SVG, ...style }}\n      {...props}\n    />\n  )\n}\n\ninterface ShadcnNativeSelectOptionProps extends OptionHTMLAttributes<HTMLOptionElement> {}\n\nfunction ShadcnNativeSelectOption({ className, ...props }: ShadcnNativeSelectOptionProps) {\n  return <option className={className} {...props} />\n}\n\ninterface ShadcnNativeSelectOptGroupProps extends OptgroupHTMLAttributes<HTMLOptGroupElement> {}\n\nfunction ShadcnNativeSelectOptGroup({ className, ...props }: ShadcnNativeSelectOptGroupProps) {\n  return <optgroup className={className} {...props} />\n}\n\nexport { ShadcnNativeSelect, ShadcnNativeSelectOptGroup, ShadcnNativeSelectOption }\nexport type {\n  ShadcnNativeSelectOptionProps,\n  ShadcnNativeSelectOptGroupProps,\n  ShadcnNativeSelectProps,\n}\n",
+      "description": "ShadcnNativeSelect + Option + OptGroup",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-native-select.tsx"
+    },
+    {
+      "id": "687",
+      "name": "ShadcnNativeSelectDemo",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnNativeSelect",
+      "source": "shadcn",
+      "file": "shadcn-native-select-demo.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnNativeSelectDemo\n * Temel örnek — durum seçimi (saf React, shadcn kaynaklı).\n * @id 687\n * @category Form Elemanları\n * @subcategory ShadcnNativeSelect\n * @source shadcn\n */\nimport { ShadcnNativeSelect, ShadcnNativeSelectOption } from \"@/components/ui/shadcn-native-select\"\n\nfunction ShadcnNativeSelectDemo() {\n  return (\n    <ShadcnNativeSelect className=\"w-[220px]\">\n      <ShadcnNativeSelectOption value=\"\">Select status</ShadcnNativeSelectOption>\n      <ShadcnNativeSelectOption value=\"todo\">Todo</ShadcnNativeSelectOption>\n      <ShadcnNativeSelectOption value=\"in-progress\">In Progress</ShadcnNativeSelectOption>\n      <ShadcnNativeSelectOption value=\"done\">Done</ShadcnNativeSelectOption>\n      <ShadcnNativeSelectOption value=\"cancelled\">Cancelled</ShadcnNativeSelectOption>\n    </ShadcnNativeSelect>\n  )\n}\n\nexport { ShadcnNativeSelectDemo }\n",
+      "description": "ShadcnNativeSelectDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-native-select-demo.tsx"
+    },
+    {
+      "id": "688",
+      "name": "ShadcnNativeSelectGroups",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnNativeSelect",
+      "source": "shadcn",
+      "file": "shadcn-native-select-groups.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnNativeSelectGroups\n * OptGroup — kategorili seçim (saf React, shadcn kaynaklı).\n * @id 688\n * @category Form Elemanları\n * @subcategory ShadcnNativeSelect\n * @source shadcn\n */\nimport { ShadcnNativeSelect, ShadcnNativeSelectOptGroup, ShadcnNativeSelectOption } from \"@/components/ui/shadcn-native-select\"\n\nfunction ShadcnNativeSelectGroups() {\n  return (\n    <ShadcnNativeSelect className=\"w-[240px]\">\n      <ShadcnNativeSelectOption value=\"\">Select department</ShadcnNativeSelectOption>\n      <ShadcnNativeSelectOptGroup label=\"Engineering\">\n        <ShadcnNativeSelectOption value=\"frontend\">Frontend</ShadcnNativeSelectOption>\n        <ShadcnNativeSelectOption value=\"backend\">Backend</ShadcnNativeSelectOption>\n        <ShadcnNativeSelectOption value=\"devops\">DevOps</ShadcnNativeSelectOption>\n      </ShadcnNativeSelectOptGroup>\n      <ShadcnNativeSelectOptGroup label=\"Sales\">\n        <ShadcnNativeSelectOption value=\"sales-rep\">Sales Rep</ShadcnNativeSelectOption>\n        <ShadcnNativeSelectOption value=\"account-manager\">Account Manager</ShadcnNativeSelectOption>\n        <ShadcnNativeSelectOption value=\"sales-director\">Sales Director</ShadcnNativeSelectOption>\n      </ShadcnNativeSelectOptGroup>\n      <ShadcnNativeSelectOptGroup label=\"Operations\">\n        <ShadcnNativeSelectOption value=\"support\">Customer Support</ShadcnNativeSelectOption>\n        <ShadcnNativeSelectOption value=\"product-manager\">Product Manager</ShadcnNativeSelectOption>\n        <ShadcnNativeSelectOption value=\"ops-manager\">Operations Manager</ShadcnNativeSelectOption>\n      </ShadcnNativeSelectOptGroup>\n    </ShadcnNativeSelect>\n  )\n}\n\nexport { ShadcnNativeSelectGroups }\n",
+      "description": "ShadcnNativeSelectGroups",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-native-select-groups.tsx"
+    },
+    {
+      "id": "689",
+      "name": "ShadcnNativeSelectDisabled",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnNativeSelect",
+      "source": "shadcn",
+      "file": "shadcn-native-select-disabled.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnNativeSelectDisabled\n * Devre dışı select (saf React, shadcn kaynaklı).\n * @id 689\n * @category Form Elemanları\n * @subcategory ShadcnNativeSelect\n * @source shadcn\n */\nimport { ShadcnNativeSelect, ShadcnNativeSelectOption } from \"@/components/ui/shadcn-native-select\"\n\nfunction ShadcnNativeSelectDisabled() {\n  return (\n    <ShadcnNativeSelect className=\"w-[220px]\" disabled>\n      <ShadcnNativeSelectOption value=\"\">Disabled</ShadcnNativeSelectOption>\n      <ShadcnNativeSelectOption value=\"apple\">Apple</ShadcnNativeSelectOption>\n      <ShadcnNativeSelectOption value=\"banana\">Banana</ShadcnNativeSelectOption>\n      <ShadcnNativeSelectOption value=\"blueberry\">Blueberry</ShadcnNativeSelectOption>\n    </ShadcnNativeSelect>\n  )\n}\n\nexport { ShadcnNativeSelectDisabled }\n",
+      "description": "ShadcnNativeSelectDisabled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-native-select-disabled.tsx"
+    },
+    {
+      "id": "690",
+      "name": "ShadcnNativeSelectInvalid",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnNativeSelect",
+      "source": "shadcn",
+      "file": "shadcn-native-select-invalid.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnNativeSelectInvalid\n * Geçersiz durum (saf React, shadcn kaynaklı).\n * @id 690\n * @category Form Elemanları\n * @subcategory ShadcnNativeSelect\n * @source shadcn\n */\nimport { ShadcnNativeSelect, ShadcnNativeSelectOption } from \"@/components/ui/shadcn-native-select\"\n\nfunction ShadcnNativeSelectInvalid() {\n  return (\n    <ShadcnNativeSelect className=\"w-[220px]\" aria-invalid=\"true\">\n      <ShadcnNativeSelectOption value=\"\">Error state</ShadcnNativeSelectOption>\n      <ShadcnNativeSelectOption value=\"apple\">Apple</ShadcnNativeSelectOption>\n      <ShadcnNativeSelectOption value=\"banana\">Banana</ShadcnNativeSelectOption>\n      <ShadcnNativeSelectOption value=\"blueberry\">Blueberry</ShadcnNativeSelectOption>\n    </ShadcnNativeSelect>\n  )\n}\n\nexport { ShadcnNativeSelectInvalid }\n",
+      "description": "ShadcnNativeSelectInvalid",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-native-select-invalid.tsx"
+    },
+    {
+      "id": "691",
+      "name": "ShadcnNativeSelectRtl",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnNativeSelect",
+      "source": "shadcn",
+      "file": "shadcn-native-select-rtl.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnNativeSelectRtl\n * RTL örneği — Arapça seçim (saf React, shadcn kaynaklı).\n * @id 691\n * @category Form Elemanları\n * @subcategory ShadcnNativeSelect\n * @source shadcn\n */\nimport { ShadcnNativeSelect, ShadcnNativeSelectOption } from \"@/components/ui/shadcn-native-select\"\n\nfunction ShadcnNativeSelectRtl() {\n  return (\n    <ShadcnNativeSelect className=\"w-[220px]\" dir=\"rtl\">\n      <ShadcnNativeSelectOption value=\"\">حدد الحالة</ShadcnNativeSelectOption>\n      <ShadcnNativeSelectOption value=\"todo\">قيد التنفيذ</ShadcnNativeSelectOption>\n      <ShadcnNativeSelectOption value=\"in-progress\">قيد التقدم</ShadcnNativeSelectOption>\n      <ShadcnNativeSelectOption value=\"done\">مكتمل</ShadcnNativeSelectOption>\n      <ShadcnNativeSelectOption value=\"cancelled\">ملغي</ShadcnNativeSelectOption>\n    </ShadcnNativeSelect>\n  )\n}\n\nexport { ShadcnNativeSelectRtl }\n",
+      "description": "ShadcnNativeSelectRtl",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-native-select-rtl.tsx"
     },
     {
       "id": "389",

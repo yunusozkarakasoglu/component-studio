@@ -660,4 +660,10 @@ export const SAMPLES: Record<string, ReactNode> = {
   "683": <U.ShadcnInputOTPAlphanumeric />,
   "684": <U.ShadcnInputOTPForm />,
   "685": <U.ShadcnInputOTPRtl />,
+  "686": <U.ShadcnNativeSelect />,
+  "687": <U.ShadcnNativeSelectDemo />,
+  "688": <U.ShadcnNativeSelectGroups />,
+  "689": <U.ShadcnNativeSelectDisabled />,
+  "690": <U.ShadcnNativeSelectInvalid />,
+  "691": <U.ShadcnNativeSelectRtl />,
 }

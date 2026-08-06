@@ -326,6 +326,13 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `683` ShadcnInputOTPAlphanumeric
 - `684` ShadcnInputOTPForm
 - `685` ShadcnInputOTPRtl
+#### ShadcnNativeSelect
+- `686` ShadcnNativeSelect + Option + OptGroup
+- `687` ShadcnNativeSelectDemo
+- `688` ShadcnNativeSelectGroups
+- `689` ShadcnNativeSelectDisabled
+- `690` ShadcnNativeSelectInvalid
+- `691` ShadcnNativeSelectRtl
 
 ### Seçim
 #### RadioGroup
@@ -700,7 +707,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 597 bileşen (saf React)**
+**Toplam: 603 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
