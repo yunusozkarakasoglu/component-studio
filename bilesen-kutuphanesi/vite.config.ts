@@ -174,6 +174,10 @@ Kurallar: 1) Çalışma klasörü src/workbench/current/ — index.tsx'e tek dos
             else if (code.includes("@id")) code = code.replace(/@id\s+\d+/, "@id " + pad + "\n * @category " + cat)
             if (sub && code.includes("@subcategory")) code = code.replace(/@subcategory\s+.+/, "@subcategory " + sub)
             else if (sub && code.includes("@category")) code = code.replace(/@category\s+.+/, "@category " + cat + "\n * @subcategory " + sub)
+            // kullanıcı üretimi = özel kaynak
+            if (code.includes("@source")) code = code.replace(/@source\s+.+/, "@source ozel")
+            else if (code.includes("@subcategory")) code = code.replace(/@subcategory\s+.+/, "@subcategory " + sub + "\n * @source ozel")
+            else if (code.includes("@category")) code = code.replace(/@category\s+.+/, "@category " + cat + "\n * @source ozel")
             // kebab dosya adı (slug kuralı: TextArea→textarea, all-caps ayrımı)
             let n = name.replace(/TextArea/g, "Textarea").replace(/([A-Z]+)([A-Z][a-z])/g, "$1-$2")
             const kebab = n.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase()
@@ -220,7 +224,7 @@ Kurallar: 1) Çalışma klasörü src/workbench/current/ — index.tsx'e tek dos
             if (!id || used.has(id)) { while (used.has(++id)) {} }
             if (id > 999) throw new Error("Numara aralığı dolu")
             // şablon
-            const code = `/**\n * ${name}\n * Template Maker — özel bileşen (otomatik oluşturuldu)\n * @id ${String(id).padStart(3, "0")}\n * @category ${cat}\n */\nimport { cn } from "@/lib/utils"\nimport type * as React from "react"\n\ninterface ${name}Props extends React.HTMLAttributes<HTMLDivElement> {}\n\nfunction ${name}({ className, ...props }: ${name}Props) {\n  return (\n    <div className={cn("rounded-lg border border-border bg-card p-6", className)} {...props}>\n      ${name} içeriği — burayı düzenleyin\n    </div>\n  )\n}\n\nexport { ${name} }\nexport type { ${name}Props }\n`
+            const code = `/**\n * ${name}\n * Template Maker — özel bileşen (otomatik oluşturuldu)\n * @id ${String(id).padStart(3, "0")}\n * @category ${cat}\n * @source ozel\n */\nimport { cn } from "@/lib/utils"\nimport type * as React from "react"\n\ninterface ${name}Props extends React.HTMLAttributes<HTMLDivElement> {}\n\nfunction ${name}({ className, ...props }: ${name}Props) {\n  return (\n    <div className={cn("rounded-lg border border-border bg-card p-6", className)} {...props}>\n      ${name} içeriği — burayı düzenleyin\n    </div>\n  )\n}\n\nexport { ${name} }\nexport type { ${name}Props }\n`
             writeFileSync(target, code, "utf8")
             // index.tsx'e ekle
             appendFileSync(path.resolve(UI_DIR, "index.tsx"), `\nexport * from "./${kebab}"\n`, "utf8")

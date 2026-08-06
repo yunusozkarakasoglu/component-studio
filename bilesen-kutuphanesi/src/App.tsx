@@ -688,7 +688,8 @@ export default function Studio() {
   const [wizardOpen, setWizardOpen] = useState(() => window.location.hash === "#/yeni-bilesen")
   const [pendingCount, setPendingCount] = useState(0)
   const [view, setView] = useState<"dashboard" | "bilesenler" | "layoutlar">("dashboard")
-  const [source, setSource] = useState<"tumu" | "heroui" | "mantine" | "shadcn">("tumu")
+  const [source, setSource] = useState<"tumu" | "heroui" | "mantine" | "shadcn" | "ozel">("tumu")
+  const [galleryView, setGalleryView] = useState<"kart" | "tablo">("kart")
   const [newMenu, setNewMenu] = useState(false)
 
   // + Yeni → tip seçimi
@@ -878,7 +879,7 @@ export default function Studio() {
               <div className="shrink-0 space-y-2 border-b border-black/30 p-2.5">
                 {/* Kaynak filtre — bileşen kaynakları */}
                 <div className="flex gap-1 rounded-lg border border-black/25 bg-muted/30 p-0.5">
-                  {([["tumu", "Tümü"], ["heroui", "HeroUI"], ["mantine", "Mantine"], ["shadcn", "shadcn"]] as const).map(([v, l]) => (
+                  {([["tumu", "Tümü"], ["heroui", "HeroUI"], ["mantine", "Mantine"], ["shadcn", "shadcn"], ["ozel", "Özel"]] as const).map(([v, l]) => (
                     <button key={v} onClick={() => setSource(v)}
                       className={cn("flex-1 rounded-md px-1.5 py-1 text-[10px] font-medium transition-colors", source === v ? "bg-blue-600 text-white" : "text-foreground hover:bg-muted")}>
                       {l}
@@ -887,7 +888,9 @@ export default function Studio() {
                 </div>
                 {source !== "tumu" && source !== "heroui" && (
                   <p className="rounded-md bg-amber-500/10 px-2 py-1.5 text-[10px] text-amber-700">
-                    {source === "mantine" ? "Mantine kaynak klasörü hazır — bileşenler entegrasyon bekliyor (Masaüstü/mantine-components-setup)." : "shadcn/ui kaynak klasörü hazır — bileşenler entegrasyon bekliyor (Masaüstü/shadcn-components-setup)."}
+                    {source === "mantine" ? "Mantine kaynak klasörü hazır — bileşenler entegrasyon bekliyor (Masaüstü/mantine-components-setup)."
+                      : source === "shadcn" ? "shadcn/ui kaynağı — entegrasyon sürüyor (Masaüstü/shadcn-components-setup)."
+                      : "Özel — sizin ürettiğiniz bileşenler (sihirbaz / elle). Henüz yok; + Yeni ile oluşturun."}
                   </p>
                 )}
                 <SearchField aria-label="Ara" value={q} onChange={setQ} placeholder="Ara: 008, buton, renk…" className="h-8 border-black/40 text-xs" />
@@ -968,7 +971,55 @@ export default function Studio() {
           {/* ANA ALAN */}
           {view === "bilesenler" && (
           <main className="min-h-0 flex-1 overflow-y-auto p-4">
-            {filtered.length ? (
+            {/* Görünüm değiştirici: Kart / Tablo */}
+            <div className="mb-3 flex items-center justify-between">
+              <Text className="text-xs text-muted-foreground">{filtered.length} bileşen{source !== "tumu" && ` · kaynak: ${source}`}</Text>
+              <div className="flex gap-1 rounded-lg border border-black/25 bg-muted/30 p-0.5">
+                {([["kart", "▦ Kart"], ["tablo", "☰ Tablo"]] as const).map(([v, l]) => (
+                  <button key={v} onClick={() => setGalleryView(v)}
+                    className={cn("rounded-md px-2.5 py-1 text-xs font-medium transition-colors", galleryView === v ? "bg-blue-600 text-white" : "text-foreground hover:bg-muted")}>
+                    {l}
+                  </button>
+                ))}
+              </div>
+            </div>
+            {galleryView === "tablo" && filtered.length ? (
+              <div className="overflow-x-auto rounded-lg border border-black/20 bg-background">
+                <table className="w-full text-left text-sm">
+                  <thead className="border-b border-black/25 bg-muted/30 text-[11px] text-muted-foreground uppercase">
+                    <tr>
+                      <th className="px-3 py-2 font-semibold">ID</th>
+                      <th className="px-3 py-2 font-semibold">Bileşen</th>
+                      <th className="px-3 py-2 font-semibold">Kategori</th>
+                      <th className="px-3 py-2 font-semibold">Alt Kategori</th>
+                      <th className="px-3 py-2 font-semibold">Kaynak</th>
+                      <th className="px-3 py-2 font-semibold">Açıklama</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filtered.map((c) => (
+                      <tr key={c.id} onClick={() => setEdit({ rec: c })} title={`${c.id} ${c.name} — düzenlemek için tıkla`}
+                        className="cursor-pointer border-b border-black/10 transition-colors hover:bg-muted/50">
+                        <td className="px-3 py-1.5 font-mono text-[11px] text-muted-foreground">{c.id}</td>
+                        <td className="px-3 py-1.5 font-medium text-foreground">{c.name}</td>
+                        <td className="px-3 py-1.5 text-xs text-muted-foreground">{c.category}</td>
+                        <td className="px-3 py-1.5 text-xs text-muted-foreground">{c.subcategory || "—"}</td>
+                        <td className="px-3 py-1.5 text-xs">
+                          <span className={cn("rounded-full px-1.5 py-0.5 text-[10px] font-medium",
+                            (c.source ?? "heroui") === "shadcn" ? "bg-emerald-500/15 text-emerald-700"
+                            : (c.source ?? "heroui") === "ozel" ? "bg-purple-500/15 text-purple-700"
+                            : (c.source ?? "heroui") === "mantine" ? "bg-orange-500/15 text-orange-700"
+                            : "bg-blue-500/15 text-blue-700")}>
+                            {c.source ?? "heroui"}
+                          </span>
+                        </td>
+                        <td className="max-w-64 truncate px-3 py-1.5 text-xs text-muted-foreground">{c.description}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : filtered.length ? (
                 <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
                   {filtered.map((c) => {
                     const sample = SAMPLES[c.id]
