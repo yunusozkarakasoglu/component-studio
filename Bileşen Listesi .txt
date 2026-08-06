@@ -479,6 +479,12 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `818` ShadcnToastDemo
 - `819` ShadcnToastTypes
 - `820` ShadcnToastPromise
+#### ShadcnSheet
+- `821` ShadcnSheet + Trigger/Content(side)/Header/Title/Description/Footer/Close
+- `822` ShadcnSheetDemo
+- `823` ShadcnSheetSide
+- `824` ShadcnSheetNoCloseButton
+- `825` ShadcnSheetRtl
 
 ### Seçim
 #### RadioGroup
@@ -853,7 +859,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 731 bileşen (saf React)**
+**Toplam: 736 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

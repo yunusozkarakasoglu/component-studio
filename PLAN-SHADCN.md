@@ -77,7 +77,8 @@
 - [x] **Dropdown Menu** — 805-812 (mevcut Menu ile 8 örnek)
 - [x] **Context Menu** — 813-817 (sağ tıklama çekirdek + 4 örnek)
 - [x] **Toast** — 818-820 (mevcut toast API + 3 örnek)
-Sheet → Drawer → Sidebar
+- [x] **Sheet** — 821-825 (8 compound + 4 örnek)
+Drawer → Sidebar
 
 ### Adım 5 — Navigasyon + Akordeon + Uyarı (9)
 Tabs → Pagination → Breadcrumb → Navigation Menu → Menubar → Accordion → Collapsible → Alert → Alert Dialog
