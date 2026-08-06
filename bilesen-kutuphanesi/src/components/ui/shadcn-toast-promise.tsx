@@ -13,7 +13,7 @@ import { ShadcnButton } from "@/components/ui/shadcn-button"
 
 function ShadcnToastPromise() {
   function showToast() {
-    const id = toast("Creating event…", { variant: "info" })
+    const id = toast("Creating event…", { variant: "accent" })
     window.setTimeout(() => {
       toast.close(id)
       toast("Event created.", { variant: "success" })

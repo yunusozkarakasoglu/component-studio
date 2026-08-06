@@ -21,13 +21,13 @@ function ShadcnToastTypes() {
         <ShadcnButton variant="outline" onClick={() => toast("Event has been created.", { variant: "success", description: "Success toast" })}>
           Success
         </ShadcnButton>
-        <ShadcnButton variant="outline" onClick={() => toast("Arrive 10 minutes before the event.", { variant: "info", description: "Info toast" })}>
+        <ShadcnButton variant="outline" onClick={() => toast("Arrive 10 minutes before the event.", { variant: "accent", description: "Info toast" })}>
           Info
         </ShadcnButton>
         <ShadcnButton variant="outline" onClick={() => toast("The event cannot start before 8:00 AM.", { variant: "warning", description: "Warning toast" })}>
           Warning
         </ShadcnButton>
-        <ShadcnButton variant="outline" onClick={() => toast("The event could not be created.", { variant: "error", description: "Error toast" })}>
+        <ShadcnButton variant="outline" onClick={() => toast("The event could not be created.", { variant: "danger", description: "Error toast" })}>
           Error
         </ShadcnButton>
       </div>
