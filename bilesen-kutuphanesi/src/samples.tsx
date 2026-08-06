@@ -804,4 +804,7 @@ export const SAMPLES: Record<string, ReactNode> = {
   "828": <U.ShadcnDrawerWithSides />,
   "829": <U.ShadcnDrawerSwipeHandle />,
   "830": <U.ShadcnDrawerNested />,
+  "831": <U.ShadcnSidebar />,
+  "832": <U.ShadcnSidebarDemo />,
+  "833": <U.ShadcnSidebarBasic />,
 }

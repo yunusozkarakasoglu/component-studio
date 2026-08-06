@@ -19,7 +19,9 @@
 | **Kartlar** (2) | Card, - [x] **Badge** — 774-781 (ShadcnBadge çekirdek + 7 örnek)
 
 ### ✅ Adım 3 tamamlandı (4 element, 31 bileşen) |
-| **Overlay** (10) | Dialog, Popover, Tooltip, Hover Card, Dropdown Menu, Context Menu, Toast, Sheet, Drawer, Sidebar |
+| **Overlay** (10) | Dialog, Popover, Tooltip, Hover Card, Dropdown Menu, Context Menu, Toast, Sheet, Drawer, - [x] **Sidebar** — 831-833 (basitleştirilmiş 11 compound + 2 örnek)
+
+### ✅ Adım 4 tamamlandı (10 element, 52 bileşen) |
 | **Navigasyon** (5) | Tabs, Pagination, Breadcrumb, Navigation Menu, Menubar |
 | **Accordion** (1) | Accordion |
 | **Alert & Dialog** (2) | Alert, Alert Dialog |
@@ -79,7 +81,9 @@
 - [x] **Toast** — 818-820 (mevcut toast API + 3 örnek)
 - [x] **Sheet** — 821-825 (8 compound + 4 örnek)
 - [x] **Drawer** — 826-830 (8 compound + 4 örnek)
-Sidebar
+- [x] **Sidebar** — 831-833 (basitleştirilmiş 11 compound + 2 örnek)
+
+### ✅ Adım 4 tamamlandı (10 element, 52 bileşen)
 
 ### Adım 5 — Navigasyon + Akordeon + Uyarı (9)
 Tabs → Pagination → Breadcrumb → Navigation Menu → Menubar → Accordion → Collapsible → Alert → Alert Dialog

@@ -491,6 +491,10 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `828` ShadcnDrawerWithSides
 - `829` ShadcnDrawerSwipeHandle
 - `830` ShadcnDrawerNested
+#### ShadcnSidebar
+- `831` ShadcnSidebar + Provider/Header/Content/Footer/Group/Menu/Item/Button/Trigger/Inset
+- `832` ShadcnSidebarDemo
+- `833` ShadcnSidebarBasic
 
 ### Seçim
 #### RadioGroup
@@ -865,7 +869,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 741 bileşen (saf React)**
+**Toplam: 744 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
