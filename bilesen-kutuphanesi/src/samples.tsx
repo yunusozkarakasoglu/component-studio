@@ -740,4 +740,11 @@ export const SAMPLES: Record<string, ReactNode> = {
   "764": <U.ShadcnButtonGroupDropdown />,
   "765": <U.ShadcnButtonGroupSelect />,
   "766": <U.ShadcnButtonGroupPopover />,
+  "767": <U.ShadcnCard />,
+  "768": <U.ShadcnCardDemo />,
+  "769": <U.ShadcnCardSmall />,
+  "770": <U.ShadcnCardSpacing />,
+  "771": <U.ShadcnCardEdgeToEdge />,
+  "772": <U.ShadcnCardImage />,
+  "773": <U.ShadcnCardRtl />,
 }

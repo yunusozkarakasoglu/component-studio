@@ -62,7 +62,8 @@
 ### Adım 3 — Butonlar + Kartlar (4)
 - [x] **Button** — 741-754 (ShadcnButton çekirdek + 13 örnek)
 - [x] **Button Group** — 755-766 (çekirdek + Separator + 11 örnek)
-Card → Badge
+- [x] **Card** — 767-773 (7 compound + 6 örnek)
+Badge
 
 ### Adım 4 — Overlay + Panel (10)
 Dialog → Popover → Tooltip → Hover Card → Dropdown Menu → Context Menu → Toast → Sheet → Drawer → Sidebar

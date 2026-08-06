@@ -415,6 +415,14 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `764` ShadcnButtonGroupDropdown
 - `765` ShadcnButtonGroupSelect
 - `766` ShadcnButtonGroupPopover
+#### ShadcnCard
+- `767` ShadcnCard + Header/Title/Description/Action/Content/Footer
+- `768` ShadcnCardDemo
+- `769` ShadcnCardSmall
+- `770` ShadcnCardSpacing
+- `771` ShadcnCardEdgeToEdge
+- `772` ShadcnCardImage
+- `773` ShadcnCardRtl
 
 ### Seçim
 #### RadioGroup
@@ -789,7 +797,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 677 bileşen (saf React)**
+**Toplam: 684 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
