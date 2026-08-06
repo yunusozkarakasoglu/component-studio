@@ -13,7 +13,7 @@
  * @subcategory ShadcnTabs
  * @source shadcn
  */
-import { createContext, useContext, useState, type HTMLAttributes, type ReactNode } from "react"
+import { createContext, useContext, useState, type HTMLAttributes } from "react"
 import { cn } from "@/lib/utils"
 
 interface TabsContextValue {
