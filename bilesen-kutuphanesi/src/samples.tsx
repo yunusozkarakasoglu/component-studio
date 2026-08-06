@@ -791,4 +791,7 @@ export const SAMPLES: Record<string, ReactNode> = {
   "815": <U.ShadcnContextMenuBasic />,
   "816": <U.ShadcnContextMenuShortcuts />,
   "817": <U.ShadcnContextMenuGroups />,
+  "818": <U.ShadcnToastDemo />,
+  "819": <U.ShadcnToastTypes />,
+  "820": <U.ShadcnToastPromise />,
 }

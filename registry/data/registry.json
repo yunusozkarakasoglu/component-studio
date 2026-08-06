@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-06T13:01:21.069Z",
+  "generatedAt": "2026-08-06T13:04:10.315Z",
   "counts": {
-    "components": 728,
-    "ready": 728,
+    "components": 731,
+    "ready": 731,
     "layouts": 0
   },
   "categories": [
@@ -4970,6 +4970,42 @@
       "code": "/**\n * ShadcnContextMenuGroups\n * Gruplu menü — onay kutuları (saf React, shadcn kaynaklı).\n * @id 817\n * @category Overlay\n * @subcategory ShadcnContextMenu\n * @source shadcn\n */\nimport {\n  ShadcnContextMenu,\n  ShadcnContextMenuCheckboxItem,\n  ShadcnContextMenuContent,\n  ShadcnContextMenuGroup,\n  ShadcnContextMenuSeparator,\n  ShadcnContextMenuTrigger,\n} from \"@/components/ui/shadcn-context-menu\"\n\nfunction ShadcnContextMenuGroups() {\n  return (\n    <ShadcnContextMenu>\n      <ShadcnContextMenuTrigger className=\"flex h-24 w-56 items-center justify-center rounded-xl border border-dashed text-sm text-muted-foreground\">\n        Right click here\n      </ShadcnContextMenuTrigger>\n      <ShadcnContextMenuContent className=\"w-48\">\n        <ShadcnContextMenuGroup>\n          <ShadcnContextMenuCheckboxItem checked>Show Bookmarks</ShadcnContextMenuCheckboxItem>\n          <ShadcnContextMenuCheckboxItem>Show Full URLs</ShadcnContextMenuCheckboxItem>\n        </ShadcnContextMenuGroup>\n        <ShadcnContextMenuSeparator />\n        <ShadcnContextMenuGroup>\n          <ShadcnContextMenuCheckboxItem>New Window</ShadcnContextMenuCheckboxItem>\n          <ShadcnContextMenuCheckboxItem checked>Incognito Window</ShadcnContextMenuCheckboxItem>\n        </ShadcnContextMenuGroup>\n      </ShadcnContextMenuContent>\n    </ShadcnContextMenu>\n  )\n}\n\nexport { ShadcnContextMenuGroups }\n",
       "description": "ShadcnContextMenuGroups",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-context-menu-groups.tsx"
+    },
+    {
+      "id": "818",
+      "name": "ShadcnToastDemo",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnToast",
+      "source": "shadcn",
+      "file": "shadcn-toast-demo.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnToastDemo\n * Temel örnek — etkinlik oluşturma bildirimi (saf React, shadcn kaynaklı).\n * Toast: kütüphanenin mevcut bileşeni (Heroui — saf React, API uyumlu).\n * @id 818\n * @category Overlay\n * @subcategory ShadcnToast\n * @source shadcn\n */\nimport { toast, ToastProvider } from \"@/components/ui/toast\"\nimport { ShadcnButton } from \"@/components/ui/shadcn-button\"\n\nfunction ShadcnToastDemo() {\n  function showToast() {\n    const id = toast(\"Event created\", {\n      description: \"Sunday, December 3 at 9:00 AM\",\n      actionProps: { children: \"Undo\", onPress: () => toast.close(id) },\n    })\n  }\n\n  return (\n    <div className=\"flex flex-col items-center gap-4\">\n      <ToastProvider />\n      <ShadcnButton variant=\"outline\" onClick={showToast}>\n        Show Toast\n      </ShadcnButton>\n    </div>\n  )\n}\n\nexport { ShadcnToastDemo }\n",
+      "description": "ShadcnToastDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-toast-demo.tsx"
+    },
+    {
+      "id": "819",
+      "name": "ShadcnToastTypes",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnToast",
+      "source": "shadcn",
+      "file": "shadcn-toast-types.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnToastTypes\n * Varyantlar — default, success, info, warning, error (saf React, shadcn kaynaklı).\n * Toast: kütüphanenin mevcut bileşeni (Heroui — saf React).\n * @id 819\n * @category Overlay\n * @subcategory ShadcnToast\n * @source shadcn\n */\nimport { toast, ToastProvider } from \"@/components/ui/toast\"\nimport { ShadcnButton } from \"@/components/ui/shadcn-button\"\n\nfunction ShadcnToastTypes() {\n  return (\n    <div className=\"flex flex-col items-center gap-4\">\n      <ToastProvider />\n      <div className=\"flex flex-wrap gap-2\">\n        <ShadcnButton variant=\"outline\" onClick={() => toast(\"Event has been created.\", { description: \"Default toast\" })}>\n          Default\n        </ShadcnButton>\n        <ShadcnButton variant=\"outline\" onClick={() => toast(\"Event has been created.\", { variant: \"success\", description: \"Success toast\" })}>\n          Success\n        </ShadcnButton>\n        <ShadcnButton variant=\"outline\" onClick={() => toast(\"Arrive 10 minutes before the event.\", { variant: \"info\", description: \"Info toast\" })}>\n          Info\n        </ShadcnButton>\n        <ShadcnButton variant=\"outline\" onClick={() => toast(\"The event cannot start before 8:00 AM.\", { variant: \"warning\", description: \"Warning toast\" })}>\n          Warning\n        </ShadcnButton>\n        <ShadcnButton variant=\"outline\" onClick={() => toast(\"The event could not be created.\", { variant: \"error\", description: \"Error toast\" })}>\n          Error\n        </ShadcnButton>\n      </div>\n    </div>\n  )\n}\n\nexport { ShadcnToastTypes }\n",
+      "description": "ShadcnToastTypes",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-toast-types.tsx"
+    },
+    {
+      "id": "820",
+      "name": "ShadcnToastPromise",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnToast",
+      "source": "shadcn",
+      "file": "shadcn-toast-promise.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnToastPromise\n * Asenkron işlem bildirimi — yükleniyor → başarı (saf React, shadcn kaynaklı).\n * Not: kaynakta toast.promise kullanılır; Heroui API'sinde yok — basit\n * zamanlayıcı ile aynı davranış uyarlandı.\n * @id 820\n * @category Overlay\n * @subcategory ShadcnToast\n * @source shadcn\n */\nimport { toast, ToastProvider } from \"@/components/ui/toast\"\nimport { ShadcnButton } from \"@/components/ui/shadcn-button\"\n\nfunction ShadcnToastPromise() {\n  function showToast() {\n    const id = toast(\"Creating event…\", { variant: \"info\" })\n    window.setTimeout(() => {\n      toast.close(id)\n      toast(\"Event created.\", { variant: \"success\" })\n    }, 2000)\n  }\n\n  return (\n    <div className=\"flex flex-col items-center gap-4\">\n      <ToastProvider />\n      <ShadcnButton variant=\"outline\" onClick={showToast}>\n        Create Event\n      </ShadcnButton>\n    </div>\n  )\n}\n\nexport { ShadcnToastPromise }\n",
+      "description": "ShadcnToastPromise",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-toast-promise.tsx"
     },
     {
       "id": "389",

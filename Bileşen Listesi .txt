@@ -475,6 +475,10 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `815` ShadcnContextMenuBasic
 - `816` ShadcnContextMenuShortcuts
 - `817` ShadcnContextMenuGroups
+#### ShadcnToast
+- `818` ShadcnToastDemo
+- `819` ShadcnToastTypes
+- `820` ShadcnToastPromise
 
 ### Seçim
 #### RadioGroup
@@ -849,7 +853,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 728 bileşen (saf React)**
+**Toplam: 731 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
