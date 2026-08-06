@@ -423,6 +423,15 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `771` ShadcnCardEdgeToEdge
 - `772` ShadcnCardImage
 - `773` ShadcnCardRtl
+#### ShadcnBadge
+- `774` ShadcnBadge
+- `775` ShadcnBadgeDemo
+- `776` ShadcnBadgeVariants
+- `777` ShadcnBadgeWithIcon
+- `778` ShadcnBadgeWithSpinner
+- `779` ShadcnBadgeAsLink
+- `780` ShadcnBadgeCustomColors
+- `781` ShadcnBadgeRtl
 
 ### Seçim
 #### RadioGroup
@@ -797,7 +806,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 684 bileşen (saf React)**
+**Toplam: 692 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

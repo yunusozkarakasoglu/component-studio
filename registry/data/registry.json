@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-06T12:38:35.032Z",
+  "generatedAt": "2026-08-06T12:41:10.143Z",
   "counts": {
-    "components": 684,
-    "ready": 684,
+    "components": 692,
+    "ready": 692,
     "layouts": 0
   },
   "categories": [
@@ -4442,6 +4442,102 @@
       "code": "/**\n * ShadcnCardRtl\n * RTL örneği — Arapça giriş kartı (saf React, shadcn kaynaklı).\n * @id 773\n * @category Kartlar\n * @subcategory ShadcnCard\n * @source shadcn\n */\nimport { ShadcnButton } from \"@/components/ui/shadcn-button\"\nimport {\n  ShadcnCard,\n  ShadcnCardContent,\n  ShadcnCardDescription,\n  ShadcnCardFooter,\n  ShadcnCardHeader,\n  ShadcnCardTitle,\n} from \"@/components/ui/shadcn-card\"\nimport { ShadcnInput } from \"@/components/ui/shadcn-input\"\nimport { ShadcnLabel } from \"@/components/ui/shadcn-label\"\n\nfunction ShadcnCardRtl() {\n  return (\n    <ShadcnCard className=\"w-full max-w-sm\" dir=\"rtl\">\n      <ShadcnCardHeader>\n        <ShadcnCardTitle>تسجيل الدخول</ShadcnCardTitle>\n        <ShadcnCardDescription>أدخل بريدك الإلكتروني أدناه لتسجيل الدخول</ShadcnCardDescription>\n      </ShadcnCardHeader>\n      <ShadcnCardContent>\n        <form>\n          <div className=\"flex flex-col gap-6\">\n            <div className=\"grid gap-2\">\n              <ShadcnLabel htmlFor=\"shadcn-card-rtl-email\">البريد الإلكتروني</ShadcnLabel>\n              <ShadcnInput id=\"shadcn-card-rtl-email\" type=\"email\" placeholder=\"m@example.com\" dir=\"rtl\" />\n            </div>\n            <div className=\"grid gap-2\">\n              <ShadcnLabel htmlFor=\"shadcn-card-rtl-password\">كلمة المرور</ShadcnLabel>\n              <ShadcnInput id=\"shadcn-card-rtl-password\" type=\"password\" dir=\"rtl\" />\n            </div>\n          </div>\n        </form>\n      </ShadcnCardContent>\n      <ShadcnCardFooter className=\"flex-col gap-2\">\n        <ShadcnButton type=\"submit\" className=\"w-full\">دخول</ShadcnButton>\n        <ShadcnButton variant=\"outline\" className=\"w-full\">تسجيل الدخول عبر جوجل</ShadcnButton>\n      </ShadcnCardFooter>\n    </ShadcnCard>\n  )\n}\n\nexport { ShadcnCardRtl }\n",
       "description": "ShadcnCardRtl",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-card-rtl.tsx"
+    },
+    {
+      "id": "774",
+      "name": "ShadcnBadge",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnBadge",
+      "source": "shadcn",
+      "file": "shadcn-badge.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnBadge\n * Saf React bileşen (bağımlılıksız) — shadcn/ui kaynaklı.\n * Rozet — durum/etiket göstergesi.\n *   <ShadcnBadge variant=\"secondary\">Secondary</ShadcnBadge>\n * variant: default | secondary | destructive | outline | ghost\n * @id 774\n * @category Kartlar\n * @subcategory ShadcnBadge\n * @source shadcn\n */\nimport type { HTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface ShadcnBadgeProps extends HTMLAttributes<HTMLSpanElement> {\n  variant?: \"default\" | \"secondary\" | \"destructive\" | \"outline\" | \"ghost\"\n}\n\nconst badgeVariants: Record<string, string> = {\n  default: \"border-transparent bg-blue-600 text-white\",\n  secondary: \"border-transparent bg-muted text-foreground\",\n  destructive: \"border-transparent bg-red-600 text-white\",\n  outline: \"border-border bg-background text-foreground\",\n  ghost: \"border-transparent bg-transparent text-muted-foreground\",\n}\n\nfunction ShadcnBadge({ className, variant = \"default\", ...props }: ShadcnBadgeProps) {\n  return (\n    <span\n      data-slot=\"shadcn-badge\"\n      data-variant={variant}\n      className={cn(\n        \"inline-flex items-center gap-1 rounded-md border px-2 py-0.5 text-xs font-medium whitespace-nowrap\",\n        \"data-[icon=inline-start]:[&_svg]:mr-1 data-[icon=inline-end]:[&_svg]:ml-1\",\n        badgeVariants[variant],\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { ShadcnBadge }\nexport type { ShadcnBadgeProps }\n",
+      "description": "ShadcnBadge",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-badge.tsx"
+    },
+    {
+      "id": "775",
+      "name": "ShadcnBadgeDemo",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnBadge",
+      "source": "shadcn",
+      "file": "shadcn-badge-demo.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnBadgeDemo\n * Temel örnek — varyantlar (saf React, shadcn kaynaklı).\n * @id 775\n * @category Kartlar\n * @subcategory ShadcnBadge\n * @source shadcn\n */\nimport { ShadcnBadge } from \"@/components/ui/shadcn-badge\"\n\nfunction ShadcnBadgeDemo() {\n  return (\n    <div className=\"flex flex-wrap gap-2\">\n      <ShadcnBadge>Badge</ShadcnBadge>\n      <ShadcnBadge variant=\"secondary\">Secondary</ShadcnBadge>\n      <ShadcnBadge variant=\"destructive\">Destructive</ShadcnBadge>\n      <ShadcnBadge variant=\"outline\">Outline</ShadcnBadge>\n    </div>\n  )\n}\n\nexport { ShadcnBadgeDemo }\n",
+      "description": "ShadcnBadgeDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-badge-demo.tsx"
+    },
+    {
+      "id": "776",
+      "name": "ShadcnBadgeVariants",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnBadge",
+      "source": "shadcn",
+      "file": "shadcn-badge-variants.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnBadgeVariants\n * Tüm varyantlar (saf React, shadcn kaynaklı).\n * @id 776\n * @category Kartlar\n * @subcategory ShadcnBadge\n * @source shadcn\n */\nimport { ShadcnBadge } from \"@/components/ui/shadcn-badge\"\n\nfunction ShadcnBadgeVariants() {\n  return (\n    <div className=\"flex flex-wrap gap-2\">\n      <ShadcnBadge>Default</ShadcnBadge>\n      <ShadcnBadge variant=\"secondary\">Secondary</ShadcnBadge>\n      <ShadcnBadge variant=\"destructive\">Destructive</ShadcnBadge>\n      <ShadcnBadge variant=\"outline\">Outline</ShadcnBadge>\n      <ShadcnBadge variant=\"ghost\">Ghost</ShadcnBadge>\n    </div>\n  )\n}\n\nexport { ShadcnBadgeVariants }\n",
+      "description": "ShadcnBadgeVariants",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-badge-variants.tsx"
+    },
+    {
+      "id": "777",
+      "name": "ShadcnBadgeWithIcon",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnBadge",
+      "source": "shadcn",
+      "file": "shadcn-badge-with-icon.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnBadgeWithIcon\n * İkonlu rozetler — inline-start/end (saf React, shadcn kaynaklı).\n * @id 777\n * @category Kartlar\n * @subcategory ShadcnBadge\n * @source shadcn\n */\nimport { BadgeCheck, Bookmark } from \"@/components/ui/icons\"\nimport { ShadcnBadge } from \"@/components/ui/shadcn-badge\"\n\nfunction ShadcnBadgeWithIcon() {\n  return (\n    <div className=\"flex flex-wrap gap-2\">\n      <ShadcnBadge variant=\"secondary\">\n        <BadgeCheck data-icon=\"inline-start\" className=\"size-3.5\" />\n        Verified\n      </ShadcnBadge>\n      <ShadcnBadge variant=\"outline\">\n        Bookmark\n        <Bookmark data-icon=\"inline-end\" className=\"size-3.5\" />\n      </ShadcnBadge>\n    </div>\n  )\n}\n\nexport { ShadcnBadgeWithIcon }\n",
+      "description": "ShadcnBadgeWithIcon",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-badge-with-icon.tsx"
+    },
+    {
+      "id": "778",
+      "name": "ShadcnBadgeWithSpinner",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnBadge",
+      "source": "shadcn",
+      "file": "shadcn-badge-with-spinner.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnBadgeWithSpinner\n * Yükleniyor rozetleri (saf React, shadcn kaynaklı).\n * Spinner: kütüphanenin mevcut bileşeni.\n * @id 778\n * @category Kartlar\n * @subcategory ShadcnBadge\n * @source shadcn\n */\nimport { Spinner } from \"@/components/ui/spinner\"\nimport { ShadcnBadge } from \"@/components/ui/shadcn-badge\"\n\nfunction ShadcnBadgeWithSpinner() {\n  return (\n    <div className=\"flex flex-wrap gap-2\">\n      <ShadcnBadge variant=\"destructive\">\n        <Spinner data-icon=\"inline-start\" />\n        Deleting\n      </ShadcnBadge>\n      <ShadcnBadge variant=\"secondary\">\n        Generating\n        <Spinner data-icon=\"inline-end\" />\n      </ShadcnBadge>\n    </div>\n  )\n}\n\nexport { ShadcnBadgeWithSpinner }\n",
+      "description": "ShadcnBadgeWithSpinner",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-badge-with-spinner.tsx"
+    },
+    {
+      "id": "779",
+      "name": "ShadcnBadgeAsLink",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnBadge",
+      "source": "shadcn",
+      "file": "shadcn-badge-as-link.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnBadgeAsLink\n * Bağlantı rozeti (saf React, shadcn kaynaklı).\n * @id 779\n * @category Kartlar\n * @subcategory ShadcnBadge\n * @source shadcn\n */\nimport { ArrowUpRight } from \"@/components/ui/icons\"\nimport { ShadcnBadge } from \"@/components/ui/shadcn-badge\"\n\nfunction ShadcnBadgeAsLink() {\n  return (\n    <a href=\"#link\" className=\"cursor-pointer\">\n      <ShadcnBadge variant=\"outline\">\n        Open Link <ArrowUpRight data-icon=\"inline-end\" className=\"size-3.5\" />\n      </ShadcnBadge>\n    </a>\n  )\n}\n\nexport { ShadcnBadgeAsLink }\n",
+      "description": "ShadcnBadgeAsLink",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-badge-as-link.tsx"
+    },
+    {
+      "id": "780",
+      "name": "ShadcnBadgeCustomColors",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnBadge",
+      "source": "shadcn",
+      "file": "shadcn-badge-custom-colors.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnBadgeCustomColors\n * Özel renkler (saf React, shadcn kaynaklı).\n * @id 780\n * @category Kartlar\n * @subcategory ShadcnBadge\n * @source shadcn\n */\nimport { ShadcnBadge } from \"@/components/ui/shadcn-badge\"\n\nfunction ShadcnBadgeCustomColors() {\n  return (\n    <div className=\"flex flex-wrap gap-2\">\n      <ShadcnBadge className=\"bg-blue-100 text-blue-700\">Blue</ShadcnBadge>\n      <ShadcnBadge className=\"bg-green-100 text-green-700\">Green</ShadcnBadge>\n      <ShadcnBadge className=\"bg-sky-100 text-sky-700\">Sky</ShadcnBadge>\n      <ShadcnBadge className=\"bg-purple-100 text-purple-700\">Purple</ShadcnBadge>\n      <ShadcnBadge className=\"bg-red-100 text-red-700\">Red</ShadcnBadge>\n    </div>\n  )\n}\n\nexport { ShadcnBadgeCustomColors }\n",
+      "description": "ShadcnBadgeCustomColors",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-badge-custom-colors.tsx"
+    },
+    {
+      "id": "781",
+      "name": "ShadcnBadgeRtl",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnBadge",
+      "source": "shadcn",
+      "file": "shadcn-badge-rtl.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnBadgeRtl\n * RTL örneği — Arapça rozetler (saf React, shadcn kaynaklı).\n * @id 781\n * @category Kartlar\n * @subcategory ShadcnBadge\n * @source shadcn\n */\nimport { ShadcnBadge } from \"@/components/ui/shadcn-badge\"\n\nfunction ShadcnBadgeRtl() {\n  return (\n    <div className=\"flex flex-wrap gap-2\" dir=\"rtl\">\n      <ShadcnBadge>جديد</ShadcnBadge>\n      <ShadcnBadge variant=\"secondary\">ثانوي</ShadcnBadge>\n      <ShadcnBadge variant=\"outline\">مخطط تفصيلي</ShadcnBadge>\n    </div>\n  )\n}\n\nexport { ShadcnBadgeRtl }\n",
+      "description": "ShadcnBadgeRtl",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-badge-rtl.tsx"
     },
     {
       "id": "389",

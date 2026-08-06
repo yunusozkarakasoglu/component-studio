@@ -16,7 +16,9 @@
 
 ### ✅ Adım 2 tamamlandı (5 element, 42 bileşen) |
 | **Butonlar & Aksiyonlar** (2) | Button, Button Group |
-| **Kartlar** (2) | Card, Badge |
+| **Kartlar** (2) | Card, - [x] **Badge** — 774-781 (ShadcnBadge çekirdek + 7 örnek)
+
+### ✅ Adım 3 tamamlandı (4 element, 31 bileşen) |
 | **Overlay** (10) | Dialog, Popover, Tooltip, Hover Card, Dropdown Menu, Context Menu, Toast, Sheet, Drawer, Sidebar |
 | **Navigasyon** (5) | Tabs, Pagination, Breadcrumb, Navigation Menu, Menubar |
 | **Accordion** (1) | Accordion |
@@ -63,7 +65,9 @@
 - [x] **Button** — 741-754 (ShadcnButton çekirdek + 13 örnek)
 - [x] **Button Group** — 755-766 (çekirdek + Separator + 11 örnek)
 - [x] **Card** — 767-773 (7 compound + 6 örnek)
-Badge
+- [x] **Badge** — 774-781 (ShadcnBadge çekirdek + 7 örnek)
+
+### ✅ Adım 3 tamamlandı (4 element, 31 bileşen)
 
 ### Adım 4 — Overlay + Panel (10)
 Dialog → Popover → Tooltip → Hover Card → Dropdown Menu → Context Menu → Toast → Sheet → Drawer → Sidebar

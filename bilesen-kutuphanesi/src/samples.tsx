@@ -747,4 +747,12 @@ export const SAMPLES: Record<string, ReactNode> = {
   "771": <U.ShadcnCardEdgeToEdge />,
   "772": <U.ShadcnCardImage />,
   "773": <U.ShadcnCardRtl />,
+  "774": <U.ShadcnBadge />,
+  "775": <U.ShadcnBadgeDemo />,
+  "776": <U.ShadcnBadgeVariants />,
+  "777": <U.ShadcnBadgeWithIcon />,
+  "778": <U.ShadcnBadgeWithSpinner />,
+  "779": <U.ShadcnBadgeAsLink />,
+  "780": <U.ShadcnBadgeCustomColors />,
+  "781": <U.ShadcnBadgeRtl />,
 }
