@@ -72,7 +72,8 @@
 ### Adım 4 — Overlay + Panel (10)
 - [x] **Dialog** — 782-788 (8 compound + 6 örnek)
 - [x] **Popover** — 789-794 (6 compound + 5 örnek)
-Tooltip → Hover Card → Dropdown Menu → Context Menu → Toast → Sheet → Drawer → Sidebar
+- [x] **Tooltip** — 795-800 (3 compound + 5 örnek)
+Hover Card → Dropdown Menu → Context Menu → Toast → Sheet → Drawer → Sidebar
 
 ### Adım 5 — Navigasyon + Akordeon + Uyarı (9)
 Tabs → Pagination → Breadcrumb → Navigation Menu → Menubar → Accordion → Collapsible → Alert → Alert Dialog

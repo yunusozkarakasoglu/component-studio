@@ -768,4 +768,10 @@ export const SAMPLES: Record<string, ReactNode> = {
   "792": <U.ShadcnPopoverAlignments />,
   "793": <U.ShadcnPopoverForm />,
   "794": <U.ShadcnPopoverRtl />,
+  "795": <U.ShadcnTooltip />,
+  "796": <U.ShadcnTooltipDemo />,
+  "797": <U.ShadcnTooltipSides />,
+  "798": <U.ShadcnTooltipKeyboard />,
+  "799": <U.ShadcnTooltipDisabled />,
+  "800": <U.ShadcnTooltipRtl />,
 }

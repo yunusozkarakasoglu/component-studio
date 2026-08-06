@@ -447,6 +447,13 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `792` ShadcnPopoverAlignments
 - `793` ShadcnPopoverForm
 - `794` ShadcnPopoverRtl
+#### ShadcnTooltip
+- `795` ShadcnTooltip + Trigger + Content (side)
+- `796` ShadcnTooltipDemo
+- `797` ShadcnTooltipSides
+- `798` ShadcnTooltipKeyboard
+- `799` ShadcnTooltipDisabled
+- `800` ShadcnTooltipRtl
 
 ### Seçim
 #### RadioGroup
@@ -821,7 +828,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 705 bileşen (saf React)**
+**Toplam: 711 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
