@@ -707,8 +707,6 @@ export default function Studio() {
   }, [])
   const [q, setQ] = useState("")
   const [cat, setCat] = useState("Tümü")
-  const [panelOpen, setPanelOpen] = useState(true)
-  const [openCats, setOpenCats] = useState<Set<string>>(new Set())
   const [subCat, setSubCat] = useState("")
   const [edit, setEdit] = useState<{ rec: CompRecord } | null>(null)
   const [newOpen, setNewOpen] = useState(false)
@@ -750,7 +748,7 @@ export default function Studio() {
       m[c.category][sub].push(c)
     }
     return m
-  }, [registry, term])
+  }, [registry, term, source])
 
   const filtered = useMemo(() => {
     if (!registry) return []
@@ -761,16 +759,8 @@ export default function Studio() {
         (!subCat || c.subcategory === subCat) &&
         (!term || c.id.includes(term) || c.name.toLowerCase().includes(term) || c.description.toLowerCase().includes(term))
     )
-  }, [registry, q, cat, subCat])
+  }, [registry, q, cat, subCat, source])
 
-  const toggleCat = (c: string) => {
-    setOpenCats((prev) => {
-      const next = new Set(prev)
-      if (next.has(c)) next.delete(c)
-      else next.add(c)
-      return next
-    })
-  }
 
   if (!registry) {
     return (
@@ -779,10 +769,6 @@ export default function Studio() {
       </div>
     )
   }
-
-  const totalComps = registry.components.filter(
-    (c) => !term || c.id.includes(term) || c.name.toLowerCase().includes(term)
-  ).length
 
   if (wizardOpen && registry) {
     return (
@@ -799,13 +785,6 @@ export default function Studio() {
         {/* Üst bar */}
         <header className="flex shrink-0 items-center justify-between border-b border-black/30 bg-background px-4 py-2.5">
           <div className="flex items-center gap-3">
-            <button
-              onClick={() => setPanelOpen((v) => !v)}
-              className="flex size-8 items-center justify-center rounded-lg border border-black/40 text-sm transition-colors hover:bg-muted"
-              title={panelOpen ? "Paneli kapat" : "Paneli aç"}
-            >
-              {panelOpen ? "◀" : "▶"}
-            </button>
             <div>
               <h1 className="text-[15px] font-bold leading-tight">🧩 Tasarım Kütüphanesi Stüdyosu</h1>
               <Text className="text-[11px] leading-tight text-muted-foreground">
@@ -874,124 +853,37 @@ export default function Studio() {
               : <LayoutsView layouts={[]} />
           )}
 
-          {view === "bilesenler" && panelOpen && galleryView === "kart" && (
-            <aside className="flex w-60 shrink-0 flex-col border-r border-black/30 bg-background min-h-0">
-              <div className="shrink-0 space-y-2 border-b border-black/30 p-2.5">
-                {/* Kaynak filtre — bileşen kaynakları */}
-                <div className="flex gap-1 rounded-lg border border-black/25 bg-muted/30 p-0.5">
-                  {([["tumu", "Tümü"], ["heroui", "HeroUI"], ["mantine", "Mantine"], ["shadcn", "shadcn"], ["ozel", "Özel"]] as const).map(([v, l]) => (
-                    <button key={v} onClick={() => setSource(v)}
-                      className={cn("flex-1 rounded-md px-1.5 py-1 text-[10px] font-medium transition-colors", source === v ? "bg-blue-600 text-white" : "text-foreground hover:bg-muted")}>
-                      {l}
-                    </button>
-                  ))}
-                </div>
-                {source !== "tumu" && source !== "heroui" && (
-                  <p className="rounded-md bg-amber-500/10 px-2 py-1.5 text-[10px] text-amber-700">
-                    {source === "mantine" ? "Mantine kaynak klasörü hazır — bileşenler entegrasyon bekliyor (Masaüstü/mantine-components-setup)."
-                      : source === "shadcn" ? "shadcn/ui kaynağı — entegrasyon sürüyor (Masaüstü/shadcn-components-setup)."
-                      : "Özel — sizin ürettiğiniz bileşenler (sihirbaz / elle). Henüz yok; + Yeni ile oluşturun."}
-                  </p>
-                )}
-                <SearchField aria-label="Ara" value={q} onChange={setQ} placeholder="Ara: 008, buton, renk…" className="h-8 border-black/40 text-xs" />
-              </div>
-
-              <div className="min-h-0 flex-1 overflow-y-auto p-2">
-                    <button
-                      onClick={() => { setCat("Tümü"); setSubCat("") }}
-                      className={`flex w-full items-center justify-between rounded-md px-2 py-1.5 text-left text-xs transition-colors ${cat === "Tümü" && !subCat ? "bg-blue-600 font-semibold text-white" : "hover:bg-muted"}`}
-                    >
-                      <span>Tümü</span>
-                      <span className={`font-mono text-[10px] ${cat === "Tümü" ? "text-blue-100" : "text-muted-foreground"}`}>{totalComps}</span>
-                    </button>
-                    {cats.map((c) => {
-                      const subGroups = compsInCat[c] || {}
-                      const items = Object.values(subGroups).reduce((n, arr) => n + arr.length, 0)
-                      const active = cat === c && !subCat
-                      return (
-                        <div key={c} className="mt-0.5">
-                          <button
-                            onClick={() => { setCat(c); setSubCat(""); toggleCat(c) }}
-                            className={`flex w-full items-center gap-1.5 rounded-md px-2 py-1.5 text-left text-xs transition-colors ${active ? "bg-blue-600 font-semibold text-white" : "hover:bg-muted"}`}
-                          >
-                            <span className={`inline-block text-[9px] transition-transform ${openCats.has(c) ? "rotate-90" : ""}`}>▶</span>
-                            <span className="flex-1 truncate">{c}</span>
-                            <span className={`font-mono text-[10px] ${active ? "text-blue-100" : "text-muted-foreground"}`}>{items}</span>
-                          </button>
-                          {openCats.has(c) && (
-                            <div className="mt-0.5 ml-4 space-y-1 border-l border-black/25 pl-2">
-                              {Object.entries(subGroups).map(([sub, comps]) => {
-                                const hasSub = sub !== ""
-                                return (
-                                  <div key={sub || "__none__"}>
-                                    {hasSub && (
-                                      <button
-                                        onClick={() => { setCat(c); setSubCat(sub) }}
-                                        className={`flex w-full items-center gap-1.5 rounded px-1.5 py-1 text-left text-[11px] font-medium transition-colors ${subCat === sub && cat === c ? "bg-blue-600 text-white" : "text-foreground hover:bg-muted"}`}
-                                      >
-                                        <span className="flex-1 truncate">{sub}</span>
-                                        <span className={`font-mono text-[9px] ${subCat === sub && cat === c ? "text-blue-100" : "text-muted-foreground"}`}>{comps.length}</span>
-                                      </button>
-                                    )}
-                                    <div className={hasSub ? "ml-3 space-y-0.5 border-l border-black/20 pl-2" : ""}>
-                                      {comps.length === 0 ? (
-                                        <div className="px-1.5 py-1 text-[10px] italic text-muted-foreground/60">henüz bileşen yok</div>
-                                      ) : comps.map((comp) => (
-                                        <button
-                                          key={comp.id}
-                                          onClick={() => setEdit({ rec: comp })}
-                                          className="flex w-full items-center gap-1.5 rounded px-1.5 py-1 text-left text-[11px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-                                        >
-                                          <span className="font-mono text-[9px] text-muted-foreground/70">{comp.id}</span>
-                                          <span className="truncate">{comp.name}</span>
-                                        </button>
-                                      ))}
-                                    </div>
-                                  </div>
-                                )
-                              })}
-                            </div>
-                          )}
-                        </div>
-                      )
-                    })}
-              </div>
-
-              <div className="shrink-0 border-t border-black/30 p-2">
-                <Button size="sm" variant="outline" className="w-full border-black/40" onClick={() => setNewOpen(true)}>
-                  ➕ Yeni Bileşen
-                </Button>
-                <div className="mt-1.5 text-[10px] leading-relaxed text-muted-foreground">
-                  🔍 Arama: numara / ad · 📂 Kategoriye tıkla → filtre + açılır
-                </div>
-              </div>
-            </aside>
-          )}
-
           {/* ANA ALAN */}
           {view === "bilesenler" && (
           <main className="min-h-0 flex-1 overflow-y-auto p-4">
-            {/* Görünüm değiştirici: Kart / Tablo */}
-            <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-              <div className="flex items-center gap-2">
-                <Text className="text-xs text-muted-foreground">{filtered.length} bileşen{source !== "tumu" && ` · kaynak: ${source}`}</Text>
-                {galleryView === "tablo" && (
-                  <>
-                    <SearchField aria-label="Ara" value={q} onChange={setQ} placeholder="Ara: 008, buton, renk…" className="h-8 w-56 border-black/40 text-xs" />
-                    {/* 4 ana kaynak hızlı filtre */}
-                    <div className="flex gap-1 rounded-lg border border-black/25 bg-muted/30 p-0.5">
-                      {([["heroui", "HeroUI"], ["mantine", "Mantine"], ["shadcn", "shadcn"], ["ozel", "Özel"]] as const).map(([v, l]) => (
-                        <button key={v} onClick={() => setSource(source === v ? "tumu" : v)}
-                          className={cn("rounded-md px-2 py-1 text-[11px] font-medium transition-colors",
-                            source === v ? "bg-blue-600 text-white" : "text-foreground hover:bg-muted")}>
-                          {l}
-                        </button>
-                      ))}
-                    </div>
-                  </>
-                )}
-              </div>
+            {/* Üst filtreler: arama + kategori + alt kategori + kaynak + görünüm */}
+            <div className="mb-3 flex flex-wrap items-center gap-2">
+              <SearchField aria-label="Ara" value={q} onChange={setQ} placeholder="Ara: 008, buton, renk…" className="h-8 w-56 border-black/40 text-xs" />
+              <select value={cat} onChange={(e) => { setCat(e.target.value); setSubCat("") }}
+                className="h-8 rounded-md border border-black/40 bg-background px-2 text-xs text-foreground outline-none focus:border-ring">
+                <option value="Tümü">Kategori: Tümü</option>
+                {cats.map((c) => <option key={c} value={c}>{c}</option>)}
+              </select>
+              {cat !== "Tümü" && (
+                <select value={subCat || ""} onChange={(e) => setSubCat(e.target.value)}
+                  className="h-8 rounded-md border border-black/40 bg-background px-2 text-xs text-foreground outline-none focus:border-ring">
+                  <option value="">Alt Kategori: Tümü</option>
+                  {Object.keys(compsInCat[cat] || {}).filter((x) => x !== "").map((x) => (
+                    <option key={x} value={x}>{x}</option>
+                  ))}
+                </select>
+              )}
               <div className="flex gap-1 rounded-lg border border-black/25 bg-muted/30 p-0.5">
+                {([["tumu", "Tümü"], ["heroui", "HeroUI"], ["mantine", "Mantine"], ["shadcn", "shadcn"], ["ozel", "Özel"]] as const).map(([v, l]) => (
+                  <button key={v} onClick={() => setSource(v)}
+                    className={cn("rounded-md px-2 py-1 text-[11px] font-medium transition-colors",
+                      source === v ? "bg-blue-600 text-white" : "text-foreground hover:bg-muted")}>
+                    {l}
+                  </button>
+                ))}
+              </div>
+              <span className="text-xs text-muted-foreground">{filtered.length} bileşen</span>
+              <div className="ml-auto flex gap-1 rounded-lg border border-black/25 bg-muted/30 p-0.5">
                 {([["kart", "▦ Kart"], ["tablo", "☰ Tablo"]] as const).map(([v, l]) => (
                   <button key={v} onClick={() => setGalleryView(v)}
                     className={cn("rounded-md px-2.5 py-1 text-xs font-medium transition-colors", galleryView === v ? "bg-blue-600 text-white" : "text-foreground hover:bg-muted")}>
