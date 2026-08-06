@@ -699,4 +699,11 @@ export const SAMPLES: Record<string, ReactNode> = {
   "722": <U.ShadcnRadioGroupDisabled />,
   "723": <U.ShadcnRadioGroupInvalid />,
   "724": <U.ShadcnRadioGroupRtl />,
+  "725": <U.ShadcnToggle />,
+  "726": <U.ShadcnToggleDemo />,
+  "727": <U.ShadcnToggleOutline />,
+  "728": <U.ShadcnToggleText />,
+  "729": <U.ShadcnToggleSizes />,
+  "730": <U.ShadcnToggleDisabled />,
+  "731": <U.ShadcnToggleRtl />,
 }

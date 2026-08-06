@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-06T12:20:31.412Z",
+  "generatedAt": "2026-08-06T12:23:05.791Z",
   "counts": {
-    "components": 636,
-    "ready": 636,
+    "components": 643,
+    "ready": 643,
     "layouts": 0
   },
   "categories": [
@@ -3866,6 +3866,90 @@
       "code": "/**\n * ShadcnRadioGroupRtl\n * RTL örneği — Arapça radyo grubu (saf React, shadcn kaynaklı).\n * @id 724\n * @category RadioGroup\n * @subcategory ShadcnRadioGroup\n * @source shadcn\n */\nimport { ShadcnField, ShadcnFieldLabel } from \"@/components/ui/shadcn-field\"\nimport { ShadcnRadioGroup, ShadcnRadioGroupItem } from \"@/components/ui/shadcn-radio-group\"\n\nfunction ShadcnRadioGroupRtl() {\n  return (\n    <ShadcnRadioGroup defaultValue=\"ar\" className=\"w-fit\" >\n      <div dir=\"rtl\">\n        <ShadcnField orientation=\"horizontal\">\n          <ShadcnRadioGroupItem value=\"ar\" id=\"shadcn-lang-ar\" />\n          <ShadcnFieldLabel htmlFor=\"shadcn-lang-ar\" dir=\"rtl\">\n            العربية\n          </ShadcnFieldLabel>\n        </ShadcnField>\n        <ShadcnField orientation=\"horizontal\">\n          <ShadcnRadioGroupItem value=\"en\" id=\"shadcn-lang-en\" />\n          <ShadcnFieldLabel htmlFor=\"shadcn-lang-en\">English</ShadcnFieldLabel>\n        </ShadcnField>\n      </div>\n    </ShadcnRadioGroup>\n  )\n}\n\nexport { ShadcnRadioGroupRtl }\n",
       "description": "ShadcnRadioGroupRtl",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-radio-group-rtl.tsx"
+    },
+    {
+      "id": "725",
+      "name": "ShadcnToggle",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnToggle",
+      "source": "shadcn",
+      "file": "shadcn-toggle.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnToggle\n * Saf React bileşen (bağımlılıksız) — shadcn/ui kaynaklı.\n * Basılı/kaldırılmış durumu olan buton (aria-pressed).\n *   <ShadcnToggle variant=\"outline\" size=\"sm\">Bookmark</ShadcnToggle>\n * variant: default | outline · size: sm | default | lg · isPressed/onPressedChange (kontrollü).\n * @id 725\n * @category Toggle\n * @subcategory ShadcnToggle\n * @source shadcn\n */\nimport { useState, type ButtonHTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface ShadcnToggleProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, \"onChange\"> {\n  variant?: \"default\" | \"outline\"\n  size?: \"sm\" | \"default\" | \"lg\"\n  isPressed?: boolean\n  defaultPressed?: boolean\n  onPressedChange?: (pressed: boolean) => void\n  isDisabled?: boolean\n}\n\nfunction ShadcnToggle({\n  className,\n  variant = \"default\",\n  size = \"default\",\n  isPressed,\n  defaultPressed,\n  onPressedChange,\n  isDisabled,\n  children,\n  ...props\n}: ShadcnToggleProps) {\n  const [internal, setInternal] = useState(!!defaultPressed)\n  const pressed = isPressed !== undefined ? isPressed : internal\n\n  return (\n    <button\n      type=\"button\"\n      data-slot=\"shadcn-toggle\"\n      data-state={pressed ? \"on\" : \"off\"}\n      aria-pressed={pressed}\n      disabled={isDisabled}\n      onClick={(e) => {\n        onPressedChange?.(!pressed)\n        setInternal(!pressed)\n        props.onClick?.(e)\n      }}\n      className={cn(\n        \"group/toggle inline-flex cursor-pointer items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors outline-none\",\n        \"focus-visible:ring-3 focus-visible:ring-ring/40\",\n        \"disabled:cursor-not-allowed disabled:opacity-50\",\n        \"aria-pressed:bg-blue-600 aria-pressed:text-white\",\n        variant === \"outline\" && \"border border-border bg-background text-foreground hover:bg-muted aria-pressed:border-blue-600\",\n        variant === \"default\" && \"text-foreground hover:bg-muted\",\n        size === \"sm\" && \"h-8 px-2.5\",\n        size === \"default\" && \"h-9 px-3\",\n        size === \"lg\" && \"h-10 px-4\",\n        className\n      )}\n      {...props}\n    >\n      {children}\n    </button>\n  )\n}\n\nexport { ShadcnToggle }\nexport type { ShadcnToggleProps }\n",
+      "description": "ShadcnToggle",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-toggle.tsx"
+    },
+    {
+      "id": "726",
+      "name": "ShadcnToggleDemo",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnToggle",
+      "source": "shadcn",
+      "file": "shadcn-toggle-demo.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnToggleDemo\n * Temel örnek — yer imi anahtarı (saf React, shadcn kaynaklı).\n * @id 726\n * @category Toggle\n * @subcategory ShadcnToggle\n * @source shadcn\n */\nimport { Bookmark } from \"@/components/ui/icons\"\nimport { ShadcnToggle } from \"@/components/ui/shadcn-toggle\"\n\nfunction ShadcnToggleDemo() {\n  return (\n    <ShadcnToggle aria-label=\"Toggle bookmark\" size=\"sm\" variant=\"outline\">\n      <Bookmark className=\"size-4 group-aria-pressed/toggle:fill-foreground\" />\n      Bookmark\n    </ShadcnToggle>\n  )\n}\n\nexport { ShadcnToggleDemo }\n",
+      "description": "ShadcnToggleDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-toggle-demo.tsx"
+    },
+    {
+      "id": "727",
+      "name": "ShadcnToggleOutline",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnToggle",
+      "source": "shadcn",
+      "file": "shadcn-toggle-outline.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnToggleOutline\n * Outline varyant — italik/kalın (saf React, shadcn kaynaklı).\n * @id 727\n * @category Toggle\n * @subcategory ShadcnToggle\n * @source shadcn\n */\nimport { Bold, Italic } from \"@/components/ui/icons\"\nimport { ShadcnToggle } from \"@/components/ui/shadcn-toggle\"\n\nfunction ShadcnToggleOutline() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-2\">\n      <ShadcnToggle variant=\"outline\" aria-label=\"Toggle italic\">\n        <Italic className=\"size-4\" />\n        Italic\n      </ShadcnToggle>\n      <ShadcnToggle variant=\"outline\" aria-label=\"Toggle bold\">\n        <Bold className=\"size-4\" />\n        Bold\n      </ShadcnToggle>\n    </div>\n  )\n}\n\nexport { ShadcnToggleOutline }\n",
+      "description": "ShadcnToggleOutline",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-toggle-outline.tsx"
+    },
+    {
+      "id": "728",
+      "name": "ShadcnToggleText",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnToggle",
+      "source": "shadcn",
+      "file": "shadcn-toggle-text.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnToggleText\n * Metinli anahtar (saf React, shadcn kaynaklı).\n * @id 728\n * @category Toggle\n * @subcategory ShadcnToggle\n * @source shadcn\n */\nimport { Italic } from \"@/components/ui/icons\"\nimport { ShadcnToggle } from \"@/components/ui/shadcn-toggle\"\n\nfunction ShadcnToggleText() {\n  return (\n    <ShadcnToggle aria-label=\"Toggle italic\">\n      <Italic className=\"size-4\" />\n      Italic\n    </ShadcnToggle>\n  )\n}\n\nexport { ShadcnToggleText }\n",
+      "description": "ShadcnToggleText",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-toggle-text.tsx"
+    },
+    {
+      "id": "729",
+      "name": "ShadcnToggleSizes",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnToggle",
+      "source": "shadcn",
+      "file": "shadcn-toggle-sizes.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnToggleSizes\n * Boyutlar — küçük, varsayılan, büyük (saf React, shadcn kaynaklı).\n * @id 729\n * @category Toggle\n * @subcategory ShadcnToggle\n * @source shadcn\n */\nimport { ShadcnToggle } from \"@/components/ui/shadcn-toggle\"\n\nfunction ShadcnToggleSizes() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-2\">\n      <ShadcnToggle variant=\"outline\" aria-label=\"Toggle small\" size=\"sm\">\n        Small\n      </ShadcnToggle>\n      <ShadcnToggle variant=\"outline\" aria-label=\"Toggle default\" size=\"default\">\n        Default\n      </ShadcnToggle>\n      <ShadcnToggle variant=\"outline\" aria-label=\"Toggle large\" size=\"lg\">\n        Large\n      </ShadcnToggle>\n    </div>\n  )\n}\n\nexport { ShadcnToggleSizes }\n",
+      "description": "ShadcnToggleSizes",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-toggle-sizes.tsx"
+    },
+    {
+      "id": "730",
+      "name": "ShadcnToggleDisabled",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnToggle",
+      "source": "shadcn",
+      "file": "shadcn-toggle-disabled.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnToggleDisabled\n * Devre dışı anahtarlar (saf React, shadcn kaynaklı).\n * @id 730\n * @category Toggle\n * @subcategory ShadcnToggle\n * @source shadcn\n */\nimport { ShadcnToggle } from \"@/components/ui/shadcn-toggle\"\n\nfunction ShadcnToggleDisabled() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-2\">\n      <ShadcnToggle aria-label=\"Toggle disabled\" isDisabled>\n        Disabled\n      </ShadcnToggle>\n      <ShadcnToggle variant=\"outline\" aria-label=\"Toggle disabled outline\" isDisabled>\n        Disabled\n      </ShadcnToggle>\n    </div>\n  )\n}\n\nexport { ShadcnToggleDisabled }\n",
+      "description": "ShadcnToggleDisabled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-toggle-disabled.tsx"
+    },
+    {
+      "id": "731",
+      "name": "ShadcnToggleRtl",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnToggle",
+      "source": "shadcn",
+      "file": "shadcn-toggle-rtl.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnToggleRtl\n * RTL örneği (saf React, shadcn kaynaklı).\n * @id 731\n * @category Toggle\n * @subcategory ShadcnToggle\n * @source shadcn\n */\nimport { ShadcnToggle } from \"@/components/ui/shadcn-toggle\"\n\nfunction ShadcnToggleRtl() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-2\" dir=\"rtl\">\n      <ShadcnToggle aria-label=\"Toggle bookmark\">إشارة مرجعية</ShadcnToggle>\n      <ShadcnToggle variant=\"outline\" aria-label=\"Toggle italic\">مائل</ShadcnToggle>\n    </div>\n  )\n}\n\nexport { ShadcnToggleRtl }\n",
+      "description": "ShadcnToggleRtl",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-toggle-rtl.tsx"
     },
     {
       "id": "389",
