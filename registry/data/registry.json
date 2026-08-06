@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-06T12:51:06.250Z",
+  "generatedAt": "2026-08-06T12:53:41.517Z",
   "counts": {
-    "components": 711,
-    "ready": 711,
+    "components": 715,
+    "ready": 715,
     "layouts": 0
   },
   "categories": [
@@ -4766,6 +4766,54 @@
       "code": "/**\n * ShadcnTooltipRtl\n * RTL örneği — Arapça tooltip (saf React, shadcn kaynaklı).\n * @id 800\n * @category Overlay\n * @subcategory ShadcnTooltip\n * @source shadcn\n */\nimport {\n  ShadcnTooltip,\n  ShadcnTooltipContent,\n  ShadcnTooltipTrigger,\n} from \"@/components/ui/shadcn-tooltip\"\n\nfunction ShadcnTooltipRtl() {\n  return (\n    <ShadcnTooltip>\n      <ShadcnTooltipTrigger>تحويم</ShadcnTooltipTrigger>\n      <ShadcnTooltipContent dir=\"rtl\">\n        <p>أضف إلى المكتبة</p>\n      </ShadcnTooltipContent>\n    </ShadcnTooltip>\n  )\n}\n\nexport { ShadcnTooltipRtl }\n",
       "description": "ShadcnTooltipRtl",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-tooltip-rtl.tsx"
+    },
+    {
+      "id": "801",
+      "name": "ShadcnHoverCard",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnHoverCard",
+      "source": "shadcn",
+      "file": "shadcn-hover-card.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnHoverCard familyası\n * Saf React bileşen (bağımlılıksız) — shadcn/ui kaynaklı.\n * HoverCard + Trigger (delay) + Content (side).\n *   <ShadcnHoverCard>\n *     <ShadcnHoverCardTrigger delay={10} closeDelay={100}>Hover Here</ShadcnHoverCardTrigger>\n *     <ShadcnHoverCardContent side=\"top\">…</ShadcnHoverCardContent>\n *   </ShadcnHoverCard>\n * @id 801\n * @category Overlay\n * @subcategory ShadcnHoverCard\n * @source shadcn\n */\nimport { createContext, useContext, useRef, useState, type HTMLAttributes, type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface HoverCardContextValue {\n  open: boolean\n  enter: () => void\n  leave: () => void\n}\n\nconst HoverCardContext = createContext<HoverCardContextValue | null>(null)\n\nfunction useShadcnHoverCard(): HoverCardContextValue {\n  const ctx = useContext(HoverCardContext)\n  if (!ctx) throw new Error(\"ShadcnHoverCard parçaları, ShadcnHoverCard içinde kullanılmalı\")\n  return ctx\n}\n\ninterface ShadcnHoverCardProps {\n  children?: ReactNode\n  defaultOpen?: boolean\n}\n\nfunction ShadcnHoverCard({ children, defaultOpen }: ShadcnHoverCardProps) {\n  const [open, setOpen] = useState(!!defaultOpen)\n  const openTimer = useRef<ReturnType<typeof setTimeout> | null>(null)\n  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)\n  const delayRef = useRef(0)\n  const closeDelayRef = useRef(100)\n\n  const enter = () => {\n    if (closeTimer.current) clearTimeout(closeTimer.current)\n    openTimer.current = setTimeout(() => setOpen(true), delayRef.current)\n  }\n  const leave = () => {\n    if (openTimer.current) clearTimeout(openTimer.current)\n    closeTimer.current = setTimeout(() => setOpen(false), closeDelayRef.current)\n  }\n\n  const value: HoverCardContextValue = {\n    open,\n    enter: () => {\n      delayRef.current = 0\n      enter()\n    },\n    leave,\n  }\n\n  return (\n    <HoverCardContext.Provider value={value}>\n      <div data-slot=\"shadcn-hover-card\" className=\"relative inline-block\">\n        {children}\n      </div>\n    </HoverCardContext.Provider>\n  )\n}\n\ninterface ShadcnHoverCardTriggerProps extends HTMLAttributes<HTMLButtonElement> {\n  delay?: number\n  closeDelay?: number\n}\n\nfunction ShadcnHoverCardTrigger({ className, delay = 0, closeDelay = 100, children, onMouseEnter, onMouseLeave, onFocus, onBlur, ...props }: ShadcnHoverCardTriggerProps) {\n  const ctx = useShadcnHoverCard()\n  const ctxRef = useRef(ctx)\n  ctxRef.current = ctx\n  const delayRef = useRef(delay)\n\n  return (\n    <button\n      type=\"button\"\n      data-slot=\"shadcn-hover-card-trigger\"\n      onMouseEnter={(e) => {\n        delayRef.current = delay\n        ctxRef.current.enter()\n        onMouseEnter?.(e)\n      }}\n      onMouseLeave={(e) => {\n        ctxRef.current.leave()\n        onMouseLeave?.(e)\n      }}\n      onFocus={(e) => {\n        ctxRef.current.enter()\n        onFocus?.(e)\n      }}\n      onBlur={(e) => {\n        ctxRef.current.leave()\n        onBlur?.(e)\n      }}\n      className={cn(\n        \"inline-flex h-9 items-center justify-center rounded-md border border-border bg-background px-4 text-sm font-medium text-foreground transition-colors outline-none\",\n        \"hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/40\",\n        className\n      )}\n      {...props}\n    >\n      {children}\n    </button>\n  )\n}\n\ninterface ShadcnHoverCardContentProps extends HTMLAttributes<HTMLDivElement> {\n  side?: \"top\" | \"right\" | \"bottom\" | \"left\"\n}\n\nfunction ShadcnHoverCardContent({ className, side = \"top\", children, ...props }: ShadcnHoverCardContentProps) {\n  const ctx = useShadcnHoverCard()\n  if (!ctx.open) return null\n\n  return (\n    <div\n      role=\"dialog\"\n      data-slot=\"shadcn-hover-card-content\"\n      className={cn(\n        \"absolute z-50 w-max max-w-sm rounded-lg border border-border bg-background p-4 text-sm text-foreground shadow-lg outline-none\",\n        side === \"top\" && \"bottom-full left-1/2 mb-2 -translate-x-1/2\",\n        side === \"bottom\" && \"top-full left-1/2 mt-2 -translate-x-1/2\",\n        side === \"left\" && \"right-full top-1/2 mr-2 -translate-y-1/2\",\n        side === \"right\" && \"left-full top-1/2 ml-2 -translate-y-1/2\",\n        className\n      )}\n      onMouseEnter={() => ctx.enter()}\n      onMouseLeave={() => ctx.leave()}\n      {...props}\n    >\n      {children}\n    </div>\n  )\n}\n\nexport { ShadcnHoverCard, ShadcnHoverCardContent, ShadcnHoverCardTrigger }\nexport type { ShadcnHoverCardContentProps, ShadcnHoverCardProps, ShadcnHoverCardTriggerProps }\n",
+      "description": "ShadcnHoverCard familyası",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-hover-card.tsx"
+    },
+    {
+      "id": "802",
+      "name": "ShadcnHoverCardDemo",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnHoverCard",
+      "source": "shadcn",
+      "file": "shadcn-hover-card-demo.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnHoverCardDemo\n * Temel örnek — profil kartı (saf React, shadcn kaynaklı).\n * @id 802\n * @category Overlay\n * @subcategory ShadcnHoverCard\n * @source shadcn\n */\nimport {\n  ShadcnHoverCard,\n  ShadcnHoverCardContent,\n  ShadcnHoverCardTrigger,\n} from \"@/components/ui/shadcn-hover-card\"\n\nfunction ShadcnHoverCardDemo() {\n  return (\n    <ShadcnHoverCard>\n      <ShadcnHoverCardTrigger delay={10} closeDelay={100}>Hover Here</ShadcnHoverCardTrigger>\n      <ShadcnHoverCardContent className=\"flex w-64 flex-col gap-0.5\">\n        <div className=\"font-semibold\">@nextjs</div>\n        <div>The React Framework – created and maintained by @vercel.</div>\n        <div className=\"mt-1 text-xs text-muted-foreground\">\n          Joined December 2021\n        </div>\n      </ShadcnHoverCardContent>\n    </ShadcnHoverCard>\n  )\n}\n\nexport { ShadcnHoverCardDemo }\n",
+      "description": "ShadcnHoverCardDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-hover-card-demo.tsx"
+    },
+    {
+      "id": "803",
+      "name": "ShadcnHoverCardSides",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnHoverCard",
+      "source": "shadcn",
+      "file": "shadcn-hover-card-sides.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnHoverCardSides\n * Yönler — top, right, bottom, left (saf React, shadcn kaynaklı).\n * @id 803\n * @category Overlay\n * @subcategory ShadcnHoverCard\n * @source shadcn\n */\nimport {\n  ShadcnHoverCard,\n  ShadcnHoverCardContent,\n  ShadcnHoverCardTrigger,\n} from \"@/components/ui/shadcn-hover-card\"\n\nconst SIDES = [\"top\", \"right\", \"bottom\", \"left\"] as const\n\nfunction ShadcnHoverCardSides() {\n  return (\n    <div className=\"flex flex-wrap justify-center gap-2\">\n      {SIDES.map((side) => (\n        <ShadcnHoverCard key={side}>\n          <ShadcnHoverCardTrigger delay={100} closeDelay={100} className=\"capitalize\">\n            {side}\n          </ShadcnHoverCardTrigger>\n          <ShadcnHoverCardContent side={side}>\n            <div className=\"flex flex-col gap-1\">\n              <h4 className=\"font-medium\">Hover Card</h4>\n              <p>This hover card appears on the {side} side of the trigger.</p>\n            </div>\n          </ShadcnHoverCardContent>\n        </ShadcnHoverCard>\n      ))}\n    </div>\n  )\n}\n\nexport { ShadcnHoverCardSides }\n",
+      "description": "ShadcnHoverCardSides",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-hover-card-sides.tsx"
+    },
+    {
+      "id": "804",
+      "name": "ShadcnHoverCardRtl",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnHoverCard",
+      "source": "shadcn",
+      "file": "shadcn-hover-card-rtl.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnHoverCardRtl\n * RTL örneği — Arapça profil kartı (saf React, shadcn kaynaklı).\n * @id 804\n * @category Overlay\n * @subcategory ShadcnHoverCard\n * @source shadcn\n */\nimport {\n  ShadcnHoverCard,\n  ShadcnHoverCardContent,\n  ShadcnHoverCardTrigger,\n} from \"@/components/ui/shadcn-hover-card\"\n\nfunction ShadcnHoverCardRtl() {\n  return (\n    <ShadcnHoverCard>\n      <ShadcnHoverCardTrigger>تحويم هنا</ShadcnHoverCardTrigger>\n      <ShadcnHoverCardContent className=\"flex w-64 flex-col gap-0.5\" dir=\"rtl\">\n        <div className=\"font-semibold\">@nextjs</div>\n        <div>إطار عمل React — تم إنشاؤه وصيانته بواسطة @vercel.</div>\n        <div className=\"mt-1 text-xs text-muted-foreground\">\n          انضم في ديسمبر 2021\n        </div>\n      </ShadcnHoverCardContent>\n    </ShadcnHoverCard>\n  )\n}\n\nexport { ShadcnHoverCardRtl }\n",
+      "description": "ShadcnHoverCardRtl",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-hover-card-rtl.tsx"
     },
     {
       "id": "389",

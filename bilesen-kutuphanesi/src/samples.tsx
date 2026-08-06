@@ -774,4 +774,8 @@ export const SAMPLES: Record<string, ReactNode> = {
   "798": <U.ShadcnTooltipKeyboard />,
   "799": <U.ShadcnTooltipDisabled />,
   "800": <U.ShadcnTooltipRtl />,
+  "801": <U.ShadcnHoverCard />,
+  "802": <U.ShadcnHoverCardDemo />,
+  "803": <U.ShadcnHoverCardSides />,
+  "804": <U.ShadcnHoverCardRtl />,
 }

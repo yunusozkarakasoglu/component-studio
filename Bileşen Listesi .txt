@@ -454,6 +454,11 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `798` ShadcnTooltipKeyboard
 - `799` ShadcnTooltipDisabled
 - `800` ShadcnTooltipRtl
+#### ShadcnHoverCard
+- `801` ShadcnHoverCard + Trigger (delay) + Content (side)
+- `802` ShadcnHoverCardDemo
+- `803` ShadcnHoverCardSides
+- `804` ShadcnHoverCardRtl
 
 ### Seçim
 #### RadioGroup
@@ -828,7 +833,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 711 bileşen (saf React)**
+**Toplam: 715 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
