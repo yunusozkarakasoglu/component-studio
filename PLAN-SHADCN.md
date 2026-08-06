@@ -12,7 +12,9 @@
 | **Form Elemanları** (9) | Input, Label, Textarea, Kbd, Field, Input Group, Input OTP, Native Select, - [x] **Slider** — 692-698 (Demo/Range/Multiple/Vertical/Controlled/Disabled/Rtl)
 
 ### ✅ Adım 1 tamamlandı (9 element, 84 bileşen) |
-| **Seçim** (5) | Checkbox, Switch, Radio Group, Toggle, Toggle Group |
+| **Seçim** (5) | Checkbox, Switch, Radio Group, Toggle, - [x] **Toggle Group** — 732-740 (çekirdek + 8 örnek)
+
+### ✅ Adım 2 tamamlandı (5 element, 42 bileşen) |
 | **Butonlar & Aksiyonlar** (2) | Button, Button Group |
 | **Kartlar** (2) | Card, Badge |
 | **Overlay** (10) | Dialog, Popover, Tooltip, Hover Card, Dropdown Menu, Context Menu, Toast, Sheet, Drawer, Sidebar |
@@ -53,7 +55,9 @@
 - [x] **Switch** — 709-716 (ShadcnSwitch çekirdek + 7 örnek)
 - [x] **Radio Group** — 717-724 (çekirdek + 7 örnek)
 - [x] **Toggle** — 725-731 (ShadcnToggle çekirdek + 6 örnek)
-Toggle Group
+- [x] **Toggle Group** — 732-740 (çekirdek + 8 örnek)
+
+### ✅ Adım 2 tamamlandı (5 element, 42 bileşen)
 
 ### Adım 3 — Butonlar + Kartlar (4)
 Button → Button Group → Card → Badge

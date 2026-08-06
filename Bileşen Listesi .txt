@@ -378,6 +378,16 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `729` ShadcnToggleSizes
 - `730` ShadcnToggleDisabled
 - `731` ShadcnToggleRtl
+#### ShadcnToggleGroup
+- `732` ShadcnToggleGroup + Item
+- `733` ShadcnToggleGroupDemo
+- `734` ShadcnToggleGroupOutline
+- `735` ShadcnToggleGroupSizes
+- `736` ShadcnToggleGroupSpacing
+- `737` ShadcnToggleGroupVertical
+- `738` ShadcnToggleGroupDisabled
+- `739` ShadcnToggleGroupFontWeightSelector
+- `740` ShadcnToggleGroupRtl
 
 ### Seçim
 #### RadioGroup
@@ -752,7 +762,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 643 bileşen (saf React)**
+**Toplam: 652 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

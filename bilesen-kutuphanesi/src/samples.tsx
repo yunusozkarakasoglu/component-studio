@@ -706,4 +706,13 @@ export const SAMPLES: Record<string, ReactNode> = {
   "729": <U.ShadcnToggleSizes />,
   "730": <U.ShadcnToggleDisabled />,
   "731": <U.ShadcnToggleRtl />,
+  "732": <U.ShadcnToggleGroup />,
+  "733": <U.ShadcnToggleGroupDemo />,
+  "734": <U.ShadcnToggleGroupOutline />,
+  "735": <U.ShadcnToggleGroupSizes />,
+  "736": <U.ShadcnToggleGroupSpacing />,
+  "737": <U.ShadcnToggleGroupVertical />,
+  "738": <U.ShadcnToggleGroupDisabled />,
+  "739": <U.ShadcnToggleGroupFontWeightSelector />,
+  "740": <U.ShadcnToggleGroupRtl />,
 }

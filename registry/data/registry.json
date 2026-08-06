@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-06T12:23:05.791Z",
+  "generatedAt": "2026-08-06T12:25:50.973Z",
   "counts": {
-    "components": 643,
-    "ready": 643,
+    "components": 652,
+    "ready": 652,
     "layouts": 0
   },
   "categories": [
@@ -3950,6 +3950,114 @@
       "code": "/**\n * ShadcnToggleRtl\n * RTL örneği (saf React, shadcn kaynaklı).\n * @id 731\n * @category Toggle\n * @subcategory ShadcnToggle\n * @source shadcn\n */\nimport { ShadcnToggle } from \"@/components/ui/shadcn-toggle\"\n\nfunction ShadcnToggleRtl() {\n  return (\n    <div className=\"flex flex-wrap items-center gap-2\" dir=\"rtl\">\n      <ShadcnToggle aria-label=\"Toggle bookmark\">إشارة مرجعية</ShadcnToggle>\n      <ShadcnToggle variant=\"outline\" aria-label=\"Toggle italic\">مائل</ShadcnToggle>\n    </div>\n  )\n}\n\nexport { ShadcnToggleRtl }\n",
       "description": "ShadcnToggleRtl",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-toggle-rtl.tsx"
+    },
+    {
+      "id": "732",
+      "name": "ShadcnToggleGroup",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnToggleGroup",
+      "source": "shadcn",
+      "file": "shadcn-toggle-group.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnToggleGroup + ShadcnToggleGroupItem\n * Saf React bileşen (bağımlılıksız) — shadcn/ui kaynaklı.\n * Anahtar grubu — tek veya çoklu seçim (multiple).\n *   <ShadcnToggleGroup variant=\"outline\" multiple defaultValue={[\"bold\"]}>\n *     <ShadcnToggleGroupItem value=\"bold\">Bold</ShadcnToggleGroupItem>\n *   </ShadcnToggleGroup>\n * @id 732\n * @category Toggle\n * @subcategory ShadcnToggleGroup\n * @source shadcn\n */\nimport { createContext, useContext, useState, type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface ToggleGroupContextValue {\n  values: string[]\n  toggle: (value: string) => void\n  multiple: boolean\n  disabled: boolean\n}\n\nconst ToggleGroupContext = createContext<ToggleGroupContextValue | null>(null)\n\nfunction useShadcnToggleGroup(): ToggleGroupContextValue {\n  const ctx = useContext(ToggleGroupContext)\n  if (!ctx) throw new Error(\"ShadcnToggleGroupItem, ShadcnToggleGroup içinde kullanılmalı\")\n  return ctx\n}\n\ninterface ShadcnToggleGroupProps {\n  children?: ReactNode\n  className?: string\n  variant?: \"default\" | \"outline\"\n  size?: \"sm\" | \"default\" | \"lg\"\n  orientation?: \"horizontal\" | \"vertical\"\n  spacing?: number\n  multiple?: boolean\n  value?: string[]\n  defaultValue?: string[]\n  onValueChange?: (values: string[]) => void\n  isDisabled?: boolean\n}\n\nfunction ShadcnToggleGroup({\n  children,\n  className,\n  variant = \"default\",\n  size = \"default\",\n  orientation = \"horizontal\",\n  spacing = 0,\n  multiple = false,\n  value,\n  defaultValue,\n  onValueChange,\n  isDisabled,\n}: ShadcnToggleGroupProps) {\n  const [internal, setInternal] = useState<string[]>(defaultValue ?? [])\n  const values = value !== undefined ? value : internal\n\n  const toggle = (v: string) => {\n    if (multiple) {\n      const next = values.includes(v) ? values.filter((x) => x !== v) : [...values, v]\n      if (value === undefined) setInternal(next)\n      onValueChange?.(next)\n    } else {\n      const next = values.includes(v) ? [] : [v]\n      if (value === undefined) setInternal(next)\n      onValueChange?.(next)\n    }\n  }\n\n  return (\n    <ToggleGroupContext.Provider value={{ values, toggle, multiple, disabled: !!isDisabled }}>\n      <div\n        data-slot=\"shadcn-toggle-group\"\n        className={cn(\n          \"inline-flex\",\n          orientation === \"horizontal\" ? \"flex-row items-center\" : \"flex-col items-start\",\n          variant === \"outline\" && \"rounded-md border border-border bg-background p-0.5\",\n          className\n        )}\n        style={{ gap: spacing ? `${spacing * 4}px` : undefined }}\n      >\n        {children}\n      </div>\n    </ToggleGroupContext.Provider>\n  )\n}\n\ninterface ShadcnToggleGroupItemProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {\n  value: string\n  isDisabled?: boolean\n}\n\nfunction ShadcnToggleGroupItem({ value, isDisabled, className, children, ...props }: ShadcnToggleGroupItemProps) {\n  const ctx = useShadcnToggleGroup()\n  const pressed = ctx.values.includes(value)\n  const disabled = isDisabled || ctx.disabled\n\n  return (\n    <button\n      type=\"button\"\n      data-slot=\"shadcn-toggle-group-item\"\n      data-state={pressed ? \"on\" : \"off\"}\n      aria-pressed={pressed}\n      disabled={disabled}\n      onClick={() => ctx.toggle(value)}\n      className={cn(\n        \"inline-flex cursor-pointer items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors outline-none\",\n        \"focus-visible:ring-3 focus-visible:ring-ring/40\",\n        \"disabled:cursor-not-allowed disabled:opacity-50\",\n        \"aria-pressed:bg-blue-600 aria-pressed:text-white\",\n        ctx.variant === \"outline\" && \"text-foreground hover:bg-muted aria-pressed:border-blue-600\",\n        ctx.variant === \"default\" && \"text-foreground hover:bg-muted\",\n        ctx.size === \"sm\" && \"h-7 px-2\",\n        ctx.size === \"default\" && \"h-8 px-3\",\n        ctx.size === \"lg\" && \"h-10 px-4\",\n        className\n      )}\n      {...props}\n    >\n      {children}\n    </button>\n  )\n}\n\nexport { ShadcnToggleGroup, ShadcnToggleGroupItem }\nexport type { ShadcnToggleGroupItemProps, ShadcnToggleGroupProps }\n",
+      "description": "ShadcnToggleGroup + ShadcnToggleGroupItem",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-toggle-group.tsx"
+    },
+    {
+      "id": "733",
+      "name": "ShadcnToggleGroupDemo",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnToggleGroup",
+      "source": "shadcn",
+      "file": "shadcn-toggle-group-demo.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnToggleGroupDemo\n * Temel örnek — biçimlendirme araçları (saf React, shadcn kaynaklı).\n * @id 733\n * @category Toggle\n * @subcategory ShadcnToggleGroup\n * @source shadcn\n */\nimport { Bold, Italic, Underline } from \"@/components/ui/icons\"\nimport { ShadcnToggleGroup, ShadcnToggleGroupItem } from \"@/components/ui/shadcn-toggle-group\"\n\nfunction ShadcnToggleGroupDemo() {\n  return (\n    <ShadcnToggleGroup variant=\"outline\" multiple>\n      <ShadcnToggleGroupItem value=\"bold\" aria-label=\"Toggle bold\">\n        <Bold className=\"size-4\" />\n      </ShadcnToggleGroupItem>\n      <ShadcnToggleGroupItem value=\"italic\" aria-label=\"Toggle italic\">\n        <Italic className=\"size-4\" />\n      </ShadcnToggleGroupItem>\n      <ShadcnToggleGroupItem value=\"underline\" aria-label=\"Toggle underline\">\n        <Underline className=\"size-4\" />\n      </ShadcnToggleGroupItem>\n    </ShadcnToggleGroup>\n  )\n}\n\nexport { ShadcnToggleGroupDemo }\n",
+      "description": "ShadcnToggleGroupDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-toggle-group-demo.tsx"
+    },
+    {
+      "id": "734",
+      "name": "ShadcnToggleGroupOutline",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnToggleGroup",
+      "source": "shadcn",
+      "file": "shadcn-toggle-group-outline.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnToggleGroupOutline\n * Outline varyant — tek seçim (saf React, shadcn kaynaklı).\n * @id 734\n * @category Toggle\n * @subcategory ShadcnToggleGroup\n * @source shadcn\n */\nimport { ShadcnToggleGroup, ShadcnToggleGroupItem } from \"@/components/ui/shadcn-toggle-group\"\n\nfunction ShadcnToggleGroupOutline() {\n  return (\n    <ShadcnToggleGroup variant=\"outline\" defaultValue={[\"all\"]}>\n      <ShadcnToggleGroupItem value=\"all\" aria-label=\"Toggle all\">\n        All\n      </ShadcnToggleGroupItem>\n      <ShadcnToggleGroupItem value=\"missed\" aria-label=\"Toggle missed\">\n        Missed\n      </ShadcnToggleGroupItem>\n    </ShadcnToggleGroup>\n  )\n}\n\nexport { ShadcnToggleGroupOutline }\n",
+      "description": "ShadcnToggleGroupOutline",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-toggle-group-outline.tsx"
+    },
+    {
+      "id": "735",
+      "name": "ShadcnToggleGroupSizes",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnToggleGroup",
+      "source": "shadcn",
+      "file": "shadcn-toggle-group-sizes.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnToggleGroupSizes\n * Boyutlar — küçük ve varsayılan (saf React, shadcn kaynaklı).\n * @id 735\n * @category Toggle\n * @subcategory ShadcnToggleGroup\n * @source shadcn\n */\nimport { ShadcnToggleGroup, ShadcnToggleGroupItem } from \"@/components/ui/shadcn-toggle-group\"\n\nfunction ShadcnToggleGroupSizes() {\n  return (\n    <div className=\"flex flex-col gap-4\">\n      <ShadcnToggleGroup size=\"sm\" defaultValue={[\"top\"]} variant=\"outline\">\n        <ShadcnToggleGroupItem value=\"top\" aria-label=\"Toggle top\">Top</ShadcnToggleGroupItem>\n        <ShadcnToggleGroupItem value=\"bottom\" aria-label=\"Toggle bottom\">Bottom</ShadcnToggleGroupItem>\n        <ShadcnToggleGroupItem value=\"left\" aria-label=\"Toggle left\">Left</ShadcnToggleGroupItem>\n        <ShadcnToggleGroupItem value=\"right\" aria-label=\"Toggle right\">Right</ShadcnToggleGroupItem>\n      </ShadcnToggleGroup>\n      <ShadcnToggleGroup defaultValue={[\"top\"]} variant=\"outline\">\n        <ShadcnToggleGroupItem value=\"top\" aria-label=\"Toggle top\">Top</ShadcnToggleGroupItem>\n        <ShadcnToggleGroupItem value=\"bottom\" aria-label=\"Toggle bottom\">Bottom</ShadcnToggleGroupItem>\n        <ShadcnToggleGroupItem value=\"left\" aria-label=\"Toggle left\">Left</ShadcnToggleGroupItem>\n        <ShadcnToggleGroupItem value=\"right\" aria-label=\"Toggle right\">Right</ShadcnToggleGroupItem>\n      </ShadcnToggleGroup>\n    </div>\n  )\n}\n\nexport { ShadcnToggleGroupSizes }\n",
+      "description": "ShadcnToggleGroupSizes",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-toggle-group-sizes.tsx"
+    },
+    {
+      "id": "736",
+      "name": "ShadcnToggleGroupSpacing",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnToggleGroup",
+      "source": "shadcn",
+      "file": "shadcn-toggle-group-spacing.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnToggleGroupSpacing\n * Aralıklı grup (saf React, shadcn kaynaklı).\n * @id 736\n * @category Toggle\n * @subcategory ShadcnToggleGroup\n * @source shadcn\n */\nimport { ShadcnToggleGroup, ShadcnToggleGroupItem } from \"@/components/ui/shadcn-toggle-group\"\n\nfunction ShadcnToggleGroupSpacing() {\n  return (\n    <ShadcnToggleGroup size=\"sm\" defaultValue={[\"top\"]} variant=\"outline\" spacing={2}>\n      <ShadcnToggleGroupItem value=\"top\" aria-label=\"Toggle top\">Top</ShadcnToggleGroupItem>\n      <ShadcnToggleGroupItem value=\"bottom\" aria-label=\"Toggle bottom\">Bottom</ShadcnToggleGroupItem>\n      <ShadcnToggleGroupItem value=\"left\" aria-label=\"Toggle left\">Left</ShadcnToggleGroupItem>\n      <ShadcnToggleGroupItem value=\"right\" aria-label=\"Toggle right\">Right</ShadcnToggleGroupItem>\n    </ShadcnToggleGroup>\n  )\n}\n\nexport { ShadcnToggleGroupSpacing }\n",
+      "description": "ShadcnToggleGroupSpacing",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-toggle-group-spacing.tsx"
+    },
+    {
+      "id": "737",
+      "name": "ShadcnToggleGroupVertical",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnToggleGroup",
+      "source": "shadcn",
+      "file": "shadcn-toggle-group-vertical.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnToggleGroupVertical\n * Dikey grup (saf React, shadcn kaynaklı).\n * @id 737\n * @category Toggle\n * @subcategory ShadcnToggleGroup\n * @source shadcn\n */\nimport { Bold, Italic, Underline } from \"@/components/ui/icons\"\nimport { ShadcnToggleGroup, ShadcnToggleGroupItem } from \"@/components/ui/shadcn-toggle-group\"\n\nfunction ShadcnToggleGroupVertical() {\n  return (\n    <ShadcnToggleGroup multiple orientation=\"vertical\" spacing={1} defaultValue={[\"bold\", \"italic\"]}>\n      <ShadcnToggleGroupItem value=\"bold\" aria-label=\"Toggle bold\">\n        <Bold className=\"size-4\" />\n      </ShadcnToggleGroupItem>\n      <ShadcnToggleGroupItem value=\"italic\" aria-label=\"Toggle italic\">\n        <Italic className=\"size-4\" />\n      </ShadcnToggleGroupItem>\n      <ShadcnToggleGroupItem value=\"underline\" aria-label=\"Toggle underline\">\n        <Underline className=\"size-4\" />\n      </ShadcnToggleGroupItem>\n    </ShadcnToggleGroup>\n  )\n}\n\nexport { ShadcnToggleGroupVertical }\n",
+      "description": "ShadcnToggleGroupVertical",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-toggle-group-vertical.tsx"
+    },
+    {
+      "id": "738",
+      "name": "ShadcnToggleGroupDisabled",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnToggleGroup",
+      "source": "shadcn",
+      "file": "shadcn-toggle-group-disabled.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnToggleGroupDisabled\n * Devre dışı grup (saf React, shadcn kaynaklı).\n * @id 738\n * @category Toggle\n * @subcategory ShadcnToggleGroup\n * @source shadcn\n */\nimport { Bold, Italic, Underline } from \"@/components/ui/icons\"\nimport { ShadcnToggleGroup, ShadcnToggleGroupItem } from \"@/components/ui/shadcn-toggle-group\"\n\nfunction ShadcnToggleGroupDisabled() {\n  return (\n    <ShadcnToggleGroup isDisabled>\n      <ShadcnToggleGroupItem value=\"bold\" aria-label=\"Toggle bold\">\n        <Bold className=\"size-4\" />\n      </ShadcnToggleGroupItem>\n      <ShadcnToggleGroupItem value=\"italic\" aria-label=\"Toggle italic\">\n        <Italic className=\"size-4\" />\n      </ShadcnToggleGroupItem>\n      <ShadcnToggleGroupItem value=\"underline\" aria-label=\"Toggle underline\">\n        <Underline className=\"size-4\" />\n      </ShadcnToggleGroupItem>\n    </ShadcnToggleGroup>\n  )\n}\n\nexport { ShadcnToggleGroupDisabled }\n",
+      "description": "ShadcnToggleGroupDisabled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-toggle-group-disabled.tsx"
+    },
+    {
+      "id": "739",
+      "name": "ShadcnToggleGroupFontWeightSelector",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnToggleGroup",
+      "source": "shadcn",
+      "file": "shadcn-toggle-group-font-weight-selector.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnToggleGroupFontWeightSelector\n * Özel — yazı tipi ağırlığı seçici (saf React, shadcn kaynaklı).\n * @id 739\n * @category Toggle\n * @subcategory ShadcnToggleGroup\n * @source shadcn\n */\nimport { useState } from \"react\"\nimport {\n  ShadcnField,\n  ShadcnFieldDescription,\n  ShadcnFieldLabel,\n} from \"@/components/ui/shadcn-field\"\nimport { ShadcnToggleGroup, ShadcnToggleGroupItem } from \"@/components/ui/shadcn-toggle-group\"\n\nfunction ShadcnToggleGroupFontWeightSelector() {\n  const [fontWeight, setFontWeight] = useState(\"normal\")\n\n  return (\n    <ShadcnField>\n      <ShadcnFieldLabel>Font Weight</ShadcnFieldLabel>\n      <ShadcnToggleGroup\n        value={[fontWeight]}\n        onValueChange={(v) => setFontWeight(v[0])}\n        variant=\"outline\"\n        spacing={2}\n        size=\"lg\"\n      >\n        <ShadcnToggleGroupItem value=\"light\" aria-label=\"Light\" className=\"flex size-16 flex-col items-center justify-center rounded-xl\">\n          <span className=\"text-2xl leading-none font-light\">Aa</span>\n          <span className=\"text-xs text-muted-foreground\">Light</span>\n        </ShadcnToggleGroupItem>\n        <ShadcnToggleGroupItem value=\"normal\" aria-label=\"Normal\" className=\"flex size-16 flex-col items-center justify-center rounded-xl\">\n          <span className=\"text-2xl leading-none font-normal\">Aa</span>\n          <span className=\"text-xs text-muted-foreground\">Normal</span>\n        </ShadcnToggleGroupItem>\n        <ShadcnToggleGroupItem value=\"medium\" aria-label=\"Medium\" className=\"flex size-16 flex-col items-center justify-center rounded-xl\">\n          <span className=\"text-2xl leading-none font-medium\">Aa</span>\n          <span className=\"text-xs text-muted-foreground\">Medium</span>\n        </ShadcnToggleGroupItem>\n        <ShadcnToggleGroupItem value=\"bold\" aria-label=\"Bold\" className=\"flex size-16 flex-col items-center justify-center rounded-xl\">\n          <span className=\"text-2xl leading-none font-bold\">Aa</span>\n          <span className=\"text-xs text-muted-foreground\">Bold</span>\n        </ShadcnToggleGroupItem>\n      </ShadcnToggleGroup>\n      <ShadcnFieldDescription>\n        Use{\" \"}\n        <code className=\"rounded-md bg-muted px-1 py-0.5 font-mono\">\n          font-{fontWeight}\n        </code>{\" \"}\n        to set the font weight.\n      </ShadcnFieldDescription>\n    </ShadcnField>\n  )\n}\n\nexport { ShadcnToggleGroupFontWeightSelector }\n",
+      "description": "ShadcnToggleGroupFontWeightSelector",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-toggle-group-font-weight-selector.tsx"
+    },
+    {
+      "id": "740",
+      "name": "ShadcnToggleGroupRtl",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnToggleGroup",
+      "source": "shadcn",
+      "file": "shadcn-toggle-group-rtl.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnToggleGroupRtl\n * RTL örneği (saf React, shadcn kaynaklı).\n * @id 740\n * @category Toggle\n * @subcategory ShadcnToggleGroup\n * @source shadcn\n */\nimport { Bold, Italic, Underline } from \"@/components/ui/icons\"\nimport { ShadcnToggleGroup, ShadcnToggleGroupItem } from \"@/components/ui/shadcn-toggle-group\"\n\nfunction ShadcnToggleGroupRtl() {\n  return (\n    <div dir=\"rtl\">\n      <ShadcnToggleGroup variant=\"outline\" multiple>\n        <ShadcnToggleGroupItem value=\"bold\" aria-label=\"عريض\">\n          <Bold className=\"size-4\" />\n        </ShadcnToggleGroupItem>\n        <ShadcnToggleGroupItem value=\"italic\" aria-label=\"مائل\">\n          <Italic className=\"size-4\" />\n        </ShadcnToggleGroupItem>\n        <ShadcnToggleGroupItem value=\"underline\" aria-label=\"تسطير\">\n          <Underline className=\"size-4\" />\n        </ShadcnToggleGroupItem>\n      </ShadcnToggleGroup>\n    </div>\n  )\n}\n\nexport { ShadcnToggleGroupRtl }\n",
+      "description": "ShadcnToggleGroupRtl",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-toggle-group-rtl.tsx"
     },
     {
       "id": "389",
