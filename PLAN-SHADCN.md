@@ -86,7 +86,8 @@
 ### ✅ Adım 4 tamamlandı (10 element, 52 bileşen)
 
 ### Adım 5 — Navigasyon + Akordeon + Uyarı (9)
-Tabs → Pagination → Breadcrumb → Navigation Menu → Menubar → Accordion → Collapsible → Alert → Alert Dialog
+- [x] **Tabs** — 834-840 (4 compound + 6 örnek)
+Pagination → Breadcrumb → Navigation Menu → Menubar → Accordion → Collapsible → Alert → Alert Dialog
 
 ### Adım 6 — Takvim + Combobox (6)
 Calendar → Date Picker → Combobox → Command → Select → Native Select

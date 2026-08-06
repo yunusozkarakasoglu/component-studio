@@ -807,4 +807,11 @@ export const SAMPLES: Record<string, ReactNode> = {
   "831": <U.ShadcnSidebar />,
   "832": <U.ShadcnSidebarDemo />,
   "833": <U.ShadcnSidebarBasic />,
+  "834": <U.ShadcnTabs />,
+  "835": <U.ShadcnTabsDemo />,
+  "836": <U.ShadcnTabsLine />,
+  "837": <U.ShadcnTabsVertical />,
+  "838": <U.ShadcnTabsDisabled />,
+  "839": <U.ShadcnTabsIcons />,
+  "840": <U.ShadcnTabsRtl />,
 }

@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-06T13:15:01.259Z",
+  "generatedAt": "2026-08-06T13:18:19.418Z",
   "counts": {
-    "components": 744,
-    "ready": 744,
+    "components": 751,
+    "ready": 751,
     "layouts": 0
   },
   "categories": [
@@ -5162,6 +5162,90 @@
       "code": "/**\n * ShadcnSidebarBasic\n * Basit daraltılabilir yan menü (saf React, shadcn kaynaklı).\n * @id 833\n * @category Overlay\n * @subcategory ShadcnSidebar\n * @source shadcn\n */\nimport {\n  ShadcnSidebar,\n  ShadcnSidebarContent,\n  ShadcnSidebarGroup,\n  ShadcnSidebarHeader,\n  ShadcnSidebarInset,\n  ShadcnSidebarMenu,\n  ShadcnSidebarMenuButton,\n  ShadcnSidebarMenuItem,\n  ShadcnSidebarProvider,\n  ShadcnSidebarTrigger,\n} from \"@/components/ui/shadcn-sidebar\"\n\nfunction ShadcnSidebarBasic() {\n  const items = [\"Overview\", \"Projects\", \"Tasks\", \"Reports\", \"Analytics\"]\n\n  return (\n    <ShadcnSidebarProvider>\n      <ShadcnSidebar>\n        <ShadcnSidebarHeader>\n          <ShadcnSidebarTrigger />\n        </ShadcnSidebarHeader>\n        <ShadcnSidebarContent>\n          <ShadcnSidebarGroup title=\"Navigation\">\n            <ShadcnSidebarMenu>\n              {items.map((item, i) => (\n                <ShadcnSidebarMenuItem key={item}>\n                  <ShadcnSidebarMenuButton isActive={i === 0}>\n                    <span className=\"truncate\">{item}</span>\n                  </ShadcnSidebarMenuButton>\n                </ShadcnSidebarMenuItem>\n              ))}\n            </ShadcnSidebarMenu>\n          </ShadcnSidebarGroup>\n        </ShadcnSidebarContent>\n      </ShadcnSidebar>\n      <ShadcnSidebarInset>\n        <div className=\"flex h-full items-center justify-center rounded-md border border-dashed border-border text-sm text-muted-foreground\">\n          Click the trigger to collapse\n        </div>\n      </ShadcnSidebarInset>\n    </ShadcnSidebarProvider>\n  )\n}\n\nexport { ShadcnSidebarBasic }\n",
       "description": "ShadcnSidebarBasic",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-sidebar-basic.tsx"
+    },
+    {
+      "id": "834",
+      "name": "ShadcnTabs",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnTabs",
+      "source": "shadcn",
+      "file": "shadcn-tabs.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnTabs familyası\n * Saf React bileşen (bağımlılıksız) — shadcn/ui kaynaklı.\n * Sekmeler — Tabs + List + Trigger + Content.\n *   <ShadcnTabs defaultValue=\"overview\">\n *     <ShadcnTabsList>\n *       <ShadcnTabsTrigger value=\"overview\">Overview</ShadcnTabsTrigger>\n *     </ShadcnTabsList>\n *     <ShadcnTabsContent value=\"overview\">…</ShadcnTabsContent>\n *   </ShadcnTabs>\n * @id 834\n * @category Navigasyon\n * @subcategory ShadcnTabs\n * @source shadcn\n */\nimport { createContext, useContext, useState, type HTMLAttributes, type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface TabsContextValue {\n  value: string\n  setValue: (v: string) => void\n}\n\nconst TabsContext = createContext<TabsContextValue | null>(null)\n\nfunction useShadcnTabs(): TabsContextValue {\n  const ctx = useContext(TabsContext)\n  if (!ctx) throw new Error(\"ShadcnTabs parçaları, ShadcnTabs içinde kullanılmalı\")\n  return ctx\n}\n\ninterface ShadcnTabsProps extends HTMLAttributes<HTMLDivElement> {\n  defaultValue?: string\n  value?: string\n  onValueChange?: (value: string) => void\n}\n\nfunction ShadcnTabs({ children, className, defaultValue, value, onValueChange, ...props }: ShadcnTabsProps) {\n  const [internal, setInternal] = useState(defaultValue ?? \"\")\n  const current = value !== undefined ? value : internal\n  const setValue = (v: string) => {\n    if (value === undefined) setInternal(v)\n    onValueChange?.(v)\n  }\n  return (\n    <TabsContext.Provider value={{ value: current, setValue }}>\n      <div data-slot=\"shadcn-tabs\" className={className} {...props}>\n        {children}\n      </div>\n    </TabsContext.Provider>\n  )\n}\n\ninterface ShadcnTabsListProps extends HTMLAttributes<HTMLDivElement> {}\n\nfunction ShadcnTabsList({ className, ...props }: ShadcnTabsListProps) {\n  return (\n    <div\n      role=\"tablist\"\n      data-slot=\"shadcn-tabs-list\"\n      className={cn(\n        \"inline-flex h-9 items-center justify-center gap-1 rounded-lg bg-muted p-1 text-muted-foreground\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\ninterface ShadcnTabsTriggerProps extends HTMLAttributes<HTMLButtonElement> {\n  value: string\n  isDisabled?: boolean\n}\n\nfunction ShadcnTabsTrigger({ className, value, isDisabled, children, ...props }: ShadcnTabsTriggerProps) {\n  const ctx = useShadcnTabs()\n  const selected = ctx.value === value\n  return (\n    <button\n      type=\"button\"\n      role=\"tab\"\n      aria-selected={selected}\n      data-state={selected ? \"active\" : \"inactive\"}\n      data-slot=\"shadcn-tabs-trigger\"\n      disabled={isDisabled}\n      onClick={() => ctx.setValue(value)}\n      className={cn(\n        \"inline-flex h-7 cursor-pointer items-center justify-center rounded-md px-3 text-sm font-medium whitespace-nowrap transition-colors outline-none\",\n        \"focus-visible:ring-2 focus-visible:ring-ring/40\",\n        \"disabled:cursor-not-allowed disabled:opacity-50\",\n        selected ? \"bg-background text-foreground shadow-xs\" : \"text-muted-foreground hover:text-foreground\",\n        className\n      )}\n      {...props}\n    >\n      {children}\n    </button>\n  )\n}\n\ninterface ShadcnTabsContentProps extends HTMLAttributes<HTMLDivElement> {\n  value: string\n}\n\nfunction ShadcnTabsContent({ className, value, children, ...props }: ShadcnTabsContentProps) {\n  const ctx = useShadcnTabs()\n  if (ctx.value !== value) return null\n  return (\n    <div\n      role=\"tabpanel\"\n      data-slot=\"shadcn-tabs-content\"\n      className={cn(\"mt-2 outline-none\", className)}\n      {...props}\n    >\n      {children}\n    </div>\n  )\n}\n\nexport { ShadcnTabs, ShadcnTabsContent, ShadcnTabsList, ShadcnTabsTrigger }\nexport type { ShadcnTabsContentProps, ShadcnTabsListProps, ShadcnTabsProps, ShadcnTabsTriggerProps }\n",
+      "description": "ShadcnTabs familyası",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-tabs.tsx"
+    },
+    {
+      "id": "835",
+      "name": "ShadcnTabsDemo",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnTabs",
+      "source": "shadcn",
+      "file": "shadcn-tabs-demo.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnTabsDemo\n * Temel örnek — proje sekmeleri (saf React, shadcn kaynaklı).\n * Card: kütüphanenin mevcut ShadcnCard'ı.\n * @id 835\n * @category Navigasyon\n * @subcategory ShadcnTabs\n * @source shadcn\n */\nimport {\n  ShadcnCard,\n  ShadcnCardContent,\n  ShadcnCardDescription,\n  ShadcnCardHeader,\n  ShadcnCardTitle,\n} from \"@/components/ui/shadcn-card\"\nimport {\n  ShadcnTabs,\n  ShadcnTabsContent,\n  ShadcnTabsList,\n  ShadcnTabsTrigger,\n} from \"@/components/ui/shadcn-tabs\"\n\nfunction ShadcnTabsDemo() {\n  return (\n    <ShadcnTabs defaultValue=\"overview\" className=\"w-[400px]\">\n      <ShadcnTabsList>\n        <ShadcnTabsTrigger value=\"overview\">Overview</ShadcnTabsTrigger>\n        <ShadcnTabsTrigger value=\"analytics\">Analytics</ShadcnTabsTrigger>\n        <ShadcnTabsTrigger value=\"reports\">Reports</ShadcnTabsTrigger>\n        <ShadcnTabsTrigger value=\"settings\">Settings</ShadcnTabsTrigger>\n      </ShadcnTabsList>\n      <ShadcnTabsContent value=\"overview\">\n        <ShadcnCard>\n          <ShadcnCardHeader>\n            <ShadcnCardTitle>Overview</ShadcnCardTitle>\n            <ShadcnCardDescription>\n              View your key metrics and recent project activity.\n            </ShadcnCardDescription>\n          </ShadcnCardHeader>\n          <ShadcnCardContent className=\"text-sm text-muted-foreground\">\n            You have 12 active projects and 3 pending tasks.\n          </ShadcnCardContent>\n        </ShadcnCard>\n      </ShadcnTabsContent>\n      <ShadcnTabsContent value=\"analytics\">\n        <ShadcnCard>\n          <ShadcnCardHeader>\n            <ShadcnCardTitle>Analytics</ShadcnCardTitle>\n            <ShadcnCardDescription>\n              Track performance and user engagement metrics.\n            </ShadcnCardDescription>\n          </ShadcnCardHeader>\n          <ShadcnCardContent className=\"text-sm text-muted-foreground\">\n            Page views are up 25% compared to last month.\n          </ShadcnCardContent>\n        </ShadcnCard>\n      </ShadcnTabsContent>\n      <ShadcnTabsContent value=\"reports\">\n        <ShadcnCard>\n          <ShadcnCardHeader>\n            <ShadcnCardTitle>Reports</ShadcnCardTitle>\n            <ShadcnCardDescription>\n              Access and download your project reports.\n            </ShadcnCardDescription>\n          </ShadcnCardHeader>\n          <ShadcnCardContent className=\"text-sm text-muted-foreground\">\n            Last report generated on March 15, 2025.\n          </ShadcnCardContent>\n        </ShadcnCard>\n      </ShadcnTabsContent>\n      <ShadcnTabsContent value=\"settings\">\n        <ShadcnCard>\n          <ShadcnCardHeader>\n            <ShadcnCardTitle>Settings</ShadcnCardTitle>\n            <ShadcnCardDescription>\n              Manage your project settings and preferences.\n            </ShadcnCardDescription>\n          </ShadcnCardHeader>\n          <ShadcnCardContent className=\"text-sm text-muted-foreground\">\n            Configure notifications, members, and integrations.\n          </ShadcnCardContent>\n        </ShadcnCard>\n      </ShadcnTabsContent>\n    </ShadcnTabs>\n  )\n}\n\nexport { ShadcnTabsDemo }\n",
+      "description": "ShadcnTabsDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-tabs-demo.tsx"
+    },
+    {
+      "id": "836",
+      "name": "ShadcnTabsLine",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnTabs",
+      "source": "shadcn",
+      "file": "shadcn-tabs-line.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnTabsLine\n * Çizgili sekme varyantı (saf React, shadcn kaynaklı).\n * @id 836\n * @category Navigasyon\n * @subcategory ShadcnTabs\n * @source shadcn\n */\nimport {\n  ShadcnTabs,\n  ShadcnTabsContent,\n  ShadcnTabsList,\n  ShadcnTabsTrigger,\n} from \"@/components/ui/shadcn-tabs\"\n\nfunction ShadcnTabsLine() {\n  return (\n    <ShadcnTabs defaultValue=\"account\" className=\"w-[300px]\">\n      <ShadcnTabsList className=\"h-10 justify-start rounded-none border-b border-border bg-transparent p-0\">\n        <ShadcnTabsTrigger\n          value=\"account\"\n          className=\"h-10 rounded-none border-b-2 border-transparent bg-transparent px-3 text-muted-foreground shadow-none hover:text-foreground data-[state=active]:border-blue-600 data-[state=active]:bg-transparent data-[state=active]:text-foreground\"\n        >\n          Account\n        </ShadcnTabsTrigger>\n        <ShadcnTabsTrigger\n          value=\"password\"\n          className=\"h-10 rounded-none border-b-2 border-transparent bg-transparent px-3 text-muted-foreground shadow-none hover:text-foreground data-[state=active]:border-blue-600 data-[state=active]:bg-transparent data-[state=active]:text-foreground\"\n        >\n          Password\n        </ShadcnTabsTrigger>\n      </ShadcnTabsList>\n      <ShadcnTabsContent value=\"account\" className=\"text-sm\">\n        Account settings content.\n      </ShadcnTabsContent>\n      <ShadcnTabsContent value=\"password\" className=\"text-sm\">\n        Password settings content.\n      </ShadcnTabsContent>\n    </ShadcnTabs>\n  )\n}\n\nexport { ShadcnTabsLine }\n",
+      "description": "ShadcnTabsLine",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-tabs-line.tsx"
+    },
+    {
+      "id": "837",
+      "name": "ShadcnTabsVertical",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnTabs",
+      "source": "shadcn",
+      "file": "shadcn-tabs-vertical.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnTabsVertical\n * Dikey sekmeler (saf React, shadcn kaynaklı).\n * @id 837\n * @category Navigasyon\n * @subcategory ShadcnTabs\n * @source shadcn\n */\nimport {\n  ShadcnTabs,\n  ShadcnTabsContent,\n  ShadcnTabsList,\n  ShadcnTabsTrigger,\n} from \"@/components/ui/shadcn-tabs\"\n\nfunction ShadcnTabsVertical() {\n  return (\n    <ShadcnTabs defaultValue=\"one\" className=\"flex gap-4\">\n      <ShadcnTabsList className=\"flex h-auto w-32 flex-col items-stretch gap-1 bg-transparent p-0\">\n        <ShadcnTabsTrigger value=\"one\" className=\"justify-start rounded-md px-3 text-left\">Tab One</ShadcnTabsTrigger>\n        <ShadcnTabsTrigger value=\"two\" className=\"justify-start rounded-md px-3 text-left\">Tab Two</ShadcnTabsTrigger>\n        <ShadcnTabsTrigger value=\"three\" className=\"justify-start rounded-md px-3 text-left\">Tab Three</ShadcnTabsTrigger>\n      </ShadcnTabsList>\n      <ShadcnTabsContent value=\"one\" className=\"mt-0 text-sm\">Content of tab one.</ShadcnTabsContent>\n      <ShadcnTabsContent value=\"two\" className=\"mt-0 text-sm\">Content of tab two.</ShadcnTabsContent>\n      <ShadcnTabsContent value=\"three\" className=\"mt-0 text-sm\">Content of tab three.</ShadcnTabsContent>\n    </ShadcnTabs>\n  )\n}\n\nexport { ShadcnTabsVertical }\n",
+      "description": "ShadcnTabsVertical",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-tabs-vertical.tsx"
+    },
+    {
+      "id": "838",
+      "name": "ShadcnTabsDisabled",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnTabs",
+      "source": "shadcn",
+      "file": "shadcn-tabs-disabled.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnTabsDisabled\n * Devre dışı sekme (saf React, shadcn kaynaklı).\n * @id 838\n * @category Navigasyon\n * @subcategory ShadcnTabs\n * @source shadcn\n */\nimport {\n  ShadcnTabs,\n  ShadcnTabsContent,\n  ShadcnTabsList,\n  ShadcnTabsTrigger,\n} from \"@/components/ui/shadcn-tabs\"\n\nfunction ShadcnTabsDisabled() {\n  return (\n    <ShadcnTabs defaultValue=\"enabled\" className=\"w-[320px]\">\n      <ShadcnTabsList>\n        <ShadcnTabsTrigger value=\"enabled\">Enabled</ShadcnTabsTrigger>\n        <ShadcnTabsTrigger value=\"disabled\" isDisabled>\n          Disabled\n        </ShadcnTabsTrigger>\n      </ShadcnTabsList>\n      <ShadcnTabsContent value=\"enabled\" className=\"text-sm\">\n        This tab is enabled and can be selected.\n      </ShadcnTabsContent>\n    </ShadcnTabs>\n  )\n}\n\nexport { ShadcnTabsDisabled }\n",
+      "description": "ShadcnTabsDisabled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-tabs-disabled.tsx"
+    },
+    {
+      "id": "839",
+      "name": "ShadcnTabsIcons",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnTabs",
+      "source": "shadcn",
+      "file": "shadcn-tabs-icons.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnTabsIcons\n * İkonlu sekmeler (saf React, shadcn kaynaklı).\n * @id 839\n * @category Navigasyon\n * @subcategory ShadcnTabs\n * @source shadcn\n */\nimport { CreditCard, Home, Settings, User } from \"@/components/ui/icons\"\nimport {\n  ShadcnTabs,\n  ShadcnTabsContent,\n  ShadcnTabsList,\n  ShadcnTabsTrigger,\n} from \"@/components/ui/shadcn-tabs\"\n\nfunction ShadcnTabsIcons() {\n  return (\n    <ShadcnTabs defaultValue=\"account\" className=\"w-[400px]\">\n      <ShadcnTabsList>\n        <ShadcnTabsTrigger value=\"account\">\n          <User className=\"size-4\" /> Account\n        </ShadcnTabsTrigger>\n        <ShadcnTabsTrigger value=\"password\">\n          <Settings className=\"size-4\" /> Password\n        </ShadcnTabsTrigger>\n        <ShadcnTabsTrigger value=\"billing\">\n          <CreditCard className=\"size-4\" /> Billing\n        </ShadcnTabsTrigger>\n        <ShadcnTabsTrigger value=\"home\">\n          <Home className=\"size-4\" /> Home\n        </ShadcnTabsTrigger>\n      </ShadcnTabsList>\n      <ShadcnTabsContent value=\"account\" className=\"text-sm\">\n        Account settings with icon.\n      </ShadcnTabsContent>\n      <ShadcnTabsContent value=\"password\" className=\"text-sm\">\n        Password settings with icon.\n      </ShadcnTabsContent>\n      <ShadcnTabsContent value=\"billing\" className=\"text-sm\">\n        Billing settings with icon.\n      </ShadcnTabsContent>\n      <ShadcnTabsContent value=\"home\" className=\"text-sm\">\n        Home tab with icon.\n      </ShadcnTabsContent>\n    </ShadcnTabs>\n  )\n}\n\nexport { ShadcnTabsIcons }\n",
+      "description": "ShadcnTabsIcons",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-tabs-icons.tsx"
+    },
+    {
+      "id": "840",
+      "name": "ShadcnTabsRtl",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnTabs",
+      "source": "shadcn",
+      "file": "shadcn-tabs-rtl.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnTabsRtl\n * RTL örneği — Arapça sekmeler (saf React, shadcn kaynaklı).\n * @id 840\n * @category Navigasyon\n * @subcategory ShadcnTabs\n * @source shadcn\n */\nimport {\n  ShadcnTabs,\n  ShadcnTabsContent,\n  ShadcnTabsList,\n  ShadcnTabsTrigger,\n} from \"@/components/ui/shadcn-tabs\"\n\nfunction ShadcnTabsRtl() {\n  return (\n    <ShadcnTabs defaultValue=\"overview\" className=\"w-[400px]\" dir=\"rtl\">\n      <ShadcnTabsList>\n        <ShadcnTabsTrigger value=\"overview\">نظرة عامة</ShadcnTabsTrigger>\n        <ShadcnTabsTrigger value=\"analytics\">التحليلات</ShadcnTabsTrigger>\n        <ShadcnTabsTrigger value=\"reports\">التقارير</ShadcnTabsTrigger>\n      </ShadcnTabsList>\n      <ShadcnTabsContent value=\"overview\" className=\"text-sm\">\n        محتوى النظرة العامة.\n      </ShadcnTabsContent>\n      <ShadcnTabsContent value=\"analytics\" className=\"text-sm\">\n        محتوى التحليلات.\n      </ShadcnTabsContent>\n      <ShadcnTabsContent value=\"reports\" className=\"text-sm\">\n        محتوى التقارير.\n      </ShadcnTabsContent>\n    </ShadcnTabs>\n  )\n}\n\nexport { ShadcnTabsRtl }\n",
+      "description": "ShadcnTabsRtl",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-tabs-rtl.tsx"
     },
     {
       "id": "389",
