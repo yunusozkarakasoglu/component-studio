@@ -25,10 +25,10 @@ function ShadcnDropdownMenuRadioGroupDemo() {
         Open
       </button>
       <MenuPopover>
-        <MenuList>
+        <MenuList onAction={(key) => setPerson(String(key))}>
           <MenuSection title="Assigned to">
             {people.map((p) => (
-              <MenuItem key={p.id} id={p.id} textValue={p.label} onAction={() => setPerson(p.id)}>
+              <MenuItem key={p.id} id={p.id} textValue={p.label}>
                 <span className="flex w-4 items-center">
                   {person === p.id && <Check className="size-4" />}
                 </span>

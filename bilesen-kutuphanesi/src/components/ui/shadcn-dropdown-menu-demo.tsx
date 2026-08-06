@@ -7,7 +7,7 @@
  * @subcategory ShadcnDropdownMenu
  * @source shadcn
  */
-import { CreditCard, LogOut, Settings, User } from "@/components/ui/icons"
+import { LogOut } from "@/components/ui/icons"
 import { Menu, MenuItem, MenuList, MenuPopover, MenuSection, MenuSeparator } from "@/components/ui/menu"
 import { ShadcnKbd } from "@/components/ui/shadcn-kbd"
 

@@ -29,10 +29,10 @@ function ShadcnDropdownMenuCheckboxes() {
         Open
       </button>
       <MenuPopover>
-        <MenuList>
+        <MenuList onAction={(key) => toggle(String(key))}>
           <MenuSection title="Panel">
             {items.map((item) => (
-              <MenuItem key={item.id} id={item.id} textValue={item.label} onAction={() => toggle(item.id)}>
+              <MenuItem key={item.id} id={item.id} textValue={item.label}>
                 <span className="flex w-4 items-center">
                   {selected.includes(item.id) && <Check className="size-4" />}
                 </span>
