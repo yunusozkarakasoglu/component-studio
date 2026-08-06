@@ -252,7 +252,6 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 #### ShadcnInput
 - `615` ShadcnInput
 - `616` ShadcnField
-- `617` ShadcnInputGroup
 - `618` ShadcnButtonGroup
 - `619` ShadcnInputBasic
 - `620` ShadcnInputField
@@ -690,7 +689,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 588 bileşen (saf React)**
+**Toplam: 587 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
