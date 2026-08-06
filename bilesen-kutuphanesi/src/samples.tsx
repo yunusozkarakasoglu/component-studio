@@ -618,4 +618,11 @@ export const SAMPLES: Record<string, ReactNode> = {
   "640": <U.ShadcnTextareaInvalid />,
   "641": <U.ShadcnTextareaButton />,
   "642": <U.ShadcnTextareaRtl />,
+  "643": <U.ShadcnKbd />,
+  "644": <U.ShadcnKbdDemo />,
+  "645": <U.ShadcnKbdGroupExample />,
+  "646": <U.ShadcnKbdButton />,
+  "647": <U.ShadcnKbdTooltip />,
+  "648": <U.ShadcnKbdInputGroup />,
+  "649": <U.ShadcnKbdRtl />,
 }

@@ -280,6 +280,14 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `640` ShadcnTextareaInvalid
 - `641` ShadcnTextareaButton
 - `642` ShadcnTextareaRtl
+#### ShadcnKbd
+- `643` ShadcnKbd + ShadcnKbdGroup
+- `644` ShadcnKbdDemo
+- `645` ShadcnKbdGroupExample
+- `646` ShadcnKbdButton
+- `647` ShadcnKbdTooltip
+- `648` ShadcnKbdInputGroup
+- `649` ShadcnKbdRtl
 
 ### Seçim
 #### RadioGroup
@@ -654,7 +662,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 555 bileşen (saf React)**
+**Toplam: 562 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

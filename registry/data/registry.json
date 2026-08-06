@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-06T11:30:51.805Z",
+  "generatedAt": "2026-08-06T11:40:16.573Z",
   "counts": {
-    "components": 555,
-    "ready": 555,
+    "components": 562,
+    "ready": 562,
     "layouts": 0
   },
   "categories": [
@@ -2894,6 +2894,90 @@
       "code": "/**\n * ShadcnTextareaRtl\n * RTL örneği — Arapça metin alanı (saf React, shadcn kaynaklı).\n * @id 642\n * @category Form Elemanları\n * @subcategory ShadcnTextarea\n * @source shadcn\n */\nimport { ShadcnField, ShadcnFieldDescription, ShadcnFieldLabel } from \"@/components/ui/shadcn-field\"\nimport { ShadcnTextarea } from \"@/components/ui/shadcn-textarea\"\n\nfunction ShadcnTextareaRtl() {\n  return (\n    <ShadcnField dir=\"rtl\" className=\"w-full max-w-xs\">\n      <ShadcnFieldLabel htmlFor=\"feedback\" dir=\"rtl\">التعليقات</ShadcnFieldLabel>\n      <ShadcnTextarea id=\"feedback\" dir=\"rtl\" placeholder=\"تعليقاتك تساعدنا على التحسين...\" rows={4} />\n      <ShadcnFieldDescription dir=\"rtl\">شاركنا أفكارك حول خدمتنا.</ShadcnFieldDescription>\n    </ShadcnField>\n  )\n}\n\nexport { ShadcnTextareaRtl }\n",
       "description": "ShadcnTextareaRtl",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-textarea-rtl.tsx"
+    },
+    {
+      "id": "643",
+      "name": "ShadcnKbd",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnKbd",
+      "source": "shadcn",
+      "file": "shadcn-kbd.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnKbd + ShadcnKbdGroup\n * Saf React bileşen (bağımlılıksız) — shadcn/ui kaynaklı.\n * Klavye tuşu görüntüleyici + tuş grubu.\n *   <ShadcnKbdGroup><ShadcnKbd>⌘</ShadcnKbd><ShadcnKbd>K</ShadcnKbd></ShadcnKbdGroup>\n * @id 643\n * @category Genel\n * @subcategory ShadcnKbd\n * @source shadcn\n */\nimport type { HTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface ShadcnKbdProps extends HTMLAttributes<HTMLElement> {}\n\nfunction ShadcnKbd({ className, ...props }: ShadcnKbdProps) {\n  return (\n    <kbd\n      data-slot=\"shadcn-kbd\"\n      className={cn(\n        \"inline-flex items-center rounded-md border border-border bg-muted px-1.5 py-0.5 text-[10px] font-medium text-foreground\",\n        \"data-[icon=inline-start]:mr-1.5 data-[icon=inline-end]:ml-1.5\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\ninterface ShadcnKbdGroupProps extends HTMLAttributes<HTMLElement> {}\n\nfunction ShadcnKbdGroup({ className, ...props }: ShadcnKbdGroupProps) {\n  return <span data-slot=\"shadcn-kbd-group\" className={cn(\"inline-flex gap-0.5\", className)} {...props} />\n}\n\nexport { ShadcnKbd, ShadcnKbdGroup }\nexport type { ShadcnKbdGroupProps, ShadcnKbdProps }\n",
+      "description": "ShadcnKbd + ShadcnKbdGroup",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-kbd.tsx"
+    },
+    {
+      "id": "644",
+      "name": "ShadcnKbdDemo",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnKbd",
+      "source": "shadcn",
+      "file": "shadcn-kbd-demo.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnKbdDemo\n * Temel örnek — tuş grupları (saf React, shadcn kaynaklı).\n * @id 644\n * @category Genel\n * @subcategory ShadcnKbd\n * @source shadcn\n */\nimport { ShadcnKbd, ShadcnKbdGroup } from \"@/components/ui/shadcn-kbd\"\n\nfunction ShadcnKbdDemo() {\n  return (\n    <div className=\"flex flex-col items-center gap-4\">\n      <ShadcnKbdGroup>\n        <ShadcnKbd>⌘</ShadcnKbd>\n        <ShadcnKbd>⇧</ShadcnKbd>\n        <ShadcnKbd>⌥</ShadcnKbd>\n        <ShadcnKbd>⌃</ShadcnKbd>\n      </ShadcnKbdGroup>\n      <ShadcnKbdGroup>\n        <ShadcnKbd>Ctrl</ShadcnKbd>\n        <span>+</span>\n        <ShadcnKbd>B</ShadcnKbd>\n      </ShadcnKbdGroup>\n    </div>\n  )\n}\n\nexport { ShadcnKbdDemo }\n",
+      "description": "ShadcnKbdDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-kbd-demo.tsx"
+    },
+    {
+      "id": "645",
+      "name": "ShadcnKbdGroupExample",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnKbd",
+      "source": "shadcn",
+      "file": "shadcn-kbd-group-example.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnKbdGroupExample\n * Metin içinde tuş grubu (saf React, shadcn kaynaklı).\n * @id 645\n * @category Genel\n * @subcategory ShadcnKbd\n * @source shadcn\n */\nimport { ShadcnKbd, ShadcnKbdGroup } from \"@/components/ui/shadcn-kbd\"\n\nfunction ShadcnKbdGroupExample() {\n  return (\n    <div className=\"flex flex-col items-center gap-4\">\n      <p className=\"text-sm text-muted-foreground\">\n        Use{\" \"}\n        <ShadcnKbdGroup>\n          <ShadcnKbd>Ctrl + B</ShadcnKbd>\n          <ShadcnKbd>Ctrl + K</ShadcnKbd>\n        </ShadcnKbdGroup>{\" \"}\n        to open the command palette\n      </p>\n    </div>\n  )\n}\n\nexport { ShadcnKbdGroupExample }\n",
+      "description": "ShadcnKbdGroupExample",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-kbd-group-example.tsx"
+    },
+    {
+      "id": "646",
+      "name": "ShadcnKbdButton",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnKbd",
+      "source": "shadcn",
+      "file": "shadcn-kbd-button.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnKbdButton\n * Buton içinde tuş (saf React, shadcn kaynaklı).\n * Buton: kütüphanenin mevcut Button'ı (Heroui — saf React).\n * @id 646\n * @category Genel\n * @subcategory ShadcnKbd\n * @source shadcn\n */\nimport { Button } from \"@/components/ui/button\"\nimport { ShadcnKbd } from \"@/components/ui/shadcn-kbd\"\n\nfunction ShadcnKbdButton() {\n  return (\n    <Button variant=\"outline\">\n      Accept{\" \"}\n      <ShadcnKbd data-icon=\"inline-end\" className=\"translate-x-0.5\">\n        ⏎\n      </ShadcnKbd>\n    </Button>\n  )\n}\n\nexport { ShadcnKbdButton }\n",
+      "description": "ShadcnKbdButton",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-kbd-button.tsx"
+    },
+    {
+      "id": "647",
+      "name": "ShadcnKbdTooltip",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnKbd",
+      "source": "shadcn",
+      "file": "shadcn-kbd-tooltip.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnKbdTooltip\n * Tooltip içinde tuş (saf React, shadcn kaynaklı).\n * Tooltip/Button: kütüphanenin mevcut bileşenleri (Heroui — saf React).\n * @id 647\n * @category Genel\n * @subcategory ShadcnKbd\n * @source shadcn\n */\nimport { Button } from \"@/components/ui/button\"\nimport { ShadcnKbd, ShadcnKbdGroup } from \"@/components/ui/shadcn-kbd\"\nimport { Tooltip, TooltipContent } from \"@/components/ui/tooltip\"\n\nfunction ShadcnKbdTooltip() {\n  return (\n    <div className=\"flex flex-wrap gap-4\">\n      <Tooltip delay={0}>\n        <Button variant=\"outline\">Save</Button>\n        <TooltipContent>\n          Save Changes <ShadcnKbd>S</ShadcnKbd>\n        </TooltipContent>\n      </Tooltip>\n      <Tooltip delay={0}>\n        <Button variant=\"outline\">Print</Button>\n        <TooltipContent>\n          Print Document{\" \"}\n          <ShadcnKbdGroup>\n            <ShadcnKbd>Ctrl</ShadcnKbd>\n            <ShadcnKbd>P</ShadcnKbd>\n          </ShadcnKbdGroup>\n        </TooltipContent>\n      </Tooltip>\n    </div>\n  )\n}\n\nexport { ShadcnKbdTooltip }\n",
+      "description": "ShadcnKbdTooltip",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-kbd-tooltip.tsx"
+    },
+    {
+      "id": "648",
+      "name": "ShadcnKbdInputGroup",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnKbd",
+      "source": "shadcn",
+      "file": "shadcn-kbd-input-group.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnKbdInputGroup\n * InputGroup içinde tuş (saf React, shadcn kaynaklı).\n * InputGroup: kütüphanenin mevcut bileşeni (Heroui — saf React).\n * @id 648\n * @category Genel\n * @subcategory ShadcnKbd\n * @source shadcn\n */\nimport { Search } from \"@/components/ui/icons\"\nimport { InputGroup, InputGroupInput, InputGroupSuffix } from \"@/components/ui/input-group\"\nimport { ShadcnKbd } from \"@/components/ui/shadcn-kbd\"\n\nfunction ShadcnKbdInputGroup() {\n  return (\n    <div className=\"flex w-full max-w-xs flex-col gap-6\">\n      <InputGroup>\n        <InputGroupInput placeholder=\"Search...\" />\n        <InputGroupSuffix>\n          <Search className=\"size-4 text-muted-foreground\" />\n          <ShadcnKbd>⌘</ShadcnKbd>\n          <ShadcnKbd>K</ShadcnKbd>\n        </InputGroupSuffix>\n      </InputGroup>\n    </div>\n  )\n}\n\nexport { ShadcnKbdInputGroup }\n",
+      "description": "ShadcnKbdInputGroup",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-kbd-input-group.tsx"
+    },
+    {
+      "id": "649",
+      "name": "ShadcnKbdRtl",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnKbd",
+      "source": "shadcn",
+      "file": "shadcn-kbd-rtl.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnKbdRtl\n * RTL örneği — Arapça düzen tuş grubu (saf React, shadcn kaynaklı).\n * @id 649\n * @category Genel\n * @subcategory ShadcnKbd\n * @source shadcn\n */\nimport { ShadcnKbd, ShadcnKbdGroup } from \"@/components/ui/shadcn-kbd\"\n\nfunction ShadcnKbdRtl() {\n  return (\n    <div className=\"flex flex-col items-center gap-4\" dir=\"rtl\">\n      <ShadcnKbdGroup>\n        <ShadcnKbd>⌘</ShadcnKbd>\n        <ShadcnKbd>⇧</ShadcnKbd>\n        <ShadcnKbd>⌥</ShadcnKbd>\n        <ShadcnKbd>⌃</ShadcnKbd>\n      </ShadcnKbdGroup>\n      <ShadcnKbdGroup>\n        <ShadcnKbd>Ctrl</ShadcnKbd>\n        <span>+</span>\n        <ShadcnKbd>B</ShadcnKbd>\n      </ShadcnKbdGroup>\n    </div>\n  )\n}\n\nexport { ShadcnKbdRtl }\n",
+      "description": "ShadcnKbdRtl",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-kbd-rtl.tsx"
     },
     {
       "id": "389",
