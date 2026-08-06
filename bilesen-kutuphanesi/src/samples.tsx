@@ -666,4 +666,11 @@ export const SAMPLES: Record<string, ReactNode> = {
   "689": <U.ShadcnNativeSelectDisabled />,
   "690": <U.ShadcnNativeSelectInvalid />,
   "691": <U.ShadcnNativeSelectRtl />,
+  "692": <U.ShadcnSliderDemo />,
+  "693": <U.ShadcnSliderRange />,
+  "694": <U.ShadcnSliderMultiple />,
+  "695": <U.ShadcnSliderVertical />,
+  "696": <U.ShadcnSliderControlled />,
+  "697": <U.ShadcnSliderDisabled />,
+  "698": <U.ShadcnSliderRtl />,
 }

@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-06T12:06:59.235Z",
+  "generatedAt": "2026-08-06T12:09:28.902Z",
   "counts": {
-    "components": 603,
-    "ready": 603,
+    "components": 610,
+    "ready": 610,
     "layouts": 0
   },
   "categories": [
@@ -3470,6 +3470,90 @@
       "code": "/**\n * ShadcnNativeSelectRtl\n * RTL örneği — Arapça seçim (saf React, shadcn kaynaklı).\n * @id 691\n * @category Form Elemanları\n * @subcategory ShadcnNativeSelect\n * @source shadcn\n */\nimport { ShadcnNativeSelect, ShadcnNativeSelectOption } from \"@/components/ui/shadcn-native-select\"\n\nfunction ShadcnNativeSelectRtl() {\n  return (\n    <ShadcnNativeSelect className=\"w-[220px]\" dir=\"rtl\">\n      <ShadcnNativeSelectOption value=\"\">حدد الحالة</ShadcnNativeSelectOption>\n      <ShadcnNativeSelectOption value=\"todo\">قيد التنفيذ</ShadcnNativeSelectOption>\n      <ShadcnNativeSelectOption value=\"in-progress\">قيد التقدم</ShadcnNativeSelectOption>\n      <ShadcnNativeSelectOption value=\"done\">مكتمل</ShadcnNativeSelectOption>\n      <ShadcnNativeSelectOption value=\"cancelled\">ملغي</ShadcnNativeSelectOption>\n    </ShadcnNativeSelect>\n  )\n}\n\nexport { ShadcnNativeSelectRtl }\n",
       "description": "ShadcnNativeSelectRtl",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-native-select-rtl.tsx"
+    },
+    {
+      "id": "692",
+      "name": "ShadcnSliderDemo",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSlider",
+      "source": "shadcn",
+      "file": "shadcn-slider-demo.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSliderDemo\n * Temel örnek — tek değer kaydırıcısı (saf React, shadcn kaynaklı).\n * Slider: kütüphanenin mevcut bileşeni (Heroui — saf React, API uyumlu).\n * @id 692\n * @category Form Elemanları\n * @subcategory ShadcnSlider\n * @source shadcn\n */\nimport { Slider, SliderFill, SliderThumb, SliderTrack } from \"@/components/ui/slider\"\n\nfunction ShadcnSliderDemo() {\n  return (\n    <Slider defaultValue={[75]} minValue={0} maxValue={100} step={1} className=\"mx-auto w-full max-w-xs\">\n      <SliderTrack>\n        <SliderFill />\n        <SliderThumb />\n      </SliderTrack>\n    </Slider>\n  )\n}\n\nexport { ShadcnSliderDemo }\n",
+      "description": "ShadcnSliderDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-slider-demo.tsx"
+    },
+    {
+      "id": "693",
+      "name": "ShadcnSliderRange",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSlider",
+      "source": "shadcn",
+      "file": "shadcn-slider-range.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSliderRange\n * Aralık — iki değer (saf React, shadcn kaynaklı).\n * @id 693\n * @category Form Elemanları\n * @subcategory ShadcnSlider\n * @source shadcn\n */\nimport { Slider, SliderFill, SliderThumb, SliderTrack } from \"@/components/ui/slider\"\n\nfunction ShadcnSliderRange() {\n  return (\n    <Slider defaultValue={[25, 50]} minValue={0} maxValue={100} step={5} className=\"mx-auto w-full max-w-xs\">\n      <SliderTrack>\n        <SliderFill />\n        <SliderThumb index={0} />\n        <SliderThumb index={1} />\n      </SliderTrack>\n    </Slider>\n  )\n}\n\nexport { ShadcnSliderRange }\n",
+      "description": "ShadcnSliderRange",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-slider-range.tsx"
+    },
+    {
+      "id": "694",
+      "name": "ShadcnSliderMultiple",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSlider",
+      "source": "shadcn",
+      "file": "shadcn-slider-multiple.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSliderMultiple\n * Çoklu tutamak — üç değer (saf React, shadcn kaynaklı).\n * @id 694\n * @category Form Elemanları\n * @subcategory ShadcnSlider\n * @source shadcn\n */\nimport { Slider, SliderFill, SliderThumb, SliderTrack } from \"@/components/ui/slider\"\n\nfunction ShadcnSliderMultiple() {\n  return (\n    <Slider defaultValue={[10, 20, 70]} minValue={0} maxValue={100} step={10} className=\"mx-auto w-full max-w-xs\">\n      <SliderTrack>\n        <SliderFill />\n        <SliderThumb index={0} />\n        <SliderThumb index={1} />\n        <SliderThumb index={2} />\n      </SliderTrack>\n    </Slider>\n  )\n}\n\nexport { ShadcnSliderMultiple }\n",
+      "description": "ShadcnSliderMultiple",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-slider-multiple.tsx"
+    },
+    {
+      "id": "695",
+      "name": "ShadcnSliderVertical",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSlider",
+      "source": "shadcn",
+      "file": "shadcn-slider-vertical.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSliderVertical\n * Dikey kaydırıcılar (saf React, shadcn kaynaklı).\n * @id 695\n * @category Form Elemanları\n * @subcategory ShadcnSlider\n * @source shadcn\n */\nimport { Slider, SliderFill, SliderThumb, SliderTrack } from \"@/components/ui/slider\"\n\nfunction ShadcnSliderVertical() {\n  return (\n    <div className=\"mx-auto flex w-full max-w-xs items-center justify-center gap-6\">\n      <Slider defaultValue={[50]} minValue={0} maxValue={100} step={1} orientation=\"vertical\" className=\"h-40\">\n        <SliderTrack>\n          <SliderFill />\n          <SliderThumb />\n        </SliderTrack>\n      </Slider>\n      <Slider defaultValue={[25]} minValue={0} maxValue={100} step={1} orientation=\"vertical\" className=\"h-40\">\n        <SliderTrack>\n          <SliderFill />\n          <SliderThumb />\n        </SliderTrack>\n      </Slider>\n    </div>\n  )\n}\n\nexport { ShadcnSliderVertical }\n",
+      "description": "ShadcnSliderVertical",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-slider-vertical.tsx"
+    },
+    {
+      "id": "696",
+      "name": "ShadcnSliderControlled",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSlider",
+      "source": "shadcn",
+      "file": "shadcn-slider-controlled.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSliderControlled\n * Kontrollü kaydırıcı — canlı değer (saf React, shadcn kaynaklı).\n * @id 696\n * @category Form Elemanları\n * @subcategory ShadcnSlider\n * @source shadcn\n */\nimport { useState } from \"react\"\nimport { ShadcnLabel } from \"@/components/ui/shadcn-label\"\nimport { Slider, SliderFill, SliderThumb, SliderTrack } from \"@/components/ui/slider\"\n\nfunction ShadcnSliderControlled() {\n  const [value, setValue] = useState([0.3, 0.7])\n\n  return (\n    <div className=\"mx-auto grid w-full max-w-xs gap-3\">\n      <div className=\"flex items-center justify-between gap-2\">\n        <ShadcnLabel>Temperature</ShadcnLabel>\n        <span className=\"text-sm text-muted-foreground\">{value.join(\", \")}</span>\n      </div>\n      <Slider value={value} onChange={(v) => setValue(Array.isArray(v) ? v : [v])} minValue={0} maxValue={1} step={0.1}>\n        <SliderTrack>\n          <SliderFill />\n          <SliderThumb index={0} />\n          <SliderThumb index={1} />\n        </SliderTrack>\n      </Slider>\n    </div>\n  )\n}\n\nexport { ShadcnSliderControlled }\n",
+      "description": "ShadcnSliderControlled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-slider-controlled.tsx"
+    },
+    {
+      "id": "697",
+      "name": "ShadcnSliderDisabled",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSlider",
+      "source": "shadcn",
+      "file": "shadcn-slider-disabled.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSliderDisabled\n * Devre dışı kaydırıcı (saf React, shadcn kaynaklı).\n * @id 697\n * @category Form Elemanları\n * @subcategory ShadcnSlider\n * @source shadcn\n */\nimport { Slider, SliderFill, SliderThumb, SliderTrack } from \"@/components/ui/slider\"\n\nfunction ShadcnSliderDisabled() {\n  return (\n    <Slider defaultValue={[50]} minValue={0} maxValue={100} step={1} isDisabled className=\"mx-auto w-full max-w-xs\">\n      <SliderTrack>\n        <SliderFill />\n        <SliderThumb />\n      </SliderTrack>\n    </Slider>\n  )\n}\n\nexport { ShadcnSliderDisabled }\n",
+      "description": "ShadcnSliderDisabled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-slider-disabled.tsx"
+    },
+    {
+      "id": "698",
+      "name": "ShadcnSliderRtl",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSlider",
+      "source": "shadcn",
+      "file": "shadcn-slider-rtl.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSliderRtl\n * RTL örneği (saf React, shadcn kaynaklı).\n * @id 698\n * @category Form Elemanları\n * @subcategory ShadcnSlider\n * @source shadcn\n */\nimport { Slider, SliderFill, SliderThumb, SliderTrack } from \"@/components/ui/slider\"\n\nfunction ShadcnSliderRtl() {\n  return (\n    <div dir=\"rtl\">\n      <Slider defaultValue={[75]} minValue={0} maxValue={100} step={1} className=\"mx-auto w-full max-w-xs\">\n        <SliderTrack>\n          <SliderFill />\n          <SliderThumb />\n        </SliderTrack>\n      </Slider>\n    </div>\n  )\n}\n\nexport { ShadcnSliderRtl }\n",
+      "description": "ShadcnSliderRtl",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-slider-rtl.tsx"
     },
     {
       "id": "389",

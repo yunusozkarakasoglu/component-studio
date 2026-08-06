@@ -333,6 +333,14 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `689` ShadcnNativeSelectDisabled
 - `690` ShadcnNativeSelectInvalid
 - `691` ShadcnNativeSelectRtl
+#### ShadcnSlider
+- `692` ShadcnSliderDemo
+- `693` ShadcnSliderRange
+- `694` ShadcnSliderMultiple
+- `695` ShadcnSliderVertical
+- `696` ShadcnSliderControlled
+- `697` ShadcnSliderDisabled
+- `698` ShadcnSliderRtl
 
 ### Seçim
 #### RadioGroup
@@ -707,7 +715,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 603 bileşen (saf React)**
+**Toplam: 610 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
