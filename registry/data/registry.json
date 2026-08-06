@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-06T12:15:32.645Z",
+  "generatedAt": "2026-08-06T12:20:31.412Z",
   "counts": {
-    "components": 628,
-    "ready": 628,
+    "components": 636,
+    "ready": 636,
     "layouts": 0
   },
   "categories": [
@@ -3683,7 +3683,7 @@
       "source": "shadcn",
       "file": "shadcn-switch.tsx",
       "exists": true,
-      "code": "/**\n * ShadcnSwitch\n * Saf React bileşen (bağımlılıksız) — shadcn/ui kaynaklı.\n * Açma/kapama anahtarı — kontrollü veya kontrollüsüz.\n *   <ShadcnSwitch id=\"airplane-mode\" defaultChecked />\n * size: sm | default (varsayılan).\n * @id 709\n * @category Switch\n * @subcategory ShadcnSwitch\n * @source shadcn\n */\nimport type { InputHTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface ShadcnSwitchProps extends Omit<InputHTMLAttributes<HTMLInputElement>, \"onChange\" | \"checked\" | \"defaultChecked\"> {\n  checked?: boolean\n  defaultChecked?: boolean\n  onCheckedChange?: (checked: boolean) => void\n  isDisabled?: boolean\n  size?: \"sm\" | \"default\"\n}\n\nfunction ShadcnSwitch({\n  className,\n  checked,\n  defaultChecked,\n  onCheckedChange,\n  isDisabled,\n  size = \"default\",\n  type,\n  ...props\n}: ShadcnSwitchProps) {\n  return (\n    <label\n      data-slot=\"shadcn-switch\"\n      className={cn(\n        \"inline-flex cursor-pointer items-center\",\n        isDisabled && \"cursor-not-allowed opacity-50\",\n        className\n      )}\n    >\n      <input\n        type=\"checkbox\"\n        className=\"peer sr-only\"\n        checked={checked}\n        defaultChecked={defaultChecked}\n        disabled={isDisabled}\n        onChange={(e) => onCheckedChange?.(e.target.checked)}\n        {...props}\n      />\n      <span\n        className={cn(\n          \"relative inline-flex shrink-0 items-center rounded-full border-2 border-transparent bg-muted-foreground/30 transition-colors\",\n          \"peer-checked:bg-blue-600\",\n          \"peer-focus-visible:ring-3 peer-focus-visible:ring-ring/40\",\n          \"aria-invalid:border-red-500\",\n          size === \"default\" && \"h-5 w-9\",\n          size === \"sm\" && \"h-4 w-7\"\n        )}\n      >\n        <span\n          className={cn(\n            \"pointer-events-none block rounded-full bg-white shadow-lg transition-transform\",\n            size === \"default\" && \"size-4 peer-checked:translate-x-4\",\n            size === \"sm\" && \"size-3 peer-checked:translate-x-3\"\n          )}\n        />\n      </span>\n    </label>\n  )\n}\n\nexport { ShadcnSwitch }\nexport type { ShadcnSwitchProps }\n",
+      "code": "/**\n * ShadcnSwitch\n * Saf React bileşen (bağımlılıksız) — shadcn/ui kaynaklı.\n * Açma/kapama anahtarı — kontrollü veya kontrollüsüz.\n *   <ShadcnSwitch id=\"airplane-mode\" defaultChecked />\n * size: sm | default (varsayılan).\n * @id 709\n * @category Switch\n * @subcategory ShadcnSwitch\n * @source shadcn\n */\nimport type { InputHTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface ShadcnSwitchProps extends Omit<InputHTMLAttributes<HTMLInputElement>, \"onChange\" | \"checked\" | \"defaultChecked\" | \"size\"> {\n  checked?: boolean\n  defaultChecked?: boolean\n  onCheckedChange?: (checked: boolean) => void\n  isDisabled?: boolean\n  size?: \"sm\" | \"default\"\n}\n\nfunction ShadcnSwitch({\n  className,\n  checked,\n  defaultChecked,\n  onCheckedChange,\n  isDisabled,\n  size = \"default\",\n  type,\n  ...props\n}: ShadcnSwitchProps) {\n  return (\n    <label\n      data-slot=\"shadcn-switch\"\n      className={cn(\n        \"inline-flex cursor-pointer items-center\",\n        isDisabled && \"cursor-not-allowed opacity-50\",\n        className\n      )}\n    >\n      <input\n        type=\"checkbox\"\n        className=\"peer sr-only\"\n        checked={checked}\n        defaultChecked={defaultChecked}\n        disabled={isDisabled}\n        onChange={(e) => onCheckedChange?.(e.target.checked)}\n        {...props}\n      />\n      <span\n        className={cn(\n          \"relative inline-flex shrink-0 items-center rounded-full border-2 border-transparent bg-muted-foreground/30 transition-colors\",\n          \"peer-checked:bg-blue-600\",\n          \"peer-focus-visible:ring-3 peer-focus-visible:ring-ring/40\",\n          \"aria-invalid:border-red-500\",\n          size === \"default\" && \"h-5 w-9\",\n          size === \"sm\" && \"h-4 w-7\"\n        )}\n      >\n        <span\n          className={cn(\n            \"pointer-events-none block rounded-full bg-white shadow-lg transition-transform\",\n            size === \"default\" && \"size-4 peer-checked:translate-x-4\",\n            size === \"sm\" && \"size-3 peer-checked:translate-x-3\"\n          )}\n        />\n      </span>\n    </label>\n  )\n}\n\nexport { ShadcnSwitch }\nexport type { ShadcnSwitchProps }\n",
       "description": "ShadcnSwitch",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-switch.tsx"
     },
@@ -3770,6 +3770,102 @@
       "code": "/**\n * ShadcnSwitchRtl\n * RTL örneği — Arapça anahtar (saf React, shadcn kaynaklı).\n * @id 716\n * @category Switch\n * @subcategory ShadcnSwitch\n * @source shadcn\n */\nimport { ShadcnField, ShadcnFieldGroup, ShadcnFieldLabel } from \"@/components/ui/shadcn-field\"\nimport { ShadcnSwitch } from \"@/components/ui/shadcn-switch\"\n\nfunction ShadcnSwitchRtl() {\n  return (\n    <ShadcnFieldGroup className=\"w-fit\" dir=\"rtl\">\n      <ShadcnField orientation=\"horizontal\">\n        <ShadcnSwitch id=\"shadcn-switch-rtl\" />\n        <ShadcnFieldLabel htmlFor=\"shadcn-switch-rtl\" dir=\"rtl\">\n          وضع الطيران\n        </ShadcnFieldLabel>\n      </ShadcnField>\n    </ShadcnFieldGroup>\n  )\n}\n\nexport { ShadcnSwitchRtl }\n",
       "description": "ShadcnSwitchRtl",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-switch-rtl.tsx"
+    },
+    {
+      "id": "717",
+      "name": "ShadcnRadioGroup",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnRadioGroup",
+      "source": "shadcn",
+      "file": "shadcn-radio-group.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnRadioGroup + ShadcnRadioGroupItem\n * Saf React bileşen (bağımlılıksız) — shadcn/ui kaynaklı.\n * Radyo grubu — tek seçim; kontrollü (value/onValueChange) veya kontrollüsüz (defaultValue).\n *   <ShadcnRadioGroup defaultValue=\"comfortable\">\n *     <ShadcnRadioGroupItem value=\"comfortable\" id=\"r2\" />\n *   </ShadcnRadioGroup>\n * @id 717\n * @category RadioGroup\n * @subcategory ShadcnRadioGroup\n * @source shadcn\n */\nimport { createContext, useContext, useState, type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface RadioGroupContextValue {\n  value: string | null\n  setValue: (v: string) => void\n  groupDisabled: boolean\n}\n\nconst RadioGroupContext = createContext<RadioGroupContextValue | null>(null)\n\nfunction useShadcnRadioGroup(): RadioGroupContextValue {\n  const ctx = useContext(RadioGroupContext)\n  if (!ctx) throw new Error(\"ShadcnRadioGroupItem, ShadcnRadioGroup içinde kullanılmalı\")\n  return ctx\n}\n\ninterface ShadcnRadioGroupProps {\n  children?: ReactNode\n  className?: string\n  value?: string\n  defaultValue?: string\n  onValueChange?: (value: string) => void\n  isDisabled?: boolean\n}\n\nfunction ShadcnRadioGroup({\n  children,\n  className,\n  value,\n  defaultValue,\n  onValueChange,\n  isDisabled,\n}: ShadcnRadioGroupProps) {\n  const [internal, setInternal] = useState<string | null>(defaultValue ?? null)\n  const current = value !== undefined ? value : internal\n\n  const setValue = (v: string) => {\n    if (value === undefined) setInternal(v)\n    onValueChange?.(v)\n  }\n\n  return (\n    <RadioGroupContext.Provider value={{ value: current, setValue, groupDisabled: !!isDisabled }}>\n      <div data-slot=\"shadcn-radio-group\" role=\"radiogroup\" className={cn(\"flex flex-col gap-2\", className)}>\n        {children}\n      </div>\n    </RadioGroupContext.Provider>\n  )\n}\n\ninterface ShadcnRadioGroupItemProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, \"type\" | \"onChange\" | \"value\"> {\n  value: string\n  isDisabled?: boolean\n}\n\nfunction ShadcnRadioGroupItem({ value, id, isDisabled, className, ...props }: ShadcnRadioGroupItemProps) {\n  const ctx = useShadcnRadioGroup()\n  const disabled = isDisabled || ctx.groupDisabled\n\n  return (\n    <label\n      data-slot=\"shadcn-radio-group-item\"\n      className={cn(\"inline-flex cursor-pointer items-center\", disabled && \"cursor-not-allowed opacity-50\", className)}\n    >\n      <input\n        type=\"radio\"\n        id={id}\n        value={value}\n        className=\"peer sr-only\"\n        checked={ctx.value === value}\n        disabled={disabled}\n        onChange={() => ctx.setValue(value)}\n        {...props}\n      />\n      <span\n        className={cn(\n          \"flex size-4 shrink-0 items-center justify-center rounded-full border border-border bg-background shadow-xs transition-colors\",\n          \"peer-checked:border-blue-600\",\n          \"peer-focus-visible:ring-3 peer-focus-visible:ring-ring/40\",\n          \"aria-invalid:border-red-500\"\n        )}\n      >\n        <span className=\"size-2 rounded-full bg-blue-600 opacity-0 transition-opacity peer-checked:opacity-100\" />\n      </span>\n    </label>\n  )\n}\n\nexport { ShadcnRadioGroup, ShadcnRadioGroupItem }\nexport type { ShadcnRadioGroupItemProps, ShadcnRadioGroupProps }\n",
+      "description": "ShadcnRadioGroup + ShadcnRadioGroupItem",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-radio-group.tsx"
+    },
+    {
+      "id": "718",
+      "name": "ShadcnRadioGroupDemo",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnRadioGroup",
+      "source": "shadcn",
+      "file": "shadcn-radio-group-demo.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnRadioGroupDemo\n * Temel örnek — konfor seçimi (saf React, shadcn kaynaklı).\n * @id 718\n * @category RadioGroup\n * @subcategory ShadcnRadioGroup\n * @source shadcn\n */\nimport { ShadcnLabel } from \"@/components/ui/shadcn-label\"\nimport { ShadcnRadioGroup, ShadcnRadioGroupItem } from \"@/components/ui/shadcn-radio-group\"\n\nfunction ShadcnRadioGroupDemo() {\n  return (\n    <ShadcnRadioGroup defaultValue=\"comfortable\" className=\"w-fit\">\n      <div className=\"flex items-center gap-3\">\n        <ShadcnRadioGroupItem value=\"default\" id=\"shadcn-r1\" />\n        <ShadcnLabel htmlFor=\"shadcn-r1\">Default</ShadcnLabel>\n      </div>\n      <div className=\"flex items-center gap-3\">\n        <ShadcnRadioGroupItem value=\"comfortable\" id=\"shadcn-r2\" />\n        <ShadcnLabel htmlFor=\"shadcn-r2\">Comfortable</ShadcnLabel>\n      </div>\n      <div className=\"flex items-center gap-3\">\n        <ShadcnRadioGroupItem value=\"compact\" id=\"shadcn-r3\" />\n        <ShadcnLabel htmlFor=\"shadcn-r3\">Compact</ShadcnLabel>\n      </div>\n    </ShadcnRadioGroup>\n  )\n}\n\nexport { ShadcnRadioGroupDemo }\n",
+      "description": "ShadcnRadioGroupDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-radio-group-demo.tsx"
+    },
+    {
+      "id": "719",
+      "name": "ShadcnRadioGroupDescription",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnRadioGroup",
+      "source": "shadcn",
+      "file": "shadcn-radio-group-description.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnRadioGroupDescription\n * Açıklamalı radyo öğeleri (saf React, shadcn kaynaklı).\n * @id 719\n * @category RadioGroup\n * @subcategory ShadcnRadioGroup\n * @source shadcn\n */\nimport {\n  ShadcnField,\n  ShadcnFieldContent,\n  ShadcnFieldDescription,\n  ShadcnFieldLabel,\n} from \"@/components/ui/shadcn-field\"\nimport { ShadcnRadioGroup, ShadcnRadioGroupItem } from \"@/components/ui/shadcn-radio-group\"\n\nfunction ShadcnRadioGroupDescription() {\n  return (\n    <ShadcnRadioGroup defaultValue=\"comfortable\" className=\"w-fit\">\n      <ShadcnField orientation=\"horizontal\">\n        <ShadcnRadioGroupItem value=\"default\" id=\"shadcn-desc-r1\" />\n        <ShadcnFieldContent>\n          <ShadcnFieldLabel htmlFor=\"shadcn-desc-r1\">Default</ShadcnFieldLabel>\n          <ShadcnFieldDescription>Standard spacing for most use cases.</ShadcnFieldDescription>\n        </ShadcnFieldContent>\n      </ShadcnField>\n      <ShadcnField orientation=\"horizontal\">\n        <ShadcnRadioGroupItem value=\"comfortable\" id=\"shadcn-desc-r2\" />\n        <ShadcnFieldContent>\n          <ShadcnFieldLabel htmlFor=\"shadcn-desc-r2\">Comfortable</ShadcnFieldLabel>\n          <ShadcnFieldDescription>More space between elements.</ShadcnFieldDescription>\n        </ShadcnFieldContent>\n      </ShadcnField>\n      <ShadcnField orientation=\"horizontal\">\n        <ShadcnRadioGroupItem value=\"compact\" id=\"shadcn-desc-r3\" />\n        <ShadcnFieldContent>\n          <ShadcnFieldLabel htmlFor=\"shadcn-desc-r3\">Compact</ShadcnFieldLabel>\n          <ShadcnFieldDescription>Minimal spacing for dense layouts.</ShadcnFieldDescription>\n        </ShadcnFieldContent>\n      </ShadcnField>\n    </ShadcnRadioGroup>\n  )\n}\n\nexport { ShadcnRadioGroupDescription }\n",
+      "description": "ShadcnRadioGroupDescription",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-radio-group-description.tsx"
+    },
+    {
+      "id": "720",
+      "name": "ShadcnRadioGroupChoiceCard",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnRadioGroup",
+      "source": "shadcn",
+      "file": "shadcn-radio-group-choice-card.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnRadioGroupChoiceCard\n * Tıklanabilir plan kartları (saf React, shadcn kaynaklı).\n * @id 720\n * @category RadioGroup\n * @subcategory ShadcnRadioGroup\n * @source shadcn\n */\nimport {\n  ShadcnField,\n  ShadcnFieldContent,\n  ShadcnFieldDescription,\n  ShadcnFieldLabel,\n  ShadcnFieldTitle,\n} from \"@/components/ui/shadcn-field\"\nimport { ShadcnRadioGroup, ShadcnRadioGroupItem } from \"@/components/ui/shadcn-radio-group\"\n\nfunction ShadcnRadioGroupChoiceCard() {\n  return (\n    <ShadcnRadioGroup defaultValue=\"plus\" className=\"max-w-sm\">\n      <ShadcnFieldLabel htmlFor=\"shadcn-plus-plan\" className=\"cursor-pointer rounded-md border border-border p-3 transition-colors hover:bg-muted/50\">\n        <ShadcnField orientation=\"horizontal\">\n          <ShadcnFieldContent>\n            <ShadcnFieldTitle>Plus</ShadcnFieldTitle>\n            <ShadcnFieldDescription>For individuals and small teams.</ShadcnFieldDescription>\n          </ShadcnFieldContent>\n          <ShadcnRadioGroupItem value=\"plus\" id=\"shadcn-plus-plan\" />\n        </ShadcnField>\n      </ShadcnFieldLabel>\n      <ShadcnFieldLabel htmlFor=\"shadcn-pro-plan\" className=\"cursor-pointer rounded-md border border-border p-3 transition-colors hover:bg-muted/50\">\n        <ShadcnField orientation=\"horizontal\">\n          <ShadcnFieldContent>\n            <ShadcnFieldTitle>Pro</ShadcnFieldTitle>\n            <ShadcnFieldDescription>For growing businesses.</ShadcnFieldDescription>\n          </ShadcnFieldContent>\n          <ShadcnRadioGroupItem value=\"pro\" id=\"shadcn-pro-plan\" />\n        </ShadcnField>\n      </ShadcnFieldLabel>\n      <ShadcnFieldLabel htmlFor=\"shadcn-enterprise-plan\" className=\"cursor-pointer rounded-md border border-border p-3 transition-colors hover:bg-muted/50\">\n        <ShadcnField orientation=\"horizontal\">\n          <ShadcnFieldContent>\n            <ShadcnFieldTitle>Enterprise</ShadcnFieldTitle>\n            <ShadcnFieldDescription>For large teams and enterprises.</ShadcnFieldDescription>\n          </ShadcnFieldContent>\n          <ShadcnRadioGroupItem value=\"enterprise\" id=\"shadcn-enterprise-plan\" />\n        </ShadcnField>\n      </ShadcnFieldLabel>\n    </ShadcnRadioGroup>\n  )\n}\n\nexport { ShadcnRadioGroupChoiceCard }\n",
+      "description": "ShadcnRadioGroupChoiceCard",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-radio-group-choice-card.tsx"
+    },
+    {
+      "id": "721",
+      "name": "ShadcnRadioGroupFieldset",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnRadioGroup",
+      "source": "shadcn",
+      "file": "shadcn-radio-group-fieldset.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnRadioGroupFieldset\n * FieldSet + FieldLegend — abonelik planı (saf React, shadcn kaynaklı).\n * @id 721\n * @category RadioGroup\n * @subcategory ShadcnRadioGroup\n * @source shadcn\n */\nimport {\n  ShadcnField,\n  ShadcnFieldDescription,\n  ShadcnFieldLabel,\n  ShadcnFieldLegend,\n  ShadcnFieldSet,\n} from \"@/components/ui/shadcn-field\"\nimport { ShadcnRadioGroup, ShadcnRadioGroupItem } from \"@/components/ui/shadcn-radio-group\"\n\nfunction ShadcnRadioGroupFieldset() {\n  return (\n    <ShadcnFieldSet className=\"w-full max-w-xs\">\n      <ShadcnFieldLegend variant=\"label\">Subscription Plan</ShadcnFieldLegend>\n      <ShadcnFieldDescription>\n        Yearly and lifetime plans offer significant savings.\n      </ShadcnFieldDescription>\n      <ShadcnRadioGroup defaultValue=\"monthly\">\n        <ShadcnField orientation=\"horizontal\">\n          <ShadcnRadioGroupItem value=\"monthly\" id=\"shadcn-plan-monthly\" />\n          <ShadcnFieldLabel htmlFor=\"shadcn-plan-monthly\" className=\"font-normal\">\n            Monthly ($9.99/month)\n          </ShadcnFieldLabel>\n        </ShadcnField>\n        <ShadcnField orientation=\"horizontal\">\n          <ShadcnRadioGroupItem value=\"yearly\" id=\"shadcn-plan-yearly\" />\n          <ShadcnFieldLabel htmlFor=\"shadcn-plan-yearly\" className=\"font-normal\">\n            Yearly ($99.99/year)\n          </ShadcnFieldLabel>\n        </ShadcnField>\n        <ShadcnField orientation=\"horizontal\">\n          <ShadcnRadioGroupItem value=\"lifetime\" id=\"shadcn-plan-lifetime\" />\n          <ShadcnFieldLabel htmlFor=\"shadcn-plan-lifetime\" className=\"font-normal\">\n            Lifetime ($299.99)\n          </ShadcnFieldLabel>\n        </ShadcnField>\n      </ShadcnRadioGroup>\n    </ShadcnFieldSet>\n  )\n}\n\nexport { ShadcnRadioGroupFieldset }\n",
+      "description": "ShadcnRadioGroupFieldset",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-radio-group-fieldset.tsx"
+    },
+    {
+      "id": "722",
+      "name": "ShadcnRadioGroupDisabled",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnRadioGroup",
+      "source": "shadcn",
+      "file": "shadcn-radio-group-disabled.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnRadioGroupDisabled\n * Kısmen devre dışı radyo öğesi (saf React, shadcn kaynaklı).\n * @id 722\n * @category RadioGroup\n * @subcategory ShadcnRadioGroup\n * @source shadcn\n */\nimport { ShadcnField, ShadcnFieldLabel } from \"@/components/ui/shadcn-field\"\nimport { ShadcnRadioGroup, ShadcnRadioGroupItem } from \"@/components/ui/shadcn-radio-group\"\n\nfunction ShadcnRadioGroupDisabled() {\n  return (\n    <ShadcnRadioGroup defaultValue=\"option2\" className=\"w-fit\">\n      <ShadcnField orientation=\"horizontal\" data-disabled>\n        <ShadcnRadioGroupItem value=\"option1\" id=\"shadcn-disabled-1\" isDisabled />\n        <ShadcnFieldLabel htmlFor=\"shadcn-disabled-1\" className=\"font-normal\">\n          Disabled\n        </ShadcnFieldLabel>\n      </ShadcnField>\n      <ShadcnField orientation=\"horizontal\">\n        <ShadcnRadioGroupItem value=\"option2\" id=\"shadcn-disabled-2\" />\n        <ShadcnFieldLabel htmlFor=\"shadcn-disabled-2\" className=\"font-normal\">\n          Option 2\n        </ShadcnFieldLabel>\n      </ShadcnField>\n      <ShadcnField orientation=\"horizontal\">\n        <ShadcnRadioGroupItem value=\"option3\" id=\"shadcn-disabled-3\" />\n        <ShadcnFieldLabel htmlFor=\"shadcn-disabled-3\" className=\"font-normal\">\n          Option 3\n        </ShadcnFieldLabel>\n      </ShadcnField>\n    </ShadcnRadioGroup>\n  )\n}\n\nexport { ShadcnRadioGroupDisabled }\n",
+      "description": "ShadcnRadioGroupDisabled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-radio-group-disabled.tsx"
+    },
+    {
+      "id": "723",
+      "name": "ShadcnRadioGroupInvalid",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnRadioGroup",
+      "source": "shadcn",
+      "file": "shadcn-radio-group-invalid.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnRadioGroupInvalid\n * Geçersiz durum — aria-invalid (saf React, shadcn kaynaklı).\n * @id 723\n * @category RadioGroup\n * @subcategory ShadcnRadioGroup\n * @source shadcn\n */\nimport {\n  ShadcnField,\n  ShadcnFieldDescription,\n  ShadcnFieldLabel,\n  ShadcnFieldLegend,\n  ShadcnFieldSet,\n} from \"@/components/ui/shadcn-field\"\nimport { ShadcnRadioGroup, ShadcnRadioGroupItem } from \"@/components/ui/shadcn-radio-group\"\n\nfunction ShadcnRadioGroupInvalid() {\n  return (\n    <ShadcnFieldSet className=\"w-full max-w-xs\">\n      <ShadcnFieldLegend variant=\"label\">Notification Preferences</ShadcnFieldLegend>\n      <ShadcnFieldDescription>\n        Choose how you want to receive notifications.\n      </ShadcnFieldDescription>\n      <ShadcnRadioGroup defaultValue=\"email\">\n        <ShadcnField orientation=\"horizontal\" data-invalid>\n          <ShadcnRadioGroupItem value=\"email\" id=\"shadcn-invalid-email\" aria-invalid />\n          <ShadcnFieldLabel htmlFor=\"shadcn-invalid-email\" className=\"font-normal\">\n            Email only\n          </ShadcnFieldLabel>\n        </ShadcnField>\n        <ShadcnField orientation=\"horizontal\" data-invalid>\n          <ShadcnRadioGroupItem value=\"sms\" id=\"shadcn-invalid-sms\" aria-invalid />\n          <ShadcnFieldLabel htmlFor=\"shadcn-invalid-sms\" className=\"font-normal\">\n            SMS only\n          </ShadcnFieldLabel>\n        </ShadcnField>\n        <ShadcnField orientation=\"horizontal\" data-invalid>\n          <ShadcnRadioGroupItem value=\"both\" id=\"shadcn-invalid-both\" aria-invalid />\n          <ShadcnFieldLabel htmlFor=\"shadcn-invalid-both\" className=\"font-normal\">\n            Both Email & SMS\n          </ShadcnFieldLabel>\n        </ShadcnField>\n      </ShadcnRadioGroup>\n    </ShadcnFieldSet>\n  )\n}\n\nexport { ShadcnRadioGroupInvalid }\n",
+      "description": "ShadcnRadioGroupInvalid",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-radio-group-invalid.tsx"
+    },
+    {
+      "id": "724",
+      "name": "ShadcnRadioGroupRtl",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnRadioGroup",
+      "source": "shadcn",
+      "file": "shadcn-radio-group-rtl.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnRadioGroupRtl\n * RTL örneği — Arapça radyo grubu (saf React, shadcn kaynaklı).\n * @id 724\n * @category RadioGroup\n * @subcategory ShadcnRadioGroup\n * @source shadcn\n */\nimport { ShadcnField, ShadcnFieldLabel } from \"@/components/ui/shadcn-field\"\nimport { ShadcnRadioGroup, ShadcnRadioGroupItem } from \"@/components/ui/shadcn-radio-group\"\n\nfunction ShadcnRadioGroupRtl() {\n  return (\n    <ShadcnRadioGroup defaultValue=\"ar\" className=\"w-fit\" >\n      <div dir=\"rtl\">\n        <ShadcnField orientation=\"horizontal\">\n          <ShadcnRadioGroupItem value=\"ar\" id=\"shadcn-lang-ar\" />\n          <ShadcnFieldLabel htmlFor=\"shadcn-lang-ar\" dir=\"rtl\">\n            العربية\n          </ShadcnFieldLabel>\n        </ShadcnField>\n        <ShadcnField orientation=\"horizontal\">\n          <ShadcnRadioGroupItem value=\"en\" id=\"shadcn-lang-en\" />\n          <ShadcnFieldLabel htmlFor=\"shadcn-lang-en\">English</ShadcnFieldLabel>\n        </ShadcnField>\n      </div>\n    </ShadcnRadioGroup>\n  )\n}\n\nexport { ShadcnRadioGroupRtl }\n",
+      "description": "ShadcnRadioGroupRtl",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-radio-group-rtl.tsx"
     },
     {
       "id": "389",

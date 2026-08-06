@@ -691,4 +691,12 @@ export const SAMPLES: Record<string, ReactNode> = {
   "714": <U.ShadcnSwitchInvalid />,
   "715": <U.ShadcnSwitchSizes />,
   "716": <U.ShadcnSwitchRtl />,
+  "717": <U.ShadcnRadioGroup />,
+  "718": <U.ShadcnRadioGroupDemo />,
+  "719": <U.ShadcnRadioGroupDescription />,
+  "720": <U.ShadcnRadioGroupChoiceCard />,
+  "721": <U.ShadcnRadioGroupFieldset />,
+  "722": <U.ShadcnRadioGroupDisabled />,
+  "723": <U.ShadcnRadioGroupInvalid />,
+  "724": <U.ShadcnRadioGroupRtl />,
 }

@@ -51,7 +51,8 @@
 ### Adım 2 — Seçim (5)
 - [x] **Checkbox** — 699-708 (ShadcnCheckbox çekirdek + 9 örnek)
 - [x] **Switch** — 709-716 (ShadcnSwitch çekirdek + 7 örnek)
-Radio Group → Toggle → Toggle Group
+- [x] **Radio Group** — 717-724 (çekirdek + 7 örnek)
+Toggle → Toggle Group
 
 ### Adım 3 — Butonlar + Kartlar (4)
 Button → Button Group → Card → Badge

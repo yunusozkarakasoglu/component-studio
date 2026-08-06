@@ -361,6 +361,15 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `714` ShadcnSwitchInvalid
 - `715` ShadcnSwitchSizes
 - `716` ShadcnSwitchRtl
+#### ShadcnRadioGroup
+- `717` ShadcnRadioGroup + ShadcnRadioGroupItem
+- `718` ShadcnRadioGroupDemo
+- `719` ShadcnRadioGroupDescription
+- `720` ShadcnRadioGroupChoiceCard
+- `721` ShadcnRadioGroupFieldset
+- `722` ShadcnRadioGroupDisabled
+- `723` ShadcnRadioGroupInvalid
+- `724` ShadcnRadioGroupRtl
 
 ### Seçim
 #### RadioGroup
@@ -735,7 +744,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 628 bileşen (saf React)**
+**Toplam: 636 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
