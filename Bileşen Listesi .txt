@@ -252,7 +252,6 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 #### ShadcnInput
 - `615` ShadcnInput
 - `616` ShadcnField
-- `618` ShadcnButtonGroup
 - `619` ShadcnInputBasic
 - `620` ShadcnInputField
 - `621` ShadcnInputFieldgroup
@@ -403,6 +402,19 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `752` ShadcnButtonRounded
 - `753` ShadcnButtonLoading
 - `754` ShadcnButtonRender
+#### ShadcnButtonGroup
+- `755` ShadcnButtonGroup + Separator
+- `756` ShadcnButtonGroupDemo
+- `757` ShadcnButtonGroupOrientation
+- `758` ShadcnButtonGroupSize
+- `759` ShadcnButtonGroupNested
+- `760` ShadcnButtonGroupSeparator
+- `761` ShadcnButtonGroupSplit
+- `762` ShadcnButtonGroupInput
+- `763` ShadcnButtonGroupInputGroup
+- `764` ShadcnButtonGroupDropdown
+- `765` ShadcnButtonGroupSelect
+- `766` ShadcnButtonGroupPopover
 
 ### Seçim
 #### RadioGroup
@@ -777,7 +789,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 666 bileşen (saf React)**
+**Toplam: 677 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

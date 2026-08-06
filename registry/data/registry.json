@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-06T12:30:21.850Z",
+  "generatedAt": "2026-08-06T12:35:33.144Z",
   "counts": {
-    "components": 666,
-    "ready": 666,
+    "components": 677,
+    "ready": 677,
     "layouts": 0
   },
   "categories": [
@@ -2584,18 +2584,6 @@
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-field.tsx"
     },
     {
-      "id": "618",
-      "name": "ShadcnButtonGroup",
-      "category": "Form Elemanları",
-      "subcategory": "ShadcnInput",
-      "source": "shadcn",
-      "file": "shadcn-button-group.tsx",
-      "exists": true,
-      "code": "/**\n * ShadcnButtonGroup\n * Saf React bileşen (bağımlılıksız) — shadcn/ui kaynaklı.\n * Buton + input gibi öğeleri tek grupta birleştirir (bölünmüş kenarlık).\n *   <ShadcnButtonGroup>\n *     <Input placeholder=\"Type to search...\" />\n *     <Button variant=\"outline\">Search</Button>\n *   </ShadcnButtonGroup>\n * @id 618\n * @category Butonlar & Aksiyonlar\n * @subcategory ShadcnButtonGroup\n * @source shadcn\n */\nimport type { HTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface ShadcnButtonGroupProps extends HTMLAttributes<HTMLDivElement> {}\n\nfunction ShadcnButtonGroup({ className, ...props }: ShadcnButtonGroupProps) {\n  return (\n    <div\n      data-slot=\"shadcn-button-group\"\n      className={cn(\n        \"flex w-full items-stretch overflow-hidden rounded-md border border-border shadow-xs transition-colors\",\n        \"focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/40\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { ShadcnButtonGroup }\nexport type { ShadcnButtonGroupProps }\n",
-      "description": "ShadcnButtonGroup",
-      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-button-group.tsx"
-    },
-    {
       "id": "619",
       "name": "ShadcnInputBasic",
       "category": "Form Elemanları",
@@ -4226,6 +4214,150 @@
       "code": "/**\n * ShadcnButtonRender\n * Bağlantı olarak buton (saf React, shadcn kaynaklı).\n * @id 754\n * @category Butonlar & Aksiyonlar\n * @subcategory ShadcnButton\n * @source shadcn\n */\nimport { ArrowUpRight } from \"@/components/ui/icons\"\nimport { ShadcnButton } from \"@/components/ui/shadcn-button\"\n\nfunction ShadcnButtonRender() {\n  return (\n    <ShadcnButton variant=\"outline\" onClick={() => window.open(\"https://ui.shadcn.com\", \"_blank\")}>\n      Open Docs\n      <ArrowUpRight data-icon=\"inline-end\" className=\"size-4\" />\n    </ShadcnButton>\n  )\n}\n\nexport { ShadcnButtonRender }\n",
       "description": "ShadcnButtonRender",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-button-render.tsx"
+    },
+    {
+      "id": "755",
+      "name": "ShadcnButtonGroup",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnButtonGroup",
+      "source": "shadcn",
+      "file": "shadcn-button-group.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnButtonGroup + ShadcnButtonGroupSeparator\n * Saf React bileşen (bağımlılıksız) — shadcn/ui kaynaklı.\n * Buton grubu — yatay/dikey; ayraç ile görsel bölme.\n *   <ShadcnButtonGroup>\n *     <Button variant=\"outline\">Archive</Button>\n *     <ShadcnButtonGroupSeparator />\n *     <Button variant=\"outline\">Report</Button>\n *   </ShadcnButtonGroup>\n * @id 755\n * @category Butonlar & Aksiyonlar\n * @subcategory ShadcnButtonGroup\n * @source shadcn\n */\nimport type { HTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface ShadcnButtonGroupProps extends HTMLAttributes<HTMLDivElement> {\n  orientation?: \"horizontal\" | \"vertical\"\n}\n\nfunction ShadcnButtonGroup({ className, orientation = \"horizontal\", ...props }: ShadcnButtonGroupProps) {\n  return (\n    <div\n      role=\"group\"\n      data-slot=\"shadcn-button-group\"\n      className={cn(\n        \"inline-flex gap-0.5\",\n        orientation === \"vertical\" ? \"flex-col items-start\" : \"flex-row items-center\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\ninterface ShadcnButtonGroupSeparatorProps extends HTMLAttributes<HTMLDivElement> {}\n\nfunction ShadcnButtonGroupSeparator({ className, ...props }: ShadcnButtonGroupSeparatorProps) {\n  return (\n    <div\n      data-slot=\"shadcn-button-group-separator\"\n      role=\"separator\"\n      aria-orientation=\"vertical\"\n      className={cn(\"h-4 w-px bg-border\", className)}\n      {...props}\n    />\n  )\n}\n\nexport { ShadcnButtonGroup, ShadcnButtonGroupSeparator }\nexport type { ShadcnButtonGroupProps, ShadcnButtonGroupSeparatorProps }\n",
+      "description": "ShadcnButtonGroup + ShadcnButtonGroupSeparator",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-button-group.tsx"
+    },
+    {
+      "id": "756",
+      "name": "ShadcnButtonGroupDemo",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnButtonGroup",
+      "source": "shadcn",
+      "file": "shadcn-button-group-demo.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnButtonGroupDemo\n * Temel örnek — e-posta araçları + menü (saf React, shadcn kaynaklı).\n * Menu: kütüphanenin mevcut bileşeni (Heroui — saf React).\n * @id 756\n * @category Butonlar & Aksiyonlar\n * @subcategory ShadcnButtonGroup\n * @source shadcn\n */\nimport { ArrowLeft, Archive, CalendarPlus, Clock, ListFilter, MailCheck, Tag, Trash } from \"@/components/ui/icons\"\nimport { Menu, MenuItem, MenuList, MenuPopover, MenuSection, MenuSeparator } from \"@/components/ui/menu\"\nimport { ShadcnButton } from \"@/components/ui/shadcn-button\"\nimport { ShadcnButtonGroup } from \"@/components/ui/shadcn-button-group\"\n\nfunction ShadcnButtonGroupDemo() {\n  return (\n    <ShadcnButtonGroup>\n      <ShadcnButtonGroup>\n        <ShadcnButton variant=\"outline\" size=\"icon\" aria-label=\"Go Back\">\n          <ArrowLeft className=\"size-4\" />\n        </ShadcnButton>\n      </ShadcnButtonGroup>\n      <ShadcnButtonGroup>\n        <ShadcnButton variant=\"outline\">Archive</ShadcnButton>\n        <ShadcnButton variant=\"outline\">Report</ShadcnButton>\n      </ShadcnButtonGroup>\n      <ShadcnButtonGroup>\n        <ShadcnButton variant=\"outline\">Snooze</ShadcnButton>\n        <Menu>\n          <ShadcnButton variant=\"outline\" size=\"icon\" aria-label=\"More Options\">⋯</ShadcnButton>\n          <MenuPopover>\n            <MenuList>\n              <MenuSection title=\"Actions\">\n                <MenuItem id=\"mark-read\" textValue=\"Mark as Read\">\n                  <MailCheck className=\"size-4\" /> Mark as Read\n                </MenuItem>\n                <MenuItem id=\"archive\" textValue=\"Archive\">\n                  <Archive className=\"size-4\" /> Archive\n                </MenuItem>\n              </MenuSection>\n              <MenuSeparator />\n              <MenuSection title=\"More\">\n                <MenuItem id=\"snooze\" textValue=\"Snooze\">\n                  <Clock className=\"size-4\" /> Snooze\n                </MenuItem>\n                <MenuItem id=\"calendar\" textValue=\"Add to Calendar\">\n                  <CalendarPlus className=\"size-4\" /> Add to Calendar\n                </MenuItem>\n                <MenuItem id=\"list\" textValue=\"Add to List\">\n                  <ListFilter className=\"size-4\" /> Add to List\n                </MenuItem>\n                <MenuItem id=\"label\" textValue=\"Label As...\">\n                  <Tag className=\"size-4\" /> Label As...\n                </MenuItem>\n              </MenuSection>\n              <MenuSeparator />\n              <MenuItem id=\"trash\" textValue=\"Trash\" variant=\"danger\">\n                <Trash className=\"size-4\" /> Trash\n              </MenuItem>\n            </MenuList>\n          </MenuPopover>\n        </Menu>\n      </ShadcnButtonGroup>\n    </ShadcnButtonGroup>\n  )\n}\n\nexport { ShadcnButtonGroupDemo }\n",
+      "description": "ShadcnButtonGroupDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-button-group-demo.tsx"
+    },
+    {
+      "id": "757",
+      "name": "ShadcnButtonGroupOrientation",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnButtonGroup",
+      "source": "shadcn",
+      "file": "shadcn-button-group-orientation.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnButtonGroupOrientation\n * Dikey yönelim — medya kontrolleri (saf React, shadcn kaynaklı).\n * @id 757\n * @category Butonlar & Aksiyonlar\n * @subcategory ShadcnButtonGroup\n * @source shadcn\n */\nimport { Minus, Plus } from \"@/components/ui/icons\"\nimport { ShadcnButton } from \"@/components/ui/shadcn-button\"\nimport { ShadcnButtonGroup } from \"@/components/ui/shadcn-button-group\"\n\nfunction ShadcnButtonGroupOrientation() {\n  return (\n    <ShadcnButtonGroup orientation=\"vertical\" aria-label=\"Media controls\" className=\"h-fit\">\n      <ShadcnButton variant=\"outline\" size=\"icon\" aria-label=\"Plus\">\n        <Plus className=\"size-4\" />\n      </ShadcnButton>\n      <ShadcnButton variant=\"outline\" size=\"icon\" aria-label=\"Minus\">\n        <Minus className=\"size-4\" />\n      </ShadcnButton>\n    </ShadcnButtonGroup>\n  )\n}\n\nexport { ShadcnButtonGroupOrientation }\n",
+      "description": "ShadcnButtonGroupOrientation",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-button-group-orientation.tsx"
+    },
+    {
+      "id": "758",
+      "name": "ShadcnButtonGroupSize",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnButtonGroup",
+      "source": "shadcn",
+      "file": "shadcn-button-group-size.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnButtonGroupSize\n * Boyutlu gruplar — sm, default, lg (saf React, shadcn kaynaklı).\n * @id 758\n * @category Butonlar & Aksiyonlar\n * @subcategory ShadcnButtonGroup\n * @source shadcn\n */\nimport { Plus } from \"@/components/ui/icons\"\nimport { ShadcnButton } from \"@/components/ui/shadcn-button\"\nimport { ShadcnButtonGroup } from \"@/components/ui/shadcn-button-group\"\n\nfunction ShadcnButtonGroupSize() {\n  return (\n    <div className=\"flex flex-col items-start gap-8\">\n      <ShadcnButtonGroup>\n        <ShadcnButton variant=\"outline\" size=\"sm\">Small</ShadcnButton>\n        <ShadcnButton variant=\"outline\" size=\"sm\">Button</ShadcnButton>\n        <ShadcnButton variant=\"outline\" size=\"sm\">Group</ShadcnButton>\n        <ShadcnButton variant=\"outline\" size=\"icon-sm\" aria-label=\"Plus\"><Plus className=\"size-4\" /></ShadcnButton>\n      </ShadcnButtonGroup>\n      <ShadcnButtonGroup>\n        <ShadcnButton variant=\"outline\">Default</ShadcnButton>\n        <ShadcnButton variant=\"outline\">Button</ShadcnButton>\n        <ShadcnButton variant=\"outline\">Group</ShadcnButton>\n        <ShadcnButton variant=\"outline\" size=\"icon\" aria-label=\"Plus\"><Plus className=\"size-4\" /></ShadcnButton>\n      </ShadcnButtonGroup>\n      <ShadcnButtonGroup>\n        <ShadcnButton variant=\"outline\" size=\"lg\">Large</ShadcnButton>\n        <ShadcnButton variant=\"outline\" size=\"lg\">Button</ShadcnButton>\n        <ShadcnButton variant=\"outline\" size=\"lg\">Group</ShadcnButton>\n        <ShadcnButton variant=\"outline\" size=\"icon-lg\" aria-label=\"Plus\"><Plus className=\"size-5\" /></ShadcnButton>\n      </ShadcnButtonGroup>\n    </div>\n  )\n}\n\nexport { ShadcnButtonGroupSize }\n",
+      "description": "ShadcnButtonGroupSize",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-button-group-size.tsx"
+    },
+    {
+      "id": "759",
+      "name": "ShadcnButtonGroupNested",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnButtonGroup",
+      "source": "shadcn",
+      "file": "shadcn-button-group-nested.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnButtonGroupNested\n * İç içe gruplar — mesaj gönderme + ses modu (saf React, shadcn kaynaklı).\n * Tooltip/InputGroup: kütüphanenin mevcut bileşenleri (Heroui — saf React).\n * @id 759\n * @category Butonlar & Aksiyonlar\n * @subcategory ShadcnButtonGroup\n * @source shadcn\n */\nimport { AudioLines, Plus } from \"@/components/ui/icons\"\nimport { InputGroup, InputGroupInput, InputGroupSuffix } from \"@/components/ui/input-group\"\nimport { ShadcnButton } from \"@/components/ui/shadcn-button\"\nimport { ShadcnButtonGroup } from \"@/components/ui/shadcn-button-group\"\nimport { Tooltip, TooltipContent } from \"@/components/ui/tooltip\"\n\nfunction ShadcnButtonGroupNested() {\n  return (\n    <ShadcnButtonGroup>\n      <ShadcnButtonGroup>\n        <ShadcnButton variant=\"outline\" size=\"icon\" aria-label=\"Plus\">\n          <Plus className=\"size-4\" />\n        </ShadcnButton>\n      </ShadcnButtonGroup>\n      <ShadcnButtonGroup>\n        <InputGroup>\n          <InputGroupInput placeholder=\"Send a message...\" />\n          <InputGroupSuffix>\n            <Tooltip delay={0}>\n              <button className=\"inline-flex size-7 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted\" aria-label=\"Voice Mode\">\n                <AudioLines className=\"size-4\" />\n              </button>\n              <TooltipContent>Voice Mode</TooltipContent>\n            </Tooltip>\n          </InputGroupSuffix>\n        </InputGroup>\n      </ShadcnButtonGroup>\n    </ShadcnButtonGroup>\n  )\n}\n\nexport { ShadcnButtonGroupNested }\n",
+      "description": "ShadcnButtonGroupNested",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-button-group-nested.tsx"
+    },
+    {
+      "id": "760",
+      "name": "ShadcnButtonGroupSeparator",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnButtonGroup",
+      "source": "shadcn",
+      "file": "shadcn-button-group-separator.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnButtonGroupSeparatorDemo\n * Ayraçlı grup — kopyala/yapıştır (saf React, shadcn kaynaklı).\n * @id 760\n * @category Butonlar & Aksiyonlar\n * @subcategory ShadcnButtonGroup\n * @source shadcn\n */\nimport { ShadcnButton } from \"@/components/ui/shadcn-button\"\nimport { ShadcnButtonGroup, ShadcnButtonGroupSeparator } from \"@/components/ui/shadcn-button-group\"\n\nfunction ShadcnButtonGroupSeparatorDemo() {\n  return (\n    <ShadcnButtonGroup>\n      <ShadcnButton variant=\"secondary\" size=\"sm\">Copy</ShadcnButton>\n      <ShadcnButtonGroupSeparator />\n      <ShadcnButton variant=\"secondary\" size=\"sm\">Paste</ShadcnButton>\n    </ShadcnButtonGroup>\n  )\n}\n\nexport { ShadcnButtonGroupSeparatorDemo }\n",
+      "description": "ShadcnButtonGroupSeparatorDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-button-group-separator.tsx"
+    },
+    {
+      "id": "761",
+      "name": "ShadcnButtonGroupSplit",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnButtonGroup",
+      "source": "shadcn",
+      "file": "shadcn-button-group-split.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnButtonGroupSplit\n * Bölünmüş buton — ana + ikon (saf React, shadcn kaynaklı).\n * @id 761\n * @category Butonlar & Aksiyonlar\n * @subcategory ShadcnButtonGroup\n * @source shadcn\n */\nimport { Plus } from \"@/components/ui/icons\"\nimport { ShadcnButton } from \"@/components/ui/shadcn-button\"\nimport { ShadcnButtonGroup, ShadcnButtonGroupSeparator } from \"@/components/ui/shadcn-button-group\"\n\nfunction ShadcnButtonGroupSplit() {\n  return (\n    <ShadcnButtonGroup>\n      <ShadcnButton variant=\"secondary\">Button</ShadcnButton>\n      <ShadcnButtonGroupSeparator />\n      <ShadcnButton size=\"icon\" variant=\"secondary\" aria-label=\"Add\">\n        <Plus className=\"size-4\" />\n      </ShadcnButton>\n    </ShadcnButtonGroup>\n  )\n}\n\nexport { ShadcnButtonGroupSplit }\n",
+      "description": "ShadcnButtonGroupSplit",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-button-group-split.tsx"
+    },
+    {
+      "id": "762",
+      "name": "ShadcnButtonGroupInput",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnButtonGroup",
+      "source": "shadcn",
+      "file": "shadcn-button-group-input.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnButtonGroupInput\n * Butonlu arama girişi (saf React, shadcn kaynaklı).\n * @id 762\n * @category Butonlar & Aksiyonlar\n * @subcategory ShadcnButtonGroup\n * @source shadcn\n */\nimport { Search } from \"@/components/ui/icons\"\nimport { ShadcnButton } from \"@/components/ui/shadcn-button\"\nimport { ShadcnButtonGroup } from \"@/components/ui/shadcn-button-group\"\nimport { ShadcnInput } from \"@/components/ui/shadcn-input\"\n\nfunction ShadcnButtonGroupInput() {\n  return (\n    <ShadcnButtonGroup>\n      <ShadcnInput placeholder=\"Search...\" />\n      <ShadcnButton variant=\"outline\" aria-label=\"Search\">\n        <Search className=\"size-4\" />\n      </ShadcnButton>\n    </ShadcnButtonGroup>\n  )\n}\n\nexport { ShadcnButtonGroupInput }\n",
+      "description": "ShadcnButtonGroupInput",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-button-group-input.tsx"
+    },
+    {
+      "id": "763",
+      "name": "ShadcnButtonGroupInputGroup",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnButtonGroup",
+      "source": "shadcn",
+      "file": "shadcn-button-group-input-group.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnButtonGroupInputGroup\n * Karmaşık giriş düzeni — yuvarlak mesaj kutusu (saf React, shadcn kaynaklı).\n * @id 763\n * @category Butonlar & Aksiyonlar\n * @subcategory ShadcnButtonGroup\n * @source shadcn\n */\nimport { useState } from \"react\"\nimport { AudioLines, Plus } from \"@/components/ui/icons\"\nimport { ShadcnButton } from \"@/components/ui/shadcn-button\"\nimport { ShadcnButtonGroup } from \"@/components/ui/shadcn-button-group\"\nimport {\n  ShadcnInputGroup,\n  ShadcnInputGroupAddon,\n  ShadcnInputGroupButton,\n  ShadcnInputGroupInput,\n} from \"@/components/ui/shadcn-input-group\"\n\nfunction ShadcnButtonGroupInputGroup() {\n  const [voiceEnabled, setVoiceEnabled] = useState(false)\n\n  return (\n    <ShadcnButtonGroup className=\"rounded-full\">\n      <ShadcnButtonGroup>\n        <ShadcnButton variant=\"outline\" size=\"icon\" className=\"rounded-full\" aria-label=\"Plus\">\n          <Plus className=\"size-4\" />\n        </ShadcnButton>\n      </ShadcnButtonGroup>\n      <ShadcnButtonGroup>\n        <ShadcnInputGroup className=\"flex-row items-center gap-0 rounded-full border border-border p-1\">\n          <ShadcnInputGroupInput\n            placeholder={voiceEnabled ? \"Record and send audio...\" : \"Send a message...\"}\n            className=\"flex-1 border-0 shadow-none focus-visible:ring-0 group-focus-within:ring-0\"\n          />\n          <ShadcnInputGroupAddon align=\"inline-end\" className=\"static right-0 h-auto p-0 pr-1\">\n            <ShadcnInputGroupButton\n              variant=\"secondary\"\n              size=\"icon-xs\"\n              aria-label=\"Voice Mode\"\n              className=\"rounded-full\"\n              onClick={() => setVoiceEnabled((v) => !v)}\n            >\n              <AudioLines className=\"size-3.5\" />\n            </ShadcnInputGroupButton>\n          </ShadcnInputGroupAddon>\n        </ShadcnInputGroup>\n      </ShadcnButtonGroup>\n    </ShadcnButtonGroup>\n  )\n}\n\nexport { ShadcnButtonGroupInputGroup }\n",
+      "description": "ShadcnButtonGroupInputGroup",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-button-group-input-group.tsx"
+    },
+    {
+      "id": "764",
+      "name": "ShadcnButtonGroupDropdown",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnButtonGroup",
+      "source": "shadcn",
+      "file": "shadcn-button-group-dropdown.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnButtonGroupDropdown\n * Açılır menü ekli grup (saf React, shadcn kaynaklı).\n * Menu: kütüphanenin mevcut bileşeni (Heroui — saf React).\n * @id 764\n * @category Butonlar & Aksiyonlar\n * @subcategory ShadcnButtonGroup\n * @source shadcn\n */\nimport { ChevronDown } from \"@/components/ui/icons\"\nimport { Menu, MenuItem, MenuList, MenuPopover } from \"@/components/ui/menu\"\nimport { ShadcnButton } from \"@/components/ui/shadcn-button\"\nimport { ShadcnButtonGroup } from \"@/components/ui/shadcn-button-group\"\n\nfunction ShadcnButtonGroupDropdown() {\n  return (\n    <ShadcnButtonGroup>\n      <ShadcnButton variant=\"outline\">Search</ShadcnButton>\n      <Menu>\n        <ShadcnButton variant=\"outline\" size=\"icon\" aria-label=\"Search options\">\n          <ChevronDown className=\"size-4\" />\n        </ShadcnButton>\n        <MenuPopover>\n          <MenuList>\n            <MenuItem id=\"docs\" textValue=\"Documentation\">Documentation</MenuItem>\n            <MenuItem id=\"blog\" textValue=\"Blog Posts\">Blog Posts</MenuItem>\n            <MenuItem id=\"changelog\" textValue=\"Changelog\">Changelog</MenuItem>\n          </MenuList>\n        </MenuPopover>\n      </Menu>\n    </ShadcnButtonGroup>\n  )\n}\n\nexport { ShadcnButtonGroupDropdown }\n",
+      "description": "ShadcnButtonGroupDropdown",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-button-group-dropdown.tsx"
+    },
+    {
+      "id": "765",
+      "name": "ShadcnButtonGroupSelect",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnButtonGroup",
+      "source": "shadcn",
+      "file": "shadcn-button-group-select.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnButtonGroupSelect\n * Seçimli grup — görünüm seçici (saf React, shadcn kaynaklı).\n * Select: kütüphanenin mevcut bileşeni (Heroui — saf React).\n * @id 765\n * @category Butonlar & Aksiyonlar\n * @subcategory ShadcnButtonGroup\n * @source shadcn\n */\nimport { ShadcnButton } from \"@/components/ui/shadcn-button\"\nimport { ShadcnButtonGroup } from \"@/components/ui/shadcn-button-group\"\nimport { Select, SelectIndicator, SelectPopover, SelectTrigger, SelectValue } from \"@/components/ui/select\"\nimport { ListBox, ListBoxItem } from \"@/components/ui/list-box\"\n\nfunction ShadcnButtonGroupSelect() {\n  return (\n    <ShadcnButtonGroup>\n      <ShadcnButton variant=\"outline\">View</ShadcnButton>\n      <Select className=\"relative\" placeholder=\"Select view\" defaultValue=\"grid\">\n        <SelectTrigger className=\"h-9 w-36\">\n          <SelectValue />\n          <SelectIndicator />\n        </SelectTrigger>\n        <SelectPopover>\n          <ListBox>\n            <ListBoxItem id=\"grid\" textValue=\"Grid\">Grid</ListBoxItem>\n            <ListBoxItem id=\"list\" textValue=\"List\">List</ListBoxItem>\n            <ListBoxItem id=\"kanban\" textValue=\"Kanban\">Kanban</ListBoxItem>\n          </ListBox>\n        </SelectPopover>\n      </Select>\n    </ShadcnButtonGroup>\n  )\n}\n\nexport { ShadcnButtonGroupSelect }\n",
+      "description": "ShadcnButtonGroupSelect",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-button-group-select.tsx"
+    },
+    {
+      "id": "766",
+      "name": "ShadcnButtonGroupPopover",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnButtonGroup",
+      "source": "shadcn",
+      "file": "shadcn-button-group-popover.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnButtonGroupPopover\n * Popover ekli grup — Copilot (saf React, shadcn kaynaklı).\n * Popover: kütüphanenin mevcut bileşeni (Heroui — saf React).\n * @id 766\n * @category Butonlar & Aksiyonlar\n * @subcategory ShadcnButtonGroup\n * @source shadcn\n */\nimport { Bot, ChevronDown } from \"@/components/ui/icons\"\nimport { Popover, PopoverContent } from \"@/components/ui/popover\"\nimport { ShadcnButton } from \"@/components/ui/shadcn-button\"\nimport { ShadcnButtonGroup } from \"@/components/ui/shadcn-button-group\"\nimport { ShadcnField, ShadcnFieldDescription, ShadcnFieldLabel } from \"@/components/ui/shadcn-field\"\nimport { ShadcnTextarea } from \"@/components/ui/shadcn-textarea\"\n\nfunction ShadcnButtonGroupPopover() {\n  return (\n    <ShadcnButtonGroup>\n      <ShadcnButton variant=\"outline\">\n        <Bot className=\"size-4\" /> Copilot\n      </ShadcnButton>\n      <Popover>\n        <ShadcnButton variant=\"outline\" size=\"icon\" aria-label=\"Open Popover\">\n          <ChevronDown className=\"size-4\" />\n        </ShadcnButton>\n        <PopoverContent>\n          <div className=\"flex w-72 flex-col gap-2 p-4 text-sm\">\n            <div className=\"font-medium\">Start a new task with Copilot</div>\n            <ShadcnField>\n              <ShadcnFieldLabel htmlFor=\"task\" className=\"sr-only\">\n                Task Description\n              </ShadcnFieldLabel>\n              <ShadcnTextarea id=\"task\" placeholder=\"I need to...\" className=\"resize-none\" />\n              <ShadcnFieldDescription>\n                Copilot will open a pull request for review.\n              </ShadcnFieldDescription>\n            </ShadcnField>\n          </div>\n        </PopoverContent>\n      </Popover>\n    </ShadcnButtonGroup>\n  )\n}\n\nexport { ShadcnButtonGroupPopover }\n",
+      "description": "ShadcnButtonGroupPopover",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-button-group-popover.tsx"
     },
     {
       "id": "389",
