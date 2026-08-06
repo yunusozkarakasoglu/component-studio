@@ -315,6 +315,17 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `673` ShadcnInputGroupSpinner
 - `674` ShadcnInputGroupTextarea
 - `675` ShadcnInputGroupCustom
+#### ShadcnInputOTP
+- `676` ShadcnInputOTPDemo
+- `677` ShadcnInputOTPPattern
+- `678` ShadcnInputOTPWithSeparator
+- `679` ShadcnInputOTPDisabled
+- `680` ShadcnInputOTPControlled
+- `681` ShadcnInputOTPInvalid
+- `682` ShadcnInputOTPFourDigits
+- `683` ShadcnInputOTPAlphanumeric
+- `684` ShadcnInputOTPForm
+- `685` ShadcnInputOTPRtl
 
 ### Seçim
 #### RadioGroup
@@ -689,7 +700,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 587 bileşen (saf React)**
+**Toplam: 597 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

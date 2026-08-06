@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-06T11:56:55.398Z",
+  "generatedAt": "2026-08-06T12:02:09.602Z",
   "counts": {
-    "components": 587,
-    "ready": 587,
+    "components": 597,
+    "ready": 597,
     "layouts": 0
   },
   "categories": [
@@ -3278,6 +3278,126 @@
       "code": "/**\n * ShadcnInputGroupCustom\n * Özel kontrollü grup — data-slot ile fokus yönetimi (saf React, shadcn kaynaklı).\n * Not: kaynaktaki TextareaAutosize üçüncü parti olduğundan saf React textarea ile çevrildi.\n * @id 675\n * @category Form Elemanları\n * @subcategory ShadcnInputGroup\n * @source shadcn\n */\nimport {\n  ShadcnInputGroup,\n  ShadcnInputGroupAddon,\n  ShadcnInputGroupButton,\n} from \"@/components/ui/shadcn-input-group\"\n\nfunction ShadcnInputGroupCustom() {\n  return (\n    <div className=\"grid w-full max-w-sm gap-6\">\n      <ShadcnInputGroup>\n        <textarea\n          data-slot=\"shadcn-input-group-control\"\n          className=\"min-h-16 w-full resize-none rounded-md border border-border bg-background px-3 py-2.5 text-sm outline-none transition-colors group-focus-within:border-ring group-focus-within:ring-3 group-focus-within:ring-ring/40\"\n          placeholder=\"Autoresize textarea...\"\n        />\n        <ShadcnInputGroupAddon align=\"block-end\">\n          <ShadcnInputGroupButton className=\"ml-auto\" size=\"sm\" variant=\"default\">\n            Submit\n          </ShadcnInputGroupButton>\n        </ShadcnInputGroupAddon>\n      </ShadcnInputGroup>\n    </div>\n  )\n}\n\nexport { ShadcnInputGroupCustom }\n",
       "description": "ShadcnInputGroupCustom",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-input-group-custom.tsx"
+    },
+    {
+      "id": "676",
+      "name": "ShadcnInputOTPDemo",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnInputOTP",
+      "source": "shadcn",
+      "file": "shadcn-input-otp-demo.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnInputOTPDemo\n * Temel örnek — 6 haneli OTP (saf React, shadcn kaynaklı).\n * InputOTP: kütüphanenin mevcut bileşeni (Heroui — saf React, API uyumlu).\n * @id 676\n * @category Form Elemanları\n * @subcategory ShadcnInputOTP\n * @source shadcn\n */\nimport { InputOTP, InputOTPGroup, InputOTPSlot } from \"@/components/ui/input-otp\"\n\nfunction ShadcnInputOTPDemo() {\n  return (\n    <InputOTP maxLength={6} defaultValue=\"123456\">\n      <InputOTPGroup>\n        <InputOTPSlot index={0} />\n        <InputOTPSlot index={1} />\n        <InputOTPSlot index={2} />\n        <InputOTPSlot index={3} />\n        <InputOTPSlot index={4} />\n        <InputOTPSlot index={5} />\n      </InputOTPGroup>\n    </InputOTP>\n  )\n}\n\nexport { ShadcnInputOTPDemo }\n",
+      "description": "ShadcnInputOTPDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-input-otp-demo.tsx"
+    },
+    {
+      "id": "677",
+      "name": "ShadcnInputOTPPattern",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnInputOTP",
+      "source": "shadcn",
+      "file": "shadcn-input-otp-pattern.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnInputOTPPattern\n * Sadece rakam deseni (saf React, shadcn kaynaklı).\n * InputOTP: kütüphanenin mevcut bileşeni (Heroui — saf React, API uyumlu).\n * @id 677\n * @category Form Elemanları\n * @subcategory ShadcnInputOTP\n * @source shadcn\n */\nimport { InputOTP, InputOTPGroup, InputOTPSlot } from \"@/components/ui/input-otp\"\nimport { ShadcnField, ShadcnFieldLabel } from \"@/components/ui/shadcn-field\"\n\nconst REGEXP_ONLY_DIGITS = /^\\d+$/\n\nfunction ShadcnInputOTPPattern() {\n  return (\n    <ShadcnField className=\"w-fit\">\n      <ShadcnFieldLabel htmlFor=\"shadcn-otp-digits\">Digits Only</ShadcnFieldLabel>\n      <InputOTP id=\"shadcn-otp-digits\" maxLength={6} pattern={REGEXP_ONLY_DIGITS}>\n        <InputOTPGroup>\n          <InputOTPSlot index={0} />\n          <InputOTPSlot index={1} />\n          <InputOTPSlot index={2} />\n          <InputOTPSlot index={3} />\n          <InputOTPSlot index={4} />\n          <InputOTPSlot index={5} />\n        </InputOTPGroup>\n      </InputOTP>\n    </ShadcnField>\n  )\n}\n\nexport { ShadcnInputOTPPattern }\n",
+      "description": "ShadcnInputOTPPattern",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-input-otp-pattern.tsx"
+    },
+    {
+      "id": "678",
+      "name": "ShadcnInputOTPWithSeparator",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnInputOTP",
+      "source": "shadcn",
+      "file": "shadcn-input-otp-with-separator.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnInputOTPWithSeparator\n * Ayraçlı gruplar — 2-2-2 (saf React, shadcn kaynaklı).\n * @id 678\n * @category Form Elemanları\n * @subcategory ShadcnInputOTP\n * @source shadcn\n */\nimport { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from \"@/components/ui/input-otp\"\n\nfunction ShadcnInputOTPWithSeparator() {\n  return (\n    <InputOTP maxLength={6}>\n      <InputOTPGroup>\n        <InputOTPSlot index={0} />\n        <InputOTPSlot index={1} />\n      </InputOTPGroup>\n      <InputOTPSeparator />\n      <InputOTPGroup>\n        <InputOTPSlot index={2} />\n        <InputOTPSlot index={3} />\n      </InputOTPGroup>\n      <InputOTPSeparator />\n      <InputOTPGroup>\n        <InputOTPSlot index={4} />\n        <InputOTPSlot index={5} />\n      </InputOTPGroup>\n    </InputOTP>\n  )\n}\n\nexport { ShadcnInputOTPWithSeparator }\n",
+      "description": "ShadcnInputOTPWithSeparator",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-input-otp-with-separator.tsx"
+    },
+    {
+      "id": "679",
+      "name": "ShadcnInputOTPDisabled",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnInputOTP",
+      "source": "shadcn",
+      "file": "shadcn-input-otp-disabled.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnInputOTPDisabled\n * Devre dışı OTP (saf React, shadcn kaynaklı).\n * @id 679\n * @category Form Elemanları\n * @subcategory ShadcnInputOTP\n * @source shadcn\n */\nimport { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from \"@/components/ui/input-otp\"\n\nfunction ShadcnInputOTPDisabled() {\n  return (\n    <InputOTP id=\"shadcn-otp-disabled\" maxLength={6} isDisabled value=\"123456\">\n      <InputOTPGroup>\n        <InputOTPSlot index={0} />\n        <InputOTPSlot index={1} />\n        <InputOTPSlot index={2} />\n      </InputOTPGroup>\n      <InputOTPSeparator />\n      <InputOTPGroup>\n        <InputOTPSlot index={3} />\n        <InputOTPSlot index={4} />\n        <InputOTPSlot index={5} />\n      </InputOTPGroup>\n    </InputOTP>\n  )\n}\n\nexport { ShadcnInputOTPDisabled }\n",
+      "description": "ShadcnInputOTPDisabled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-input-otp-disabled.tsx"
+    },
+    {
+      "id": "680",
+      "name": "ShadcnInputOTPControlled",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnInputOTP",
+      "source": "shadcn",
+      "file": "shadcn-input-otp-controlled.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnInputOTPControlled\n * Kontrollü OTP — girilen değer canlı gösterilir (saf React, shadcn kaynaklı).\n * @id 680\n * @category Form Elemanları\n * @subcategory ShadcnInputOTP\n * @source shadcn\n */\nimport { useState } from \"react\"\nimport { InputOTP, InputOTPGroup, InputOTPSlot } from \"@/components/ui/input-otp\"\n\nfunction ShadcnInputOTPControlled() {\n  const [value, setValue] = useState(\"\")\n\n  return (\n    <div className=\"space-y-2\">\n      <InputOTP maxLength={6} value={value} onChange={(v) => setValue(v)}>\n        <InputOTPGroup>\n          <InputOTPSlot index={0} />\n          <InputOTPSlot index={1} />\n          <InputOTPSlot index={2} />\n          <InputOTPSlot index={3} />\n          <InputOTPSlot index={4} />\n          <InputOTPSlot index={5} />\n        </InputOTPGroup>\n      </InputOTP>\n      <div className=\"text-center text-sm\">\n        {value === \"\" ? (\n          <>Enter your one-time password.</>\n        ) : (\n          <>You entered: {value}</>\n        )}\n      </div>\n    </div>\n  )\n}\n\nexport { ShadcnInputOTPControlled }\n",
+      "description": "ShadcnInputOTPControlled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-input-otp-controlled.tsx"
+    },
+    {
+      "id": "681",
+      "name": "ShadcnInputOTPInvalid",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnInputOTP",
+      "source": "shadcn",
+      "file": "shadcn-input-otp-invalid.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnInputOTPInvalid\n * Geçersiz durum — hata mesajı ile (saf React, shadcn kaynaklı).\n * @id 681\n * @category Form Elemanları\n * @subcategory ShadcnInputOTP\n * @source shadcn\n */\nimport { useState } from \"react\"\nimport { InputOTP, InputOTPGroup, InputOTPSlot } from \"@/components/ui/input-otp\"\n\nfunction ShadcnInputOTPInvalid() {\n  const [value, setValue] = useState(\"\")\n\n  return (\n    <div className=\"space-y-2\">\n      <InputOTP maxLength={6} value={value} onChange={setValue} isInvalid={value.length === 6 && value !== \"123456\"}>\n        <InputOTPGroup>\n          <InputOTPSlot index={0} />\n          <InputOTPSlot index={1} />\n          <InputOTPSlot index={2} />\n          <InputOTPSlot index={3} />\n          <InputOTPSlot index={4} />\n          <InputOTPSlot index={5} />\n        </InputOTPGroup>\n      </InputOTP>\n      {value.length === 6 && value !== \"123456\" && (\n        <p className=\"text-center text-sm text-red-500\">Invalid code. Please try again.</p>\n      )}\n    </div>\n  )\n}\n\nexport { ShadcnInputOTPInvalid }\n",
+      "description": "ShadcnInputOTPInvalid",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-input-otp-invalid.tsx"
+    },
+    {
+      "id": "682",
+      "name": "ShadcnInputOTPFourDigits",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnInputOTP",
+      "source": "shadcn",
+      "file": "shadcn-input-otp-four-digits.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnInputOTPFourDigits\n * 4 haneli PIN deseni (saf React, shadcn kaynaklı).\n * @id 682\n * @category Form Elemanları\n * @subcategory ShadcnInputOTP\n * @source shadcn\n */\nimport { InputOTP, InputOTPGroup, InputOTPSlot } from \"@/components/ui/input-otp\"\n\nconst REGEXP_ONLY_DIGITS = /^\\d+$/\n\nfunction ShadcnInputOTPFourDigits() {\n  return (\n    <InputOTP maxLength={4} pattern={REGEXP_ONLY_DIGITS}>\n      <InputOTPGroup>\n        <InputOTPSlot index={0} />\n        <InputOTPSlot index={1} />\n        <InputOTPSlot index={2} />\n        <InputOTPSlot index={3} />\n      </InputOTPGroup>\n    </InputOTP>\n  )\n}\n\nexport { ShadcnInputOTPFourDigits }\n",
+      "description": "ShadcnInputOTPFourDigits",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-input-otp-four-digits.tsx"
+    },
+    {
+      "id": "683",
+      "name": "ShadcnInputOTPAlphanumeric",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnInputOTP",
+      "source": "shadcn",
+      "file": "shadcn-input-otp-alphanumeric.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnInputOTPAlphanumeric\n * Harf + rakam deseni (saf React, shadcn kaynaklı).\n * @id 683\n * @category Form Elemanları\n * @subcategory ShadcnInputOTP\n * @source shadcn\n */\nimport { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from \"@/components/ui/input-otp\"\n\nconst REGEXP_ONLY_DIGITS_AND_CHARS = /^[a-zA-Z0-9]+$/\n\nfunction ShadcnInputOTPAlphanumeric() {\n  return (\n    <InputOTP maxLength={6} pattern={REGEXP_ONLY_DIGITS_AND_CHARS}>\n      <InputOTPGroup>\n        <InputOTPSlot index={0} />\n        <InputOTPSlot index={1} />\n        <InputOTPSlot index={2} />\n      </InputOTPGroup>\n      <InputOTPSeparator />\n      <InputOTPGroup>\n        <InputOTPSlot index={3} />\n        <InputOTPSlot index={4} />\n        <InputOTPSlot index={5} />\n      </InputOTPGroup>\n    </InputOTP>\n  )\n}\n\nexport { ShadcnInputOTPAlphanumeric }\n",
+      "description": "ShadcnInputOTPAlphanumeric",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-input-otp-alphanumeric.tsx"
+    },
+    {
+      "id": "684",
+      "name": "ShadcnInputOTPForm",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnInputOTP",
+      "source": "shadcn",
+      "file": "shadcn-input-otp-form.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnInputOTPForm\n * Form içinde OTP — gönder butonu (saf React, shadcn kaynaklı).\n * Button: kütüphanenin mevcut bileşeni (Heroui — saf React).\n * @id 684\n * @category Form Elemanları\n * @subcategory ShadcnInputOTP\n * @source shadcn\n */\nimport { useState, type FormEvent } from \"react\"\nimport { Button } from \"@/components/ui/button\"\nimport { InputOTP, InputOTPGroup, InputOTPSlot } from \"@/components/ui/input-otp\"\nimport {\n  ShadcnField,\n  ShadcnFieldDescription,\n  ShadcnFieldLabel,\n} from \"@/components/ui/shadcn-field\"\n\nfunction ShadcnInputOTPForm() {\n  const [value, setValue] = useState(\"\")\n\n  function onSubmit(e: FormEvent<HTMLFormElement>) {\n    e.preventDefault()\n    alert(`OTP submitted: ${value}`)\n  }\n\n  return (\n    <form onSubmit={onSubmit} className=\"space-y-4\">\n      <ShadcnField>\n        <ShadcnFieldLabel htmlFor=\"shadcn-otp-form\">One-Time Password</ShadcnFieldLabel>\n        <InputOTP id=\"shadcn-otp-form\" maxLength={6} value={value} onChange={setValue}>\n          <InputOTPGroup>\n            <InputOTPSlot index={0} />\n            <InputOTPSlot index={1} />\n            <InputOTPSlot index={2} />\n            <InputOTPSlot index={3} />\n            <InputOTPSlot index={4} />\n            <InputOTPSlot index={5} />\n          </InputOTPGroup>\n        </InputOTP>\n        <ShadcnFieldDescription>\n          Enter the 6-digit code sent to your email.\n        </ShadcnFieldDescription>\n      </ShadcnField>\n      <Button type=\"submit\" className=\"w-fit\">Verify</Button>\n    </form>\n  )\n}\n\nexport { ShadcnInputOTPForm }\n",
+      "description": "ShadcnInputOTPForm",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-input-otp-form.tsx"
+    },
+    {
+      "id": "685",
+      "name": "ShadcnInputOTPRtl",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnInputOTP",
+      "source": "shadcn",
+      "file": "shadcn-input-otp-rtl.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnInputOTPRtl\n * RTL örneği — Arapça OTP (saf React, shadcn kaynaklı).\n * @id 685\n * @category Form Elemanları\n * @subcategory ShadcnInputOTP\n * @source shadcn\n */\nimport { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from \"@/components/ui/input-otp\"\n\nfunction ShadcnInputOTPRtl() {\n  return (\n    <div dir=\"rtl\">\n      <InputOTP maxLength={6}>\n        <InputOTPGroup>\n          <InputOTPSlot index={0} />\n          <InputOTPSlot index={1} />\n          <InputOTPSlot index={2} />\n        </InputOTPGroup>\n        <InputOTPSeparator />\n        <InputOTPGroup>\n          <InputOTPSlot index={3} />\n          <InputOTPSlot index={4} />\n          <InputOTPSlot index={5} />\n        </InputOTPGroup>\n      </InputOTP>\n    </div>\n  )\n}\n\nexport { ShadcnInputOTPRtl }\n",
+      "description": "ShadcnInputOTPRtl",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-input-otp-rtl.tsx"
     },
     {
       "id": "389",

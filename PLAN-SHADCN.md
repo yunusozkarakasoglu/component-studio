@@ -40,7 +40,8 @@
 - [x] **Kbd** — 643-649 (ShadcnKbd + KbdGroup + 5 örnek)
 - [x] **Field** — 650-661 (çekirdek genişletildi: Content/Error/Set/Legend/Title/Separator + 12 örnek)
 - [x] **Input Group** — 662-675 (ShadcnInputGroup familyası + 13 örnek)
-Input OTP → Native Select → Slider
+- [x] **Input OTP** — 676-685 (mevcut InputOTP ile 10 örnek)
+Native Select → Slider
 
 ### Adım 2 — Seçim (5)
 Checkbox → Switch → Radio Group → Toggle → Toggle Group
