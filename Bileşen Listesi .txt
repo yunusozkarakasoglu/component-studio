@@ -341,6 +341,17 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `696` ShadcnSliderControlled
 - `697` ShadcnSliderDisabled
 - `698` ShadcnSliderRtl
+#### ShadcnCheckbox
+- `699` ShadcnCheckbox
+- `700` ShadcnCheckboxDemo
+- `701` ShadcnCheckboxExample
+- `702` ShadcnCheckboxInvalid
+- `703` ShadcnCheckboxBasic
+- `704` ShadcnCheckboxDescription
+- `705` ShadcnCheckboxDisabled
+- `706` ShadcnCheckboxGroup
+- `707` ShadcnCheckboxInTable
+- `708` ShadcnCheckboxRtl
 
 ### Seçim
 #### RadioGroup
@@ -715,7 +726,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 610 bileşen (saf React)**
+**Toplam: 620 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

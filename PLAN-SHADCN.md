@@ -49,7 +49,8 @@
 ### ✅ Adım 1 tamamlandı (9 element, 84 bileşen)
 
 ### Adım 2 — Seçim (5)
-Checkbox → Switch → Radio Group → Toggle → Toggle Group
+- [x] **Checkbox** — 699-708 (ShadcnCheckbox çekirdek + 9 örnek)
+Switch → Radio Group → Toggle → Toggle Group
 
 ### Adım 3 — Butonlar + Kartlar (4)
 Button → Button Group → Card → Badge

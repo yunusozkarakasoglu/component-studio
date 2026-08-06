@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-06T12:09:28.902Z",
+  "generatedAt": "2026-08-06T12:12:49.484Z",
   "counts": {
-    "components": 610,
-    "ready": 610,
+    "components": 620,
+    "ready": 620,
     "layouts": 0
   },
   "categories": [
@@ -3554,6 +3554,126 @@
       "code": "/**\n * ShadcnSliderRtl\n * RTL örneği (saf React, shadcn kaynaklı).\n * @id 698\n * @category Form Elemanları\n * @subcategory ShadcnSlider\n * @source shadcn\n */\nimport { Slider, SliderFill, SliderThumb, SliderTrack } from \"@/components/ui/slider\"\n\nfunction ShadcnSliderRtl() {\n  return (\n    <div dir=\"rtl\">\n      <Slider defaultValue={[75]} minValue={0} maxValue={100} step={1} className=\"mx-auto w-full max-w-xs\">\n        <SliderTrack>\n          <SliderFill />\n          <SliderThumb />\n        </SliderTrack>\n      </Slider>\n    </div>\n  )\n}\n\nexport { ShadcnSliderRtl }\n",
       "description": "ShadcnSliderRtl",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-slider-rtl.tsx"
+    },
+    {
+      "id": "699",
+      "name": "ShadcnCheckbox",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnCheckbox",
+      "source": "shadcn",
+      "file": "shadcn-checkbox.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnCheckbox\n * Saf React bileşen (bağımlılıksız) — shadcn/ui kaynaklı.\n * Onay kutusu — kontrollü (checked/onCheckedChange) veya kontrollüsüz (defaultChecked).\n *   <ShadcnCheckbox id=\"terms\" defaultChecked />\n * Etiket için: ShadcnFieldLabel htmlFor veya Label bileşeni (saf React).\n * @id 699\n * @category Checkbox\n * @subcategory ShadcnCheckbox\n * @source shadcn\n */\nimport type { InputHTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { Check } from \"@/components/ui/icons\"\n\ninterface ShadcnCheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, \"onChange\" | \"checked\" | \"defaultChecked\"> {\n  checked?: boolean\n  defaultChecked?: boolean\n  onCheckedChange?: (checked: boolean) => void\n  isDisabled?: boolean\n}\n\nfunction ShadcnCheckbox({\n  className,\n  checked,\n  defaultChecked,\n  onCheckedChange,\n  isDisabled,\n  type,\n  ...props\n}: ShadcnCheckboxProps) {\n  return (\n    <label\n      data-slot=\"shadcn-checkbox\"\n      className={cn(\n        \"group/checkbox inline-flex cursor-pointer items-center gap-2\",\n        isDisabled && \"cursor-not-allowed opacity-50\",\n        className\n      )}\n    >\n      <input\n        type=\"checkbox\"\n        className=\"peer sr-only\"\n        checked={checked}\n        defaultChecked={defaultChecked}\n        disabled={isDisabled}\n        onChange={(e) => onCheckedChange?.(e.target.checked)}\n        {...props}\n      />\n      <span\n        className={cn(\n          \"flex size-4 shrink-0 items-center justify-center rounded-[4px] border border-border bg-background shadow-xs transition-colors\",\n          \"peer-checked:border-blue-600 peer-checked:bg-blue-600\",\n          \"peer-focus-visible:ring-3 peer-focus-visible:ring-ring/40\",\n          \"aria-invalid:border-red-500\"\n        )}\n      >\n        <Check className=\"size-3 text-white opacity-0 transition-opacity peer-checked:opacity-100\" />\n      </span>\n    </label>\n  )\n}\n\nexport { ShadcnCheckbox }\nexport type { ShadcnCheckboxProps }\n",
+      "description": "ShadcnCheckbox",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-checkbox.tsx"
+    },
+    {
+      "id": "700",
+      "name": "ShadcnCheckboxDemo",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnCheckbox",
+      "source": "shadcn",
+      "file": "shadcn-checkbox-demo.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnCheckboxDemo\n * Temel örnek — koşul onayı (saf React, shadcn kaynaklı).\n * @id 700\n * @category Checkbox\n * @subcategory ShadcnCheckbox\n * @source shadcn\n */\nimport { ShadcnCheckbox } from \"@/components/ui/shadcn-checkbox\"\nimport {\n  ShadcnField,\n  ShadcnFieldContent,\n  ShadcnFieldDescription,\n  ShadcnFieldGroup,\n  ShadcnFieldLabel,\n} from \"@/components/ui/shadcn-field\"\nimport { ShadcnLabel } from \"@/components/ui/shadcn-label\"\n\nfunction ShadcnCheckboxDemo() {\n  return (\n    <ShadcnFieldGroup className=\"max-w-sm\">\n      <ShadcnField orientation=\"horizontal\">\n        <ShadcnCheckbox id=\"shadcn-terms-checkbox\" name=\"terms-checkbox\" />\n        <ShadcnLabel htmlFor=\"shadcn-terms-checkbox\">Accept terms and conditions</ShadcnLabel>\n      </ShadcnField>\n      <ShadcnField orientation=\"horizontal\">\n        <ShadcnCheckbox id=\"shadcn-terms-checkbox-2\" name=\"terms-checkbox-2\" defaultChecked />\n        <ShadcnFieldContent>\n          <ShadcnFieldLabel htmlFor=\"shadcn-terms-checkbox-2\">\n            Accept terms and conditions\n          </ShadcnFieldLabel>\n          <ShadcnFieldDescription>\n            By clicking this checkbox, you agree to the terms.\n          </ShadcnFieldDescription>\n        </ShadcnFieldContent>\n      </ShadcnField>\n      <ShadcnField orientation=\"horizontal\" data-disabled>\n        <ShadcnCheckbox id=\"shadcn-toggle-checkbox\" name=\"toggle-checkbox\" isDisabled />\n        <ShadcnFieldLabel htmlFor=\"shadcn-toggle-checkbox\">Enable notifications</ShadcnFieldLabel>\n      </ShadcnField>\n    </ShadcnFieldGroup>\n  )\n}\n\nexport { ShadcnCheckboxDemo }\n",
+      "description": "ShadcnCheckboxDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-checkbox-demo.tsx"
+    },
+    {
+      "id": "701",
+      "name": "ShadcnCheckboxExample",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnCheckbox",
+      "source": "shadcn",
+      "file": "shadcn-checkbox-example.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnCheckboxExample\n * Kontrollü durum — checked/onCheckedChange (saf React, shadcn kaynaklı).\n * @id 701\n * @category Checkbox\n * @subcategory ShadcnCheckbox\n * @source shadcn\n */\nimport { useState } from \"react\"\nimport { ShadcnCheckbox } from \"@/components/ui/shadcn-checkbox\"\n\nfunction ShadcnCheckboxExample() {\n  const [checked, setChecked] = useState(false)\n\n  return <ShadcnCheckbox checked={checked} onCheckedChange={setChecked} />\n}\n\nexport { ShadcnCheckboxExample }\n",
+      "description": "ShadcnCheckboxExample",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-checkbox-example.tsx"
+    },
+    {
+      "id": "702",
+      "name": "ShadcnCheckboxInvalid",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnCheckbox",
+      "source": "shadcn",
+      "file": "shadcn-checkbox-invalid.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnCheckboxInvalid\n * Geçersiz durum — data-invalid (saf React, shadcn kaynaklı).\n * @id 702\n * @category Checkbox\n * @subcategory ShadcnCheckbox\n * @source shadcn\n */\nimport { ShadcnCheckbox } from \"@/components/ui/shadcn-checkbox\"\nimport {\n  ShadcnField,\n  ShadcnFieldGroup,\n  ShadcnFieldLabel,\n} from \"@/components/ui/shadcn-field\"\n\nfunction ShadcnCheckboxInvalid() {\n  return (\n    <ShadcnFieldGroup className=\"mx-auto w-56\">\n      <ShadcnField orientation=\"horizontal\" data-invalid>\n        <ShadcnCheckbox id=\"shadcn-terms-checkbox-invalid\" name=\"terms-checkbox-invalid\" aria-invalid />\n        <ShadcnFieldLabel htmlFor=\"shadcn-terms-checkbox-invalid\">\n          Accept terms and conditions\n        </ShadcnFieldLabel>\n      </ShadcnField>\n    </ShadcnFieldGroup>\n  )\n}\n\nexport { ShadcnCheckboxInvalid }\n",
+      "description": "ShadcnCheckboxInvalid",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-checkbox-invalid.tsx"
+    },
+    {
+      "id": "703",
+      "name": "ShadcnCheckboxBasic",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnCheckbox",
+      "source": "shadcn",
+      "file": "shadcn-checkbox-basic.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnCheckboxBasic\n * Temel kullanım — Field + FieldLabel (saf React, shadcn kaynaklı).\n * @id 703\n * @category Checkbox\n * @subcategory ShadcnCheckbox\n * @source shadcn\n */\nimport { ShadcnCheckbox } from \"@/components/ui/shadcn-checkbox\"\nimport {\n  ShadcnField,\n  ShadcnFieldGroup,\n  ShadcnFieldLabel,\n} from \"@/components/ui/shadcn-field\"\n\nfunction ShadcnCheckboxBasic() {\n  return (\n    <ShadcnFieldGroup className=\"mx-auto w-56\">\n      <ShadcnField orientation=\"horizontal\">\n        <ShadcnCheckbox id=\"shadcn-terms-checkbox-basic\" name=\"terms-checkbox-basic\" />\n        <ShadcnFieldLabel htmlFor=\"shadcn-terms-checkbox-basic\">\n          Accept terms and conditions\n        </ShadcnFieldLabel>\n      </ShadcnField>\n    </ShadcnFieldGroup>\n  )\n}\n\nexport { ShadcnCheckboxBasic }\n",
+      "description": "ShadcnCheckboxBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-checkbox-basic.tsx"
+    },
+    {
+      "id": "704",
+      "name": "ShadcnCheckboxDescription",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnCheckbox",
+      "source": "shadcn",
+      "file": "shadcn-checkbox-description.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnCheckboxDescription\n * Açıklamalı onay kutusu (saf React, shadcn kaynaklı).\n * @id 704\n * @category Checkbox\n * @subcategory ShadcnCheckbox\n * @source shadcn\n */\nimport { ShadcnCheckbox } from \"@/components/ui/shadcn-checkbox\"\nimport {\n  ShadcnField,\n  ShadcnFieldContent,\n  ShadcnFieldDescription,\n  ShadcnFieldGroup,\n  ShadcnFieldLabel,\n} from \"@/components/ui/shadcn-field\"\n\nfunction ShadcnCheckboxDescription() {\n  return (\n    <ShadcnFieldGroup className=\"mx-auto w-72\">\n      <ShadcnField orientation=\"horizontal\">\n        <ShadcnCheckbox id=\"shadcn-terms-checkbox-desc\" name=\"terms-checkbox-desc\" defaultChecked />\n        <ShadcnFieldContent>\n          <ShadcnFieldLabel htmlFor=\"shadcn-terms-checkbox-desc\">\n            Accept terms and conditions\n          </ShadcnFieldLabel>\n          <ShadcnFieldDescription>\n            By clicking this checkbox, you agree to the terms and conditions.\n          </ShadcnFieldDescription>\n        </ShadcnFieldContent>\n      </ShadcnField>\n    </ShadcnFieldGroup>\n  )\n}\n\nexport { ShadcnCheckboxDescription }\n",
+      "description": "ShadcnCheckboxDescription",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-checkbox-description.tsx"
+    },
+    {
+      "id": "705",
+      "name": "ShadcnCheckboxDisabled",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnCheckbox",
+      "source": "shadcn",
+      "file": "shadcn-checkbox-disabled.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnCheckboxDisabled\n * Devre dışı onay kutusu (saf React, shadcn kaynaklı).\n * @id 705\n * @category Checkbox\n * @subcategory ShadcnCheckbox\n * @source shadcn\n */\nimport { ShadcnCheckbox } from \"@/components/ui/shadcn-checkbox\"\nimport {\n  ShadcnField,\n  ShadcnFieldGroup,\n  ShadcnFieldLabel,\n} from \"@/components/ui/shadcn-field\"\n\nfunction ShadcnCheckboxDisabled() {\n  return (\n    <ShadcnFieldGroup className=\"mx-auto w-56\">\n      <ShadcnField orientation=\"horizontal\" data-disabled>\n        <ShadcnCheckbox id=\"shadcn-toggle-checkbox-disabled\" name=\"toggle-checkbox-disabled\" isDisabled />\n        <ShadcnFieldLabel htmlFor=\"shadcn-toggle-checkbox-disabled\">\n          Enable notifications\n        </ShadcnFieldLabel>\n      </ShadcnField>\n    </ShadcnFieldGroup>\n  )\n}\n\nexport { ShadcnCheckboxDisabled }\n",
+      "description": "ShadcnCheckboxDisabled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-checkbox-disabled.tsx"
+    },
+    {
+      "id": "706",
+      "name": "ShadcnCheckboxGroup",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnCheckbox",
+      "source": "shadcn",
+      "file": "shadcn-checkbox-group.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnCheckboxGroup\n * Onay kutusu listesi — FieldSet + FieldGroup (saf React, shadcn kaynaklı).\n * @id 706\n * @category Checkbox\n * @subcategory ShadcnCheckbox\n * @source shadcn\n */\nimport { ShadcnCheckbox } from \"@/components/ui/shadcn-checkbox\"\nimport {\n  ShadcnField,\n  ShadcnFieldDescription,\n  ShadcnFieldGroup,\n  ShadcnFieldLabel,\n  ShadcnFieldLegend,\n  ShadcnFieldSet,\n} from \"@/components/ui/shadcn-field\"\n\nfunction ShadcnCheckboxGroup() {\n  return (\n    <ShadcnFieldSet>\n      <ShadcnFieldLegend variant=\"label\">\n        Show these items on the desktop:\n      </ShadcnFieldLegend>\n      <ShadcnFieldDescription>\n        Select the items you want to show on the desktop.\n      </ShadcnFieldDescription>\n      <ShadcnFieldGroup className=\"gap-3\">\n        <ShadcnField orientation=\"horizontal\">\n          <ShadcnCheckbox id=\"shadcn-finder-hard-disks\" name=\"finder-hard-disks\" defaultChecked />\n          <ShadcnFieldLabel htmlFor=\"shadcn-finder-hard-disks\" className=\"font-normal\">\n            Hard disks\n          </ShadcnFieldLabel>\n        </ShadcnField>\n        <ShadcnField orientation=\"horizontal\">\n          <ShadcnCheckbox id=\"shadcn-finder-external-disks\" name=\"finder-external-disks\" defaultChecked />\n          <ShadcnFieldLabel htmlFor=\"shadcn-finder-external-disks\" className=\"font-normal\">\n            External disks\n          </ShadcnFieldLabel>\n        </ShadcnField>\n        <ShadcnField orientation=\"horizontal\">\n          <ShadcnCheckbox id=\"shadcn-finder-cds-dvds\" name=\"finder-cds-dvds\" />\n          <ShadcnFieldLabel htmlFor=\"shadcn-finder-cds-dvds\" className=\"font-normal\">\n            CDs, DVDs, and iPods\n          </ShadcnFieldLabel>\n        </ShadcnField>\n        <ShadcnField orientation=\"horizontal\">\n          <ShadcnCheckbox id=\"shadcn-finder-connected-servers\" name=\"finder-connected-servers\" />\n          <ShadcnFieldLabel htmlFor=\"shadcn-finder-connected-servers\" className=\"font-normal\">\n            Connected servers\n          </ShadcnFieldLabel>\n        </ShadcnField>\n      </ShadcnFieldGroup>\n    </ShadcnFieldSet>\n  )\n}\n\nexport { ShadcnCheckboxGroup }\n",
+      "description": "ShadcnCheckboxGroup",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-checkbox-group.tsx"
+    },
+    {
+      "id": "707",
+      "name": "ShadcnCheckboxInTable",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnCheckbox",
+      "source": "shadcn",
+      "file": "shadcn-checkbox-in-table.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnCheckboxInTable\n * Tabloda seçim — tümünü seç + satır seçimi (saf React, shadcn kaynaklı).\n * Table: kütüphanenin mevcut bileşeni (Heroui — saf React).\n * @id 707\n * @category Checkbox\n * @subcategory ShadcnCheckbox\n * @source shadcn\n */\nimport { useState } from \"react\"\nimport { ShadcnCheckbox } from \"@/components/ui/shadcn-checkbox\"\nimport { Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from \"@/components/ui/table\"\n\nconst tableData = [\n  { id: \"1\", name: \"Sarah Chen\", email: \"sarah.chen@example.com\", role: \"Admin\" },\n  { id: \"2\", name: \"Marcus Rodriguez\", email: \"marcus.rodriguez@example.com\", role: \"User\" },\n  { id: \"3\", name: \"Priya Patel\", email: \"priya.patel@example.com\", role: \"User\" },\n  { id: \"4\", name: \"David Kim\", email: \"david.kim@example.com\", role: \"Editor\" },\n]\n\nfunction ShadcnCheckboxInTable() {\n  const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set([\"1\"]))\n  const selectAll = selectedRows.size === tableData.length\n\n  return (\n    <Table aria-label=\"Users\">\n      <TableHeader>\n        <TableRow>\n          <TableColumn className=\"w-8\">\n            <ShadcnCheckbox\n              id=\"shadcn-select-all-checkbox\"\n              name=\"select-all-checkbox\"\n              checked={selectAll}\n              onCheckedChange={(checked) =>\n                setSelectedRows(checked ? new Set(tableData.map((r) => r.id)) : new Set())\n              }\n            />\n          </TableColumn>\n          <TableColumn>Name</TableColumn>\n          <TableColumn>Email</TableColumn>\n          <TableColumn>Role</TableColumn>\n        </TableRow>\n      </TableHeader>\n      <TableBody>\n        {tableData.map((row) => (\n          <TableRow key={row.id} data-state={selectedRows.has(row.id) ? \"selected\" : undefined}>\n            <TableCell>\n              <ShadcnCheckbox\n                id={`shadcn-row-${row.id}-checkbox`}\n                name={`row-${row.id}-checkbox`}\n                checked={selectedRows.has(row.id)}\n                onCheckedChange={(checked) => {\n                  const next = new Set(selectedRows)\n                  if (checked) next.add(row.id)\n                  else next.delete(row.id)\n                  setSelectedRows(next)\n                }}\n              />\n            </TableCell>\n            <TableCell className=\"font-medium\">{row.name}</TableCell>\n            <TableCell>{row.email}</TableCell>\n            <TableCell>{row.role}</TableCell>\n          </TableRow>\n        ))}\n      </TableBody>\n    </Table>\n  )\n}\n\nexport { ShadcnCheckboxInTable }\n",
+      "description": "ShadcnCheckboxInTable",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-checkbox-in-table.tsx"
+    },
+    {
+      "id": "708",
+      "name": "ShadcnCheckboxRtl",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnCheckbox",
+      "source": "shadcn",
+      "file": "shadcn-checkbox-rtl.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnCheckboxRtl\n * RTL örneği — Arapça onay kutusu (saf React, shadcn kaynaklı).\n * @id 708\n * @category Checkbox\n * @subcategory ShadcnCheckbox\n * @source shadcn\n */\nimport { ShadcnCheckbox } from \"@/components/ui/shadcn-checkbox\"\nimport { ShadcnField, ShadcnFieldGroup, ShadcnFieldLabel } from \"@/components/ui/shadcn-field\"\n\nfunction ShadcnCheckboxRtl() {\n  return (\n    <ShadcnFieldGroup className=\"mx-auto w-56\" dir=\"rtl\">\n      <ShadcnField orientation=\"horizontal\">\n        <ShadcnCheckbox id=\"shadcn-terms-checkbox-rtl\" name=\"terms-checkbox-rtl\" />\n        <ShadcnFieldLabel htmlFor=\"shadcn-terms-checkbox-rtl\" dir=\"rtl\">\n          أوافق على الشروط والأحكام\n        </ShadcnFieldLabel>\n      </ShadcnField>\n    </ShadcnFieldGroup>\n  )\n}\n\nexport { ShadcnCheckboxRtl }\n",
+      "description": "ShadcnCheckboxRtl",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-checkbox-rtl.tsx"
     },
     {
       "id": "389",
