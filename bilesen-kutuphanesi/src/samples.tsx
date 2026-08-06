@@ -592,7 +592,6 @@ export const SAMPLES: Record<string, ReactNode> = {
   "614": <U.KbdSpecialKeys />,
   "615": <U.ShadcnInput />,
   "616": <U.ShadcnField />,
-  "617": <U.ShadcnInputGroup />,
   "618": <U.ShadcnButtonGroup />,
   "619": <U.ShadcnInputBasic />,
   "620": <U.ShadcnInputField />,
