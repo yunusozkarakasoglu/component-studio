@@ -485,6 +485,12 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `823` ShadcnSheetSide
 - `824` ShadcnSheetNoCloseButton
 - `825` ShadcnSheetRtl
+#### ShadcnDrawer
+- `826` ShadcnDrawer + Trigger/Content(side/handle)/Header/Title/Description/Footer/Close
+- `827` ShadcnDrawerDemo
+- `828` ShadcnDrawerWithSides
+- `829` ShadcnDrawerSwipeHandle
+- `830` ShadcnDrawerNested
 
 ### Seçim
 #### RadioGroup
@@ -859,7 +865,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 736 bileşen (saf React)**
+**Toplam: 741 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

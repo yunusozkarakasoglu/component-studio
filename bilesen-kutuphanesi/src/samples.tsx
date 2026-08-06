@@ -799,4 +799,9 @@ export const SAMPLES: Record<string, ReactNode> = {
   "823": <U.ShadcnSheetSide />,
   "824": <U.ShadcnSheetNoCloseButton />,
   "825": <U.ShadcnSheetRtl />,
+  "826": <U.ShadcnDrawer />,
+  "827": <U.ShadcnDrawerDemo />,
+  "828": <U.ShadcnDrawerWithSides />,
+  "829": <U.ShadcnDrawerSwipeHandle />,
+  "830": <U.ShadcnDrawerNested />,
 }
