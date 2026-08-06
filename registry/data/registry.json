@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-06T12:44:05.565Z",
+  "generatedAt": "2026-08-06T12:47:00.672Z",
   "counts": {
-    "components": 699,
-    "ready": 699,
+    "components": 705,
+    "ready": 705,
     "layouts": 0
   },
   "categories": [
@@ -4622,6 +4622,78 @@
       "code": "/**\n * ShadcnDialogRtl\n * RTL örneği — Arapça dialog (saf React, shadcn kaynaklı).\n * @id 788\n * @category Overlay\n * @subcategory ShadcnDialog\n * @source shadcn\n */\nimport {\n  ShadcnDialog,\n  ShadcnDialogClose,\n  ShadcnDialogContent,\n  ShadcnDialogDescription,\n  ShadcnDialogFooter,\n  ShadcnDialogHeader,\n  ShadcnDialogTitle,\n  ShadcnDialogTrigger,\n} from \"@/components/ui/shadcn-dialog\"\n\nfunction ShadcnDialogRtl() {\n  return (\n    <ShadcnDialog>\n      <ShadcnDialogTrigger>افتح الحوار</ShadcnDialogTrigger>\n      <ShadcnDialogContent className=\"sm:max-w-sm\" dir=\"rtl\">\n        <ShadcnDialogHeader>\n          <ShadcnDialogTitle>تعديل الملف الشخصي</ShadcnDialogTitle>\n          <ShadcnDialogDescription>\n            قم بإجراء التغييرات على ملفك الشخصي هنا.\n          </ShadcnDialogDescription>\n        </ShadcnDialogHeader>\n        <ShadcnDialogFooter>\n          <ShadcnDialogClose>إغلاق</ShadcnDialogClose>\n        </ShadcnDialogFooter>\n      </ShadcnDialogContent>\n    </ShadcnDialog>\n  )\n}\n\nexport { ShadcnDialogRtl }\n",
       "description": "ShadcnDialogRtl",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-dialog-rtl.tsx"
+    },
+    {
+      "id": "789",
+      "name": "ShadcnPopover",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnPopover",
+      "source": "shadcn",
+      "file": "shadcn-popover.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnPopover familyası\n * Saf React bileşen (bağımlılıksız) — shadcn/ui kaynaklı.\n * Popover + Trigger + Content + Header/Title/Description.\n *   <ShadcnPopover>\n *     <ShadcnPopoverTrigger>Open popover</ShadcnPopoverTrigger>\n *     <ShadcnPopoverContent align=\"start\">…</ShadcnPopoverContent>\n *   </ShadcnPopover>\n * align: start | center | end.\n * @id 789\n * @category Overlay\n * @subcategory ShadcnPopover\n * @source shadcn\n */\nimport { createContext, useContext, useState, type HTMLAttributes, type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface PopoverContextValue {\n  open: boolean\n  setOpen: (open: boolean) => void\n}\n\nconst PopoverContext = createContext<PopoverContextValue | null>(null)\n\nfunction useShadcnPopover(): PopoverContextValue {\n  const ctx = useContext(PopoverContext)\n  if (!ctx) throw new Error(\"ShadcnPopover parçaları, ShadcnPopover içinde kullanılmalı\")\n  return ctx\n}\n\ninterface ShadcnPopoverProps extends HTMLAttributes<HTMLDivElement> {\n  open?: boolean\n  defaultOpen?: boolean\n  onOpenChange?: (open: boolean) => void\n}\n\nfunction ShadcnPopover({ children, open, defaultOpen, onOpenChange, className, ...props }: ShadcnPopoverProps) {\n  const [internal, setInternal] = useState(!!defaultOpen)\n  const isOpen = open !== undefined ? open : internal\n  const setOpen = (v: boolean) => {\n    if (open === undefined) setInternal(v)\n    onOpenChange?.(v)\n  }\n  return (\n    <PopoverContext.Provider value={{ open: isOpen, setOpen }}>\n      <div data-slot=\"shadcn-popover\" className={cn(\"relative inline-block\", className)} {...props}>\n        {children}\n      </div>\n    </PopoverContext.Provider>\n  )\n}\n\ninterface ShadcnPopoverTriggerProps extends HTMLAttributes<HTMLButtonElement> {}\n\nfunction ShadcnPopoverTrigger({ className, children, onClick, ...props }: ShadcnPopoverTriggerProps) {\n  const ctx = useShadcnPopover()\n  return (\n    <button\n      type=\"button\"\n      data-slot=\"shadcn-popover-trigger\"\n      aria-expanded={ctx.open}\n      onClick={(e) => {\n        ctx.setOpen(!ctx.open)\n        onClick?.(e)\n      }}\n      className={cn(\n        \"inline-flex h-9 items-center justify-center rounded-md border border-border bg-background px-4 text-sm font-medium text-foreground transition-colors outline-none\",\n        \"hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/40\",\n        className\n      )}\n      {...props}\n    >\n      {children}\n    </button>\n  )\n}\n\ninterface ShadcnPopoverContentProps extends HTMLAttributes<HTMLDivElement> {\n  align?: \"start\" | \"center\" | \"end\"\n}\n\nfunction ShadcnPopoverContent({ className, align = \"center\", children, ...props }: ShadcnPopoverContentProps) {\n  const ctx = useShadcnPopover()\n  if (!ctx.open) return null\n\n  return (\n    <div\n      data-slot=\"shadcn-popover-content\"\n      className={cn(\n        \"absolute top-full z-50 mt-2 rounded-lg border border-border bg-background p-4 text-foreground shadow-lg outline-none\",\n        align === \"start\" && \"left-0\",\n        align === \"center\" && \"left-1/2 -translate-x-1/2\",\n        align === \"end\" && \"right-0\",\n        className\n      )}\n      {...props}\n    >\n      {children}\n    </div>\n  )\n}\n\ninterface ShadcnPopoverHeaderProps extends HTMLAttributes<HTMLDivElement> {}\n\nfunction ShadcnPopoverHeader({ className, ...props }: ShadcnPopoverHeaderProps) {\n  return <div data-slot=\"shadcn-popover-header\" className={cn(\"mb-3 flex flex-col gap-1\", className)} {...props} />\n}\n\ninterface ShadcnPopoverTitleProps extends HTMLAttributes<HTMLHeadingElement> {}\n\nfunction ShadcnPopoverTitle({ className, ...props }: ShadcnPopoverTitleProps) {\n  return <h4 data-slot=\"shadcn-popover-title\" className={cn(\"font-medium leading-none\", className)} {...props} />\n}\n\ninterface ShadcnPopoverDescriptionProps extends HTMLAttributes<HTMLParagraphElement> {}\n\nfunction ShadcnPopoverDescription({ className, ...props }: ShadcnPopoverDescriptionProps) {\n  return <p data-slot=\"shadcn-popover-description\" className={cn(\"text-sm text-muted-foreground\", className)} {...props} />\n}\n\nexport {\n  ShadcnPopover,\n  ShadcnPopoverContent,\n  ShadcnPopoverDescription,\n  ShadcnPopoverHeader,\n  ShadcnPopoverTitle,\n  ShadcnPopoverTrigger,\n}\nexport type {\n  ShadcnPopoverContentProps,\n  ShadcnPopoverDescriptionProps,\n  ShadcnPopoverHeaderProps,\n  ShadcnPopoverProps,\n  ShadcnPopoverTitleProps,\n  ShadcnPopoverTriggerProps,\n}\n",
+      "description": "ShadcnPopover familyası",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-popover.tsx"
+    },
+    {
+      "id": "790",
+      "name": "ShadcnPopoverDemo",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnPopover",
+      "source": "shadcn",
+      "file": "shadcn-popover-demo.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnPopoverDemo\n * Temel örnek — boyut ayarları (saf React, shadcn kaynaklı).\n * @id 790\n * @category Overlay\n * @subcategory ShadcnPopover\n * @source shadcn\n */\nimport {\n  ShadcnPopover,\n  ShadcnPopoverContent,\n  ShadcnPopoverTrigger,\n} from \"@/components/ui/shadcn-popover\"\nimport { ShadcnInput } from \"@/components/ui/shadcn-input\"\nimport { ShadcnLabel } from \"@/components/ui/shadcn-label\"\n\nfunction ShadcnPopoverDemo() {\n  return (\n    <ShadcnPopover>\n      <ShadcnPopoverTrigger>Open popover</ShadcnPopoverTrigger>\n      <ShadcnPopoverContent className=\"w-80\">\n        <div className=\"grid gap-4\">\n          <div className=\"space-y-2\">\n            <h4 className=\"leading-none font-medium\">Dimensions</h4>\n            <p className=\"text-sm text-muted-foreground\">\n              Set the dimensions for the layer.\n            </p>\n          </div>\n          <div className=\"grid gap-2\">\n            <div className=\"grid grid-cols-3 items-center gap-4\">\n              <ShadcnLabel htmlFor=\"popover-width\">Width</ShadcnLabel>\n              <ShadcnInput id=\"popover-width\" defaultValue=\"100%\" className=\"col-span-2 h-8\" />\n            </div>\n            <div className=\"grid grid-cols-3 items-center gap-4\">\n              <ShadcnLabel htmlFor=\"popover-max-width\">Max. width</ShadcnLabel>\n              <ShadcnInput id=\"popover-max-width\" defaultValue=\"300px\" className=\"col-span-2 h-8\" />\n            </div>\n            <div className=\"grid grid-cols-3 items-center gap-4\">\n              <ShadcnLabel htmlFor=\"popover-height\">Height</ShadcnLabel>\n              <ShadcnInput id=\"popover-height\" defaultValue=\"25px\" className=\"col-span-2 h-8\" />\n            </div>\n            <div className=\"grid grid-cols-3 items-center gap-4\">\n              <ShadcnLabel htmlFor=\"popover-max-height\">Max. height</ShadcnLabel>\n              <ShadcnInput id=\"popover-max-height\" defaultValue=\"none\" className=\"col-span-2 h-8\" />\n            </div>\n          </div>\n        </div>\n      </ShadcnPopoverContent>\n    </ShadcnPopover>\n  )\n}\n\nexport { ShadcnPopoverDemo }\n",
+      "description": "ShadcnPopoverDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-popover-demo.tsx"
+    },
+    {
+      "id": "791",
+      "name": "ShadcnPopoverBasic",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnPopover",
+      "source": "shadcn",
+      "file": "shadcn-popover-basic.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnPopoverBasic\n * Temel popover (saf React, shadcn kaynaklı).\n * @id 791\n * @category Overlay\n * @subcategory ShadcnPopover\n * @source shadcn\n */\nimport {\n  ShadcnPopover,\n  ShadcnPopoverContent,\n  ShadcnPopoverTrigger,\n} from \"@/components/ui/shadcn-popover\"\n\nfunction ShadcnPopoverBasic() {\n  return (\n    <ShadcnPopover>\n      <ShadcnPopoverTrigger>Open popover</ShadcnPopoverTrigger>\n      <ShadcnPopoverContent className=\"w-64\">\n        <p className=\"text-sm\">This is a basic popover with some content.</p>\n      </ShadcnPopoverContent>\n    </ShadcnPopover>\n  )\n}\n\nexport { ShadcnPopoverBasic }\n",
+      "description": "ShadcnPopoverBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-popover-basic.tsx"
+    },
+    {
+      "id": "792",
+      "name": "ShadcnPopoverAlignments",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnPopover",
+      "source": "shadcn",
+      "file": "shadcn-popover-alignments.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnPopoverAlignments\n * Hizalama — start, center, end (saf React, shadcn kaynaklı).\n * @id 792\n * @category Overlay\n * @subcategory ShadcnPopover\n * @source shadcn\n */\nimport {\n  ShadcnPopover,\n  ShadcnPopoverContent,\n  ShadcnPopoverTrigger,\n} from \"@/components/ui/shadcn-popover\"\n\nfunction ShadcnPopoverAlignments() {\n  return (\n    <div className=\"flex gap-6\">\n      <ShadcnPopover>\n        <ShadcnPopoverTrigger>Start</ShadcnPopoverTrigger>\n        <ShadcnPopoverContent align=\"start\" className=\"w-40\">\n          Aligned to start\n        </ShadcnPopoverContent>\n      </ShadcnPopover>\n      <ShadcnPopover>\n        <ShadcnPopoverTrigger>Center</ShadcnPopoverTrigger>\n        <ShadcnPopoverContent align=\"center\" className=\"w-40\">\n          Aligned to center\n        </ShadcnPopoverContent>\n      </ShadcnPopover>\n      <ShadcnPopover>\n        <ShadcnPopoverTrigger>End</ShadcnPopoverTrigger>\n        <ShadcnPopoverContent align=\"end\" className=\"w-40\">\n          Aligned to end\n        </ShadcnPopoverContent>\n      </ShadcnPopover>\n    </div>\n  )\n}\n\nexport { ShadcnPopoverAlignments }\n",
+      "description": "ShadcnPopoverAlignments",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-popover-alignments.tsx"
+    },
+    {
+      "id": "793",
+      "name": "ShadcnPopoverForm",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnPopover",
+      "source": "shadcn",
+      "file": "shadcn-popover-form.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnPopoverForm\n * Form alanlı popover (saf React, shadcn kaynaklı).\n * @id 793\n * @category Overlay\n * @subcategory ShadcnPopover\n * @source shadcn\n */\nimport {\n  ShadcnField,\n  ShadcnFieldGroup,\n  ShadcnFieldLabel,\n} from \"@/components/ui/shadcn-field\"\nimport { ShadcnInput } from \"@/components/ui/shadcn-input\"\nimport {\n  ShadcnPopover,\n  ShadcnPopoverContent,\n  ShadcnPopoverDescription,\n  ShadcnPopoverHeader,\n  ShadcnPopoverTitle,\n  ShadcnPopoverTrigger,\n} from \"@/components/ui/shadcn-popover\"\n\nfunction ShadcnPopoverForm() {\n  return (\n    <ShadcnPopover>\n      <ShadcnPopoverTrigger>Open Popover</ShadcnPopoverTrigger>\n      <ShadcnPopoverContent className=\"w-64\" align=\"start\">\n        <ShadcnPopoverHeader>\n          <ShadcnPopoverTitle>Dimensions</ShadcnPopoverTitle>\n          <ShadcnPopoverDescription>\n            Set the dimensions for the layer.\n          </ShadcnPopoverDescription>\n        </ShadcnPopoverHeader>\n        <ShadcnFieldGroup className=\"gap-4\">\n          <ShadcnField orientation=\"horizontal\">\n            <ShadcnFieldLabel htmlFor=\"popover-form-width\" className=\"w-1/2\">Width</ShadcnFieldLabel>\n            <ShadcnInput id=\"popover-form-width\" defaultValue=\"100%\" />\n          </ShadcnField>\n          <ShadcnField orientation=\"horizontal\">\n            <ShadcnFieldLabel htmlFor=\"popover-form-height\" className=\"w-1/2\">Height</ShadcnFieldLabel>\n            <ShadcnInput id=\"popover-form-height\" defaultValue=\"25px\" />\n          </ShadcnField>\n        </ShadcnFieldGroup>\n      </ShadcnPopoverContent>\n    </ShadcnPopover>\n  )\n}\n\nexport { ShadcnPopoverForm }\n",
+      "description": "ShadcnPopoverForm",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-popover-form.tsx"
+    },
+    {
+      "id": "794",
+      "name": "ShadcnPopoverRtl",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnPopover",
+      "source": "shadcn",
+      "file": "shadcn-popover-rtl.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnPopoverRtl\n * RTL örneği — Arapça popover (saf React, shadcn kaynaklı).\n * @id 794\n * @category Overlay\n * @subcategory ShadcnPopover\n * @source shadcn\n */\nimport {\n  ShadcnPopover,\n  ShadcnPopoverContent,\n  ShadcnPopoverDescription,\n  ShadcnPopoverHeader,\n  ShadcnPopoverTitle,\n  ShadcnPopoverTrigger,\n} from \"@/components/ui/shadcn-popover\"\n\nfunction ShadcnPopoverRtl() {\n  return (\n    <ShadcnPopover>\n      <ShadcnPopoverTrigger>افتح النافذة</ShadcnPopoverTrigger>\n      <ShadcnPopoverContent className=\"w-72\" dir=\"rtl\">\n        <ShadcnPopoverHeader>\n          <ShadcnPopoverTitle>الأبعاد</ShadcnPopoverTitle>\n          <ShadcnPopoverDescription>\n            عيّن أبعاد الطبقة.\n          </ShadcnPopoverDescription>\n        </ShadcnPopoverHeader>\n        <p className=\"text-sm text-muted-foreground\">اضبط العرض والارتفاع حسب الحاجة.</p>\n      </ShadcnPopoverContent>\n    </ShadcnPopover>\n  )\n}\n\nexport { ShadcnPopoverRtl }\n",
+      "description": "ShadcnPopoverRtl",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-popover-rtl.tsx"
     },
     {
       "id": "389",

@@ -440,6 +440,13 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `786` ShadcnDialogStickyFooter
 - `787` ShadcnDialogScrollableContent
 - `788` ShadcnDialogRtl
+#### ShadcnPopover
+- `789` ShadcnPopover + Trigger/Content/Header/Title/Description
+- `790` ShadcnPopoverDemo
+- `791` ShadcnPopoverBasic
+- `792` ShadcnPopoverAlignments
+- `793` ShadcnPopoverForm
+- `794` ShadcnPopoverRtl
 
 ### Seçim
 #### RadioGroup
@@ -814,7 +821,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 699 bileşen (saf React)**
+**Toplam: 705 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
