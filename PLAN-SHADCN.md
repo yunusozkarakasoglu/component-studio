@@ -39,7 +39,8 @@
 - [x] **Textarea** — 636-642 (çekirdek + Demo/Field/Disabled/Invalid/Button/RTL)
 - [x] **Kbd** — 643-649 (ShadcnKbd + KbdGroup + 5 örnek)
 - [x] **Field** — 650-661 (çekirdek genişletildi: Content/Error/Set/Legend/Title/Separator + 12 örnek)
-Input Group → Input OTP → Native Select → Slider
+- [x] **Input Group** — 662-675 (ShadcnInputGroup familyası + 13 örnek)
+Input OTP → Native Select → Slider
 
 ### Adım 2 — Seçim (5)
 Checkbox → Switch → Radio Group → Toggle → Toggle Group

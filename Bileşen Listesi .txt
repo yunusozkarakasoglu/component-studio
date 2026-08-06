@@ -301,6 +301,21 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `659` ShadcnFieldChoiceCard
 - `660` ShadcnFieldGroupExample
 - `661` ShadcnFieldRtl
+#### ShadcnInputGroup
+- `662` ShadcnInputGroup + Addon + Input + Text + Button + Textarea
+- `663` ShadcnInputGroupDemo
+- `664` ShadcnInputGroupInlineStart
+- `665` ShadcnInputGroupInlineEnd
+- `666` ShadcnInputGroupBlockStart
+- `667` ShadcnInputGroupBlockEnd
+- `668` ShadcnInputGroupIcon
+- `669` ShadcnInputGroupText
+- `670` ShadcnInputGroupButton
+- `671` ShadcnInputGroupKbd
+- `672` ShadcnInputGroupDropdown
+- `673` ShadcnInputGroupSpinner
+- `674` ShadcnInputGroupTextarea
+- `675` ShadcnInputGroupCustom
 
 ### Seçim
 #### RadioGroup
@@ -675,7 +690,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 574 bileşen (saf React)**
+**Toplam: 588 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
