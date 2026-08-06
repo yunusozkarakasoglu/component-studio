@@ -762,6 +762,8 @@ export default function Studio() {
   }, [registry, q, cat, subCat, source])
 
 
+  const hasFilters = q !== "" || cat !== "Tümü" || subCat !== "" || source !== "tumu"
+
   if (!registry) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-background">
@@ -883,6 +885,15 @@ export default function Studio() {
                 ))}
               </div>
               <span className="text-xs text-muted-foreground">{filtered.length} bileşen</span>
+              {hasFilters && (
+                <button
+                  onClick={() => { setQ(""); setCat("Tümü"); setSubCat(""); setSource("tumu") }}
+                  className="inline-flex items-center gap-1 rounded-md border border-black/25 px-2 py-1 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-red-500/10 hover:text-red-600"
+                  title="Tüm filtreleri temizle"
+                >
+                  ✕ Temizle
+                </button>
+              )}
               <div className="ml-auto flex gap-1 rounded-lg border border-black/25 bg-muted/30 p-0.5">
                 {([["kart", "▦ Kart"], ["tablo", "☰ Tablo"]] as const).map(([v, l]) => (
                   <button key={v} onClick={() => setGalleryView(v)}
