@@ -75,7 +75,8 @@
 - [x] **Tooltip** — 795-800 (3 compound + 5 örnek)
 - [x] **Hover Card** — 801-804 (3 compound + 3 örnek)
 - [x] **Dropdown Menu** — 805-812 (mevcut Menu ile 8 örnek)
-Context Menu → Toast → Sheet → Drawer → Sidebar
+- [x] **Context Menu** — 813-817 (sağ tıklama çekirdek + 4 örnek)
+Toast → Sheet → Drawer → Sidebar
 
 ### Adım 5 — Navigasyon + Akordeon + Uyarı (9)
 Tabs → Pagination → Breadcrumb → Navigation Menu → Menubar → Accordion → Collapsible → Alert → Alert Dialog

@@ -469,6 +469,12 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `811` ShadcnDropdownMenuDestructive
 - `812` ShadcnDropdownMenuAvatar
 - (Submenu/Complex — Heroui Menu'de sub menü yok, atlandı)
+#### ShadcnContextMenu
+- `813` ShadcnContextMenu + Trigger/Content/Item/Group/Separator/Shortcut/CheckboxItem/RadioGroup/RadioItem
+- `814` ShadcnContextMenuDemo
+- `815` ShadcnContextMenuBasic
+- `816` ShadcnContextMenuShortcuts
+- `817` ShadcnContextMenuGroups
 
 ### Seçim
 #### RadioGroup
@@ -843,7 +849,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 723 bileşen (saf React)**
+**Toplam: 728 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
