@@ -778,4 +778,12 @@ export const SAMPLES: Record<string, ReactNode> = {
   "802": <U.ShadcnHoverCardDemo />,
   "803": <U.ShadcnHoverCardSides />,
   "804": <U.ShadcnHoverCardRtl />,
+  "805": <U.ShadcnDropdownMenuDemo />,
+  "806": <U.ShadcnDropdownMenuBasic />,
+  "807": <U.ShadcnDropdownMenuShortcuts />,
+  "808": <U.ShadcnDropdownMenuIcons />,
+  "809": <U.ShadcnDropdownMenuCheckboxes />,
+  "810": <U.ShadcnDropdownMenuRadioGroupDemo />,
+  "811": <U.ShadcnDropdownMenuDestructive />,
+  "812": <U.ShadcnDropdownMenuAvatar />,
 }

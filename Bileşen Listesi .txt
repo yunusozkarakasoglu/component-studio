@@ -459,6 +459,16 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `802` ShadcnHoverCardDemo
 - `803` ShadcnHoverCardSides
 - `804` ShadcnHoverCardRtl
+#### ShadcnDropdownMenu
+- `805` ShadcnDropdownMenuDemo
+- `806` ShadcnDropdownMenuBasic
+- `807` ShadcnDropdownMenuShortcuts
+- `808` ShadcnDropdownMenuIcons
+- `809` ShadcnDropdownMenuCheckboxes
+- `810` ShadcnDropdownMenuRadioGroup
+- `811` ShadcnDropdownMenuDestructive
+- `812` ShadcnDropdownMenuAvatar
+- (Submenu/Complex — Heroui Menu'de sub menü yok, atlandı)
 
 ### Seçim
 #### RadioGroup
@@ -833,7 +843,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 715 bileşen (saf React)**
+**Toplam: 723 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-06T12:53:41.517Z",
+  "generatedAt": "2026-08-06T12:56:49.374Z",
   "counts": {
-    "components": 715,
-    "ready": 715,
+    "components": 723,
+    "ready": 723,
     "layouts": 0
   },
   "categories": [
@@ -4814,6 +4814,102 @@
       "code": "/**\n * ShadcnHoverCardRtl\n * RTL örneği — Arapça profil kartı (saf React, shadcn kaynaklı).\n * @id 804\n * @category Overlay\n * @subcategory ShadcnHoverCard\n * @source shadcn\n */\nimport {\n  ShadcnHoverCard,\n  ShadcnHoverCardContent,\n  ShadcnHoverCardTrigger,\n} from \"@/components/ui/shadcn-hover-card\"\n\nfunction ShadcnHoverCardRtl() {\n  return (\n    <ShadcnHoverCard>\n      <ShadcnHoverCardTrigger>تحويم هنا</ShadcnHoverCardTrigger>\n      <ShadcnHoverCardContent className=\"flex w-64 flex-col gap-0.5\" dir=\"rtl\">\n        <div className=\"font-semibold\">@nextjs</div>\n        <div>إطار عمل React — تم إنشاؤه وصيانته بواسطة @vercel.</div>\n        <div className=\"mt-1 text-xs text-muted-foreground\">\n          انضم في ديسمبر 2021\n        </div>\n      </ShadcnHoverCardContent>\n    </ShadcnHoverCard>\n  )\n}\n\nexport { ShadcnHoverCardRtl }\n",
       "description": "ShadcnHoverCardRtl",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-hover-card-rtl.tsx"
+    },
+    {
+      "id": "805",
+      "name": "ShadcnDropdownMenuDemo",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnDropdownMenu",
+      "source": "shadcn",
+      "file": "shadcn-dropdown-menu-demo.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnDropdownMenuDemo\n * Kapsamlı örnek — hesap menüsü (saf React, shadcn kaynaklı).\n * Menu: kütüphanenin mevcut bileşeni (Heroui — saf React).\n * @id 805\n * @category Overlay\n * @subcategory ShadcnDropdownMenu\n * @source shadcn\n */\nimport { CreditCard, LogOut, Settings, User } from \"@/components/ui/icons\"\nimport { Menu, MenuItem, MenuList, MenuPopover, MenuSection, MenuSeparator } from \"@/components/ui/menu\"\nimport { ShadcnKbd } from \"@/components/ui/shadcn-kbd\"\n\nfunction ShadcnDropdownMenuDemo() {\n  return (\n    <Menu>\n      <button type=\"button\" className=\"inline-flex h-9 items-center justify-center rounded-md border border-border bg-background px-4 text-sm font-medium text-foreground transition-colors outline-none hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/40\">\n        Open\n      </button>\n      <MenuPopover>\n        <MenuList>\n          <MenuSection title=\"My Account\">\n            <MenuItem id=\"profile\" textValue=\"Profile\">\n              Profile <ShadcnKbd>⇧⌘P</ShadcnKbd>\n            </MenuItem>\n            <MenuItem id=\"billing\" textValue=\"Billing\">\n              Billing <ShadcnKbd>⌘B</ShadcnKbd>\n            </MenuItem>\n            <MenuItem id=\"settings\" textValue=\"Settings\">\n              Settings <ShadcnKbd>⌘S</ShadcnKbd>\n            </MenuItem>\n          </MenuSection>\n          <MenuSeparator />\n          <MenuSection>\n            <MenuItem id=\"team\" textValue=\"Team\">Team</MenuItem>\n            <MenuItem id=\"invite\" textValue=\"Invite users\">Invite users</MenuItem>\n            <MenuItem id=\"new-team\" textValue=\"New Team\">\n              New Team <ShadcnKbd>⌘T</ShadcnKbd>\n            </MenuItem>\n          </MenuSection>\n          <MenuSeparator />\n          <MenuSection>\n            <MenuItem id=\"github\" textValue=\"GitHub\">GitHub</MenuItem>\n            <MenuItem id=\"support\" textValue=\"Support\">Support</MenuItem>\n            <MenuItem id=\"api\" textValue=\"API\" isDisabled>API</MenuItem>\n          </MenuSection>\n          <MenuSeparator />\n          <MenuItem id=\"logout\" textValue=\"Log out\">\n            <LogOut className=\"size-4\" /> Log out <ShadcnKbd>⇧⌘Q</ShadcnKbd>\n          </MenuItem>\n        </MenuList>\n      </MenuPopover>\n    </Menu>\n  )\n}\n\nexport { ShadcnDropdownMenuDemo }\n",
+      "description": "ShadcnDropdownMenuDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-dropdown-menu-demo.tsx"
+    },
+    {
+      "id": "806",
+      "name": "ShadcnDropdownMenuBasic",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnDropdownMenu",
+      "source": "shadcn",
+      "file": "shadcn-dropdown-menu-basic.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnDropdownMenuBasic\n * Temel menü (saf React, shadcn kaynaklı).\n * Menu: kütüphanenin mevcut bileşeni (Heroui — saf React).\n * @id 806\n * @category Overlay\n * @subcategory ShadcnDropdownMenu\n * @source shadcn\n */\nimport { Menu, MenuItem, MenuList, MenuPopover, MenuSection, MenuSeparator } from \"@/components/ui/menu\"\n\nfunction ShadcnDropdownMenuBasic() {\n  return (\n    <Menu>\n      <button type=\"button\" className=\"inline-flex h-9 items-center justify-center rounded-md border border-border bg-background px-4 text-sm font-medium text-foreground transition-colors outline-none hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/40\">\n        Open\n      </button>\n      <MenuPopover>\n        <MenuList>\n          <MenuSection title=\"My Account\">\n            <MenuItem id=\"profile\" textValue=\"Profile\">Profile</MenuItem>\n            <MenuItem id=\"billing\" textValue=\"Billing\">Billing</MenuItem>\n            <MenuItem id=\"settings\" textValue=\"Settings\">Settings</MenuItem>\n          </MenuSection>\n          <MenuSeparator />\n          <MenuItem id=\"github\" textValue=\"GitHub\">GitHub</MenuItem>\n          <MenuItem id=\"support\" textValue=\"Support\">Support</MenuItem>\n          <MenuItem id=\"api\" textValue=\"API\" isDisabled>API</MenuItem>\n        </MenuList>\n      </MenuPopover>\n    </Menu>\n  )\n}\n\nexport { ShadcnDropdownMenuBasic }\n",
+      "description": "ShadcnDropdownMenuBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-dropdown-menu-basic.tsx"
+    },
+    {
+      "id": "807",
+      "name": "ShadcnDropdownMenuShortcuts",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnDropdownMenu",
+      "source": "shadcn",
+      "file": "shadcn-dropdown-menu-shortcuts.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnDropdownMenuShortcuts\n * Kısayollar — klavye tuşları (saf React, shadcn kaynaklı).\n * Kbd: kütüphanenin mevcut ShadcnKbd'si.\n * @id 807\n * @category Overlay\n * @subcategory ShadcnDropdownMenu\n * @source shadcn\n */\nimport { Menu, MenuItem, MenuList, MenuPopover, MenuSection } from \"@/components/ui/menu\"\nimport { ShadcnKbd } from \"@/components/ui/shadcn-kbd\"\n\nfunction ShadcnDropdownMenuShortcuts() {\n  return (\n    <Menu>\n      <button type=\"button\" className=\"inline-flex h-9 items-center justify-center rounded-md border border-border bg-background px-4 text-sm font-medium text-foreground transition-colors outline-none hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/40\">\n        Open\n      </button>\n      <MenuPopover>\n        <MenuList>\n          <MenuSection title=\"Suggestions\">\n            <MenuItem id=\"profile\" textValue=\"Profile\">\n              Profile <ShadcnKbd>⇧⌘P</ShadcnKbd>\n            </MenuItem>\n            <MenuItem id=\"billing\" textValue=\"Billing\">\n              Billing <ShadcnKbd>⌘B</ShadcnKbd>\n            </MenuItem>\n            <MenuItem id=\"settings\" textValue=\"Settings\">\n              Settings <ShadcnKbd>⌘S</ShadcnKbd>\n            </MenuItem>\n            <MenuItem id=\"new-team\" textValue=\"New Team\">\n              New Team <ShadcnKbd>⌘T</ShadcnKbd>\n            </MenuItem>\n          </MenuSection>\n        </MenuList>\n      </MenuPopover>\n    </Menu>\n  )\n}\n\nexport { ShadcnDropdownMenuShortcuts }\n",
+      "description": "ShadcnDropdownMenuShortcuts",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-dropdown-menu-shortcuts.tsx"
+    },
+    {
+      "id": "808",
+      "name": "ShadcnDropdownMenuIcons",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnDropdownMenu",
+      "source": "shadcn",
+      "file": "shadcn-dropdown-menu-icons.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnDropdownMenuIcons\n * İkonlu menü öğeleri (saf React, shadcn kaynaklı).\n * @id 808\n * @category Overlay\n * @subcategory ShadcnDropdownMenu\n * @source shadcn\n */\nimport { CreditCard, LogOut, Settings, User } from \"@/components/ui/icons\"\nimport { Menu, MenuItem, MenuList, MenuPopover, MenuSection } from \"@/components/ui/menu\"\n\nfunction ShadcnDropdownMenuIcons() {\n  return (\n    <Menu>\n      <button type=\"button\" className=\"inline-flex h-9 items-center justify-center rounded-md border border-border bg-background px-4 text-sm font-medium text-foreground transition-colors outline-none hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/40\">\n        Open\n      </button>\n      <MenuPopover>\n        <MenuList>\n          <MenuSection title=\"My Account\">\n            <MenuItem id=\"profile\" textValue=\"Profile\">\n              <User className=\"size-4\" /> Profile\n            </MenuItem>\n            <MenuItem id=\"billing\" textValue=\"Billing\">\n              <CreditCard className=\"size-4\" /> Billing\n            </MenuItem>\n            <MenuItem id=\"settings\" textValue=\"Settings\">\n              <Settings className=\"size-4\" /> Settings\n            </MenuItem>\n          </MenuSection>\n          <MenuSection>\n            <MenuItem id=\"logout\" textValue=\"Log out\" variant=\"danger\">\n              <LogOut className=\"size-4\" /> Log out\n            </MenuItem>\n          </MenuSection>\n        </MenuList>\n      </MenuPopover>\n    </Menu>\n  )\n}\n\nexport { ShadcnDropdownMenuIcons }\n",
+      "description": "ShadcnDropdownMenuIcons",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-dropdown-menu-icons.tsx"
+    },
+    {
+      "id": "809",
+      "name": "ShadcnDropdownMenuCheckboxes",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnDropdownMenu",
+      "source": "shadcn",
+      "file": "shadcn-dropdown-menu-checkboxes.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnDropdownMenuCheckboxes\n * Onay işaretli öğeler (saf React, shadcn kaynaklı).\n * @id 809\n * @category Overlay\n * @subcategory ShadcnDropdownMenu\n * @source shadcn\n */\nimport { useState } from \"react\"\nimport { Check } from \"@/components/ui/icons\"\nimport { Menu, MenuItem, MenuList, MenuPopover, MenuSection } from \"@/components/ui/menu\"\n\nfunction ShadcnDropdownMenuCheckboxes() {\n  const [selected, setSelected] = useState<string[]>([\"show-status\"])\n\n  const toggle = (id: string) => {\n    setSelected((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]))\n  }\n\n  const items = [\n    { id: \"show-status\", label: \"Show Status Bar\" },\n    { id: \"show-activity\", label: \"Show Activity\" },\n    { id: \"show-avatars\", label: \"Show Avatars\" },\n  ]\n\n  return (\n    <Menu>\n      <button type=\"button\" className=\"inline-flex h-9 items-center justify-center rounded-md border border-border bg-background px-4 text-sm font-medium text-foreground transition-colors outline-none hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/40\">\n        Open\n      </button>\n      <MenuPopover>\n        <MenuList>\n          <MenuSection title=\"Panel\">\n            {items.map((item) => (\n              <MenuItem key={item.id} id={item.id} textValue={item.label} onAction={() => toggle(item.id)}>\n                <span className=\"flex w-4 items-center\">\n                  {selected.includes(item.id) && <Check className=\"size-4\" />}\n                </span>\n                {item.label}\n              </MenuItem>\n            ))}\n          </MenuSection>\n        </MenuList>\n      </MenuPopover>\n    </Menu>\n  )\n}\n\nexport { ShadcnDropdownMenuCheckboxes }\n",
+      "description": "ShadcnDropdownMenuCheckboxes",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-dropdown-menu-checkboxes.tsx"
+    },
+    {
+      "id": "810",
+      "name": "ShadcnDropdownMenuRadioGroup",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnDropdownMenu",
+      "source": "shadcn",
+      "file": "shadcn-dropdown-menu-radio-group.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnDropdownMenuRadioGroup\n * Radyo seçimli menü (saf React, shadcn kaynaklı).\n * @id 810\n * @category Overlay\n * @subcategory ShadcnDropdownMenu\n * @source shadcn\n */\nimport { useState } from \"react\"\nimport { Check } from \"@/components/ui/icons\"\nimport { Menu, MenuItem, MenuList, MenuPopover, MenuSection } from \"@/components/ui/menu\"\n\nfunction ShadcnDropdownMenuRadioGroupDemo() {\n  const [person, setPerson] = useState(\"pedro\")\n\n  const people = [\n    { id: \"pedro\", label: \"Pedro Duarte\" },\n    { id: \"colm\", label: \"Colm Tuite\" },\n    { id: \"toni\", label: \"Toni Castillo\" },\n  ]\n\n  return (\n    <Menu>\n      <button type=\"button\" className=\"inline-flex h-9 items-center justify-center rounded-md border border-border bg-background px-4 text-sm font-medium text-foreground transition-colors outline-none hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/40\">\n        Open\n      </button>\n      <MenuPopover>\n        <MenuList>\n          <MenuSection title=\"Assigned to\">\n            {people.map((p) => (\n              <MenuItem key={p.id} id={p.id} textValue={p.label} onAction={() => setPerson(p.id)}>\n                <span className=\"flex w-4 items-center\">\n                  {person === p.id && <Check className=\"size-4\" />}\n                </span>\n                {p.label}\n              </MenuItem>\n            ))}\n          </MenuSection>\n        </MenuList>\n      </MenuPopover>\n    </Menu>\n  )\n}\n\nexport { ShadcnDropdownMenuRadioGroupDemo }\n",
+      "description": "ShadcnDropdownMenuRadioGroup",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-dropdown-menu-radio-group.tsx"
+    },
+    {
+      "id": "811",
+      "name": "ShadcnDropdownMenuDestructive",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnDropdownMenu",
+      "source": "shadcn",
+      "file": "shadcn-dropdown-menu-destructive.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnDropdownMenuDestructive\n * Yıkıcı eylem öğesi (saf React, shadcn kaynaklı).\n * @id 811\n * @category Overlay\n * @subcategory ShadcnDropdownMenu\n * @source shadcn\n */\nimport { Trash } from \"@/components/ui/icons\"\nimport { Menu, MenuItem, MenuList, MenuPopover, MenuSection } from \"@/components/ui/menu\"\n\nfunction ShadcnDropdownMenuDestructive() {\n  return (\n    <Menu>\n      <button type=\"button\" className=\"inline-flex h-9 items-center justify-center rounded-md border border-border bg-background px-4 text-sm font-medium text-foreground transition-colors outline-none hover:bg-muted focus-visible:ring-3 focus-visible:ring-ring/40\">\n        Open\n      </button>\n      <MenuPopover>\n        <MenuList>\n          <MenuSection title=\"Danger Zone\">\n            <MenuItem id=\"delete\" textValue=\"Delete\" variant=\"danger\">\n              <Trash className=\"size-4\" /> Delete project\n            </MenuItem>\n            <MenuItem id=\"revoke\" textValue=\"Revoke access\" variant=\"danger\">\n              Revoke access\n            </MenuItem>\n          </MenuSection>\n        </MenuList>\n      </MenuPopover>\n    </Menu>\n  )\n}\n\nexport { ShadcnDropdownMenuDestructive }\n",
+      "description": "ShadcnDropdownMenuDestructive",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-dropdown-menu-destructive.tsx"
+    },
+    {
+      "id": "812",
+      "name": "ShadcnDropdownMenuAvatar",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnDropdownMenu",
+      "source": "shadcn",
+      "file": "shadcn-dropdown-menu-avatar.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnDropdownMenuAvatar\n * Avatar menüsü — profil (saf React, shadcn kaynaklı).\n * @id 812\n * @category Overlay\n * @subcategory ShadcnDropdownMenu\n * @source shadcn\n */\nimport { LogOut, Settings, User } from \"@/components/ui/icons\"\nimport { Menu, MenuItem, MenuList, MenuPopover, MenuSection, MenuSeparator } from \"@/components/ui/menu\"\n\nfunction ShadcnDropdownMenuAvatar() {\n  return (\n    <Menu>\n      <button\n        type=\"button\"\n        aria-label=\"Account\"\n        className=\"inline-flex size-9 items-center justify-center rounded-full border border-border bg-muted text-sm font-medium text-foreground transition-colors outline-none hover:bg-muted/80 focus-visible:ring-3 focus-visible:ring-ring/40\"\n      >\n        <User className=\"size-4\" />\n      </button>\n      <MenuPopover>\n        <MenuList>\n          <MenuSection title=\"Signed in as\">\n            <div className=\"px-2.5 py-2 text-sm\">\n              <p className=\"font-medium\">Pedro Duarte</p>\n              <p className=\"text-muted-foreground\">pedro@example.com</p>\n            </div>\n          </MenuSection>\n          <MenuSeparator />\n          <MenuSection>\n            <MenuItem id=\"profile\" textValue=\"Profile\">\n              <User className=\"size-4\" /> Profile\n            </MenuItem>\n            <MenuItem id=\"settings\" textValue=\"Settings\">\n              <Settings className=\"size-4\" /> Settings\n            </MenuItem>\n          </MenuSection>\n          <MenuSeparator />\n          <MenuItem id=\"logout\" textValue=\"Log out\" variant=\"danger\">\n            <LogOut className=\"size-4\" /> Log out\n          </MenuItem>\n        </MenuList>\n      </MenuPopover>\n    </Menu>\n  )\n}\n\nexport { ShadcnDropdownMenuAvatar }\n",
+      "description": "ShadcnDropdownMenuAvatar",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-dropdown-menu-avatar.tsx"
     },
     {
       "id": "389",
