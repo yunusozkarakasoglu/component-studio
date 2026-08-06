@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-06T11:40:16.573Z",
+  "generatedAt": "2026-08-06T11:45:33.097Z",
   "counts": {
-    "components": 562,
-    "ready": 562,
+    "components": 574,
+    "ready": 574,
     "layouts": 0
   },
   "categories": [
@@ -2579,7 +2579,7 @@
       "source": "shadcn",
       "file": "shadcn-field.tsx",
       "exists": true,
-      "code": "/**\n * ShadcnField\n * Saf React bileşen (bağımlılıksız) — shadcn/ui kaynaklı.\n * Form alanı sarmalayıcısı — label + control + açıklama + grup compound.\n *   <ShadcnField data-invalid>\n *     <ShadcnFieldLabel htmlFor=\"x\">Username</ShadcnFieldLabel>\n *     <ShadcnInput id=\"x\" />\n *     <ShadcnFieldDescription>…</ShadcnFieldDescription>\n *   </ShadcnField>\n * Özellikler: orientation (vertical/horizontal) · data-invalid/data-disabled ·\n * ShadcnFieldGroup (birden çok alan).\n * @id 616\n * @category Form Elemanları\n * @subcategory ShadcnInput\n * @source shadcn\n */\nimport { cn } from \"@/lib/utils\"\n\ninterface ShadcnFieldProps extends React.HTMLAttributes<HTMLDivElement> {\n  orientation?: \"vertical\" | \"horizontal\"\n  \"data-invalid\"?: string | boolean\n  \"data-disabled\"?: string | boolean\n}\n\nfunction ShadcnField({ className, orientation = \"vertical\", ...props }: ShadcnFieldProps) {\n  return (\n    <div\n      data-slot=\"shadcn-field\"\n      data-invalid={props[\"data-invalid\"] ? \"true\" : undefined}\n      data-disabled={props[\"data-disabled\"] ? \"true\" : undefined}\n      className={cn(\n        \"group flex flex-col gap-1.5\",\n        orientation === \"horizontal\" && \"flex-row items-center gap-3\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\ninterface ShadcnFieldLabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {}\n\nfunction ShadcnFieldLabel({ className, ...props }: ShadcnFieldLabelProps) {\n  return (\n    <label\n      data-slot=\"shadcn-field-label\"\n      className={cn(\"flex items-center gap-1.5 text-sm font-medium text-foreground\", \"group-data-disabled:opacity-50\", className)}\n      {...props}\n    />\n  )\n}\n\ninterface ShadcnFieldDescriptionProps extends React.HTMLAttributes<HTMLParagraphElement> {}\n\nfunction ShadcnFieldDescription({ className, ...props }: ShadcnFieldDescriptionProps) {\n  return (\n    <p\n      data-slot=\"shadcn-field-description\"\n      className={cn(\"text-xs text-muted-foreground\", \"group-data-invalid:text-red-500\", className)}\n      {...props}\n    />\n  )\n}\n\ninterface ShadcnFieldGroupProps extends React.HTMLAttributes<HTMLDivElement> {}\n\nfunction ShadcnFieldGroup({ className, ...props }: ShadcnFieldGroupProps) {\n  return <div data-slot=\"shadcn-field-group\" className={cn(\"flex flex-col gap-4\", className)} {...props} />\n}\n\nexport { ShadcnField, ShadcnFieldDescription, ShadcnFieldGroup, ShadcnFieldLabel }\nexport type { ShadcnFieldDescriptionProps, ShadcnFieldGroupProps, ShadcnFieldLabelProps, ShadcnFieldProps }\n",
+      "code": "/**\n * ShadcnField\n * Saf React bileşen (bağımlılıksız) — shadcn/ui kaynaklı.\n * Form alanı sarmalayıcısı — label + control + açıklama + grup compound.\n *   <ShadcnField data-invalid>\n *     <ShadcnFieldLabel htmlFor=\"x\">Username</ShadcnFieldLabel>\n *     <ShadcnInput id=\"x\" />\n *     <ShadcnFieldDescription>…</ShadcnFieldDescription>\n *   </ShadcnField>\n * Özellikler: orientation (vertical/horizontal) · data-invalid/data-disabled ·\n * ShadcnFieldGroup (birden çok alan).\n * @id 616\n * @category Form Elemanları\n * @subcategory ShadcnInput\n * @source shadcn\n */\nimport { cn } from \"@/lib/utils\"\n\ninterface ShadcnFieldProps extends React.HTMLAttributes<HTMLDivElement> {\n  orientation?: \"vertical\" | \"horizontal\"\n  \"data-invalid\"?: string | boolean\n  \"data-disabled\"?: string | boolean\n}\n\nfunction ShadcnField({ className, orientation = \"vertical\", ...props }: ShadcnFieldProps) {\n  return (\n    <div\n      data-slot=\"shadcn-field\"\n      data-invalid={props[\"data-invalid\"] ? \"true\" : undefined}\n      data-disabled={props[\"data-disabled\"] ? \"true\" : undefined}\n      className={cn(\n        \"group flex flex-col gap-1.5\",\n        orientation === \"horizontal\" && \"flex-row items-center gap-3\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\ninterface ShadcnFieldLabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {}\n\nfunction ShadcnFieldLabel({ className, ...props }: ShadcnFieldLabelProps) {\n  return (\n    <label\n      data-slot=\"shadcn-field-label\"\n      className={cn(\"flex items-center gap-1.5 text-sm font-medium text-foreground\", \"group-data-disabled:opacity-50\", className)}\n      {...props}\n    />\n  )\n}\n\ninterface ShadcnFieldDescriptionProps extends React.HTMLAttributes<HTMLParagraphElement> {}\n\nfunction ShadcnFieldDescription({ className, ...props }: ShadcnFieldDescriptionProps) {\n  return (\n    <p\n      data-slot=\"shadcn-field-description\"\n      className={cn(\"text-xs text-muted-foreground\", \"group-data-invalid:text-red-500\", className)}\n      {...props}\n    />\n  )\n}\n\ninterface ShadcnFieldGroupProps extends React.HTMLAttributes<HTMLDivElement> {}\n\nfunction ShadcnFieldGroup({ className, ...props }: ShadcnFieldGroupProps) {\n  return <div data-slot=\"shadcn-field-group\" className={cn(\"flex flex-col gap-4\", className)} {...props} />\n}\n\ninterface ShadcnFieldContentProps extends React.HTMLAttributes<HTMLDivElement> {}\n\nfunction ShadcnFieldContent({ className, ...props }: ShadcnFieldContentProps) {\n  return <div data-slot=\"shadcn-field-content\" className={cn(\"flex flex-col gap-0.5\", className)} {...props} />\n}\n\ninterface ShadcnFieldErrorProps extends React.HTMLAttributes<HTMLParagraphElement> {}\n\nfunction ShadcnFieldError({ className, ...props }: ShadcnFieldErrorProps) {\n  return <p data-slot=\"shadcn-field-error\" className={cn(\"text-sm text-red-500\", className)} {...props} />\n}\n\ninterface ShadcnFieldSetProps extends React.HTMLAttributes<HTMLFieldSetElement> {}\n\nfunction ShadcnFieldSet({ className, ...props }: ShadcnFieldSetProps) {\n  return <fieldset data-slot=\"shadcn-field-set\" className={cn(\"group/field-set flex flex-col gap-4\", className)} {...props} />\n}\n\ninterface ShadcnFieldLegendProps extends React.HTMLAttributes<HTMLLegendElement> {\n  variant?: \"default\" | \"label\"\n}\n\nfunction ShadcnFieldLegend({ className, variant = \"default\", ...props }: ShadcnFieldLegendProps) {\n  return (\n    <legend\n      data-slot=\"shadcn-field-legend\"\n      className={cn(\n        \"text-base font-medium text-foreground\",\n        variant === \"label\" && \"text-sm\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\ninterface ShadcnFieldTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {}\n\nfunction ShadcnFieldTitle({ className, ...props }: ShadcnFieldTitleProps) {\n  return <h3 data-slot=\"shadcn-field-title\" className={cn(\"text-sm font-medium text-foreground\", className)} {...props} />\n}\n\ninterface ShadcnFieldSeparatorProps extends React.HTMLAttributes<HTMLDivElement> {}\n\nfunction ShadcnFieldSeparator({ className, ...props }: ShadcnFieldSeparatorProps) {\n  return (\n    <div\n      data-slot=\"shadcn-field-separator\"\n      role=\"separator\"\n      aria-orientation=\"horizontal\"\n      className={cn(\"h-px w-full bg-border\", className)}\n      {...props}\n    />\n  )\n}\n\nexport {\n  ShadcnField,\n  ShadcnFieldContent,\n  ShadcnFieldDescription,\n  ShadcnFieldError,\n  ShadcnFieldGroup,\n  ShadcnFieldLabel,\n  ShadcnFieldLegend,\n  ShadcnFieldSeparator,\n  ShadcnFieldSet,\n  ShadcnFieldTitle,\n}\nexport type {\n  ShadcnFieldContentProps,\n  ShadcnFieldDescriptionProps,\n  ShadcnFieldErrorProps,\n  ShadcnFieldGroupProps,\n  ShadcnFieldLabelProps,\n  ShadcnFieldLegendProps,\n  ShadcnFieldProps,\n  ShadcnFieldSeparatorProps,\n  ShadcnFieldSetProps,\n  ShadcnFieldTitleProps,\n}\n",
       "description": "ShadcnField",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-field.tsx"
     },
@@ -2978,6 +2978,150 @@
       "code": "/**\n * ShadcnKbdRtl\n * RTL örneği — Arapça düzen tuş grubu (saf React, shadcn kaynaklı).\n * @id 649\n * @category Genel\n * @subcategory ShadcnKbd\n * @source shadcn\n */\nimport { ShadcnKbd, ShadcnKbdGroup } from \"@/components/ui/shadcn-kbd\"\n\nfunction ShadcnKbdRtl() {\n  return (\n    <div className=\"flex flex-col items-center gap-4\" dir=\"rtl\">\n      <ShadcnKbdGroup>\n        <ShadcnKbd>⌘</ShadcnKbd>\n        <ShadcnKbd>⇧</ShadcnKbd>\n        <ShadcnKbd>⌥</ShadcnKbd>\n        <ShadcnKbd>⌃</ShadcnKbd>\n      </ShadcnKbdGroup>\n      <ShadcnKbdGroup>\n        <ShadcnKbd>Ctrl</ShadcnKbd>\n        <span>+</span>\n        <ShadcnKbd>B</ShadcnKbd>\n      </ShadcnKbdGroup>\n    </div>\n  )\n}\n\nexport { ShadcnKbdRtl }\n",
       "description": "ShadcnKbdRtl",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-kbd-rtl.tsx"
+    },
+    {
+      "id": "650",
+      "name": "ShadcnFieldDemo",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnField",
+      "source": "shadcn",
+      "file": "shadcn-field-demo.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnFieldDemo\n * Ödeme formu — Field compound'un tam kullanımı (saf React, shadcn kaynaklı).\n * Select/Checkbox/Textarea/Button: kütüphanenin mevcut bileşenleri (Heroui — saf React).\n * @id 650\n * @category Form Elemanları\n * @subcategory ShadcnField\n * @source shadcn\n */\nimport { Button } from \"@/components/ui/button\"\nimport { Checkbox } from \"@/components/ui/checkbox\"\nimport {\n  ShadcnField,\n  ShadcnFieldDescription,\n  ShadcnFieldGroup,\n  ShadcnFieldLabel,\n  ShadcnFieldLegend,\n  ShadcnFieldSeparator,\n  ShadcnFieldSet,\n} from \"@/components/ui/shadcn-field\"\nimport { ShadcnInput } from \"@/components/ui/shadcn-input\"\nimport { ShadcnTextarea } from \"@/components/ui/shadcn-textarea\"\n\nconst months = [\n  { label: \"01\", value: \"01\" },\n  { label: \"02\", value: \"02\" },\n  { label: \"03\", value: \"03\" },\n  { label: \"04\", value: \"04\" },\n  { label: \"05\", value: \"05\" },\n  { label: \"06\", value: \"06\" },\n]\nconst years = [\n  { label: \"2025\", value: \"2025\" },\n  { label: \"2026\", value: \"2026\" },\n  { label: \"2027\", value: \"2027\" },\n]\n\nfunction ShadcnFieldDemo() {\n  return (\n    <div className=\"w-full max-w-md\">\n      <form>\n        <ShadcnFieldGroup>\n          <ShadcnFieldSet>\n            <ShadcnFieldLegend>Payment Method</ShadcnFieldLegend>\n            <ShadcnFieldDescription>\n              All transactions are secure and encrypted\n            </ShadcnFieldDescription>\n            <ShadcnFieldGroup>\n              <ShadcnField>\n                <ShadcnFieldLabel htmlFor=\"field-demo-name\">Name on Card</ShadcnFieldLabel>\n                <ShadcnInput id=\"field-demo-name\" placeholder=\"Evil Rabbit\" required />\n              </ShadcnField>\n              <ShadcnField>\n                <ShadcnFieldLabel htmlFor=\"field-demo-number\">Card Number</ShadcnFieldLabel>\n                <ShadcnInput id=\"field-demo-number\" placeholder=\"1234 5678 9012 3456\" required />\n                <ShadcnFieldDescription>Enter your 16-digit card number</ShadcnFieldDescription>\n              </ShadcnField>\n              <div className=\"grid grid-cols-3 gap-4\">\n                <ShadcnField>\n                  <ShadcnFieldLabel htmlFor=\"field-demo-month\">Month</ShadcnFieldLabel>\n                  <select id=\"field-demo-month\" className=\"h-9 w-full rounded-md border border-border bg-background px-3 text-sm\">\n                    {months.map((m) => <option key={m.value} value={m.value}>{m.label}</option>)}\n                  </select>\n                </ShadcnField>\n                <ShadcnField>\n                  <ShadcnFieldLabel htmlFor=\"field-demo-year\">Year</ShadcnFieldLabel>\n                  <select id=\"field-demo-year\" className=\"h-9 w-full rounded-md border border-border bg-background px-3 text-sm\">\n                    {years.map((y) => <option key={y.value} value={y.value}>{y.label}</option>)}\n                  </select>\n                </ShadcnField>\n                <ShadcnField>\n                  <ShadcnFieldLabel htmlFor=\"field-demo-cvv\">CVV</ShadcnFieldLabel>\n                  <ShadcnInput id=\"field-demo-cvv\" placeholder=\"123\" required />\n                </ShadcnField>\n              </div>\n            </ShadcnFieldGroup>\n          </ShadcnFieldSet>\n          <ShadcnFieldSeparator />\n          <ShadcnFieldSet>\n            <ShadcnFieldLegend>Billing Address</ShadcnFieldLegend>\n            <ShadcnFieldDescription>\n              The billing address associated with your payment method\n            </ShadcnFieldDescription>\n            <ShadcnFieldGroup>\n              <ShadcnField orientation=\"horizontal\">\n                <Checkbox defaultSelected>Same as shipping address</Checkbox>\n              </ShadcnField>\n            </ShadcnFieldGroup>\n          </ShadcnFieldSet>\n          <ShadcnFieldSet>\n            <ShadcnFieldGroup>\n              <ShadcnField>\n                <ShadcnFieldLabel htmlFor=\"field-demo-comments\">Comments</ShadcnFieldLabel>\n                <ShadcnTextarea id=\"field-demo-comments\" placeholder=\"Add any additional comments\" className=\"resize-none\" />\n              </ShadcnField>\n            </ShadcnFieldGroup>\n          </ShadcnFieldSet>\n          <ShadcnField orientation=\"horizontal\">\n            <Button type=\"submit\">Submit</Button>\n            <Button variant=\"outline\" type=\"button\">Cancel</Button>\n          </ShadcnField>\n        </ShadcnFieldGroup>\n      </form>\n    </div>\n  )\n}\n\nexport { ShadcnFieldDemo }\n",
+      "description": "ShadcnFieldDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-field-demo.tsx"
+    },
+    {
+      "id": "651",
+      "name": "ShadcnFieldInput",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnField",
+      "source": "shadcn",
+      "file": "shadcn-field-input.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnFieldInput\n * Field + Input — kullanıcı adı/şifre (saf React, shadcn kaynaklı).\n * @id 651\n * @category Form Elemanları\n * @subcategory ShadcnField\n * @source shadcn\n */\nimport {\n  ShadcnField,\n  ShadcnFieldDescription,\n  ShadcnFieldGroup,\n  ShadcnFieldLabel,\n  ShadcnFieldSet,\n} from \"@/components/ui/shadcn-field\"\nimport { ShadcnInput } from \"@/components/ui/shadcn-input\"\n\nfunction ShadcnFieldInput() {\n  return (\n    <ShadcnFieldSet className=\"w-full max-w-xs\">\n      <ShadcnFieldGroup>\n        <ShadcnField>\n          <ShadcnFieldLabel htmlFor=\"field-input-username\">Username</ShadcnFieldLabel>\n          <ShadcnInput id=\"field-input-username\" type=\"text\" placeholder=\"Max Leiter\" />\n          <ShadcnFieldDescription>\n            Choose a unique username for your account.\n          </ShadcnFieldDescription>\n        </ShadcnField>\n        <ShadcnField>\n          <ShadcnFieldLabel htmlFor=\"field-input-password\">Password</ShadcnFieldLabel>\n          <ShadcnFieldDescription>\n            Must be at least 8 characters long.\n          </ShadcnFieldDescription>\n          <ShadcnInput id=\"field-input-password\" type=\"password\" placeholder=\"••••••••\" />\n        </ShadcnField>\n      </ShadcnFieldGroup>\n    </ShadcnFieldSet>\n  )\n}\n\nexport { ShadcnFieldInput }\n",
+      "description": "ShadcnFieldInput",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-field-input.tsx"
+    },
+    {
+      "id": "652",
+      "name": "ShadcnFieldTextarea",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnField",
+      "source": "shadcn",
+      "file": "shadcn-field-textarea.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnFieldTextarea\n * Field + Textarea — geri bildirim (saf React, shadcn kaynaklı).\n * @id 652\n * @category Form Elemanları\n * @subcategory ShadcnField\n * @source shadcn\n */\nimport {\n  ShadcnField,\n  ShadcnFieldDescription,\n  ShadcnFieldGroup,\n  ShadcnFieldLabel,\n  ShadcnFieldSet,\n} from \"@/components/ui/shadcn-field\"\nimport { ShadcnTextarea } from \"@/components/ui/shadcn-textarea\"\n\nfunction ShadcnFieldTextarea() {\n  return (\n    <ShadcnFieldSet className=\"w-full max-w-xs\">\n      <ShadcnFieldGroup>\n        <ShadcnField>\n          <ShadcnFieldLabel htmlFor=\"field-textarea-feedback\">Feedback</ShadcnFieldLabel>\n          <ShadcnTextarea id=\"field-textarea-feedback\" placeholder=\"Your feedback helps us improve...\" rows={4} />\n          <ShadcnFieldDescription>\n            Share your thoughts about our service.\n          </ShadcnFieldDescription>\n        </ShadcnField>\n      </ShadcnFieldGroup>\n    </ShadcnFieldSet>\n  )\n}\n\nexport { ShadcnFieldTextarea }\n",
+      "description": "ShadcnFieldTextarea",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-field-textarea.tsx"
+    },
+    {
+      "id": "653",
+      "name": "ShadcnFieldSelect",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnField",
+      "source": "shadcn",
+      "file": "shadcn-field-select.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnFieldSelect\n * Field + Select — departman seçimi (saf React, shadcn kaynaklı).\n * Select: kütüphanenin mevcut bileşeni (Heroui — saf React).\n * @id 653\n * @category Form Elemanları\n * @subcategory ShadcnField\n * @source shadcn\n */\nimport {\n  ShadcnField,\n  ShadcnFieldDescription,\n  ShadcnFieldLabel,\n} from \"@/components/ui/shadcn-field\"\nimport { Select, SelectIndicator, SelectPopover, SelectTrigger, SelectValue } from \"@/components/ui/select\"\nimport { ListBox, ListBoxItem, ListBoxItemIndicator } from \"@/components/ui/list-box\"\n\nconst items = [\n  { label: \"Engineering\", value: \"engineering\" },\n  { label: \"Design\", value: \"design\" },\n  { label: \"Marketing\", value: \"marketing\" },\n  { label: \"Sales\", value: \"sales\" },\n  { label: \"Customer Support\", value: \"support\" },\n]\n\nfunction ShadcnFieldSelect() {\n  return (\n    <ShadcnField className=\"w-full max-w-xs\">\n      <ShadcnFieldLabel>Department</ShadcnFieldLabel>\n      <Select className=\"relative\" placeholder=\"Choose department\">\n        <SelectTrigger>\n          <SelectValue />\n          <SelectIndicator />\n        </SelectTrigger>\n        <SelectPopover>\n          <ListBox>\n            {items.map((item) => (\n              <ListBoxItem key={item.value} id={item.value} textValue={item.label}>\n                {item.label}\n                <ListBoxItemIndicator />\n              </ListBoxItem>\n            ))}\n          </ListBox>\n        </SelectPopover>\n      </Select>\n      <ShadcnFieldDescription>\n        Select your department or area of work.\n      </ShadcnFieldDescription>\n    </ShadcnField>\n  )\n}\n\nexport { ShadcnFieldSelect }\n",
+      "description": "ShadcnFieldSelect",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-field-select.tsx"
+    },
+    {
+      "id": "654",
+      "name": "ShadcnFieldSlider",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnField",
+      "source": "shadcn",
+      "file": "shadcn-field-slider.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnFieldSlider\n * Field + Slider — fiyat aralığı (saf React, shadcn kaynaklı).\n * Slider: kütüphanenin mevcut bileşeni (Heroui — saf React).\n * @id 654\n * @category Form Elemanları\n * @subcategory ShadcnField\n * @source shadcn\n */\nimport {\n  ShadcnField,\n  ShadcnFieldDescription,\n  ShadcnFieldTitle,\n} from \"@/components/ui/shadcn-field\"\nimport { Slider, SliderFill, SliderThumb, SliderTrack } from \"@/components/ui/slider\"\n\nfunction ShadcnFieldSlider() {\n  return (\n    <ShadcnField className=\"w-full max-w-xs\">\n      <ShadcnFieldTitle>Price Range</ShadcnFieldTitle>\n      <ShadcnFieldDescription>\n        Set your budget range ($200 - $800).\n      </ShadcnFieldDescription>\n      <Slider defaultValue={[200, 800]} max={1000} min={0} step={10} aria-label=\"Price Range\" className=\"mt-2 w-full\">\n        <SliderTrack>\n          <SliderFill />\n          <SliderThumb />\n        </SliderTrack>\n      </Slider>\n    </ShadcnField>\n  )\n}\n\nexport { ShadcnFieldSlider }\n",
+      "description": "ShadcnFieldSlider",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-field-slider.tsx"
+    },
+    {
+      "id": "655",
+      "name": "ShadcnFieldFieldset",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnField",
+      "source": "shadcn",
+      "file": "shadcn-field-fieldset.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnFieldFieldset\n * FieldSet + FieldGroup — adres bilgileri (saf React, shadcn kaynaklı).\n * @id 655\n * @category Form Elemanları\n * @subcategory ShadcnField\n * @source shadcn\n */\nimport {\n  ShadcnField,\n  ShadcnFieldDescription,\n  ShadcnFieldGroup,\n  ShadcnFieldLabel,\n  ShadcnFieldLegend,\n  ShadcnFieldSet,\n} from \"@/components/ui/shadcn-field\"\nimport { ShadcnInput } from \"@/components/ui/shadcn-input\"\n\nfunction ShadcnFieldFieldset() {\n  return (\n    <ShadcnFieldSet className=\"w-full max-w-sm\">\n      <ShadcnFieldLegend>Address Information</ShadcnFieldLegend>\n      <ShadcnFieldDescription>\n        We need your address to deliver your order.\n      </ShadcnFieldDescription>\n      <ShadcnFieldGroup>\n        <ShadcnField>\n          <ShadcnFieldLabel htmlFor=\"fieldset-street\">Street Address</ShadcnFieldLabel>\n          <ShadcnInput id=\"fieldset-street\" type=\"text\" placeholder=\"123 Main St\" />\n        </ShadcnField>\n        <div className=\"grid grid-cols-2 gap-4\">\n          <ShadcnField>\n            <ShadcnFieldLabel htmlFor=\"fieldset-city\">City</ShadcnFieldLabel>\n            <ShadcnInput id=\"fieldset-city\" type=\"text\" placeholder=\"New York\" />\n          </ShadcnField>\n          <ShadcnField>\n            <ShadcnFieldLabel htmlFor=\"fieldset-zip\">Postal Code</ShadcnFieldLabel>\n            <ShadcnInput id=\"fieldset-zip\" type=\"text\" placeholder=\"90502\" />\n          </ShadcnField>\n        </div>\n      </ShadcnFieldGroup>\n    </ShadcnFieldSet>\n  )\n}\n\nexport { ShadcnFieldFieldset }\n",
+      "description": "ShadcnFieldFieldset",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-field-fieldset.tsx"
+    },
+    {
+      "id": "656",
+      "name": "ShadcnFieldCheckbox",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnField",
+      "source": "shadcn",
+      "file": "shadcn-field-checkbox.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnFieldCheckbox\n * Field + Checkbox — masaüstü öğeleri (saf React, shadcn kaynaklı).\n * Checkbox: kütüphanenin mevcut bileşeni (Heroui — saf React).\n * @id 656\n * @category Form Elemanları\n * @subcategory ShadcnField\n * @source shadcn\n */\nimport { Checkbox } from \"@/components/ui/checkbox\"\nimport {\n  ShadcnField,\n  ShadcnFieldContent,\n  ShadcnFieldDescription,\n  ShadcnFieldGroup,\n  ShadcnFieldLabel,\n  ShadcnFieldLegend,\n  ShadcnFieldSeparator,\n  ShadcnFieldSet,\n} from \"@/components/ui/shadcn-field\"\n\nfunction ShadcnFieldCheckbox() {\n  return (\n    <ShadcnFieldGroup className=\"w-full max-w-xs\">\n      <ShadcnFieldSet>\n        <ShadcnFieldLegend variant=\"label\">\n          Show these items on the desktop\n        </ShadcnFieldLegend>\n        <ShadcnFieldDescription>\n          Select the items you want to show on the desktop.\n        </ShadcnFieldDescription>\n        <ShadcnFieldGroup className=\"gap-3\">\n          <ShadcnField orientation=\"horizontal\">\n            <Checkbox defaultSelected>Hard disks</Checkbox>\n          </ShadcnField>\n          <ShadcnField orientation=\"horizontal\">\n            <Checkbox>External disks</Checkbox>\n          </ShadcnField>\n          <ShadcnField orientation=\"horizontal\">\n            <Checkbox>CDs, DVDs, and iPods</Checkbox>\n          </ShadcnField>\n          <ShadcnField orientation=\"horizontal\">\n            <Checkbox>Connected servers</Checkbox>\n          </ShadcnField>\n        </ShadcnFieldGroup>\n      </ShadcnFieldSet>\n      <ShadcnFieldSeparator />\n      <ShadcnField orientation=\"horizontal\">\n        <Checkbox defaultSelected />\n        <ShadcnFieldContent>\n          <ShadcnFieldLabel>Sync Desktop & Documents folders</ShadcnFieldLabel>\n          <ShadcnFieldDescription>\n            Your Desktop & Documents folders are being synced with iCloud Drive.\n          </ShadcnFieldDescription>\n        </ShadcnFieldContent>\n      </ShadcnField>\n    </ShadcnFieldGroup>\n  )\n}\n\nexport { ShadcnFieldCheckbox }\n",
+      "description": "ShadcnFieldCheckbox",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-field-checkbox.tsx"
+    },
+    {
+      "id": "657",
+      "name": "ShadcnFieldRadio",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnField",
+      "source": "shadcn",
+      "file": "shadcn-field-radio.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnFieldRadio\n * Field + RadioGroup — abonelik planı (saf React, shadcn kaynaklı).\n * RadioGroup: kütüphanenin mevcut bileşeni (Heroui — saf React).\n * @id 657\n * @category Form Elemanları\n * @subcategory ShadcnField\n * @source shadcn\n */\nimport { Radio, RadioGroup } from \"@/components/ui/radio-group\"\nimport {\n  ShadcnField,\n  ShadcnFieldDescription,\n  ShadcnFieldLegend,\n  ShadcnFieldSet,\n} from \"@/components/ui/shadcn-field\"\n\nfunction ShadcnFieldRadio() {\n  return (\n    <ShadcnFieldSet className=\"w-full max-w-xs\">\n      <ShadcnFieldLegend variant=\"label\">Subscription Plan</ShadcnFieldLegend>\n      <ShadcnFieldDescription>\n        Yearly and lifetime plans offer significant savings.\n      </ShadcnFieldDescription>\n      <RadioGroup defaultValue=\"monthly\">\n        <ShadcnField orientation=\"horizontal\">\n          <Radio value=\"monthly\">Monthly ($9.99/month)</Radio>\n        </ShadcnField>\n        <ShadcnField orientation=\"horizontal\">\n          <Radio value=\"yearly\">Yearly ($99.99/year)</Radio>\n        </ShadcnField>\n        <ShadcnField orientation=\"horizontal\">\n          <Radio value=\"lifetime\">Lifetime ($299.99)</Radio>\n        </ShadcnField>\n      </RadioGroup>\n    </ShadcnFieldSet>\n  )\n}\n\nexport { ShadcnFieldRadio }\n",
+      "description": "ShadcnFieldRadio",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-field-radio.tsx"
+    },
+    {
+      "id": "658",
+      "name": "ShadcnFieldSwitch",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnField",
+      "source": "shadcn",
+      "file": "shadcn-field-switch.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnFieldSwitch\n * Field + Switch — çok faktörlü kimlik doğrulama (saf React, shadcn kaynaklı).\n * Switch: kütüphanenin mevcut bileşeni (Heroui — saf React).\n * @id 658\n * @category Form Elemanları\n * @subcategory ShadcnField\n * @source shadcn\n */\nimport {\n  ShadcnField,\n  ShadcnFieldLabel,\n} from \"@/components/ui/shadcn-field\"\nimport { Switch, SwitchContent, SwitchControl, SwitchThumb } from \"@/components/ui/switch\"\n\nfunction ShadcnFieldSwitch() {\n  return (\n    <ShadcnField orientation=\"horizontal\" className=\"w-fit\">\n      <ShadcnFieldLabel>Multi-factor authentication</ShadcnFieldLabel>\n      <Switch>\n        <SwitchContent>\n          <SwitchControl>\n            <SwitchThumb />\n          </SwitchControl>\n        </SwitchContent>\n      </Switch>\n    </ShadcnField>\n  )\n}\n\nexport { ShadcnFieldSwitch }\n",
+      "description": "ShadcnFieldSwitch",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-field-switch.tsx"
+    },
+    {
+      "id": "659",
+      "name": "ShadcnFieldChoiceCard",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnField",
+      "source": "shadcn",
+      "file": "shadcn-field-choice-card.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnFieldChoiceCard\n * Seçilebilir kart — RadioGroup ile (saf React, shadcn kaynaklı).\n * RadioGroup: kütüphanenin mevcut bileşeni (Heroui — saf React).\n * @id 659\n * @category Form Elemanları\n * @subcategory ShadcnField\n * @source shadcn\n */\nimport { Radio, RadioGroup } from \"@/components/ui/radio-group\"\nimport {\n  ShadcnField,\n  ShadcnFieldDescription,\n  ShadcnFieldGroup,\n  ShadcnFieldLegend,\n  ShadcnFieldSet,\n  ShadcnFieldTitle,\n} from \"@/components/ui/shadcn-field\"\n\nfunction ShadcnFieldChoiceCard() {\n  return (\n    <ShadcnFieldGroup className=\"w-full max-w-xs\">\n      <ShadcnFieldSet>\n        <ShadcnFieldLegend variant=\"label\">Compute Environment</ShadcnFieldLegend>\n        <ShadcnFieldDescription>\n          Select the compute environment for your cluster.\n        </ShadcnFieldDescription>\n        <RadioGroup defaultValue=\"kubernetes\">\n          <ShadcnField orientation=\"horizontal\" className=\"rounded-md border border-border p-3\">\n            <div className=\"flex flex-1 flex-col gap-0.5\">\n              <ShadcnFieldTitle>Kubernetes</ShadcnFieldTitle>\n              <ShadcnFieldDescription>\n                Run GPU workloads on a K8s cluster.\n              </ShadcnFieldDescription>\n            </div>\n            <Radio value=\"kubernetes\" />\n          </ShadcnField>\n          <ShadcnField orientation=\"horizontal\" className=\"rounded-md border border-border p-3\">\n            <div className=\"flex flex-1 flex-col gap-0.5\">\n              <ShadcnFieldTitle>Virtual Machine</ShadcnFieldTitle>\n              <ShadcnFieldDescription>\n                Access a cluster to run GPU workloads.\n              </ShadcnFieldDescription>\n            </div>\n            <Radio value=\"vm\" />\n          </ShadcnField>\n        </RadioGroup>\n      </ShadcnFieldSet>\n    </ShadcnFieldGroup>\n  )\n}\n\nexport { ShadcnFieldChoiceCard }\n",
+      "description": "ShadcnFieldChoiceCard",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-field-choice-card.tsx"
+    },
+    {
+      "id": "660",
+      "name": "ShadcnFieldGroupExample",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnField",
+      "source": "shadcn",
+      "file": "shadcn-field-group-example.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnFieldGroupExample\n * FieldGroup + FieldSeparator — bildirim tercihleri (saf React, shadcn kaynaklı).\n * Checkbox: kütüphanenin mevcut bileşeni (Heroui — saf React).\n * @id 660\n * @category Form Elemanları\n * @subcategory ShadcnField\n * @source shadcn\n */\nimport { Checkbox } from \"@/components/ui/checkbox\"\nimport {\n  ShadcnField,\n  ShadcnFieldDescription,\n  ShadcnFieldGroup,\n  ShadcnFieldLabel,\n  ShadcnFieldSeparator,\n  ShadcnFieldSet,\n} from \"@/components/ui/shadcn-field\"\n\nfunction ShadcnFieldGroupExample() {\n  return (\n    <ShadcnFieldGroup className=\"w-full max-w-xs\">\n      <ShadcnFieldSet>\n        <ShadcnFieldLabel>Responses</ShadcnFieldLabel>\n        <ShadcnFieldDescription>\n          Get notified when ChatGPT responds to requests that take time, like\n          research or image generation.\n        </ShadcnFieldDescription>\n        <ShadcnFieldGroup>\n          <ShadcnField orientation=\"horizontal\">\n            <Checkbox defaultSelected isDisabled>Push notifications</Checkbox>\n          </ShadcnField>\n        </ShadcnFieldGroup>\n      </ShadcnFieldSet>\n      <ShadcnFieldSeparator />\n      <ShadcnFieldSet>\n        <ShadcnFieldLabel>Tasks</ShadcnFieldLabel>\n        <ShadcnFieldDescription>\n          Get notified when tasks you&apos;ve created have updates.\n        </ShadcnFieldDescription>\n        <ShadcnFieldGroup>\n          <ShadcnField orientation=\"horizontal\">\n            <Checkbox>Push notifications</Checkbox>\n          </ShadcnField>\n          <ShadcnField orientation=\"horizontal\">\n            <Checkbox>Email notifications</Checkbox>\n          </ShadcnField>\n        </ShadcnFieldGroup>\n      </ShadcnFieldSet>\n    </ShadcnFieldGroup>\n  )\n}\n\nexport { ShadcnFieldGroupExample }\n",
+      "description": "ShadcnFieldGroupExample",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-field-group-example.tsx"
+    },
+    {
+      "id": "661",
+      "name": "ShadcnFieldRtl",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnField",
+      "source": "shadcn",
+      "file": "shadcn-field-rtl.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnFieldRtl\n * RTL örneği — Arapça form alanı (saf React, shadcn kaynaklı).\n * @id 661\n * @category Form Elemanları\n * @subcategory ShadcnField\n * @source shadcn\n */\nimport {\n  ShadcnField,\n  ShadcnFieldDescription,\n  ShadcnFieldLabel,\n} from \"@/components/ui/shadcn-field\"\nimport { ShadcnInput } from \"@/components/ui/shadcn-input\"\n\nfunction ShadcnFieldRtl() {\n  return (\n    <ShadcnField className=\"w-full max-w-xs\" dir=\"rtl\">\n      <ShadcnFieldLabel htmlFor=\"field-rtl-name\" dir=\"rtl\">الاسم</ShadcnFieldLabel>\n      <ShadcnInput id=\"field-rtl-name\" dir=\"rtl\" placeholder=\"أدخل اسمك\" />\n      <ShadcnFieldDescription dir=\"rtl\">سيظهر اسمك في ملفك الشخصي.</ShadcnFieldDescription>\n    </ShadcnField>\n  )\n}\n\nexport { ShadcnFieldRtl }\n",
+      "description": "ShadcnFieldRtl",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-field-rtl.tsx"
     },
     {
       "id": "389",
