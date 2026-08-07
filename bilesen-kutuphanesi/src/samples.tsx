@@ -911,4 +911,9 @@ export const SAMPLES: Record<string, ReactNode> = {
   "935": <U.ShadcnCollapsibleSettings />,
   "936": <U.ShadcnCollapsibleFileTree />,
   "937": <U.ShadcnCollapsibleRtl />,
+  "938": <U.ShadcnProgress />,
+  "939": <U.ShadcnProgressDemo />,
+  "940": <U.ShadcnProgressWithLabel />,
+  "941": <U.ShadcnProgressControlled />,
+  "942": <U.ShadcnProgressRtl />,
 }

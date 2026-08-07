@@ -617,6 +617,12 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `935` ShadcnCollapsibleSettings
 - `936` ShadcnCollapsibleFileTree
 - `937` ShadcnCollapsibleRtl
+#### ShadcnProgress
+- `938` ShadcnProgress
+- `939` ShadcnProgressDemo
+- `940` ShadcnProgressWithLabel
+- `941` ShadcnProgressControlled
+- `942` ShadcnProgressRtl
 
 ### Seçim
 #### RadioGroup
@@ -991,7 +997,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 848 bileşen (saf React)**
+**Toplam: 853 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

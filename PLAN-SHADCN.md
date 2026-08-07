@@ -122,7 +122,8 @@
 ### ✅ Adım 6 tamamlandı (8 element, 63 bileşen)
 
 ### Adım 7 — Veri + Yükleme (6)
-Table → Progress → Skeleton → Spinner → Empty
+Table → - [x] **Progress** — 938-942 (çekirdek + 4 örnek)
+Skeleton → Spinner → Empty
 
 ### Adım 8 — Genel (10)
 Separator → Typography → Aspect Ratio → Resizable → Scroll Area → Marker → Item → Direction → Attachment

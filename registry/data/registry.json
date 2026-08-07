@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-07T14:20:25.262Z",
+  "generatedAt": "2026-08-07T14:26:45.255Z",
   "counts": {
-    "components": 848,
-    "ready": 848,
+    "components": 853,
+    "ready": 853,
     "layouts": 0
   },
   "categories": [
@@ -6383,7 +6383,7 @@
       "source": "shadcn",
       "file": "shadcn-collapsible-settings.tsx",
       "exists": true,
-      "code": "/**\n * ShadcnCollapsibleSettings\n * Ayarlar paneli — açılır bölümler (saf React, shadcn kaynaklı).\n * @id 935\n * @category Veri Gösterimi\n * @subcategory ShadcnCollapsible\n * @source shadcn\n */\nimport { ChevronDown } from \"@/components/ui/icons\"\nimport { ShadcnSwitch, ShadcnSwitchContent, ShadcnSwitchControl, ShadcnSwitchThumb } from \"@/components/ui/shadcn-switch\"\nimport {\n  ShadcnCollapsible,\n  ShadcnCollapsibleContent,\n  ShadcnCollapsibleTrigger,\n} from \"@/components/ui/shadcn-collapsible\"\n\nfunction ShadcnCollapsibleSettings() {\n  return (\n    <div className=\"w-[350px] space-y-3\">\n      <ShadcnCollapsible defaultOpen>\n        <ShadcnCollapsibleTrigger className=\"w-full justify-between rounded-md border px-4 py-2.5 text-sm font-medium hover:bg-muted\">\n          <span>Notifications</span>\n          <ChevronDown className=\"size-4 text-muted-foreground\" />\n        </ShadcnCollapsibleTrigger>\n        <ShadcnCollapsibleContent className=\"mt-2 space-y-3 rounded-md border p-4\">\n          <div className=\"flex items-center justify-between\">\n            <div>\n              <p className=\"text-sm font-medium\">Email notifications</p>\n              <p className=\"text-xs text-muted-foreground\">Receive email updates</p>\n            </div>\n            <ShadcnSwitch defaultChecked>\n              <ShadcnSwitchContent><ShadcnSwitchControl><ShadcnSwitchThumb /></ShadcnSwitchControl></ShadcnSwitchContent>\n            </ShadcnSwitch>\n          </div>\n          <div className=\"flex items-center justify-between\">\n            <div>\n              <p className=\"text-sm font-medium\">Push notifications</p>\n              <p className=\"text-xs text-muted-foreground\">Receive push updates</p>\n            </div>\n            <ShadcnSwitch>\n              <ShadcnSwitchContent><ShadcnSwitchControl><ShadcnSwitchThumb /></ShadcnSwitchControl></ShadcnSwitchContent>\n            </ShadcnSwitch>\n          </div>\n        </ShadcnCollapsibleContent>\n      </ShadcnCollapsible>\n    </div>\n  )\n}\n\nexport { ShadcnCollapsibleSettings }\n",
+      "code": "/**\n * ShadcnCollapsibleSettings\n * Ayarlar paneli — açılır bölümler (saf React, shadcn kaynaklı).\n * @id 935\n * @category Veri Gösterimi\n * @subcategory ShadcnCollapsible\n * @source shadcn\n */\nimport { ChevronDown } from \"@/components/ui/icons\"\nimport { ShadcnSwitch } from \"@/components/ui/shadcn-switch\"\nimport {\n  ShadcnCollapsible,\n  ShadcnCollapsibleContent,\n  ShadcnCollapsibleTrigger,\n} from \"@/components/ui/shadcn-collapsible\"\n\nfunction ShadcnCollapsibleSettings() {\n  return (\n    <div className=\"w-[350px] space-y-3\">\n      <ShadcnCollapsible defaultOpen>\n        <ShadcnCollapsibleTrigger className=\"w-full justify-between rounded-md border px-4 py-2.5 text-sm font-medium hover:bg-muted\">\n          <span>Notifications</span>\n          <ChevronDown className=\"size-4 text-muted-foreground\" />\n        </ShadcnCollapsibleTrigger>\n        <ShadcnCollapsibleContent className=\"mt-2 space-y-3 rounded-md border p-4\">\n          <div className=\"flex items-center justify-between\">\n            <div>\n              <p className=\"text-sm font-medium\">Email notifications</p>\n              <p className=\"text-xs text-muted-foreground\">Receive email updates</p>\n            </div>\n            <ShadcnSwitch defaultChecked />\n          </div>\n          <div className=\"flex items-center justify-between\">\n            <div>\n              <p className=\"text-sm font-medium\">Push notifications</p>\n              <p className=\"text-xs text-muted-foreground\">Receive push updates</p>\n            </div>\n            <ShadcnSwitch />\n          </div>\n        </ShadcnCollapsibleContent>\n      </ShadcnCollapsible>\n    </div>\n  )\n}\n\nexport { ShadcnCollapsibleSettings }\n",
       "description": "ShadcnCollapsibleSettings",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-collapsible-settings.tsx"
     },
@@ -6410,6 +6410,66 @@
       "code": "/**\n * ShadcnCollapsibleRtl\n * RTL örneği — Arapça açılır panel (saf React, shadcn kaynaklı).\n * @id 937\n * @category Veri Gösterimi\n * @subcategory ShadcnCollapsible\n * @source shadcn\n */\nimport { ChevronDown } from \"@/components/ui/icons\"\nimport {\n  ShadcnCollapsible,\n  ShadcnCollapsibleContent,\n  ShadcnCollapsibleTrigger,\n} from \"@/components/ui/shadcn-collapsible\"\n\nfunction ShadcnCollapsibleRtl() {\n  return (\n    <ShadcnCollapsible className=\"w-[350px]\" dir=\"rtl\">\n      <ShadcnCollapsibleTrigger className=\"w-full justify-between rounded-md border px-4 py-2 text-sm font-medium hover:bg-muted\">\n        <span>تفاصيل الطلب</span>\n        <ChevronDown className=\"size-4 text-muted-foreground\" />\n      </ShadcnCollapsibleTrigger>\n      <ShadcnCollapsibleContent className=\"mt-2 rounded-md border px-4 py-3 text-sm text-muted-foreground\">\n        <p>رقم التتبع: 1Z999AA10123456784</p>\n        <p className=\"mt-2\">الحالة: تم الشحن</p>\n      </ShadcnCollapsibleContent>\n    </ShadcnCollapsible>\n  )\n}\n\nexport { ShadcnCollapsibleRtl }\n",
       "description": "ShadcnCollapsibleRtl",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-collapsible-rtl.tsx"
+    },
+    {
+      "id": "938",
+      "name": "ShadcnProgress",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnProgress",
+      "source": "shadcn",
+      "file": "shadcn-progress.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnProgress\n * Saf React bileşen (bağımlılıksız) — shadcn/ui kaynaklı.\n * İlerleme çubuğu — value (0-100).\n *   <ShadcnProgress value={66} />\n * @id 938\n * @category Yükleme & İlerleme\n * @subcategory ShadcnProgress\n * @source shadcn\n */\nimport type { HTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface ShadcnProgressProps extends HTMLAttributes<HTMLDivElement> {\n  value?: number\n  max?: number\n  isIndeterminate?: boolean\n}\n\nfunction ShadcnProgress({ className, value = 0, max = 100, isIndeterminate, ...props }: ShadcnProgressProps) {\n  const pct = Math.min(100, Math.max(0, (value / max) * 100))\n\n  return (\n    <div\n      role=\"progressbar\"\n      aria-valuenow={isIndeterminate ? undefined : Math.round(value)}\n      aria-valuemin={0}\n      aria-valuemax={max}\n      data-slot=\"shadcn-progress\"\n      className={cn(\"relative h-2 w-full overflow-hidden rounded-full bg-muted\", className)}\n      {...props}\n    >\n      <div\n        data-slot=\"shadcn-progress-indicator\"\n        className={cn(\n          \"h-full rounded-full bg-blue-600 transition-all duration-300\",\n          isIndeterminate && \"animate-progress-indeterminate\"\n        )}\n        style={isIndeterminate ? undefined : { width: `${pct}%` }}\n      />\n    </div>\n  )\n}\n\nexport { ShadcnProgress }\nexport type { ShadcnProgressProps }\n",
+      "description": "ShadcnProgress",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-progress.tsx"
+    },
+    {
+      "id": "939",
+      "name": "ShadcnProgressDemo",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnProgress",
+      "source": "shadcn",
+      "file": "shadcn-progress-demo.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnProgressDemo\n * Temel örnek — zamanlayıcıyla ilerleme (saf React, shadcn kaynaklı).\n * @id 939\n * @category Yükleme & İlerleme\n * @subcategory ShadcnProgress\n * @source shadcn\n */\nimport { useEffect, useState } from \"react\"\nimport { ShadcnProgress } from \"@/components/ui/shadcn-progress\"\n\nfunction ShadcnProgressDemo() {\n  const [progress, setProgress] = useState(13)\n\n  useEffect(() => {\n    const timer = setTimeout(() => setProgress(66), 500)\n    return () => clearTimeout(timer)\n  }, [])\n\n  return <ShadcnProgress value={progress} className=\"w-[60%]\" />\n}\n\nexport { ShadcnProgressDemo }\n",
+      "description": "ShadcnProgressDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-progress-demo.tsx"
+    },
+    {
+      "id": "940",
+      "name": "ShadcnProgressWithLabel",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnProgress",
+      "source": "shadcn",
+      "file": "shadcn-progress-with-label.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnProgressWithLabel\n * Etiketli ilerleme çubuğu (saf React, shadcn kaynaklı).\n * @id 940\n * @category Yükleme & İlerleme\n * @subcategory ShadcnProgress\n * @source shadcn\n */\nimport { ShadcnProgress } from \"@/components/ui/shadcn-progress\"\n\nfunction ShadcnProgressWithLabel() {\n  return (\n    <div className=\"flex w-[60%] flex-col gap-2\">\n      <div className=\"flex items-center justify-between text-sm\">\n        <span className=\"text-muted-foreground\">Uploading file…</span>\n        <span className=\"font-medium tabular-nums\">72%</span>\n      </div>\n      <ShadcnProgress value={72} />\n    </div>\n  )\n}\n\nexport { ShadcnProgressWithLabel }\n",
+      "description": "ShadcnProgressWithLabel",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-progress-with-label.tsx"
+    },
+    {
+      "id": "941",
+      "name": "ShadcnProgressControlled",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnProgress",
+      "source": "shadcn",
+      "file": "shadcn-progress-controlled.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnProgressControlled\n * Kontrollü ilerleme — butonlarla (saf React, shadcn kaynaklı).\n * @id 941\n * @category Yükleme & İlerleme\n * @subcategory ShadcnProgress\n * @source shadcn\n */\nimport { useState } from \"react\"\nimport { ShadcnProgress } from \"@/components/ui/shadcn-progress\"\n\nfunction ShadcnProgressControlled() {\n  const [value, setValue] = useState(20)\n\n  return (\n    <div className=\"flex w-[60%] flex-col gap-3\">\n      <ShadcnProgress value={value} />\n      <div className=\"flex items-center gap-2\">\n        <button type=\"button\" onClick={() => setValue((v) => Math.max(0, v - 10))} className=\"rounded-md border border-border px-2.5 py-1 text-xs font-medium hover:bg-muted\">\n          -10\n        </button>\n        <button type=\"button\" onClick={() => setValue((v) => Math.min(100, v + 10))} className=\"rounded-md border border-border px-2.5 py-1 text-xs font-medium hover:bg-muted\">\n          +10\n        </button>\n        <span className=\"ml-auto text-sm tabular-nums text-muted-foreground\">{value}%</span>\n      </div>\n    </div>\n  )\n}\n\nexport { ShadcnProgressControlled }\n",
+      "description": "ShadcnProgressControlled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-progress-controlled.tsx"
+    },
+    {
+      "id": "942",
+      "name": "ShadcnProgressRtl",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnProgress",
+      "source": "shadcn",
+      "file": "shadcn-progress-rtl.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnProgressRtl\n * RTL örneği — Arapça ilerleme (saf React, shadcn kaynaklı).\n * @id 942\n * @category Yükleme & İlerleme\n * @subcategory ShadcnProgress\n * @source shadcn\n */\nimport { ShadcnProgress } from \"@/components/ui/shadcn-progress\"\n\nfunction ShadcnProgressRtl() {\n  return (\n    <div className=\"flex w-[60%] flex-col gap-2\" dir=\"rtl\">\n      <div className=\"flex items-center justify-between text-sm\">\n        <span className=\"text-muted-foreground\">جاري التحميل…</span>\n        <span className=\"font-medium tabular-nums\">55%</span>\n      </div>\n      <ShadcnProgress value={55} />\n    </div>\n  )\n}\n\nexport { ShadcnProgressRtl }\n",
+      "description": "ShadcnProgressRtl",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-progress-rtl.tsx"
     },
     {
       "id": "389",
