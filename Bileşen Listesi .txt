@@ -537,6 +537,14 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `867` ShadcnAccordionDisabled
 - `868` ShadcnAccordionBorders
 - `869` ShadcnAccordionCard
+#### ShadcnAlert
+- `870` ShadcnAlert + Title/Description/Action (variant)
+- `871` ShadcnAlertDemo
+- `872` ShadcnAlertBasic
+- `873` ShadcnAlertDestructive
+- `874` ShadcnAlertAction
+- `875` ShadcnAlertColors
+- `876` ShadcnAlertRtl
 
 ### Seçim
 #### RadioGroup
@@ -911,7 +919,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 780 bileşen (saf React)**
+**Toplam: 787 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

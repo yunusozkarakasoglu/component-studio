@@ -843,4 +843,11 @@ export const SAMPLES: Record<string, ReactNode> = {
   "867": <U.ShadcnAccordionDisabled />,
   "868": <U.ShadcnAccordionBorders />,
   "869": <U.ShadcnAccordionCard />,
+  "870": <U.ShadcnAlert />,
+  "871": <U.ShadcnAlertDemo />,
+  "872": <U.ShadcnAlertBasic />,
+  "873": <U.ShadcnAlertDestructive />,
+  "874": <U.ShadcnAlertActionExample />,
+  "875": <U.ShadcnAlertColors />,
+  "876": <U.ShadcnAlertRtl />,
 }
