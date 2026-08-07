@@ -20,7 +20,7 @@ export interface ShadcnDateRange {
   to?: Date
 }
 
-interface ShadcnCalendarProps extends HTMLAttributes<HTMLDivElement> {
+interface ShadcnCalendarProps extends Omit<HTMLAttributes<HTMLDivElement>, "onSelect"> {
   mode?: "single" | "range"
   selected?: Date | ShadcnDateRange
   onSelect?: (value: Date | ShadcnDateRange | undefined) => void
