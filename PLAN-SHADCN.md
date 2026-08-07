@@ -25,7 +25,7 @@
 | **Navigasyon** (5) | Tabs, Pagination, Breadcrumb, Navigation Menu, - [x] **Menubar** — 858-862 (14 compound + 4 örnek)
 
 ### ✅ Adım 5 tamamlandı (5 element, 29 bileşen) |
-| **Accordion** (1) | Accordion |
+| **- [x] **Accordion** — 863-869 (4 compound + 6 örnek)** (1) | - [x] **Accordion** — 863-869 (4 compound + 6 örnek) |
 | **Alert & Dialog** (2) | Alert, Alert Dialog |
 | **Takvim** (2) | Calendar, Date Picker |
 | **Combobox** (4) | Combobox, Command, Select, Native Select |
@@ -94,7 +94,7 @@
 - [x] **Navigation Menu** — 854-857 (6 compound + 3 örnek)
 - [x] **Menubar** — 858-862 (14 compound + 4 örnek)
 
-### ✅ Adım 5 tamamlandı (5 element, 29 bileşen) → Accordion → Collapsible → Alert → Alert Dialog
+### ✅ Adım 5 tamamlandı (5 element, 29 bileşen) → - [x] **Accordion** — 863-869 (4 compound + 6 örnek) → Collapsible → Alert → Alert Dialog
 
 ### Adım 6 — Takvim + Combobox (6)
 Calendar → Date Picker → Combobox → Command → Select → Native Select

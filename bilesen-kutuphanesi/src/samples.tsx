@@ -836,4 +836,11 @@ export const SAMPLES: Record<string, ReactNode> = {
   "860": <U.ShadcnMenubarCheckbox />,
   "861": <U.ShadcnMenubarRadio />,
   "862": <U.ShadcnMenubarSubmenu />,
+  "863": <U.ShadcnAccordion />,
+  "864": <U.ShadcnAccordionDemo />,
+  "865": <U.ShadcnAccordionBasic />,
+  "866": <U.ShadcnAccordionMultiple />,
+  "867": <U.ShadcnAccordionDisabled />,
+  "868": <U.ShadcnAccordionBorders />,
+  "869": <U.ShadcnAccordionCard />,
 }

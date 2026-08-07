@@ -529,6 +529,14 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `860` ShadcnMenubarCheckbox
 - `861` ShadcnMenubarRadio
 - `862` ShadcnMenubarSubmenu
+#### ShadcnAccordion
+- `863` ShadcnAccordion + Item/Trigger/Content (single/multiple)
+- `864` ShadcnAccordionDemo
+- `865` ShadcnAccordionBasic
+- `866` ShadcnAccordionMultiple
+- `867` ShadcnAccordionDisabled
+- `868` ShadcnAccordionBorders
+- `869` ShadcnAccordionCard
 
 ### Seçim
 #### RadioGroup
@@ -903,7 +911,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 773 bileşen (saf React)**
+**Toplam: 780 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
