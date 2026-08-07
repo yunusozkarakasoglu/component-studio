@@ -596,6 +596,12 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `917` ShadcnSelectInvalid
 - `918` ShadcnSelectAlignItem
 - `919` ShadcnSelectRtl
+#### ShadcnTable
+- `920` ShadcnTable + Header/Body/Row/Head/Cell/Caption/Footer
+- `921` ShadcnTableDemo
+- `922` ShadcnTableFooter
+- `923` ShadcnTableActions
+- `924` ShadcnTableRtl
 
 ### Seçim
 #### RadioGroup
@@ -970,7 +976,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 830 bileşen (saf React)**
+**Toplam: 835 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

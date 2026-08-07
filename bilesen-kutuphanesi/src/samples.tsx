@@ -893,4 +893,9 @@ export const SAMPLES: Record<string, ReactNode> = {
   "917": <U.ShadcnSelectInvalid />,
   "918": <U.ShadcnSelectAlignItem />,
   "919": <U.ShadcnSelectRtl />,
+  "920": <U.ShadcnTable />,
+  "921": <U.ShadcnTableDemo />,
+  "922": <U.ShadcnTableFooterExample />,
+  "923": <U.ShadcnTableActions />,
+  "924": <U.ShadcnTableRtl />,
 }
