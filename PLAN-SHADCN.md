@@ -9,7 +9,9 @@
 
 | Kategori | Elementler |
 |---|---|
-| **Form Elemanları** (9) | Input, Label, Textarea, Kbd, Field, Input Group, Input OTP, Native Select, - [x] **Slider** — 692-698 (Demo/Range/Multiple/Vertical/Controlled/Disabled/Rtl)
+| **Form Elemanları** (9) | Input, Label, Textarea, Kbd, Field, Input Group, Input OTP, Native - [x] **Select** — 913-919 (mevcut Heroui Select ile 7 örnek)
+
+### ✅ Adım 6 tamamlandı (8 element, 63 bileşen), - [x] **Slider** — 692-698 (Demo/Range/Multiple/Vertical/Controlled/Disabled/Rtl)
 
 ### ✅ Adım 1 tamamlandı (9 element, 84 bileşen) |
 | **Seçim** (5) | Checkbox, Switch, Radio Group, Toggle, - [x] **Toggle Group** — 732-740 (çekirdek + 8 örnek)
@@ -28,7 +30,11 @@
 | **- [x] **Accordion** — 863-869 (4 compound + 6 örnek)** (1) | - [x] **Accordion** — 863-869 (4 compound + 6 örnek) |
 | **Alert & Dialog** (2) | Alert, Alert Dialog |
 | **Takvim** (2) | Calendar, Date Picker |
-| **Combobox** (4) | Combobox, Command, Select, Native Select |
+| **Combobox** (4) | Combobox, Command, - [x] **Select** — 913-919 (mevcut Heroui Select ile 7 örnek)
+
+### ✅ Adım 6 tamamlandı (8 element, 63 bileşen), Native - [x] **Select** — 913-919 (mevcut Heroui Select ile 7 örnek)
+
+### ✅ Adım 6 tamamlandı (8 element, 63 bileşen) |
 | **Veri Gösterimi** (3) | Table, Empty, Collapsible |
 | **Yükleme & İlerleme** (3) | Progress, Skeleton, Spinner |
 | **Genel** (10) | Separator, Typography, Aspect Ratio, Resizable, Scroll Area, Marker, Item, Direction, Attachment, Aspect Ratio |
@@ -51,7 +57,11 @@
 - [x] **Field** — 650-661 (çekirdek genişletildi: Content/Error/Set/Legend/Title/Separator + 12 örnek)
 - [x] **Input Group** — 662-675 (ShadcnInputGroup familyası + 13 örnek)
 - [x] **Input OTP** — 676-685 (mevcut InputOTP ile 10 örnek)
-- [x] **Native Select** — 686-691 (Select + Option + OptGroup + 5 örnek)
+- [x] **Native - [x] **Select** — 913-919 (mevcut Heroui Select ile 7 örnek)
+
+### ✅ Adım 6 tamamlandı (8 element, 63 bileşen)** — 686-691 (- [x] **Select** — 913-919 (mevcut Heroui Select ile 7 örnek)
+
+### ✅ Adım 6 tamamlandı (8 element, 63 bileşen) + Option + OptGroup + 5 örnek)
 - [x] **Slider** — 692-698 (Demo/Range/Multiple/Vertical/Controlled/Disabled/Rtl)
 
 ### ✅ Adım 1 tamamlandı (9 element, 84 bileşen)
@@ -101,7 +111,11 @@
 - [x] **Date Picker** — 891-897 (ShadcnCalendar tabanlı + 6 örnek)
 - [x] **Combobox** — 898-906 (saf React çekirdek + 8 örnek)
 - [x] **Command** — 907-912 (saf React çekirdek — cmdk yerine + 5 örnek)
-Select → Native Select
+- [x] **Select** — 913-919 (mevcut Heroui Select ile 7 örnek)
+
+### ✅ Adım 6 tamamlandı (8 element, 63 bileşen) → Native - [x] **Select** — 913-919 (mevcut Heroui Select ile 7 örnek)
+
+### ✅ Adım 6 tamamlandı (8 element, 63 bileşen)
 
 ### Adım 7 — Veri + Yükleme (6)
 Table → Progress → Skeleton → Spinner → Empty

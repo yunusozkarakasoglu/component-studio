@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-07T14:03:09.257Z",
+  "generatedAt": "2026-08-07T14:06:29.530Z",
   "counts": {
-    "components": 823,
-    "ready": 823,
+    "components": 830,
+    "ready": 830,
     "layouts": 0
   },
   "categories": [
@@ -6110,6 +6110,90 @@
       "code": "/**\n * ShadcnCommandRtl\n * RTL örneği — Arapça komut menüsü (saf React, shadcn kaynaklı).\n * @id 912\n * @category Combobox\n * @subcategory ShadcnCommand\n * @source shadcn\n */\nimport {\n  ShadcnCommand,\n  ShadcnCommandEmpty,\n  ShadcnCommandGroup,\n  ShadcnCommandInput,\n  ShadcnCommandItem,\n  ShadcnCommandList,\n} from \"@/components/ui/shadcn-command\"\n\nfunction ShadcnCommandRtl() {\n  return (\n    <ShadcnCommand className=\"max-w-sm rounded-lg border\" dir=\"rtl\">\n      <ShadcnCommandInput placeholder=\"اكتب أمرًا أو ابحث…\" />\n      <ShadcnCommandList>\n        <ShadcnCommandEmpty>لا توجد نتائج</ShadcnCommandEmpty>\n        <ShadcnCommandGroup heading=\"اقتراحات\">\n          <ShadcnCommandItem value=\"بحث\">بحث</ShadcnCommandItem>\n          <ShadcnCommandItem value=\"فتح\">فتح ملف</ShadcnCommandItem>\n          <ShadcnCommandItem value=\"حفظ\">حفظ</ShadcnCommandItem>\n        </ShadcnCommandGroup>\n      </ShadcnCommandList>\n    </ShadcnCommand>\n  )\n}\n\nexport { ShadcnCommandRtl }\n",
       "description": "ShadcnCommandRtl",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-command-rtl.tsx"
+    },
+    {
+      "id": "913",
+      "name": "ShadcnSelectDemo",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSelect",
+      "source": "shadcn",
+      "file": "shadcn-select-demo.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSelectDemo\n * Temel örnek — meyve seçimi (saf React, shadcn kaynaklı).\n * Select: kütüphanenin mevcut bileşeni (Heroui — saf React, API uyumlu).\n * @id 913\n * @category Combobox\n * @subcategory ShadcnSelect\n * @source shadcn\n */\nimport { Select, SelectIndicator, SelectPopover, SelectTrigger, SelectValue } from \"@/components/ui/select\"\nimport { ListBox, ListBoxItem } from \"@/components/ui/list-box\"\n\nconst items = [\n  { value: \"apple\", label: \"Apple\" },\n  { value: \"banana\", label: \"Banana\" },\n  { value: \"blueberry\", label: \"Blueberry\" },\n  { value: \"grapes\", label: \"Grapes\" },\n  { value: \"pineapple\", label: \"Pineapple\" },\n]\n\nfunction ShadcnSelectDemo() {\n  return (\n    <Select className=\"relative w-full max-w-48\" placeholder=\"Select a fruit\">\n      <SelectTrigger>\n        <SelectValue />\n        <SelectIndicator />\n      </SelectTrigger>\n      <SelectPopover>\n        <ListBox>\n          {items.map((item) => (\n            <ListBoxItem key={item.value} id={item.value} textValue={item.label}>\n              {item.label}\n            </ListBoxItem>\n          ))}\n        </ListBox>\n      </SelectPopover>\n    </Select>\n  )\n}\n\nexport { ShadcnSelectDemo }\n",
+      "description": "ShadcnSelectDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-select-demo.tsx"
+    },
+    {
+      "id": "914",
+      "name": "ShadcnSelectGroups",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSelect",
+      "source": "shadcn",
+      "file": "shadcn-select-groups.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSelectGroups\n * Gruplu seçim — bölüm başlıkları (saf React, shadcn kaynaklı).\n * @id 914\n * @category Combobox\n * @subcategory ShadcnSelect\n * @source shadcn\n */\nimport { Select, SelectIndicator, SelectPopover, SelectTrigger, SelectValue } from \"@/components/ui/select\"\nimport { ListBox, ListBoxItem, ListBoxSection } from \"@/components/ui/list-box\"\n\nfunction ShadcnSelectGroups() {\n  return (\n    <Select className=\"relative w-full max-w-48\" placeholder=\"Select a fruit\">\n      <SelectTrigger>\n        <SelectValue />\n        <SelectIndicator />\n      </SelectTrigger>\n      <SelectPopover>\n        <ListBox>\n          <ListBoxSection title=\"Citrus\">\n            <ListBoxItem id=\"lemon\" textValue=\"Lemon\">Lemon</ListBoxItem>\n            <ListBoxItem id=\"lime\" textValue=\"Lime\">Lime</ListBoxItem>\n          </ListBoxSection>\n          <ListBoxSection title=\"Berries\">\n            <ListBoxItem id=\"blueberry\" textValue=\"Blueberry\">Blueberry</ListBoxItem>\n            <ListBoxItem id=\"strawberry\" textValue=\"Strawberry\">Strawberry</ListBoxItem>\n          </ListBoxSection>\n        </ListBox>\n      </SelectPopover>\n    </Select>\n  )\n}\n\nexport { ShadcnSelectGroups }\n",
+      "description": "ShadcnSelectGroups",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-select-groups.tsx"
+    },
+    {
+      "id": "915",
+      "name": "ShadcnSelectScrollable",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSelect",
+      "source": "shadcn",
+      "file": "shadcn-select-scrollable.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSelectScrollable\n * Kaydırılabilir seçim listesi (saf React, shadcn kaynaklı).\n * @id 915\n * @category Combobox\n * @subcategory ShadcnSelect\n * @source shadcn\n */\nimport { Select, SelectIndicator, SelectPopover, SelectTrigger, SelectValue } from \"@/components/ui/select\"\nimport { ListBox, ListBoxItem } from \"@/components/ui/list-box\"\n\nconst manyItems = Array.from({ length: 20 }, (_, i) => ({ value: `item-${i}`, label: `Item ${i + 1}` }))\n\nfunction ShadcnSelectScrollable() {\n  return (\n    <Select className=\"relative w-full max-w-48\" placeholder=\"Select an item\">\n      <SelectTrigger>\n        <SelectValue />\n        <SelectIndicator />\n      </SelectTrigger>\n      <SelectPopover>\n        <ListBox className=\"max-h-48 overflow-y-auto\">\n          {manyItems.map((item) => (\n            <ListBoxItem key={item.value} id={item.value} textValue={item.label}>\n              {item.label}\n            </ListBoxItem>\n          ))}\n        </ListBox>\n      </SelectPopover>\n    </Select>\n  )\n}\n\nexport { ShadcnSelectScrollable }\n",
+      "description": "ShadcnSelectScrollable",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-select-scrollable.tsx"
+    },
+    {
+      "id": "916",
+      "name": "ShadcnSelectDisabled",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSelect",
+      "source": "shadcn",
+      "file": "shadcn-select-disabled.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSelectDisabled\n * Devre dışı seçim + devre dışı öğe (saf React, shadcn kaynaklı).\n * @id 916\n * @category Combobox\n * @subcategory ShadcnSelect\n * @source shadcn\n */\nimport { Select, SelectIndicator, SelectPopover, SelectTrigger, SelectValue } from \"@/components/ui/select\"\nimport { ListBox, ListBoxItem } from \"@/components/ui/list-box\"\n\nconst items = [\n  { value: \"apple\", label: \"Apple\" },\n  { value: \"banana\", label: \"Banana\" },\n  { value: \"blueberry\", label: \"Blueberry\" },\n  { value: \"grapes\", label: \"Grapes\", disabled: true },\n  { value: \"pineapple\", label: \"Pineapple\" },\n]\n\nfunction ShadcnSelectDisabled() {\n  return (\n    <Select className=\"relative w-full max-w-48\" placeholder=\"Select a fruit\" isDisabled>\n      <SelectTrigger>\n        <SelectValue />\n        <SelectIndicator />\n      </SelectTrigger>\n      <SelectPopover>\n        <ListBox>\n          {items.map((item) => (\n            <ListBoxItem key={item.value} id={item.value} textValue={item.label} isDisabled={item.disabled}>\n              {item.label}\n            </ListBoxItem>\n          ))}\n        </ListBox>\n      </SelectPopover>\n    </Select>\n  )\n}\n\nexport { ShadcnSelectDisabled }\n",
+      "description": "ShadcnSelectDisabled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-select-disabled.tsx"
+    },
+    {
+      "id": "917",
+      "name": "ShadcnSelectInvalid",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSelect",
+      "source": "shadcn",
+      "file": "shadcn-select-invalid.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSelectInvalid\n * Geçersiz durum — data-invalid (saf React, shadcn kaynaklı).\n * @id 917\n * @category Combobox\n * @subcategory ShadcnSelect\n * @source shadcn\n */\nimport { Select, SelectIndicator, SelectPopover, SelectTrigger, SelectValue } from \"@/components/ui/select\"\nimport { ListBox, ListBoxItem } from \"@/components/ui/list-box\"\nimport { ShadcnField, ShadcnFieldError, ShadcnFieldLabel } from \"@/components/ui/shadcn-field\"\n\nconst items = [\n  { value: \"apple\", label: \"Apple\" },\n  { value: \"banana\", label: \"Banana\" },\n  { value: \"blueberry\", label: \"Blueberry\" },\n]\n\nfunction ShadcnSelectInvalid() {\n  return (\n    <ShadcnField className=\"w-full max-w-48\" data-invalid>\n      <ShadcnFieldLabel>Fruit</ShadcnFieldLabel>\n      <Select className=\"relative\" placeholder=\"Select a fruit\" aria-invalid>\n        <SelectTrigger>\n          <SelectValue />\n          <SelectIndicator />\n        </SelectTrigger>\n        <SelectPopover>\n          <ListBox>\n            {items.map((item) => (\n              <ListBoxItem key={item.value} id={item.value} textValue={item.label}>\n                {item.label}\n              </ListBoxItem>\n            ))}\n          </ListBox>\n        </SelectPopover>\n      </Select>\n      <ShadcnFieldError>Please select a fruit.</ShadcnFieldError>\n    </ShadcnField>\n  )\n}\n\nexport { ShadcnSelectInvalid }\n",
+      "description": "ShadcnSelectInvalid",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-select-invalid.tsx"
+    },
+    {
+      "id": "918",
+      "name": "ShadcnSelectAlignItem",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSelect",
+      "source": "shadcn",
+      "file": "shadcn-select-align-item.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSelectAlignItem\n * Trigger ile hizalama — Switch ile aç/kapat (saf React, shadcn kaynaklı).\n * @id 918\n * @category Combobox\n * @subcategory ShadcnSelect\n * @source shadcn\n */\nimport { useState } from \"react\"\nimport { Select, SelectIndicator, SelectPopover, SelectTrigger, SelectValue } from \"@/components/ui/select\"\nimport { ListBox, ListBoxItem } from \"@/components/ui/list-box\"\nimport {\n  ShadcnField,\n  ShadcnFieldContent,\n  ShadcnFieldDescription,\n  ShadcnFieldGroup,\n  ShadcnFieldLabel,\n} from \"@/components/ui/shadcn-field\"\nimport { ShadcnSwitch } from \"@/components/ui/shadcn-switch\"\n\nconst items = [\n  { value: \"apple\", label: \"Apple\" },\n  { value: \"banana\", label: \"Banana\" },\n  { value: \"blueberry\", label: \"Blueberry\" },\n]\n\nfunction ShadcnSelectAlignItem() {\n  const [align, setAlign] = useState(true)\n\n  return (\n    <ShadcnFieldGroup className=\"w-full max-w-xs\">\n      <ShadcnField orientation=\"horizontal\">\n        <ShadcnFieldContent>\n          <ShadcnFieldLabel>Align Item</ShadcnFieldLabel>\n          <ShadcnFieldDescription>\n            Toggle to align the item with the trigger.\n          </ShadcnFieldDescription>\n        </ShadcnFieldContent>\n        <ShadcnSwitch checked={align} onCheckedChange={setAlign} />\n      </ShadcnField>\n      <ShadcnField>\n        <Select className=\"relative\" placeholder=\"Select a fruit\" defaultValue=\"banana\">\n          <SelectTrigger>\n            <SelectValue />\n            <SelectIndicator />\n          </SelectTrigger>\n          <SelectPopover className={align ? \"\" : \"mt-0\"}>\n            <ListBox>\n              {items.map((item) => (\n                <ListBoxItem key={item.value} id={item.value} textValue={item.label}>\n                  {item.label}\n                </ListBoxItem>\n              ))}\n            </ListBox>\n          </SelectPopover>\n        </Select>\n      </ShadcnField>\n    </ShadcnFieldGroup>\n  )\n}\n\nexport { ShadcnSelectAlignItem }\n",
+      "description": "ShadcnSelectAlignItem",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-select-align-item.tsx"
+    },
+    {
+      "id": "919",
+      "name": "ShadcnSelectRtl",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSelect",
+      "source": "shadcn",
+      "file": "shadcn-select-rtl.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSelectRtl\n * RTL örneği — Arapça seçim (saf React, shadcn kaynaklı).\n * @id 919\n * @category Combobox\n * @subcategory ShadcnSelect\n * @source shadcn\n */\nimport { Select, SelectIndicator, SelectPopover, SelectTrigger, SelectValue } from \"@/components/ui/select\"\nimport { ListBox, ListBoxItem } from \"@/components/ui/list-box\"\n\nfunction ShadcnSelectRtl() {\n  return (\n    <div dir=\"rtl\">\n      <Select className=\"relative w-full max-w-48\" placeholder=\"اختر فاكهة\">\n        <SelectTrigger>\n          <SelectValue />\n          <SelectIndicator />\n        </SelectTrigger>\n        <SelectPopover>\n          <ListBox>\n            <ListBoxItem id=\"apple\" textValue=\"تفاحة\">تفاحة</ListBoxItem>\n            <ListBoxItem id=\"banana\" textValue=\"موزة\">موزة</ListBoxItem>\n            <ListBoxItem id=\"blueberry\" textValue=\"توت أزرق\">توت أزرق</ListBoxItem>\n          </ListBox>\n        </SelectPopover>\n      </Select>\n    </div>\n  )\n}\n\nexport { ShadcnSelectRtl }\n",
+      "description": "ShadcnSelectRtl",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-select-rtl.tsx"
     },
     {
       "id": "389",

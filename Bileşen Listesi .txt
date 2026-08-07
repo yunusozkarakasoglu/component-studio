@@ -588,6 +588,14 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `910` ShadcnCommandShortcuts
 - `911` ShadcnCommandGroups
 - `912` ShadcnCommandRtl
+#### ShadcnSelect
+- `913` ShadcnSelectDemo
+- `914` ShadcnSelectGroups
+- `915` ShadcnSelectScrollable
+- `916` ShadcnSelectDisabled
+- `917` ShadcnSelectInvalid
+- `918` ShadcnSelectAlignItem
+- `919` ShadcnSelectRtl
 
 ### Seçim
 #### RadioGroup
@@ -962,7 +970,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 823 bileşen (saf React)**
+**Toplam: 830 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

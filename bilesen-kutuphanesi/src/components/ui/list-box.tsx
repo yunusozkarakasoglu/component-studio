@@ -21,18 +21,42 @@ interface ListBoxItemProps {
   textValue?: string
   className?: string
   children?: ReactNode
+  isDisabled?: boolean
 }
 
-function ListBoxItem({ className, children, ...props }: ListBoxItemProps) {
+function ListBoxItem({ className, children, isDisabled, ...props }: ListBoxItemProps) {
   return (
-    <li data-slot="listbox-item" className={cn("flex cursor-pointer items-center justify-between gap-2 px-3 py-2 text-sm transition-colors hover:bg-muted", className)} {...props}>
+    <li
+      data-slot="listbox-item"
+      data-disabled={isDisabled ? "true" : undefined}
+      aria-disabled={isDisabled ? "true" : undefined}
+      className={cn(
+        "flex cursor-pointer items-center justify-between gap-2 px-3 py-2 text-sm transition-colors hover:bg-muted",
+        isDisabled && "pointer-events-none cursor-not-allowed opacity-50 hover:bg-transparent",
+        className
+      )}
+      {...props}
+    >
       {children}
     </li>
   )
 }
 
-function ListBoxSection({ className, children }: ListBoxProps) {
-  return <li data-slot="listbox-section" className={cn("not-last:border-b not-last:border-border", className)}>{children}</li>
+interface ListBoxSectionProps {
+  className?: string
+  children?: ReactNode
+  title?: string
+}
+
+function ListBoxSection({ className, children, title }: ListBoxSectionProps) {
+  return (
+    <li data-slot="listbox-section" className={cn("not-last:border-b not-last:border-border", className)}>
+      {title != null && (
+        <div className="px-3 pt-2 pb-1 text-xs font-medium text-muted-foreground">{title}</div>
+      )}
+      {children}
+    </li>
+  )
 }
 
 function ListBoxItemIndicator({ className }: { className?: string }) {
