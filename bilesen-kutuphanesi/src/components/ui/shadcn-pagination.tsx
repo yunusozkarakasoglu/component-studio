@@ -21,7 +21,7 @@
  * @subcategory ShadcnPagination
  * @source shadcn
  */
-import type { AnchorHTMLAttributes, HTMLAttributes, ReactNode } from "react"
+import type { AnchorHTMLAttributes, HTMLAttributes } from "react"
 import { cn } from "@/lib/utils"
 import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "@/components/ui/icons"
 
