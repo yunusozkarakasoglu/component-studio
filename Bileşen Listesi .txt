@@ -581,6 +581,13 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `904` ShadcnComboboxInvalid
 - `905` ShadcnComboboxDisabled
 - `906` ShadcnComboboxRtl
+#### ShadcnCommand
+- `907` ShadcnCommand + Input/List/Empty/Group/Item/Separator/Shortcut (saf React — cmdk yerine)
+- `908` ShadcnCommandDemo
+- `909` ShadcnCommandBasic
+- `910` ShadcnCommandWithShortcuts
+- `911` ShadcnCommandWithGroups
+- `912` ShadcnCommandRtl
 
 ### Seçim
 #### RadioGroup
@@ -955,7 +962,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 817 bileşen (saf React)**
+**Toplam: 823 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

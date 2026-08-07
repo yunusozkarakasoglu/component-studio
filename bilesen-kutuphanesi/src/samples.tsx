@@ -880,4 +880,10 @@ export const SAMPLES: Record<string, ReactNode> = {
   "904": <U.ShadcnComboboxInvalid />,
   "905": <U.ShadcnComboboxDisabled />,
   "906": <U.ShadcnComboboxRtl />,
+  "907": <U.ShadcnCommand />,
+  "908": <U.ShadcnCommandDemo />,
+  "909": <U.ShadcnCommandBasic />,
+  "910": <U.ShadcnCommandWithShortcuts />,
+  "911": <U.ShadcnCommandWithGroups />,
+  "912": <U.ShadcnCommandRtl />,
 }
