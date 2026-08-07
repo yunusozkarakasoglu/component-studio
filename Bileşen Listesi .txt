@@ -1573,7 +1573,62 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1385` MtNotificationVariants
 
 
-**Toplam: 1296 bileşen (saf React)**
+
+#### MtTabs
+- `1386` MtTabs
+
+#### MtPagination
+- `1387` MtPagination
+
+#### MtBreadcrumbs
+- `1388` MtBreadcrumbs
+
+#### MtNavLink
+- `1389` MtNavLink
+
+#### MtStepper
+- `1390` MtStepper
+
+#### MtTimeline
+- `1391` MtTimeline
+
+#### MtFloatingIndicator
+- `1392` MtFloatingIndicator
+- `1393` MtTabsUsage
+- `1394` MtTabsDisabled
+- `1395` MtTabsInverted
+- `1396` MtTabsPosition
+- `1397` MtTabsWithIcons
+- `1398` MtTabsControlled
+- `1399` MtTabsColors
+- `1400` MtTabsCustomize
+- `1401` MtPaginationUsage
+- `1402` MtPaginationControlled
+- `1403` MtPaginationWithEdges
+- `1404` MtPaginationSiblings
+- `1405` MtPaginationDisabled
+- `1406` MtPaginationMany
+- `1407` MtPaginationSmall
+- `1408` MtPaginationWithInfo
+- `1409` MtBreadcrumbsUsage
+- `1410` MtNavLinkUsage
+- `1411` MtNavLinkNested
+- `1412` MtNavLinkWithDescription
+- `1413` MtNavLinkDisabled
+- `1414` MtStepperUsage
+- `1415` MtStepperVertical
+- `1416` MtStepperIcons
+- `1417` MtStepperSize
+- `1418` MtStepperDisabled
+- `1419` MtStepperWithContent
+- `1420` MtStepperClickable
+- `1421` MtTimelineUsage
+- `1422` MtTimelineActive
+- `1423` MtTimelineBullet
+- `1424` MtTimelineCompact
+- `1425` MtFloatingIndicatorUsage
+
+**Toplam: 1336 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
