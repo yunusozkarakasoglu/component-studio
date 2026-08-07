@@ -50,7 +50,7 @@ Masaüstü/mantine-components-setup/
 
 - [x] **Adım 1 — Layout** — 1004-1057 (12 çekirdek + 44 örnek: Box/Group/Stack/Center/Container/Paper/Space/Flex/Divider/AspectRatio/SimpleGrid/Grid)
 - [x] **Adım 2 — Butonlar** — 1058-1113 (9 çekirdek + 47 örnek: Button/ActionIcon/CloseButton/CopyButton/FileButton/Burger/Anchor/Menu/Menubar)
-- [x] **Adım 3/1 — Metin girdileri** — 1114-1149 (9 çekirdek + 28 örnek: Input/TextInput/Textarea/NumberInput/PasswordInput/JsonInput/MaskInput/NativeSelect/Fieldset)
+- [x] **Adım 3 — Form girdileri** — 1114-1210 (9 çekirdek + 89 örnek: Input/TextInput/Textarea/NumberInput/PasswordInput/JsonInput/MaskInput/NativeSelect/Fieldset)
 ### Adım 4 — Seçim (Checkbox, Radio, Switch, Chip, SegmentedControl, Slider, RangeSlider, Rating, PinInput, ColorInput, PillsInput)
 ### Adım 5 — Combobox (Select, MultiSelect, Autocomplete, TagsInput, Combobox, TreeSelect)
 ### Adım 6 — Overlay (Modal, Drawer, Dialog, Tooltip, Popover, HoverCard, Affix, LoadingOverlay, Notification)

@@ -22,6 +22,9 @@ interface MtNumberInputProps extends Omit<InputHTMLAttributes<HTMLInputElement>,
   defaultValue?: number | string
   onChange?: (value: number | string) => void
   hideControls?: boolean
+  loading?: boolean
+  disabled?: boolean
+  success?: ReactNode
 }
 
 function MtNumberInput({
@@ -36,6 +39,9 @@ function MtNumberInput({
   defaultValue = "",
   onChange,
   hideControls,
+  loading,
+  disabled,
+  success,
   id,
   ...props
 }: MtNumberInputProps) {
@@ -67,11 +73,13 @@ function MtNumberInput({
           data-slot="mt-number-input-field"
           value={current}
           onChange={(e) => set(e.target.value)}
+          disabled={disabled || loading}
           className={cn(
             "w-full rounded-md border border-border bg-background px-3 py-1.5 text-sm text-foreground shadow-xs transition-colors outline-none",
             "placeholder:text-muted-foreground focus-visible:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500/30",
             "disabled:cursor-not-allowed disabled:opacity-50",
             error && "border-red-500",
+            success && "border-emerald-500",
             className
           )}
           {...props}
@@ -86,6 +94,7 @@ function MtNumberInput({
         )}
       </div>
       {error && <p className="text-xs text-red-500">{error}</p>}
+      {success && !error && <p className="text-xs text-emerald-600">{success}</p>}
     </div>
   )
 }

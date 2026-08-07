@@ -22,9 +22,13 @@ interface MtNativeSelectProps extends Omit<SelectHTMLAttributes<HTMLSelectElemen
   description?: ReactNode
   error?: ReactNode
   data?: (string | MtNativeSelectOption)[]
+  placeholder?: string
+  success?: ReactNode
+  loading?: boolean
+  disabled?: boolean
 }
 
-function MtNativeSelect({ className, label, description, error, data = [], id, ...props }: MtNativeSelectProps) {
+function MtNativeSelect({ className, label, description, error, data = [], id, placeholder, success, loading, disabled, ...props }: MtNativeSelectProps) {
   return (
     <div data-slot="mt-native-select" className="flex w-full flex-col gap-1.5">
       {label && <label htmlFor={id} className="text-sm font-medium text-foreground">{label}</label>}
@@ -37,13 +41,18 @@ function MtNativeSelect({ className, label, description, error, data = [], id, .
           "focus-visible:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500/30",
           "disabled:cursor-not-allowed disabled:opacity-50",
           error && "border-red-500",
+          success && "border-emerald-500",
           className
         )}
+        disabled={disabled || loading}
         style={{
           backgroundImage: "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2371717a' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m6 9 6 6 6-6'/%3E%3C/svg%3E\")",
         }}
         {...props}
       >
+        {placeholder && !props.defaultValue && (
+          <option value="" disabled>{placeholder}</option>
+        )}
         {data.map((item) => {
           const opt = typeof item === "string" ? { value: item, label: item } : item
           return (
@@ -53,7 +62,9 @@ function MtNativeSelect({ className, label, description, error, data = [], id, .
           )
         })}
       </select>
+      {loading && <p className="text-xs text-muted-foreground">Loading…</p>}
       {error && <p className="text-xs text-red-500">{error}</p>}
+      {success && !error && <p className="text-xs text-emerald-600">{success}</p>}
     </div>
   )
 }

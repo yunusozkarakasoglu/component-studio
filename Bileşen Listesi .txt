@@ -1277,7 +1277,69 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1148` MtPasswordInputStrengthMeter
 - `1149` MtPasswordInputStylesApi
 
-**Toplam: 1060 bileşen (saf React)**
+- `1150` MtNumberInputUsage
+- `1151` MtNumberInputMinMax
+- `1152` MtNumberInputDisabled
+- `1153` MtNumberInputError
+- `1154` MtNumberInputLoading
+- `1155` MtNumberInputSuccess
+- `1156` MtNumberInputPrefixSuffix
+- `1157` MtNumberInputAllowDecimal
+- `1158` MtNumberInputAllowNegative
+- `1159` MtNumberInputDecimalScale
+- `1160` MtNumberInputThousandsSeparator
+- `1161` MtNumberInputStrictClamp
+- `1162` MtNumberInputTrimLeadingZeroes
+- `1163` MtNumberInputSections
+- `1164` MtNumberInputHideControls
+- `1165` MtJsonInputUsage
+- `1166` MtJsonInputDisabled
+- `1167` MtJsonInputLoading
+- `1168` MtJsonInputSuccess
+- `1169` MtJsonInputAutosize
+- `1170` MtJsonInputStylesApi
+- `1171` MtMaskInputUsage
+- `1172` MtMaskInputDisabled
+- `1173` MtMaskInputError
+- `1174` MtMaskInputSuccess
+- `1175` MtMaskInputDate
+- `1176` MtMaskInputCard
+- `1177` MtMaskInputRegex
+- `1178` MtMaskInputReset
+- `1179` MtMaskInputTransform
+- `1180` MtMaskInputDynamic
+- `1181` MtNativeSelectUsage
+- `1182` MtNativeSelectDisabled
+- `1183` MtNativeSelectError
+- `1184` MtNativeSelectLoading
+- `1185` MtNativeSelectSuccess
+- `1186` MtNativeSelectOptions
+- `1187` MtNativeSelectDividers
+- `1188` MtNativeSelectSections
+- `1189` MtNativeSelectStylesApi
+- `1190` MtFieldsetUsage
+- `1191` MtFieldsetDisabled
+- `1192` MtInputUsage
+- `1193` MtInputError
+- `1194` MtInputSuccess
+- `1195` MtInputLoading
+- `1196` MtInputSections
+- `1197` MtInputPlaceholder
+- `1198` MtInputClearButton
+- `1199` MtInputInputBase
+- `1200` MtInputCompound
+- `1201` MtInputWrapperExample
+- `1202` MtInputFocusStyles
+- `1203` MtInputStylesApi
+- `1204` MtInputWrapperStylesApi
+- `1205` MtInputContainer
+- `1206` MtInputWrapperOrder
+- `1207` MtInputDefaultProps
+- `1208` MtInputSharedStyles
+- `1209` MtInputComponent
+- `1210` MtInputSharedDefaultProps
+
+**Toplam: 1121 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

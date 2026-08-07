@@ -19,9 +19,10 @@ interface MtMaskInputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "
   defaultValue?: string
   onChange?: (value: string) => void
   mask?: (value: string) => string
+  success?: ReactNode
 }
 
-function MtMaskInput({ className, label, description, error, value, defaultValue = "", onChange, mask, id, ...props }: MtMaskInputProps) {
+function MtMaskInput({ className, label, description, error, success, value, defaultValue = "", onChange, mask, id, ...props }: MtMaskInputProps) {
   const [internal, setInternal] = useState(defaultValue)
   const current = value !== undefined ? value : internal
 
@@ -43,11 +44,13 @@ function MtMaskInput({ className, label, description, error, value, defaultValue
           "w-full rounded-md border border-border bg-background px-3 py-1.5 text-sm text-foreground shadow-xs transition-colors outline-none",
           "placeholder:text-muted-foreground focus-visible:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500/30",
           error && "border-red-500",
+          success && "border-emerald-500",
           className
         )}
         {...props}
       />
       {error && <p className="text-xs text-red-500">{error}</p>}
+      {success && !error && <p className="text-xs text-emerald-600">{success}</p>}
     </div>
   )
 }

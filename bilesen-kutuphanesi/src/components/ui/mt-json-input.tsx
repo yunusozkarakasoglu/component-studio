@@ -24,6 +24,9 @@ interface MtJsonInputProps {
   autosize?: boolean
   minRows?: number
   className?: string
+  disabled?: boolean
+  loading?: boolean
+  success?: ReactNode
 }
 
 function MtJsonInput({
@@ -39,6 +42,9 @@ function MtJsonInput({
   autosize,
   minRows = 4,
   className,
+  disabled,
+  loading,
+  success,
 }: MtJsonInputProps) {
   const [internal, setInternal] = useState(defaultValue)
   const [touched, setTouched] = useState(false)
@@ -73,14 +79,22 @@ function MtJsonInput({
         rows={autosize ? undefined : minRows}
         placeholder={placeholder}
         spellCheck={false}
+        disabled={disabled || loading}
         className={cn(
           "w-full rounded-md border border-border bg-background px-3 py-2 font-mono text-sm text-foreground shadow-xs transition-colors outline-none",
           "placeholder:text-muted-foreground focus-visible:border-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500/30",
           showError && "border-red-500",
+          success && !showError && "border-emerald-500",
           className
         )}
       />
+      {loading && (
+        <span className="absolute right-3 top-3">
+          <span className="size-3.5 animate-spin rounded-full border-2 border-border border-t-blue-500" />
+        </span>
+      )}
       {showError && <p className="text-xs text-red-500">{showError}</p>}
+      {success && !showError && <p className="text-xs text-emerald-600">{success}</p>}
     </div>
   )
 }
