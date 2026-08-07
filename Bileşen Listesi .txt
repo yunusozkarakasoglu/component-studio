@@ -571,6 +571,16 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `896` ShadcnDatePickerInput
 - `897` ShadcnDatePickerRtl
 - (Time Picker / Natural Language — karmaşık, atlandı)
+#### ShadcnCombobox
+- `898` ShadcnCombobox (saf React — base-ui yerine; multiple/clearable)
+- `899` ShadcnComboboxBasic
+- `900` ShadcnComboboxDemo
+- `901` ShadcnComboboxMultiple
+- `902` ShadcnComboboxWithClear
+- `903` ShadcnComboboxWithGroups
+- `904` ShadcnComboboxInvalid
+- `905` ShadcnComboboxDisabled
+- `906` ShadcnComboboxRtl
 
 ### Seçim
 #### RadioGroup
@@ -945,7 +955,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 808 bileşen (saf React)**
+**Toplam: 817 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

@@ -871,4 +871,13 @@ export const SAMPLES: Record<string, ReactNode> = {
   "895": <U.ShadcnDatePickerDateOfBirth />,
   "896": <U.ShadcnDatePickerInput />,
   "897": <U.ShadcnDatePickerRtl />,
+  "898": <U.ShadcnCombobox />,
+  "899": <U.ShadcnComboboxBasic />,
+  "900": <U.ShadcnComboboxDemo />,
+  "901": <U.ShadcnComboboxMultiple />,
+  "902": <U.ShadcnComboboxWithClear />,
+  "903": <U.ShadcnComboboxWithGroups />,
+  "904": <U.ShadcnComboboxInvalid />,
+  "905": <U.ShadcnComboboxDisabled />,
+  "906": <U.ShadcnComboboxRtl />,
 }
