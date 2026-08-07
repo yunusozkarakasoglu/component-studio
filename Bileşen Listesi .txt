@@ -553,6 +553,15 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `881` ShadcnAlertDialogWithMedia
 - `882` ShadcnAlertDialogSmallWithMedia
 - `883` ShadcnAlertDialogRtl
+#### ShadcnCalendar
+- `884` ShadcnCalendar (saf React — react-day-picker yerine; single/range)
+- `885` ShadcnCalendarDemo
+- `886` ShadcnCalendarBasic
+- `887` ShadcnCalendarRange
+- `888` ShadcnCalendarCaption
+- `889` ShadcnCalendarWithPresets
+- `890` ShadcnCalendarRtl
+- (Hijri/Timezone — özel, atlandı)
 
 ### Seçim
 #### RadioGroup
@@ -927,7 +936,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 794 bileşen (saf React)**
+**Toplam: 801 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

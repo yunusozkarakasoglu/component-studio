@@ -97,7 +97,8 @@
 ### ✅ Adım 5 tamamlandı (5 element, 29 bileşen) → - [x] **Accordion** — 863-869 (4 compound + 6 örnek) → Collapsible → Alert → Alert Dialog
 
 ### Adım 6 — Takvim + Combobox (6)
-Calendar → Date Picker → Combobox → Command → Select → Native Select
+- [x] **Calendar** — 884-890 (saf React çekirdek + 6 örnek)
+Date Picker → Combobox → Command → Select → Native Select
 
 ### Adım 7 — Veri + Yükleme (6)
 Table → Progress → Skeleton → Spinner → Empty

@@ -857,4 +857,11 @@ export const SAMPLES: Record<string, ReactNode> = {
   "881": <U.ShadcnAlertDialogWithMedia />,
   "882": <U.ShadcnAlertDialogSmallWithMedia />,
   "883": <U.ShadcnAlertDialogRtl />,
+  "884": <U.ShadcnCalendar />,
+  "885": <U.ShadcnCalendarDemo />,
+  "886": <U.ShadcnCalendarBasic />,
+  "887": <U.ShadcnCalendarRange />,
+  "888": <U.ShadcnCalendarCaption />,
+  "889": <U.ShadcnCalendarWithPresets />,
+  "890": <U.ShadcnCalendarRtl />,
 }
