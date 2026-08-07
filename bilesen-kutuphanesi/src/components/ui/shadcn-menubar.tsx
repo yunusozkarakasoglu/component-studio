@@ -16,7 +16,7 @@
  * @subcategory ShadcnMenubar
  * @source shadcn
  */
-import { createContext, useContext, useState, type HTMLAttributes, type ReactNode } from "react"
+import { createContext, useContext, useState, type HTMLAttributes } from "react"
 import { cn } from "@/lib/utils"
 import { Check, ChevronRight } from "@/components/ui/icons"
 
@@ -222,33 +222,37 @@ function ShadcnMenubarRadioItem({ className, value, children, ...props }: Shadcn
   )
 }
 
+const MenubarSubContext = createContext<{ open: boolean; setOpen: (v: boolean) => void } | null>(null)
+
 interface ShadcnMenubarSubProps extends HTMLAttributes<HTMLDivElement> {}
 
 function ShadcnMenubarSub({ className, ...props }: ShadcnMenubarSubProps) {
-  return <div className={cn("relative", className)} {...props} />
+  const [open, setOpen] = useState(false)
+  return (
+    <MenubarSubContext.Provider value={{ open, setOpen }}>
+      <div className={cn("relative", className)} onMouseLeave={() => setOpen(false)} {...props} />
+    </MenubarSubContext.Provider>
+  )
 }
 
 interface ShadcnMenubarSubTriggerProps extends HTMLAttributes<HTMLDivElement> {}
 
-function ShadcnMenubarSubTrigger({ className, children, ...props }: ShadcnMenubarSubTriggerProps) {
-  const [open, setOpen] = useState(false)
+function ShadcnMenubarSubTrigger({ className, children, onMouseEnter, ...props }: ShadcnMenubarSubTriggerProps) {
+  const ctx = useContext(MenubarSubContext)
   return (
     <div
       role="menuitem"
-      data-state={open ? "open" : "closed"}
+      data-state={ctx?.open ? "open" : "closed"}
       data-slot="shadcn-menubar-sub-trigger"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
+      onMouseEnter={(e) => {
+        ctx?.setOpen(true)
+        onMouseEnter?.(e)
+      }}
       className={cn("flex cursor-pointer items-center gap-2 rounded-md px-2.5 py-1.5 text-sm outline-none select-none hover:bg-muted", className)}
       {...props}
     >
       {children}
       <ChevronRight className="ml-auto size-3.5" />
-      {open && (
-        <div className="absolute left-full top-0 ml-1 min-w-[10rem] rounded-lg border border-border bg-background p-1 text-foreground shadow-lg">
-          {props.children}
-        </div>
-      )}
     </div>
   )
 }
@@ -256,7 +260,15 @@ function ShadcnMenubarSubTrigger({ className, children, ...props }: ShadcnMenuba
 interface ShadcnMenubarSubContentProps extends HTMLAttributes<HTMLDivElement> {}
 
 function ShadcnMenubarSubContent({ className, ...props }: ShadcnMenubarSubContentProps) {
-  return <div data-slot="shadcn-menubar-sub-content" className={cn("flex flex-col", className)} {...props} />
+  const ctx = useContext(MenubarSubContext)
+  if (!ctx?.open) return null
+  return (
+    <div
+      data-slot="shadcn-menubar-sub-content"
+      className={cn("absolute left-full top-0 ml-1 min-w-[10rem] rounded-lg border border-border bg-background p-1 text-foreground shadow-lg", className)}
+      {...props}
+    />
+  )
 }
 
 export {
