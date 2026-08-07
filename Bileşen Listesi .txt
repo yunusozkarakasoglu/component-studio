@@ -675,6 +675,11 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `986` ShadcnResizableVertical
 - `987` ShadcnResizableHandleDemo
 - `988` ShadcnResizableRtl
+#### ShadcnScrollArea
+- `989` ShadcnScrollArea
+- `990` ShadcnScrollAreaDemo
+- `991` ShadcnScrollAreaHorizontal
+- `992` ShadcnScrollAreaRtl
 
 ### Seçim
 #### RadioGroup
@@ -1049,7 +1054,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 899 bileşen (saf React)**
+**Toplam: 903 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

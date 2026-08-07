@@ -135,7 +135,8 @@ Table → - [x] **Progress** — 938-942 (çekirdek + 4 örnek)
 - [x] **Typography** — 964-978 (11 stil + 14 örnek)
 - [x] **Aspect Ratio** — 979-983 (çekirdek + 4 örnek)
 - [x] **Resizable** — 984-988 (saf React çekirdek + 4 örnek)
-Scroll Area → Marker → Item → Direction → Attachment
+- [x] **Scroll Area** — 989-992 (çekirdek + 3 örnek)
+Marker → Item → Direction → Attachment
 
 ## Notlar
 - **İkon:** lucide import'ları kendi setimize eşle (Birebir ad → anlam → sor)

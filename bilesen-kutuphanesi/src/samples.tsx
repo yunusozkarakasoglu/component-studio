@@ -962,4 +962,8 @@ export const SAMPLES: Record<string, ReactNode> = {
   "986": <U.ShadcnResizableVertical />,
   "987": <U.ShadcnResizableHandleDemo />,
   "988": <U.ShadcnResizableRtl />,
+  "989": <U.ShadcnScrollArea />,
+  "990": <U.ShadcnScrollAreaDemo />,
+  "991": <U.ShadcnScrollAreaHorizontalDemo />,
+  "992": <U.ShadcnScrollAreaRtl />,
 }
