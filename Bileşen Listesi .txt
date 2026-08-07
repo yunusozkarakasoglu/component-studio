@@ -1147,7 +1147,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 958 bileşen (saf React)**
+**Toplam: 968 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
