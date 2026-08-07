@@ -76,11 +76,12 @@ function ShadcnAccordionItem({ className, value, isDisabled, ...props }: ShadcnA
   )
 }
 
-interface ShadcnAccordionTriggerProps extends HTMLAttributes<HTMLButtonElement> {
+interface ShadcnAccordionTriggerProps extends Omit<HTMLAttributes<HTMLButtonElement>, "disabled"> {
   value: string
+  disabled?: boolean
 }
 
-function ShadcnAccordionTrigger({ className, value, children, onClick, ...props }: ShadcnAccordionTriggerProps) {
+function ShadcnAccordionTrigger({ className, value, children, disabled, onClick, ...props }: ShadcnAccordionTriggerProps) {
   const ctx = useShadcnAccordion()
   const open = ctx.openItems.includes(value)
   return (
@@ -89,8 +90,9 @@ function ShadcnAccordionTrigger({ className, value, children, onClick, ...props 
       aria-expanded={open}
       data-state={open ? "open" : "closed"}
       data-slot="shadcn-accordion-trigger"
+      disabled={disabled}
       onClick={(e) => {
-        ctx.toggle(value)
+        if (!disabled) ctx.toggle(value)
         onClick?.(e)
       }}
       className={cn(
