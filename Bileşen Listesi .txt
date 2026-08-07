@@ -523,6 +523,12 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `855` ShadcnNavigationMenuDemo
 - `856` ShadcnNavigationMenuLink
 - `857` ShadcnNavigationMenuRtl
+#### ShadcnMenubar
+- `858` ShadcnMenubar + Menu/Trigger/Content/Item/Group/Separator/Shortcut/CheckboxItem/RadioGroup/RadioItem/Sub
+- `859` ShadcnMenubarDemo
+- `860` ShadcnMenubarCheckbox
+- `861` ShadcnMenubarRadio
+- `862` ShadcnMenubarSubmenu
 
 ### Seçim
 #### RadioGroup
@@ -897,7 +903,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 768 bileşen (saf React)**
+**Toplam: 773 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

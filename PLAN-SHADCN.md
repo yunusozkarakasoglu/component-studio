@@ -22,7 +22,9 @@
 | **Overlay** (10) | Dialog, Popover, Tooltip, Hover Card, Dropdown Menu, Context Menu, Toast, Sheet, Drawer, - [x] **Sidebar** — 831-833 (basitleştirilmiş 11 compound + 2 örnek)
 
 ### ✅ Adım 4 tamamlandı (10 element, 52 bileşen) |
-| **Navigasyon** (5) | Tabs, Pagination, Breadcrumb, Navigation Menu, Menubar |
+| **Navigasyon** (5) | Tabs, Pagination, Breadcrumb, Navigation Menu, - [x] **Menubar** — 858-862 (14 compound + 4 örnek)
+
+### ✅ Adım 5 tamamlandı (5 element, 29 bileşen) |
 | **Accordion** (1) | Accordion |
 | **Alert & Dialog** (2) | Alert, Alert Dialog |
 | **Takvim** (2) | Calendar, Date Picker |
@@ -90,7 +92,9 @@
 - [x] **Pagination** — 841-845 (7 compound + 4 örnek)
 - [x] **Breadcrumb** — 846-853 (7 compound + 7 örnek)
 - [x] **Navigation Menu** — 854-857 (6 compound + 3 örnek)
-Menubar → Accordion → Collapsible → Alert → Alert Dialog
+- [x] **Menubar** — 858-862 (14 compound + 4 örnek)
+
+### ✅ Adım 5 tamamlandı (5 element, 29 bileşen) → Accordion → Collapsible → Alert → Alert Dialog
 
 ### Adım 6 — Takvim + Combobox (6)
 Calendar → Date Picker → Combobox → Command → Select → Native Select
