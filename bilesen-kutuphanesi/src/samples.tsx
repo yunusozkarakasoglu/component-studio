@@ -931,4 +931,10 @@ export const SAMPLES: Record<string, ReactNode> = {
   "955": <U.ShadcnSpinnerBadge />,
   "956": <U.ShadcnSpinnerInputGroup />,
   "957": <U.ShadcnSpinnerRtl />,
+  "958": <U.ShadcnSeparator />,
+  "959": <U.ShadcnSeparatorDemo />,
+  "960": <U.ShadcnSeparatorVertical />,
+  "961": <U.ShadcnSeparatorMenu />,
+  "962": <U.ShadcnSeparatorList />,
+  "963": <U.ShadcnSeparatorRtl />,
 }

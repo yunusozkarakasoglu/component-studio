@@ -640,6 +640,13 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `955` ShadcnSpinnerBadge
 - `956` ShadcnSpinnerInputGroup
 - `957` ShadcnSpinnerRtl
+#### ShadcnSeparator
+- `958` ShadcnSeparator
+- `959` ShadcnSeparatorDemo
+- `960` ShadcnSeparatorVertical
+- `961` ShadcnSeparatorMenu
+- `962` ShadcnSeparatorList
+- `963` ShadcnSeparatorRtl
 
 ### Seçim
 #### RadioGroup
@@ -1014,7 +1021,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 868 bileşen (saf React)**
+**Toplam: 874 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

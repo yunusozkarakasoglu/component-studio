@@ -131,7 +131,8 @@ Table → - [x] **Progress** — 938-942 (çekirdek + 4 örnek)
 ### ✅ Yükleme & İlerleme tamamlandı → Empty
 
 ### Adım 8 — Genel (10)
-Separator → Typography → Aspect Ratio → Resizable → Scroll Area → Marker → Item → Direction → Attachment
+- [x] **Separator** — 958-963 (çekirdek + 5 örnek)
+Typography → Aspect Ratio → Resizable → Scroll Area → Marker → Item → Direction → Attachment
 
 ## Notlar
 - **İkon:** lucide import'ları kendi setimize eşle (Birebir ad → anlam → sor)

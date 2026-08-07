@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-07T14:33:50.093Z",
+  "generatedAt": "2026-08-07T14:36:58.720Z",
   "counts": {
-    "components": 868,
-    "ready": 868,
+    "components": 874,
+    "ready": 874,
     "layouts": 0
   },
   "categories": [
@@ -6650,6 +6650,78 @@
       "code": "/**\n * ShadcnSpinnerRtl\n * RTL örneği (saf React, shadcn kaynaklı).\n * @id 957\n * @category Yükleme & İlerleme\n * @subcategory ShadcnSpinner\n * @source shadcn\n */\nimport { ShadcnSpinner } from \"@/components/ui/shadcn-spinner\"\n\nfunction ShadcnSpinnerRtl() {\n  return (\n    <div className=\"flex items-center gap-3\" dir=\"rtl\">\n      <ShadcnSpinner />\n      <span className=\"text-sm text-muted-foreground\">جاري المعالجة…</span>\n    </div>\n  )\n}\n\nexport { ShadcnSpinnerRtl }\n",
       "description": "ShadcnSpinnerRtl",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-spinner-rtl.tsx"
+    },
+    {
+      "id": "958",
+      "name": "ShadcnSeparator",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSeparator",
+      "source": "shadcn",
+      "file": "shadcn-separator.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSeparator\n * Saf React bileşen (bağımlılıksız) — shadcn/ui kaynaklı.\n * İçerik ayracı — yatay/dikey.\n *   <ShadcnSeparator />  ·  <ShadcnSeparator orientation=\"vertical\" />\n * @id 958\n * @category Genel\n * @subcategory ShadcnSeparator\n * @source shadcn\n */\nimport type { HTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface ShadcnSeparatorProps extends HTMLAttributes<HTMLDivElement> {\n  orientation?: \"horizontal\" | \"vertical\"\n}\n\nfunction ShadcnSeparator({ className, orientation = \"horizontal\", ...props }: ShadcnSeparatorProps) {\n  return (\n    <div\n      role=\"separator\"\n      aria-orientation={orientation}\n      data-slot=\"shadcn-separator\"\n      className={cn(\n        \"shrink-0 bg-border\",\n        orientation === \"horizontal\" ? \"h-px w-full\" : \"h-full w-px\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { ShadcnSeparator }\nexport type { ShadcnSeparatorProps }\n",
+      "description": "ShadcnSeparator",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-separator.tsx"
+    },
+    {
+      "id": "959",
+      "name": "ShadcnSeparatorDemo",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSeparator",
+      "source": "shadcn",
+      "file": "shadcn-separator-demo.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSeparatorDemo\n * Temel örnek — yatay ayraç (saf React, shadcn kaynaklı).\n * @id 959\n * @category Genel\n * @subcategory ShadcnSeparator\n * @source shadcn\n */\nimport { ShadcnSeparator } from \"@/components/ui/shadcn-separator\"\n\nfunction ShadcnSeparatorDemo() {\n  return (\n    <div className=\"flex max-w-sm flex-col gap-4 text-sm\">\n      <div className=\"flex flex-col gap-1.5\">\n        <div className=\"leading-none font-medium\">shadcn/ui</div>\n        <div className=\"text-muted-foreground\">\n          The Foundation for your Design System\n        </div>\n      </div>\n      <ShadcnSeparator />\n      <div>\n        A set of beautifully designed components that you can customize, extend, and build on.\n      </div>\n    </div>\n  )\n}\n\nexport { ShadcnSeparatorDemo }\n",
+      "description": "ShadcnSeparatorDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-separator-demo.tsx"
+    },
+    {
+      "id": "960",
+      "name": "ShadcnSeparatorVertical",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSeparator",
+      "source": "shadcn",
+      "file": "shadcn-separator-vertical.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSeparatorVertical\n * Dikey ayraç (saf React, shadcn kaynaklı).\n * @id 960\n * @category Genel\n * @subcategory ShadcnSeparator\n * @source shadcn\n */\nimport { ShadcnSeparator } from \"@/components/ui/shadcn-separator\"\n\nfunction ShadcnSeparatorVertical() {\n  return (\n    <div className=\"flex h-5 items-center gap-4 text-sm\">\n      <span>Blog</span>\n      <ShadcnSeparator orientation=\"vertical\" className=\"h-4\" />\n      <span>Docs</span>\n      <ShadcnSeparator orientation=\"vertical\" className=\"h-4\" />\n      <span>Source</span>\n    </div>\n  )\n}\n\nexport { ShadcnSeparatorVertical }\n",
+      "description": "ShadcnSeparatorVertical",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-separator-vertical.tsx"
+    },
+    {
+      "id": "961",
+      "name": "ShadcnSeparatorMenu",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSeparator",
+      "source": "shadcn",
+      "file": "shadcn-separator-menu.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSeparatorMenu\n * Menü içinde ayraç (saf React, shadcn kaynaklı).\n * @id 961\n * @category Genel\n * @subcategory ShadcnSeparator\n * @source shadcn\n */\nimport { ShadcnSeparator } from \"@/components/ui/shadcn-separator\"\n\nfunction ShadcnSeparatorMenu() {\n  return (\n    <div className=\"w-48 rounded-lg border border-border p-1 text-sm\">\n      <div className=\"cursor-pointer rounded-md px-2.5 py-1.5 hover:bg-muted\">Profile</div>\n      <div className=\"cursor-pointer rounded-md px-2.5 py-1.5 hover:bg-muted\">Settings</div>\n      <ShadcnSeparator className=\"my-1\" />\n      <div className=\"cursor-pointer rounded-md px-2.5 py-1.5 hover:bg-muted\">Help</div>\n      <div className=\"cursor-pointer rounded-md px-2.5 py-1.5 hover:bg-muted\">Log out</div>\n    </div>\n  )\n}\n\nexport { ShadcnSeparatorMenu }\n",
+      "description": "ShadcnSeparatorMenu",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-separator-menu.tsx"
+    },
+    {
+      "id": "962",
+      "name": "ShadcnSeparatorList",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSeparator",
+      "source": "shadcn",
+      "file": "shadcn-separator-list.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSeparatorList\n * Liste içinde ayraç (saf React, shadcn kaynaklı).\n * @id 962\n * @category Genel\n * @subcategory ShadcnSeparator\n * @source shadcn\n */\nimport { ShadcnSeparator } from \"@/components/ui/shadcn-separator\"\n\nfunction ShadcnSeparatorList() {\n  return (\n    <div className=\"w-full max-w-sm rounded-lg border border-border text-sm\">\n      <div className=\"flex items-center justify-between px-4 py-3\">\n        <span className=\"font-medium\">Update</span>\n        <span className=\"text-muted-foreground\">2 minutes ago</span>\n      </div>\n      <ShadcnSeparator />\n      <div className=\"flex items-center justify-between px-4 py-3\">\n        <span className=\"font-medium\">Delete</span>\n        <span className=\"text-muted-foreground\">1 hour ago</span>\n      </div>\n      <ShadcnSeparator />\n      <div className=\"flex items-center justify-between px-4 py-3\">\n        <span className=\"font-medium\">Create</span>\n        <span className=\"text-muted-foreground\">Yesterday</span>\n      </div>\n    </div>\n  )\n}\n\nexport { ShadcnSeparatorList }\n",
+      "description": "ShadcnSeparatorList",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-separator-list.tsx"
+    },
+    {
+      "id": "963",
+      "name": "ShadcnSeparatorRtl",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSeparator",
+      "source": "shadcn",
+      "file": "shadcn-separator-rtl.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSeparatorRtl\n * RTL örneği — Arapça ayraç (saf React, shadcn kaynaklı).\n * @id 963\n * @category Genel\n * @subcategory ShadcnSeparator\n * @source shadcn\n */\nimport { ShadcnSeparator } from \"@/components/ui/shadcn-separator\"\n\nfunction ShadcnSeparatorRtl() {\n  return (\n    <div className=\"flex max-w-sm flex-col gap-4 text-sm\" dir=\"rtl\">\n      <div className=\"flex flex-col gap-1.5\">\n        <div className=\"leading-none font-medium\">shadcn/ui</div>\n        <div className=\"text-muted-foreground\">أساس نظام التصميم الخاص بك</div>\n      </div>\n      <ShadcnSeparator />\n      <div>مجموعة من المكونات المصممة بعناية يمكنك تخصيصها وتوسيعها.</div>\n    </div>\n  )\n}\n\nexport { ShadcnSeparatorRtl }\n",
+      "description": "ShadcnSeparatorRtl",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-separator-rtl.tsx"
     },
     {
       "id": "389",
