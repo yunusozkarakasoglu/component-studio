@@ -937,7 +937,7 @@ export const SAMPLES: Record<string, ReactNode> = {
   "961": <U.ShadcnSeparatorMenu />,
   "962": <U.ShadcnSeparatorList />,
   "963": <U.ShadcnSeparatorRtl />,
-  "964": <U.ShadcnTypography />,
+  "964": <U.ShadcnTypographyH1 />,
   "965": <U.ShadcnTypographyDemo />,
   "966": <U.ShadcnTypographyH1Example />,
   "967": <U.ShadcnTypographyH2Example />,
