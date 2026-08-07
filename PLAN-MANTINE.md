@@ -53,7 +53,7 @@ Masaüstü/mantine-components-setup/
 - [x] **Adım 3 — Form girdileri** — 1114-1210 (9 çekirdek + 89 örnek: Input/TextInput/Textarea/NumberInput/PasswordInput/JsonInput/MaskInput/NativeSelect/Fieldset)
 - [x] **Adım 4 — Seçim** — 1211-1298 (11 çekirdek + 82 örnek: Checkbox/Radio/Switch/Chip/SegmentedControl/Slider/RangeSlider/Rating/PinInput/ColorInput/PillsInput)
 - [x] **Adım 5 — Combobox** — 1299-1340 (6 çekirdek + 36 örnek)
-### Adım 6 — Overlay (Modal, Drawer, Dialog, Tooltip, Popover, HoverCard, Affix, LoadingOverlay, Notification)
+- [x] **Adım 6 — Overlay** — 1341-1385 (9 çekirdek + 36 örnek)
 ### Adım 7 — Navigasyon (Tabs, Pagination, Breadcrumbs, NavLink, Stepper, Timeline, FloatingIndicator)
 ### Adım 8 — Veri Gösterimi (Table, Card, Avatar, DataList, EmptyState, List, Text, Title, ThemeIcon, Pill, Image)
 ### Adım 9 — Geri Bildirim & Yükleme (Loader, Progress, RingProgress, Skeleton, Indicator, Alert, Code, Kbd, Blockquote, Spoiler, Collapse)
