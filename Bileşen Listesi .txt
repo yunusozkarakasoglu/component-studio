@@ -562,6 +562,15 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `889` ShadcnCalendarPresets
 - `890` ShadcnCalendarRtl
 - (Hijri/Timezone — özel, atlandı)
+#### ShadcnDatePicker
+- `891` ShadcnDatePicker (single/range, ShadcnCalendar tabanlı)
+- `892` ShadcnDatePickerDemo
+- `893` ShadcnDatePickerSimple
+- `894` ShadcnDatePickerWithRange
+- `895` ShadcnDatePickerDateOfBirth
+- `896` ShadcnDatePickerInput
+- `897` ShadcnDatePickerRtl
+- (Time Picker / Natural Language — karmaşık, atlandı)
 
 ### Seçim
 #### RadioGroup
@@ -936,7 +945,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 801 bileşen (saf React)**
+**Toplam: 808 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

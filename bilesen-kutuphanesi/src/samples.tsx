@@ -864,4 +864,11 @@ export const SAMPLES: Record<string, ReactNode> = {
   "888": <U.ShadcnCalendarCaption />,
   "889": <U.ShadcnCalendarWithPresets />,
   "890": <U.ShadcnCalendarRtl />,
+  "891": <U.ShadcnDatePicker />,
+  "892": <U.ShadcnDatePickerDemo />,
+  "893": <U.ShadcnDatePickerSimple />,
+  "894": <U.ShadcnDatePickerWithRange />,
+  "895": <U.ShadcnDatePickerDateOfBirth />,
+  "896": <U.ShadcnDatePickerInput />,
+  "897": <U.ShadcnDatePickerRtl />,
 }
