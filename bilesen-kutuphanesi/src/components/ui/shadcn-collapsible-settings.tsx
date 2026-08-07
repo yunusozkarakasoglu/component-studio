@@ -7,7 +7,7 @@
  * @source shadcn
  */
 import { ChevronDown } from "@/components/ui/icons"
-import { ShadcnSwitch, ShadcnSwitchContent, ShadcnSwitchControl, ShadcnSwitchThumb } from "@/components/ui/shadcn-switch"
+import { ShadcnSwitch } from "@/components/ui/shadcn-switch"
 import {
   ShadcnCollapsible,
   ShadcnCollapsibleContent,
@@ -28,18 +28,14 @@ function ShadcnCollapsibleSettings() {
               <p className="text-sm font-medium">Email notifications</p>
               <p className="text-xs text-muted-foreground">Receive email updates</p>
             </div>
-            <ShadcnSwitch defaultChecked>
-              <ShadcnSwitchContent><ShadcnSwitchControl><ShadcnSwitchThumb /></ShadcnSwitchControl></ShadcnSwitchContent>
-            </ShadcnSwitch>
+            <ShadcnSwitch defaultChecked />
           </div>
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium">Push notifications</p>
               <p className="text-xs text-muted-foreground">Receive push updates</p>
             </div>
-            <ShadcnSwitch>
-              <ShadcnSwitchContent><ShadcnSwitchControl><ShadcnSwitchThumb /></ShadcnSwitchControl></ShadcnSwitchContent>
-            </ShadcnSwitch>
+            <ShadcnSwitch />
           </div>
         </ShadcnCollapsibleContent>
       </ShadcnCollapsible>
