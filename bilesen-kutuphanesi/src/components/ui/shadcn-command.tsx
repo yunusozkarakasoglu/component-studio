@@ -17,7 +17,7 @@
  * @subcategory ShadcnCommand
  * @source shadcn
  */
-import { createContext, useContext, useState, type HTMLAttributes } from "react"
+import { createContext, useContext, useState, type HTMLAttributes, type InputHTMLAttributes } from "react"
 import { cn } from "@/lib/utils"
 import { Search } from "@/components/ui/icons"
 
@@ -51,7 +51,7 @@ function ShadcnCommand({ className, children, ...props }: ShadcnCommandProps) {
   )
 }
 
-interface ShadcnCommandInputProps extends HTMLAttributes<HTMLInputElement> {}
+interface ShadcnCommandInputProps extends InputHTMLAttributes<HTMLInputElement> {}
 
 function ShadcnCommandInput({ className, placeholder, ...props }: ShadcnCommandInputProps) {
   const ctx = useShadcnCommand()
