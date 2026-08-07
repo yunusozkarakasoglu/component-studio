@@ -18,7 +18,7 @@ function ShadcnComboboxWithGroups() {
 
   return (
     <div className="flex w-full max-w-xs flex-col gap-2">
-      <ShadcnCombobox items={grouped} value={value} onChange={setValue} placeholder="Select an item" />
+      <ShadcnCombobox items={grouped} value={value} onChange={(v) => setValue(v as string)} placeholder="Select an item" />
       <p className="text-sm text-muted-foreground">{value ? `Selected: ${value}` : "Groups shown with — separators"}</p>
     </div>
   )

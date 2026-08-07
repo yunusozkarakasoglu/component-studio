@@ -14,7 +14,7 @@ function ShadcnComboboxRtl() {
 
   return (
     <div dir="rtl" className="flex w-full max-w-xs flex-col gap-2">
-      <ShadcnCombobox items={["إطار عمل", "مكتبة", "أداة بناء"]} value={value} onChange={setValue} placeholder="اختر عنصرًا" />
+      <ShadcnCombobox items={["إطار عمل", "مكتبة", "أداة بناء"]} value={value} onChange={(v) => setValue(v as string)} placeholder="اختر عنصرًا" />
     </div>
   )
 }

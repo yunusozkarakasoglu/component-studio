@@ -16,7 +16,7 @@ function ShadcnComboboxWithClear() {
 
   return (
     <div className="flex w-full max-w-xs flex-col gap-2">
-      <ShadcnCombobox items={statuses} value={value} onChange={setValue} placeholder="Select status" clearable />
+      <ShadcnCombobox items={statuses} value={value} onChange={(v) => setValue(v as string)} placeholder="Select status" clearable />
       <p className="text-sm text-muted-foreground">{value ? `Status: ${value}` : "No status selected"}</p>
     </div>
   )

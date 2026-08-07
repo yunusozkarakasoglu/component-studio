@@ -16,7 +16,7 @@ function ShadcnComboboxDemo() {
 
   return (
     <div className="flex w-full max-w-xs flex-col gap-2">
-      <ShadcnCombobox items={languages} value={value} onChange={setValue} placeholder="Search a language…" />
+      <ShadcnCombobox items={languages} value={value} onChange={(v) => setValue(v as string)} placeholder="Search a language…" />
       <p className="text-sm text-muted-foreground">{value ? `You selected: ${value}` : "Type to search languages"}</p>
     </div>
   )

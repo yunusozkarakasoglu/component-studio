@@ -16,7 +16,7 @@ function ShadcnComboboxBasic() {
 
   return (
     <div className="flex w-full max-w-xs flex-col gap-2">
-      <ShadcnCombobox items={frameworks} value={value} onChange={setValue} placeholder="Select a framework" />
+      <ShadcnCombobox items={frameworks} value={value} onChange={(v) => setValue(v as string)} placeholder="Select a framework" />
       <p className="text-sm text-muted-foreground">{value ? `Selected: ${value}` : "No framework selected"}</p>
     </div>
   )
