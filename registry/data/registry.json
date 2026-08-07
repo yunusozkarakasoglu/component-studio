@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-07T14:17:00.407Z",
+  "generatedAt": "2026-08-07T14:20:25.262Z",
   "counts": {
-    "components": 841,
-    "ready": 841,
+    "components": 848,
+    "ready": 848,
     "layouts": 0
   },
   "categories": [
@@ -6326,6 +6326,90 @@
       "code": "/**\n * ShadcnEmptyRtl\n * RTL örneği — Arapça boş durum (saf React, shadcn kaynaklı).\n * @id 930\n * @category Veri Gösterimi\n * @subcategory ShadcnEmpty\n * @source shadcn\n */\nimport { FolderOpen } from \"@/components/ui/icons\"\nimport {\n  ShadcnEmpty,\n  ShadcnEmptyDescription,\n  ShadcnEmptyHeader,\n  ShadcnEmptyMedia,\n  ShadcnEmptyTitle,\n} from \"@/components/ui/shadcn-empty\"\n\nfunction ShadcnEmptyRtl() {\n  return (\n    <ShadcnEmpty className=\"rounded-lg border border-dashed\" dir=\"rtl\">\n      <ShadcnEmptyHeader>\n        <ShadcnEmptyMedia variant=\"icon\">\n          <FolderOpen className=\"size-5\" />\n        </ShadcnEmptyMedia>\n        <ShadcnEmptyTitle>لا توجد مشاريع بعد</ShadcnEmptyTitle>\n        <ShadcnEmptyDescription>\n          لم تقم بإنشاء أي مشاريع بعد. ابدأ بإنشاء مشروعك الأول.\n        </ShadcnEmptyDescription>\n      </ShadcnEmptyHeader>\n    </ShadcnEmpty>\n  )\n}\n\nexport { ShadcnEmptyRtl }\n",
       "description": "ShadcnEmptyRtl",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-empty-rtl.tsx"
+    },
+    {
+      "id": "931",
+      "name": "ShadcnCollapsible",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnCollapsible",
+      "source": "shadcn",
+      "file": "shadcn-collapsible.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnCollapsible familyası\n * Saf React bileşen (bağımlılıksız) — shadcn/ui kaynaklı.\n * Açılır/kapanır panel — Collapsible + Trigger + Content.\n *   <ShadcnCollapsible>\n *     <ShadcnCollapsibleTrigger>Toggle</ShadcnCollapsibleTrigger>\n *     <ShadcnCollapsibleContent>…</ShadcnCollapsibleContent>\n *   </ShadcnCollapsible>\n * open/onOpenChange (kontrollü) desteklenir.\n * @id 931\n * @category Veri Gösterimi\n * @subcategory ShadcnCollapsible\n * @source shadcn\n */\nimport { createContext, useContext, useState, type HTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface CollapsibleContextValue {\n  open: boolean\n  toggle: () => void\n}\n\nconst CollapsibleContext = createContext<CollapsibleContextValue | null>(null)\n\nfunction useShadcnCollapsible(): CollapsibleContextValue {\n  const ctx = useContext(CollapsibleContext)\n  if (!ctx) throw new Error(\"ShadcnCollapsible parçaları, ShadcnCollapsible içinde kullanılmalı\")\n  return ctx\n}\n\ninterface ShadcnCollapsibleProps extends HTMLAttributes<HTMLDivElement> {\n  open?: boolean\n  defaultOpen?: boolean\n  onOpenChange?: (open: boolean) => void\n}\n\nfunction ShadcnCollapsible({ className, open, defaultOpen, onOpenChange, children, ...props }: ShadcnCollapsibleProps) {\n  const [internal, setInternal] = useState(!!defaultOpen)\n  const isOpen = open !== undefined ? open : internal\n  const toggle = () => {\n    const next = !isOpen\n    if (open === undefined) setInternal(next)\n    onOpenChange?.(next)\n  }\n  return (\n    <CollapsibleContext.Provider value={{ open: isOpen, toggle }}>\n      <div data-slot=\"shadcn-collapsible\" data-state={isOpen ? \"open\" : \"closed\"} className={cn(\"w-full\", className)} {...props}>\n        {children}\n      </div>\n    </CollapsibleContext.Provider>\n  )\n}\n\ninterface ShadcnCollapsibleTriggerProps extends HTMLAttributes<HTMLButtonElement> {}\n\nfunction ShadcnCollapsibleTrigger({ className, children, onClick, ...props }: ShadcnCollapsibleTriggerProps) {\n  const ctx = useShadcnCollapsible()\n  return (\n    <button\n      type=\"button\"\n      aria-expanded={ctx.open}\n      data-slot=\"shadcn-collapsible-trigger\"\n      onClick={(e) => {\n        ctx.toggle()\n        onClick?.(e)\n      }}\n      className={cn(\"inline-flex cursor-pointer items-center gap-2 outline-none focus-visible:ring-2 focus-visible:ring-ring/40\", className)}\n      {...props}\n    >\n      {children}\n    </button>\n  )\n}\n\ninterface ShadcnCollapsibleContentProps extends HTMLAttributes<HTMLDivElement> {}\n\nfunction ShadcnCollapsibleContent({ className, children, ...props }: ShadcnCollapsibleContentProps) {\n  const ctx = useShadcnCollapsible()\n  if (!ctx.open) return null\n  return (\n    <div data-slot=\"shadcn-collapsible-content\" className={cn(\"overflow-hidden\", className)} {...props}>\n      {children}\n    </div>\n  )\n}\n\nexport { ShadcnCollapsible, ShadcnCollapsibleContent, ShadcnCollapsibleTrigger }\nexport type { ShadcnCollapsibleContentProps, ShadcnCollapsibleProps, ShadcnCollapsibleTriggerProps }\n",
+      "description": "ShadcnCollapsible familyası",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-collapsible.tsx"
+    },
+    {
+      "id": "932",
+      "name": "ShadcnCollapsibleDemo",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnCollapsible",
+      "source": "shadcn",
+      "file": "shadcn-collapsible-demo.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnCollapsibleDemo\n * Temel örnek — sipariş detayları (saf React, shadcn kaynaklı).\n * @id 932\n * @category Veri Gösterimi\n * @subcategory ShadcnCollapsible\n * @source shadcn\n */\nimport { ChevronsUpDown } from \"@/components/ui/icons\"\nimport {\n  ShadcnCollapsible,\n  ShadcnCollapsibleContent,\n  ShadcnCollapsibleTrigger,\n} from \"@/components/ui/shadcn-collapsible\"\n\nfunction ShadcnCollapsibleDemo() {\n  return (\n    <ShadcnCollapsible className=\"flex w-[350px] flex-col gap-2\">\n      <div className=\"flex items-center justify-between gap-4 px-4\">\n        <h4 className=\"text-sm font-semibold\">Order #4189</h4>\n        <ShadcnCollapsibleTrigger className=\"size-8 items-center justify-center rounded-md hover:bg-muted\">\n          <ChevronsUpDown className=\"size-4\" />\n          <span className=\"sr-only\">Toggle details</span>\n        </ShadcnCollapsibleTrigger>\n      </div>\n      <div className=\"flex items-center justify-between rounded-md border px-4 py-2 text-sm\">\n        <span className=\"text-muted-foreground\">Status</span>\n        <span className=\"font-medium\">Shipped</span>\n      </div>\n      <ShadcnCollapsibleContent className=\"flex flex-col gap-2\">\n        <div className=\"rounded-md border px-4 py-2 text-sm\">\n          <p className=\"font-medium\">Shipping address</p>\n          <p className=\"text-muted-foreground\">100 Market St, San Francisco</p>\n        </div>\n        <div className=\"rounded-md border px-4 py-2 text-sm\">\n          <p className=\"font-medium\">Tracking number</p>\n          <p className=\"text-muted-foreground\">1Z999AA10123456784</p>\n        </div>\n      </ShadcnCollapsibleContent>\n    </ShadcnCollapsible>\n  )\n}\n\nexport { ShadcnCollapsibleDemo }\n",
+      "description": "ShadcnCollapsibleDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-collapsible-demo.tsx"
+    },
+    {
+      "id": "933",
+      "name": "ShadcnCollapsibleExample",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnCollapsible",
+      "source": "shadcn",
+      "file": "shadcn-collapsible-example.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnCollapsibleExample\n * Kontrollü durum (saf React, shadcn kaynaklı).\n * @id 933\n * @category Veri Gösterimi\n * @subcategory ShadcnCollapsible\n * @source shadcn\n */\nimport { useState } from \"react\"\nimport {\n  ShadcnCollapsible,\n  ShadcnCollapsibleContent,\n  ShadcnCollapsibleTrigger,\n} from \"@/components/ui/shadcn-collapsible\"\n\nfunction ShadcnCollapsibleExample() {\n  const [isOpen, setIsOpen] = useState(false)\n\n  return (\n    <ShadcnCollapsible open={isOpen} onOpenChange={setIsOpen} className=\"w-[350px]\">\n      <ShadcnCollapsibleTrigger className=\"w-full justify-between rounded-md border px-4 py-2 text-sm\">\n        <span>Controlled: {isOpen ? \"Open\" : \"Closed\"}</span>\n        <span className=\"text-muted-foreground\">{isOpen ? \"−\" : \"+\"}</span>\n      </ShadcnCollapsibleTrigger>\n      <ShadcnCollapsibleContent className=\"mt-2 rounded-md border px-4 py-2 text-sm text-muted-foreground\">\n        This content is controlled by the open state.\n      </ShadcnCollapsibleContent>\n    </ShadcnCollapsible>\n  )\n}\n\nexport { ShadcnCollapsibleExample }\n",
+      "description": "ShadcnCollapsibleExample",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-collapsible-example.tsx"
+    },
+    {
+      "id": "934",
+      "name": "ShadcnCollapsibleBasic",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnCollapsible",
+      "source": "shadcn",
+      "file": "shadcn-collapsible-basic.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnCollapsibleBasic\n * Temel açılır panel (saf React, shadcn kaynaklı).\n * @id 934\n * @category Veri Gösterimi\n * @subcategory ShadcnCollapsible\n * @source shadcn\n */\nimport { ChevronDown } from \"@/components/ui/icons\"\nimport {\n  ShadcnCollapsible,\n  ShadcnCollapsibleContent,\n  ShadcnCollapsibleTrigger,\n} from \"@/components/ui/shadcn-collapsible\"\n\nfunction ShadcnCollapsibleBasic() {\n  return (\n    <ShadcnCollapsible className=\"w-[350px]\">\n      <ShadcnCollapsibleTrigger className=\"w-full justify-between rounded-md border px-4 py-2 text-sm font-medium hover:bg-muted\">\n        <span>Show more details</span>\n        <ChevronDown className=\"size-4 text-muted-foreground\" />\n      </ShadcnCollapsibleTrigger>\n      <ShadcnCollapsibleContent className=\"mt-2 rounded-md border px-4 py-3 text-sm text-muted-foreground\">\n        <p>Here are some additional details about this item.</p>\n        <p className=\"mt-2\">You can add any content inside the collapsible.</p>\n      </ShadcnCollapsibleContent>\n    </ShadcnCollapsible>\n  )\n}\n\nexport { ShadcnCollapsibleBasic }\n",
+      "description": "ShadcnCollapsibleBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-collapsible-basic.tsx"
+    },
+    {
+      "id": "935",
+      "name": "ShadcnCollapsibleSettings",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnCollapsible",
+      "source": "shadcn",
+      "file": "shadcn-collapsible-settings.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnCollapsibleSettings\n * Ayarlar paneli — açılır bölümler (saf React, shadcn kaynaklı).\n * @id 935\n * @category Veri Gösterimi\n * @subcategory ShadcnCollapsible\n * @source shadcn\n */\nimport { ChevronDown } from \"@/components/ui/icons\"\nimport { ShadcnSwitch, ShadcnSwitchContent, ShadcnSwitchControl, ShadcnSwitchThumb } from \"@/components/ui/shadcn-switch\"\nimport {\n  ShadcnCollapsible,\n  ShadcnCollapsibleContent,\n  ShadcnCollapsibleTrigger,\n} from \"@/components/ui/shadcn-collapsible\"\n\nfunction ShadcnCollapsibleSettings() {\n  return (\n    <div className=\"w-[350px] space-y-3\">\n      <ShadcnCollapsible defaultOpen>\n        <ShadcnCollapsibleTrigger className=\"w-full justify-between rounded-md border px-4 py-2.5 text-sm font-medium hover:bg-muted\">\n          <span>Notifications</span>\n          <ChevronDown className=\"size-4 text-muted-foreground\" />\n        </ShadcnCollapsibleTrigger>\n        <ShadcnCollapsibleContent className=\"mt-2 space-y-3 rounded-md border p-4\">\n          <div className=\"flex items-center justify-between\">\n            <div>\n              <p className=\"text-sm font-medium\">Email notifications</p>\n              <p className=\"text-xs text-muted-foreground\">Receive email updates</p>\n            </div>\n            <ShadcnSwitch defaultChecked>\n              <ShadcnSwitchContent><ShadcnSwitchControl><ShadcnSwitchThumb /></ShadcnSwitchControl></ShadcnSwitchContent>\n            </ShadcnSwitch>\n          </div>\n          <div className=\"flex items-center justify-between\">\n            <div>\n              <p className=\"text-sm font-medium\">Push notifications</p>\n              <p className=\"text-xs text-muted-foreground\">Receive push updates</p>\n            </div>\n            <ShadcnSwitch>\n              <ShadcnSwitchContent><ShadcnSwitchControl><ShadcnSwitchThumb /></ShadcnSwitchControl></ShadcnSwitchContent>\n            </ShadcnSwitch>\n          </div>\n        </ShadcnCollapsibleContent>\n      </ShadcnCollapsible>\n    </div>\n  )\n}\n\nexport { ShadcnCollapsibleSettings }\n",
+      "description": "ShadcnCollapsibleSettings",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-collapsible-settings.tsx"
+    },
+    {
+      "id": "936",
+      "name": "ShadcnCollapsibleFileTree",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnCollapsible",
+      "source": "shadcn",
+      "file": "shadcn-collapsible-file-tree.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnCollapsibleFileTree\n * Dosya ağacı — iç içe açılır (saf React, shadcn kaynaklı).\n * @id 936\n * @category Veri Gösterimi\n * @subcategory ShadcnCollapsible\n * @source shadcn\n */\nimport { ChevronRight, FileText, Folder } from \"@/components/ui/icons\"\nimport {\n  ShadcnCollapsible,\n  ShadcnCollapsibleContent,\n  ShadcnCollapsibleTrigger,\n} from \"@/components/ui/shadcn-collapsible\"\n\nfunction ShadcnCollapsibleFileTree() {\n  return (\n    <div className=\"w-72 rounded-md border p-2 font-mono text-sm\">\n      <ShadcnCollapsible defaultOpen>\n        <ShadcnCollapsibleTrigger className=\"w-full items-center rounded-md px-2 py-1 hover:bg-muted\">\n          <ChevronRight className=\"size-4 text-muted-foreground\" />\n          <Folder className=\"size-4 text-amber-500\" />\n          <span>src</span>\n        </ShadcnCollapsibleTrigger>\n        <ShadcnCollapsibleContent className=\"pl-6\">\n          <div className=\"flex items-center gap-2 rounded-md px-2 py-1 hover:bg-muted\">\n            <FileText className=\"size-4 text-blue-500\" />\n            <span>App.tsx</span>\n          </div>\n          <div className=\"flex items-center gap-2 rounded-md px-2 py-1 hover:bg-muted\">\n            <FileText className=\"size-4 text-blue-500\" />\n            <span>main.tsx</span>\n          </div>\n          <ShadcnCollapsible>\n            <ShadcnCollapsibleTrigger className=\"w-full items-center rounded-md px-2 py-1 hover:bg-muted\">\n              <ChevronRight className=\"size-4 text-muted-foreground\" />\n              <Folder className=\"size-4 text-amber-500\" />\n              <span>components</span>\n            </ShadcnCollapsibleTrigger>\n            <ShadcnCollapsibleContent className=\"pl-6\">\n              <div className=\"flex items-center gap-2 rounded-md px-2 py-1 hover:bg-muted\">\n                <FileText className=\"size-4 text-blue-500\" />\n                <span>button.tsx</span>\n              </div>\n              <div className=\"flex items-center gap-2 rounded-md px-2 py-1 hover:bg-muted\">\n                <FileText className=\"size-4 text-blue-500\" />\n                <span>card.tsx</span>\n              </div>\n            </ShadcnCollapsibleContent>\n          </ShadcnCollapsible>\n        </ShadcnCollapsibleContent>\n      </ShadcnCollapsible>\n    </div>\n  )\n}\n\nexport { ShadcnCollapsibleFileTree }\n",
+      "description": "ShadcnCollapsibleFileTree",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-collapsible-file-tree.tsx"
+    },
+    {
+      "id": "937",
+      "name": "ShadcnCollapsibleRtl",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnCollapsible",
+      "source": "shadcn",
+      "file": "shadcn-collapsible-rtl.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnCollapsibleRtl\n * RTL örneği — Arapça açılır panel (saf React, shadcn kaynaklı).\n * @id 937\n * @category Veri Gösterimi\n * @subcategory ShadcnCollapsible\n * @source shadcn\n */\nimport { ChevronDown } from \"@/components/ui/icons\"\nimport {\n  ShadcnCollapsible,\n  ShadcnCollapsibleContent,\n  ShadcnCollapsibleTrigger,\n} from \"@/components/ui/shadcn-collapsible\"\n\nfunction ShadcnCollapsibleRtl() {\n  return (\n    <ShadcnCollapsible className=\"w-[350px]\" dir=\"rtl\">\n      <ShadcnCollapsibleTrigger className=\"w-full justify-between rounded-md border px-4 py-2 text-sm font-medium hover:bg-muted\">\n        <span>تفاصيل الطلب</span>\n        <ChevronDown className=\"size-4 text-muted-foreground\" />\n      </ShadcnCollapsibleTrigger>\n      <ShadcnCollapsibleContent className=\"mt-2 rounded-md border px-4 py-3 text-sm text-muted-foreground\">\n        <p>رقم التتبع: 1Z999AA10123456784</p>\n        <p className=\"mt-2\">الحالة: تم الشحن</p>\n      </ShadcnCollapsibleContent>\n    </ShadcnCollapsible>\n  )\n}\n\nexport { ShadcnCollapsibleRtl }\n",
+      "description": "ShadcnCollapsibleRtl",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-collapsible-rtl.tsx"
     },
     {
       "id": "389",

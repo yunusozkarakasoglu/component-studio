@@ -35,7 +35,9 @@
 ### ✅ Adım 6 tamamlandı (8 element, 63 bileşen), Native - [x] **Select** — 913-919 (mevcut Heroui Select ile 7 örnek)
 
 ### ✅ Adım 6 tamamlandı (8 element, 63 bileşen) |
-| **Veri Gösterimi** (3) | Table, Empty, Collapsible |
+| **Veri Gösterimi** (3) | Table, Empty, - [x] **Collapsible** — 931-937 (3 compound + 6 örnek)
+
+### ✅ Veri Gösterimi tamamlandı |
 | **Yükleme & İlerleme** (3) | Progress, Skeleton, Spinner |
 | **Genel** (10) | Separator, Typography, Aspect Ratio, Resizable, Scroll Area, Marker, Item, Direction, Attachment, Aspect Ratio |
 
@@ -104,7 +106,9 @@
 - [x] **Navigation Menu** — 854-857 (6 compound + 3 örnek)
 - [x] **Menubar** — 858-862 (14 compound + 4 örnek)
 
-### ✅ Adım 5 tamamlandı (5 element, 29 bileşen) → - [x] **Accordion** — 863-869 (4 compound + 6 örnek) → Collapsible → Alert → Alert Dialog
+### ✅ Adım 5 tamamlandı (5 element, 29 bileşen) → - [x] **Accordion** — 863-869 (4 compound + 6 örnek) → - [x] **Collapsible** — 931-937 (3 compound + 6 örnek)
+
+### ✅ Veri Gösterimi tamamlandı → Alert → Alert Dialog
 
 ### Adım 6 — Takvim + Combobox (6)
 - [x] **Calendar** — 884-890 (saf React çekirdek + 6 örnek)

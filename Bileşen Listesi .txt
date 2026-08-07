@@ -609,6 +609,14 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `928` ShadcnEmptyMuted
 - `929` ShadcnEmptyAvatar
 - `930` ShadcnEmptyRtl
+#### ShadcnCollapsible
+- `931` ShadcnCollapsible + Trigger/Content
+- `932` ShadcnCollapsibleDemo
+- `933` ShadcnCollapsibleExample
+- `934` ShadcnCollapsibleBasic
+- `935` ShadcnCollapsibleSettings
+- `936` ShadcnCollapsibleFileTree
+- `937` ShadcnCollapsibleRtl
 
 ### Seçim
 #### RadioGroup
@@ -983,7 +991,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 841 bileşen (saf React)**
+**Toplam: 848 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

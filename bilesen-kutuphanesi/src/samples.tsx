@@ -904,4 +904,11 @@ export const SAMPLES: Record<string, ReactNode> = {
   "928": <U.ShadcnEmptyMuted />,
   "929": <U.ShadcnEmptyAvatar />,
   "930": <U.ShadcnEmptyRtl />,
+  "931": <U.ShadcnCollapsible />,
+  "932": <U.ShadcnCollapsibleDemo />,
+  "933": <U.ShadcnCollapsibleExample />,
+  "934": <U.ShadcnCollapsibleBasic />,
+  "935": <U.ShadcnCollapsibleSettings />,
+  "936": <U.ShadcnCollapsibleFileTree />,
+  "937": <U.ShadcnCollapsibleRtl />,
 }
