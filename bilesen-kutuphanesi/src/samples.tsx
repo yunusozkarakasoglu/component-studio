@@ -850,4 +850,11 @@ export const SAMPLES: Record<string, ReactNode> = {
   "874": <U.ShadcnAlertActionExample />,
   "875": <U.ShadcnAlertColors />,
   "876": <U.ShadcnAlertRtl />,
+  "877": <U.ShadcnAlertDialog />,
+  "878": <U.ShadcnAlertDialogDemo />,
+  "879": <U.ShadcnAlertDialogBasic />,
+  "880": <U.ShadcnAlertDialogSmall />,
+  "881": <U.ShadcnAlertDialogWithMedia />,
+  "882": <U.ShadcnAlertDialogSmallWithMedia />,
+  "883": <U.ShadcnAlertDialogRtl />,
 }

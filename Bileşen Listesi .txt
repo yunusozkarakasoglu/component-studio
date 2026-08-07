@@ -545,6 +545,14 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `874` ShadcnAlertAction
 - `875` ShadcnAlertColors
 - `876` ShadcnAlertRtl
+#### ShadcnAlertDialog
+- `877` ShadcnAlertDialog + Trigger/Content(size)/Media/Header/Title/Description/Footer/Cancel/Action
+- `878` ShadcnAlertDialogDemo
+- `879` ShadcnAlertDialogBasic
+- `880` ShadcnAlertDialogSmall
+- `881` ShadcnAlertDialogWithMedia
+- `882` ShadcnAlertDialogSmallWithMedia
+- `883` ShadcnAlertDialogRtl
 
 ### Seçim
 #### RadioGroup
@@ -919,7 +927,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 787 bileşen (saf React)**
+**Toplam: 794 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
