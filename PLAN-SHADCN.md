@@ -89,7 +89,8 @@
 - [x] **Tabs** — 834-840 (4 compound + 6 örnek)
 - [x] **Pagination** — 841-845 (7 compound + 4 örnek)
 - [x] **Breadcrumb** — 846-853 (7 compound + 7 örnek)
-Navigation Menu → Menubar → Accordion → Collapsible → Alert → Alert Dialog
+- [x] **Navigation Menu** — 854-857 (6 compound + 3 örnek)
+Menubar → Accordion → Collapsible → Alert → Alert Dialog
 
 ### Adım 6 — Takvim + Combobox (6)
 Calendar → Date Picker → Combobox → Command → Select → Native Select

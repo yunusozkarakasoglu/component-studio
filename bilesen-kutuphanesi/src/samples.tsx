@@ -827,4 +827,8 @@ export const SAMPLES: Record<string, ReactNode> = {
   "851": <U.ShadcnBreadcrumbEllipsisDemo />,
   "852": <U.ShadcnBreadcrumbLinkDemo />,
   "853": <U.ShadcnBreadcrumbRtl />,
+  "854": <U.ShadcnNavigationMenu />,
+  "855": <U.ShadcnNavigationMenuDemo />,
+  "856": <U.ShadcnNavigationMenuLinkDemo />,
+  "857": <U.ShadcnNavigationMenuRtl />,
 }

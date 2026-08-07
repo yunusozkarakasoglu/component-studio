@@ -518,6 +518,11 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `851` ShadcnBreadcrumbEllipsis
 - `852` ShadcnBreadcrumbLink
 - `853` ShadcnBreadcrumbRtl
+#### ShadcnNavigationMenu
+- `854` ShadcnNavigationMenu + List/Item/Trigger/Content/Link
+- `855` ShadcnNavigationMenuDemo
+- `856` ShadcnNavigationMenuLink
+- `857` ShadcnNavigationMenuRtl
 
 ### Seçim
 #### RadioGroup
@@ -892,7 +897,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 764 bileşen (saf React)**
+**Toplam: 768 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
