@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-07T14:26:45.255Z",
+  "generatedAt": "2026-08-07T14:30:34.385Z",
   "counts": {
-    "components": 853,
-    "ready": 853,
+    "components": 860,
+    "ready": 860,
     "layouts": 0
   },
   "categories": [
@@ -6470,6 +6470,90 @@
       "code": "/**\n * ShadcnProgressRtl\n * RTL örneği — Arapça ilerleme (saf React, shadcn kaynaklı).\n * @id 942\n * @category Yükleme & İlerleme\n * @subcategory ShadcnProgress\n * @source shadcn\n */\nimport { ShadcnProgress } from \"@/components/ui/shadcn-progress\"\n\nfunction ShadcnProgressRtl() {\n  return (\n    <div className=\"flex w-[60%] flex-col gap-2\" dir=\"rtl\">\n      <div className=\"flex items-center justify-between text-sm\">\n        <span className=\"text-muted-foreground\">جاري التحميل…</span>\n        <span className=\"font-medium tabular-nums\">55%</span>\n      </div>\n      <ShadcnProgress value={55} />\n    </div>\n  )\n}\n\nexport { ShadcnProgressRtl }\n",
       "description": "ShadcnProgressRtl",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-progress-rtl.tsx"
+    },
+    {
+      "id": "943",
+      "name": "ShadcnSkeleton",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSkeleton",
+      "source": "shadcn",
+      "file": "shadcn-skeleton.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSkeleton\n * Saf React bileşen (bağımlılıksız) — shadcn/ui kaynaklı.\n * Yükleme yer tutucusu — shimmer animasyonlu.\n *   <ShadcnSkeleton className=\"h-12 w-12 rounded-full\" />\n * @id 943\n * @category Yükleme & İlerleme\n * @subcategory ShadcnSkeleton\n * @source shadcn\n */\nimport type { HTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface ShadcnSkeletonProps extends HTMLAttributes<HTMLDivElement> {}\n\nfunction ShadcnSkeleton({ className, ...props }: ShadcnSkeletonProps) {\n  return <div data-slot=\"shadcn-skeleton\" className={cn(\"animate-pulse rounded-md bg-muted\", className)} {...props} />\n}\n\nexport { ShadcnSkeleton }\nexport type { ShadcnSkeletonProps }\n",
+      "description": "ShadcnSkeleton",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-skeleton.tsx"
+    },
+    {
+      "id": "944",
+      "name": "ShadcnSkeletonDemo",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSkeleton",
+      "source": "shadcn",
+      "file": "shadcn-skeleton-demo.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSkeletonDemo\n * Temel örnek — profil yükleniyor (saf React, shadcn kaynaklı).\n * @id 944\n * @category Yükleme & İlerleme\n * @subcategory ShadcnSkeleton\n * @source shadcn\n */\nimport { ShadcnSkeleton } from \"@/components/ui/shadcn-skeleton\"\n\nfunction ShadcnSkeletonDemo() {\n  return (\n    <div className=\"flex items-center gap-4\">\n      <ShadcnSkeleton className=\"h-12 w-12 rounded-full\" />\n      <div className=\"space-y-2\">\n        <ShadcnSkeleton className=\"h-4 w-[250px]\" />\n        <ShadcnSkeleton className=\"h-4 w-[200px]\" />\n      </div>\n    </div>\n  )\n}\n\nexport { ShadcnSkeletonDemo }\n",
+      "description": "ShadcnSkeletonDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-skeleton-demo.tsx"
+    },
+    {
+      "id": "945",
+      "name": "ShadcnSkeletonAvatar",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSkeleton",
+      "source": "shadcn",
+      "file": "shadcn-skeleton-avatar.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSkeletonAvatar\n * Avatar yükleniyor (saf React, shadcn kaynaklı).\n * @id 945\n * @category Yükleme & İlerleme\n * @subcategory ShadcnSkeleton\n * @source shadcn\n */\nimport { ShadcnSkeleton } from \"@/components/ui/shadcn-skeleton\"\n\nfunction ShadcnSkeletonAvatar() {\n  return (\n    <div className=\"flex items-center gap-4\">\n      <ShadcnSkeleton className=\"size-12 rounded-full\" />\n      <div className=\"space-y-3\">\n        <ShadcnSkeleton className=\"h-4 w-[180px]\" />\n        <ShadcnSkeleton className=\"h-3 w-[120px]\" />\n      </div>\n    </div>\n  )\n}\n\nexport { ShadcnSkeletonAvatar }\n",
+      "description": "ShadcnSkeletonAvatar",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-skeleton-avatar.tsx"
+    },
+    {
+      "id": "946",
+      "name": "ShadcnSkeletonCard",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSkeleton",
+      "source": "shadcn",
+      "file": "shadcn-skeleton-card.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSkeletonCard\n * Kart yükleniyor (saf React, shadcn kaynaklı).\n * @id 946\n * @category Yükleme & İlerleme\n * @subcategory ShadcnSkeleton\n * @source shadcn\n */\nimport { ShadcnSkeleton } from \"@/components/ui/shadcn-skeleton\"\n\nfunction ShadcnSkeletonCard() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-3 rounded-xl border border-border p-4\">\n      <ShadcnSkeleton className=\"h-40 w-full rounded-lg\" />\n      <div className=\"space-y-2\">\n        <ShadcnSkeleton className=\"h-4 w-3/4\" />\n        <ShadcnSkeleton className=\"h-4 w-full\" />\n        <ShadcnSkeleton className=\"h-4 w-2/3\" />\n      </div>\n      <div className=\"flex gap-2\">\n        <ShadcnSkeleton className=\"h-8 w-20 rounded-md\" />\n        <ShadcnSkeleton className=\"h-8 w-20 rounded-md\" />\n      </div>\n    </div>\n  )\n}\n\nexport { ShadcnSkeletonCard }\n",
+      "description": "ShadcnSkeletonCard",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-skeleton-card.tsx"
+    },
+    {
+      "id": "947",
+      "name": "ShadcnSkeletonText",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSkeleton",
+      "source": "shadcn",
+      "file": "shadcn-skeleton-text.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSkeletonText\n * Metin yükleniyor (saf React, shadcn kaynaklı).\n * @id 947\n * @category Yükleme & İlerleme\n * @subcategory ShadcnSkeleton\n * @source shadcn\n */\nimport { ShadcnSkeleton } from \"@/components/ui/shadcn-skeleton\"\n\nfunction ShadcnSkeletonText() {\n  return (\n    <div className=\"w-full max-w-sm space-y-3\">\n      <ShadcnSkeleton className=\"h-5 w-1/2\" />\n      <div className=\"space-y-2\">\n        <ShadcnSkeleton className=\"h-3.5 w-full\" />\n        <ShadcnSkeleton className=\"h-3.5 w-full\" />\n        <ShadcnSkeleton className=\"h-3.5 w-4/5\" />\n      </div>\n    </div>\n  )\n}\n\nexport { ShadcnSkeletonText }\n",
+      "description": "ShadcnSkeletonText",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-skeleton-text.tsx"
+    },
+    {
+      "id": "948",
+      "name": "ShadcnSkeletonForm",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSkeleton",
+      "source": "shadcn",
+      "file": "shadcn-skeleton-form.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSkeletonForm\n * Form yükleniyor (saf React, shadcn kaynaklı).\n * @id 948\n * @category Yükleme & İlerleme\n * @subcategory ShadcnSkeleton\n * @source shadcn\n */\nimport { ShadcnSkeleton } from \"@/components/ui/shadcn-skeleton\"\n\nfunction ShadcnSkeletonForm() {\n  return (\n    <div className=\"w-full max-w-sm space-y-4\">\n      <div className=\"space-y-2\">\n        <ShadcnSkeleton className=\"h-3.5 w-16\" />\n        <ShadcnSkeleton className=\"h-9 w-full rounded-md\" />\n      </div>\n      <div className=\"space-y-2\">\n        <ShadcnSkeleton className=\"h-3.5 w-16\" />\n        <ShadcnSkeleton className=\"h-9 w-full rounded-md\" />\n      </div>\n      <div className=\"space-y-2\">\n        <ShadcnSkeleton className=\"h-3.5 w-20\" />\n        <ShadcnSkeleton className=\"h-20 w-full rounded-md\" />\n      </div>\n      <ShadcnSkeleton className=\"h-9 w-24 rounded-md\" />\n    </div>\n  )\n}\n\nexport { ShadcnSkeletonForm }\n",
+      "description": "ShadcnSkeletonForm",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-skeleton-form.tsx"
+    },
+    {
+      "id": "949",
+      "name": "ShadcnSkeletonRtl",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSkeleton",
+      "source": "shadcn",
+      "file": "shadcn-skeleton-rtl.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSkeletonRtl\n * RTL örneği — Arapça yükleniyor (saf React, shadcn kaynaklı).\n * @id 949\n * @category Yükleme & İlerleme\n * @subcategory ShadcnSkeleton\n * @source shadcn\n */\nimport { ShadcnSkeleton } from \"@/components/ui/shadcn-skeleton\"\n\nfunction ShadcnSkeletonRtl() {\n  return (\n    <div className=\"flex items-center gap-4\" dir=\"rtl\">\n      <ShadcnSkeleton className=\"size-12 rounded-full\" />\n      <div className=\"space-y-2\">\n        <ShadcnSkeleton className=\"h-4 w-[250px]\" />\n        <ShadcnSkeleton className=\"h-4 w-[180px]\" />\n      </div>\n    </div>\n  )\n}\n\nexport { ShadcnSkeletonRtl }\n",
+      "description": "ShadcnSkeletonRtl",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-skeleton-rtl.tsx"
     },
     {
       "id": "389",

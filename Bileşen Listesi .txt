@@ -623,6 +623,14 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `940` ShadcnProgressWithLabel
 - `941` ShadcnProgressControlled
 - `942` ShadcnProgressRtl
+#### ShadcnSkeleton
+- `943` ShadcnSkeleton
+- `944` ShadcnSkeletonDemo
+- `945` ShadcnSkeletonAvatar
+- `946` ShadcnSkeletonCard
+- `947` ShadcnSkeletonText
+- `948` ShadcnSkeletonForm
+- `949` ShadcnSkeletonRtl
 
 ### Seçim
 #### RadioGroup
@@ -997,7 +1005,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 853 bileşen (saf React)**
+**Toplam: 860 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

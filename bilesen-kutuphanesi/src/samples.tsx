@@ -916,4 +916,11 @@ export const SAMPLES: Record<string, ReactNode> = {
   "940": <U.ShadcnProgressWithLabel />,
   "941": <U.ShadcnProgressControlled />,
   "942": <U.ShadcnProgressRtl />,
+  "943": <U.ShadcnSkeleton />,
+  "944": <U.ShadcnSkeletonDemo />,
+  "945": <U.ShadcnSkeletonAvatar />,
+  "946": <U.ShadcnSkeletonCard />,
+  "947": <U.ShadcnSkeletonText />,
+  "948": <U.ShadcnSkeletonForm />,
+  "949": <U.ShadcnSkeletonRtl />,
 }
