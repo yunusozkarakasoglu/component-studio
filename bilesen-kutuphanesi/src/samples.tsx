@@ -952,4 +952,9 @@ export const SAMPLES: Record<string, ReactNode> = {
   "976": <U.ShadcnTypographyMutedExample />,
   "977": <U.ShadcnTypographySmallExample />,
   "978": <U.ShadcnTypographyTable />,
+  "979": <U.ShadcnAspectRatio />,
+  "980": <U.ShadcnAspectRatioDemo />,
+  "981": <U.ShadcnAspectRatioSquare />,
+  "982": <U.ShadcnAspectRatioPortrait />,
+  "983": <U.ShadcnAspectRatioRtl />,
 }

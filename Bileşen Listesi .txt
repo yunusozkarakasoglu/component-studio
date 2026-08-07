@@ -663,6 +663,12 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `976` ShadcnTypographyMuted
 - `977` ShadcnTypographySmall
 - `978` ShadcnTypographyTable
+#### ShadcnAspectRatio
+- `979` ShadcnAspectRatio
+- `980` ShadcnAspectRatioDemo
+- `981` ShadcnAspectRatioSquare
+- `982` ShadcnAspectRatioPortrait
+- `983` ShadcnAspectRatioRtl
 
 ### Seçim
 #### RadioGroup
@@ -1037,7 +1043,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 889 bileşen (saf React)**
+**Toplam: 894 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-07T14:40:49.822Z",
+  "generatedAt": "2026-08-07T14:46:57.122Z",
   "counts": {
-    "components": 889,
-    "ready": 889,
+    "components": 894,
+    "ready": 894,
     "layouts": 0
   },
   "categories": [
@@ -6902,6 +6902,66 @@
       "code": "/**\n * ShadcnTypographyTable\n * Tablo (saf React, shadcn kaynaklı).\n * @id 978\n * @category Genel\n * @subcategory ShadcnTypography\n * @source shadcn\n */\nimport { ShadcnTypographyH4 } from \"@/components/ui/shadcn-typography\"\n\nfunction ShadcnTypographyTable() {\n  return (\n    <div>\n      <ShadcnTypographyH4>Joke Tax Rates</ShadcnTypographyH4>\n      <div className=\"my-6 w-full overflow-y-auto\">\n        <table className=\"w-full text-sm\">\n          <thead>\n            <tr className=\"m-0 border-t p-0 even:bg-muted\">\n              <th className=\"border px-4 py-2 text-left font-bold\">Pun</th>\n              <th className=\"border px-4 py-2 text-left font-bold\">Tax Rate</th>\n            </tr>\n          </thead>\n          <tbody>\n            <tr className=\"m-0 border-t p-0 even:bg-muted\">\n              <td className=\"border px-4 py-2\">1st level of puns</td>\n              <td className=\"border px-4 py-2\">5 gold coins</td>\n            </tr>\n            <tr className=\"m-0 border-t p-0 even:bg-muted\">\n              <td className=\"border px-4 py-2\">2nd level of jokes</td>\n              <td className=\"border px-4 py-2\">10 gold coins</td>\n            </tr>\n            <tr className=\"m-0 border-t p-0 even:bg-muted\">\n              <td className=\"border px-4 py-2\">3rd level of one-liners</td>\n              <td className=\"border px-4 py-2\">20 gold coins</td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n  )\n}\n\nexport { ShadcnTypographyTable }\n",
       "description": "ShadcnTypographyTable",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-typography-table.tsx"
+    },
+    {
+      "id": "979",
+      "name": "ShadcnAspectRatio",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnAspectRatio",
+      "source": "shadcn",
+      "file": "shadcn-aspect-ratio.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnAspectRatio\n * Saf React bileşen (bağımlılıksız) — shadcn/ui kaynaklı.\n * Belirtilen oranda içerik sarmalayıcısı.\n *   <ShadcnAspectRatio ratio={16 / 9}>…</ShadcnAspectRatio>\n * @id 979\n * @category Genel\n * @subcategory ShadcnAspectRatio\n * @source shadcn\n */\nimport type { HTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface ShadcnAspectRatioProps extends HTMLAttributes<HTMLDivElement> {\n  ratio?: number\n}\n\nfunction ShadcnAspectRatio({ className, ratio = 1, children, ...props }: ShadcnAspectRatioProps) {\n  return (\n    <div\n      data-slot=\"shadcn-aspect-ratio\"\n      style={{ aspectRatio: String(ratio) }}\n      className={cn(\"relative w-full overflow-hidden\", className)}\n      {...props}\n    >\n      {children}\n    </div>\n  )\n}\n\nexport { ShadcnAspectRatio }\nexport type { ShadcnAspectRatioProps }\n",
+      "description": "ShadcnAspectRatio",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-aspect-ratio.tsx"
+    },
+    {
+      "id": "980",
+      "name": "ShadcnAspectRatioDemo",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnAspectRatio",
+      "source": "shadcn",
+      "file": "shadcn-aspect-ratio-demo.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnAspectRatioDemo\n * Temel örnek — 16/9 (saf React, shadcn kaynaklı).\n * Not: kaynaktaki uzak görsel offline ilkesi gereği gradient ile değiştirildi.\n * @id 980\n * @category Genel\n * @subcategory ShadcnAspectRatio\n * @source shadcn\n */\nimport { ShadcnAspectRatio } from \"@/components/ui/shadcn-aspect-ratio\"\n\nfunction ShadcnAspectRatioDemo() {\n  return (\n    <ShadcnAspectRatio ratio={16 / 9} className=\"w-full max-w-sm rounded-lg bg-muted\">\n      <div className=\"flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-600\">\n        <span className=\"text-4xl text-white/90\">🖼️</span>\n      </div>\n    </ShadcnAspectRatio>\n  )\n}\n\nexport { ShadcnAspectRatioDemo }\n",
+      "description": "ShadcnAspectRatioDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-aspect-ratio-demo.tsx"
+    },
+    {
+      "id": "981",
+      "name": "ShadcnAspectRatioSquare",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnAspectRatio",
+      "source": "shadcn",
+      "file": "shadcn-aspect-ratio-square.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnAspectRatioSquare\n * Kare oran (saf React, shadcn kaynaklı).\n * @id 981\n * @category Genel\n * @subcategory ShadcnAspectRatio\n * @source shadcn\n */\nimport { ShadcnAspectRatio } from \"@/components/ui/shadcn-aspect-ratio\"\n\nfunction ShadcnAspectRatioSquare() {\n  return (\n    <ShadcnAspectRatio ratio={1} className=\"w-40 rounded-lg bg-muted\">\n      <div className=\"flex h-full w-full items-center justify-center bg-gradient-to-br from-emerald-500 to-teal-600 text-white\">\n        1:1\n      </div>\n    </ShadcnAspectRatio>\n  )\n}\n\nexport { ShadcnAspectRatioSquare }\n",
+      "description": "ShadcnAspectRatioSquare",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-aspect-ratio-square.tsx"
+    },
+    {
+      "id": "982",
+      "name": "ShadcnAspectRatioPortrait",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnAspectRatio",
+      "source": "shadcn",
+      "file": "shadcn-aspect-ratio-portrait.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnAspectRatioPortrait\n * Dikey oran (saf React, shadcn kaynaklı).\n * @id 982\n * @category Genel\n * @subcategory ShadcnAspectRatio\n * @source shadcn\n */\nimport { ShadcnAspectRatio } from \"@/components/ui/shadcn-aspect-ratio\"\n\nfunction ShadcnAspectRatioPortrait() {\n  return (\n    <ShadcnAspectRatio ratio={3 / 4} className=\"w-40 rounded-lg bg-muted\">\n      <div className=\"flex h-full w-full items-center justify-center bg-gradient-to-br from-rose-500 to-pink-600 text-white\">\n        3:4\n      </div>\n    </ShadcnAspectRatio>\n  )\n}\n\nexport { ShadcnAspectRatioPortrait }\n",
+      "description": "ShadcnAspectRatioPortrait",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-aspect-ratio-portrait.tsx"
+    },
+    {
+      "id": "983",
+      "name": "ShadcnAspectRatioRtl",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnAspectRatio",
+      "source": "shadcn",
+      "file": "shadcn-aspect-ratio-rtl.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnAspectRatioRtl\n * RTL örneği (saf React, shadcn kaynaklı).\n * @id 983\n * @category Genel\n * @subcategory ShadcnAspectRatio\n * @source shadcn\n */\nimport { ShadcnAspectRatio } from \"@/components/ui/shadcn-aspect-ratio\"\n\nfunction ShadcnAspectRatioRtl() {\n  return (\n    <ShadcnAspectRatio ratio={16 / 9} className=\"w-full max-w-sm rounded-lg bg-muted\" dir=\"rtl\">\n      <div className=\"flex h-full w-full items-center justify-center bg-gradient-to-br from-amber-500 to-orange-600 text-white\">\n        نسبة العرض إلى الارتفاع\n      </div>\n    </ShadcnAspectRatio>\n  )\n}\n\nexport { ShadcnAspectRatioRtl }\n",
+      "description": "ShadcnAspectRatioRtl",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-aspect-ratio-rtl.tsx"
     },
     {
       "id": "389",
