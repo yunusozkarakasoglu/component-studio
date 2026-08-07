@@ -48,7 +48,7 @@ Masaüstü/mantine-components-setup/
 - [x] @source altyapısı hazır (build-registry serbest @source + App sourceOk + Mantine filtre butonu)
 - [x] Mt öneki + kategori eşleme (üstte, kullanıcı onaylı)
 
-### Adım 1 — Layout & Genel (Box, Group, Stack, Center, Container, Paper, Space, Flex, Divider, AspectRatio)
+- [x] **Adım 1 — Layout** — 1004-1057 (12 çekirdek + 44 örnek: Box/Group/Stack/Center/Container/Paper/Space/Flex/Divider/AspectRatio/SimpleGrid/Grid)
 ### Adım 2 — Butonlar & Aksiyonlar (Button, ActionIcon, CloseButton, CopyButton, FileButton, Burger, Anchor, Menu, Menubar)
 ### Adım 3 — Form Girdileri (TextInput, Textarea, NumberInput, PasswordInput, JsonInput, MaskInput, NativeSelect, Input, Fieldset)
 ### Adım 4 — Seçim (Checkbox, Radio, Switch, Chip, SegmentedControl, Slider, RangeSlider, Rating, PinInput, ColorInput, PillsInput)
