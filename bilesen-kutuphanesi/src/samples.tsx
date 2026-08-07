@@ -819,4 +819,12 @@ export const SAMPLES: Record<string, ReactNode> = {
   "843": <U.ShadcnPaginationSimple />,
   "844": <U.ShadcnPaginationIconsOnly />,
   "845": <U.ShadcnPaginationRtl />,
+  "846": <U.ShadcnBreadcrumb />,
+  "847": <U.ShadcnBreadcrumbDemo />,
+  "848": <U.ShadcnBreadcrumbBasic />,
+  "849": <U.ShadcnBreadcrumbSeparatorDemo />,
+  "850": <U.ShadcnBreadcrumbDropdown />,
+  "851": <U.ShadcnBreadcrumbEllipsisDemo />,
+  "852": <U.ShadcnBreadcrumbLinkDemo />,
+  "853": <U.ShadcnBreadcrumbRtl />,
 }

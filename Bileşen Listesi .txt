@@ -509,6 +509,15 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `843` ShadcnPaginationSimple
 - `844` ShadcnPaginationIconsOnly
 - `845` ShadcnPaginationRtl
+#### ShadcnBreadcrumb
+- `846` ShadcnBreadcrumb + List/Item/Link/Page/Separator/Ellipsis
+- `847` ShadcnBreadcrumbDemo
+- `848` ShadcnBreadcrumbBasic
+- `849` ShadcnBreadcrumbSeparator
+- `850` ShadcnBreadcrumbDropdown
+- `851` ShadcnBreadcrumbEllipsis
+- `852` ShadcnBreadcrumbLink
+- `853` ShadcnBreadcrumbRtl
 
 ### Seçim
 #### RadioGroup
@@ -883,7 +892,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 756 bileşen (saf React)**
+**Toplam: 764 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
