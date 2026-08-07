@@ -567,7 +567,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `892` ShadcnDatePickerDemo
 - `893` ShadcnDatePickerSimple
 - `894` ShadcnDatePickerWithRange
-- `895` ShadcnDatePickerDateOfBirth
+- `895` ShadcnDatePickerDob
 - `896` ShadcnDatePickerInput
 - `897` ShadcnDatePickerRtl
 - (Time Picker / Natural Language — karmaşık, atlandı)
