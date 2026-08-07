@@ -923,4 +923,12 @@ export const SAMPLES: Record<string, ReactNode> = {
   "947": <U.ShadcnSkeletonText />,
   "948": <U.ShadcnSkeletonForm />,
   "949": <U.ShadcnSkeletonRtl />,
+  "950": <U.ShadcnSpinner />,
+  "951": <U.ShadcnSpinnerDemo />,
+  "952": <U.ShadcnSpinnerCustom />,
+  "953": <U.ShadcnSpinnerSize />,
+  "954": <U.ShadcnSpinnerButton />,
+  "955": <U.ShadcnSpinnerBadge />,
+  "956": <U.ShadcnSpinnerInputGroup />,
+  "957": <U.ShadcnSpinnerRtl />,
 }

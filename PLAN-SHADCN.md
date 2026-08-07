@@ -38,7 +38,9 @@
 | **Veri Gösterimi** (3) | Table, Empty, - [x] **Collapsible** — 931-937 (3 compound + 6 örnek)
 
 ### ✅ Veri Gösterimi tamamlandı |
-| **Yükleme & İlerleme** (3) | Progress, Skeleton, Spinner |
+| **Yükleme & İlerleme** (3) | Progress, Skeleton, - [x] **Spinner** — 950-957 (çekirdek + 7 örnek)
+
+### ✅ Yükleme & İlerleme tamamlandı |
 | **Genel** (10) | Separator, Typography, Aspect Ratio, Resizable, Scroll Area, Marker, Item, Direction, Attachment, Aspect Ratio |
 
 **Kapsam dışı (üçüncü parti bağımlı — saf React çevirisi zor, not):**
@@ -124,7 +126,9 @@
 ### Adım 7 — Veri + Yükleme (6)
 Table → - [x] **Progress** — 938-942 (çekirdek + 4 örnek)
 - [x] **Skeleton** — 943-949 (çekirdek + 6 örnek)
-Spinner → Empty
+- [x] **Spinner** — 950-957 (çekirdek + 7 örnek)
+
+### ✅ Yükleme & İlerleme tamamlandı → Empty
 
 ### Adım 8 — Genel (10)
 Separator → Typography → Aspect Ratio → Resizable → Scroll Area → Marker → Item → Direction → Attachment

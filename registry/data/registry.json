@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-07T14:30:34.385Z",
+  "generatedAt": "2026-08-07T14:33:50.093Z",
   "counts": {
-    "components": 860,
-    "ready": 860,
+    "components": 868,
+    "ready": 868,
     "layouts": 0
   },
   "categories": [
@@ -6554,6 +6554,102 @@
       "code": "/**\n * ShadcnSkeletonRtl\n * RTL örneği — Arapça yükleniyor (saf React, shadcn kaynaklı).\n * @id 949\n * @category Yükleme & İlerleme\n * @subcategory ShadcnSkeleton\n * @source shadcn\n */\nimport { ShadcnSkeleton } from \"@/components/ui/shadcn-skeleton\"\n\nfunction ShadcnSkeletonRtl() {\n  return (\n    <div className=\"flex items-center gap-4\" dir=\"rtl\">\n      <ShadcnSkeleton className=\"size-12 rounded-full\" />\n      <div className=\"space-y-2\">\n        <ShadcnSkeleton className=\"h-4 w-[250px]\" />\n        <ShadcnSkeleton className=\"h-4 w-[180px]\" />\n      </div>\n    </div>\n  )\n}\n\nexport { ShadcnSkeletonRtl }\n",
       "description": "ShadcnSkeletonRtl",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-skeleton-rtl.tsx"
+    },
+    {
+      "id": "950",
+      "name": "ShadcnSpinner",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSpinner",
+      "source": "shadcn",
+      "file": "shadcn-spinner.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSpinner\n * Saf React bileşen (bağımlılıksız) — shadcn/ui kaynaklı.\n * Yükleniyor göstergesi — dönen ikon.\n *   <ShadcnSpinner className=\"size-6\" />\n * @id 950\n * @category Yükleme & İlerleme\n * @subcategory ShadcnSpinner\n * @source shadcn\n */\nimport type { SVGProps } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { Loader } from \"@/components/ui/icons\"\n\ninterface ShadcnSpinnerProps extends SVGProps<SVGSVGElement> {}\n\nfunction ShadcnSpinner({ className, ...props }: ShadcnSpinnerProps) {\n  return (\n    <Loader\n      role=\"status\"\n      aria-label=\"Loading\"\n      data-slot=\"shadcn-spinner\"\n      className={cn(\"size-4 animate-spin\", className)}\n      {...props}\n    />\n  )\n}\n\nexport { ShadcnSpinner }\nexport type { ShadcnSpinnerProps }\n",
+      "description": "ShadcnSpinner",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-spinner.tsx"
+    },
+    {
+      "id": "951",
+      "name": "ShadcnSpinnerDemo",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSpinner",
+      "source": "shadcn",
+      "file": "shadcn-spinner-demo.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSpinnerDemo\n * Temel örnek — ödeme işleniyor satırı (saf React, shadcn kaynaklı).\n * @id 951\n * @category Yükleme & İlerleme\n * @subcategory ShadcnSpinner\n * @source shadcn\n */\nimport { ShadcnSpinner } from \"@/components/ui/shadcn-spinner\"\n\nfunction ShadcnSpinnerDemo() {\n  return (\n    <div className=\"flex w-full max-w-xs items-center gap-3 rounded-lg border border-border p-3\">\n      <ShadcnSpinner />\n      <div className=\"flex-1 text-sm font-medium\">Processing payment...</div>\n      <span className=\"text-sm tabular-nums text-muted-foreground\">$100.00</span>\n    </div>\n  )\n}\n\nexport { ShadcnSpinnerDemo }\n",
+      "description": "ShadcnSpinnerDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-spinner-demo.tsx"
+    },
+    {
+      "id": "952",
+      "name": "ShadcnSpinnerCustom",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSpinner",
+      "source": "shadcn",
+      "file": "shadcn-spinner-custom.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSpinnerCustom\n * Özel spinner (saf React, shadcn kaynaklı).\n * @id 952\n * @category Yükleme & İlerleme\n * @subcategory ShadcnSpinner\n * @source shadcn\n */\nimport { ShadcnSpinner } from \"@/components/ui/shadcn-spinner\"\n\nfunction ShadcnSpinnerCustom() {\n  return (\n    <div className=\"flex items-center gap-4\">\n      <ShadcnSpinner />\n    </div>\n  )\n}\n\nexport { ShadcnSpinnerCustom }\n",
+      "description": "ShadcnSpinnerCustom",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-spinner-custom.tsx"
+    },
+    {
+      "id": "953",
+      "name": "ShadcnSpinnerSize",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSpinner",
+      "source": "shadcn",
+      "file": "shadcn-spinner-size.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSpinnerSize\n * Boyutlar (saf React, shadcn kaynaklı).\n * @id 953\n * @category Yükleme & İlerleme\n * @subcategory ShadcnSpinner\n * @source shadcn\n */\nimport { ShadcnSpinner } from \"@/components/ui/shadcn-spinner\"\n\nfunction ShadcnSpinnerSize() {\n  return (\n    <div className=\"flex items-center gap-6\">\n      <ShadcnSpinner className=\"size-3\" />\n      <ShadcnSpinner className=\"size-4\" />\n      <ShadcnSpinner className=\"size-6\" />\n      <ShadcnSpinner className=\"size-8\" />\n    </div>\n  )\n}\n\nexport { ShadcnSpinnerSize }\n",
+      "description": "ShadcnSpinnerSize",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-spinner-size.tsx"
+    },
+    {
+      "id": "954",
+      "name": "ShadcnSpinnerButton",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSpinner",
+      "source": "shadcn",
+      "file": "shadcn-spinner-button.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSpinnerButton\n * Buton içinde spinner (saf React, shadcn kaynaklı).\n * @id 954\n * @category Yükleme & İlerleme\n * @subcategory ShadcnSpinner\n * @source shadcn\n */\nimport { ShadcnButton } from \"@/components/ui/shadcn-button\"\nimport { ShadcnSpinner } from \"@/components/ui/shadcn-spinner\"\n\nfunction ShadcnSpinnerButton() {\n  return (\n    <div className=\"flex gap-2\">\n      <ShadcnButton disabled>\n        <ShadcnSpinner data-icon=\"inline-start\" /> Processing…\n      </ShadcnButton>\n      <ShadcnButton variant=\"outline\" disabled>\n        <ShadcnSpinner data-icon=\"inline-start\" /> Loading\n      </ShadcnButton>\n    </div>\n  )\n}\n\nexport { ShadcnSpinnerButton }\n",
+      "description": "ShadcnSpinnerButton",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-spinner-button.tsx"
+    },
+    {
+      "id": "955",
+      "name": "ShadcnSpinnerBadge",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSpinner",
+      "source": "shadcn",
+      "file": "shadcn-spinner-badge.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSpinnerBadge\n * Rozet içinde spinner (saf React, shadcn kaynaklı).\n * @id 955\n * @category Yükleme & İlerleme\n * @subcategory ShadcnSpinner\n * @source shadcn\n */\nimport { ShadcnBadge } from \"@/components/ui/shadcn-badge\"\nimport { ShadcnSpinner } from \"@/components/ui/shadcn-spinner\"\n\nfunction ShadcnSpinnerBadge() {\n  return (\n    <div className=\"flex flex-wrap gap-2\">\n      <ShadcnBadge variant=\"secondary\">\n        <ShadcnSpinner data-icon=\"inline-start\" /> Syncing\n      </ShadcnBadge>\n      <ShadcnBadge variant=\"outline\">\n        <ShadcnSpinner data-icon=\"inline-start\" /> Uploading\n      </ShadcnBadge>\n    </div>\n  )\n}\n\nexport { ShadcnSpinnerBadge }\n",
+      "description": "ShadcnSpinnerBadge",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-spinner-badge.tsx"
+    },
+    {
+      "id": "956",
+      "name": "ShadcnSpinnerInputGroup",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSpinner",
+      "source": "shadcn",
+      "file": "shadcn-spinner-input-group.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSpinnerInputGroup\n * Giriş grubunda spinner (saf React, shadcn kaynaklı).\n * @id 956\n * @category Yükleme & İlerleme\n * @subcategory ShadcnSpinner\n * @source shadcn\n */\nimport { ShadcnSpinner } from \"@/components/ui/shadcn-spinner\"\nimport {\n  ShadcnInputGroup,\n  ShadcnInputGroupAddon,\n  ShadcnInputGroupInput,\n} from \"@/components/ui/shadcn-input-group\"\n\nfunction ShadcnSpinnerInputGroup() {\n  return (\n    <ShadcnInputGroup className=\"max-w-sm\">\n      <ShadcnInputGroupInput placeholder=\"Searching...\" />\n      <ShadcnInputGroupAddon align=\"inline-end\">\n        <ShadcnSpinner />\n      </ShadcnInputGroupAddon>\n    </ShadcnInputGroup>\n  )\n}\n\nexport { ShadcnSpinnerInputGroup }\n",
+      "description": "ShadcnSpinnerInputGroup",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-spinner-input-group.tsx"
+    },
+    {
+      "id": "957",
+      "name": "ShadcnSpinnerRtl",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnSpinner",
+      "source": "shadcn",
+      "file": "shadcn-spinner-rtl.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnSpinnerRtl\n * RTL örneği (saf React, shadcn kaynaklı).\n * @id 957\n * @category Yükleme & İlerleme\n * @subcategory ShadcnSpinner\n * @source shadcn\n */\nimport { ShadcnSpinner } from \"@/components/ui/shadcn-spinner\"\n\nfunction ShadcnSpinnerRtl() {\n  return (\n    <div className=\"flex items-center gap-3\" dir=\"rtl\">\n      <ShadcnSpinner />\n      <span className=\"text-sm text-muted-foreground\">جاري المعالجة…</span>\n    </div>\n  )\n}\n\nexport { ShadcnSpinnerRtl }\n",
+      "description": "ShadcnSpinnerRtl",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-spinner-rtl.tsx"
     },
     {
       "id": "389",

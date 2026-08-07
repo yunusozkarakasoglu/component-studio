@@ -631,6 +631,15 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `947` ShadcnSkeletonText
 - `948` ShadcnSkeletonForm
 - `949` ShadcnSkeletonRtl
+#### ShadcnSpinner
+- `950` ShadcnSpinner
+- `951` ShadcnSpinnerDemo
+- `952` ShadcnSpinnerCustom
+- `953` ShadcnSpinnerSize
+- `954` ShadcnSpinnerButton
+- `955` ShadcnSpinnerBadge
+- `956` ShadcnSpinnerInputGroup
+- `957` ShadcnSpinnerRtl
 
 ### Seçim
 #### RadioGroup
@@ -1005,7 +1014,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 860 bileşen (saf React)**
+**Toplam: 868 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
