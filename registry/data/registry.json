@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-07T14:46:57.122Z",
+  "generatedAt": "2026-08-07T14:50:29.540Z",
   "counts": {
-    "components": 894,
-    "ready": 894,
+    "components": 899,
+    "ready": 899,
     "layouts": 0
   },
   "categories": [
@@ -6962,6 +6962,66 @@
       "code": "/**\n * ShadcnAspectRatioRtl\n * RTL örneği (saf React, shadcn kaynaklı).\n * @id 983\n * @category Genel\n * @subcategory ShadcnAspectRatio\n * @source shadcn\n */\nimport { ShadcnAspectRatio } from \"@/components/ui/shadcn-aspect-ratio\"\n\nfunction ShadcnAspectRatioRtl() {\n  return (\n    <ShadcnAspectRatio ratio={16 / 9} className=\"w-full max-w-sm rounded-lg bg-muted\" dir=\"rtl\">\n      <div className=\"flex h-full w-full items-center justify-center bg-gradient-to-br from-amber-500 to-orange-600 text-white\">\n        نسبة العرض إلى الارتفاع\n      </div>\n    </ShadcnAspectRatio>\n  )\n}\n\nexport { ShadcnAspectRatioRtl }\n",
       "description": "ShadcnAspectRatioRtl",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-aspect-ratio-rtl.tsx"
+    },
+    {
+      "id": "984",
+      "name": "ShadcnResizable",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnResizable",
+      "source": "shadcn",
+      "file": "shadcn-resizable.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnResizable familyası\n * Saf React bileşen (bağımlılıksız) — shadcn/ui kaynaklı.\n * Yeniden boyutlandırılabilir paneller — PanelGroup + Panel + ResizeHandle.\n * Not: kaynak react-resizable-panels kullanır — üçüncü parti olduğundan\n * basit pointer tabanlı kendi çekirdeği yazıldı.\n *   <ShadcnResizablePanelGroup orientation=\"horizontal\">\n *     <ShadcnResizablePanel defaultSize={50}>…</ShadcnResizablePanel>\n *     <ShadcnResizableHandle withHandle />\n *     <ShadcnResizablePanel defaultSize={50}>…</ShadcnResizablePanel>\n *   </ShadcnResizablePanelGroup>\n * @id 984\n * @category Genel\n * @subcategory ShadcnResizable\n * @source shadcn\n */\nimport { createContext, useContext, useRef, useState, type HTMLAttributes, type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { GripVertical } from \"@/components/ui/icons\"\n\ninterface PanelGroupContextValue {\n  registerPanel: () => number\n  sizes: number[]\n  setSize: (index: number, value: number) => void\n}\n\nconst PanelGroupContext = createContext<PanelGroupContextValue | null>(null)\n\nfunction usePanelGroup(): PanelGroupContextValue {\n  const ctx = useContext(PanelGroupContext)\n  if (!ctx) throw new Error(\"ShadcnResizablePanel, ShadcnResizablePanelGroup içinde kullanılmalı\")\n  return ctx\n}\n\ninterface ShadcnResizablePanelGroupProps extends HTMLAttributes<HTMLDivElement> {\n  orientation?: \"horizontal\" | \"vertical\"\n  children?: ReactNode\n}\n\nfunction ShadcnResizablePanelGroup({ className, orientation = \"horizontal\", children, ...props }: ShadcnResizablePanelGroupProps) {\n  const [sizes, setSizes] = useState<number[]>([])\n  const panelCount = useRef(0)\n\n  const registerPanel = () => panelCount.current++\n\n  const setSize = (index: number, value: number) => {\n    setSizes((prev) => {\n      const next = [...prev]\n      next[index] = Math.max(5, Math.min(95, value))\n      return next\n    })\n  }\n\n  return (\n    <PanelGroupContext.Provider value={{ registerPanel, sizes, setSize }}>\n      <div\n        data-slot=\"shadcn-resizable-panel-group\"\n        className={cn(\n          \"flex w-full gap-0.5\",\n          orientation === \"horizontal\" ? \"flex-row\" : \"flex-col\",\n          className\n        )}\n        {...props}\n      >\n        {children}\n      </div>\n    </PanelGroupContext.Provider>\n  )\n}\n\ninterface ShadcnResizablePanelProps extends HTMLAttributes<HTMLDivElement> {\n  defaultSize?: number\n}\n\nfunction ShadcnResizablePanel({ className, defaultSize = 50, children, ...props }: ShadcnResizablePanelProps) {\n  const ctx = usePanelGroup()\n  const index = useRef(ctx.registerPanel())\n  const size = ctx.sizes[index.current] ?? defaultSize\n\n  return (\n    <div\n      data-slot=\"shadcn-resizable-panel\"\n      className={cn(\"min-h-0 min-w-0 flex-1\", className)}\n      style={{ flexGrow: size, flexBasis: 0 }}\n      {...props}\n    >\n      {children}\n    </div>\n  )\n}\n\ninterface ShadcnResizableHandleProps extends HTMLAttributes<HTMLDivElement> {\n  withHandle?: boolean\n}\n\nfunction ShadcnResizableHandle({ className, withHandle, ...props }: ShadcnResizableHandleProps) {\n  const ctx = usePanelGroup()\n  const dragging = useRef(false)\n  const startPos = useRef(0)\n  const startSize = useRef(0)\n\n  const findPanelIndex = (el: HTMLElement | null): number => {\n    if (!el) return -1\n    const panels = Array.from(el.querySelectorAll(\"[data-slot=shadcn-resizable-panel]\"))\n    return panels.findIndex((p) => p.contains(el) || p === el)\n  }\n\n  return (\n    <div\n      role=\"separator\"\n      aria-orientation=\"vertical\"\n      data-slot=\"shadcn-resizable-handle\"\n      onPointerDown={(e) => {\n        dragging.current = true\n        startPos.current = e.clientX\n        // en yakın önceki panelin boyutunu bul\n        const group = e.currentTarget.closest(\"[data-slot=shadcn-resizable-panel-group]\")\n        const panels = group ? Array.from(group.querySelectorAll(\"[data-slot=shadcn-resizable-panel]\")) : []\n        const idx = panels.findIndex((p) => p === e.currentTarget.previousElementSibling)\n        if (idx >= 0 && ctx.sizes[idx]) startSize.current = ctx.sizes[idx]\n        e.currentTarget.setPointerCapture(e.pointerId)\n      }}\n      onPointerMove={(e) => {\n        if (!dragging.current) return\n        const group = e.currentTarget.closest(\"[data-slot=shadcn-resizable-panel-group]\")\n        const panels = group ? Array.from(group.querySelectorAll(\"[data-slot=shadcn-resizable-panel]\")) : []\n        const idx = panels.findIndex((p) => p === e.currentTarget.previousElementSibling)\n        if (idx < 0) return\n        const delta = e.clientX - startPos.current\n        const next = Math.max(5, Math.min(95, startSize.current + delta))\n        ctx.setSize(idx, next)\n      }}\n      onPointerUp={() => {\n        dragging.current = false\n      }}\n      className={cn(\n        \"relative flex w-px shrink-0 items-center justify-center bg-border transition-colors after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2 hover:bg-blue-500/60\",\n        className\n      )}\n      {...props}\n    >\n      {withHandle && (\n        <GripVertical className=\"pointer-events-none size-3.5 text-muted-foreground\" />\n      )}\n    </div>\n  )\n}\n\nexport { ShadcnResizableHandle, ShadcnResizablePanel, ShadcnResizablePanelGroup }\nexport type { ShadcnResizableHandleProps, ShadcnResizablePanelGroupProps, ShadcnResizablePanelProps }\n",
+      "description": "ShadcnResizable familyası",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-resizable.tsx"
+    },
+    {
+      "id": "985",
+      "name": "ShadcnResizableDemo",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnResizable",
+      "source": "shadcn",
+      "file": "shadcn-resizable-demo.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnResizableDemo\n * Temel örnek — iç içe paneller (saf React, shadcn kaynaklı).\n * @id 985\n * @category Genel\n * @subcategory ShadcnResizable\n * @source shadcn\n */\nimport {\n  ShadcnResizableHandle,\n  ShadcnResizablePanel,\n  ShadcnResizablePanelGroup,\n} from \"@/components/ui/shadcn-resizable\"\n\nfunction ShadcnResizableDemo() {\n  return (\n    <ShadcnResizablePanelGroup orientation=\"horizontal\" className=\"max-w-sm rounded-lg border\">\n      <ShadcnResizablePanel defaultSize={50}>\n        <div className=\"flex h-[200px] items-center justify-center p-6\">\n          <span className=\"font-semibold\">One</span>\n        </div>\n      </ShadcnResizablePanel>\n      <ShadcnResizableHandle withHandle />\n      <ShadcnResizablePanel defaultSize={50}>\n        <ShadcnResizablePanelGroup orientation=\"vertical\">\n          <ShadcnResizablePanel defaultSize={25}>\n            <div className=\"flex h-full items-center justify-center p-6\">\n              <span className=\"font-semibold\">Two</span>\n            </div>\n          </ShadcnResizablePanel>\n          <ShadcnResizableHandle withHandle />\n          <ShadcnResizablePanel defaultSize={75}>\n            <div className=\"flex h-full items-center justify-center p-6\">\n              <span className=\"font-semibold\">Three</span>\n            </div>\n          </ShadcnResizablePanel>\n        </ShadcnResizablePanelGroup>\n      </ShadcnResizablePanel>\n    </ShadcnResizablePanelGroup>\n  )\n}\n\nexport { ShadcnResizableDemo }\n",
+      "description": "ShadcnResizableDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-resizable-demo.tsx"
+    },
+    {
+      "id": "986",
+      "name": "ShadcnResizableVertical",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnResizable",
+      "source": "shadcn",
+      "file": "shadcn-resizable-vertical.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnResizableVertical\n * Dikey paneller (saf React, shadcn kaynaklı).\n * @id 986\n * @category Genel\n * @subcategory ShadcnResizable\n * @source shadcn\n */\nimport {\n  ShadcnResizableHandle,\n  ShadcnResizablePanel,\n  ShadcnResizablePanelGroup,\n} from \"@/components/ui/shadcn-resizable\"\n\nfunction ShadcnResizableVertical() {\n  return (\n    <ShadcnResizablePanelGroup orientation=\"vertical\" className=\"max-w-sm rounded-lg border\">\n      <ShadcnResizablePanel defaultSize={30}>\n        <div className=\"flex h-full items-center justify-center p-6\">\n          <span className=\"font-semibold\">Header</span>\n        </div>\n      </ShadcnResizablePanel>\n      <ShadcnResizableHandle withHandle />\n      <ShadcnResizablePanel defaultSize={70}>\n        <div className=\"flex h-full items-center justify-center p-6\">\n          <span className=\"font-semibold\">Content</span>\n        </div>\n      </ShadcnResizablePanel>\n    </ShadcnResizablePanelGroup>\n  )\n}\n\nexport { ShadcnResizableVertical }\n",
+      "description": "ShadcnResizableVertical",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-resizable-vertical.tsx"
+    },
+    {
+      "id": "987",
+      "name": "ShadcnResizableHandleDemo",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnResizable",
+      "source": "shadcn",
+      "file": "shadcn-resizable-handle-demo.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnResizableHandleDemo\n * Tutamaçsız ayraç (saf React, shadcn kaynaklı).\n * @id 987\n * @category Genel\n * @subcategory ShadcnResizable\n * @source shadcn\n */\nimport {\n  ShadcnResizableHandle,\n  ShadcnResizablePanel,\n  ShadcnResizablePanelGroup,\n} from \"@/components/ui/shadcn-resizable\"\n\nfunction ShadcnResizableHandleDemo() {\n  return (\n    <ShadcnResizablePanelGroup orientation=\"horizontal\" className=\"max-w-sm rounded-lg border\">\n      <ShadcnResizablePanel defaultSize={40}>\n        <div className=\"flex h-[150px] items-center justify-center p-6\">\n          <span className=\"font-semibold\">A</span>\n        </div>\n      </ShadcnResizablePanel>\n      <ShadcnResizableHandle />\n      <ShadcnResizablePanel defaultSize={60}>\n        <div className=\"flex h-[150px] items-center justify-center p-6\">\n          <span className=\"font-semibold\">B</span>\n        </div>\n      </ShadcnResizablePanel>\n    </ShadcnResizablePanelGroup>\n  )\n}\n\nexport { ShadcnResizableHandleDemo }\n",
+      "description": "ShadcnResizableHandleDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-resizable-handle-demo.tsx"
+    },
+    {
+      "id": "988",
+      "name": "ShadcnResizableRtl",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnResizable",
+      "source": "shadcn",
+      "file": "shadcn-resizable-rtl.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnResizableRtl\n * RTL örneği (saf React, shadcn kaynaklı).\n * @id 988\n * @category Genel\n * @subcategory ShadcnResizable\n * @source shadcn\n */\nimport {\n  ShadcnResizableHandle,\n  ShadcnResizablePanel,\n  ShadcnResizablePanelGroup,\n} from \"@/components/ui/shadcn-resizable\"\n\nfunction ShadcnResizableRtl() {\n  return (\n    <ShadcnResizablePanelGroup orientation=\"horizontal\" className=\"max-w-sm rounded-lg border\" dir=\"rtl\">\n      <ShadcnResizablePanel defaultSize={50}>\n        <div className=\"flex h-[150px] items-center justify-center p-6\">\n          <span className=\"font-semibold\">يمين</span>\n        </div>\n      </ShadcnResizablePanel>\n      <ShadcnResizableHandle withHandle />\n      <ShadcnResizablePanel defaultSize={50}>\n        <div className=\"flex h-[150px] items-center justify-center p-6\">\n          <span className=\"font-semibold\">يسار</span>\n        </div>\n      </ShadcnResizablePanel>\n    </ShadcnResizablePanelGroup>\n  )\n}\n\nexport { ShadcnResizableRtl }\n",
+      "description": "ShadcnResizableRtl",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-resizable-rtl.tsx"
     },
     {
       "id": "389",
