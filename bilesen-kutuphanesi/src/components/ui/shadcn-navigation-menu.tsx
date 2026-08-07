@@ -15,7 +15,7 @@
  * @subcategory ShadcnNavigationMenu
  * @source shadcn
  */
-import { createContext, useContext, useState, type AnchorHTMLAttributes, type HTMLAttributes, type ReactNode } from "react"
+import { createContext, useContext, useState, type AnchorHTMLAttributes, type HTMLAttributes } from "react"
 import { cn } from "@/lib/utils"
 import { ChevronDown } from "@/components/ui/icons"
 
