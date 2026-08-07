@@ -1339,7 +1339,63 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1209` MtInputComponent
 - `1210` MtInputSharedDefaultProps
 
-**Toplam: 1121 bileşen (saf React)**
+
+#### MtCheckbox
+- `1211` MtCheckbox
+
+#### MtRadio
+- `1212` MtRadio + MtRadioGroup
+
+#### MtSwitch
+- `1213` MtSwitch
+
+#### MtChip
+- `1214` MtChip + MtChipGroup
+
+#### MtSegmentedControl
+- `1215` MtSegmentedControl
+- `1216` MtCheckboxUsage
+- `1217` MtCheckboxError
+- `1218` MtCheckboxDisabled
+- `1219` MtCheckboxSize
+- `1220` MtCheckboxIndeterminate
+- `1221` MtCheckboxIcon
+- `1222` MtCheckboxGroup
+- `1223` MtCheckboxCard
+- `1224` MtCheckboxCustomSize
+- `1225` MtCheckboxIconColor
+- `1226` MtCheckboxAnchor
+- `1227` MtCheckboxCustomize
+- `1228` MtRadioUsage
+- `1229` MtRadioHorizontal
+- `1230` MtRadioDisabled
+- `1231` MtRadioError
+- `1232` MtRadioCard
+- `1233` MtRadioControlled
+- `1234` MtRadioIcon
+- `1235` MtRadioCustomIndicator
+- `1236` MtSwitchUsage
+- `1237` MtSwitchSize
+- `1238` MtSwitchDisabled
+- `1239` MtSwitchError
+- `1240` MtSwitchOnOffLabel
+- `1241` MtSwitchThumbIcon
+- `1242` MtSwitchControlled
+- `1243` MtSwitchGroup
+- `1244` MtChipUsage
+- `1245` MtChipVariants
+- `1246` MtChipSize
+- `1247` MtChipDisabled
+- `1248` MtChipSingle
+- `1249` MtChipVertical
+- `1250` MtSegmentedControlUsage
+- `1251` MtSegmentedControlSize
+- `1252` MtSegmentedControlDisabled
+- `1253` MtSegmentedControlVertical
+- `1254` MtSegmentedControlControlled
+- `1255` MtSegmentedControlFullWidth
+
+**Toplam: 1166 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
