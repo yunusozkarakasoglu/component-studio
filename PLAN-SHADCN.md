@@ -136,7 +136,9 @@ Table → - [x] **Progress** — 938-942 (çekirdek + 4 örnek)
 - [x] **Aspect Ratio** — 979-983 (çekirdek + 4 örnek)
 - [x] **Resizable** — 984-988 (saf React çekirdek + 4 örnek)
 - [x] **Scroll Area** — 989-992 (çekirdek + 3 örnek)
-Marker → Item → Direction → Attachment
+- [x] **Marker** — 993-995 · [x] **Item** — 996-998 · [x] **Direction** — 999-1000 · [x] **Attachment** — 1001-1003
+
+### ✅ Adım 7 tamamlandı (11 element, 90 bileşen) — SHADCN ENTEGRASYONU TAMAMLANDI 🎉
 
 ## Notlar
 - **İkon:** lucide import'ları kendi setimize eşle (Birebir ad → anlam → sor)

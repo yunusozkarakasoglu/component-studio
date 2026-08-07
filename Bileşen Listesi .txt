@@ -680,6 +680,21 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `990` ShadcnScrollAreaDemo
 - `991` ShadcnScrollAreaHorizontal
 - `992` ShadcnScrollAreaRtl
+#### ShadcnMarker
+- `993` ShadcnMarker + Icon/Content (separator)
+- `994` ShadcnMarkerDemo
+- `995` ShadcnMarkerRtl
+#### ShadcnItem
+- `996` ShadcnItem + Content/Title/Description/Media/Actions
+- `997` ShadcnItemDemo
+- `998` ShadcnItemBasic
+#### ShadcnDirection
+- `999` ShadcnDirection
+- `1000` ShadcnDirectionDemo
+#### ShadcnAttachment
+- `1001` ShadcnAttachment + Group/Media/Content/Title/Description/Actions/Action (state)
+- `1002` ShadcnAttachmentDemo
+- `1003` ShadcnAttachmentImage
 
 ### Seçim
 #### RadioGroup
@@ -1054,7 +1069,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 903 bileşen (saf React)**
+**Toplam: 914 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-07T14:55:40.819Z",
+  "generatedAt": "2026-08-07T15:02:12.955Z",
   "counts": {
-    "components": 903,
-    "ready": 903,
+    "components": 914,
+    "ready": 914,
     "layouts": 0
   },
   "categories": [
@@ -7070,6 +7070,138 @@
       "code": "/**\n * ShadcnScrollAreaRtl\n * RTL örneği — Arapça kaydırma (saf React, shadcn kaynaklı).\n * @id 992\n * @category Genel\n * @subcategory ShadcnScrollArea\n * @source shadcn\n */\nimport { ShadcnScrollArea } from \"@/components/ui/shadcn-scroll-area\"\n\nconst items = Array.from({ length: 30 }, (_, i) => `عنصر ${i + 1}`)\n\nfunction ShadcnScrollAreaRtl() {\n  return (\n    <ShadcnScrollArea className=\"h-48 w-48 rounded-md border\" dir=\"rtl\">\n      <div className=\"p-4\">\n        <h4 className=\"mb-4 text-sm leading-none font-medium\">العناصر</h4>\n        {items.map((item) => (\n          <div key={item} className=\"py-1.5 text-sm\">{item}</div>\n        ))}\n      </div>\n    </ShadcnScrollArea>\n  )\n}\n\nexport { ShadcnScrollAreaRtl }\n",
       "description": "ShadcnScrollAreaRtl",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-scroll-area-rtl.tsx"
+    },
+    {
+      "id": "993",
+      "name": "ShadcnMarker",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnMarker",
+      "source": "shadcn",
+      "file": "shadcn-marker.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnMarker familyası\n * Saf React bileşen (bağımlılıksız) — shadcn/ui kaynaklı.\n * Konuşma işaretçisi — Marker + Icon + Content (variant separator).\n *   <ShadcnMarker>\n *     <ShadcnMarkerIcon>…</ShadcnMarkerIcon>\n *     <ShadcnMarkerContent>Switched to a new branch</ShadcnMarkerContent>\n *   </ShadcnMarker>\n * @id 993\n * @category Genel\n * @subcategory ShadcnMarker\n * @source shadcn\n */\nimport type { HTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface ShadcnMarkerProps extends HTMLAttributes<HTMLDivElement> {\n  variant?: \"default\" | \"separator\"\n}\n\nfunction ShadcnMarker({ className, variant = \"default\", ...props }: ShadcnMarkerProps) {\n  return (\n    <div\n      data-slot=\"shadcn-marker\"\n      data-variant={variant}\n      className={cn(\n        \"flex w-full items-center gap-2 text-sm\",\n        variant === \"separator\" && \"my-2 justify-center rounded-full bg-muted px-3 py-1 text-xs text-muted-foreground\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\ninterface ShadcnMarkerIconProps extends HTMLAttributes<HTMLSpanElement> {}\n\nfunction ShadcnMarkerIcon({ className, ...props }: ShadcnMarkerIconProps) {\n  return (\n    <span\n      data-slot=\"shadcn-marker-icon\"\n      className={cn(\"flex size-6 shrink-0 items-center justify-center rounded-full bg-muted text-muted-foreground\", className)}\n      {...props}\n    />\n  )\n}\n\ninterface ShadcnMarkerContentProps extends HTMLAttributes<HTMLSpanElement> {}\n\nfunction ShadcnMarkerContent({ className, ...props }: ShadcnMarkerContentProps) {\n  return <span data-slot=\"shadcn-marker-content\" className={cn(\"text-muted-foreground\", className)} {...props} />\n}\n\nexport { ShadcnMarker, ShadcnMarkerContent, ShadcnMarkerIcon }\nexport type { ShadcnMarkerContentProps, ShadcnMarkerIconProps, ShadcnMarkerProps }\n",
+      "description": "ShadcnMarker familyası",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-marker.tsx"
+    },
+    {
+      "id": "994",
+      "name": "ShadcnMarkerDemo",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnMarker",
+      "source": "shadcn",
+      "file": "shadcn-marker-demo.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnMarkerDemo\n * Temel örnek — konuşma işaretleri (saf React, shadcn kaynaklı).\n * Spinner: kütüphanenin mevcut ShadcnSpinner'ı.\n * @id 994\n * @category Genel\n * @subcategory ShadcnMarker\n * @source shadcn\n */\nimport { GitBranch, Search } from \"@/components/ui/icons\"\nimport {\n  ShadcnMarker,\n  ShadcnMarkerContent,\n  ShadcnMarkerIcon,\n} from \"@/components/ui/shadcn-marker\"\nimport { ShadcnSpinner } from \"@/components/ui/shadcn-spinner\"\n\nfunction ShadcnMarkerDemo() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-8 py-12\">\n      <ShadcnMarker>\n        <ShadcnMarkerIcon><GitBranch className=\"size-3.5\" /></ShadcnMarkerIcon>\n        <ShadcnMarkerContent>Switched to a new branch</ShadcnMarkerContent>\n      </ShadcnMarker>\n      <ShadcnMarker role=\"status\">\n        <ShadcnMarkerIcon><ShadcnSpinner /></ShadcnMarkerIcon>\n        <ShadcnMarkerContent>Thinking...</ShadcnMarkerContent>\n      </ShadcnMarker>\n      <ShadcnMarker variant=\"separator\">\n        <ShadcnMarkerContent>Conversation compacted</ShadcnMarkerContent>\n      </ShadcnMarker>\n      <ShadcnMarker>\n        <ShadcnMarkerIcon><Search className=\"size-3.5\" /></ShadcnMarkerIcon>\n        <ShadcnMarkerContent>Explored 4 files</ShadcnMarkerContent>\n      </ShadcnMarker>\n    </div>\n  )\n}\n\nexport { ShadcnMarkerDemo }\n",
+      "description": "ShadcnMarkerDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-marker-demo.tsx"
+    },
+    {
+      "id": "995",
+      "name": "ShadcnMarkerRtl",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnMarker",
+      "source": "shadcn",
+      "file": "shadcn-marker-rtl.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnMarkerRtl\n * RTL örneği — Arapça işaretçi (saf React, shadcn kaynaklı).\n * @id 995\n * @category Genel\n * @subcategory ShadcnMarker\n * @source shadcn\n */\nimport { GitBranch } from \"@/components/ui/icons\"\nimport {\n  ShadcnMarker,\n  ShadcnMarkerContent,\n  ShadcnMarkerIcon,\n} from \"@/components/ui/shadcn-marker\"\n\nfunction ShadcnMarkerRtl() {\n  return (\n    <div className=\"flex w-full max-w-sm flex-col gap-8 py-12\" dir=\"rtl\">\n      <ShadcnMarker>\n        <ShadcnMarkerIcon><GitBranch className=\"size-3.5\" /></ShadcnMarkerIcon>\n        <ShadcnMarkerContent>تم التبديل إلى فرع جديد</ShadcnMarkerContent>\n      </ShadcnMarker>\n      <ShadcnMarker variant=\"separator\">\n        <ShadcnMarkerContent>تم ضغط المحادثة</ShadcnMarkerContent>\n      </ShadcnMarker>\n    </div>\n  )\n}\n\nexport { ShadcnMarkerRtl }\n",
+      "description": "ShadcnMarkerRtl",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-marker-rtl.tsx"
+    },
+    {
+      "id": "996",
+      "name": "ShadcnItem",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnItem",
+      "source": "shadcn",
+      "file": "shadcn-item.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnItem familyası\n * Saf React bileşen (bağımlılıksız) — shadcn/ui kaynaklı.\n * Liste öğesi — Item + Content + Title + Description + Media + Actions.\n *   <ShadcnItem variant=\"outline\">\n *     <ShadcnItemContent>\n *       <ShadcnItemTitle>Basic Item</ShadcnItemTitle>\n *       <ShadcnItemDescription>…</ShadcnItemDescription>\n *     </ShadcnItemContent>\n *     <ShadcnItemActions>…</ShadcnItemActions>\n *   </ShadcnItem>\n * @id 996\n * @category Genel\n * @subcategory ShadcnItem\n * @source shadcn\n */\nimport type { HTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface ShadcnItemProps extends HTMLAttributes<HTMLDivElement> {\n  variant?: \"default\" | \"outline\" | \"muted\"\n}\n\nfunction ShadcnItem({ className, variant = \"default\", ...props }: ShadcnItemProps) {\n  return (\n    <div\n      data-slot=\"shadcn-item\"\n      data-variant={variant}\n      className={cn(\n        \"flex w-full items-center gap-3 rounded-lg p-3\",\n        variant === \"outline\" && \"border border-border\",\n        variant === \"muted\" && \"bg-muted/50\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\ninterface ShadcnItemContentProps extends HTMLAttributes<HTMLDivElement> {}\n\nfunction ShadcnItemContent({ className, ...props }: ShadcnItemContentProps) {\n  return <div data-slot=\"shadcn-item-content\" className={cn(\"flex flex-1 flex-col gap-0.5\", className)} {...props} />\n}\n\ninterface ShadcnItemTitleProps extends HTMLAttributes<HTMLHeadingElement> {}\n\nfunction ShadcnItemTitle({ className, ...props }: ShadcnItemTitleProps) {\n  return <h4 data-slot=\"shadcn-item-title\" className={cn(\"text-sm font-medium leading-none\", className)} {...props} />\n}\n\ninterface ShadcnItemDescriptionProps extends HTMLAttributes<HTMLParagraphElement> {}\n\nfunction ShadcnItemDescription({ className, ...props }: ShadcnItemDescriptionProps) {\n  return <p data-slot=\"shadcn-item-description\" className={cn(\"text-sm text-muted-foreground\", className)} {...props} />\n}\n\ninterface ShadcnItemMediaProps extends HTMLAttributes<HTMLDivElement> {}\n\nfunction ShadcnItemMedia({ className, ...props }: ShadcnItemMediaProps) {\n  return <div data-slot=\"shadcn-item-media\" className={cn(\"flex shrink-0 items-center text-muted-foreground\", className)} {...props} />\n}\n\ninterface ShadcnItemActionsProps extends HTMLAttributes<HTMLDivElement> {}\n\nfunction ShadcnItemActions({ className, ...props }: ShadcnItemActionsProps) {\n  return <div data-slot=\"shadcn-item-actions\" className={cn(\"flex shrink-0 items-center gap-2\", className)} {...props} />\n}\n\nexport { ShadcnItem, ShadcnItemActions, ShadcnItemContent, ShadcnItemDescription, ShadcnItemMedia, ShadcnItemTitle }\nexport type {\n  ShadcnItemActionsProps,\n  ShadcnItemContentProps,\n  ShadcnItemDescriptionProps,\n  ShadcnItemMediaProps,\n  ShadcnItemProps,\n  ShadcnItemTitleProps,\n}\n",
+      "description": "ShadcnItem familyası",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-item.tsx"
+    },
+    {
+      "id": "997",
+      "name": "ShadcnItemDemo",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnItem",
+      "source": "shadcn",
+      "file": "shadcn-item-demo.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnItemDemo\n * Temel örnek — öğe listesi (saf React, shadcn kaynaklı).\n * @id 997\n * @category Genel\n * @subcategory ShadcnItem\n * @source shadcn\n */\nimport { BadgeCheck, ChevronRight } from \"@/components/ui/icons\"\nimport {\n  ShadcnItem,\n  ShadcnItemActions,\n  ShadcnItemContent,\n  ShadcnItemDescription,\n  ShadcnItemMedia,\n  ShadcnItemTitle,\n} from \"@/components/ui/shadcn-item\"\nimport { ShadcnButton } from \"@/components/ui/shadcn-button\"\n\nfunction ShadcnItemDemo() {\n  return (\n    <div className=\"flex w-full max-w-md flex-col gap-6\">\n      <ShadcnItem variant=\"outline\">\n        <ShadcnItemContent>\n          <ShadcnItemTitle>Basic Item</ShadcnItemTitle>\n          <ShadcnItemDescription>\n            A simple item with title and description.\n          </ShadcnItemDescription>\n        </ShadcnItemContent>\n        <ShadcnItemActions>\n          <ShadcnButton variant=\"outline\" size=\"sm\">Action</ShadcnButton>\n        </ShadcnItemActions>\n      </ShadcnItem>\n      <ShadcnItem variant=\"outline\">\n        <ShadcnItemMedia>\n          <BadgeCheck className=\"size-5\" />\n        </ShadcnItemMedia>\n        <ShadcnItemContent>\n          <ShadcnItemTitle>Your profile has been verified.</ShadcnItemTitle>\n        </ShadcnItemContent>\n        <ShadcnItemActions>\n          <ChevronRight className=\"size-4\" />\n        </ShadcnItemActions>\n      </ShadcnItem>\n    </div>\n  )\n}\n\nexport { ShadcnItemDemo }\n",
+      "description": "ShadcnItemDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-item-demo.tsx"
+    },
+    {
+      "id": "998",
+      "name": "ShadcnItemBasic",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnItem",
+      "source": "shadcn",
+      "file": "shadcn-item-basic.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnItemBasic\n * Temel öğe (saf React, shadcn kaynaklı).\n * @id 998\n * @category Genel\n * @subcategory ShadcnItem\n * @source shadcn\n */\nimport {\n  ShadcnItem,\n  ShadcnItemActions,\n  ShadcnItemContent,\n  ShadcnItemDescription,\n  ShadcnItemTitle,\n} from \"@/components/ui/shadcn-item\"\nimport { ShadcnButton } from \"@/components/ui/shadcn-button\"\n\nfunction ShadcnItemBasic() {\n  return (\n    <ShadcnItem variant=\"muted\" className=\"max-w-md\">\n      <ShadcnItemContent>\n        <ShadcnItemTitle>Update available</ShadcnItemTitle>\n        <ShadcnItemDescription>Version 2.0 is ready to install.</ShadcnItemDescription>\n      </ShadcnItemContent>\n      <ShadcnItemActions>\n        <ShadcnButton size=\"sm\">Update</ShadcnButton>\n      </ShadcnItemActions>\n    </ShadcnItem>\n  )\n}\n\nexport { ShadcnItemBasic }\n",
+      "description": "ShadcnItemBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-item-basic.tsx"
+    },
+    {
+      "id": "999",
+      "name": "ShadcnDirection",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnDirection",
+      "source": "shadcn",
+      "file": "shadcn-direction.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnDirection\n * Saf React bileşen (bağımlılıksız) — shadcn/ui kaynaklı.\n * Yönlendirme — useShadcnDirection hook (ltr/rtl tespiti + değiştirme).\n *   const { dir, toggle } = useShadcnDirection()\n * Not: kaynak useDirection hook sağlar; aynı API kendi çekirdeğiyle yazıldı.\n * @id 999\n * @category Genel\n * @subcategory ShadcnDirection\n * @source shadcn\n */\nimport { useEffect, useState } from \"react\"\n\ntype Direction = \"ltr\" | \"rtl\"\n\nfunction useShadcnDirection(defaultDir: Direction = \"ltr\") {\n  const [dir, setDir] = useState<Direction>(defaultDir)\n\n  useEffect(() => {\n    document.documentElement.dir = dir\n  }, [dir])\n\n  const toggle = () => setDir((d) => (d === \"ltr\" ? \"rtl\" : \"ltr\"))\n\n  return { dir, setDir, toggle }\n}\n\nexport { useShadcnDirection }\n",
+      "description": "ShadcnDirection",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-direction.tsx"
+    },
+    {
+      "id": "1000",
+      "name": "ShadcnDirectionDemo",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnDirection",
+      "source": "shadcn",
+      "file": "shadcn-direction-demo.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnDirectionDemo\n * Yön değiştirme örneği (saf React, shadcn kaynaklı).\n * @id 1000\n * @category Genel\n * @subcategory ShadcnDirection\n * @source shadcn\n */\nimport { useShadcnDirection } from \"@/components/ui/shadcn-direction\"\nimport { ShadcnButton } from \"@/components/ui/shadcn-button\"\n\nfunction ShadcnDirectionDemo() {\n  const { dir, toggle } = useShadcnDirection(\"ltr\")\n\n  return (\n    <div className=\"flex flex-col items-start gap-3\" dir={dir}>\n      <ShadcnButton onClick={toggle} variant=\"outline\">\n        Toggle Direction ({dir.toUpperCase()})\n      </ShadcnButton>\n      <p className=\"max-w-xs text-sm text-muted-foreground\">\n        {dir === \"ltr\"\n          ? \"This text flows left to right. Click the button to switch to RTL.\"\n          : \"هذا النص يتدفق من اليمين إلى اليسار. اضغط الزر للتبديل إلى LTR.\"}\n      </p>\n    </div>\n  )\n}\n\nexport { ShadcnDirectionDemo }\n",
+      "description": "ShadcnDirectionDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-direction-demo.tsx"
+    },
+    {
+      "id": "1001",
+      "name": "ShadcnAttachment",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnAttachment",
+      "source": "shadcn",
+      "file": "shadcn-attachment.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnAttachment familyası\n * Saf React bileşen (bağımlılıksız) — shadcn/ui kaynaklı.\n * Ek dosya — Attachment + Group + Media (image) + Content + Title + Description + Actions + Action.\n *   <ShadcnAttachment>\n *     <ShadcnAttachmentMedia>…</ShadcnAttachmentMedia>\n *     <ShadcnAttachmentContent>\n *       <ShadcnAttachmentTitle>file.pdf</ShadcnAttachmentTitle>\n *       <ShadcnAttachmentDescription>PDF · 12 KB</ShadcnAttachmentDescription>\n *     </ShadcnAttachmentContent>\n *   </ShadcnAttachment>\n * state: default | uploading.\n * @id 1001\n * @category Genel\n * @subcategory ShadcnAttachment\n * @source shadcn\n */\nimport type { HTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface ShadcnAttachmentProps extends HTMLAttributes<HTMLDivElement> {\n  state?: \"default\" | \"uploading\"\n}\n\nfunction ShadcnAttachment({ className, state = \"default\", ...props }: ShadcnAttachmentProps) {\n  return (\n    <div\n      data-slot=\"shadcn-attachment\"\n      data-state={state}\n      className={cn(\n        \"flex w-full items-center gap-3 rounded-lg border border-border p-3\",\n        state === \"uploading\" && \"border-blue-400 bg-blue-50/40 dark:bg-blue-950/20\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\ninterface ShadcnAttachmentGroupProps extends HTMLAttributes<HTMLDivElement> {}\n\nfunction ShadcnAttachmentGroup({ className, ...props }: ShadcnAttachmentGroupProps) {\n  return <div data-slot=\"shadcn-attachment-group\" className={cn(\"flex w-full flex-col gap-3\", className)} {...props} />\n}\n\ninterface ShadcnAttachmentMediaProps extends HTMLAttributes<HTMLDivElement> {\n  variant?: \"default\" | \"image\"\n}\n\nfunction ShadcnAttachmentMedia({ className, variant = \"default\", ...props }: ShadcnAttachmentMediaProps) {\n  return (\n    <div\n      data-slot=\"shadcn-attachment-media\"\n      data-variant={variant}\n      className={cn(\n        \"flex size-10 shrink-0 items-center justify-center rounded-md bg-muted text-muted-foreground\",\n        variant === \"image\" && \"overflow-hidden\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\ninterface ShadcnAttachmentContentProps extends HTMLAttributes<HTMLDivElement> {}\n\nfunction ShadcnAttachmentContent({ className, ...props }: ShadcnAttachmentContentProps) {\n  return <div data-slot=\"shadcn-attachment-content\" className={cn(\"flex min-w-0 flex-1 flex-col gap-0.5\", className)} {...props} />\n}\n\ninterface ShadcnAttachmentTitleProps extends HTMLAttributes<HTMLHeadingElement> {}\n\nfunction ShadcnAttachmentTitle({ className, ...props }: ShadcnAttachmentTitleProps) {\n  return <h4 data-slot=\"shadcn-attachment-title\" className={cn(\"truncate text-sm font-medium leading-none\", className)} {...props} />\n}\n\ninterface ShadcnAttachmentDescriptionProps extends HTMLAttributes<HTMLParagraphElement> {}\n\nfunction ShadcnAttachmentDescription({ className, ...props }: ShadcnAttachmentDescriptionProps) {\n  return <p data-slot=\"shadcn-attachment-description\" className={cn(\"text-xs text-muted-foreground\", className)} {...props} />\n}\n\ninterface ShadcnAttachmentActionsProps extends HTMLAttributes<HTMLDivElement> {}\n\nfunction ShadcnAttachmentActions({ className, ...props }: ShadcnAttachmentActionsProps) {\n  return <div data-slot=\"shadcn-attachment-actions\" className={cn(\"flex shrink-0 items-center gap-1\", className)} {...props} />\n}\n\ninterface ShadcnAttachmentActionProps extends HTMLAttributes<HTMLButtonElement> {}\n\nfunction ShadcnAttachmentAction({ className, ...props }: ShadcnAttachmentActionProps) {\n  return (\n    <button\n      type=\"button\"\n      data-slot=\"shadcn-attachment-action\"\n      className={cn(\n        \"inline-flex size-7 cursor-pointer items-center justify-center rounded-md text-muted-foreground transition-colors\",\n        \"hover:bg-muted hover:text-foreground\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport {\n  ShadcnAttachment,\n  ShadcnAttachmentAction,\n  ShadcnAttachmentActions,\n  ShadcnAttachmentContent,\n  ShadcnAttachmentDescription,\n  ShadcnAttachmentGroup,\n  ShadcnAttachmentMedia,\n  ShadcnAttachmentTitle,\n}\nexport type {\n  ShadcnAttachmentActionProps,\n  ShadcnAttachmentActionsProps,\n  ShadcnAttachmentContentProps,\n  ShadcnAttachmentDescriptionProps,\n  ShadcnAttachmentGroupProps,\n  ShadcnAttachmentMediaProps,\n  ShadcnAttachmentProps,\n  ShadcnAttachmentTitleProps,\n}\n",
+      "description": "ShadcnAttachment familyası",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-attachment.tsx"
+    },
+    {
+      "id": "1002",
+      "name": "ShadcnAttachmentDemo",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnAttachment",
+      "source": "shadcn",
+      "file": "shadcn-attachment-demo.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnAttachmentDemo\n * Temel örnek — dosya ekleri (saf React, shadcn kaynaklı).\n * @id 1002\n * @category Genel\n * @subcategory ShadcnAttachment\n * @source shadcn\n */\nimport { FileCode, X } from \"@/components/ui/icons\"\nimport { ShadcnSpinner } from \"@/components/ui/shadcn-spinner\"\nimport {\n  ShadcnAttachment,\n  ShadcnAttachmentAction,\n  ShadcnAttachmentActions,\n  ShadcnAttachmentContent,\n  ShadcnAttachmentDescription,\n  ShadcnAttachmentGroup,\n  ShadcnAttachmentMedia,\n  ShadcnAttachmentTitle,\n} from \"@/components/ui/shadcn-attachment\"\n\nfunction ShadcnAttachmentDemo() {\n  return (\n    <ShadcnAttachmentGroup className=\"mx-auto max-w-sm\">\n      <ShadcnAttachment state=\"uploading\" className=\"w-full\">\n        <ShadcnAttachmentMedia>\n          <ShadcnSpinner />\n        </ShadcnAttachmentMedia>\n        <ShadcnAttachmentContent>\n          <ShadcnAttachmentTitle>sales-dashboard.pdf</ShadcnAttachmentTitle>\n          <ShadcnAttachmentDescription>Uploading · 64%</ShadcnAttachmentDescription>\n        </ShadcnAttachmentContent>\n        <ShadcnAttachmentActions>\n          <ShadcnAttachmentAction aria-label=\"Cancel upload\">\n            <X className=\"size-4\" />\n          </ShadcnAttachmentAction>\n        </ShadcnAttachmentActions>\n      </ShadcnAttachment>\n      <ShadcnAttachment className=\"w-full\">\n        <ShadcnAttachmentMedia>\n          <FileCode className=\"size-4\" />\n        </ShadcnAttachmentMedia>\n        <ShadcnAttachmentContent>\n          <ShadcnAttachmentTitle>message-renderer.tsx</ShadcnAttachmentTitle>\n          <ShadcnAttachmentDescription>TypeScript · 12 KB</ShadcnAttachmentDescription>\n        </ShadcnAttachmentContent>\n        <ShadcnAttachmentActions>\n          <ShadcnAttachmentAction aria-label=\"Remove file\">\n            <X className=\"size-4\" />\n          </ShadcnAttachmentAction>\n        </ShadcnAttachmentActions>\n      </ShadcnAttachment>\n    </ShadcnAttachmentGroup>\n  )\n}\n\nexport { ShadcnAttachmentDemo }\n",
+      "description": "ShadcnAttachmentDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-attachment-demo.tsx"
+    },
+    {
+      "id": "1003",
+      "name": "ShadcnAttachmentImage",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnAttachment",
+      "source": "shadcn",
+      "file": "shadcn-attachment-image.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnAttachmentImage\n * Görselli ek — yerel placeholder (saf React, shadcn kaynaklı).\n * Not: kaynaktaki uzak görseller offline ilkesi gereği gradient ile değiştirildi.\n * @id 1003\n * @category Genel\n * @subcategory ShadcnAttachment\n * @source shadcn\n */\nimport {\n  ShadcnAttachment,\n  ShadcnAttachmentContent,\n  ShadcnAttachmentDescription,\n  ShadcnAttachmentMedia,\n  ShadcnAttachmentTitle,\n} from \"@/components/ui/shadcn-attachment\"\n\nfunction ShadcnAttachmentImage() {\n  return (\n    <ShadcnAttachment className=\"mx-auto max-w-sm\">\n      <ShadcnAttachmentMedia variant=\"image\">\n        <div className=\"flex h-full w-full items-center justify-center bg-gradient-to-br from-sky-500 to-indigo-600 text-sm text-white\">🏔️</div>\n      </ShadcnAttachmentMedia>\n      <ShadcnAttachmentContent>\n        <ShadcnAttachmentTitle>mountain-view.jpg</ShadcnAttachmentTitle>\n        <ShadcnAttachmentDescription>Image · 2.4 MB</ShadcnAttachmentDescription>\n      </ShadcnAttachmentContent>\n    </ShadcnAttachment>\n  )\n}\n\nexport { ShadcnAttachmentImage }\n",
+      "description": "ShadcnAttachmentImage",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-attachment-image.tsx"
     },
     {
       "id": "389",
