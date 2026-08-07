@@ -21,7 +21,7 @@ function ShadcnCalendarRange() {
         mode="range"
         defaultMonth={range?.from}
         selected={range}
-        onSelect={setRange}
+        onSelect={(v) => v && "from" in v && setRange(v)}
         numberOfMonths={2}
         className="rounded-lg border"
       />

@@ -13,7 +13,7 @@ function ShadcnCalendarCaption() {
   const [date, setDate] = useState<Date | undefined>(new Date())
 
   return (
-    <ShadcnCalendar mode="single" selected={date} onSelect={setDate} captionLayout="dropdown" className="rounded-lg border" />
+    <ShadcnCalendar mode="single" selected={date} onSelect={(v) => v instanceof Date && setDate(v)} captionLayout="dropdown" className="rounded-lg border" />
   )
 }
 

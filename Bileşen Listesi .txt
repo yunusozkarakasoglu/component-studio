@@ -559,7 +559,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `886` ShadcnCalendarBasic
 - `887` ShadcnCalendarRange
 - `888` ShadcnCalendarCaption
-- `889` ShadcnCalendarWithPresets
+- `889` ShadcnCalendarPresets
 - `890` ShadcnCalendarRtl
 - (Hijri/Timezone — özel, atlandı)
 

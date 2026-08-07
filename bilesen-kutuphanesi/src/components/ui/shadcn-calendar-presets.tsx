@@ -37,7 +37,7 @@ function ShadcnCalendarWithPresets() {
           </button>
         ))}
       </div>
-      <ShadcnCalendar mode="range" selected={range} onSelect={setRange} numberOfMonths={2} className="rounded-lg border" />
+      <ShadcnCalendar mode="range" selected={range} onSelect={(v) => v && "from" in v && setRange(v)} numberOfMonths={2} className="rounded-lg border" />
     </div>
   )
 }

@@ -13,7 +13,7 @@ function ShadcnCalendarRtl() {
   const [date, setDate] = useState<Date | undefined>(new Date())
 
   return (
-    <ShadcnCalendar mode="single" selected={date} onSelect={setDate} dir="rtl" className="rounded-lg border" />
+    <ShadcnCalendar mode="single" selected={date} onSelect={(v) => v instanceof Date && setDate(v)} dir="rtl" className="rounded-lg border" />
   )
 }
 

@@ -14,7 +14,7 @@ function ShadcnCalendarDemo() {
 
   return (
     <div className="flex flex-col gap-2">
-      <ShadcnCalendar mode="single" selected={date} onSelect={setDate} captionLayout="dropdown" className="rounded-lg border" />
+      <ShadcnCalendar mode="single" selected={date} onSelect={(v) => v instanceof Date && setDate(v)} captionLayout="dropdown" className="rounded-lg border" />
       <p className="text-sm text-muted-foreground">
         {date ? `Selected: ${date.toLocaleDateString()}` : "No date selected"}
       </p>
