@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils"
 import { Check, ChevronDown, X } from "@/components/ui/icons"
 
 interface ShadcnComboboxProps extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
-  items: string[]
+  items?: string[]
   value?: string | string[]
   defaultValue?: string | string[]
   onChange?: (value: string | string[]) => void
@@ -28,7 +28,7 @@ interface ShadcnComboboxProps extends Omit<HTMLAttributes<HTMLDivElement>, "onCh
 
 function ShadcnCombobox({
   className,
-  items,
+  items = [],
   value,
   defaultValue,
   onChange,
