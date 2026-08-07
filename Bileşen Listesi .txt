@@ -1395,7 +1395,63 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1254` MtSegmentedControlControlled
 - `1255` MtSegmentedControlFullWidth
 
-**Toplam: 1166 bileşen (saf React)**
+
+#### MtSlider
+- `1256` MtSlider
+
+#### MtRangeSlider
+- `1257` MtRangeSlider
+
+#### MtRating
+- `1258` MtRating
+
+#### MtPinInput
+- `1259` MtPinInput
+
+#### MtColorInput
+- `1260` MtColorInput
+
+#### MtPillsInput
+- `1261` MtPillsInput
+- `1262` MtSliderUsage
+- `1263` MtSliderMarks
+- `1264` MtSliderLabel
+- `1265` MtSliderStep
+- `1266` MtSliderDisabled
+- `1267` MtSliderVertical
+- `1268` MtSliderInverted
+- `1269` MtSliderDecimal
+- `1270` MtSliderThumbChildren
+- `1271` MtSliderCustomize
+- `1272` MtRangeSliderUsage
+- `1273` MtRangeSliderMinRange
+- `1274` MtRangeSliderMaxRange
+- `1275` MtRangeSliderMarks
+- `1276` MtRangeSliderDisabled
+- `1277` MtRangeSliderStep
+- `1278` MtRatingUsage
+- `1279` MtRatingReadOnly
+- `1280` MtRatingFractions
+- `1281` MtRatingSize
+- `1282` MtRatingAllowClear
+- `1283` MtRatingCustomSymbol
+- `1284` MtPinInputUsage
+- `1285` MtPinInputRegexp
+- `1286` MtPinInputSuccess
+- `1287` MtPinInputStylesApi
+- `1288` MtColorInputUsage
+- `1289` MtColorInputSwatches
+- `1290` MtColorInputFormat
+- `1291` MtColorInputDisabled
+- `1292` MtColorInputError
+- `1293` MtColorInputLoading
+- `1294` MtColorInputNoEyeDropper
+- `1295` MtColorInputSuccess
+- `1296` MtPillsInputUsage
+- `1297` MtPillsInputLoading
+- `1298` MtPillsInputControlled
+
+**Toplam: 1209 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
