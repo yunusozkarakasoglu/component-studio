@@ -647,6 +647,22 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `961` ShadcnSeparatorMenu
 - `962` ShadcnSeparatorList
 - `963` ShadcnSeparatorRtl
+#### ShadcnTypography
+- `964` ShadcnTypography (H1-H4/P/Blockquote/Code/Lead/Large/Muted/Small)
+- `965` ShadcnTypographyDemo
+- `966` ShadcnTypographyH1
+- `967` ShadcnTypographyH2
+- `968` ShadcnTypographyH3
+- `969` ShadcnTypographyH4
+- `970` ShadcnTypographyP
+- `971` ShadcnTypographyBlockquote
+- `972` ShadcnTypographyList
+- `973` ShadcnTypographyInlineCode
+- `974` ShadcnTypographyLead
+- `975` ShadcnTypographyLarge
+- `976` ShadcnTypographyMuted
+- `977` ShadcnTypographySmall
+- `978` ShadcnTypographyTable
 
 ### Seçim
 #### RadioGroup
@@ -1021,7 +1037,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 874 bileşen (saf React)**
+**Toplam: 889 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
