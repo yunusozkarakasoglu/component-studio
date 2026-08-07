@@ -99,12 +99,6 @@ function ShadcnResizableHandle({ className, withHandle, ...props }: ShadcnResiza
   const startPos = useRef(0)
   const startSize = useRef(0)
 
-  const findPanelIndex = (el: HTMLElement | null): number => {
-    if (!el) return -1
-    const panels = Array.from(el.querySelectorAll("[data-slot=shadcn-resizable-panel]"))
-    return panels.findIndex((p) => p.contains(el) || p === el)
-  }
-
   return (
     <div
       role="separator"
