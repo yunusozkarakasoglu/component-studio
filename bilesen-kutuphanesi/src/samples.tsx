@@ -898,4 +898,10 @@ export const SAMPLES: Record<string, ReactNode> = {
   "922": <U.ShadcnTableFooterExample />,
   "923": <U.ShadcnTableActions />,
   "924": <U.ShadcnTableRtl />,
+  "925": <U.ShadcnEmpty />,
+  "926": <U.ShadcnEmptyDemo />,
+  "927": <U.ShadcnEmptyOutline />,
+  "928": <U.ShadcnEmptyMuted />,
+  "929": <U.ShadcnEmptyAvatar />,
+  "930": <U.ShadcnEmptyRtl />,
 }

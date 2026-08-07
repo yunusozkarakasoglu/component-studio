@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-07T14:13:32.871Z",
+  "generatedAt": "2026-08-07T14:17:00.407Z",
   "counts": {
-    "components": 835,
-    "ready": 835,
+    "components": 841,
+    "ready": 841,
     "layouts": 0
   },
   "categories": [
@@ -6254,6 +6254,78 @@
       "code": "/**\n * ShadcnTableRtl\n * RTL örneği — Arapça tablo (saf React, shadcn kaynaklı).\n * @id 924\n * @category Veri Gösterimi\n * @subcategory ShadcnTable\n * @source shadcn\n */\nimport {\n  ShadcnTable,\n  ShadcnTableBody,\n  ShadcnTableCell,\n  ShadcnTableHead,\n  ShadcnTableHeader,\n  ShadcnTableRow,\n} from \"@/components/ui/shadcn-table\"\n\nfunction ShadcnTableRtl() {\n  return (\n    <ShadcnTable dir=\"rtl\">\n      <ShadcnTableHeader>\n        <ShadcnTableRow>\n          <ShadcnTableHead className=\"w-[100px]\">الفاتورة</ShadcnTableHead>\n          <ShadcnTableHead>الحالة</ShadcnTableHead>\n          <ShadcnTableHead className=\"text-left\">المبلغ</ShadcnTableHead>\n        </ShadcnTableRow>\n      </ShadcnTableHeader>\n      <ShadcnTableBody>\n        <ShadcnTableRow>\n          <ShadcnTableCell className=\"font-medium\">INV001</ShadcnTableCell>\n          <ShadcnTableCell>مدفوعة</ShadcnTableCell>\n          <ShadcnTableCell className=\"text-left\">$250.00</ShadcnTableCell>\n        </ShadcnTableRow>\n        <ShadcnTableRow>\n          <ShadcnTableCell className=\"font-medium\">INV002</ShadcnTableCell>\n          <ShadcnTableCell>قيد الانتظار</ShadcnTableCell>\n          <ShadcnTableCell className=\"text-left\">$150.00</ShadcnTableCell>\n        </ShadcnTableRow>\n      </ShadcnTableBody>\n    </ShadcnTable>\n  )\n}\n\nexport { ShadcnTableRtl }\n",
       "description": "ShadcnTableRtl",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-table-rtl.tsx"
+    },
+    {
+      "id": "925",
+      "name": "ShadcnEmpty",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnEmpty",
+      "source": "shadcn",
+      "file": "shadcn-empty.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnEmpty familyası\n * Saf React bileşen (bağımlılıksız) — shadcn/ui kaynaklı.\n * Boş durum — Empty + Header + Media (icon/avatar) + Title + Description + Content.\n *   <ShadcnEmpty>\n *     <ShadcnEmptyHeader>\n *       <ShadcnEmptyMedia variant=\"icon\">…</ShadcnEmptyMedia>\n *       <ShadcnEmptyTitle>No Projects Yet</ShadcnEmptyTitle>\n *       <ShadcnEmptyDescription>…</ShadcnEmptyDescription>\n *     </ShadcnEmptyHeader>\n *     <ShadcnEmptyContent>…</ShadcnEmptyContent>\n *   </ShadcnEmpty>\n * @id 925\n * @category Veri Gösterimi\n * @subcategory ShadcnEmpty\n * @source shadcn\n */\nimport type { HTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface ShadcnEmptyProps extends HTMLAttributes<HTMLDivElement> {}\n\nfunction ShadcnEmpty({ className, ...props }: ShadcnEmptyProps) {\n  return <div data-slot=\"shadcn-empty\" className={cn(\"flex w-full flex-col items-center gap-4 p-8 text-center\", className)} {...props} />\n}\n\ninterface ShadcnEmptyHeaderProps extends HTMLAttributes<HTMLDivElement> {}\n\nfunction ShadcnEmptyHeader({ className, ...props }: ShadcnEmptyHeaderProps) {\n  return <div data-slot=\"shadcn-empty-header\" className={cn(\"flex flex-col items-center gap-2\", className)} {...props} />\n}\n\ninterface ShadcnEmptyMediaProps extends HTMLAttributes<HTMLDivElement> {\n  variant?: \"icon\" | \"avatar\"\n}\n\nfunction ShadcnEmptyMedia({ className, variant = \"icon\", ...props }: ShadcnEmptyMediaProps) {\n  return (\n    <div\n      data-slot=\"shadcn-empty-media\"\n      data-variant={variant}\n      className={cn(\n        \"flex size-12 items-center justify-center rounded-lg bg-muted text-muted-foreground\",\n        variant === \"avatar\" && \"rounded-full\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\ninterface ShadcnEmptyTitleProps extends HTMLAttributes<HTMLHeadingElement> {}\n\nfunction ShadcnEmptyTitle({ className, ...props }: ShadcnEmptyTitleProps) {\n  return <h3 data-slot=\"shadcn-empty-title\" className={cn(\"text-lg font-semibold leading-none\", className)} {...props} />\n}\n\ninterface ShadcnEmptyDescriptionProps extends HTMLAttributes<HTMLParagraphElement> {}\n\nfunction ShadcnEmptyDescription({ className, ...props }: ShadcnEmptyDescriptionProps) {\n  return <p data-slot=\"shadcn-empty-description\" className={cn(\"max-w-md text-sm text-muted-foreground\", className)} {...props} />\n}\n\ninterface ShadcnEmptyContentProps extends HTMLAttributes<HTMLDivElement> {}\n\nfunction ShadcnEmptyContent({ className, ...props }: ShadcnEmptyContentProps) {\n  return <div data-slot=\"shadcn-empty-content\" className={cn(\"flex flex-col gap-2\", className)} {...props} />\n}\n\nexport { ShadcnEmpty, ShadcnEmptyContent, ShadcnEmptyDescription, ShadcnEmptyHeader, ShadcnEmptyMedia, ShadcnEmptyTitle }\nexport type {\n  ShadcnEmptyContentProps,\n  ShadcnEmptyDescriptionProps,\n  ShadcnEmptyHeaderProps,\n  ShadcnEmptyMediaProps,\n  ShadcnEmptyProps,\n  ShadcnEmptyTitleProps,\n}\n",
+      "description": "ShadcnEmpty familyası",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-empty.tsx"
+    },
+    {
+      "id": "926",
+      "name": "ShadcnEmptyDemo",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnEmpty",
+      "source": "shadcn",
+      "file": "shadcn-empty-demo.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnEmptyDemo\n * Temel örnek — proje yok durumu (saf React, shadcn kaynaklı).\n * @id 926\n * @category Veri Gösterimi\n * @subcategory ShadcnEmpty\n * @source shadcn\n */\nimport { FolderOpen } from \"@/components/ui/icons\"\nimport { ShadcnButton } from \"@/components/ui/shadcn-button\"\nimport {\n  ShadcnEmpty,\n  ShadcnEmptyContent,\n  ShadcnEmptyDescription,\n  ShadcnEmptyHeader,\n  ShadcnEmptyMedia,\n  ShadcnEmptyTitle,\n} from \"@/components/ui/shadcn-empty\"\n\nfunction ShadcnEmptyDemo() {\n  return (\n    <ShadcnEmpty className=\"rounded-lg border border-dashed\">\n      <ShadcnEmptyHeader>\n        <ShadcnEmptyMedia variant=\"icon\">\n          <FolderOpen className=\"size-5\" />\n        </ShadcnEmptyMedia>\n        <ShadcnEmptyTitle>No Projects Yet</ShadcnEmptyTitle>\n        <ShadcnEmptyDescription>\n          You haven&apos;t created any projects yet. Get started by creating your first project.\n        </ShadcnEmptyDescription>\n      </ShadcnEmptyHeader>\n      <ShadcnEmptyContent className=\"flex-row justify-center gap-2\">\n        <ShadcnButton>Create Project</ShadcnButton>\n        <ShadcnButton variant=\"outline\">Import Project</ShadcnButton>\n      </ShadcnEmptyContent>\n    </ShadcnEmpty>\n  )\n}\n\nexport { ShadcnEmptyDemo }\n",
+      "description": "ShadcnEmptyDemo",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-empty-demo.tsx"
+    },
+    {
+      "id": "927",
+      "name": "ShadcnEmptyOutline",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnEmpty",
+      "source": "shadcn",
+      "file": "shadcn-empty-outline.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnEmptyOutline\n * Dış çizgili boş durum (saf React, shadcn kaynaklı).\n * @id 927\n * @category Veri Gösterimi\n * @subcategory ShadcnEmpty\n * @source shadcn\n */\nimport { FileText } from \"@/components/ui/icons\"\nimport {\n  ShadcnEmpty,\n  ShadcnEmptyDescription,\n  ShadcnEmptyHeader,\n  ShadcnEmptyMedia,\n  ShadcnEmptyTitle,\n} from \"@/components/ui/shadcn-empty\"\n\nfunction ShadcnEmptyOutline() {\n  return (\n    <ShadcnEmpty className=\"rounded-lg border\">\n      <ShadcnEmptyHeader>\n        <ShadcnEmptyMedia variant=\"icon\">\n          <FileText className=\"size-5\" />\n        </ShadcnEmptyMedia>\n        <ShadcnEmptyTitle>No Documents</ShadcnEmptyTitle>\n        <ShadcnEmptyDescription>\n          There are no documents in this folder yet.\n        </ShadcnEmptyDescription>\n      </ShadcnEmptyHeader>\n    </ShadcnEmpty>\n  )\n}\n\nexport { ShadcnEmptyOutline }\n",
+      "description": "ShadcnEmptyOutline",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-empty-outline.tsx"
+    },
+    {
+      "id": "928",
+      "name": "ShadcnEmptyMuted",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnEmpty",
+      "source": "shadcn",
+      "file": "shadcn-empty-muted.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnEmptyMuted\n * Soluk arka planlı boş durum (saf React, shadcn kaynaklı).\n * @id 928\n * @category Veri Gösterimi\n * @subcategory ShadcnEmpty\n * @source shadcn\n */\nimport { Inbox } from \"@/components/ui/icons\"\nimport {\n  ShadcnEmpty,\n  ShadcnEmptyDescription,\n  ShadcnEmptyHeader,\n  ShadcnEmptyMedia,\n  ShadcnEmptyTitle,\n} from \"@/components/ui/shadcn-empty\"\n\nfunction ShadcnEmptyMuted() {\n  return (\n    <ShadcnEmpty className=\"rounded-lg bg-muted/40\">\n      <ShadcnEmptyHeader>\n        <ShadcnEmptyMedia variant=\"icon\">\n          <Inbox className=\"size-5\" />\n        </ShadcnEmptyMedia>\n        <ShadcnEmptyTitle>Inbox Zero</ShadcnEmptyTitle>\n        <ShadcnEmptyDescription>\n          You&apos;re all caught up. No new messages.\n        </ShadcnEmptyDescription>\n      </ShadcnEmptyHeader>\n    </ShadcnEmpty>\n  )\n}\n\nexport { ShadcnEmptyMuted }\n",
+      "description": "ShadcnEmptyMuted",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-empty-muted.tsx"
+    },
+    {
+      "id": "929",
+      "name": "ShadcnEmptyAvatar",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnEmpty",
+      "source": "shadcn",
+      "file": "shadcn-empty-avatar.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnEmptyAvatar\n * Avatarlı boş durum (saf React, shadcn kaynaklı).\n * @id 929\n * @category Veri Gösterimi\n * @subcategory ShadcnEmpty\n * @source shadcn\n */\nimport { User } from \"@/components/ui/icons\"\nimport {\n  ShadcnEmpty,\n  ShadcnEmptyDescription,\n  ShadcnEmptyHeader,\n  ShadcnEmptyMedia,\n  ShadcnEmptyTitle,\n} from \"@/components/ui/shadcn-empty\"\n\nfunction ShadcnEmptyAvatar() {\n  return (\n    <ShadcnEmpty className=\"rounded-lg border border-dashed\">\n      <ShadcnEmptyHeader>\n        <ShadcnEmptyMedia variant=\"avatar\">\n          <User className=\"size-5\" />\n        </ShadcnEmptyMedia>\n        <ShadcnEmptyTitle>No Team Members</ShadcnEmptyTitle>\n        <ShadcnEmptyDescription>\n          Invite your team members to start collaborating.\n        </ShadcnEmptyDescription>\n      </ShadcnEmptyHeader>\n    </ShadcnEmpty>\n  )\n}\n\nexport { ShadcnEmptyAvatar }\n",
+      "description": "ShadcnEmptyAvatar",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-empty-avatar.tsx"
+    },
+    {
+      "id": "930",
+      "name": "ShadcnEmptyRtl",
+      "category": "Form Elemanları",
+      "subcategory": "ShadcnEmpty",
+      "source": "shadcn",
+      "file": "shadcn-empty-rtl.tsx",
+      "exists": true,
+      "code": "/**\n * ShadcnEmptyRtl\n * RTL örneği — Arapça boş durum (saf React, shadcn kaynaklı).\n * @id 930\n * @category Veri Gösterimi\n * @subcategory ShadcnEmpty\n * @source shadcn\n */\nimport { FolderOpen } from \"@/components/ui/icons\"\nimport {\n  ShadcnEmpty,\n  ShadcnEmptyDescription,\n  ShadcnEmptyHeader,\n  ShadcnEmptyMedia,\n  ShadcnEmptyTitle,\n} from \"@/components/ui/shadcn-empty\"\n\nfunction ShadcnEmptyRtl() {\n  return (\n    <ShadcnEmpty className=\"rounded-lg border border-dashed\" dir=\"rtl\">\n      <ShadcnEmptyHeader>\n        <ShadcnEmptyMedia variant=\"icon\">\n          <FolderOpen className=\"size-5\" />\n        </ShadcnEmptyMedia>\n        <ShadcnEmptyTitle>لا توجد مشاريع بعد</ShadcnEmptyTitle>\n        <ShadcnEmptyDescription>\n          لم تقم بإنشاء أي مشاريع بعد. ابدأ بإنشاء مشروعك الأول.\n        </ShadcnEmptyDescription>\n      </ShadcnEmptyHeader>\n    </ShadcnEmpty>\n  )\n}\n\nexport { ShadcnEmptyRtl }\n",
+      "description": "ShadcnEmptyRtl",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/shadcn-empty-rtl.tsx"
     },
     {
       "id": "389",
