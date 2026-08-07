@@ -503,6 +503,12 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `838` ShadcnTabsDisabled
 - `839` ShadcnTabsIcons
 - `840` ShadcnTabsRtl
+#### ShadcnPagination
+- `841` ShadcnPagination + Content/Item/Link/Previous/Next/Ellipsis
+- `842` ShadcnPaginationDemo
+- `843` ShadcnPaginationSimple
+- `844` ShadcnPaginationIconsOnly
+- `845` ShadcnPaginationRtl
 
 ### Seçim
 #### RadioGroup
@@ -877,7 +883,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 
 ---
 
-**Toplam: 751 bileşen (saf React)**
+**Toplam: 756 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

@@ -814,4 +814,9 @@ export const SAMPLES: Record<string, ReactNode> = {
   "838": <U.ShadcnTabsDisabled />,
   "839": <U.ShadcnTabsIcons />,
   "840": <U.ShadcnTabsRtl />,
+  "841": <U.ShadcnPagination />,
+  "842": <U.ShadcnPaginationDemo />,
+  "843": <U.ShadcnPaginationSimple />,
+  "844": <U.ShadcnPaginationIconsOnly />,
+  "845": <U.ShadcnPaginationRtl />,
 }

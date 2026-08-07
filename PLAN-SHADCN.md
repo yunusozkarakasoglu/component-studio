@@ -87,7 +87,8 @@
 
 ### Adım 5 — Navigasyon + Akordeon + Uyarı (9)
 - [x] **Tabs** — 834-840 (4 compound + 6 örnek)
-Pagination → Breadcrumb → Navigation Menu → Menubar → Accordion → Collapsible → Alert → Alert Dialog
+- [x] **Pagination** — 841-845 (7 compound + 4 örnek)
+Breadcrumb → Navigation Menu → Menubar → Accordion → Collapsible → Alert → Alert Dialog
 
 ### Adım 6 — Takvim + Combobox (6)
 Calendar → Date Picker → Combobox → Command → Select → Native Select
