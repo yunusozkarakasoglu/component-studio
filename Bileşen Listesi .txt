@@ -1628,7 +1628,107 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1424` MtTimelineCompact
 - `1425` MtFloatingIndicatorUsage
 
-**Toplam: 1336 bileşen (saf React)**
+
+#### MtTable
+- `1426` MtTable
+
+#### MtCard
+- `1427` MtCard
+
+#### MtAvatar
+- `1428` MtAvatar
+
+#### MtDataList
+- `1429` MtDataList
+
+#### MtEmptyState
+- `1430` MtEmptyState
+
+#### MtList
+- `1431` MtList
+
+#### MtText
+- `1432` MtText
+
+#### MtTitle
+- `1433` MtTitle
+
+#### MtThemeIcon
+- `1434` MtThemeIcon
+
+#### MtPill
+- `1435` MtPill
+
+#### MtImage
+- `1436` MtImage
+- `1437` MtTableUsage
+- `1438` MtTableStriped
+- `1439` MtTableHighlight
+- `1440` MtTableBorders
+- `1441` MtTableData
+- `1442` MtTableSpacing
+- `1443` MtTableCaptions
+- `1444` MtTableStickyHeader
+- `1445` MtTableScrollContainer
+- `1446` MtTableTabularNums
+- `1447` MtTableVertical
+- `1448` MtTableRowSelection
+- `1449` MtTableConfigurator
+- `1450` MtCardUsage
+- `1451` MtCardSectionDemo
+- `1452` MtCardHorizontal
+- `1453` MtCardLinkSection
+- `1454` MtCardLink
+- `1455` MtAvatarUsage
+- `1456` MtAvatarPlaceholders
+- `1457` MtAvatarInitials
+- `1458` MtAvatarGradient
+- `1459` MtAvatarSizes
+- `1460` MtAvatarGroupDemo
+- `1461` MtAvatarGroupTooltip
+- `1462` MtAvatarLink
+- `1463` MtAvatarConfigurator
+- `1464` MtDataListUsage
+- `1465` MtDataListHorizontal
+- `1466` MtDataListVertical
+- `1467` MtDataListDivider
+- `1468` MtEmptyStateUsage
+- `1469` MtEmptyStateVariant
+- `1470` MtEmptyStateCompound
+- `1471` MtEmptyStateIndicatorBackground
+- `1472` MtEmptyStateStylesApi
+- `1473` MtListUsage
+- `1474` MtListIcon
+- `1475` MtListNested
+- `1476` MtListReversed
+- `1477` MtListStart
+- `1478` MtListValue
+- `1479` MtTextUsage
+- `1480` MtTextLineClamp
+- `1481` MtTextTruncate
+- `1482` MtTextGradient
+- `1483` MtTextInherit
+- `1484` MtTextLinesConfigurator
+- `1485` MtTextTextWrap
+- `1486` MtTitleUsage
+- `1487` MtTitleLineClamp
+- `1488` MtTitleSize
+- `1489` MtTitleTextWrap
+- `1490` MtThemeIconUsage
+- `1491` MtThemeIconGradient
+- `1492` MtThemeIconAutoContrast
+- `1493` MtThemeIconVariantColorsResolver
+- `1494` MtPillUsage
+- `1495` MtPillWithinInput
+- `1496` MtPillStylesApi
+- `1497` MtImageUsage
+- `1498` MtImageFallback
+- `1499` MtImageContain
+- `1500` MtImageHeight
+- `1501` MtTypographyProse
+- `1502` MtTypographyUsage
+
+**Toplam: 1413 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
