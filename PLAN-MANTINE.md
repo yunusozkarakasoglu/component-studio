@@ -56,8 +56,10 @@ Masaüstü/mantine-components-setup/
 - [x] **Adım 6 — Overlay** — 1341-1385 (9 çekirdek + 36 örnek)
 - [x] **Adım 7 — Navigasyon** — 1386-1425 (7 çekirdek + 33 örnek)
 - [x] **Adım 8 — Veri Gösterimi** — 1426-1502 (11 çekirdek + 66 örnek: Table/Card/Avatar/DataList/EmptyState/List/Text/Title/ThemeIcon/Pill/Image/Typography)
-### Adım 9 — Geri Bildirim & Yükleme (Loader, Progress, RingProgress, Skeleton, Indicator, Alert, Code, Kbd, Blockquote, Spoiler, Collapse)
-### Adım 9 — Geri Bildirim & Yükleme (Loader, Progress, RingProgress, Skeleton, Indicator, Alert, Code, Kbd, Blockquote, Spoiler, Collapse)
+- [x] **Adım 9 — Geri Bildirim & Yükleme** — 1503-1586 (16 çekirdek + 68 örnek: Loader/Progress/RingProgress/SemiCircle/Skeleton/Indicator/RollingNumber/NumberFormatter/Alert/Blockquote/Code/Kbd/Highlight/Mark/Spoiler/Collapse)
+### Adım 10 — Takvim (16 dates element)
+- [x] **Adım 9 — Geri Bildirim & Yükleme** — 1503-1586 (16 çekirdek + 68 örnek: Loader/Progress/RingProgress/SemiCircle/Skeleton/Indicator/RollingNumber/NumberFormatter/Alert/Blockquote/Code/Kbd/Highlight/Mark/Spoiler/Collapse)
+### Adım 10 — Takvim (16 dates element)
 ### Adım 10 — Takvim (16 dates element)
 ### Adım 11 — Özel (AppShell, ScrollArea, Splitter, Tree, Marquee, FloatingWindow, TableOfContents)
 
