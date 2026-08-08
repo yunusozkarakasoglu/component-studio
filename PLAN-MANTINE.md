@@ -58,13 +58,21 @@ Masaüstü/mantine-components-setup/
 - [x] **Adım 8 — Veri Gösterimi** — 1426-1502 (11 çekirdek + 66 örnek: Table/Card/Avatar/DataList/EmptyState/List/Text/Title/ThemeIcon/Pill/Image/Typography)
 - [x] **Adım 9 — Geri Bildirim & Yükleme** — 1503-1586 (16 çekirdek + 68 örnek: Loader/Progress/RingProgress/SemiCircle/Skeleton/Indicator/RollingNumber/NumberFormatter/Alert/Blockquote/Code/Kbd/Highlight/Mark/Spoiler/Collapse)
 - [x] **Adım 10 — Takvim** — 1587-1764 (16 çekirdek + 162 örnek: Calendar/MiniCalendar/MonthPicker/YearPicker/TimeGrid/TimeInput/TimeValue/DateInput/DatePicker/DatePickerInput/DateTimePicker/InlineDateTimePicker/MonthPickerInput/YearPickerInput/TimePicker/DatesProvider)
-### Adım 11 — Özel (AppShell, ScrollArea, Splitter, Tree, Marquee, FloatingWindow, TableOfContents)
+- [x] **Adım 11 — Özel** — 1765-1844 (9 çekirdek + 71 örnek: AppShell/ScrollArea/Scroller/Splitter/Marquee/Tree/FloatingWindow/TableOfContents/OverflowList)
+
+## ✅ MANTINE ENTEGRASYONU TAMAMLANDI — 1755 bileşen (heroui 527 + shadcn 387 + mantine 841)
 - [x] **Adım 9 — Geri Bildirim & Yükleme** — 1503-1586 (16 çekirdek + 68 örnek: Loader/Progress/RingProgress/SemiCircle/Skeleton/Indicator/RollingNumber/NumberFormatter/Alert/Blockquote/Code/Kbd/Highlight/Mark/Spoiler/Collapse)
 - [x] **Adım 10 — Takvim** — 1587-1764 (16 çekirdek + 162 örnek: Calendar/MiniCalendar/MonthPicker/YearPicker/TimeGrid/TimeInput/TimeValue/DateInput/DatePicker/DatePickerInput/DateTimePicker/InlineDateTimePicker/MonthPickerInput/YearPickerInput/TimePicker/DatesProvider)
-### Adım 11 — Özel (AppShell, ScrollArea, Splitter, Tree, Marquee, FloatingWindow, TableOfContents)
+- [x] **Adım 11 — Özel** — 1765-1844 (9 çekirdek + 71 örnek: AppShell/ScrollArea/Scroller/Splitter/Marquee/Tree/FloatingWindow/TableOfContents/OverflowList)
+
+## ✅ MANTINE ENTEGRASYONU TAMAMLANDI — 1755 bileşen (heroui 527 + shadcn 387 + mantine 841)
 - [x] **Adım 10 — Takvim** — 1587-1764 (16 çekirdek + 162 örnek: Calendar/MiniCalendar/MonthPicker/YearPicker/TimeGrid/TimeInput/TimeValue/DateInput/DatePicker/DatePickerInput/DateTimePicker/InlineDateTimePicker/MonthPickerInput/YearPickerInput/TimePicker/DatesProvider)
-### Adım 11 — Özel (AppShell, ScrollArea, Splitter, Tree, Marquee, FloatingWindow, TableOfContents)
-### Adım 11 — Özel (AppShell, ScrollArea, Splitter, Tree, Marquee, FloatingWindow, TableOfContents)
+- [x] **Adım 11 — Özel** — 1765-1844 (9 çekirdek + 71 örnek: AppShell/ScrollArea/Scroller/Splitter/Marquee/Tree/FloatingWindow/TableOfContents/OverflowList)
+
+## ✅ MANTINE ENTEGRASYONU TAMAMLANDI — 1755 bileşen (heroui 527 + shadcn 387 + mantine 841)
+- [x] **Adım 11 — Özel** — 1765-1844 (9 çekirdek + 71 örnek: AppShell/ScrollArea/Scroller/Splitter/Marquee/Tree/FloatingWindow/TableOfContents/OverflowList)
+
+## ✅ MANTINE ENTEGRASYONU TAMAMLANDI — 1755 bileşen (heroui 527 + shadcn 387 + mantine 841)
 
 ## Element akışı (her element)
 1. `docs/<kat>/<x>.mdx` + `demos/<kat>/<X>/*.tsx` oku

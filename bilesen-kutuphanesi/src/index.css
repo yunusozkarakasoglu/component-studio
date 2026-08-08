@@ -161,3 +161,15 @@
 .animate-shimmer::after {
   animation: wb-shimmer 1.6s infinite;
 }
+
+/* Mantine Marquee (MtMarquee) */
+@keyframes mt-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes mt-marquee-vertical {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
+.animate-marquee { animation: mt-marquee linear infinite; }
+.animate-marquee-vertical { animation: mt-marquee-vertical linear infinite; }
