@@ -12,6 +12,7 @@ import { Tema4 } from "./layouts/tema4"
 import { Tema5 } from "./layouts/tema5"
 import { Tema6 } from "./layouts/tema6"
 import { Tema7 } from "./layouts/tema7"
+import { Tema8 } from "./layouts/tema8"
 
 interface LayoutLike {
   id?: string
@@ -71,6 +72,7 @@ function LayoutsView({ layouts }: LayoutsViewProps) {
     { id: "tema5", title: "Tema 5 — Kanban", desc: "3 kolon + kart ekle/taşı + etiketler", node: <Tema5 />, ready: true },
     { id: "tema6", title: "Tema 6 — E-ticaret", desc: "Kategori + ürün grid + sepet çubuğu", node: <Tema6 />, ready: true },
     { id: "tema7", title: "Tema 7 — Mail/Inbox", desc: "Klasörler + mesaj listesi + okuma paneli (okundu/yıldız)", node: <Tema7 />, ready: true },
+    { id: "tema8", title: "Tema 8 — Form Sihirbazı", desc: "Adım göstergesi + form alanı + geri/ileri (onboarding)", node: <Tema8 />, ready: true },
   ]
 
   const temaById = (id: string) => temas.find((x) => x.id === id)
