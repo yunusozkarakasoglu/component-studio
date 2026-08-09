@@ -264,6 +264,12 @@ const tocItems = ["Giriş", "Kurulum", "İlk Bileşen", "Vite Kurulumu", "Yol E�
 
 function DocContent({ pageName, tocActive, onToc }: { pageName: string; tocActive: string; onToc: (id: string) => void }) {
   const sections = docSections[pageName] ?? docSections["Başlarken"]
+  const [expanded, setExpanded] = useState<string[]>([])
+
+  const allItems = Object.values(docSections).flat()
+
+  const toggle = (id: string) =>
+    setExpanded((ex) => (ex.includes(id) ? ex.filter((x) => x !== id) : [...ex, id]))
 
   return (
     <div className="doc-body">
@@ -278,16 +284,29 @@ function DocContent({ pageName, tocActive, onToc }: { pageName: string; tocActiv
         ))}
       </div>
       <aside className="doc-toc">
-        <div className="doc-toc__title">Bu sayfada</div>
+        <div className="doc-toc__title">Bu sayfada — tıkla, açıklaması açılsın</div>
         {tocItems.map((item) => {
-          const sec = Object.values(docSections).flat().find((s) => s.title === item)
+          const sec = allItems.find((s) => s.title === item)
+          const id = sec?.id ?? item
+          const isOpen = expanded.includes(id)
           return (
-            <div
-              key={item}
-              className={`doc-toc__item ${tocActive === (sec?.id ?? item) ? "doc-toc__item--active" : ""}`}
-              onClick={() => onToc(sec?.id ?? item)}
-            >
-              {item}
+            <div key={item} className="doc-toc__group">
+              <div
+                className={`doc-toc__item ${tocActive === id ? "doc-toc__item--active" : ""} ${isOpen ? "doc-toc__item--open" : ""}`}
+                onClick={() => {
+                  onToc(id)
+                  toggle(id)
+                }}
+              >
+                <span className="doc-toc__chev">{isOpen ? "▾" : "▸"}</span>
+                {item}
+              </div>
+              {isOpen && sec && (
+                <div className="doc-toc__desc">
+                  {sec.body}
+                  {sec.code && <pre className="doc-toc__code">{sec.code.split("\n")[0]}</pre>}
+                </div>
+              )}
             </div>
           )
         })}

@@ -1722,3 +1722,44 @@
   color: var(--blue-strong);
   margin: 12px 0;
 }
+
+/* TOC akordeon (bastıkça açılan açıklamalar) */
+.doc-toc__group {
+  margin-bottom: 2px;
+}
+.doc-toc__item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.doc-toc__item--open {
+  background: var(--blue-50);
+  color: var(--blue-strong);
+  font-weight: 600;
+}
+.doc-toc__chev {
+  font-size: 9px;
+  color: var(--text-faint);
+  width: 10px;
+  text-align: center;
+  transition: transform 0.15s ease;
+}
+.doc-toc__desc {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  line-height: 1.55;
+  padding: 6px 8px 8px 24px;
+  border-left: 2px solid var(--blue-100);
+  margin: 2px 0 6px 8px;
+}
+.doc-toc__code {
+  margin-top: 6px;
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  color: #475569;
+  overflow-x: auto;
+}
