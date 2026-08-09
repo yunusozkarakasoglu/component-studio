@@ -21,6 +21,7 @@ import {
   Download,
   Eye,
   Filter,
+  Home,
   Layers,
   LayoutGrid,
   Menu,
@@ -194,6 +195,29 @@ function Sidebar({ collapsed, onToggle, dark, onToggleDark }: { collapsed: boole
         {!collapsed && <div className="sidebar__hint">Pro plan</div>}
       </div>
     </aside>
+  )
+}
+
+/* ---------- Breadcrumb ---------- */
+
+function Breadcrumb() {
+  return (
+    <div className="breadcrumb">
+      <span className="crumb crumb--link" title="Ana Sayfa">
+        <Home style={{ width: 13, height: 13 }} />
+        Ana Sayfa
+      </span>
+      <span className="crumb-sep">
+        <ChevronRight style={{ width: 12, height: 12 }} />
+      </span>
+      <span className="crumb crumb--link" title="Ekip">
+        Ekip
+      </span>
+      <span className="crumb-sep">
+        <ChevronRight style={{ width: 12, height: 12 }} />
+      </span>
+      <span className="crumb crumb--current">Çalışanlar</span>
+    </div>
   )
 }
 
@@ -422,6 +446,7 @@ function Tema1() {
         <Sidebar collapsed={collapsed} onToggle={() => setCollapsed((c) => !c)} dark={dark} onToggleDark={() => setDark((d) => !d)} />
         <main className="main">
           <div className="main__inner">
+            <Breadcrumb />
             <PageHeader />
             <DataTable />
           </div>

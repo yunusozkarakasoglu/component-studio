@@ -84,6 +84,10 @@ Kütüphane kaydı (envanter/registry) DEĞİŞMEZ — tema'lar `src/layouts/` +
 
 ## 4) KURALLAR / DİKKAT
 
+- **Tema1 kenarlık özelleştirmesi:** kullanıcı kenarlıkların açık olmasını istedi →
+  `--border: #eef2f8`, `--border-soft: #f5f8fc`, hover `#c6d7f4→#dfe8fa`.
+  Kaynaktan (styles.css) senkron yapıldığında bu 3 değer tekrar uygulanmalıdır.
+
 - **Saf React + Tailwind değil, kullanıcının CSS'i**: tema'lar kendi scoped CSS'iyle taşınır (görünüm %100 korunur; Tailwind'e çevirme — görünüm bozulur).
 - **Üçüncü parti UI paketi YASAK**; ikonlar her zaman kendi setimizden.
 - **Uzak görsel/font YASAK** → gradient placeholder / sistem fontu.

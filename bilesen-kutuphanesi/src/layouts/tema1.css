@@ -8,8 +8,8 @@
 
   --bg: #f3f5fa;
   --surface: #ffffff;
-  --border: #e5e9f2;
-  --border-soft: #eef1f7;
+  --border: #eef2f8;
+  --border-soft: #f5f8fc;
 
   --text: #1c2536;
   --text-muted: #7a8699;
@@ -418,7 +418,7 @@
 .nav-item:hover {
   color: var(--blue-strong);
   background: #ffffff;
-  border-color: #c6d7f4;
+  border-color: #dfe8fa;
   box-shadow: 0 3px 10px -3px rgba(37, 99, 235, 0.18);
 }
 
@@ -471,7 +471,7 @@
 
 .theme-switch:hover {
   background: #ffffff;
-  border-color: #c6d7f4;
+  border-color: #dfe8fa;
 }
 
 .theme-switch__label {
