@@ -47,14 +47,13 @@ Adım 1 Form (84) → Adım 2 Seçim (42) → Adım 3 Buton+Kart (31) → Adım 
 Adım 5 Navigasyon (29) → Adım 6 Akordeon/Uyarı/Takvim (63) → Adım 7 Veri/Yükleme/Genel (90).
 Üçüncü parti yerine yazılan çekirdekler: Calendar (react-day-picker), Combobox (base-ui), Command (cmdk), Resizable (react-resizable-panels).
 
-### Mantine — Adım 0-6 · 382 bileşen (PLAN-MANTINE.md)
-- Adım 0 ✅ Kaynak altyapı (sparse clone + PLAN + @source)
-- Adım 1 ✅ Layout (1004-1057): Box/Group/Stack/Center/Container/Paper/Space/Flex/Divider/AspectRatio/SimpleGrid/Grid
-- Adım 2 ✅ Butonlar (1058-1113): Button/ActionIcon/CloseButton/CopyButton/FileButton/Burger/Anchor/Menu/Menubar
-- Adım 3 ✅ Form (1114-1210): Input/TextInput/Textarea/NumberInput/PasswordInput/JsonInput/MaskInput/NativeSelect/Fieldset
-- Adım 4 ✅ Seçim (1211-1298): Checkbox/Radio/Switch/Chip/SegmentedControl/Slider/RangeSlider/Rating/PinInput/ColorInput/PillsInput
-- Adım 5 ✅ Combobox (1299-1340): Select/MultiSelect/Autocomplete/TagsInput/Combobox/TreeSelect
-- Adım 6 ✅ Overlay (1341-1385): Modal/Drawer/Dialog/Tooltip/Popover/HoverCard/Affix/LoadingOverlay/Notification
+### Mantine — TAMAMLANDI · 841 bileşen (PLAN-MANTINE.md)
+Adım 1 Layout (1004-1057) → Adım 2 Butonlar (1058-1113) → Adım 3 Form (1114-1210) →
+Adım 4 Seçim (1211-1298) → Adım 5 Combobox (1299-1340) → Adım 6 Overlay (1341-1385) →
+Adım 7 Navigasyon (1386-1425: Tabs/Pagination/Breadcrumbs/NavLink/Stepper/Timeline/FloatingIndicator) →
+Adım 8 Veri (1426-1502: Table/Card/Avatar/DataList/EmptyState/List/Text/Title/ThemeIcon/Pill/Image) →
+Adım 9 Geri Bildirim (1503-1586: Loader/Progress/RingProgress/Skeleton/Indicator/Alert/Code/Kbd/Highlight/Spoiler/Collapse) →
+Adım 10 Takvim (1587-1764: 16 dates element, saf Intl) → Adım 11 Özel (1765-1844: AppShell/ScrollArea/Splitter/Tree/Marquee/FloatingWindow/TableOfContents)
 
 ### Stüdyo arayüzü (commit'li)
 - Global header + Dashboard/Layoutlar/Bileşenler sekmeleri + breadcrumb
@@ -62,28 +61,34 @@ Adım 5 Navigasyon (29) → Adım 6 Akordeon/Uyarı/Takvim (63) → Adım 7 Veri
 - +Yeni sihirbazı (pi SDK köprüsü: `/api/pi` SSE + workbench izolasyonu + kayıt finalize)
 - cdp.js: localhost:5800 hedef önceliği + `open` komutu
 
+### Layout Tema Sistemi — Tema 1-8 TAMAMLANDI (GOREV-AKISI-LAYOUT.md)
+- **Kaynak:** kullanıcının `Masaüstü/Layouts` (5174, NovaPanel React şablonu: App.jsx + styles.css)
+- **Akış:** oku → anla → `tema<N>.tsx` + `tema<N>.css` (scoped `.tema<N>-root`) → `layouts-view.tsx` kutusu → tsc/test/tarayıcı → commit
+- **Tema seti (NovaPanel tasarım dili — mavi palet, açık kenarlıklar):**
+  - Tema 1 Klasik (NovaPanel, filtreli tablo) · Tema 2 Sekmeli (footer üstü TabBar, her sekme kendi state'i)
+  - Tema 3 Dokümantasyon (sol konular + içerik + sağ TOC akordeon) · Tema 4 Chat (konuşmalar + mesaj)
+  - Tema 5 Kanban (3 kolon + kart taşı/ekle) · Tema 6 E-ticaret (kategori + ürün + sepet)
+  - Tema 7 Mail/Inbox (3 sütun + okundu/yıldız) · Tema 8 Form Sihirbazı (4 adımlı onboarding)
+- **Layoutlar sekmesi:** tema seçim kutuları (minyatür thumbnail) → tıkla → tam ekran (hash `#/layoutlar/tema<N>`) → geri (buton/tarayıcı geri/Esc)
+- **Plan:** `PLAN-LAYOUT-TEMALARI.md` (Tema 3-8 ✅) · akış: `GOREV-AKISI-LAYOUT.md`
+- **Not:** senkron kaynaktan (styles.css) yapılınca Tema 1 kenarlık özelleştirmesi (--border #eef2f8) tekrar uygulanmalı
+
 ## 📊 Güncel Durum (son kontrol)
 
-- **1296 bileşen** · heroui 527 · shadcn 387 · **mantine 382** · 0 çift kayıt
+- **1755 bileşen** · heroui 527 · shadcn 387 · **mantine 841** · 0 çift kayıt
+- **8 layout teması** (src/layouts/, Layoutlar sekmesi) — Tema seti tamam
 - tsc ✓ · npm test 15/15 ✓ · `tests/kapsamli-kontrol.py` → **20 OK · 2 uyarı · 0 HATA**
-- Son commit: `153638b` (Mantine Adım 6) — çalışma dizini temiz
+- Son commit: `54c9bec` (Tema 8 — Form Sihirbazı) — çalışma dizini temiz
 
 ## ⬜ Bekleyen
 
-### Mantine (PLAN-MANTINE.md — sıradaki)
-- **Adım 7** Navigasyon: Tabs, Pagination, Breadcrumbs, NavLink, Stepper, Timeline, FloatingIndicator
-- **Adım 8** Veri: Table, Card, Avatar, DataList, EmptyState, List, Text, Title, ThemeIcon, Pill, Image
-- **Adım 9** Geri Bildirim: Loader, Progress, RingProgress, Skeleton, Indicator, Alert, Code, Kbd, Blockquote, Spoiler, Collapse
-- **Adım 10** Takvim: Calendar, DateInput, DatePicker, TimeInput, MonthPicker (16 dates element)
-- **Adım 11** Özel: AppShell, ScrollArea, Splitter, Tree, Marquee, FloatingWindow, TableOfContents
+### Layout temaları
+- Kullanıcı istediğinde yeni tema (Tema 9+) — kaynak: `Masaüstü/Layouts` (5174) → `GOREV-AKISI-LAYOUT.md` akışı
+- Mevcut temalarda düzenleme (kullanıcı 5174'te günceller → senkron)
 
 ### Stüdyo (SIHIRBAZ-NOT.md)
-- Layout/Sayfa sihirbazı ("hazırlanıyor" alert → gerçek akış, Tema 1/2 layout tasarımları)
 - Bekleyen kayıt tamamlama akışı (sol panel görünürlüğü — sol panel kaldırıldı, güncellenecek)
 - Kütüphane modu tam test (Pi'ye Bağla)
-
-### Mantine sonrası
-- Mantine kalan adımlar bitince kütüphane 1500+ bileşene ulaşır → Layout/Template üretimi
 
 ## ⚠️ Önemli Tuzaklar (compact sonrası hatırlatma)
 
@@ -95,6 +100,13 @@ Adım 5 Navigasyon (29) → Adım 6 Akordeon/Uyarı/Takvim (63) → Adım 7 Veri
 6. **CDP sekme kayması**: cdp.js 5800 önceliklidir ama sekme kapalıysa başka sekmeye (Drive vb.) bağlanır → `cdp open "http://localhost:5800/"` ile geri dön.
 7. **findRootInfo**: fragment kök (`<>`) bulunamaz → `display:contents` span sarmalayıcı kullan (MtCopyButton örneği).
 8. **Offline ilkesi**: uzak görsel/iframe (YouTube, Google Maps, avatar.vercel.sh) → gradient placeholder.
+9. **`.ts` içinde JSX OLMAZ**: JSX içeren dosyalar `.tsx` olmalı (builder/schema dersleri).
+10. **Tema senkronu**: `styles.css`'ten yeniden kopyalama, tema CSS'ine yapılan özelleştirmeleri (kenarlık açma, override'lar) ezer → GOREV-AKISI'ndeki yeniden uygulama listesine bak.
+11. **Tema CSS global kurallar**: `:root/*/body/[data-theme]` stüdyoyu bozar → scoped (`.tema<N>-root`) şart; `grep -E "^(body|html|:root|\*|#root)"` kontrolü YOK olmalı.
+12. **Fixed elemanlar (tema)**: `.g-header/.app__body/.g-footer` position:fixed → thumbnail'de static, tam ekranda offset (48/104px) gerekir; yoksa toggle/buton görünmez.
+13. **Vite yeni tema dosyalarında çökebilir**: `src/layouts/tema<N>.*` eklenince 5800 düşebilir → `./kutuphane-baslat.sh` ile yeniden başlat.
+14. **CDP 5174 kayması**: kullanıcının NovaPanel'i 5174'te — CDP oraya kayarsa `cdp eval "location.href='http://localhost:5800/'"`.
+15. **Programatik tıklama**: `el.click()` (native) React onClick'i tetikler; `dispatchEvent(MouseEvent)` bazen çalışmaz. `cdp click` gerçek mouse tıklamasıdır.
 
 ## 🔄 Akış (her element)
 
