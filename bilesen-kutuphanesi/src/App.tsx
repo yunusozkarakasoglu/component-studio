@@ -1,6 +1,7 @@
 import { Component, useEffect, useMemo, useState, type ReactNode } from "react"
 import type { ButtonHTMLAttributes, InputHTMLAttributes } from "react"
 import { cn } from "@/lib/utils"
+import { useVirtualGrid } from "@/lib/useVirtualGrid"
 import { findRootInfo, injectStyleAt } from "@/lib/findRootInfo"
 import { COMPONENT_META } from "@/components-meta"
 import { SAMPLES } from "./samples"
@@ -761,6 +762,16 @@ export default function Studio() {
     )
   }, [registry, q, cat, subCat, source])
 
+  // Sanal liste: 1754 kartın yalnızca görünür alanını render et.
+  // Kart yüksekliği 145px (başlık 28 + preview 96 + etiket 21), 5 kolon, gap 12.
+  const grid = useVirtualGrid({
+    itemCount: filtered.length,
+    itemHeight: 145,
+    gap: 12,
+    overscanRows: 4,
+    colMinWidth: 240,
+  })
+
 
   const hasFilters = q !== "" || cat !== "Tümü" || subCat !== "" || source !== "tumu"
 
@@ -853,7 +864,7 @@ export default function Studio() {
 
           {/* ANA ALAN */}
           {view === "bilesenler" && (
-          <main className="min-h-0 flex-1 overflow-y-auto px-4 pb-4 pt-0">
+          <main ref={grid.containerRef} className="min-h-0 flex-1 overflow-y-auto px-4 pb-4 pt-0">
             {/* Üst filtreler: arama + kategori + alt kategori + kaynak + görünüm (sabit) */}
             <div className="sticky top-0 z-30 -mx-4 mb-3 bg-background shadow-sm">
             {/* Başlık satırı — sabit header alanı */}
@@ -946,8 +957,17 @@ export default function Studio() {
                 </table>
               </div>
             ) : filtered.length ? (
-                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-                  {filtered.map((c) => {
+                <div
+                  ref={grid.innerRef}
+                  className="relative"
+                  style={{ height: grid.totalHeight }}
+                >
+                  {/* Görünür satırlar yalnızca — translateY ile konumlandır */}
+                  <div
+                    className="absolute inset-x-0 top-0 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
+                    style={{ transform: `translateY(${Math.floor(grid.startIndex / grid.colCount) * grid.rowHeight}px)` }}
+                  >
+                  {filtered.slice(grid.startIndex, grid.endIndex).map((c) => {
                     const sample = SAMPLES[c.id]
                     if (!sample) return null
                     return (
@@ -971,6 +991,7 @@ export default function Studio() {
                       </div>
                     )
                   })}
+                  </div>
                 </div>
               ) : (
                 <Text className="py-16 text-center text-sm text-muted-foreground">Sonuç yok</Text>
