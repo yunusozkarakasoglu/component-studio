@@ -834,18 +834,14 @@ export default function Studio() {
           </div>
         </header>
 
-        {/* Breadcrumb — konum göstergesi */}
+        {/* Breadcrumb — konum göstergesi (Bileşenler view'ında başlık sticky bar içinde) */}
+        {view !== "bilesenler" && (
         <div className="flex shrink-0 items-center gap-1 border-b border-black/20 bg-muted/20 px-4 py-1 text-[11px] text-muted-foreground">
-          <span className="font-medium text-foreground">{view === "dashboard" ? "📊 Dashboard" : view === "layoutlar" ? "📐 Layoutlar" : "🧩 Bileşenler"}</span>
-          {view === "bilesenler" && (
-            <>
-              {cat !== "Tümü" && <><span>/</span><button onClick={() => { setCat("Tümü"); setSubCat("") }} className="hover:underline">{cat}</button></>}
-              {subCat && <><span>/</span><span className="text-foreground">{subCat}</span></>}
-              {edit?.rec?.name && <><span>/</span><span className="font-medium text-foreground">{edit.rec.name}</span></>}
-            </>
-          )}
+          <span className="font-medium text-foreground">{view === "dashboard" ? "📊 Dashboard" : "📐 Layoutlar"}</span>
           <span className="ml-auto">kaynak: <button onClick={() => setSource(source === "tumu" ? "tumu" : "tumu")} className="hover:underline">{source}</button></span>
         </div>
+
+        )}
 
         <div className="flex min-h-0 flex-1">
           {/* SOL PANEL */}
@@ -859,7 +855,16 @@ export default function Studio() {
           {view === "bilesenler" && (
           <main className="min-h-0 flex-1 overflow-y-auto px-4 pb-4 pt-0">
             {/* Üst filtreler: arama + kategori + alt kategori + kaynak + görünüm (sabit) */}
-            <div className="sticky top-0 z-30 -mx-4 mb-3 flex flex-wrap items-center gap-2 border-b border-black/10 bg-background px-4 pb-2.5 pt-2.5 shadow-sm">
+            <div className="sticky top-0 z-30 -mx-4 mb-3 bg-background shadow-sm">
+            {/* Başlık satırı — sabit header alanı */}
+            <div className="flex items-center gap-2 border-b border-black/10 px-4 pb-2 pt-3">
+              <span className="text-[13px] font-bold text-foreground">🧩 Bileşenler</span>
+              <span className="text-[11px] text-muted-foreground">{registry.components.length} bileşen · kaynak: {source}</span>
+              {cat !== "Tümü" && <><span className="text-[11px] text-muted-foreground">/</span><button onClick={() => { setCat("Tümü"); setSubCat("") }} className="text-[11px] text-blue-600 hover:underline">{cat}</button></>}
+              {subCat && <><span className="text-[11px] text-muted-foreground">/</span><span className="text-[11px] text-foreground">{subCat}</span></>}
+              {edit?.rec?.name && <><span className="text-[11px] text-muted-foreground">/</span><span className="text-[11px] font-medium text-foreground">{edit.rec.name}</span></>}
+            </div>
+            <div className="flex flex-wrap items-center gap-2 border-b border-black/10 px-4 pb-2.5 pt-1.5">
               <SearchField aria-label="Ara" value={q} onChange={setQ} placeholder="Ara: 008, buton, renk…" className="h-8 w-56 border-black/40 text-xs" />
               <select value={cat} onChange={(e) => { setCat(e.target.value); setSubCat("") }}
                 className="h-8 rounded-md border border-black/40 bg-background px-2 text-xs text-foreground outline-none focus:border-ring">
@@ -902,6 +907,7 @@ export default function Studio() {
                   </button>
                 ))}
               </div>
+            </div>
             </div>
             {galleryView === "tablo" && filtered.length ? (
               <div className="overflow-x-auto rounded-lg border border-black/20 bg-background">
@@ -947,7 +953,7 @@ export default function Studio() {
                     return (
                       <div
                         key={c.id}
-                        className="group cursor-pointer overflow-hidden rounded-lg border-thin-black bg-background transition-all duration-150 hover:border-black hover:shadow-xl hover:scale-[1.03]"
+                        className="group relative cursor-pointer overflow-hidden rounded-lg border-thin-black bg-background transition-all duration-150 hover:border-black hover:shadow-xl hover:scale-[1.03]"
                         onClick={() => setEdit({ rec: c })}
                         title={`${c.id} ${c.name} — düzenlemek için tıkla`}
                       >
@@ -956,7 +962,7 @@ export default function Studio() {
                           <span className="truncate text-[11px] font-semibold">{c.name}</span>
                           <span className="shrink-0 font-mono text-[9px] text-blue-200">{c.id}</span>
                         </div>
-                        <div className="flex h-24 items-start justify-center overflow-hidden bg-muted/20 p-3 transition-transform duration-150 group-hover:scale-105">
+                        <div className="relative flex h-24 items-start justify-center overflow-hidden bg-muted/20 p-3 transition-transform duration-150 group-hover:scale-105">
                           <ErrorBoundary>{sample}</ErrorBoundary>
                         </div>
                         <div className="border-t border-black/20 px-2 py-1 text-[9px] text-muted-foreground">
