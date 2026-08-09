@@ -2,7 +2,7 @@
 
 > Kullanıcı `Masaüstü/Layouts` klasöründe (localhost:5174) sayfa tasarımları üretir.
 > Bu doküman: kaynağı **oku → anla → yeni layout tema olarak sisteme ekle** akışını tanımlar.
-> Yeni tema geldiğinde bu akış aynen uygulanır. (v1)
+> Yeni tema geldiğinde bu akış aynen uygulanır. (v2 — Tema 1-8 tamamlandı, kaynak güncel: 5174'teki App.jsx/styles.css)
 
 ---
 
