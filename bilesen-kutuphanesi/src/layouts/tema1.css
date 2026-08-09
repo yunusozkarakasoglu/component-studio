@@ -29,7 +29,7 @@
   --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.04), 0 10px 30px -18px rgba(15, 23, 42, 0.12);
   --shadow-pop: 0 6px 20px -8px rgba(37, 99, 235, 0.35);
 
-  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .tema1-root *,
@@ -40,7 +40,7 @@
   box-sizing: border-box;
 }
 
-.app {
+.tema1-root {
   height: 100%;
 }
 
@@ -70,7 +70,7 @@
   justify-content: space-between;
   padding: 0 22px;
   background: linear-gradient(180deg, #ffffff 0%, #f2f6ff 100%);
-  border-bottom: 1px solid #d9e4f7;
+  border-bottom: 1px solid var(--blue);
   box-shadow: 0 1px 2px rgba(37, 99, 235, 0.05);
 }
 
@@ -245,7 +245,7 @@
   display: flex;
   flex-direction: column;
   background: linear-gradient(180deg, #edf4ff 0%, #e6effc 100%);
-  border-right: 1px solid #d7e3f6;
+  border-right: 1px solid var(--blue);
   padding: 16px 14px 14px;
   transition: width 0.25s ease;
   position: relative;
@@ -533,12 +533,50 @@
 }
 
 /* ============ 3) Page Header ============ */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 0 12px;
+  font-size: 12.5px;
+  line-height: 1.4;
+}
+
+.crumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+}
+
+.crumb--link {
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.crumb--link:hover {
+  color: var(--blue);
+}
+
+.crumb--current {
+  font-weight: 600;
+  color: var(--blue);
+}
+
+.crumb-sep {
+  display: grid;
+  place-items: center;
+  color: var(--text-faint);
+}
+
 .page-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
   flex-wrap: wrap;
+  border-top: 1px solid var(--blue);
+  padding-top: 14px;
   margin-bottom: 14px;
 }
 
@@ -1251,7 +1289,7 @@
 /* Dark: header */
 .tema1-root[data-theme='dark'] .g-header {
   background: linear-gradient(180deg, #131b2b 0%, #101727 100%);
-  border-bottom-color: #222c45;
+  border-bottom-color: var(--blue-soft);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
@@ -1262,7 +1300,7 @@
 /* Dark: sidebar */
 .tema1-root[data-theme='dark'] .sidebar {
   background: linear-gradient(180deg, #101827 0%, #0c1320 100%);
-  border-right-color: #1f2a42;
+  border-right-color: var(--blue-soft);
 }
 
 .tema1-root[data-theme='dark'] .nav-item {
@@ -1330,6 +1368,10 @@
 
 .tema1-root[data-theme='dark'] .switch--on {
   background: linear-gradient(135deg, var(--blue-soft), var(--blue-strong));
+}
+
+.tema1-root[data-theme='dark'] .page-header {
+  border-top-color: var(--blue-soft);
 }
 
 /* Dark: tablo */
@@ -1421,13 +1463,12 @@
   background: #b9c2d3;
 }
 
-/* Thumbnail (Layoutlar sekmesi minyatür önizleme) — tema viewport yerine kutuya sığar */
+/* Thumbnail (Layoutlar sekmesi minyatür) — tema kutuya sığar */
 .tema-thumb .tema1-root {
   height: 100% !important;
   width: 100%;
   min-height: 0;
 }
-/* Thumbnail: fixed elemanlar kutuya sığsın (viewport'a göre değil) */
 .tema-thumb .tema1-root .g-header,
 .tema-thumb .tema1-root .app__body,
 .tema-thumb .tema1-root .g-footer {
@@ -1438,11 +1479,10 @@
   min-height: 0;
 }
 
-/* Tam ekran (Layoutlar → tema açıldığında) — tema üst bar'ın altından başlar */
+/* Tam ekran: üst bar (48) + tema g-header (56) → app__body 104'ten başlar */
 .tema-fullscreen .tema1-root {
   height: 100vh !important;
 }
-/* Tam ekran: üst bar (48) + tema g-header (56) → app__body 104'ten başlar */
 .tema-fullscreen .tema1-root .g-header {
   top: 48px !important;
 }
