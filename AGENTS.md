@@ -79,4 +79,14 @@ Kullanıcı dosya yolu / numara verince:
 - JSDoc'ta üçüncü parti adı yok ("HeroUI örneği" gibi ibareler kaldırıldı).
 
 Detaylı kılavuz: `component-kutuphane.md` (kullanıcı isterse "oku" der).
+
+## 🎨 Layout Tema Entegrasyonu (görev akışı)
+Kullanıcı `Masaüstü/Layouts` klasöründe (5174) sayfa tasarımları üretir; ben bunları yeni layout tema olarak sisteme eklerim.
+**Tam akış: `GOREV-AKISI-LAYOUT.md` — önce oku, sonra uygula.** Özet:
+1. Oku: `App.jsx` (state/davranış) + `styles.css` (tasarım) + varsa HTML
+2. Anla: bölümler, state'ler, ikonlar (kendi setimizle eşle), CSS değişkenleri
+3. Ekle: `src/layouts/tema<N>.tsx` (TSX, kendi ikonlar, kök `tema<N>-root`+`data-theme`) + `tema<N>.css` (**scoped**: `:root`/`*`/`body`/`[data-theme]` → `.tema<N>-root`)
+4. `layouts-view.tsx` temas listesine kart ekle (kutu → tam ekran → geri hazır)
+5. Doğrula: tsc ✓ · test 15/15 ✓ · kapsamlı kontrol 20 OK ✓ · tarayıcı kutu→tam ekran→geri
+6. Commit: `Layout: Tema <N> (<ad>) entegrasyonu` — kütüphane kaydı (envanter/registry) DEĞİŞMEZ
 <!-- component-studio:end -->

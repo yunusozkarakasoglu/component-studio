@@ -1426,3 +1426,11 @@
   height: 100% !important;
   width: 100%;
 }
+
+/* Tam ekran (Layoutlar → tema açıldığında) — tema üst bar'ın altından başlar */
+.tema-fullscreen .tema1-root {
+  height: calc(100vh - 48px) !important;
+}
+.tema-fullscreen .tema1-root .g-header {
+  top: 48px !important;
+}

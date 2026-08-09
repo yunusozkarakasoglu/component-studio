@@ -63,20 +63,64 @@ function LayoutsView({ layouts }: LayoutsViewProps) {
     { id: "tema3", title: "Tema 3", desc: "Yeni tasarım — hazırlanıyor", ready: false },
   ]
 
+  const temaById = (id: string) => temas.find((x) => x.id === id)
+
+  // URL tabanlı: #/layoutlar/tema<N> → tam ekran açık (derin bağlantı + tarayıcı geri/ileri)
+  const openFromHash = () => {
+    const m = window.location.hash.match(/^#\/layoutlar\/tema(\d+)$/)
+    if (m) {
+      const t = temaById(`tema${m[1]}`)
+      if (t?.ready && t.node) setFullscreen({ title: t.title, node: t.node })
+    } else {
+      setFullscreen(null) // boş / başka hash → tam ekran kapanır (tarayıcı geri/ileri)
+    }
+  }
+
+  useEffect(() => {
+    openFromHash()
+    window.addEventListener("popstate", openFromHash)
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeFullscreen()
+    }
+    window.addEventListener("keydown", onKey)
+    return () => {
+      window.removeEventListener("popstate", openFromHash)
+      window.removeEventListener("keydown", onKey)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  const openFullscreen = (tema: TemaPreview) => {
+    if (!tema.node) return
+    setFullscreen({ title: tema.title, node: tema.node })
+    history.pushState(null, "", `#/layoutlar/${tema.id}`)
+  }
+
+  const closeFullscreen = () => {
+    if (window.location.hash.startsWith("#/layoutlar/tema")) {
+      history.back() // tarayıcı geri — hash önceki değere döner, popstate state'i temizler
+    } else {
+      setFullscreen(null)
+    }
+  }
+
   if (fullscreen) {
     return (
-      <div className="fixed inset-0 z-50 flex flex-col bg-background">
-        <div className="flex h-12 shrink-0 items-center justify-between border-b border-border px-4">
+      <div className="fixed inset-0 z-[200] flex flex-col bg-background">
+        <div className="relative z-[210] flex h-12 shrink-0 items-center justify-between border-b border-border bg-background px-4 shadow-sm">
           <p className="text-sm font-semibold text-foreground">⛶ {fullscreen.title}</p>
-          <button
-            type="button"
-            onClick={() => setFullscreen(null)}
-            className="flex cursor-pointer items-center gap-1.5 rounded-md bg-muted px-3 py-1.5 text-xs font-medium text-foreground transition-colors hover:bg-muted/70"
-          >
-            ← Layoutlara Dön
-          </button>
+          <div className="flex items-center gap-2">
+            <span className="hidden text-[11px] text-muted-foreground sm:block">Esc / tarayıcı geri ile de dönülür</span>
+            <button
+              type="button"
+              onClick={closeFullscreen}
+              className="flex cursor-pointer items-center gap-1.5 rounded-md bg-blue-600 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-blue-700"
+            >
+              ← Layoutlara Dön
+            </button>
+          </div>
         </div>
-        <div className="min-h-0 flex-1 overflow-auto">{fullscreen.node}</div>
+        <div className="tema-fullscreen min-h-0 flex-1 overflow-auto">{fullscreen.node}</div>
       </div>
     )
   }
@@ -112,7 +156,7 @@ function LayoutsView({ layouts }: LayoutsViewProps) {
             {tema.ready && tema.node ? (
               <button
                 type="button"
-                onClick={() => setFullscreen({ title: tema.title, node: tema.node })}
+                onClick={() => openFullscreen(tema)}
                 className="group relative block w-full cursor-pointer overflow-hidden rounded-lg text-left transition-all hover:ring-2 hover:ring-blue-500/40"
                 title={`${tema.title} — tam ekran aç`}
               >

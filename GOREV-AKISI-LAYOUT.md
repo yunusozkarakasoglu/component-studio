@@ -54,6 +54,11 @@ varsa HTML (hangi varyant — yeni tema mı yoksa mevcut mu).
   - font: uzak font (Google Fonts) → sistem fontu (offline ilkesi)
   - Doğrulama: `grep -E "^(body|html|:root|\*|#root)" tema<N>.css` → **YOK** olmalı
   - Thumbnail override ekle: `.tema-thumb .tema<N>-root { height: 100% !important; width: 100%; }`
+  - **Tam ekran override ekle** (tema header'ı geri bar'ının altından başlasın):
+    ```css
+    .tema-fullscreen .tema<N>-root { height: calc(100vh - 48px) !important; }
+    .tema-fullscreen .tema<N>-root .g-header { top: 48px !important; }
+    ```
 
 ### 3.2 Layoutlar sekmesi (`bilesen-kutuphanesi/src/layouts-view.tsx`)
 - `temas` listesine kart ekle: `{ id: "tema<N>", title: "Tema <N>", desc: "...", node: <Tema<N> />, ready: true }`
@@ -84,7 +89,7 @@ Kütüphane kaydı (envanter/registry) DEĞİŞMEZ — tema'lar `src/layouts/` +
 - **Uzak görsel/font YASAK** → gradient placeholder / sistem fontu.
 - `.ts` içinde JSX OLMAZ — JSX içeren dosyalar `.tsx` olmalı (builder/schema dersleri).
 - Global CSS kuralları stüdyoyu bozar → **scoped şart**.
-- `cdp click` gerçek mouse tıklaması (React onClick tetikler); eval `.click()` tetiklemez — programatik için `dispatchEvent(new MouseEvent('click', {bubbles:true}))`.
+- `cdp click` gerçek mouse tıklaması (React onClick tetikler); programatik için **`el.click()`** (native — React onClick'i tetikler) en güvenilir; `dispatchEvent(MouseEvent)` bazen çalışmaz.
 - CDP sekmesi 5174'e (kullanıcının projesi) kayabilir — stüdyoya dönmek için `cdp eval "location.href='http://localhost:5800/'"`.
 - 5800 düşerse: `./kutuphane-baslat.sh` (durdur: `./kutuphane-durdur.sh`).
 
@@ -94,7 +99,8 @@ Kütüphane kaydı (envanter/registry) DEĞİŞMEZ — tema'lar `src/layouts/` +
 - [ ] App.jsx/HTML okundu, bölümler + state çıkarıldı
 - [ ] İkonlar setimizle eşlendi (eksikse soruldu)
 - [ ] `tema<N>.tsx` + `tema<N>.css` oluşturuldu, CSS scoped (`grep` kontrolü YOK)
-- [ ] `layouts-view.tsx`'e kart eklendi
+- [ ] Tam ekran override eklendi (`.tema-fullscreen .tema<N>-root …`)
+- [ ] `layouts-view.tsx`'e kart eklendi (hash URL: `#/layoutlar/tema<N>`)
 - [ ] tsc ✓ · test 15/15 ✓ · kapsamlı kontrol 20 OK ✓
 - [ ] Tarayıcı: kutu → tam ekran → geri ✓
 - [ ] Commit alındı
