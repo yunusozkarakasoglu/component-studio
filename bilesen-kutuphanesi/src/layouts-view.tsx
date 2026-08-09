@@ -6,6 +6,7 @@
  */
 import { useEffect, useRef, useState, type ReactNode } from "react"
 import { Tema1 } from "./layouts/tema1"
+import { Tema2 } from "./layouts/tema2"
 
 interface LayoutLike {
   id?: string
@@ -59,7 +60,7 @@ function LayoutsView({ layouts }: LayoutsViewProps) {
 
   const temas: TemaPreview[] = [
     { id: "tema1", title: "Tema 1", desc: "NovaPanel — header + açılır/kapanır panel + filtreli tablo", node: <Tema1 />, ready: true },
-    { id: "tema2", title: "Tema 2", desc: "Yeni tasarım — hazırlanıyor", ready: false },
+    { id: "tema2", title: "Tema 2 — Sekmeli", desc: "Footer üstü sekmeler — her sekme kendi state'i (filtre/arama/sayfa)", node: <Tema2 />, ready: true },
     { id: "tema3", title: "Tema 3", desc: "Yeni tasarım — hazırlanıyor", ready: false },
   ]
 
