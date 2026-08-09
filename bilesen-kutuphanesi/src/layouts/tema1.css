@@ -1420,3 +1420,9 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #b9c2d3;
 }
+
+/* Thumbnail (Layoutlar sekmesi minyatür önizleme) — tema viewport yerine kutuya sığar */
+.tema-thumb .tema1-root {
+  height: 100% !important;
+  width: 100%;
+}

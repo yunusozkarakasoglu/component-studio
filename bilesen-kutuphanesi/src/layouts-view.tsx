@@ -1,9 +1,10 @@
 /**
  * LayoutsView
- * Layout (sayfa şablonu) listesi — Tema 1 / Tema 2 canlı önizlemeleri.
+ * Layout (sayfa şablonu) listesi — Tema seçim kutuları (minyatür önizleme).
+ * Kutuya bas → tema tam sayfa açılır → geri ile Layoutlar sayfasına dönülür.
  * (Saf React — stüdyo içi görünüm, bileşen değil)
  */
-import { useState, type ReactNode } from "react"
+import { useEffect, useRef, useState, type ReactNode } from "react"
 import { Tema1 } from "./layouts/tema1"
 
 interface LayoutLike {
@@ -21,13 +22,45 @@ interface TemaPreview {
   id: string
   title: string
   desc: string
-  node: ReactNode
+  node?: ReactNode
+  ready: boolean
+}
+
+/** Minyatür önizleme kutusu — tema sabit 1200px tuvalde render, kutuya scale edilir */
+function TemaThumb({ node }: { node: ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const [scale, setScale] = useState(0.35)
+
+  useEffect(() => {
+    const update = () => {
+      const w = ref.current?.offsetWidth ?? 640
+      setScale(w / 1200)
+    }
+    update()
+    const ro = new ResizeObserver(update)
+    if (ref.current) ro.observe(ref.current)
+    return () => ro.disconnect()
+  }, [])
+
+  return (
+    <div ref={ref} className="tema-thumb relative h-72 w-full overflow-hidden rounded-lg border border-border bg-muted/20">
+      <div
+        className="pointer-events-none absolute left-0 top-0"
+        style={{ transform: `scale(${scale})`, transformOrigin: "top left", width: 1200, height: 700 }}
+      >
+        {node}
+      </div>
+    </div>
+  )
 }
 
 function LayoutsView({ layouts }: LayoutsViewProps) {
   const [fullscreen, setFullscreen] = useState<{ title: string; node: ReactNode } | null>(null)
+
   const temas: TemaPreview[] = [
-    { id: "tema1", title: "Tema 1", desc: "NovaPanel — header + açılır/kapanır panel + filtreli tablo + footer", node: <Tema1 /> },
+    { id: "tema1", title: "Tema 1", desc: "NovaPanel — header + açılır/kapanır panel + filtreli tablo", node: <Tema1 />, ready: true },
+    { id: "tema2", title: "Tema 2", desc: "Yeni tasarım — hazırlanıyor", ready: false },
+    { id: "tema3", title: "Tema 3", desc: "Yeni tasarım — hazırlanıyor", ready: false },
   ]
 
   if (fullscreen) {
@@ -53,41 +86,47 @@ function LayoutsView({ layouts }: LayoutsViewProps) {
       <div className="mb-5 flex items-center justify-between">
         <div>
           <h1 className="text-xl font-bold text-foreground">Layoutlar</h1>
-          <p className="text-sm text-muted-foreground">Sayfa şablonları — Tema 1/2 canlı önizlemeleri</p>
+          <p className="text-sm text-muted-foreground">Tema seç — kutuya basınca tam sayfa açılır</p>
         </div>
-        <span className="text-xs text-muted-foreground">Tıkla → tam ekran incele · yeni temalar eklenebilir</span>
+        <span className="text-xs text-muted-foreground">Tema 1 hazır · yeni temalar eklendikçe kutular dolar</span>
       </div>
 
       {layouts.length === 0 && (
-        <div className="mb-4 rounded-xl border border-dashed border-border bg-muted/20 p-5 text-center">
-          <p className="text-sm font-medium text-foreground">Sayfa şablonları (kayıtlar)</p>
-          <p className="mt-1 text-xs text-muted-foreground">
-            Aşağıdaki temalar canlı çalışır — her biri farklı bir sayfa layout'u. Tıkla → tam ekran.
+        <div className="mb-4 rounded-xl border border-dashed border-border bg-muted/20 p-4 text-center">
+          <p className="text-xs text-muted-foreground">
+            Aşağıdaki kutular canlı tema önizlemeleridir. Bir kutuya tıklayın → tam ekran · geri ile dönün.
           </p>
         </div>
       )}
 
-      {/* Tema kartları — canlı önizleme */}
-      <div className="grid gap-4 lg:grid-cols-2">
+      {/* Tema seçim kutuları */}
+      <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
         {temas.map((tema) => (
-          <div key={tema.id} className="rounded-xl border border-border bg-background p-4 shadow-sm">
-            <div className="mb-3 flex items-center justify-between">
-              <div>
-                <p className="text-sm font-semibold text-foreground">{tema.title}</p>
-                <p className="text-xs text-muted-foreground">{tema.desc}</p>
-              </div>
-              <span className="rounded-full bg-muted/60 px-2 py-0.5 text-[10px] text-muted-foreground">{tema.id}</span>
-            </div>
-            <button
-              type="button"
-              onClick={() => setFullscreen({ title: tema.title, node: tema.node })}
-              className="relative block h-96 w-full cursor-pointer overflow-hidden rounded-lg border border-border text-left transition-all hover:ring-2 hover:ring-blue-500/40"
-            >
-              <div className="pointer-events-none h-full w-full">{tema.node}</div>
-              <span className="absolute inset-x-0 bottom-0 flex items-center justify-center bg-gradient-to-t from-black/50 to-transparent py-2 text-xs font-semibold text-white opacity-0 transition-opacity group-hover:opacity-100 hover:opacity-100">
-                ⛶ Tam ekran aç
+          <div key={tema.id} className="flex flex-col rounded-xl border border-border bg-background p-3 shadow-sm">
+            <div className="mb-2 flex items-center justify-between">
+              <p className="text-sm font-semibold text-foreground">{tema.title}</p>
+              <span className={`rounded-full px-2 py-0.5 text-[10px] ${tema.ready ? "bg-green-100 text-green-700" : "bg-muted/60 text-muted-foreground"}`}>
+                {tema.ready ? "hazır" : "yakında"}
               </span>
-            </button>
+            </div>
+            {tema.ready && tema.node ? (
+              <button
+                type="button"
+                onClick={() => setFullscreen({ title: tema.title, node: tema.node })}
+                className="group relative block w-full cursor-pointer overflow-hidden rounded-lg text-left transition-all hover:ring-2 hover:ring-blue-500/40"
+                title={`${tema.title} — tam ekran aç`}
+              >
+                <TemaThumb node={tema.node} />
+                <span className="absolute inset-x-0 bottom-0 flex items-center justify-center bg-gradient-to-t from-black/60 to-transparent py-2.5 text-xs font-semibold text-white opacity-0 transition-opacity group-hover:opacity-100">
+                  ⛶ Tam ekran aç
+                </span>
+              </button>
+            ) : (
+              <div className="flex h-72 w-full items-center justify-center rounded-lg border border-dashed border-border bg-muted/10">
+                <span className="text-xs text-muted-foreground">Tasarım bekleniyor…</span>
+              </div>
+            )}
+            <p className="mt-2 text-xs text-muted-foreground">{tema.desc}</p>
           </div>
         ))}
       </div>
