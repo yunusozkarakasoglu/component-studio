@@ -859,7 +859,7 @@ export default function Studio() {
           {view === "bilesenler" && (
           <main className="min-h-0 flex-1 overflow-y-auto p-4">
             {/* Üst filtreler: arama + kategori + alt kategori + kaynak + görünüm (sabit) */}
-            <div className="sticky top-0 z-30 mb-3 flex flex-wrap items-center gap-2 border-b border-black/10 bg-background pb-2">
+            <div className="sticky top-0 z-30 -mx-4 -mt-4 mb-3 flex flex-wrap items-center gap-2 border-b border-black/10 bg-background px-4 pb-2.5 pt-2 shadow-sm">
               <SearchField aria-label="Ara" value={q} onChange={setQ} placeholder="Ara: 008, buton, renk…" className="h-8 w-56 border-black/40 text-xs" />
               <select value={cat} onChange={(e) => { setCat(e.target.value); setSubCat("") }}
                 className="h-8 rounded-md border border-black/40 bg-background px-2 text-xs text-foreground outline-none focus:border-ring">
