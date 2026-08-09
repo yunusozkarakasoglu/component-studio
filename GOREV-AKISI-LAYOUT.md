@@ -99,7 +99,7 @@ Kütüphane kaydı (envanter/registry) DEĞİŞMEZ — tema'lar `src/layouts/` +
 - [ ] App.jsx/HTML okundu, bölümler + state çıkarıldı
 - [ ] İkonlar setimizle eşlendi (eksikse soruldu)
 - [ ] `tema<N>.tsx` + `tema<N>.css` oluşturuldu, CSS scoped (`grep` kontrolü YOK)
-- [ ] Tam ekran override eklendi (`.tema-fullscreen .tema<N>-root …`)
+- [ ] Tam ekran + thumbnail override eklendi (fixed elemanlar: g-header/app__body/footer)
 - [ ] `layouts-view.tsx`'e kart eklendi (hash URL: `#/layoutlar/tema<N>`)
 - [ ] tsc ✓ · test 15/15 ✓ · kapsamlı kontrol 20 OK ✓
 - [ ] Tarayıcı: kutu → tam ekran → geri ✓
