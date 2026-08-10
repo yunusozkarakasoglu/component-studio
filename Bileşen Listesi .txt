@@ -1001,6 +1001,23 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1901` MuiIconButtonBasic
 - `1902` MuiButtonLoading
 - `1903` MuiButtonDisabled
+#### MuiToggleButton
+- `1904` MuiToggleButton
+- `1905` MuiToggleButtonGroup
+- `1906` MuiToggleButtonAlignment
+- `1907` MuiToggleButtonMultiple
+- `1908` MuiToggleButtonSizes
+#### MuiButtonGroup
+- `1909` MuiButtonGroup
+- `1911` MuiButtonGroupBasic
+- `1914` MuiButtonGroupVariants
+#### MuiFab
+- `1910` MuiFab
+- `1912` MuiFabBasic
+- `1915` MuiFabSizes
+#### MuiSpeedDial
+- `1913` MuiSpeedDial
+- `1916` MuiSpeedDialBasic
 #### Standart
 - `092` Button
 - `094` ButtonVariants
@@ -2257,7 +2274,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1843` MtAppShellUsage
 - `1844` MtAppShellAsideDemo
 
-**Toplam: 1814 bileşen (saf React)**
+**Toplam: 1827 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
