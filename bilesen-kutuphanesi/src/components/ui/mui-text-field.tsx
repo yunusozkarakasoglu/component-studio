@@ -16,10 +16,12 @@ import { type InputHTMLAttributes, type ReactNode, type TextareaHTMLAttributes, 
 import { cn } from "@/lib/utils"
 
 interface MuiTextFieldProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size"> {
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, "size" | "color"> {
   label?: ReactNode
+  hiddenLabel?: boolean
   variant?: "outlined" | "filled" | "standard"
   size?: "small" | "medium"
+  color?: "primary" | "secondary" | "success" | "error" | "info" | "warning"
   error?: boolean
   helperText?: ReactNode
   fullWidth?: boolean
@@ -31,8 +33,10 @@ interface MuiTextFieldProps
 
 function MuiTextField({
   label,
+  hiddenLabel = false,
   variant = "outlined",
   size = "medium",
+  color = "primary",
   error = false,
   helperText,
   fullWidth = false,
@@ -50,11 +54,21 @@ function MuiTextField({
   const padY = size === "small" ? "py-1.5" : "py-2"
   const textSize = size === "small" ? "text-sm" : "text-base"
 
+  const FOCUS: Record<string, string> = {
+    primary: "focus-within:border-blue-500",
+    secondary: "focus-within:border-purple-500",
+    success: "focus-within:border-green-500",
+    error: "focus-within:border-red-500",
+    info: "focus-within:border-sky-500",
+    warning: "focus-within:border-amber-500",
+  }
+  const focusCls = FOCUS[color] ?? FOCUS.primary
+
   const fieldCls = cn(
     "flex w-full items-center gap-1.5 bg-white text-gray-900 transition-colors",
-    variant === "outlined" && cn("rounded-md border", padY, textSize, error ? "border-red-500" : "border-gray-300 focus-within:border-blue-500"),
-    variant === "filled" && cn("rounded-t-md border-b-2 bg-gray-100 px-2", padY, textSize, error ? "border-b-red-500" : "border-b-gray-300 focus-within:border-b-blue-500"),
-    variant === "standard" && cn("border-b bg-transparent px-0", padY, textSize, error ? "border-b-red-500" : "border-b-gray-400 focus-within:border-b-blue-500"),
+    variant === "outlined" && cn("rounded-md border", padY, textSize, error ? "border-red-500" : "border-gray-300", focusCls),
+    variant === "filled" && cn("rounded-t-md border-b-2 bg-gray-100 px-2", padY, textSize, error ? "border-b-red-500" : "border-b-gray-300", focusCls),
+    variant === "standard" && cn("border-b bg-transparent px-0", padY, textSize, error ? "border-b-red-500" : "border-b-gray-400", focusCls),
     fullWidth && "w-full"
   )
 
@@ -66,7 +80,7 @@ function MuiTextField({
   return (
     <div className={cn("flex flex-col", fullWidth ? "w-full" : "w-full max-w-md", className)}>
       {label && (
-        <label htmlFor={inputId} className={cn("mb-1 text-sm", error ? "text-red-600" : "text-gray-700")}>
+        <label htmlFor={inputId} className={cn("mb-1 text-sm", hiddenLabel && "sr-only", error ? "text-red-600" : "text-gray-700")}>
           {label}
         </label>
       )}

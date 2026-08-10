@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-10T18:26:45.459Z",
+  "generatedAt": "2026-08-10T18:31:20.741Z",
   "counts": {
-    "components": 1842,
-    "ready": 1842,
+    "components": 1846,
+    "ready": 1846,
     "layouts": 0
   },
   "categories": [
@@ -1151,7 +1151,7 @@
       "source": "mui",
       "file": "mui-text-field.tsx",
       "exists": true,
-      "code": "/**\n * MuiTextField\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Metin alanı — etiketli, hata/yardım metinli giriş kutusu.\n *   <MuiTextField label=\"Ad\" variant=\"outlined\" size=\"small\" />\n * variant: outlined (varsayılan) | filled | standard\n * size: small | medium · error + helperText · fullWidth · multiline (rows)\n * startAdornment / endAdornment: öne/arkaya ikon\n * type: text | password | email | number …\n * @id 1922\n * @category Form Elemanları\n * @subcategory MuiTextField\n * @source mui\n */\nimport { type InputHTMLAttributes, type ReactNode, type TextareaHTMLAttributes, useId } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface MuiTextFieldProps\n  extends Omit<InputHTMLAttributes<HTMLInputElement>, \"size\"> {\n  label?: ReactNode\n  variant?: \"outlined\" | \"filled\" | \"standard\"\n  size?: \"small\" | \"medium\"\n  error?: boolean\n  helperText?: ReactNode\n  fullWidth?: boolean\n  multiline?: boolean\n  rows?: number\n  startAdornment?: ReactNode\n  endAdornment?: ReactNode\n}\n\nfunction MuiTextField({\n  label,\n  variant = \"outlined\",\n  size = \"medium\",\n  error = false,\n  helperText,\n  fullWidth = false,\n  multiline = false,\n  rows = 3,\n  startAdornment,\n  endAdornment,\n  id,\n  className,\n  ...rest\n}: MuiTextFieldProps) {\n  const autoId = useId()\n  const inputId = id ?? autoId\n  const helperId = `${inputId}-helper`\n  const padY = size === \"small\" ? \"py-1.5\" : \"py-2\"\n  const textSize = size === \"small\" ? \"text-sm\" : \"text-base\"\n\n  const fieldCls = cn(\n    \"flex w-full items-center gap-1.5 bg-white text-gray-900 transition-colors\",\n    variant === \"outlined\" && cn(\"rounded-md border\", padY, textSize, error ? \"border-red-500\" : \"border-gray-300 focus-within:border-blue-500\"),\n    variant === \"filled\" && cn(\"rounded-t-md border-b-2 bg-gray-100 px-2\", padY, textSize, error ? \"border-b-red-500\" : \"border-b-gray-300 focus-within:border-b-blue-500\"),\n    variant === \"standard\" && cn(\"border-b bg-transparent px-0\", padY, textSize, error ? \"border-b-red-500\" : \"border-b-gray-400 focus-within:border-b-blue-500\"),\n    fullWidth && \"w-full\"\n  )\n\n  const inputCls = cn(\n    \"w-full min-w-0 bg-transparent px-2 text-sm text-gray-900 outline-none placeholder:text-gray-400\",\n    variant === \"standard\" && \"px-0\"\n  )\n\n  return (\n    <div className={cn(\"flex flex-col\", fullWidth ? \"w-full\" : \"w-full max-w-md\", className)}>\n      {label && (\n        <label htmlFor={inputId} className={cn(\"mb-1 text-sm\", error ? \"text-red-600\" : \"text-gray-700\")}>\n          {label}\n        </label>\n      )}\n      <div className={fieldCls}>\n        {startAdornment && <span className=\"pl-2 text-gray-500\">{startAdornment}</span>}\n        {multiline ? (\n          <textarea\n            id={inputId}\n            rows={rows}\n            aria-describedby={helperText ? helperId : undefined}\n            className={cn(inputCls, \"resize-y py-1.5\")}\n            {...(rest as TextareaHTMLAttributes<HTMLTextAreaElement>)}\n          />\n        ) : (\n          <input id={inputId} aria-describedby={helperText ? helperId : undefined} className={inputCls} {...rest} />\n        )}\n        {endAdornment && <span className=\"pr-2 text-gray-500\">{endAdornment}</span>}\n      </div>\n      {helperText && (\n        <p id={helperId} className={cn(\"mt-1 text-xs\", error ? \"text-red-600\" : \"text-gray-500\")}>\n          {helperText}\n        </p>\n      )}\n    </div>\n  )\n}\n\nexport { MuiTextField }\nexport type { MuiTextFieldProps }\n",
+      "code": "/**\n * MuiTextField\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Metin alanı — etiketli, hata/yardım metinli giriş kutusu.\n *   <MuiTextField label=\"Ad\" variant=\"outlined\" size=\"small\" />\n * variant: outlined (varsayılan) | filled | standard\n * size: small | medium · error + helperText · fullWidth · multiline (rows)\n * startAdornment / endAdornment: öne/arkaya ikon\n * type: text | password | email | number …\n * @id 1922\n * @category Form Elemanları\n * @subcategory MuiTextField\n * @source mui\n */\nimport { type InputHTMLAttributes, type ReactNode, type TextareaHTMLAttributes, useId } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface MuiTextFieldProps\n  extends Omit<InputHTMLAttributes<HTMLInputElement>, \"size\" | \"color\"> {\n  label?: ReactNode\n  hiddenLabel?: boolean\n  variant?: \"outlined\" | \"filled\" | \"standard\"\n  size?: \"small\" | \"medium\"\n  color?: \"primary\" | \"secondary\" | \"success\" | \"error\" | \"info\" | \"warning\"\n  error?: boolean\n  helperText?: ReactNode\n  fullWidth?: boolean\n  multiline?: boolean\n  rows?: number\n  startAdornment?: ReactNode\n  endAdornment?: ReactNode\n}\n\nfunction MuiTextField({\n  label,\n  hiddenLabel = false,\n  variant = \"outlined\",\n  size = \"medium\",\n  color = \"primary\",\n  error = false,\n  helperText,\n  fullWidth = false,\n  multiline = false,\n  rows = 3,\n  startAdornment,\n  endAdornment,\n  id,\n  className,\n  ...rest\n}: MuiTextFieldProps) {\n  const autoId = useId()\n  const inputId = id ?? autoId\n  const helperId = `${inputId}-helper`\n  const padY = size === \"small\" ? \"py-1.5\" : \"py-2\"\n  const textSize = size === \"small\" ? \"text-sm\" : \"text-base\"\n\n  const FOCUS: Record<string, string> = {\n    primary: \"focus-within:border-blue-500\",\n    secondary: \"focus-within:border-purple-500\",\n    success: \"focus-within:border-green-500\",\n    error: \"focus-within:border-red-500\",\n    info: \"focus-within:border-sky-500\",\n    warning: \"focus-within:border-amber-500\",\n  }\n  const focusCls = FOCUS[color] ?? FOCUS.primary\n\n  const fieldCls = cn(\n    \"flex w-full items-center gap-1.5 bg-white text-gray-900 transition-colors\",\n    variant === \"outlined\" && cn(\"rounded-md border\", padY, textSize, error ? \"border-red-500\" : \"border-gray-300\", focusCls),\n    variant === \"filled\" && cn(\"rounded-t-md border-b-2 bg-gray-100 px-2\", padY, textSize, error ? \"border-b-red-500\" : \"border-b-gray-300\", focusCls),\n    variant === \"standard\" && cn(\"border-b bg-transparent px-0\", padY, textSize, error ? \"border-b-red-500\" : \"border-b-gray-400\", focusCls),\n    fullWidth && \"w-full\"\n  )\n\n  const inputCls = cn(\n    \"w-full min-w-0 bg-transparent px-2 text-sm text-gray-900 outline-none placeholder:text-gray-400\",\n    variant === \"standard\" && \"px-0\"\n  )\n\n  return (\n    <div className={cn(\"flex flex-col\", fullWidth ? \"w-full\" : \"w-full max-w-md\", className)}>\n      {label && (\n        <label htmlFor={inputId} className={cn(\"mb-1 text-sm\", hiddenLabel && \"sr-only\", error ? \"text-red-600\" : \"text-gray-700\")}>\n          {label}\n        </label>\n      )}\n      <div className={fieldCls}>\n        {startAdornment && <span className=\"pl-2 text-gray-500\">{startAdornment}</span>}\n        {multiline ? (\n          <textarea\n            id={inputId}\n            rows={rows}\n            aria-describedby={helperText ? helperId : undefined}\n            className={cn(inputCls, \"resize-y py-1.5\")}\n            {...(rest as TextareaHTMLAttributes<HTMLTextAreaElement>)}\n          />\n        ) : (\n          <input id={inputId} aria-describedby={helperText ? helperId : undefined} className={inputCls} {...rest} />\n        )}\n        {endAdornment && <span className=\"pr-2 text-gray-500\">{endAdornment}</span>}\n      </div>\n      {helperText && (\n        <p id={helperId} className={cn(\"mt-1 text-xs\", error ? \"text-red-600\" : \"text-gray-500\")}>\n          {helperText}\n        </p>\n      )}\n    </div>\n  )\n}\n\nexport { MuiTextField }\nexport type { MuiTextFieldProps }\n",
       "description": "MuiTextField",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-text-field.tsx"
     },
@@ -1226,6 +1226,54 @@
       "code": "/**\n * MuiTextFieldFormProps\n * @id 1928\n * @category Form Elemanları\n * @subcategory MuiTextField\n * @source mui\n */\nimport { MuiTextField } from \"@/components/ui/mui-text-field\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiTextFieldFormProps() {\n  return (\n    <MuiStack spacing={3} className=\"w-full max-w-md\">\n      <MuiTextField label=\"Devre dışı\" disabled defaultValue=\"Devre dışı değer\" />\n      <MuiTextField label=\"Gerekli\" required defaultValue=\"Gerekli alan\" />\n      <MuiTextField label=\"Hata\" error helperText=\"Yanlış giriş\" defaultValue=\"Hatalı değer\" />\n      <MuiTextField label=\"Salt okunur\" readOnly defaultValue=\"Salt okunur değer\" />\n    </MuiStack>\n  )\n}\n\nexport { MuiTextFieldFormProps }\n",
       "description": "MuiTextFieldFormProps",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-text-field-form-props.tsx"
+    },
+    {
+      "id": "1932",
+      "name": "MuiTextFieldColor",
+      "category": "Form Elemanları",
+      "subcategory": "MuiTextField",
+      "source": "mui",
+      "file": "mui-text-field-color.tsx",
+      "exists": true,
+      "code": "/**\n * MuiTextFieldColor\n * @id 1932\n * @category Form Elemanları\n * @subcategory MuiTextField\n * @source mui\n */\nimport { MuiTextField } from \"@/components/ui/mui-text-field\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiTextFieldColor() {\n  return (\n    <MuiStack spacing={3} className=\"w-full max-w-md\">\n      <MuiTextField label=\"Primary\" color=\"primary\" defaultValue=\"Primary renk\" />\n      <MuiTextField label=\"Secondary\" color=\"secondary\" defaultValue=\"Secondary renk\" />\n    </MuiStack>\n  )\n}\n\nexport { MuiTextFieldColor }\n",
+      "description": "MuiTextFieldColor",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-text-field-color.tsx"
+    },
+    {
+      "id": "1933",
+      "name": "MuiTextFieldHiddenLabel",
+      "category": "Form Elemanları",
+      "subcategory": "MuiTextField",
+      "source": "mui",
+      "file": "mui-text-field-hidden-label.tsx",
+      "exists": true,
+      "code": "/**\n * MuiTextFieldHiddenLabel\n * @id 1933\n * @category Form Elemanları\n * @subcategory MuiTextField\n * @source mui\n */\nimport { MuiTextField } from \"@/components/ui/mui-text-field\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiTextFieldHiddenLabel() {\n  return (\n    <MuiStack spacing={3} className=\"w-full max-w-md\">\n      <MuiTextField hiddenLabel label=\"Gizli etiket\" defaultValue=\"Görünür etiketsiz, aria etiketli\" />\n      <MuiTextField label=\"Yer tutucu\" placeholder=\"Placeholder kullanımı\" />\n    </MuiStack>\n  )\n}\n\nexport { MuiTextFieldHiddenLabel }\n",
+      "description": "MuiTextFieldHiddenLabel",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-text-field-hidden-label.tsx"
+    },
+    {
+      "id": "1934",
+      "name": "MuiTextFieldLayout",
+      "category": "Form Elemanları",
+      "subcategory": "MuiTextField",
+      "source": "mui",
+      "file": "mui-text-field-layout.tsx",
+      "exists": true,
+      "code": "/**\n * MuiTextFieldLayout\n * @id 1934\n * @category Form Elemanları\n * @subcategory MuiTextField\n * @source mui\n */\nimport { MuiTextField } from \"@/components/ui/mui-text-field\"\nimport { MuiGrid } from \"@/components/ui/mui-grid\"\n\nfunction MuiTextFieldLayout() {\n  return (\n    <MuiGrid container spacing={3} className=\"w-full max-w-lg\">\n      <MuiGrid item xs={12}>\n        <MuiTextField label=\"Tam genişlik\" fullWidth defaultValue=\"Tüm satırı kaplar\" />\n      </MuiGrid>\n      <MuiGrid item xs={6}>\n        <MuiTextField label=\"Yarım — sol\" defaultValue=\"Solda\" />\n      </MuiGrid>\n      <MuiGrid item xs={6}>\n        <MuiTextField label=\"Yarım — sağ\" defaultValue=\"Sağda\" />\n      </MuiGrid>\n      <MuiGrid item xs={4}>\n        <MuiTextField label=\"Üçte bir\" defaultValue=\"1/3\" />\n      </MuiGrid>\n      <MuiGrid item xs={8}>\n        <MuiTextField label=\"Üçte iki\" defaultValue=\"2/3\" />\n      </MuiGrid>\n    </MuiGrid>\n  )\n}\n\nexport { MuiTextFieldLayout }\n",
+      "description": "MuiTextFieldLayout",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-text-field-layout.tsx"
+    },
+    {
+      "id": "1935",
+      "name": "MuiTextFieldInputWithIcon",
+      "category": "Form Elemanları",
+      "subcategory": "MuiTextField",
+      "source": "mui",
+      "file": "mui-text-field-input-with-icon.tsx",
+      "exists": true,
+      "code": "/**\n * MuiTextFieldInputWithIcon\n * @id 1935\n * @category Form Elemanları\n * @subcategory MuiTextField\n * @source mui\n */\nimport { MuiTextField } from \"@/components/ui/mui-text-field\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\nimport { Search, CircleUser, Lock } from \"@/components/ui/icons\"\n\nfunction MuiTextFieldInputWithIcon() {\n  return (\n    <MuiStack spacing={3} className=\"w-full max-w-md\">\n      <MuiTextField label=\"Kullanıcı adı\" startAdornment={<CircleUser className=\"size-5\" />} defaultValue=\"yunus\" />\n      <MuiTextField label=\"Şifre\" startAdornment={<Lock className=\"size-4\" />} type=\"password\" defaultValue=\"••••••\" />\n      <MuiTextField label=\"Ara\" startAdornment={<Search className=\"size-4\" />} placeholder=\"Ürün ara…\" />\n    </MuiStack>\n  )\n}\n\nexport { MuiTextFieldInputWithIcon }\n",
+      "description": "MuiTextFieldInputWithIcon",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-text-field-input-with-icon.tsx"
     },
     {
       "id": "1929",
