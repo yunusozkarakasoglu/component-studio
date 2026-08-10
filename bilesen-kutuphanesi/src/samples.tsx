@@ -1867,4 +1867,13 @@ export const SAMPLES: Record<string, ReactNode> = {
   "1892": <U.MuiGridRowColumnSpacing />,
   "1893": <U.MuiDividerIntro />,
   "1894": <U.MuiStackZeroWidth />,
+  "1895": <U.MuiButton />,
+  "1896": <U.MuiIconButton />,
+  "1897": <U.MuiButtonBasic />,
+  "1898": <U.MuiButtonColors />,
+  "1899": <U.MuiButtonSizes />,
+  "1900": <U.MuiButtonIconLabel />,
+  "1901": <U.MuiIconButtonBasic />,
+  "1902": <U.MuiButtonLoading />,
+  "1903": <U.MuiButtonDisabled />,
 }

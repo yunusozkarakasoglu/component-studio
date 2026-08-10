@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-10T15:49:58.729Z",
+  "generatedAt": "2026-08-10T15:52:38.321Z",
   "counts": {
-    "components": 1805,
-    "ready": 1805,
+    "components": 1814,
+    "ready": 1814,
     "layouts": 0
   },
   "categories": [
@@ -10142,6 +10142,114 @@
       "code": "/**\n * SelectCustomStyles\n * Özelleştirilmiş örnek (saf React).\n * @id 578\n * @category Combobox\n * @subcategory Select\n */\nimport { Label } from \"@/components/ui/label\"\nimport { ListBox, ListBoxItem, ListBoxItemIndicator } from \"@/components/ui/list-box\"\nimport { Select, SelectIndicator, SelectPopover, SelectTrigger, SelectValue } from \"@/components/ui/select\"\n\nconst OPTIONS = [\"Light\", \"Dark\", \"System\"]\n\nfunction SelectCustomStyles() {\n  return (\n    <Select className=\"relative w-[256px]\" placeholder=\"Theme\" variant=\"secondary\">\n      <Label className=\"font-medium text-foreground\">Theme</Label>\n      <SelectTrigger className=\"rounded-xl bg-muted/50\">\n        <SelectValue />\n        <SelectIndicator />\n      </SelectTrigger>\n      <SelectPopover>\n        <ListBox className=\"rounded-xl border-blue-500/20\">\n          {OPTIONS.map((o) => (\n            <ListBoxItem key={o} id={o.toLowerCase()} textValue={o} className=\"hover:bg-blue-500/5\">\n              {o}\n              <ListBoxItemIndicator className=\"border-blue-400\" />\n            </ListBoxItem>\n          ))}\n        </ListBox>\n      </SelectPopover>\n    </Select>\n  )\n}\n\nexport { SelectCustomStyles }\n",
       "description": "SelectCustomStyles",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/select-custom-styles.tsx"
+    },
+    {
+      "id": "1895",
+      "name": "MuiButton",
+      "category": "Butonlar & Aksiyonlar",
+      "subcategory": "MuiButton",
+      "source": "mui",
+      "file": "mui-button.tsx",
+      "exists": true,
+      "code": "/**\n * MuiButton\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Buton — text / contained / outlined varyantları, renk ve boyut seçenekleri.\n *   <MuiButton variant=\"contained\" color=\"primary\" size=\"medium\">…</MuiButton>\n * variant: text (varsayılan) | contained | outlined\n * color: primary | secondary | success | error | info | warning | inherit\n * size: small | medium (varsayılan) | large\n * startIcon / endIcon: ikon ekleme · fullWidth · disabled · loading\n * @id 1895\n * @category Butonlar & Aksiyonlar\n * @subcategory MuiButton\n * @source mui\n */\nimport { type ReactNode, type ButtonHTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface MuiButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, \"color\"> {\n  variant?: \"text\" | \"contained\" | \"outlined\"\n  color?: \"primary\" | \"secondary\" | \"success\" | \"error\" | \"info\" | \"warning\" | \"inherit\"\n  size?: \"small\" | \"medium\" | \"large\"\n  startIcon?: ReactNode\n  endIcon?: ReactNode\n  fullWidth?: boolean\n  loading?: boolean\n}\n\nconst BASE =\n  \"inline-flex items-center justify-center gap-2 rounded font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-50\"\n\nconst SIZE: Record<string, string> = {\n  small: \"px-3 py-1 text-xs\",\n  medium: \"px-4 py-1.5 text-sm\",\n  large: \"px-5 py-2 text-base\",\n}\n\nconst VARIANT: Record<string, Record<string, string>> = {\n  text: {\n    primary: \"text-blue-600 hover:bg-blue-50\",\n    secondary: \"text-purple-600 hover:bg-purple-50\",\n    success: \"text-green-700 hover:bg-green-50\",\n    error: \"text-red-600 hover:bg-red-50\",\n    info: \"text-sky-600 hover:bg-sky-50\",\n    warning: \"text-amber-700 hover:bg-amber-50\",\n    inherit: \"text-gray-900 hover:bg-gray-100\",\n  },\n  contained: {\n    primary: \"bg-blue-600 text-white shadow-sm hover:bg-blue-700\",\n    secondary: \"bg-purple-600 text-white shadow-sm hover:bg-purple-700\",\n    success: \"bg-green-600 text-white shadow-sm hover:bg-green-700\",\n    error: \"bg-red-600 text-white shadow-sm hover:bg-red-700\",\n    info: \"bg-sky-600 text-white shadow-sm hover:bg-sky-700\",\n    warning: \"bg-amber-600 text-white shadow-sm hover:bg-amber-700\",\n    inherit: \"bg-gray-400 text-white shadow-sm hover:bg-gray-500\",\n  },\n  outlined: {\n    primary: \"border border-blue-500 text-blue-600 hover:bg-blue-50\",\n    secondary: \"border border-purple-500 text-purple-600 hover:bg-purple-50\",\n    success: \"border border-green-500 text-green-700 hover:bg-green-50\",\n    error: \"border border-red-500 text-red-600 hover:bg-red-50\",\n    info: \"border border-sky-500 text-sky-600 hover:bg-sky-50\",\n    warning: \"border border-amber-500 text-amber-700 hover:bg-amber-50\",\n    inherit: \"border border-gray-400 text-gray-900 hover:bg-gray-100\",\n  },\n}\n\nfunction MuiButton({\n  variant = \"text\",\n  color = \"primary\",\n  size = \"medium\",\n  startIcon,\n  endIcon,\n  fullWidth = false,\n  loading = false,\n  disabled,\n  className,\n  children,\n  type = \"button\",\n  ...rest\n}: MuiButtonProps) {\n  return (\n    <button\n      type={type}\n      disabled={disabled || loading}\n      className={cn(BASE, SIZE[size], VARIANT[variant][color], fullWidth && \"w-full\", className)}\n      {...rest}\n    >\n      {loading ? (\n        <span aria-hidden className=\"size-4 animate-spin rounded-full border-2 border-current border-t-transparent\" />\n      ) : (\n        startIcon\n      )}\n      {children}\n      {!loading && endIcon}\n    </button>\n  )\n}\n\nexport { MuiButton }\nexport type { MuiButtonProps }\n",
+      "description": "MuiButton",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-button.tsx"
+    },
+    {
+      "id": "1896",
+      "name": "MuiIconButton",
+      "category": "Butonlar & Aksiyonlar",
+      "subcategory": "MuiButton",
+      "source": "mui",
+      "file": "mui-icon-button.tsx",
+      "exists": true,
+      "code": "/**\n * MuiIconButton\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * İkon butonu — yalnızca ikon içeren kare buton.\n *   <MuiIconButton aria-label=\"sil\"><Trash2 /></MuiIconButton>\n * color: default | primary | secondary | error | success | warning\n * size: small | medium | large · disabled\n * @id 1896\n * @category Butonlar & Aksiyonlar\n * @subcategory MuiButton\n * @source mui\n */\nimport { type ButtonHTMLAttributes, type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface MuiIconButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, \"color\"> {\n  color?: \"default\" | \"primary\" | \"secondary\" | \"error\" | \"success\" | \"warning\" | \"info\"\n  size?: \"small\" | \"medium\" | \"large\"\n}\n\nconst SIZE: Record<string, string> = {\n  small: \"size-8 text-sm\",\n  medium: \"size-10 text-base\",\n  large: \"size-12 text-xl\",\n}\n\nconst COLOR: Record<string, string> = {\n  default: \"text-gray-600 hover:bg-gray-100\",\n  primary: \"text-blue-600 hover:bg-blue-50\",\n  secondary: \"text-purple-600 hover:bg-purple-50\",\n  error: \"text-red-600 hover:bg-red-50\",\n  success: \"text-green-700 hover:bg-green-50\",\n  warning: \"text-amber-700 hover:bg-amber-50\",\n  info: \"text-sky-600 hover:bg-sky-50\",\n}\n\nfunction MuiIconButton({ color = \"default\", size = \"medium\", className, children, type = \"button\", ...rest }: MuiIconButtonProps) {\n  return (\n    <button\n      type={type}\n      className={cn(\n        \"inline-flex shrink-0 cursor-pointer items-center justify-center rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-50\",\n        SIZE[size],\n        COLOR[color],\n        className\n      )}\n      {...rest}\n    >\n      {children}\n    </button>\n  )\n}\n\nexport { MuiIconButton }\nexport type { MuiIconButtonProps }\n",
+      "description": "MuiIconButton",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-icon-button.tsx"
+    },
+    {
+      "id": "1897",
+      "name": "MuiButtonBasic",
+      "category": "Butonlar & Aksiyonlar",
+      "subcategory": "MuiButton",
+      "source": "mui",
+      "file": "mui-button-basic.tsx",
+      "exists": true,
+      "code": "/**\n * MuiButtonBasic\n * @id 1897\n * @category Butonlar & Aksiyonlar\n * @subcategory MuiButton\n * @source mui\n */\nimport { MuiButton } from \"@/components/ui/mui-button\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiButtonBasic() {\n  return (\n    <MuiStack direction=\"row\" spacing={2} className=\"flex-wrap\">\n      <MuiButton variant=\"text\">Text</MuiButton>\n      <MuiButton variant=\"contained\">Contained</MuiButton>\n      <MuiButton variant=\"outlined\">Outlined</MuiButton>\n    </MuiStack>\n  )\n}\n\nexport { MuiButtonBasic }\n",
+      "description": "MuiButtonBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-button-basic.tsx"
+    },
+    {
+      "id": "1898",
+      "name": "MuiButtonColors",
+      "category": "Butonlar & Aksiyonlar",
+      "subcategory": "MuiButton",
+      "source": "mui",
+      "file": "mui-button-colors.tsx",
+      "exists": true,
+      "code": "/**\n * MuiButtonColors\n * @id 1898\n * @category Butonlar & Aksiyonlar\n * @subcategory MuiButton\n * @source mui\n */\nimport { MuiButton } from \"@/components/ui/mui-button\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiButtonColors() {\n  return (\n    <MuiStack direction=\"row\" spacing={2} className=\"flex-wrap\">\n      <MuiButton variant=\"contained\" color=\"primary\">Primary</MuiButton>\n      <MuiButton variant=\"contained\" color=\"secondary\">Secondary</MuiButton>\n      <MuiButton variant=\"contained\" color=\"success\">Success</MuiButton>\n      <MuiButton variant=\"contained\" color=\"error\">Error</MuiButton>\n      <MuiButton variant=\"contained\" color=\"info\">Info</MuiButton>\n      <MuiButton variant=\"contained\" color=\"warning\">Warning</MuiButton>\n    </MuiStack>\n  )\n}\n\nexport { MuiButtonColors }\n",
+      "description": "MuiButtonColors",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-button-colors.tsx"
+    },
+    {
+      "id": "1899",
+      "name": "MuiButtonSizes",
+      "category": "Butonlar & Aksiyonlar",
+      "subcategory": "MuiButton",
+      "source": "mui",
+      "file": "mui-button-sizes.tsx",
+      "exists": true,
+      "code": "/**\n * MuiButtonSizes\n * @id 1899\n * @category Butonlar & Aksiyonlar\n * @subcategory MuiButton\n * @source mui\n */\nimport { MuiButton } from \"@/components/ui/mui-button\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiButtonSizes() {\n  return (\n    <MuiStack direction=\"row\" spacing={2} className=\"flex-wrap items-center\">\n      <MuiButton variant=\"contained\" size=\"small\">Small</MuiButton>\n      <MuiButton variant=\"contained\" size=\"medium\">Medium</MuiButton>\n      <MuiButton variant=\"contained\" size=\"large\">Large</MuiButton>\n    </MuiStack>\n  )\n}\n\nexport { MuiButtonSizes }\n",
+      "description": "MuiButtonSizes",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-button-sizes.tsx"
+    },
+    {
+      "id": "1900",
+      "name": "MuiButtonIconLabel",
+      "category": "Butonlar & Aksiyonlar",
+      "subcategory": "MuiButton",
+      "source": "mui",
+      "file": "mui-button-icon-label.tsx",
+      "exists": true,
+      "code": "/**\n * MuiButtonIconLabel\n * @id 1900\n * @category Butonlar & Aksiyonlar\n * @subcategory MuiButton\n * @source mui\n */\nimport { MuiButton } from \"@/components/ui/mui-button\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\nimport { Send, ShoppingCart, Delete } from \"@/components/ui/icons\"\n\nfunction MuiButtonIconLabel() {\n  return (\n    <MuiStack direction=\"row\" spacing={2} className=\"flex-wrap\">\n      <MuiButton variant=\"contained\" startIcon={<Send className=\"size-4\" />}>Send</MuiButton>\n      <MuiButton variant=\"contained\" color=\"success\" startIcon={<ShoppingCart className=\"size-4\" />}>Sepete Ekle</MuiButton>\n      <MuiButton variant=\"outlined\" color=\"error\" startIcon={<Delete className=\"size-4\" />}>Sil</MuiButton>\n    </MuiStack>\n  )\n}\n\nexport { MuiButtonIconLabel }\n",
+      "description": "MuiButtonIconLabel",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-button-icon-label.tsx"
+    },
+    {
+      "id": "1901",
+      "name": "MuiIconButtonBasic",
+      "category": "Butonlar & Aksiyonlar",
+      "subcategory": "MuiButton",
+      "source": "mui",
+      "file": "mui-icon-button-basic.tsx",
+      "exists": true,
+      "code": "/**\n * MuiIconButtonBasic\n * @id 1901\n * @category Butonlar & Aksiyonlar\n * @subcategory MuiButton\n * @source mui\n */\nimport { MuiIconButton } from \"@/components/ui/mui-icon-button\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\nimport { Delete, AlarmClock, ShoppingCart } from \"@/components/ui/icons\"\n\nfunction MuiIconButtonBasic() {\n  return (\n    <MuiStack direction=\"row\" spacing={1}>\n      <MuiIconButton aria-label=\"delete\"><Delete className=\"size-5\" /></MuiIconButton>\n      <MuiIconButton aria-label=\"delete\" disabled color=\"primary\"><Delete className=\"size-5\" /></MuiIconButton>\n      <MuiIconButton color=\"secondary\" aria-label=\"alarm ekle\"><AlarmClock className=\"size-5\" /></MuiIconButton>\n      <MuiIconButton color=\"primary\" aria-label=\"sepete ekle\"><ShoppingCart className=\"size-5\" /></MuiIconButton>\n    </MuiStack>\n  )\n}\n\nexport { MuiIconButtonBasic }\n",
+      "description": "MuiIconButtonBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-icon-button-basic.tsx"
+    },
+    {
+      "id": "1902",
+      "name": "MuiButtonLoading",
+      "category": "Butonlar & Aksiyonlar",
+      "subcategory": "MuiButton",
+      "source": "mui",
+      "file": "mui-button-loading.tsx",
+      "exists": true,
+      "code": "/**\n * MuiButtonLoading\n * @id 1902\n * @category Butonlar & Aksiyonlar\n * @subcategory MuiButton\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiButton } from \"@/components/ui/mui-button\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiButtonLoading() {\n  const [loading, setLoading] = useState(false)\n  const handleClick = () => {\n    setLoading(true)\n    window.setTimeout(() => setLoading(false), 2000)\n  }\n  return (\n    <MuiStack direction=\"row\" spacing={2} className=\"flex-wrap\">\n      <MuiButton variant=\"contained\" loading={loading} onClick={handleClick}>\n        {loading ? \"Yükleniyor…\" : \"Yükle\"}\n      </MuiButton>\n      <MuiButton variant=\"outlined\" onClick={handleClick}>Diğer</MuiButton>\n    </MuiStack>\n  )\n}\n\nexport { MuiButtonLoading }\n",
+      "description": "MuiButtonLoading",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-button-loading.tsx"
+    },
+    {
+      "id": "1903",
+      "name": "MuiButtonDisabled",
+      "category": "Butonlar & Aksiyonlar",
+      "subcategory": "MuiButton",
+      "source": "mui",
+      "file": "mui-button-disabled.tsx",
+      "exists": true,
+      "code": "/**\n * MuiButtonDisabled\n * @id 1903\n * @category Butonlar & Aksiyonlar\n * @subcategory MuiButton\n * @source mui\n */\nimport { MuiButton } from \"@/components/ui/mui-button\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiButtonDisabled() {\n  return (\n    <MuiStack direction=\"row\" spacing={2} className=\"flex-wrap\">\n      <MuiButton variant=\"contained\" disabled>Contained</MuiButton>\n      <MuiButton variant=\"outlined\" disabled>Outlined</MuiButton>\n      <MuiButton variant=\"text\" disabled>Text</MuiButton>\n    </MuiStack>\n  )\n}\n\nexport { MuiButtonDisabled }\n",
+      "description": "MuiButtonDisabled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-button-disabled.tsx"
     },
     {
       "id": "092",
