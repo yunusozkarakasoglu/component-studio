@@ -2274,7 +2274,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1843` MtAppShellUsage
 - `1844` MtAppShellAsideDemo
 
-**Toplam: 1832 bileşen (saf React)**
+**Toplam: 1839 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

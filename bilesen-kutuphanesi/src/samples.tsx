@@ -1894,4 +1894,11 @@ export const SAMPLES: Record<string, ReactNode> = {
   "1919": <U.MuiAlertVariants />,
   "1920": <U.MuiAlertAction />,
   "1921": <U.MuiAlertDescription />,
+  "1922": <U.MuiTextField />,
+  "1923": <U.MuiTextFieldBasic />,
+  "1924": <U.MuiTextFieldValidation />,
+  "1925": <U.MuiTextFieldAdornments />,
+  "1926": <U.MuiTextFieldMultiline />,
+  "1927": <U.MuiTextFieldSizes />,
+  "1928": <U.MuiTextFieldFormProps />,
 }
