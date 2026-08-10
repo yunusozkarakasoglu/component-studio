@@ -1172,6 +1172,20 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `187` CalendarCustomStyles
 
 ### Veri Gösterimi
+- `2005` MuiCard
+- `2006` MuiCardBasic
+- `2007` MuiCardMedia
+- `2008` MuiCardOutlined
+- `2009` MuiAvatar
+- `2010` MuiBadge
+- `2011` MuiList
+- `2012` MuiTable
+- `2013` MuiAccordion
+- `2014` MuiAvatarBasic
+- `2015` MuiBadgeBasic
+- `2016` MuiListBasic
+- `2017` MuiTableBasic
+- `2018` MuiAccordionBasic
 - `139` TagGroup
 - `140` EmptyState
 
@@ -2384,7 +2398,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1843` MtAppShellUsage
 - `1844` MtAppShellAsideDemo
 
-**Toplam: 1915 bileşen (saf React)**
+**Toplam: 1929 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
