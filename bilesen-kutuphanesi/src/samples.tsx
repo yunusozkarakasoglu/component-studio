@@ -1924,4 +1924,12 @@ export const SAMPLES: Record<string, ReactNode> = {
   "1949": <U.MuiRadioRow />,
   "1950": <U.MuiRadioColors />,
   "1951": <U.MuiRadioError />,
+  "1952": <U.MuiSlider />,
+  "1953": <U.MuiSliderContinuous />,
+  "1954": <U.MuiSliderRange />,
+  "1955": <U.MuiSliderDiscrete />,
+  "1956": <U.MuiSliderMarks />,
+  "1957": <U.MuiSliderSizes />,
+  "1958": <U.MuiSliderVertical />,
+  "1959": <U.MuiSliderColors />,
 }

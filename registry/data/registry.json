@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-10T18:45:17.592Z",
+  "generatedAt": "2026-08-10T18:56:49.504Z",
   "counts": {
-    "components": 1862,
-    "ready": 1862,
+    "components": 1870,
+    "ready": 1870,
     "layouts": 0
   },
   "categories": [
@@ -8219,7 +8219,7 @@
       "source": "mui",
       "file": "mui-radio-group.tsx",
       "exists": true,
-      "code": "/**\n * MuiRadioGroup\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Radyo grubu — tek seçim davranışı sağlar.\n *   <MuiRadioGroup label=\"Cinsiyet\" options={[{value,label}]} defaultValue=\"female\" />\n * options: {value, label, disabled?}[] · defaultValue · onChange · row (yatay)\n * @id 1947\n * @category Seçim\n * @subcategory MuiRadio\n * @source mui\n */\nimport { useState, type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { MuiRadio } from \"@/components/ui/mui-radio\"\n\ninterface MuiRadioGroupProps {\n  label?: ReactNode\n  options: { value: string; label: ReactNode; disabled?: boolean }[]\n  defaultValue?: string\n  value?: string\n  onChange?: (value: string) => void\n  row?: boolean\n  color?: \"primary\" | \"secondary\" | \"success\" | \"error\" | \"warning\" | \"info\" | \"default\"\n  className?: string\n}\n\nfunction MuiRadioGroup({ label, options, defaultValue, value, onChange, row = false, color = \"primary\", className }: MuiRadioGroupProps) {\n  const [internal, setInternal] = useState<string | undefined>(defaultValue)\n  const active = value ?? internal\n  return (\n    <div className={cn(\"flex flex-col\", className)}>\n      {label && <span className=\"mb-1 text-sm text-gray-700\">{label}</span>}\n      <div role=\"radiogroup\" className={cn(\"flex\", row ? \"flex-row gap-4\" : \"flex-col gap-1.5\")}>\n        {options.map((o) => (\n          <MuiRadio\n            key={o.value}\n            checked={active === o.value}\n            disabled={o.disabled}\n            color={color}\n            onChange={() => {\n              setInternal(o.value)\n              onChange?.(o.value)\n            }}\n          >\n            {o.label}\n          </MuiRadio>\n        ))}\n      </div>\n    </div>\n  )\n}\n\nexport { MuiRadioGroup }\nexport type { MuiRadioGroupProps }\n",
+      "code": "/**\n * MuiRadioGroup\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Radyo grubu — tek seçim davranışı sağlar.\n *   <MuiRadioGroup label=\"Cinsiyet\" options={[{value,label}]} defaultValue=\"female\" />\n * options: {value, label, disabled?}[] · defaultValue · onChange · row (yatay)\n * @id 1947\n * @category Seçim\n * @subcategory MuiRadio\n * @source mui\n */\nimport { useState, type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { MuiRadio } from \"@/components/ui/mui-radio\"\n\ninterface MuiRadioGroupProps {\n  label?: ReactNode\n  options?: { value: string; label: ReactNode; disabled?: boolean }[]\n  defaultValue?: string\n  value?: string\n  onChange?: (value: string) => void\n  row?: boolean\n  color?: \"primary\" | \"secondary\" | \"success\" | \"error\" | \"warning\" | \"info\" | \"default\"\n  className?: string\n}\n\nfunction MuiRadioGroup({ label, options = [{ value: \"a\", label: \"Seçenek A\" }, { value: \"b\", label: \"Seçenek B\" }], defaultValue, value, onChange, row = false, color = \"primary\", className }: MuiRadioGroupProps) {\n  const [internal, setInternal] = useState<string | undefined>(defaultValue)\n  const active = value ?? internal\n  return (\n    <div className={cn(\"flex flex-col\", className)}>\n      {label && <span className=\"mb-1 text-sm text-gray-700\">{label}</span>}\n      <div role=\"radiogroup\" className={cn(\"flex\", row ? \"flex-row gap-4\" : \"flex-col gap-1.5\")}>\n        {options.map((o) => (\n          <MuiRadio\n            key={o.value}\n            checked={active === o.value}\n            disabled={o.disabled}\n            color={color}\n            onChange={() => {\n              setInternal(o.value)\n              onChange?.(o.value)\n            }}\n          >\n            {o.label}\n          </MuiRadio>\n        ))}\n      </div>\n    </div>\n  )\n}\n\nexport { MuiRadioGroup }\nexport type { MuiRadioGroupProps }\n",
       "description": "MuiRadioGroup",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-radio-group.tsx"
     },
@@ -8270,6 +8270,102 @@
       "code": "/**\n * MuiRadioError\n * @id 1951\n * @category Seçim\n * @subcategory MuiRadio\n * @source mui\n */\nimport { MuiRadioGroup } from \"@/components/ui/mui-radio-group\"\n\nfunction MuiRadioError() {\n  return (\n    <div className=\"rounded-md border border-red-300 bg-red-50 p-3\">\n      <p className=\"mb-2 text-sm font-medium text-red-700\">Lütfen bir seçenek işaretleyin</p>\n      <MuiRadioGroup\n        options={[\n          { value: \"a\", label: \"Seçenek A\" },\n          { value: \"b\", label: \"Seçenek B\" },\n        ]}\n      />\n    </div>\n  )\n}\n\nexport { MuiRadioError }\n",
       "description": "MuiRadioError",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-radio-error.tsx"
+    },
+    {
+      "id": "1952",
+      "name": "MuiSlider",
+      "category": "Seçim",
+      "subcategory": "MuiSlider",
+      "source": "mui",
+      "file": "mui-slider.tsx",
+      "exists": true,
+      "code": "/**\n * MuiSlider\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Kaydırıcı — tek veya çift tutamak, işaretli adımlar.\n *   <MuiSlider value={v} onChange={h} min={0} max={100} />\n * range: çift tutamak (value: [a,b]) · marks: işaretler · step: adım\n * vertical: dikey · disabled · color · size\n * @id 1952\n * @category Seçim\n * @subcategory MuiSlider\n * @source mui\n */\nimport { useRef, type PointerEvent } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface Mark {\n  value: number\n  label?: string\n}\n\ninterface MuiSliderProps {\n  value?: number | number[]\n  defaultValue?: number | number[]\n  onChange?: (value: number | number[]) => void\n  min?: number\n  max?: number\n  step?: number | null\n  marks?: boolean | Mark[]\n  disabled?: boolean\n  vertical?: boolean\n  color?: \"primary\" | \"secondary\" | \"success\" | \"error\" | \"warning\" | \"info\"\n  size?: \"small\" | \"medium\"\n  ariaLabel?: string\n  className?: string\n}\n\nconst TRACK_COLOR: Record<string, string> = {\n  primary: \"bg-blue-600\",\n  secondary: \"bg-purple-600\",\n  success: \"bg-green-600\",\n  error: \"bg-red-600\",\n  warning: \"bg-amber-600\",\n  info: \"bg-sky-600\",\n}\n\nfunction MuiSlider({\n  value,\n  defaultValue,\n  onChange,\n  min = 0,\n  max = 100,\n  step = 1,\n  marks = false,\n  disabled = false,\n  vertical = false,\n  color = \"primary\",\n  size = \"medium\",\n  ariaLabel,\n  className,\n}: MuiSliderProps) {\n  const trackRef = useRef<HTMLDivElement | null>(null)\n  const isRange = Array.isArray(value ?? defaultValue)\n  const internal = useRef<number | number[]>(value ?? defaultValue ?? (isRange ? [25, 75] : 30))\n\n  const getVal = (): number[] => {\n    const v = value ?? internal.current\n    return isRange ? (v as number[]) : [v as number]\n  }\n\n  const pct = (v: number) => ((v - min) / (max - min)) * 100\n  const vals = getVal()\n  const pcts = vals.map(pct)\n  const trackColor = TRACK_COLOR[color] ?? TRACK_COLOR.primary\n\n  const setFromPointer = (clientX: number, clientY: number, index = 0) => {\n    const el = trackRef.current\n    if (!el) return\n    const rect = el.getBoundingClientRect()\n    let ratio = vertical ? 1 - (clientY - rect.top) / rect.height : (clientX - rect.left) / rect.width\n    ratio = Math.min(1, Math.max(0, ratio))\n    let raw = min + ratio * (max - min)\n    if (step && step > 0) raw = Math.round(raw / step) * step\n    const next = [...vals]\n    next[index] = raw\n    const result = isRange ? next : raw\n    internal.current = result\n    onChange?.(result)\n  }\n\n  const handleDown = (index: number) => (e: PointerEvent<HTMLDivElement>) => {\n    e.preventDefault()\n    const move = (ev: PointerEvent) => setFromPointer(ev.clientX, ev.clientY, index)\n    const up = () => {\n      window.removeEventListener(\"pointermove\", move as never)\n      window.removeEventListener(\"pointerup\", up)\n    }\n    window.addEventListener(\"pointermove\", move as never)\n    window.addEventListener(\"pointerup\", up)\n  }\n\n  const markList = Array.isArray(marks) ? marks : marks ? Array.from({ length: Math.floor((max - min) / (step ?? 1)) + 1 }, (_, i) => ({ value: min + i * (step ?? 1) })) : []\n\n  return (\n    <div\n      className={cn(\n        \"relative select-none\",\n        vertical ? \"h-48 w-6\" : \"h-6 w-full max-w-sm\",\n        disabled && \"opacity-40\",\n        className\n      )}\n      role=\"slider\"\n      aria-label={ariaLabel}\n      aria-valuemin={min}\n      aria-valuemax={max}\n      aria-valuenow={Math.round(vals[0])}\n      aria-disabled={disabled}\n    >\n      {/* Ray */}\n      <div\n        ref={trackRef}\n        className={cn(\"absolute rounded-full bg-gray-200\", vertical ? \"left-1/2 top-0 h-full w-1 -translate-x-1/2\" : \"left-0 top-1/2 h-1 w-full -translate-y-1/2\")}\n      >\n        {/* Dolu kısım */}\n        <div\n          className={cn(\"absolute rounded-full\", trackColor, vertical ? \"bottom-0 w-full\" : \"left-0 h-full\")}\n          style={vertical ? { height: `${pcts[1] - pcts[0]}%`, bottom: `${pcts[0]}%` } : { width: `${pcts[pcts.length - 1] - pcts[0]}%`, left: `${pcts[0]}%` }}\n        />\n        {/* İşaretler */}\n        {markList.map((m) => (\n          <span\n            key={m.value}\n            className={cn(\"absolute h-2 w-0.5 bg-gray-400\", vertical ? \"left-1/2 -translate-x-1/2\" : \"top-1/2 -translate-y-1/2\")}\n            style={vertical ? { bottom: `${pct(m.value)}%` } : { left: `${pct(m.value)}%` }}\n          />\n        ))}\n      </div>\n      {/* Tutamaklar */}\n      {pcts.map((p, i) => (\n        <div\n          key={i}\n          onPointerDown={disabled ? undefined : handleDown(i)}\n          className={cn(\n            \"absolute z-10 cursor-grab rounded-full border-2 border-white shadow active:cursor-grabbing\",\n            trackColor,\n            size === \"small\" ? \"size-3.5\" : \"size-5\",\n            vertical ? \"left-1/2 -translate-x-1/2\" : \"top-1/2 -translate-y-1/2\"\n          )}\n          style={vertical ? { bottom: `${p}%` } : { left: `${p}%` }}\n        />\n      ))}\n    </div>\n  )\n}\n\nexport { MuiSlider }\nexport type { MuiSliderProps, Mark }\n",
+      "description": "MuiSlider",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-slider.tsx"
+    },
+    {
+      "id": "1953",
+      "name": "MuiSliderContinuous",
+      "category": "Seçim",
+      "subcategory": "MuiSlider",
+      "source": "mui",
+      "file": "mui-slider-continuous.tsx",
+      "exists": true,
+      "code": "/**\n * MuiSliderContinuous\n * @id 1953\n * @category Seçim\n * @subcategory MuiSlider\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiSlider } from \"@/components/ui/mui-slider\"\nimport { Volume2, Volume1 } from \"@/components/ui/icons\"\n\nfunction MuiSliderContinuous() {\n  const [value, setValue] = useState(30)\n  return (\n    <div className=\"w-full max-w-sm space-y-4\">\n      <div className=\"flex items-center gap-3\">\n        <Volume1 className=\"size-5 shrink-0 text-gray-500\" />\n        <MuiSlider value={value} onChange={(v) => setValue(v as number)} ariaLabel=\"Ses\" />\n        <Volume2 className=\"size-5 shrink-0 text-gray-500\" />\n      </div>\n      <p className=\"text-xs text-gray-500\">Ses seviyesi: {Math.round(value)}</p>\n      <MuiSlider defaultValue={30} disabled ariaLabel=\"Devre dışı\" />\n    </div>\n  )\n}\n\nexport { MuiSliderContinuous }\n",
+      "description": "MuiSliderContinuous",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-slider-continuous.tsx"
+    },
+    {
+      "id": "1954",
+      "name": "MuiSliderRange",
+      "category": "Seçim",
+      "subcategory": "MuiSlider",
+      "source": "mui",
+      "file": "mui-slider-range.tsx",
+      "exists": true,
+      "code": "/**\n * MuiSliderRange\n * @id 1954\n * @category Seçim\n * @subcategory MuiSlider\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiSlider } from \"@/components/ui/mui-slider\"\n\nfunction MuiSliderRange() {\n  const [value, setValue] = useState<number[]>([20, 70])\n  return (\n    <div className=\"w-full max-w-sm space-y-2\">\n      <MuiSlider value={value} onChange={(v) => setValue(v as number[])} min={0} max={100} ariaLabel=\"Fiyat aralığı\" />\n      <p className=\"text-xs text-gray-500\">\n        Aralık: {Math.round(value[0])}₺ – {Math.round(value[1])}₺\n      </p>\n    </div>\n  )\n}\n\nexport { MuiSliderRange }\n",
+      "description": "MuiSliderRange",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-slider-range.tsx"
+    },
+    {
+      "id": "1955",
+      "name": "MuiSliderDiscrete",
+      "category": "Seçim",
+      "subcategory": "MuiSlider",
+      "source": "mui",
+      "file": "mui-slider-discrete.tsx",
+      "exists": true,
+      "code": "/**\n * MuiSliderDiscrete\n * @id 1955\n * @category Seçim\n * @subcategory MuiSlider\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiSlider } from \"@/components/ui/mui-slider\"\n\nfunction MuiSliderDiscrete() {\n  const [value, setValue] = useState(3)\n  return (\n    <div className=\"w-full max-w-sm space-y-2\">\n      <MuiSlider\n        value={value}\n        onChange={(v) => setValue(v as number)}\n        min={0}\n        max={10}\n        step={1}\n        marks\n        ariaLabel=\"Adımlı\"\n      />\n      <p className=\"text-xs text-gray-500\">Seçilen adım: {value}</p>\n    </div>\n  )\n}\n\nexport { MuiSliderDiscrete }\n",
+      "description": "MuiSliderDiscrete",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-slider-discrete.tsx"
+    },
+    {
+      "id": "1956",
+      "name": "MuiSliderMarks",
+      "category": "Seçim",
+      "subcategory": "MuiSlider",
+      "source": "mui",
+      "file": "mui-slider-marks.tsx",
+      "exists": true,
+      "code": "/**\n * MuiSliderMarks\n * @id 1956\n * @category Seçim\n * @subcategory MuiSlider\n * @source mui\n */\nimport { MuiSlider } from \"@/components/ui/mui-slider\"\n\nfunction MuiSliderMarks() {\n  return (\n    <MuiSlider\n      defaultValue={37}\n      min={0}\n      max={100}\n      step={null}\n      marks={[\n        { value: 0, label: \"0°C\" },\n        { value: 20, label: \"20°C\" },\n        { value: 37, label: \"37°C\" },\n        { value: 100, label: \"100°C\" },\n      ]}\n      ariaLabel=\"Özel işaretler\"\n      className=\"!max-w-sm\"\n    />\n  )\n}\n\nexport { MuiSliderMarks }\n",
+      "description": "MuiSliderMarks",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-slider-marks.tsx"
+    },
+    {
+      "id": "1957",
+      "name": "MuiSliderSizes",
+      "category": "Seçim",
+      "subcategory": "MuiSlider",
+      "source": "mui",
+      "file": "mui-slider-sizes.tsx",
+      "exists": true,
+      "code": "/**\n * MuiSliderSizes\n * @id 1957\n * @category Seçim\n * @subcategory MuiSlider\n * @source mui\n */\nimport { MuiSlider } from \"@/components/ui/mui-slider\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiSliderSizes() {\n  return (\n    <MuiStack spacing={4} className=\"w-full max-w-sm\">\n      <MuiSlider defaultValue={40} size=\"small\" ariaLabel=\"Küçük\" />\n      <MuiSlider defaultValue={60} size=\"medium\" ariaLabel=\"Orta\" />\n    </MuiStack>\n  )\n}\n\nexport { MuiSliderSizes }\n",
+      "description": "MuiSliderSizes",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-slider-sizes.tsx"
+    },
+    {
+      "id": "1958",
+      "name": "MuiSliderVertical",
+      "category": "Seçim",
+      "subcategory": "MuiSlider",
+      "source": "mui",
+      "file": "mui-slider-vertical.tsx",
+      "exists": true,
+      "code": "/**\n * MuiSliderVertical\n * @id 1958\n * @category Seçim\n * @subcategory MuiSlider\n * @source mui\n */\nimport { MuiSlider } from \"@/components/ui/mui-slider\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiSliderVertical() {\n  return (\n    <MuiStack direction=\"row\" spacing={6} className=\"h-40 items-center\">\n      <MuiSlider defaultValue={30} vertical ariaLabel=\"Dikey 1\" />\n      <MuiSlider defaultValue={60} vertical color=\"secondary\" ariaLabel=\"Dikey 2\" />\n      <MuiSlider defaultValue={90} vertical color=\"success\" ariaLabel=\"Dikey 3\" />\n    </MuiStack>\n  )\n}\n\nexport { MuiSliderVertical }\n",
+      "description": "MuiSliderVertical",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-slider-vertical.tsx"
+    },
+    {
+      "id": "1959",
+      "name": "MuiSliderColors",
+      "category": "Seçim",
+      "subcategory": "MuiSlider",
+      "source": "mui",
+      "file": "mui-slider-colors.tsx",
+      "exists": true,
+      "code": "/**\n * MuiSliderColors\n * @id 1959\n * @category Seçim\n * @subcategory MuiSlider\n * @source mui\n */\nimport { MuiSlider } from \"@/components/ui/mui-slider\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiSliderColors() {\n  return (\n    <MuiStack spacing={4} className=\"w-full max-w-sm\">\n      <MuiSlider defaultValue={20} color=\"primary\" ariaLabel=\"Primary\" />\n      <MuiSlider defaultValue={40} color=\"secondary\" ariaLabel=\"Secondary\" />\n      <MuiSlider defaultValue={60} color=\"success\" ariaLabel=\"Success\" />\n      <MuiSlider defaultValue={80} color=\"error\" ariaLabel=\"Error\" />\n    </MuiStack>\n  )\n}\n\nexport { MuiSliderColors }\n",
+      "description": "MuiSliderColors",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-slider-colors.tsx"
     },
     {
       "id": "389",

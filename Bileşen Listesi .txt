@@ -816,6 +816,15 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1949` MuiRadioRow
 - `1950` MuiRadioColors
 - `1951` MuiRadioError
+#### MuiSlider
+- `1952` MuiSlider
+- `1953` MuiSliderContinuous
+- `1954` MuiSliderRange
+- `1955` MuiSliderDiscrete
+- `1956` MuiSliderMarks
+- `1957` MuiSliderSizes
+- `1958` MuiSliderVertical
+- `1959` MuiSliderColors
 #### RadioGroup
 - `389` RadioGroup
 - `390` RadioGroupBasic
@@ -2315,7 +2324,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1843` MtAppShellUsage
 - `1844` MtAppShellAsideDemo
 
-**Toplam: 1862 bileşen (saf React)**
+**Toplam: 1870 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
