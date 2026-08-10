@@ -1901,4 +1901,7 @@ export const SAMPLES: Record<string, ReactNode> = {
   "1926": <U.MuiTextFieldMultiline />,
   "1927": <U.MuiTextFieldSizes />,
   "1928": <U.MuiTextFieldFormProps />,
+  "1929": <U.MuiTextareaAutosize />,
+  "1930": <U.MuiTextareaAutosizeMinMax />,
+  "1931": <U.MuiTextareaAutosizeEmpty />,
 }
