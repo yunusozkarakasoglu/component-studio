@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-10T15:39:27.286Z",
+  "generatedAt": "2026-08-10T15:42:41.861Z",
   "counts": {
-    "components": 1770,
-    "ready": 1770,
+    "components": 1782,
+    "ready": 1782,
     "layouts": 0
   },
   "categories": [
@@ -10828,6 +10828,18 @@
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-stack-direction.tsx"
     },
     {
+      "id": "1860",
+      "name": "MuiStackDivider",
+      "category": "Genel",
+      "subcategory": "MuiStack",
+      "source": "mui",
+      "file": "mui-stack-divider.tsx",
+      "exists": true,
+      "code": "/**\n * MuiStackDivider\n * @id 1860\n * @category Genel\n * @subcategory MuiStack\n * @source mui\n */\nimport { MuiStack } from \"@/components/ui/mui-stack\"\nimport { MuiDivider } from \"@/components/ui/mui-divider\"\n\nfunction MuiStackDivider() {\n  return (\n    <MuiStack direction=\"row\" spacing={2} divider={<MuiDivider orientation=\"vertical\" className=\"h-auto\" />} className=\"w-64\">\n      <div className=\"rounded bg-gray-200 px-3 py-2 text-sm\">Öğe 1</div>\n      <div className=\"rounded bg-gray-200 px-3 py-2 text-sm\">Öğe 2</div>\n      <div className=\"rounded bg-gray-200 px-3 py-2 text-sm\">Öğe 3</div>\n    </MuiStack>\n  )\n}\n\nexport { MuiStackDivider }\n",
+      "description": "MuiStackDivider",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-stack-divider.tsx"
+    },
+    {
       "id": "1849",
       "name": "MuiDivider",
       "category": "Genel",
@@ -10850,6 +10862,30 @@
       "code": "/**\n * MuiDividerVariants\n * @id 1858\n * @category Genel\n * @subcategory MuiDivider\n * @source mui\n */\nimport { MuiDivider } from \"@/components/ui/mui-divider\"\n\nfunction MuiDividerVariants() {\n  return (\n    <div className=\"space-y-4\">\n      <div>\n        <p className=\"mb-2 text-xs text-gray-500\">Tam genişlik</p>\n        <MuiDivider />\n      </div>\n      <div>\n        <p className=\"mb-2 text-xs text-gray-500\">İçerikli (orta)</p>\n        <MuiDivider>İçerik</MuiDivider>\n      </div>\n      <div>\n        <p className=\"mb-2 text-xs text-gray-500\">Inset</p>\n        <MuiDivider variant=\"inset\" />\n      </div>\n    </div>\n  )\n}\n\nexport { MuiDividerVariants }\n",
       "description": "MuiDividerVariants",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-divider-variants.tsx"
+    },
+    {
+      "id": "1861",
+      "name": "MuiDividerText",
+      "category": "Genel",
+      "subcategory": "MuiDivider",
+      "source": "mui",
+      "file": "mui-divider-text.tsx",
+      "exists": true,
+      "code": "/**\n * MuiDividerText\n * @id 1861\n * @category Genel\n * @subcategory MuiDivider\n * @source mui\n */\nimport { MuiDivider } from \"@/components/ui/mui-divider\"\n\nfunction MuiDividerText() {\n  return (\n    <div className=\"space-y-4\">\n      <MuiDivider textAlign=\"left\">Sol</MuiDivider>\n      <MuiDivider textAlign=\"center\">Orta</MuiDivider>\n      <MuiDivider textAlign=\"right\">Sağ</MuiDivider>\n    </div>\n  )\n}\n\nexport { MuiDividerText }\n",
+      "description": "MuiDividerText",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-divider-text.tsx"
+    },
+    {
+      "id": "1862",
+      "name": "MuiDividerVertical",
+      "category": "Genel",
+      "subcategory": "MuiDivider",
+      "source": "mui",
+      "file": "mui-divider-vertical.tsx",
+      "exists": true,
+      "code": "/**\n * MuiDividerVertical\n * @id 1862\n * @category Genel\n * @subcategory MuiDivider\n * @source mui\n */\nimport { MuiDivider } from \"@/components/ui/mui-divider\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiDividerVertical() {\n  return (\n    <MuiStack direction=\"row\" spacing={2} className=\"items-center\">\n      <span className=\"text-sm\">İlk</span>\n      <MuiDivider orientation=\"vertical\" className=\"h-6\" />\n      <span className=\"text-sm\">İkinci</span>\n      <MuiDivider orientation=\"vertical\" className=\"h-6\" />\n      <span className=\"text-sm\">Üçüncü</span>\n    </MuiStack>\n  )\n}\n\nexport { MuiDividerVertical }\n",
+      "description": "MuiDividerVertical",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-divider-vertical.tsx"
     },
     {
       "id": "1850",
@@ -10876,6 +10912,102 @@
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-typography-variants.tsx"
     },
     {
+      "id": "1864",
+      "name": "MuiCollapse",
+      "category": "Genel",
+      "subcategory": "MuiTransitions",
+      "source": "mui",
+      "file": "mui-collapse.tsx",
+      "exists": true,
+      "code": "/**\n * MuiCollapse\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Daralma animasyonu — içerik yüksekliğiyle açılır/kapanır.\n *   <MuiCollapse in={open}>…</MuiCollapse>\n * @id 1864\n * @category Genel\n * @subcategory MuiTransitions\n * @source mui\n */\nimport { type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface MuiCollapseProps {\n  /** Açık/kapalı durumu */\n  in?: boolean\n  /** Animasyon süresi (ms) */\n  timeout?: number\n  className?: string\n  children?: ReactNode\n}\n\nfunction MuiCollapse({ in: open = false, timeout = 300, className, children }: MuiCollapseProps) {\n  return (\n    <div\n      className={cn(\"overflow-hidden transition-[max-height,opacity]\", className)}\n      style={{\n        maxHeight: open ? \"500px\" : \"0px\",\n        opacity: open ? 1 : 0,\n        transitionDuration: `${timeout}ms`,\n      }}\n    >\n      {children}\n    </div>\n  )\n}\n\nexport { MuiCollapse }\nexport type { MuiCollapseProps }\n",
+      "description": "MuiCollapse",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-collapse.tsx"
+    },
+    {
+      "id": "1865",
+      "name": "MuiFade",
+      "category": "Genel",
+      "subcategory": "MuiTransitions",
+      "source": "mui",
+      "file": "mui-fade.tsx",
+      "exists": true,
+      "code": "/**\n * MuiFade\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Solma animasyonu — opacity ile görünürlük.\n *   <MuiFade in={open}>…</MuiFade>\n * @id 1865\n * @category Genel\n * @subcategory MuiTransitions\n * @source mui\n */\nimport { type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface MuiFadeProps {\n  in?: boolean\n  timeout?: number\n  className?: string\n  children?: ReactNode\n}\n\nfunction MuiFade({ in: open = false, timeout = 300, className, children }: MuiFadeProps) {\n  return (\n    <div\n      className={cn(\"transition-opacity\", open ? \"opacity-100\" : \"opacity-0\", className)}\n      style={{ transitionDuration: `${timeout}ms` }}\n    >\n      {children}\n    </div>\n  )\n}\n\nexport { MuiFade }\nexport type { MuiFadeProps }\n",
+      "description": "MuiFade",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-fade.tsx"
+    },
+    {
+      "id": "1866",
+      "name": "MuiGrow",
+      "category": "Genel",
+      "subcategory": "MuiTransitions",
+      "source": "mui",
+      "file": "mui-grow.tsx",
+      "exists": true,
+      "code": "/**\n * MuiGrow\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Büyüme animasyonu — ölçek ile görünürlük (transform-origin center).\n *   <MuiGrow in={open}>…</MuiGrow>\n * @id 1866\n * @category Genel\n * @subcategory MuiTransitions\n * @source mui\n */\nimport { type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface MuiGrowProps {\n  in?: boolean\n  timeout?: number\n  className?: string\n  children?: ReactNode\n}\n\nfunction MuiGrow({ in: open = false, timeout = 300, className, children }: MuiGrowProps) {\n  return (\n    <div\n      className={cn(\"origin-center transition-[transform,opacity]\", open ? \"scale-100 opacity-100\" : \"scale-75 opacity-0\", className)}\n      style={{ transitionDuration: `${timeout}ms` }}\n    >\n      {children}\n    </div>\n  )\n}\n\nexport { MuiGrow }\nexport type { MuiGrowProps }\n",
+      "description": "MuiGrow",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-grow.tsx"
+    },
+    {
+      "id": "1867",
+      "name": "MuiSlide",
+      "category": "Genel",
+      "subcategory": "MuiTransitions",
+      "source": "mui",
+      "file": "mui-slide.tsx",
+      "exists": true,
+      "code": "/**\n * MuiSlide\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Kayma animasyonu — yön belirterek görünürlük (transform translate).\n *   <MuiSlide direction=\"up\" in={open}>…</MuiSlide>\n * direction: up | down | left | right\n * @id 1867\n * @category Genel\n * @subcategory MuiTransitions\n * @source mui\n */\nimport { type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface MuiSlideProps {\n  in?: boolean\n  direction?: \"up\" | \"down\" | \"left\" | \"right\"\n  timeout?: number\n  className?: string\n  children?: ReactNode\n}\n\nfunction MuiSlide({ in: open = false, direction = \"up\", timeout = 300, className, children }: MuiSlideProps) {\n  const hidden = {\n    up: \"translate-y-8\",\n    down: \"-translate-y-8\",\n    left: \"translate-x-8\",\n    right: \"-translate-x-8\",\n  }[direction]\n  return (\n    <div\n      className={cn(\"transition-[transform,opacity]\", open ? \"translate-x-0 translate-y-0 opacity-100\" : `${hidden} opacity-0`, className)}\n      style={{ transitionDuration: `${timeout}ms` }}\n    >\n      {children}\n    </div>\n  )\n}\n\nexport { MuiSlide }\nexport type { MuiSlideProps }\n",
+      "description": "MuiSlide",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-slide.tsx"
+    },
+    {
+      "id": "1868",
+      "name": "MuiZoom",
+      "category": "Genel",
+      "subcategory": "MuiTransitions",
+      "source": "mui",
+      "file": "mui-zoom.tsx",
+      "exists": true,
+      "code": "/**\n * MuiZoom\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Yakınlaşma animasyonu — daha belirgin ölçek (0.2 → 1).\n *   <MuiZoom in={open}>…</MuiZoom>\n * @id 1868\n * @category Genel\n * @subcategory MuiTransitions\n * @source mui\n */\nimport { type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface MuiZoomProps {\n  in?: boolean\n  timeout?: number\n  className?: string\n  children?: ReactNode\n}\n\nfunction MuiZoom({ in: open = false, timeout = 300, className, children }: MuiZoomProps) {\n  return (\n    <div\n      className={cn(\"origin-center transition-transform\", open ? \"scale-100\" : \"scale-[0.2]\", className)}\n      style={{ transitionDuration: `${timeout}ms` }}\n    >\n      {children}\n    </div>\n  )\n}\n\nexport { MuiZoom }\nexport type { MuiZoomProps }\n",
+      "description": "MuiZoom",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-zoom.tsx"
+    },
+    {
+      "id": "1869",
+      "name": "MuiCollapseBasic",
+      "category": "Genel",
+      "subcategory": "MuiTransitions",
+      "source": "mui",
+      "file": "mui-collapse-basic.tsx",
+      "exists": true,
+      "code": "/**\n * MuiCollapseBasic\n * @id 1869\n * @category Genel\n * @subcategory MuiTransitions\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiCollapse } from \"@/components/ui/mui-collapse\"\n\nfunction MuiCollapseBasic() {\n  const [open, setOpen] = useState(false)\n  return (\n    <div className=\"w-full max-w-sm\">\n      <button\n        type=\"button\"\n        onClick={() => setOpen((o) => !o)}\n        aria-expanded={open}\n        className=\"mb-2 rounded bg-blue-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-blue-700\"\n      >\n        {open ? \"Daralt\" : \"Genişlet\"}\n      </button>\n      <MuiCollapse in={open}>\n        <div className=\"rounded border border-gray-300 p-3 text-sm text-gray-700\">\n          Bu içerik yükseklik animasyonuyla açılır/kapanır. MUI Collapse davranışı — max-height\n          geçişi ile pürüzsüz daralma/genişleme sağlanır.\n        </div>\n      </MuiCollapse>\n    </div>\n  )\n}\n\nexport { MuiCollapseBasic }\n",
+      "description": "MuiCollapseBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-collapse-basic.tsx"
+    },
+    {
+      "id": "1870",
+      "name": "MuiFadeBasic",
+      "category": "Genel",
+      "subcategory": "MuiTransitions",
+      "source": "mui",
+      "file": "mui-fade-basic.tsx",
+      "exists": true,
+      "code": "/**\n * MuiFadeBasic\n * @id 1870\n * @category Genel\n * @subcategory MuiTransitions\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiFade } from \"@/components/ui/mui-fade\"\n\nfunction MuiFadeBasic() {\n  const [open, setOpen] = useState(false)\n  return (\n    <div className=\"w-full max-w-sm\">\n      <button\n        type=\"button\"\n        onClick={() => setOpen((o) => !o)}\n        aria-expanded={open}\n        className=\"mb-2 rounded bg-blue-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-blue-700\"\n      >\n        {open ? \"Gizle\" : \"Göster\"}\n      </button>\n      <MuiFade in={open}>\n        <div className=\"rounded border border-gray-300 bg-blue-50 p-3 text-sm text-blue-900\">\n          Opacity geçişiyle beliren içerik — Fade animasyonu.\n        </div>\n      </MuiFade>\n    </div>\n  )\n}\n\nexport { MuiFadeBasic }\n",
+      "description": "MuiFadeBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-fade-basic.tsx"
+    },
+    {
+      "id": "1871",
+      "name": "MuiSlideBasic",
+      "category": "Genel",
+      "subcategory": "MuiTransitions",
+      "source": "mui",
+      "file": "mui-slide-basic.tsx",
+      "exists": true,
+      "code": "/**\n * MuiSlideBasic\n * @id 1871\n * @category Genel\n * @subcategory MuiTransitions\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiSlide } from \"@/components/ui/mui-slide\"\n\nfunction MuiSlideBasic() {\n  const [open, setOpen] = useState(false)\n  return (\n    <div className=\"w-full max-w-sm\">\n      <button\n        type=\"button\"\n        onClick={() => setOpen((o) => !o)}\n        aria-expanded={open}\n        className=\"mb-2 rounded bg-blue-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-blue-700\"\n      >\n        {open ? \"Gizle\" : \"Göster\"}\n      </button>\n      <MuiSlide direction=\"up\" in={open}>\n        <div className=\"rounded border border-gray-300 bg-green-50 p-3 text-sm text-green-900\">\n          Yukarı kayarak beliren içerik — Slide animasyonu.\n        </div>\n      </MuiSlide>\n    </div>\n  )\n}\n\nexport { MuiSlideBasic }\n",
+      "description": "MuiSlideBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-slide-basic.tsx"
+    },
+    {
       "id": "1851",
       "name": "MuiGrid",
       "category": "Genel",
@@ -10898,6 +11030,18 @@
       "code": "/**\n * MuiGridBasic\n * @id 1859\n * @category Genel\n * @subcategory MuiGrid\n * @source mui\n */\nimport { MuiGrid } from \"@/components/ui/mui-grid\"\nimport { MuiPaper } from \"@/components/ui/mui-paper\"\n\nfunction MuiGridBasic() {\n  return (\n    <MuiGrid container spacing={2}>\n      <MuiGrid item xs={8}>\n        <MuiPaper className=\"p-4 text-center text-sm text-gray-600\">xs=8</MuiPaper>\n      </MuiGrid>\n      <MuiGrid item xs={4}>\n        <MuiPaper className=\"p-4 text-center text-sm text-gray-600\">xs=4</MuiPaper>\n      </MuiGrid>\n      <MuiGrid item xs={4}>\n        <MuiPaper className=\"p-4 text-center text-sm text-gray-600\">xs=4</MuiPaper>\n      </MuiGrid>\n      <MuiGrid item xs={8}>\n        <MuiPaper className=\"p-4 text-center text-sm text-gray-600\">xs=8</MuiPaper>\n      </MuiGrid>\n    </MuiGrid>\n  )\n}\n\nexport { MuiGridBasic }\n",
       "description": "MuiGridBasic",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-grid-basic.tsx"
+    },
+    {
+      "id": "1863",
+      "name": "MuiGridResponsive",
+      "category": "Genel",
+      "subcategory": "MuiGrid",
+      "source": "mui",
+      "file": "mui-grid-responsive.tsx",
+      "exists": true,
+      "code": "/**\n * MuiGridResponsive\n * @id 1863\n * @category Genel\n * @subcategory MuiGrid\n * @source mui\n */\nimport { MuiGrid } from \"@/components/ui/mui-grid\"\nimport { MuiPaper } from \"@/components/ui/mui-paper\"\n\nfunction MuiGridResponsive() {\n  return (\n    <MuiGrid container spacing={2}>\n      <MuiGrid item xs={12} sm={6} md={4} lg={3}>\n        <MuiPaper className=\"p-4 text-center text-sm text-gray-600\">xs=12 sm=6 md=4</MuiPaper>\n      </MuiGrid>\n      <MuiGrid item xs={12} sm={6} md={4} lg={3}>\n        <MuiPaper className=\"p-4 text-center text-sm text-gray-600\">xs=12 sm=6 md=4</MuiPaper>\n      </MuiGrid>\n      <MuiGrid item xs={12} sm={6} md={4} lg={3}>\n        <MuiPaper className=\"p-4 text-center text-sm text-gray-600\">xs=12 sm=6 md=4</MuiPaper>\n      </MuiGrid>\n      <MuiGrid item xs={12} sm={6} md={4} lg={3}>\n        <MuiPaper className=\"p-4 text-center text-sm text-gray-600\">xs=12 sm=6 md=4</MuiPaper>\n      </MuiGrid>\n    </MuiGrid>\n  )\n}\n\nexport { MuiGridResponsive }\n",
+      "description": "MuiGridResponsive",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-grid-responsive.tsx"
     },
     {
       "id": "589",
