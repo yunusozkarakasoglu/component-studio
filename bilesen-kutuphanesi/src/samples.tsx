@@ -1908,4 +1908,9 @@ export const SAMPLES: Record<string, ReactNode> = {
   "1933": <U.MuiTextFieldHiddenLabel />,
   "1934": <U.MuiTextFieldLayout />,
   "1935": <U.MuiTextFieldInputWithIcon />,
+  "1936": <U.MuiCheckbox />,
+  "1937": <U.MuiCheckboxBasic />,
+  "1938": <U.MuiCheckboxColors />,
+  "1939": <U.MuiCheckboxSizes />,
+  "1940": <U.MuiCheckboxIndeterminate />,
 }

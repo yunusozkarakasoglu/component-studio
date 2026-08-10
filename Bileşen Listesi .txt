@@ -797,6 +797,12 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1057` MtGridResponsive
 
 ### Seçim
+#### MuiCheckbox
+- `1936` MuiCheckbox
+- `1937` MuiCheckboxBasic
+- `1938` MuiCheckboxColors
+- `1939` MuiCheckboxSizes
+- `1940` MuiCheckboxIndeterminate
 #### RadioGroup
 - `389` RadioGroup
 - `390` RadioGroupBasic
@@ -2296,7 +2302,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1843` MtAppShellUsage
 - `1844` MtAppShellAsideDemo
 
-**Toplam: 1846 bileşen (saf React)**
+**Toplam: 1851 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

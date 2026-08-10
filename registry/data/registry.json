@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-10T18:31:20.741Z",
+  "generatedAt": "2026-08-10T18:35:12.216Z",
   "counts": {
-    "components": 1846,
-    "ready": 1846,
+    "components": 1851,
+    "ready": 1851,
     "layouts": 0
   },
   "categories": [
@@ -8078,6 +8078,66 @@
       "code": "/**\n * MtGridResponsive\n * Duyarlı grid (saf React, Mantine kaynaklı).\n * @id 1057\n * @category Genel\n * @subcategory MtGrid\n * @source mantine\n */\nimport { MtGrid, MtGridCol } from \"@/components/ui/mt-grid\"\n\nfunction MtGridResponsive() {\n  return (\n    <MtGrid>\n      <MtGridCol span={12} className=\"sm:col-span-6 lg:col-span-4\">\n        <div className=\"rounded bg-blue-100 p-4 text-center\">1</div>\n      </MtGridCol>\n      <MtGridCol span={12} className=\"sm:col-span-6 lg:col-span-4\">\n        <div className=\"rounded bg-blue-100 p-4 text-center\">2</div>\n      </MtGridCol>\n      <MtGridCol span={12} className=\"sm:col-span-12 lg:col-span-4\">\n        <div className=\"rounded bg-blue-100 p-4 text-center\">3</div>\n      </MtGridCol>\n    </MtGrid>\n  )\n}\n\nexport { MtGridResponsive }\n",
       "description": "MtGridResponsive",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mt-grid-responsive.tsx"
+    },
+    {
+      "id": "1936",
+      "name": "MuiCheckbox",
+      "category": "Seçim",
+      "subcategory": "MuiCheckbox",
+      "source": "mui",
+      "file": "mui-checkbox.tsx",
+      "exists": true,
+      "code": "/**\n * MuiCheckbox\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Onay kutusu — checked/indeterminate/disabled durumları.\n *   <MuiCheckbox checked onChange={h} />\n * color: primary | secondary | success | error | warning | info · size: small/medium\n * indeterminate: yarım işaretli (üç durumlu liste)\n * @id 1936\n * @category Seçim\n * @subcategory MuiCheckbox\n * @source mui\n */\nimport { useRef, type InputHTMLAttributes, type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { Check, Minus } from \"@/components/ui/icons\"\n\ninterface MuiCheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, \"type\" | \"size\" | \"color\"> {\n  color?: \"primary\" | \"secondary\" | \"success\" | \"error\" | \"warning\" | \"info\" | \"default\"\n  size?: \"small\" | \"medium\"\n  indeterminate?: boolean\n}\n\nconst SIZE: Record<string, string> = {\n  small: \"size-4\",\n  medium: \"size-5\",\n}\n\nconst CHECKED_COLOR: Record<string, string> = {\n  primary: \"border-blue-600 bg-blue-600\",\n  secondary: \"border-purple-600 bg-purple-600\",\n  success: \"border-green-600 bg-green-600\",\n  error: \"border-red-600 bg-red-600\",\n  warning: \"border-amber-600 bg-amber-600\",\n  info: \"border-sky-600 bg-sky-600\",\n  default: \"border-gray-700 bg-gray-700\",\n}\n\nfunction MuiCheckbox({\n  color = \"primary\",\n  size = \"medium\",\n  indeterminate = false,\n  className,\n  children,\n  checked,\n  defaultChecked,\n  onChange,\n  ...rest\n}: MuiCheckboxProps) {\n  const inputRef = useRef<HTMLInputElement | null>(null)\n  const active = checked ?? defaultChecked ?? false\n  const visualActive = active || indeterminate\n  return (\n    <label className={cn(\"inline-flex cursor-pointer select-none items-center gap-2\", rest.disabled && \"cursor-not-allowed opacity-50\", className)}>\n      <input\n        ref={(n) => {\n          inputRef.current = n\n          if (n) n.indeterminate = indeterminate\n        }}\n        type=\"checkbox\"\n        checked={checked}\n        defaultChecked={defaultChecked}\n        onChange={onChange}\n        className=\"peer sr-only\"\n        {...rest}\n      />\n      <span\n        aria-hidden\n        className={cn(\n          \"flex items-center justify-center rounded-[4px] border-2 text-white transition-colors\",\n          SIZE[size],\n          visualActive ? CHECKED_COLOR[color] : \"border-gray-400 bg-white\"\n        )}\n      >\n        {indeterminate ? <Minus className=\"size-3.5\" /> : active ? <Check className=\"size-3.5\" /> : null}\n      </span>\n      {children && <span className=\"text-sm text-gray-800\">{children}</span>}\n    </label>\n  )\n}\n\nexport { MuiCheckbox }\nexport type { MuiCheckboxProps }\n",
+      "description": "MuiCheckbox",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-checkbox.tsx"
+    },
+    {
+      "id": "1937",
+      "name": "MuiCheckboxBasic",
+      "category": "Seçim",
+      "subcategory": "MuiCheckbox",
+      "source": "mui",
+      "file": "mui-checkbox-basic.tsx",
+      "exists": true,
+      "code": "/**\n * MuiCheckboxBasic\n * @id 1937\n * @category Seçim\n * @subcategory MuiCheckbox\n * @source mui\n */\nimport { MuiCheckbox } from \"@/components/ui/mui-checkbox\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiCheckboxBasic() {\n  return (\n    <MuiStack spacing={2}>\n      <MuiCheckbox defaultChecked>Varsayılan seçili</MuiCheckbox>\n      <MuiCheckbox>Seçili değil</MuiCheckbox>\n      <MuiCheckbox disabled>Devre dışı</MuiCheckbox>\n      <MuiCheckbox defaultChecked disabled>Devre dışı + seçili</MuiCheckbox>\n    </MuiStack>\n  )\n}\n\nexport { MuiCheckboxBasic }\n",
+      "description": "MuiCheckboxBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-checkbox-basic.tsx"
+    },
+    {
+      "id": "1938",
+      "name": "MuiCheckboxColors",
+      "category": "Seçim",
+      "subcategory": "MuiCheckbox",
+      "source": "mui",
+      "file": "mui-checkbox-colors.tsx",
+      "exists": true,
+      "code": "/**\n * MuiCheckboxColors\n * @id 1938\n * @category Seçim\n * @subcategory MuiCheckbox\n * @source mui\n */\nimport { MuiCheckbox } from \"@/components/ui/mui-checkbox\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiCheckboxColors() {\n  return (\n    <MuiStack spacing={2}>\n      <MuiCheckbox defaultChecked color=\"primary\">Primary</MuiCheckbox>\n      <MuiCheckbox defaultChecked color=\"secondary\">Secondary</MuiCheckbox>\n      <MuiCheckbox defaultChecked color=\"success\">Success</MuiCheckbox>\n      <MuiCheckbox defaultChecked color=\"error\">Error</MuiCheckbox>\n      <MuiCheckbox defaultChecked color=\"warning\">Warning</MuiCheckbox>\n      <MuiCheckbox defaultChecked color=\"info\">Info</MuiCheckbox>\n    </MuiStack>\n  )\n}\n\nexport { MuiCheckboxColors }\n",
+      "description": "MuiCheckboxColors",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-checkbox-colors.tsx"
+    },
+    {
+      "id": "1939",
+      "name": "MuiCheckboxSizes",
+      "category": "Seçim",
+      "subcategory": "MuiCheckbox",
+      "source": "mui",
+      "file": "mui-checkbox-sizes.tsx",
+      "exists": true,
+      "code": "/**\n * MuiCheckboxSizes\n * @id 1939\n * @category Seçim\n * @subcategory MuiCheckbox\n * @source mui\n */\nimport { MuiCheckbox } from \"@/components/ui/mui-checkbox\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiCheckboxSizes() {\n  return (\n    <MuiStack direction=\"row\" spacing={3} className=\"items-center\">\n      <MuiCheckbox defaultChecked size=\"small\">Küçük</MuiCheckbox>\n      <MuiCheckbox defaultChecked size=\"medium\">Orta</MuiCheckbox>\n    </MuiStack>\n  )\n}\n\nexport { MuiCheckboxSizes }\n",
+      "description": "MuiCheckboxSizes",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-checkbox-sizes.tsx"
+    },
+    {
+      "id": "1940",
+      "name": "MuiCheckboxIndeterminate",
+      "category": "Seçim",
+      "subcategory": "MuiCheckbox",
+      "source": "mui",
+      "file": "mui-checkbox-indeterminate.tsx",
+      "exists": true,
+      "code": "/**\n * MuiCheckboxIndeterminate\n * @id 1940\n * @category Seçim\n * @subcategory MuiCheckbox\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiCheckbox } from \"@/components/ui/mui-checkbox\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiCheckboxIndeterminate() {\n  const [checked, setChecked] = useState<boolean[]>([true, false])\n  const allChecked = checked.every(Boolean)\n  const someChecked = checked.some(Boolean)\n  const handleParent = () => {\n    const next = allChecked ? checked.map(() => false) : checked.map(() => true)\n    setChecked(next)\n  }\n  const handleChild = (i: number) => {\n    setChecked((prev) => prev.map((v, idx) => (idx === i ? !v : v)))\n  }\n  return (\n    <MuiStack spacing={1}>\n      <MuiCheckbox checked={allChecked} indeterminate={someChecked && !allChecked} onChange={handleParent}>\n        Tüm öğeler\n      </MuiCheckbox>\n      <div className=\"pl-6\">\n        <MuiStack spacing={1}>\n          <MuiCheckbox checked={checked[0]} onChange={() => handleChild(0)}>Birinci</MuiCheckbox>\n          <MuiCheckbox checked={checked[1]} onChange={() => handleChild(1)}>İkinci</MuiCheckbox>\n        </MuiStack>\n      </div>\n    </MuiStack>\n  )\n}\n\nexport { MuiCheckboxIndeterminate }\n",
+      "description": "MuiCheckboxIndeterminate",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-checkbox-indeterminate.tsx"
     },
     {
       "id": "389",
