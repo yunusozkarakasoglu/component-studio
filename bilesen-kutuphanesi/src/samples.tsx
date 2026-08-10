@@ -1844,4 +1844,11 @@ export const SAMPLES: Record<string, ReactNode> = {
   "1869": <U.MuiCollapseBasic />,
   "1870": <U.MuiFadeBasic />,
   "1871": <U.MuiSlideBasic />,
+  "1872": <U.MuiPaperSimple />,
+  "1873": <U.MuiPaperVariants />,
+  "1874": <U.MuiPaperSquare />,
+  "1875": <U.MuiStackResponsive />,
+  "1876": <U.MuiTypographyTypes />,
+  "1877": <U.MuiGridAuto />,
+  "1878": <U.MuiGridSpacing />,
 }

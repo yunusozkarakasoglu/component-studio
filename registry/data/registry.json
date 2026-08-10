@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-10T15:42:41.861Z",
+  "generatedAt": "2026-08-10T15:45:23.848Z",
   "counts": {
-    "components": 1782,
-    "ready": 1782,
+    "components": 1789,
+    "ready": 1789,
     "layouts": 0
   },
   "categories": [
@@ -10751,7 +10751,7 @@
       "source": "mui",
       "file": "mui-paper.tsx",
       "exists": true,
-      "code": "/**\n * MuiPaper\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Kağıt yüzeyi — gölge (elevation) seviyesine göre derinlik.\n *   <MuiPaper elevation={3} className=\"p-4\">…</MuiPaper>\n * elevation: 0 (düz) · 1 (varsayılan) · 3 (orta) · 6+ (derin gölge)\n * square: köşeler yuvarlak (false, varsayılan) veya keskin (true)\n * @id 1846\n * @category Genel\n * @subcategory MuiPaper\n * @source mui\n */\nimport { type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface MuiPaperProps {\n  /** Gölge seviyesi 0-24 (varsayılan: 1) */\n  elevation?: 0 | 1 | 2 | 3 | 4 | 6 | 8 | 12 | 16 | 24\n  /** Keskin köşeler (varsayılan: false — yuvarlak) */\n  square?: boolean\n  className?: string\n  children?: ReactNode\n}\n\nconst ELEVATION_CLASS: Record<number, string> = {\n  0: \"shadow-none\",\n  1: \"shadow-sm\",\n  2: \"shadow\",\n  3: \"shadow-md\",\n  4: \"shadow\",\n  6: \"shadow-lg\",\n  8: \"shadow-xl\",\n  12: \"shadow-2xl\",\n  16: \"shadow-2xl\",\n  24: \"shadow-2xl\",\n}\n\nfunction MuiPaper({ elevation = 1, square = false, className, children }: MuiPaperProps) {\n  return (\n    <div\n      className={cn(\n        \"bg-white text-gray-900 transition-shadow\",\n        square ? \"rounded-none\" : \"rounded-lg\",\n        ELEVATION_CLASS[elevation] ?? \"shadow-sm\",\n        className\n      )}\n    >\n      {children}\n    </div>\n  )\n}\n\nexport { MuiPaper }\nexport type { MuiPaperProps }\n",
+      "code": "/**\n * MuiPaper\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Kağıt yüzeyi — gölge (elevation) seviyesine göre derinlik.\n *   <MuiPaper elevation={3} className=\"p-4\">…</MuiPaper>\n * elevation: 0 (düz) · 1 (varsayılan) · 3 (orta) · 6+ (derin gölge)\n * square: köşeler yuvarlak (false, varsayılan) veya keskin (true)\n * @id 1846\n * @category Genel\n * @subcategory MuiPaper\n * @source mui\n */\nimport { type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface MuiPaperProps {\n  /** Gölge seviyesi 0-24 (varsayılan: 1) */\n  elevation?: 0 | 1 | 2 | 3 | 4 | 6 | 8 | 12 | 16 | 24\n  /** Keskin köşeler (varsayılan: false — yuvarlak) */\n  square?: boolean\n  /** Varyant: elevation (gölgeli) | outlined (kenarlıklı) */\n  variant?: \"elevation\" | \"outlined\"\n  className?: string\n  children?: ReactNode\n}\n\nconst ELEVATION_CLASS: Record<number, string> = {\n  0: \"shadow-none\",\n  1: \"shadow-sm\",\n  2: \"shadow\",\n  3: \"shadow-md\",\n  4: \"shadow\",\n  6: \"shadow-lg\",\n  8: \"shadow-xl\",\n  12: \"shadow-2xl\",\n  16: \"shadow-2xl\",\n  24: \"shadow-2xl\",\n}\n\nfunction MuiPaper({ elevation = 1, square = false, variant = \"elevation\", className, children }: MuiPaperProps) {\n  return (\n    <div\n      className={cn(\n        \"bg-white text-gray-900 transition-shadow\",\n        square ? \"rounded-none\" : \"rounded-lg\",\n        variant === \"outlined\" ? \"border border-gray-300\" : ELEVATION_CLASS[elevation] ?? \"shadow-sm\",\n        className\n      )}\n    >\n      {children}\n    </div>\n  )\n}\n\nexport { MuiPaper }\nexport type { MuiPaperProps }\n",
       "description": "MuiPaper",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-paper.tsx"
     },
@@ -10766,6 +10766,42 @@
       "code": "/**\n * MuiPaperElevation\n * @id 1853\n * @category Genel\n * @subcategory MuiPaper\n * @source mui\n */\nimport { MuiStack } from \"@/components/ui/mui-stack\"\nimport { MuiPaper } from \"@/components/ui/mui-paper\"\n\nfunction MuiPaperElevation() {\n  return (\n    <MuiStack direction=\"row\" spacing={2}>\n      <MuiPaper elevation={0} className=\"flex h-32 w-32 items-center justify-center text-xs text-gray-500\">elevation=0</MuiPaper>\n      <MuiPaper elevation={1} className=\"flex h-32 w-32 items-center justify-center text-xs text-gray-500\">elevation=1</MuiPaper>\n      <MuiPaper elevation={3} className=\"flex h-32 w-32 items-center justify-center text-xs text-gray-500\">elevation=3</MuiPaper>\n    </MuiStack>\n  )\n}\n\nexport { MuiPaperElevation }\n",
       "description": "MuiPaperElevation",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-paper-elevation.tsx"
+    },
+    {
+      "id": "1872",
+      "name": "MuiPaperSimple",
+      "category": "Genel",
+      "subcategory": "MuiPaper",
+      "source": "mui",
+      "file": "mui-paper-simple.tsx",
+      "exists": true,
+      "code": "/**\n * MuiPaperSimple\n * @id 1872\n * @category Genel\n * @subcategory MuiPaper\n * @source mui\n */\nimport { MuiPaper } from \"@/components/ui/mui-paper\"\n\nfunction MuiPaperSimple() {\n  return (\n    <div className=\"flex flex-wrap gap-2\">\n      <MuiPaper elevation={0} className=\"flex h-32 w-32 items-center justify-center text-xs text-gray-500\" />\n      <MuiPaper elevation={1} className=\"flex h-32 w-32 items-center justify-center text-xs text-gray-500\" />\n      <MuiPaper elevation={3} className=\"flex h-32 w-32 items-center justify-center text-xs text-gray-500\" />\n    </div>\n  )\n}\n\nexport { MuiPaperSimple }\n",
+      "description": "MuiPaperSimple",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-paper-simple.tsx"
+    },
+    {
+      "id": "1873",
+      "name": "MuiPaperVariants",
+      "category": "Genel",
+      "subcategory": "MuiPaper",
+      "source": "mui",
+      "file": "mui-paper-variants.tsx",
+      "exists": true,
+      "code": "/**\n * MuiPaperVariants\n * @id 1873\n * @category Genel\n * @subcategory MuiPaper\n * @source mui\n */\nimport { MuiStack } from \"@/components/ui/mui-stack\"\nimport { MuiPaper } from \"@/components/ui/mui-paper\"\n\nfunction MuiPaperVariants() {\n  return (\n    <MuiStack direction=\"row\" spacing={2}>\n      <MuiPaper variant=\"elevation\" className=\"flex h-32 w-36 items-center justify-center p-4 text-center text-xs text-gray-600\">\n        default variant\n      </MuiPaper>\n      <MuiPaper variant=\"outlined\" className=\"flex h-32 w-36 items-center justify-center p-4 text-center text-xs text-gray-600\">\n        outlined variant\n      </MuiPaper>\n    </MuiStack>\n  )\n}\n\nexport { MuiPaperVariants }\n",
+      "description": "MuiPaperVariants",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-paper-variants.tsx"
+    },
+    {
+      "id": "1874",
+      "name": "MuiPaperSquare",
+      "category": "Genel",
+      "subcategory": "MuiPaper",
+      "source": "mui",
+      "file": "mui-paper-square.tsx",
+      "exists": true,
+      "code": "/**\n * MuiPaperSquare\n * @id 1874\n * @category Genel\n * @subcategory MuiPaper\n * @source mui\n */\nimport { MuiStack } from \"@/components/ui/mui-stack\"\nimport { MuiPaper } from \"@/components/ui/mui-paper\"\n\nfunction MuiPaperSquare() {\n  return (\n    <MuiStack direction=\"row\" spacing={2}>\n      <MuiPaper square={false} className=\"flex h-28 w-32 items-center justify-center text-center text-xs text-gray-600\">\n        rounded corners\n      </MuiPaper>\n      <MuiPaper square className=\"flex h-28 w-32 items-center justify-center text-center text-xs text-gray-600\">\n        square corners\n      </MuiPaper>\n    </MuiStack>\n  )\n}\n\nexport { MuiPaperSquare }\n",
+      "description": "MuiPaperSquare",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-paper-square.tsx"
     },
     {
       "id": "1847",
@@ -10840,6 +10876,18 @@
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-stack-divider.tsx"
     },
     {
+      "id": "1875",
+      "name": "MuiStackResponsive",
+      "category": "Genel",
+      "subcategory": "MuiStack",
+      "source": "mui",
+      "file": "mui-stack-responsive.tsx",
+      "exists": true,
+      "code": "/**\n * MuiStackResponsive\n * @id 1875\n * @category Genel\n * @subcategory MuiStack\n * @source mui\n */\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiStackResponsive() {\n  return (\n    <div className=\"flex w-full flex-col gap-2 sm:flex-row sm:gap-2\">\n      <div className=\"flex-1 rounded bg-gray-200 px-4 py-3 text-center text-sm\">Mobilde dikey</div>\n      <div className=\"flex-1 rounded bg-gray-200 px-4 py-3 text-center text-sm\">Masaüstünde yatay</div>\n      <div className=\"flex-1 rounded bg-gray-200 px-4 py-3 text-center text-sm\">Masaüstünde yatay</div>\n    </div>\n  )\n}\n\nexport { MuiStackResponsive }\n",
+      "description": "MuiStackResponsive",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-stack-responsive.tsx"
+    },
+    {
       "id": "1849",
       "name": "MuiDivider",
       "category": "Genel",
@@ -10910,6 +10958,18 @@
       "code": "/**\n * MuiTypographyVariants\n * @id 1857\n * @category Genel\n * @subcategory MuiTypography\n * @source mui\n */\nimport { MuiTypography } from \"@/components/ui/mui-typography\"\n\nfunction MuiTypographyVariants() {\n  return (\n    <div className=\"space-y-1\">\n      <MuiTypography variant=\"h1\">h1. Başlık</MuiTypography>\n      <MuiTypography variant=\"h2\">h2. Başlık</MuiTypography>\n      <MuiTypography variant=\"h3\">h3. Başlık</MuiTypography>\n      <MuiTypography variant=\"h4\">h4. Başlık</MuiTypography>\n      <MuiTypography variant=\"h5\">h5. Başlık</MuiTypography>\n      <MuiTypography variant=\"h6\">h6. Başlık</MuiTypography>\n      <MuiTypography variant=\"subtitle1\">subtitle1. Alt başlık</MuiTypography>\n      <MuiTypography variant=\"body1\">body1. Gövde metni</MuiTypography>\n      <MuiTypography variant=\"body2\">body2. Daha küçük gövde metni</MuiTypography>\n      <MuiTypography variant=\"caption\">caption. Küçük açıklama</MuiTypography>\n      <MuiTypography variant=\"overline\">overline</MuiTypography>\n    </div>\n  )\n}\n\nexport { MuiTypographyVariants }\n",
       "description": "MuiTypographyVariants",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-typography-variants.tsx"
+    },
+    {
+      "id": "1876",
+      "name": "MuiTypographyTypes",
+      "category": "Genel",
+      "subcategory": "MuiTypography",
+      "source": "mui",
+      "file": "mui-typography-types.tsx",
+      "exists": true,
+      "code": "/**\n * MuiTypographyTypes\n * @id 1876\n * @category Genel\n * @subcategory MuiTypography\n * @source mui\n */\nimport { MuiTypography } from \"@/components/ui/mui-typography\"\n\nfunction MuiTypographyTypes() {\n  return (\n    <div className=\"w-full max-w-md space-y-1\">\n      <MuiTypography variant=\"h1\" gutterBottom>h1. Heading</MuiTypography>\n      <MuiTypography variant=\"h2\" gutterBottom>h2. Heading</MuiTypography>\n      <MuiTypography variant=\"h3\" gutterBottom>h3. Heading</MuiTypography>\n      <MuiTypography variant=\"h4\" gutterBottom>h4. Heading</MuiTypography>\n      <MuiTypography variant=\"h5\" gutterBottom>h5. Heading</MuiTypography>\n      <MuiTypography variant=\"h6\" gutterBottom>h6. Heading</MuiTypography>\n      <MuiTypography variant=\"subtitle1\" gutterBottom>\n        subtitle1. Lorem ipsum dolor sit amet, consectetur adipisicing elit.\n      </MuiTypography>\n      <MuiTypography variant=\"subtitle2\" gutterBottom>\n        subtitle2. Lorem ipsum dolor sit amet, consectetur adipisicing elit.\n      </MuiTypography>\n      <MuiTypography variant=\"body1\" gutterBottom>\n        body1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur\n        unde suscipit.\n      </MuiTypography>\n      <MuiTypography variant=\"body2\" gutterBottom>\n        body2. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur\n        unde suscipit.\n      </MuiTypography>\n      <MuiTypography variant=\"button\" gutterBottom>button text</MuiTypography>\n      <MuiTypography variant=\"caption\" gutterBottom>caption text</MuiTypography>\n      <MuiTypography variant=\"overline\" gutterBottom>overline text</MuiTypography>\n    </div>\n  )\n}\n\nexport { MuiTypographyTypes }\n",
+      "description": "MuiTypographyTypes",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-typography-types.tsx"
     },
     {
       "id": "1864",
@@ -11042,6 +11102,30 @@
       "code": "/**\n * MuiGridResponsive\n * @id 1863\n * @category Genel\n * @subcategory MuiGrid\n * @source mui\n */\nimport { MuiGrid } from \"@/components/ui/mui-grid\"\nimport { MuiPaper } from \"@/components/ui/mui-paper\"\n\nfunction MuiGridResponsive() {\n  return (\n    <MuiGrid container spacing={2}>\n      <MuiGrid item xs={12} sm={6} md={4} lg={3}>\n        <MuiPaper className=\"p-4 text-center text-sm text-gray-600\">xs=12 sm=6 md=4</MuiPaper>\n      </MuiGrid>\n      <MuiGrid item xs={12} sm={6} md={4} lg={3}>\n        <MuiPaper className=\"p-4 text-center text-sm text-gray-600\">xs=12 sm=6 md=4</MuiPaper>\n      </MuiGrid>\n      <MuiGrid item xs={12} sm={6} md={4} lg={3}>\n        <MuiPaper className=\"p-4 text-center text-sm text-gray-600\">xs=12 sm=6 md=4</MuiPaper>\n      </MuiGrid>\n      <MuiGrid item xs={12} sm={6} md={4} lg={3}>\n        <MuiPaper className=\"p-4 text-center text-sm text-gray-600\">xs=12 sm=6 md=4</MuiPaper>\n      </MuiGrid>\n    </MuiGrid>\n  )\n}\n\nexport { MuiGridResponsive }\n",
       "description": "MuiGridResponsive",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-grid-responsive.tsx"
+    },
+    {
+      "id": "1877",
+      "name": "MuiGridAuto",
+      "category": "Genel",
+      "subcategory": "MuiGrid",
+      "source": "mui",
+      "file": "mui-grid-auto.tsx",
+      "exists": true,
+      "code": "/**\n * MuiGridAuto\n * @id 1877\n * @category Genel\n * @subcategory MuiGrid\n * @source mui\n */\nimport { MuiGrid } from \"@/components/ui/mui-grid\"\nimport { MuiPaper } from \"@/components/ui/mui-paper\"\n\nfunction MuiGridAuto() {\n  return (\n    <MuiGrid container spacing={2}>\n      <MuiGrid item xs={6}><MuiPaper className=\"p-4 text-center text-sm text-gray-600\">xs=6</MuiPaper></MuiGrid>\n      <MuiGrid item xs={6}><MuiPaper className=\"p-4 text-center text-sm text-gray-600\">xs=6</MuiPaper></MuiGrid>\n      <MuiGrid item xs={3}><MuiPaper className=\"p-4 text-center text-sm text-gray-600\">xs=3</MuiPaper></MuiGrid>\n      <MuiGrid item xs={3}><MuiPaper className=\"p-4 text-center text-sm text-gray-600\">xs=3</MuiPaper></MuiGrid>\n      <MuiGrid item xs={3}><MuiPaper className=\"p-4 text-center text-sm text-gray-600\">xs=3</MuiPaper></MuiGrid>\n      <MuiGrid item xs={3}><MuiPaper className=\"p-4 text-center text-sm text-gray-600\">xs=3</MuiPaper></MuiGrid>\n    </MuiGrid>\n  )\n}\n\nexport { MuiGridAuto }\n",
+      "description": "MuiGridAuto",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-grid-auto.tsx"
+    },
+    {
+      "id": "1878",
+      "name": "MuiGridSpacing",
+      "category": "Genel",
+      "subcategory": "MuiGrid",
+      "source": "mui",
+      "file": "mui-grid-spacing.tsx",
+      "exists": true,
+      "code": "/**\n * MuiGridSpacing\n * @id 1878\n * @category Genel\n * @subcategory MuiGrid\n * @source mui\n */\nimport { MuiGrid } from \"@/components/ui/mui-grid\"\nimport { MuiPaper } from \"@/components/ui/mui-paper\"\n\nfunction MuiGridSpacing() {\n  return (\n    <div className=\"space-y-6\">\n      <div>\n        <p className=\"mb-2 text-xs text-gray-500\">spacing=2 (16px)</p>\n        <MuiGrid container spacing={2}>\n          <MuiGrid item xs={4}><MuiPaper className=\"p-4 text-center text-sm text-gray-600\">1</MuiPaper></MuiGrid>\n          <MuiGrid item xs={4}><MuiPaper className=\"p-4 text-center text-sm text-gray-600\">2</MuiPaper></MuiGrid>\n          <MuiGrid item xs={4}><MuiPaper className=\"p-4 text-center text-sm text-gray-600\">3</MuiPaper></MuiGrid>\n        </MuiGrid>\n      </div>\n      <div>\n        <p className=\"mb-2 text-xs text-gray-500\">spacing=4 (32px)</p>\n        <MuiGrid container spacing={4}>\n          <MuiGrid item xs={4}><MuiPaper className=\"p-4 text-center text-sm text-gray-600\">1</MuiPaper></MuiGrid>\n          <MuiGrid item xs={4}><MuiPaper className=\"p-4 text-center text-sm text-gray-600\">2</MuiPaper></MuiGrid>\n          <MuiGrid item xs={4}><MuiPaper className=\"p-4 text-center text-sm text-gray-600\">3</MuiPaper></MuiGrid>\n        </MuiGrid>\n      </div>\n    </div>\n  )\n}\n\nexport { MuiGridSpacing }\n",
+      "description": "MuiGridSpacing",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-grid-spacing.tsx"
     },
     {
       "id": "589",

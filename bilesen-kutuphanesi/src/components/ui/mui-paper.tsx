@@ -18,6 +18,8 @@ interface MuiPaperProps {
   elevation?: 0 | 1 | 2 | 3 | 4 | 6 | 8 | 12 | 16 | 24
   /** Keskin köşeler (varsayılan: false — yuvarlak) */
   square?: boolean
+  /** Varyant: elevation (gölgeli) | outlined (kenarlıklı) */
+  variant?: "elevation" | "outlined"
   className?: string
   children?: ReactNode
 }
@@ -35,13 +37,13 @@ const ELEVATION_CLASS: Record<number, string> = {
   24: "shadow-2xl",
 }
 
-function MuiPaper({ elevation = 1, square = false, className, children }: MuiPaperProps) {
+function MuiPaper({ elevation = 1, square = false, variant = "elevation", className, children }: MuiPaperProps) {
   return (
     <div
       className={cn(
         "bg-white text-gray-900 transition-shadow",
         square ? "rounded-none" : "rounded-lg",
-        ELEVATION_CLASS[elevation] ?? "shadow-sm",
+        variant === "outlined" ? "border border-gray-300" : ELEVATION_CLASS[elevation] ?? "shadow-sm",
         className
       )}
     >
