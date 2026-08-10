@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-10T18:35:12.216Z",
+  "generatedAt": "2026-08-10T18:45:17.592Z",
   "counts": {
-    "components": 1851,
-    "ready": 1851,
+    "components": 1862,
+    "ready": 1862,
     "layouts": 0
   },
   "categories": [
@@ -8087,7 +8087,7 @@
       "source": "mui",
       "file": "mui-checkbox.tsx",
       "exists": true,
-      "code": "/**\n * MuiCheckbox\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Onay kutusu — checked/indeterminate/disabled durumları.\n *   <MuiCheckbox checked onChange={h} />\n * color: primary | secondary | success | error | warning | info · size: small/medium\n * indeterminate: yarım işaretli (üç durumlu liste)\n * @id 1936\n * @category Seçim\n * @subcategory MuiCheckbox\n * @source mui\n */\nimport { useRef, type InputHTMLAttributes, type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { Check, Minus } from \"@/components/ui/icons\"\n\ninterface MuiCheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, \"type\" | \"size\" | \"color\"> {\n  color?: \"primary\" | \"secondary\" | \"success\" | \"error\" | \"warning\" | \"info\" | \"default\"\n  size?: \"small\" | \"medium\"\n  indeterminate?: boolean\n}\n\nconst SIZE: Record<string, string> = {\n  small: \"size-4\",\n  medium: \"size-5\",\n}\n\nconst CHECKED_COLOR: Record<string, string> = {\n  primary: \"border-blue-600 bg-blue-600\",\n  secondary: \"border-purple-600 bg-purple-600\",\n  success: \"border-green-600 bg-green-600\",\n  error: \"border-red-600 bg-red-600\",\n  warning: \"border-amber-600 bg-amber-600\",\n  info: \"border-sky-600 bg-sky-600\",\n  default: \"border-gray-700 bg-gray-700\",\n}\n\nfunction MuiCheckbox({\n  color = \"primary\",\n  size = \"medium\",\n  indeterminate = false,\n  className,\n  children,\n  checked,\n  defaultChecked,\n  onChange,\n  ...rest\n}: MuiCheckboxProps) {\n  const inputRef = useRef<HTMLInputElement | null>(null)\n  const active = checked ?? defaultChecked ?? false\n  const visualActive = active || indeterminate\n  return (\n    <label className={cn(\"inline-flex cursor-pointer select-none items-center gap-2\", rest.disabled && \"cursor-not-allowed opacity-50\", className)}>\n      <input\n        ref={(n) => {\n          inputRef.current = n\n          if (n) n.indeterminate = indeterminate\n        }}\n        type=\"checkbox\"\n        checked={checked}\n        defaultChecked={defaultChecked}\n        onChange={onChange}\n        className=\"peer sr-only\"\n        {...rest}\n      />\n      <span\n        aria-hidden\n        className={cn(\n          \"flex items-center justify-center rounded-[4px] border-2 text-white transition-colors\",\n          SIZE[size],\n          visualActive ? CHECKED_COLOR[color] : \"border-gray-400 bg-white\"\n        )}\n      >\n        {indeterminate ? <Minus className=\"size-3.5\" /> : active ? <Check className=\"size-3.5\" /> : null}\n      </span>\n      {children && <span className=\"text-sm text-gray-800\">{children}</span>}\n    </label>\n  )\n}\n\nexport { MuiCheckbox }\nexport type { MuiCheckboxProps }\n",
+      "code": "/**\n * MuiCheckbox\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Onay kutusu — checked/indeterminate/disabled durumları.\n *   <MuiCheckbox checked onChange={h} />\n * color: primary | secondary | success | error | warning | info · size: small/medium\n * indeterminate: yarım işaretli (üç durumlu liste)\n * @id 1936\n * @category Seçim\n * @subcategory MuiCheckbox\n * @source mui\n */\nimport { useRef, type InputHTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { Check, Minus } from \"@/components/ui/icons\"\n\ninterface MuiCheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, \"type\" | \"size\" | \"color\"> {\n  color?: \"primary\" | \"secondary\" | \"success\" | \"error\" | \"warning\" | \"info\" | \"default\"\n  size?: \"small\" | \"medium\"\n  indeterminate?: boolean\n}\n\nconst SIZE: Record<string, string> = {\n  small: \"size-4\",\n  medium: \"size-5\",\n}\n\nconst CHECKED_COLOR: Record<string, string> = {\n  primary: \"border-blue-600 bg-blue-600\",\n  secondary: \"border-purple-600 bg-purple-600\",\n  success: \"border-green-600 bg-green-600\",\n  error: \"border-red-600 bg-red-600\",\n  warning: \"border-amber-600 bg-amber-600\",\n  info: \"border-sky-600 bg-sky-600\",\n  default: \"border-gray-700 bg-gray-700\",\n}\n\nfunction MuiCheckbox({\n  color = \"primary\",\n  size = \"medium\",\n  indeterminate = false,\n  className,\n  children,\n  checked,\n  defaultChecked,\n  onChange,\n  ...rest\n}: MuiCheckboxProps) {\n  const inputRef = useRef<HTMLInputElement | null>(null)\n  const active = checked ?? defaultChecked ?? false\n  const visualActive = active || indeterminate\n  return (\n    <label className={cn(\"inline-flex cursor-pointer select-none items-center gap-2\", rest.disabled && \"cursor-not-allowed opacity-50\", className)}>\n      <input\n        ref={(n) => {\n          inputRef.current = n\n          if (n) n.indeterminate = indeterminate\n        }}\n        type=\"checkbox\"\n        checked={checked}\n        defaultChecked={defaultChecked}\n        onChange={onChange}\n        className=\"peer sr-only\"\n        {...rest}\n      />\n      <span\n        aria-hidden\n        className={cn(\n          \"flex items-center justify-center rounded-[4px] border-2 text-white transition-colors\",\n          SIZE[size],\n          visualActive ? CHECKED_COLOR[color] : \"border-gray-400 bg-white\"\n        )}\n      >\n        {indeterminate ? <Minus className=\"size-3.5\" /> : active ? <Check className=\"size-3.5\" /> : null}\n      </span>\n      {children && <span className=\"text-sm text-gray-800\">{children}</span>}\n    </label>\n  )\n}\n\nexport { MuiCheckbox }\nexport type { MuiCheckboxProps }\n",
       "description": "MuiCheckbox",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-checkbox.tsx"
     },
@@ -8138,6 +8138,138 @@
       "code": "/**\n * MuiCheckboxIndeterminate\n * @id 1940\n * @category Seçim\n * @subcategory MuiCheckbox\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiCheckbox } from \"@/components/ui/mui-checkbox\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiCheckboxIndeterminate() {\n  const [checked, setChecked] = useState<boolean[]>([true, false])\n  const allChecked = checked.every(Boolean)\n  const someChecked = checked.some(Boolean)\n  const handleParent = () => {\n    const next = allChecked ? checked.map(() => false) : checked.map(() => true)\n    setChecked(next)\n  }\n  const handleChild = (i: number) => {\n    setChecked((prev) => prev.map((v, idx) => (idx === i ? !v : v)))\n  }\n  return (\n    <MuiStack spacing={1}>\n      <MuiCheckbox checked={allChecked} indeterminate={someChecked && !allChecked} onChange={handleParent}>\n        Tüm öğeler\n      </MuiCheckbox>\n      <div className=\"pl-6\">\n        <MuiStack spacing={1}>\n          <MuiCheckbox checked={checked[0]} onChange={() => handleChild(0)}>Birinci</MuiCheckbox>\n          <MuiCheckbox checked={checked[1]} onChange={() => handleChild(1)}>İkinci</MuiCheckbox>\n        </MuiStack>\n      </div>\n    </MuiStack>\n  )\n}\n\nexport { MuiCheckboxIndeterminate }\n",
       "description": "MuiCheckboxIndeterminate",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-checkbox-indeterminate.tsx"
+    },
+    {
+      "id": "1941",
+      "name": "MuiSwitch",
+      "category": "Seçim",
+      "subcategory": "MuiSwitch",
+      "source": "mui",
+      "file": "mui-switch.tsx",
+      "exists": true,
+      "code": "/**\n * MuiSwitch\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Açma/kapama anahtarı — slide thumb animasyonu.\n *   <MuiSwitch checked onChange={h} />\n * color: primary | secondary | success | error | warning · size: small/medium\n * defaultChecked · disabled\n * @id 1941\n * @category Seçim\n * @subcategory MuiSwitch\n * @source mui\n */\nimport { type InputHTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface MuiSwitchProps extends Omit<InputHTMLAttributes<HTMLInputElement>, \"type\" | \"size\" | \"color\"> {\n  color?: \"primary\" | \"secondary\" | \"success\" | \"error\" | \"warning\" | \"info\" | \"default\"\n  size?: \"small\" | \"medium\"\n}\n\nconst SIZE: Record<string, { w: string; h: string; thumb: string }> = {\n  small: { w: \"w-9\", h: \"h-5\", thumb: \"size-3.5\" },\n  medium: { w: \"w-11\", h: \"h-6\", thumb: \"size-4.5\" },\n}\n\nconst COLOR: Record<string, string> = {\n  primary: \"peer-checked:bg-blue-600\",\n  secondary: \"peer-checked:bg-purple-600\",\n  success: \"peer-checked:bg-green-600\",\n  error: \"peer-checked:bg-red-600\",\n  warning: \"peer-checked:bg-amber-600\",\n  info: \"peer-checked:bg-sky-600\",\n  default: \"peer-checked:bg-gray-700\",\n}\n\nfunction MuiSwitch({ color = \"primary\", size = \"medium\", className, ...rest }: MuiSwitchProps) {\n  const s = SIZE[size]\n  return (\n    <label className={cn(\"inline-flex cursor-pointer select-none items-center\", rest.disabled && \"cursor-not-allowed opacity-50\", className)}>\n      <input type=\"checkbox\" role=\"switch\" className=\"peer sr-only\" {...rest} />\n      <span\n        aria-hidden\n        className={cn(\n          \"relative inline-flex rounded-full bg-gray-300 transition-colors peer-checked:\" + \" \" + (COLOR[color] ?? COLOR.primary),\n          s.w,\n          s.h\n        )}\n      >\n        <span\n          className={cn(\n            \"absolute left-0.5 top-1/2 -translate-y-1/2 rounded-full bg-white shadow transition-transform peer-checked:translate-x-[calc(100%+2px)]\",\n            s.thumb\n          )}\n          style={{ transform: \"translateY(-50%)\" }}\n        />\n      </span>\n    </label>\n  )\n}\n\nexport { MuiSwitch }\nexport type { MuiSwitchProps }\n",
+      "description": "MuiSwitch",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-switch.tsx"
+    },
+    {
+      "id": "1942",
+      "name": "MuiSwitchBasic",
+      "category": "Seçim",
+      "subcategory": "MuiSwitch",
+      "source": "mui",
+      "file": "mui-switch-basic.tsx",
+      "exists": true,
+      "code": "/**\n * MuiSwitchBasic\n * @id 1942\n * @category Seçim\n * @subcategory MuiSwitch\n * @source mui\n */\nimport { MuiSwitch } from \"@/components/ui/mui-switch\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiSwitchBasic() {\n  return (\n    <MuiStack direction=\"row\" spacing={3} className=\"items-center\">\n      <MuiSwitch defaultChecked />\n      <MuiSwitch />\n      <MuiSwitch disabled />\n      <MuiSwitch defaultChecked disabled />\n    </MuiStack>\n  )\n}\n\nexport { MuiSwitchBasic }\n",
+      "description": "MuiSwitchBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-switch-basic.tsx"
+    },
+    {
+      "id": "1943",
+      "name": "MuiSwitchLabels",
+      "category": "Seçim",
+      "subcategory": "MuiSwitch",
+      "source": "mui",
+      "file": "mui-switch-labels.tsx",
+      "exists": true,
+      "code": "/**\n * MuiSwitchLabels\n * @id 1943\n * @category Seçim\n * @subcategory MuiSwitch\n * @source mui\n */\nimport { MuiSwitch } from \"@/components/ui/mui-switch\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiSwitchLabels() {\n  return (\n    <MuiStack spacing={2}>\n      <div className=\"flex items-center gap-2\"><MuiSwitch defaultChecked /> <span className=\"text-sm\">Bildirimler</span></div>\n      <div className=\"flex items-center gap-2\"><MuiSwitch /> <span className=\"text-sm\">Karanlık mod</span></div>\n      <div className=\"flex items-center gap-2\"><MuiSwitch disabled /> <span className=\"text-sm\">Devre dışı</span></div>\n    </MuiStack>\n  )\n}\n\nexport { MuiSwitchLabels }\n",
+      "description": "MuiSwitchLabels",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-switch-labels.tsx"
+    },
+    {
+      "id": "1944",
+      "name": "MuiSwitchColors",
+      "category": "Seçim",
+      "subcategory": "MuiSwitch",
+      "source": "mui",
+      "file": "mui-switch-colors.tsx",
+      "exists": true,
+      "code": "/**\n * MuiSwitchColors\n * @id 1944\n * @category Seçim\n * @subcategory MuiSwitch\n * @source mui\n */\nimport { MuiSwitch } from \"@/components/ui/mui-switch\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiSwitchColors() {\n  return (\n    <MuiStack direction=\"row\" spacing={3} className=\"items-center\">\n      <MuiSwitch defaultChecked color=\"primary\" />\n      <MuiSwitch defaultChecked color=\"secondary\" />\n      <MuiSwitch defaultChecked color=\"success\" />\n      <MuiSwitch defaultChecked color=\"error\" />\n      <MuiSwitch defaultChecked color=\"warning\" />\n    </MuiStack>\n  )\n}\n\nexport { MuiSwitchColors }\n",
+      "description": "MuiSwitchColors",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-switch-colors.tsx"
+    },
+    {
+      "id": "1945",
+      "name": "MuiSwitchSizes",
+      "category": "Seçim",
+      "subcategory": "MuiSwitch",
+      "source": "mui",
+      "file": "mui-switch-sizes.tsx",
+      "exists": true,
+      "code": "/**\n * MuiSwitchSizes\n * @id 1945\n * @category Seçim\n * @subcategory MuiSwitch\n * @source mui\n */\nimport { MuiSwitch } from \"@/components/ui/mui-switch\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiSwitchSizes() {\n  return (\n    <MuiStack direction=\"row\" spacing={3} className=\"items-center\">\n      <MuiSwitch defaultChecked size=\"small\" />\n      <MuiSwitch defaultChecked size=\"medium\" />\n    </MuiStack>\n  )\n}\n\nexport { MuiSwitchSizes }\n",
+      "description": "MuiSwitchSizes",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-switch-sizes.tsx"
+    },
+    {
+      "id": "1946",
+      "name": "MuiRadio",
+      "category": "Seçim",
+      "subcategory": "MuiRadio",
+      "source": "mui",
+      "file": "mui-radio.tsx",
+      "exists": true,
+      "code": "/**\n * MuiRadio\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Radyo butonu — tek seçim, grup içinde kullanılır.\n *   <MuiRadio checked onChange={h} />\n * color: primary | secondary | success | error · size: small/medium\n * @id 1946\n * @category Seçim\n * @subcategory MuiRadio\n * @source mui\n */\nimport { type InputHTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface MuiRadioProps extends Omit<InputHTMLAttributes<HTMLInputElement>, \"type\" | \"size\" | \"color\"> {\n  color?: \"primary\" | \"secondary\" | \"success\" | \"error\" | \"warning\" | \"info\" | \"default\"\n  size?: \"small\" | \"medium\"\n}\n\nconst SIZE: Record<string, string> = {\n  small: \"size-4\",\n  medium: \"size-5\",\n}\n\nconst COLOR: Record<string, string> = {\n  primary: \"border-blue-600 text-blue-600\",\n  secondary: \"border-purple-600 text-purple-600\",\n  success: \"border-green-600 text-green-600\",\n  error: \"border-red-600 text-red-600\",\n  warning: \"border-amber-600 text-amber-600\",\n  info: \"border-sky-600 text-sky-600\",\n  default: \"border-gray-700 text-gray-700\",\n}\n\nfunction MuiRadio({ color = \"primary\", size = \"medium\", className, checked, defaultChecked, children, ...rest }: MuiRadioProps) {\n  const active = checked ?? defaultChecked ?? false\n  return (\n    <label className={cn(\"inline-flex cursor-pointer select-none items-center gap-2\", rest.disabled && \"cursor-not-allowed opacity-50\", className)}>\n      <input type=\"radio\" className=\"peer sr-only\" checked={checked} defaultChecked={defaultChecked} {...rest} />\n      <span\n        aria-hidden\n        className={cn(\n          \"flex items-center justify-center rounded-full border-2 bg-white transition-colors\",\n          SIZE[size],\n          active ? COLOR[color] : \"border-gray-400\"\n        )}\n      >\n        <span className={cn(\"rounded-full bg-current\", size === \"small\" ? \"size-2\" : \"size-2.5\", active ? \"opacity-100\" : \"opacity-0\")} />\n      </span>\n      {children && <span className=\"text-sm text-gray-800\">{children}</span>}\n    </label>\n  )\n}\n\nexport { MuiRadio }\nexport type { MuiRadioProps }\n",
+      "description": "MuiRadio",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-radio.tsx"
+    },
+    {
+      "id": "1947",
+      "name": "MuiRadioGroup",
+      "category": "Seçim",
+      "subcategory": "MuiRadio",
+      "source": "mui",
+      "file": "mui-radio-group.tsx",
+      "exists": true,
+      "code": "/**\n * MuiRadioGroup\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Radyo grubu — tek seçim davranışı sağlar.\n *   <MuiRadioGroup label=\"Cinsiyet\" options={[{value,label}]} defaultValue=\"female\" />\n * options: {value, label, disabled?}[] · defaultValue · onChange · row (yatay)\n * @id 1947\n * @category Seçim\n * @subcategory MuiRadio\n * @source mui\n */\nimport { useState, type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { MuiRadio } from \"@/components/ui/mui-radio\"\n\ninterface MuiRadioGroupProps {\n  label?: ReactNode\n  options: { value: string; label: ReactNode; disabled?: boolean }[]\n  defaultValue?: string\n  value?: string\n  onChange?: (value: string) => void\n  row?: boolean\n  color?: \"primary\" | \"secondary\" | \"success\" | \"error\" | \"warning\" | \"info\" | \"default\"\n  className?: string\n}\n\nfunction MuiRadioGroup({ label, options, defaultValue, value, onChange, row = false, color = \"primary\", className }: MuiRadioGroupProps) {\n  const [internal, setInternal] = useState<string | undefined>(defaultValue)\n  const active = value ?? internal\n  return (\n    <div className={cn(\"flex flex-col\", className)}>\n      {label && <span className=\"mb-1 text-sm text-gray-700\">{label}</span>}\n      <div role=\"radiogroup\" className={cn(\"flex\", row ? \"flex-row gap-4\" : \"flex-col gap-1.5\")}>\n        {options.map((o) => (\n          <MuiRadio\n            key={o.value}\n            checked={active === o.value}\n            disabled={o.disabled}\n            color={color}\n            onChange={() => {\n              setInternal(o.value)\n              onChange?.(o.value)\n            }}\n          >\n            {o.label}\n          </MuiRadio>\n        ))}\n      </div>\n    </div>\n  )\n}\n\nexport { MuiRadioGroup }\nexport type { MuiRadioGroupProps }\n",
+      "description": "MuiRadioGroup",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-radio-group.tsx"
+    },
+    {
+      "id": "1948",
+      "name": "MuiRadioBasic",
+      "category": "Seçim",
+      "subcategory": "MuiRadio",
+      "source": "mui",
+      "file": "mui-radio-basic.tsx",
+      "exists": true,
+      "code": "/**\n * MuiRadioBasic\n * @id 1948\n * @category Seçim\n * @subcategory MuiRadio\n * @source mui\n */\nimport { MuiRadioGroup } from \"@/components/ui/mui-radio-group\"\n\nfunction MuiRadioBasic() {\n  return (\n    <MuiRadioGroup\n      label=\"Cinsiyet\"\n      options={[\n        { value: \"kadin\", label: \"Kadın\" },\n        { value: \"erkek\", label: \"Erkek\" },\n        { value: \"diger\", label: \"Diğer\" },\n      ]}\n      defaultValue=\"kadin\"\n    />\n  )\n}\n\nexport { MuiRadioBasic }\n",
+      "description": "MuiRadioBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-radio-basic.tsx"
+    },
+    {
+      "id": "1949",
+      "name": "MuiRadioRow",
+      "category": "Seçim",
+      "subcategory": "MuiRadio",
+      "source": "mui",
+      "file": "mui-radio-row.tsx",
+      "exists": true,
+      "code": "/**\n * MuiRadioRow\n * @id 1949\n * @category Seçim\n * @subcategory MuiRadio\n * @source mui\n */\nimport { MuiRadioGroup } from \"@/components/ui/mui-radio-group\"\n\nfunction MuiRadioRow() {\n  return (\n    <MuiRadioGroup\n      label=\"Hizalama\"\n      options={[\n        { value: \"sol\", label: \"Sol\" },\n        { value: \"orta\", label: \"Orta\" },\n        { value: \"sag\", label: \"Sağ\" },\n      ]}\n      defaultValue=\"orta\"\n      row\n    />\n  )\n}\n\nexport { MuiRadioRow }\n",
+      "description": "MuiRadioRow",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-radio-row.tsx"
+    },
+    {
+      "id": "1950",
+      "name": "MuiRadioColors",
+      "category": "Seçim",
+      "subcategory": "MuiRadio",
+      "source": "mui",
+      "file": "mui-radio-colors.tsx",
+      "exists": true,
+      "code": "/**\n * MuiRadioColors\n * @id 1950\n * @category Seçim\n * @subcategory MuiRadio\n * @source mui\n */\nimport { MuiRadioGroup } from \"@/components/ui/mui-radio-group\"\n\nfunction MuiRadioColors() {\n  return (\n    <div className=\"space-y-3\">\n      <MuiRadioGroup label=\"Primary\" options={[{ value: \"1\", label: \"Seçenek\" }]} defaultValue=\"1\" />\n      <MuiRadioGroup label=\"Secondary\" options={[{ value: \"1\", label: \"Seçenek\" }]} defaultValue=\"1\" />\n      <MuiRadioGroup label=\"Success\" options={[{ value: \"1\", label: \"Seçenek\" }]} defaultValue=\"1\" />\n      <MuiRadioGroup label=\"Error\" options={[{ value: \"1\", label: \"Seçenek\" }]} defaultValue=\"1\" />\n    </div>\n  )\n}\n\nexport { MuiRadioColors }\n",
+      "description": "MuiRadioColors",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-radio-colors.tsx"
+    },
+    {
+      "id": "1951",
+      "name": "MuiRadioError",
+      "category": "Seçim",
+      "subcategory": "MuiRadio",
+      "source": "mui",
+      "file": "mui-radio-error.tsx",
+      "exists": true,
+      "code": "/**\n * MuiRadioError\n * @id 1951\n * @category Seçim\n * @subcategory MuiRadio\n * @source mui\n */\nimport { MuiRadioGroup } from \"@/components/ui/mui-radio-group\"\n\nfunction MuiRadioError() {\n  return (\n    <div className=\"rounded-md border border-red-300 bg-red-50 p-3\">\n      <p className=\"mb-2 text-sm font-medium text-red-700\">Lütfen bir seçenek işaretleyin</p>\n      <MuiRadioGroup\n        options={[\n          { value: \"a\", label: \"Seçenek A\" },\n          { value: \"b\", label: \"Seçenek B\" },\n        ]}\n      />\n    </div>\n  )\n}\n\nexport { MuiRadioError }\n",
+      "description": "MuiRadioError",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-radio-error.tsx"
     },
     {
       "id": "389",

@@ -803,6 +803,19 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1938` MuiCheckboxColors
 - `1939` MuiCheckboxSizes
 - `1940` MuiCheckboxIndeterminate
+#### MuiSwitch
+- `1941` MuiSwitch
+- `1942` MuiSwitchBasic
+- `1943` MuiSwitchLabels
+- `1944` MuiSwitchColors
+- `1945` MuiSwitchSizes
+#### MuiRadio
+- `1946` MuiRadio
+- `1947` MuiRadioGroup
+- `1948` MuiRadioBasic
+- `1949` MuiRadioRow
+- `1950` MuiRadioColors
+- `1951` MuiRadioError
 #### RadioGroup
 - `389` RadioGroup
 - `390` RadioGroupBasic
@@ -2302,7 +2315,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1843` MtAppShellUsage
 - `1844` MtAppShellAsideDemo
 
-**Toplam: 1851 bileşen (saf React)**
+**Toplam: 1862 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
