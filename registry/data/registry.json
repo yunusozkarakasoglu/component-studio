@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-10T23:51:05.607Z",
+  "generatedAt": "2026-08-10T23:56:57.622Z",
   "counts": {
-    "components": 1943,
-    "ready": 1943,
+    "components": 1945,
+    "ready": 1945,
     "layouts": 0
   },
   "categories": [
@@ -10103,7 +10103,7 @@
       "source": "mui",
       "file": "mui-link.tsx",
       "exists": true,
-      "code": "/**\n * MuiLink\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Bağlantı — altı çizili tıklanabilir metin.\n *   <MuiLink href=\"#\" underline=\"hover\">Metin</MuiLink>\n * href · underline: none/hover/always · color: primary/secondary · onClick\n * @id 2027\n * @category Navigasyon\n * @subcategory MuiLink\n * @source mui\n */\nimport { type AnchorHTMLAttributes, type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface MuiLinkProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, \"color\"> {\n  underline?: \"none\" | \"hover\" | \"always\"\n  color?: \"primary\" | \"secondary\" | \"inherit\"\n}\n\nfunction MuiLink({ underline = \"hover\", color = \"primary\", className, children, ...rest }: MuiLinkProps) {\n  return (\n    <a\n      className={cn(\n        \"cursor-pointer\",\n        color === \"primary\" ? \"text-blue-600\" : color === \"secondary\" ? \"text-purple-600\" : \"text-current\",\n        underline === \"hover\" && \"hover:underline\",\n        underline === \"always\" && \"underline\",\n        className\n      )}\n      {...rest}\n    >\n      {children}\n    </a>\n  )\n}\n\nexport { MuiLink }\nexport type { MuiLinkProps }\n",
+      "code": "/**\n * MuiLink\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Bağlantı — altı çizili tıklanabilir metin.\n *   <MuiLink href=\"#\" underline=\"hover\">Metin</MuiLink>\n * href · underline: none/hover/always · color: primary/secondary · onClick\n * @id 2027\n * @category Navigasyon\n * @subcategory MuiLink\n * @source mui\n */\nimport { type AnchorHTMLAttributes } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface MuiLinkProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, \"color\"> {\n  underline?: \"none\" | \"hover\" | \"always\"\n  color?: \"primary\" | \"secondary\" | \"inherit\"\n}\n\nfunction MuiLink({ underline = \"hover\", color = \"primary\", className, children, ...rest }: MuiLinkProps) {\n  return (\n    <a\n      className={cn(\n        \"cursor-pointer\",\n        color === \"primary\" ? \"text-blue-600\" : color === \"secondary\" ? \"text-purple-600\" : \"text-current\",\n        underline === \"hover\" && \"hover:underline\",\n        underline === \"always\" && \"underline\",\n        className\n      )}\n      {...rest}\n    >\n      {children}\n    </a>\n  )\n}\n\nexport { MuiLink }\nexport type { MuiLinkProps }\n",
       "description": "MuiLink",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-link.tsx"
     },
@@ -12230,6 +12230,30 @@
       "code": "/**\n * MuiAccordionBasic\n * @id 2018\n * @category Veri Gösterimi\n * @subcategory MuiAccordion\n * @source mui\n */\nimport { MuiAccordion } from \"@/components/ui/mui-accordion\"\n\nfunction MuiAccordionBasic() {\n  return (\n    <MuiAccordion\n      items={[\n        { title: \"Accordion nedir?\", content: \"Akordeon, içeriği bölümler halinde gizleyip tıklayınca genişleten bir arayüz bileşenidir.\" },\n        { title: \"Nasıl kullanılır?\", content: \"Başlığa tıklayınca içerik açılır/kapanır. Çoklu açık için multiple prop'unu kullanın.\" },\n        { title: \"Neden tercih edilir?\", content: \"Sayfa alanından tasarruf sağlar ve bilgiyi hiyerarşik sunar.\" },\n      ]}\n    />\n  )\n}\n\nexport { MuiAccordionBasic }\n",
       "description": "MuiAccordionBasic",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-accordion-basic.tsx"
+    },
+    {
+      "id": "2033",
+      "name": "MuiImageList",
+      "category": "Veri Gösterimi",
+      "subcategory": "",
+      "source": "mui",
+      "file": "mui-image-list.tsx",
+      "exists": true,
+      "code": "/**\n * MuiImageList\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Görsel ızgarası — satır/sütun düzeninde görseller.\n *   <MuiImageList items={[{src?, label?, alt?}]} cols={3} />\n * items · cols (sütun) · rowHeight · gap · variant: standard/masonry/woven\n * @id 2033\n * @category Veri Gösterimi\n * @subcategory MuiImageList\n * @source mui\n */\nimport { type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface MuiImageListItem {\n  src?: string\n  label?: ReactNode\n  alt?: string\n}\n\ninterface MuiImageListProps {\n  items?: MuiImageListItem[]\n  cols?: number\n  rowHeight?: number\n  gap?: number\n  className?: string\n}\n\nfunction MuiImageList({\n  items = [\n    { label: \"Görsel 1\" },\n    { label: \"Görsel 2\" },\n    { label: \"Görsel 3\" },\n    { label: \"Görsel 4\" },\n    { label: \"Görsel 5\" },\n    { label: \"Görsel 6\" },\n  ],\n  cols = 3,\n  rowHeight = 120,\n  gap = 8,\n  className,\n}: MuiImageListProps) {\n  return (\n    <div\n      className={cn(\"grid w-full\", className)}\n      style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`, gap: `${gap}px` }}\n    >\n      {items.map((item, i) => (\n        <div key={i} className=\"group relative overflow-hidden rounded-md bg-gray-100\" style={{ height: `${rowHeight}px` }}>\n          {item.src ? (\n            <img src={item.src} alt={item.alt ?? String(item.label)} className=\"size-full object-cover\" />\n          ) : (\n            <div\n              className=\"flex size-full items-center justify-center bg-gradient-to-br from-blue-400 to-indigo-500 text-xs font-medium text-white\"\n              role=\"img\"\n              aria-label={item.alt ?? String(item.label)}\n            >\n              {item.label}\n            </div>\n          )}\n          {item.label && (\n            <div className=\"absolute inset-x-0 bottom-0 bg-black/50 px-2 py-1 text-xs text-white opacity-0 transition-opacity group-hover:opacity-100\">\n              {item.label}\n            </div>\n          )}\n        </div>\n      ))}\n    </div>\n  )\n}\n\nexport { MuiImageList }\nexport type { MuiImageListProps, MuiImageListItem }\n",
+      "description": "MuiImageList",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-image-list.tsx"
+    },
+    {
+      "id": "2034",
+      "name": "MuiMasonry",
+      "category": "Veri Gösterimi",
+      "subcategory": "",
+      "source": "mui",
+      "file": "mui-masonry.tsx",
+      "exists": true,
+      "code": "/**\n * MuiMasonry\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Duvar düzeni — farklı yükseklikteki öğeler akıcı sütunlarda.\n *   <MuiMasonry items={[{content, height?}]} />\n * items · columns (sütun sayısı) · spacing\n * @id 2034\n * @category Veri Gösterimi\n * @subcategory MuiMasonry\n * @source mui\n */\nimport { type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface MuiMasonryItem {\n  content: ReactNode\n  height?: number\n  color?: string\n}\n\ninterface MuiMasonryProps {\n  items?: MuiMasonryItem[]\n  columns?: number\n  spacing?: number\n  className?: string\n}\n\nfunction MuiMasonry({\n  items = [\n    { content: \"Kısa\", height: 80 },\n    { content: \"Uzun içerik\", height: 160 },\n    { content: \"Orta\", height: 110 },\n    { content: \"Çok uzun\", height: 200 },\n    { content: \"Küçük\", height: 70 },\n    { content: \"Orta uzun\", height: 140 },\n  ],\n  columns = 3,\n  spacing = 8,\n  className,\n}: MuiMasonryProps) {\n  // Sütun doldurma: öğeleri sütunlara dağıt (her sütuna en kısa ekle)\n  const cols: MuiMasonryItem[][] = Array.from({ length: columns }, () => [])\n  const heights = Array.from({ length: columns }, () => 0)\n  for (const item of items) {\n    const target = heights.indexOf(Math.min(...heights))\n    cols[target].push(item)\n    heights[target] += (item.height ?? 100) + spacing\n  }\n  return (\n    <div className={cn(\"flex w-full items-start\", className)} style={{ gap: `${spacing}px` }}>\n      {cols.map((col, ci) => (\n        <div key={ci} className=\"flex flex-1 flex-col\" style={{ gap: `${spacing}px` }}>\n          {col.map((item, i) => (\n            <div\n              key={i}\n              className=\"flex w-full items-center justify-center rounded-md bg-gradient-to-br from-gray-200 to-gray-300 text-center text-xs font-medium text-gray-600\"\n              style={{ height: `${item.height ?? 100}px` }}\n            >\n              {item.content}\n            </div>\n          ))}\n        </div>\n      ))}\n    </div>\n  )\n}\n\nexport { MuiMasonry }\nexport type { MuiMasonryProps, MuiMasonryItem }\n",
+      "description": "MuiMasonry",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-masonry.tsx"
     },
     {
       "id": "139",

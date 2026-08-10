@@ -1204,6 +1204,8 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `2016` MuiListBasic
 - `2017` MuiTableBasic
 - `2018` MuiAccordionBasic
+- `2033` MuiImageList
+- `2034` MuiMasonry
 - `139` TagGroup
 - `140` EmptyState
 
@@ -2416,7 +2418,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1843` MtAppShellUsage
 - `1844` MtAppShellAsideDemo
 
-**Toplam: 1943 bileşen (saf React)**
+**Toplam: 1945 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
