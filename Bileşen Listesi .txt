@@ -825,6 +825,18 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1957` MuiSliderSizes
 - `1958` MuiSliderVertical
 - `1959` MuiSliderColors
+#### MuiRating
+- `1960` MuiRating
+- `1961` MuiRatingBasic
+- `1962` MuiRatingHalf
+- `1963` MuiRatingSizes
+#### MuiChip
+- `1964` MuiChip
+- `1965` MuiChipBasic
+- `1966` MuiChipClickable
+- `1967` MuiChipColors
+- `1968` MuiChipSizes
+- `1969` MuiChipIcon
 #### RadioGroup
 - `389` RadioGroup
 - `390` RadioGroupBasic
@@ -2324,7 +2336,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1843` MtAppShellUsage
 - `1844` MtAppShellAsideDemo
 
-**Toplam: 1870 bileşen (saf React)**
+**Toplam: 1880 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
