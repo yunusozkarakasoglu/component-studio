@@ -1862,4 +1862,9 @@ export const SAMPLES: Record<string, ReactNode> = {
   "1887": <U.MuiStackFlexboxGap />,
   "1888": <U.MuiGrowBasic />,
   "1889": <U.MuiZoomBasic />,
+  "1890": <U.MuiGridHalfBordered />,
+  "1891": <U.MuiGridCenteredElement />,
+  "1892": <U.MuiGridRowColumnSpacing />,
+  "1893": <U.MuiDividerIntro />,
+  "1894": <U.MuiStackZeroWidth />,
 }

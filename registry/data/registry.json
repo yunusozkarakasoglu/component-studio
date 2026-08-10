@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-10T15:48:04.397Z",
+  "generatedAt": "2026-08-10T15:49:58.729Z",
   "counts": {
-    "components": 1800,
-    "ready": 1800,
+    "components": 1805,
+    "ready": 1805,
     "layouts": 0
   },
   "categories": [
@@ -10900,6 +10900,18 @@
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-stack-flexbox-gap.tsx"
     },
     {
+      "id": "1894",
+      "name": "MuiStackZeroWidth",
+      "category": "Genel",
+      "subcategory": "MuiStack",
+      "source": "mui",
+      "file": "mui-stack-zero-width.tsx",
+      "exists": true,
+      "code": "/**\n * MuiStackZeroWidth\n * @id 1894\n * @category Genel\n * @subcategory MuiStack\n * @source mui\n */\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiStackZeroWidth() {\n  return (\n    <MuiStack direction=\"row\" spacing={2} className=\"w-full\">\n      <div className=\"flex-1 truncate rounded bg-gray-200 px-3 py-2 text-sm text-gray-700\">\n        Bu çok uzun bir metin — taşmayı önlemek için zero-width kullanılır, metin kesilir ve üç nokta gösterilir.\n      </div>\n      <div className=\"shrink-0 rounded bg-blue-200 px-3 py-2 text-sm text-blue-900\">Sabit</div>\n    </MuiStack>\n  )\n}\n\nexport { MuiStackZeroWidth }\n",
+      "description": "MuiStackZeroWidth",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-stack-zero-width.tsx"
+    },
+    {
       "id": "1849",
       "name": "MuiDivider",
       "category": "Genel",
@@ -10970,6 +10982,18 @@
       "code": "/**\n * MuiDividerList\n * @id 1886\n * @category Genel\n * @subcategory MuiDivider\n * @source mui\n */\nimport { MuiDivider } from \"@/components/ui/mui-divider\"\nimport { Check } from \"@/components/ui/icons\"\n\nfunction MuiDividerList() {\n  return (\n    <div className=\"w-64 rounded-lg border border-gray-200 bg-white p-2\">\n      <ul className=\"divide-y divide-gray-200\">\n        <li className=\"flex items-center gap-2 px-3 py-2 text-sm text-gray-700\">\n          <span className=\"flex size-5 items-center justify-center rounded-full bg-green-100\"><Check className=\"size-3\" /></span>\n          İnbox\n        </li>\n        <li className=\"flex items-center gap-2 px-3 py-2 text-sm text-gray-700\">\n          <span className=\"flex size-5 items-center justify-center rounded-full bg-green-100\"><Check className=\"size-3\" /></span>\n          Drafts\n        </li>\n        <li className=\"flex items-center gap-2 px-3 py-2 text-sm text-gray-700\">\n          <span className=\"flex size-5 items-center justify-center rounded-full bg-green-100\"><Check className=\"size-3\" /></span>\n          Trash\n        </li>\n      </ul>\n      <MuiDivider />\n      <p className=\"px-3 py-2 text-xs text-gray-500\">Liste bitti</p>\n    </div>\n  )\n}\n\nexport { MuiDividerList }\n",
       "description": "MuiDividerList",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-divider-list.tsx"
+    },
+    {
+      "id": "1893",
+      "name": "MuiDividerIntro",
+      "category": "Genel",
+      "subcategory": "MuiDivider",
+      "source": "mui",
+      "file": "mui-divider-intro.tsx",
+      "exists": true,
+      "code": "/**\n * MuiDividerIntro\n * @id 1893\n * @category Genel\n * @subcategory MuiDivider\n * @source mui\n */\nimport { MuiDivider } from \"@/components/ui/mui-divider\"\nimport { MuiTypography } from \"@/components/ui/mui-typography\"\n\nfunction MuiDividerIntro() {\n  return (\n    <div className=\"w-full max-w-md\">\n      <MuiTypography variant=\"h6\" gutterBottom>Başlık</MuiTypography>\n      <MuiTypography variant=\"body2\" className=\"mb-3 text-gray-500\">\n        Ayraçlar içeriği bölümlere ayırır. Yatay ve dikey kullanım için uygundur.\n      </MuiTypography>\n      <MuiDivider />\n    </div>\n  )\n}\n\nexport { MuiDividerIntro }\n",
+      "description": "MuiDividerIntro",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-divider-intro.tsx"
     },
     {
       "id": "1850",
@@ -11258,6 +11282,42 @@
       "code": "/**\n * MuiGridFullBordered\n * @id 1884\n * @category Genel\n * @subcategory MuiGrid\n * @source mui\n */\nimport { MuiGrid } from \"@/components/ui/mui-grid\"\n\nfunction MuiGridFullBordered() {\n  return (\n    <MuiGrid container spacing={2}>\n      <MuiGrid item xs={12}>\n        <div className=\"border border-gray-400 p-3 text-center text-sm text-gray-700\">1</div>\n      </MuiGrid>\n      <MuiGrid item xs={6}>\n        <div className=\"border border-gray-400 p-3 text-center text-sm text-gray-700\">2</div>\n      </MuiGrid>\n      <MuiGrid item xs={6}>\n        <div className=\"border border-gray-400 p-3 text-center text-sm text-gray-700\">3</div>\n      </MuiGrid>\n    </MuiGrid>\n  )\n}\n\nexport { MuiGridFullBordered }\n",
       "description": "MuiGridFullBordered",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-grid-full-bordered.tsx"
+    },
+    {
+      "id": "1890",
+      "name": "MuiGridHalfBordered",
+      "category": "Genel",
+      "subcategory": "MuiGrid",
+      "source": "mui",
+      "file": "mui-grid-half-bordered.tsx",
+      "exists": true,
+      "code": "/**\n * MuiGridHalfBordered\n * @id 1890\n * @category Genel\n * @subcategory MuiGrid\n * @source mui\n */\nimport { MuiGrid } from \"@/components/ui/mui-grid\"\n\nfunction MuiGridHalfBordered() {\n  return (\n    <MuiGrid container spacing={2}>\n      <MuiGrid item xs={6}>\n        <div className=\"border-r border-b border-gray-300 p-3 text-center text-sm text-gray-700\">1</div>\n      </MuiGrid>\n      <MuiGrid item xs={6}>\n        <div className=\"border-b border-gray-300 p-3 text-center text-sm text-gray-700\">2</div>\n      </MuiGrid>\n      <MuiGrid item xs={6}>\n        <div className=\"border-r border-gray-300 p-3 text-center text-sm text-gray-700\">3</div>\n      </MuiGrid>\n      <MuiGrid item xs={6}>\n        <div className=\"p-3 text-center text-sm text-gray-700\">4</div>\n      </MuiGrid>\n    </MuiGrid>\n  )\n}\n\nexport { MuiGridHalfBordered }\n",
+      "description": "MuiGridHalfBordered",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-grid-half-bordered.tsx"
+    },
+    {
+      "id": "1891",
+      "name": "MuiGridCenteredElement",
+      "category": "Genel",
+      "subcategory": "MuiGrid",
+      "source": "mui",
+      "file": "mui-grid-centered-element.tsx",
+      "exists": true,
+      "code": "/**\n * MuiGridCenteredElement\n * @id 1891\n * @category Genel\n * @subcategory MuiGrid\n * @source mui\n */\nimport { MuiGrid } from \"@/components/ui/mui-grid\"\n\nfunction MuiGridCenteredElement() {\n  return (\n    <MuiGrid container spacing={2}>\n      <MuiGrid item xs={4} className=\"flex items-center justify-center\">\n        <span className=\"flex size-10 items-center justify-center rounded-full bg-blue-500 text-sm font-bold text-white\">A</span>\n      </MuiGrid>\n      <MuiGrid item xs={4} className=\"flex items-center justify-center\">\n        <span className=\"flex size-10 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white\">B</span>\n      </MuiGrid>\n      <MuiGrid item xs={4} className=\"flex items-center justify-center\">\n        <span className=\"flex size-10 items-center justify-center rounded-full bg-orange-500 text-sm font-bold text-white\">C</span>\n      </MuiGrid>\n    </MuiGrid>\n  )\n}\n\nexport { MuiGridCenteredElement }\n",
+      "description": "MuiGridCenteredElement",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-grid-centered-element.tsx"
+    },
+    {
+      "id": "1892",
+      "name": "MuiGridRowColumnSpacing",
+      "category": "Genel",
+      "subcategory": "MuiGrid",
+      "source": "mui",
+      "file": "mui-grid-row-column-spacing.tsx",
+      "exists": true,
+      "code": "/**\n * MuiGridRowColumnSpacing\n * @id 1892\n * @category Genel\n * @subcategory MuiGrid\n * @source mui\n */\nimport { MuiGrid } from \"@/components/ui/mui-grid\"\nimport { MuiPaper } from \"@/components/ui/mui-paper\"\n\nfunction MuiGridRowColumnSpacing() {\n  return (\n    <MuiGrid container spacing={3}>\n      <MuiGrid item xs={6}><MuiPaper className=\"p-3 text-center text-sm text-gray-600\">1</MuiPaper></MuiGrid>\n      <MuiGrid item xs={6}><MuiPaper className=\"p-3 text-center text-sm text-gray-600\">2</MuiPaper></MuiGrid>\n      <MuiGrid item xs={6}><MuiPaper className=\"p-3 text-center text-sm text-gray-600\">3</MuiPaper></MuiGrid>\n      <MuiGrid item xs={6}><MuiPaper className=\"p-3 text-center text-sm text-gray-600\">4</MuiPaper></MuiGrid>\n      <MuiGrid item xs={6}><MuiPaper className=\"p-3 text-center text-sm text-gray-600\">5</MuiPaper></MuiGrid>\n      <MuiGrid item xs={6}><MuiPaper className=\"p-3 text-center text-sm text-gray-600\">6</MuiPaper></MuiGrid>\n    </MuiGrid>\n  )\n}\n\nexport { MuiGridRowColumnSpacing }\n",
+      "description": "MuiGridRowColumnSpacing",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-grid-row-column-spacing.tsx"
     },
     {
       "id": "589",
