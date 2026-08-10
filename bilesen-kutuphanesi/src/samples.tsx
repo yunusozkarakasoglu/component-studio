@@ -1956,4 +1956,11 @@ export const SAMPLES: Record<string, ReactNode> = {
   "1981": <U.MuiDialogBasic />,
   "1982": <U.MuiDialogForm />,
   "1983": <U.MuiDialogMaxWidth />,
+  "1984": <U.MuiDrawer />,
+  "1985": <U.MuiDrawerBasic />,
+  "1986": <U.MuiSnackbar />,
+  "1987": <U.MuiSnackbarBasic />,
+  "1988": <U.MuiTooltip />,
+  "1989": <U.MuiTooltipBasic />,
+  "1990": <U.MuiBackdrop />,
 }

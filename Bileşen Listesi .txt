@@ -901,6 +901,17 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1981` MuiDialogBasic
 - `1982` MuiDialogForm
 - `1983` MuiDialogMaxWidth
+#### MuiDrawer
+- `1984` MuiDrawer
+- `1985` MuiDrawerBasic
+#### MuiSnackbar
+- `1986` MuiSnackbar
+- `1987` MuiSnackbarBasic
+#### MuiTooltip
+- `1988` MuiTooltip
+- `1989` MuiTooltipBasic
+#### MuiBackdrop
+- `1990` MuiBackdrop
 #### Modal
 - `432` Modal
 - `433` ModalDefault
@@ -2352,7 +2363,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1843` MtAppShellUsage
 - `1844` MtAppShellAsideDemo
 
-**Toplam: 1894 bileşen (saf React)**
+**Toplam: 1901 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

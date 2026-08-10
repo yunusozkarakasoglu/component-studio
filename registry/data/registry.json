@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-10T20:14:58.980Z",
+  "generatedAt": "2026-08-10T20:24:02.558Z",
   "counts": {
-    "components": 1894,
-    "ready": 1894,
+    "components": 1901,
+    "ready": 1901,
     "layouts": 0
   },
   "categories": [
@@ -9131,7 +9131,7 @@
       "source": "mui",
       "file": "mui-dialog.tsx",
       "exists": true,
-      "code": "/**\n * MuiDialog\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Modal diyalog — başlık, içerik, aksiyon bölümleri.\n *   <MuiDialog open={open} onClose={h} title=\"Başlık\">…</MuiDialog>\n * open · onClose · title · maxWidth (xs/sm/md/lg/xl) · fullScreen · fullWidth\n * actions: alt aksiyon butonları (otomatik sağa hizalı)\n * @id 1980\n * @category Overlay\n * @subcategory MuiDialog\n * @source mui\n */\nimport { type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { X } from \"@/components/ui/icons\"\n\ninterface MuiDialogProps {\n  open: boolean\n  onClose?: () => void\n  title?: ReactNode\n  maxWidth?: \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"\n  fullScreen?: boolean\n  fullWidth?: boolean\n  actions?: ReactNode\n  closeable?: boolean\n  className?: string\n  children?: ReactNode\n}\n\nconst MAX_W: Record<string, string> = {\n  xs: \"max-w-sm\",\n  sm: \"max-w-md\",\n  md: \"max-w-lg\",\n  lg: \"max-w-2xl\",\n  xl: \"max-w-4xl\",\n}\n\nfunction MuiDialog({\n  open,\n  onClose,\n  title,\n  maxWidth = \"sm\",\n  fullScreen = false,\n  fullWidth = false,\n  actions,\n  closeable = true,\n  className,\n  children,\n}: MuiDialogProps) {\n  if (!open) return null\n  return (\n    <div\n      className=\"fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4\"\n      onClick={onClose}\n      role=\"presentation\"\n    >\n      <div\n        role=\"dialog\"\n        aria-modal=\"true\"\n        aria-label={typeof title === \"string\" ? title : undefined}\n        onClick={(e) => e.stopPropagation()}\n        className={cn(\n          \"flex max-h-[85vh] flex-col bg-white text-gray-900 shadow-xl\",\n          fullScreen ? \"h-full w-full max-w-none rounded-none\" : cn(\"rounded-lg\", fullWidth ? \"w-full\" : \"\", MAX_W[maxWidth] ?? MAX_W.sm),\n          className\n        )}\n      >\n        {(title || closeable) && (\n          <div className=\"flex items-center justify-between border-b border-gray-200 px-5 py-3\">\n            <h2 className=\"text-lg font-semibold\">{title}</h2>\n            {closeable && (\n              <button type=\"button\" aria-label=\"Kapat\" onClick={onClose} className=\"rounded p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-800\">\n                <X className=\"size-5\" />\n              </button>\n            )}\n          </div>\n        )}\n        <div className=\"flex-1 overflow-y-auto px-5 py-4 text-sm text-gray-700\">{children}</div>\n        {actions && <div className=\"flex justify-end gap-2 border-t border-gray-200 px-5 py-3\">{actions}</div>}\n      </div>\n    </div>\n  )\n}\n\nexport { MuiDialog }\nexport type { MuiDialogProps }\n",
+      "code": "/**\n * MuiDialog\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Modal diyalog — başlık, içerik, aksiyon bölümleri.\n *   <MuiDialog open={open} onClose={h} title=\"Başlık\">…</MuiDialog>\n * open · onClose · title · maxWidth (xs/sm/md/lg/xl) · fullScreen · fullWidth\n * actions: alt aksiyon butonları (otomatik sağa hizalı)\n * @id 1980\n * @category Overlay\n * @subcategory MuiDialog\n * @source mui\n */\nimport { type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { X } from \"@/components/ui/icons\"\n\ninterface MuiDialogProps {\n  open?: boolean\n  onClose?: () => void\n  title?: ReactNode\n  maxWidth?: \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"\n  fullScreen?: boolean\n  fullWidth?: boolean\n  actions?: ReactNode\n  closeable?: boolean\n  className?: string\n  children?: ReactNode\n}\n\nconst MAX_W: Record<string, string> = {\n  xs: \"max-w-sm\",\n  sm: \"max-w-md\",\n  md: \"max-w-lg\",\n  lg: \"max-w-2xl\",\n  xl: \"max-w-4xl\",\n}\n\nfunction MuiDialog({\n  open = false,\n  onClose,\n  title,\n  maxWidth = \"sm\",\n  fullScreen = false,\n  fullWidth = false,\n  actions,\n  closeable = true,\n  className,\n  children,\n}: MuiDialogProps) {\n  if (!open) return null\n  return (\n    <div\n      className=\"fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4\"\n      onClick={onClose}\n      role=\"presentation\"\n    >\n      <div\n        role=\"dialog\"\n        aria-modal=\"true\"\n        aria-label={typeof title === \"string\" ? title : undefined}\n        onClick={(e) => e.stopPropagation()}\n        className={cn(\n          \"flex max-h-[85vh] flex-col bg-white text-gray-900 shadow-xl\",\n          fullScreen ? \"h-full w-full max-w-none rounded-none\" : cn(\"rounded-lg\", fullWidth ? \"w-full\" : \"\", MAX_W[maxWidth] ?? MAX_W.sm),\n          className\n        )}\n      >\n        {(title || closeable) && (\n          <div className=\"flex items-center justify-between border-b border-gray-200 px-5 py-3\">\n            <h2 className=\"text-lg font-semibold\">{title}</h2>\n            {closeable && (\n              <button type=\"button\" aria-label=\"Kapat\" onClick={onClose} className=\"rounded p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-800\">\n                <X className=\"size-5\" />\n              </button>\n            )}\n          </div>\n        )}\n        <div className=\"flex-1 overflow-y-auto px-5 py-4 text-sm text-gray-700\">{children}</div>\n        {actions && <div className=\"flex justify-end gap-2 border-t border-gray-200 px-5 py-3\">{actions}</div>}\n      </div>\n    </div>\n  )\n}\n\nexport { MuiDialog }\nexport type { MuiDialogProps }\n",
       "description": "MuiDialog",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-dialog.tsx"
     },
@@ -9167,9 +9167,93 @@
       "source": "mui",
       "file": "mui-dialog-max-width.tsx",
       "exists": true,
-      "code": "/**\n * MuiDialogMaxWidth\n * @id 1983\n * @category Overlay\n * @subcategory MuiDialog\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiDialog } from \"@/components/ui/mui-dialog\"\nimport { MuiButton } from \"@/components/ui/mui-button\"\nimport { MuiSelect } from \"@/components/ui/mui-select\"\n\nfunction MuiDialogMaxWidth() {\n  const [open, setOpen] = useState(false)\n  const [width, setWidth] = useState<string | number>(\"sm\")\n  return (\n    <div className=\"space-y-3\">\n      <MuiSelect\n        label=\"Genişlik\"\n        options={[\n          { value: \"xs\", label: \"xs\" },\n          { value: \"sm\", label: \"sm\" },\n          { value: \"md\", label: \"md\" },\n          { value: \"lg\", label: \"lg\" },\n          { value: \"xl\", label: \"xl\" },\n        ]}\n        value={width}\n        onChange={setWidth}\n        size=\"small\"\n        className=\"!max-w-40\"\n      />\n      <div>\n        <MuiButton variant=\"outlined\" onClick={() => setOpen(true)}>Diyalogu Aç</MuiButton>\n      </div>\n      <MuiDialog open={open} onClose={() => setOpen(false)} title={`maxWidth: ${width}`} maxWidth={width as \"sm\"} fullWidth>\n        Genişlik seçilen değere göre değişir. İçerik bu alanda gösterilir.\n      </MuiDialog>\n    </div>\n  )\n}\n\nexport { MuiDialogMaxWidth }\n",
+      "code": "/**\n * MuiDialogMaxWidth\n * @id 1983\n * @category Overlay\n * @subcategory MuiDialog\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiDialog } from \"@/components/ui/mui-dialog\"\nimport { MuiButton } from \"@/components/ui/mui-button\"\nimport { MuiSelect } from \"@/components/ui/mui-select\"\n\nfunction MuiDialogMaxWidth() {\n  const [open, setOpen] = useState(false)\n  const [width, setWidth] = useState<string | number>(\"sm\")\n  return (\n    <div className=\"space-y-3\">\n      <MuiSelect\n        label=\"Genişlik\"\n        options={[\n          { value: \"xs\", label: \"xs\" },\n          { value: \"sm\", label: \"sm\" },\n          { value: \"md\", label: \"md\" },\n          { value: \"lg\", label: \"lg\" },\n          { value: \"xl\", label: \"xl\" },\n        ]}\n        value={width}\n        onChange={(v) => setWidth(Array.isArray(v) ? v[0] : v)}\n        size=\"small\"\n        className=\"!max-w-40\"\n      />\n      <div>\n        <MuiButton variant=\"outlined\" onClick={() => setOpen(true)}>Diyalogu Aç</MuiButton>\n      </div>\n      <MuiDialog open={open} onClose={() => setOpen(false)} title={`maxWidth: ${width}`} maxWidth={width as \"sm\"} fullWidth>\n        Genişlik seçilen değere göre değişir. İçerik bu alanda gösterilir.\n      </MuiDialog>\n    </div>\n  )\n}\n\nexport { MuiDialogMaxWidth }\n",
       "description": "MuiDialogMaxWidth",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-dialog-max-width.tsx"
+    },
+    {
+      "id": "1984",
+      "name": "MuiDrawer",
+      "category": "Overlay",
+      "subcategory": "MuiDrawer",
+      "source": "mui",
+      "file": "mui-drawer.tsx",
+      "exists": true,
+      "code": "/**\n * MuiDrawer\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Yan panel — kenardan kayan çekmece.\n *   <MuiDrawer open={open} onClose={h} anchor=\"right\">…</MuiDrawer>\n * anchor: left (varsayılan) | right | top | bottom · width (piksel)\n * variant: temporary (overlay'li) | persistent (kenar itmeli)\n * @id 1984\n * @category Overlay\n * @subcategory MuiDrawer\n * @source mui\n */\nimport { type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { X } from \"@/components/ui/icons\"\n\ninterface MuiDrawerProps {\n  open?: boolean\n  onClose?: () => void\n  anchor?: \"left\" | \"right\" | \"top\" | \"bottom\"\n  width?: number\n  title?: ReactNode\n  closeable?: boolean\n  className?: string\n  children?: ReactNode\n}\n\nfunction MuiDrawer({\n  open = false,\n  onClose,\n  anchor = \"left\",\n  width = 320,\n  title,\n  closeable = true,\n  className,\n  children,\n}: MuiDrawerProps) {\n  if (!open) return null\n  const posCls = {\n    left: \"left-0 top-0 h-full border-r\",\n    right: \"right-0 top-0 h-full border-l\",\n    top: \"left-0 top-0 w-full border-b\",\n    bottom: \"left-0 bottom-0 w-full border-t\",\n  }[anchor]\n  const sizeStyle = anchor === \"left\" || anchor === \"right\" ? { width: `${width}px` } : { height: `${Math.min(width, 400)}px` }\n  return (\n    <div className=\"fixed inset-0 z-50 bg-black/50\" onClick={onClose} role=\"presentation\">\n      <div\n        role=\"dialog\"\n        aria-modal=\"true\"\n        onClick={(e) => e.stopPropagation()}\n        className={cn(\"fixed bg-white text-gray-900 shadow-xl\", posCls, className)}\n        style={sizeStyle}\n      >\n        {(title || closeable) && (\n          <div className=\"flex items-center justify-between border-b border-gray-200 px-4 py-3\">\n            <h2 className=\"text-base font-semibold\">{title}</h2>\n            {closeable && (\n              <button type=\"button\" aria-label=\"Kapat\" onClick={onClose} className=\"rounded p-1 text-gray-500 hover:bg-gray-100\">\n                <X className=\"size-5\" />\n              </button>\n            )}\n          </div>\n        )}\n        <div className=\"h-[calc(100%-3rem)] overflow-y-auto p-4 text-sm text-gray-700\">{children}</div>\n      </div>\n    </div>\n  )\n}\n\nexport { MuiDrawer }\nexport type { MuiDrawerProps }\n",
+      "description": "MuiDrawer",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-drawer.tsx"
+    },
+    {
+      "id": "1985",
+      "name": "MuiDrawerBasic",
+      "category": "Overlay",
+      "subcategory": "MuiDrawer",
+      "source": "mui",
+      "file": "mui-drawer-basic.tsx",
+      "exists": true,
+      "code": "/**\n * MuiDrawerBasic\n * @id 1985\n * @category Overlay\n * @subcategory MuiDrawer\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiDrawer } from \"@/components/ui/mui-drawer\"\nimport { MuiButton } from \"@/components/ui/mui-button\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiDrawerBasic() {\n  const [open, setOpen] = useState(false)\n  const [anchor, setAnchor] = useState<\"left\" | \"right\" | \"top\" | \"bottom\">(\"right\")\n  return (\n    <div className=\"space-y-3\">\n      <MuiStack direction=\"row\" spacing={1} className=\"flex-wrap\">\n        {([\"left\", \"right\", \"top\", \"bottom\"] as const).map((a) => (\n          <MuiButton key={a} variant=\"outlined\" size=\"small\" onClick={() => { setAnchor(a); setOpen(true) }}>\n            {a} çekmece\n          </MuiButton>\n        ))}\n      </MuiStack>\n      <MuiDrawer open={open} onClose={() => setOpen(false)} anchor={anchor} title=\"Çekmece\">\n        <p>Bu, {anchor} kenarından kayan bir çekmece örneğidir. İçerik burada gösterilir.</p>\n        <div className=\"mt-3 space-y-2\">\n          {[1, 2, 3].map((i) => (\n            <div key={i} className=\"rounded bg-gray-100 p-3 text-sm text-gray-600\">Öğe {i}</div>\n          ))}\n        </div>\n      </MuiDrawer>\n    </div>\n  )\n}\n\nexport { MuiDrawerBasic }\n",
+      "description": "MuiDrawerBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-drawer-basic.tsx"
+    },
+    {
+      "id": "1986",
+      "name": "MuiSnackbar",
+      "category": "Overlay",
+      "subcategory": "MuiSnackbar",
+      "source": "mui",
+      "file": "mui-snackbar.tsx",
+      "exists": true,
+      "code": "/**\n * MuiSnackbar\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Geçici bildirim — alt ekranda kısa süre görünür.\n *   <MuiSnackbar open={open} message=\"Kaydedildi\" />\n * open · message · onClose · autoHideDuration (ms) · anchorOrigin\n * action: sağda aksiyon butonu\n * @id 1986\n * @category Overlay\n * @subcategory MuiSnackbar\n * @source mui\n */\nimport { useEffect, type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface MuiSnackbarProps {\n  open?: boolean\n  message?: ReactNode\n  onClose?: () => void\n  autoHideDuration?: number\n  action?: ReactNode\n  anchorOrigin?: \"bottom-left\" | \"bottom-center\" | \"bottom-right\" | \"top-left\" | \"top-center\" | \"top-right\"\n  className?: string\n}\n\nconst ANCHOR: Record<string, string> = {\n  \"bottom-left\": \"bottom-4 left-4\",\n  \"bottom-center\": \"bottom-4 left-1/2 -translate-x-1/2\",\n  \"bottom-right\": \"bottom-4 right-4\",\n  \"top-left\": \"top-4 left-4\",\n  \"top-center\": \"top-4 left-1/2 -translate-x-1/2\",\n  \"top-right\": \"top-4 right-4\",\n}\n\nfunction MuiSnackbar({\n  open = false,\n  message,\n  onClose,\n  autoHideDuration = 4000,\n  action,\n  anchorOrigin = \"bottom-left\",\n  className,\n}: MuiSnackbarProps) {\n  useEffect(() => {\n    if (!open) return\n    const t = window.setTimeout(() => onClose?.(), autoHideDuration)\n    return () => window.clearTimeout(t)\n  }, [open, autoHideDuration, onClose])\n\n  if (!open) return null\n  return (\n    <div className={cn(\"fixed z-50 flex items-center gap-3 rounded bg-gray-800 px-4 py-3 text-sm text-white shadow-lg\", ANCHOR[anchorOrigin], className)} role=\"status\">\n      <span className=\"flex-1\">{message}</span>\n      {action}\n    </div>\n  )\n}\n\nexport { MuiSnackbar }\nexport type { MuiSnackbarProps }\n",
+      "description": "MuiSnackbar",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-snackbar.tsx"
+    },
+    {
+      "id": "1987",
+      "name": "MuiSnackbarBasic",
+      "category": "Overlay",
+      "subcategory": "MuiSnackbar",
+      "source": "mui",
+      "file": "mui-snackbar-basic.tsx",
+      "exists": true,
+      "code": "/**\n * MuiSnackbarBasic\n * @id 1987\n * @category Overlay\n * @subcategory MuiSnackbar\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiSnackbar } from \"@/components/ui/mui-snackbar\"\nimport { MuiButton } from \"@/components/ui/mui-button\"\n\nfunction MuiSnackbarBasic() {\n  const [open, setOpen] = useState(false)\n  return (\n    <div>\n      <MuiButton variant=\"contained\" onClick={() => setOpen(true)}>Bildirim Göster</MuiButton>\n      <MuiSnackbar\n        open={open}\n        message=\"İşlem başarıyla kaydedildi\"\n        onClose={() => setOpen(false)}\n        action={<button type=\"button\" onClick={() => setOpen(false)} className=\"cursor-pointer font-medium text-blue-300 hover:text-blue-200\">KAPAT</button>}\n      />\n    </div>\n  )\n}\n\nexport { MuiSnackbarBasic }\n",
+      "description": "MuiSnackbarBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-snackbar-basic.tsx"
+    },
+    {
+      "id": "1988",
+      "name": "MuiTooltip",
+      "category": "Overlay",
+      "subcategory": "MuiTooltip",
+      "source": "mui",
+      "file": "mui-tooltip.tsx",
+      "exists": true,
+      "code": "/**\n * MuiTooltip\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * İpucu — öğenin üzerine gelince beliren açıklama.\n *   <MuiTooltip title=\"Açıklama\"><button>…</button></MuiTooltip>\n * title · placement: top/bottom/left/right (varsayılan top)\n * arrow: ok işareti · children tek element\n * @id 1988\n * @category Overlay\n * @subcategory MuiTooltip\n * @source mui\n */\nimport { useState, type ReactElement } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface MuiTooltipProps {\n  title: string\n  placement?: \"top\" | \"bottom\" | \"left\" | \"right\"\n  arrow?: boolean\n  className?: string\n  children: ReactElement\n}\n\nconst PLACEMENT: Record<string, string> = {\n  top: \"bottom-full left-1/2 -translate-x-1/2 mb-1.5\",\n  bottom: \"top-full left-1/2 -translate-x-1/2 mt-1.5\",\n  left: \"right-full top-1/2 -translate-y-1/2 mr-1.5\",\n  right: \"left-full top-1/2 -translate-y-1/2 ml-1.5\",\n}\n\nfunction MuiTooltip({ title, placement = \"top\", arrow = false, className, children }: MuiTooltipProps) {\n  const [visible, setVisible] = useState(false)\n  return (\n    <span\n      className={cn(\"relative inline-flex\", className)}\n      onMouseEnter={() => setVisible(true)}\n      onMouseLeave={() => setVisible(false)}\n      onFocus={() => setVisible(true)}\n      onBlur={() => setVisible(false)}\n    >\n      {visible && (\n        <span\n          role=\"tooltip\"\n          className={cn(\n            \"absolute z-40 whitespace-nowrap rounded bg-gray-800 px-2 py-1 text-xs text-white shadow-lg\",\n            PLACEMENT[placement],\n            arrow && \"after:absolute after:border-4 after:border-transparent\",\n            arrow && placement === \"top\" && \"after:left-1/2 after:top-full after:-translate-x-1/2 after:border-t-gray-800\",\n            arrow && placement === \"bottom\" && \"after:left-1/2 after:bottom-full after:-translate-x-1/2 after:border-b-gray-800\",\n            arrow && placement === \"left\" && \"after:top-1/2 after:left-full after:-translate-y-1/2 after:border-l-gray-800\",\n            arrow && placement === \"right\" && \"after:top-1/2 after:right-full after:-translate-y-1/2 after:border-r-gray-800\"\n          )}\n        >\n          {title}\n        </span>\n      )}\n      {children}\n    </span>\n  )\n}\n\nexport { MuiTooltip }\nexport type { MuiTooltipProps }\n",
+      "description": "MuiTooltip",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-tooltip.tsx"
+    },
+    {
+      "id": "1989",
+      "name": "MuiTooltipBasic",
+      "category": "Overlay",
+      "subcategory": "MuiTooltip",
+      "source": "mui",
+      "file": "mui-tooltip-basic.tsx",
+      "exists": true,
+      "code": "/**\n * MuiTooltipBasic\n * @id 1989\n * @category Overlay\n * @subcategory MuiTooltip\n * @source mui\n */\nimport { MuiTooltip } from \"@/components/ui/mui-tooltip\"\nimport { MuiButton } from \"@/components/ui/mui-button\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiTooltipBasic() {\n  return (\n    <MuiStack direction=\"row\" spacing={4} className=\"flex-wrap items-center\">\n      <MuiTooltip title=\"Üstte görünür\" placement=\"top\">\n        <MuiButton variant=\"outlined\">Üst</MuiButton>\n      </MuiTooltip>\n      <MuiTooltip title=\"Altta görünür\" placement=\"bottom\">\n        <MuiButton variant=\"outlined\">Alt</MuiButton>\n      </MuiTooltip>\n      <MuiTooltip title=\"Solda görünür\" placement=\"left\">\n        <MuiButton variant=\"outlined\">Sol</MuiButton>\n      </MuiTooltip>\n      <MuiTooltip title=\"Sağda görünür\" placement=\"right\">\n        <MuiButton variant=\"outlined\">Sağ</MuiButton>\n      </MuiTooltip>\n    </MuiStack>\n  )\n}\n\nexport { MuiTooltipBasic }\n",
+      "description": "MuiTooltipBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-tooltip-basic.tsx"
+    },
+    {
+      "id": "1990",
+      "name": "MuiBackdrop",
+      "category": "Overlay",
+      "subcategory": "MuiBackdrop",
+      "source": "mui",
+      "file": "mui-backdrop.tsx",
+      "exists": true,
+      "code": "/**\n * MuiBackdrop\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Arka plan karartma — içerik üzerinde yarı saydam katman.\n *   <MuiBackdrop open={open} onClick={h} />\n * open · onClick · invisible: tamamen şeffaf\n * @id 1990\n * @category Overlay\n * @subcategory MuiBackdrop\n * @source mui\n */\nimport { cn } from \"@/lib/utils\"\n\ninterface MuiBackdropProps {\n  open?: boolean\n  onClick?: () => void\n  invisible?: boolean\n  className?: string\n}\n\nfunction MuiBackdrop({ open = false, onClick, invisible = false, className }: MuiBackdropProps) {\n  if (!open) return null\n  return (\n    <div\n      role=\"presentation\"\n      onClick={onClick}\n      className={cn(\"fixed inset-0 z-40 transition-opacity\", invisible ? \"bg-transparent\" : \"bg-black/50\", className)}\n    />\n  )\n}\n\nexport { MuiBackdrop }\nexport type { MuiBackdropProps }\n",
+      "description": "MuiBackdrop",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-backdrop.tsx"
     },
     {
       "id": "432",
