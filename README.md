@@ -1,74 +1,156 @@
-# Component Studio — Offline React Bileşen Kütüphanesi
+# 🧩 Component Studio — Saf React Bileşen Kütüphanesi & Tasarım Stüdyosu
 
-Kategorilere ayrılmış, aranabilir, düzenlenebilir, özelleştirilebilir, genişletilebilir
-**offline React bileşen kütüphanesi** — **saf React** (üçüncü parti UI bağımlılığı YOK).
+> **Ne işe yarar?** Modern frontend arayüzleri için **offline, bağımlılıksız React bileşen kütüphanesi**
+> + bunları yönetip önizlediğin bir **tasarım stüdyosu**. Üçüncü parti UI paketi yok —
+> her bileşen tek dosya, kendi ikon setimizle, `react + tailwind` ile yazılmıştır.
 
-> 📍 **Dinamik yapı:** Bu klasör herhangi bir bilgisayara kopyalanabilir.
-> Tüm yollar bu klasöre göre çözülür. Gerçek yollar: `node yollar.mjs`
+---
 
-## 🚀 İlk kurulum (bir kez)
+## 🎯 Vizyon — Kademeli Arayüz Üretimi
+
+Atomic design mantığıyla, en küçük parçadan en büyük sayfaya:
+
+```
+Elements (Atom) → Components (Molekül) → Layouts (Organizm) → Templates → Pages
+  Buton/Input         Kart/Form          Sayfa iskeleti        +içerik     tam sayfa
+```
+
+Kütüphane **Elements + Components + Layouts** katmanlarını doldurur; sen bunlardan
+sayfa/tema/maket üretirsin.
+
+---
+
+## ✨ Özellikler
+
+- **1755+ bileşen** — 3 kaynaktan saf React'e çevrilmiş:
+  | Kaynak | Sayı | Örnekler |
+  |---|---|---|
+  | HeroUI | 527 | Modal, Tabs, Table, Toolbar, NumberField… |
+  | shadcn/ui | 387 | Dialog, DropdownMenu, Combobox, Sidebar… |
+  | Mantine | 841 | MtButton, MtCard, MtCalendar, MtStepper, MtTree… |
+- **Saf React + Tailwind v4** — üçüncü parti UI paketi **YOK**
+- **Kendi ikon seti** — 1756 ikon (`@/components/ui/icons`), SVG gömülü, uzak bağımlılık yok
+- **8 Layout Teması** — NovaPanel tasarım diliyle hazır sayfa iskeletleri
+- **Tasarım Stüdyosu** — canlı önizleme, kod düzenleme, kaydetme, kayıt yenileme
+
+---
+
+## 🔄 Nasıl Çalışır? (Akış)
+
+### 1) Bileşen üretim akışı (kaynak → kütüphane)
+```
+Kaynak (HeroUI/shadcn/Mantine dosyaları)
+   ↓  saf React'e çevir (TSX, kendi ikonlar, Tailwind)
+src/components/ui/<bileşen>.tsx   (tek dosya, named export)
+   ↓  JSDoc etiketleri: @id + @category + @subcategory + @source
+Barrel (index.tsx) + Galeri (samples) + Envanter ("Bileşen Listesi .txt")
+   ↓
+registry/build-registry.mjs → registry.json   (stüdyonun veri kaynağı)
+   ↓
+Stüdyoda görünür → tıkla → önizle/düzenle → kaydet
+```
+
+### 2) Layout tema akışı (tasarım → tema)
+```
+Sen 5174'te (veya herhangi bir yerde) sayfa tasarlarsın
+   ↓
+Kaynağı oku (App.jsx / HTML / styles.css)
+   ↓  anla → TSX'e çevir (ikonlar setimizden, CSS scoped)
+src/layouts/tema<N>.tsx + tema<N>.css
+   ↓
+Layoutlar sekmesi → tema kutusu (minyatür önizleme)
+   ↓  kutuya tıkla → tam ekran → geri (buton / tarayıcı geri / Esc)
+```
+
+### 3) Senin projene entegrasyon akışı
+```
+1. src/components/ui/<bileşen>.tsx dosyasını projenize kopyala
+2. Bağımlılıkları çöz:
+   - @/components/ui/icons → ikon seti (gerekirse birlikte kopyala)
+   - @/lib/utils → cn() (clsx + tailwind-merge)
+   - @/* yol eşlemesi → src/
+3. Tailwind v4 kurulu olmalı → kullan
+```
+
+---
+
+## 🚀 Kurulum & Kullanım
 
 ```bash
-cd bilesen-kutuphanesi && npm install
-cd ../registry && npm install
-cd ../registry && node build-registry.mjs   # kayıt defterini üretir
+git clone https://github.com/yunusozkarakasoglu/component-studio.git
+cd component-studio
+npm install
+npm run dev
 ```
 
-## 🖥️ Çalıştırma
+Stüdyo → **http://localhost:5800**
 
-```bash
-cd bilesen-kutuphanesi && npm run dev   # → http://localhost:5800
-```
+### 📊 Stüdyo sekmeleri
 
-## 📦 Kütüphane
-
-- **187 bileşen · 18 kategori · alt kategori ağacı** (sol panelde `Kategori ▸ Alt Kategori ▸ Bileşen`)
-- **Bağımlılıklar:** yalnızca `react`, `react-dom`, `clsx`, `tailwind-merge` (dev: vite, tailwind, typescript)
-- **Kendi ikon seti:** `@/components/ui/icons` — 1756 ikon, SVG gömülü (paket bağımlılığı yok)
-- Marka ikonları: `@/components/ui/icons-brand` (Google/GitHub/Apple — gömülü SVG)
-
-## 📂 Yapı
-
-```
-Component-studio/
-├── component-kutuphane.md   ← LLM kılavuzu (entegrasyon + bileşen ekleme kuralları)
-├── yollar.mjs               ← dinamik yol çözümleyici
-├── Bileşen Listesi .txt     ← envanter kaynağı (kategori + alt kategori + bileşenler)
-├── bilesen-kutuphanesi/     ← stüdyo + bileşenler (port 5800)
-│   ├── src/components/ui/*.tsx  ← bileşenler (tek dosya, @id + @category + @subcategory)
-│   ├── src/App.tsx              ← stüdyo arayüzü (tree view sol panel)
-│   └── scripts/generate-icons.mjs ← ikon seti üretici
-└── registry/                ← kayıt defteri üretici (build-registry.mjs)
-```
-
-## 🔄 İş akışı
-
-1. **Stüdyoyu aç:** `./kutuphane-baslat.sh` → http://localhost:5800
-2. **Sol panel:** kategori ağacı — boş kategoriler dahil görünür; alt kategoriler ayrı başlıklarda
-3. **Bileşene tıkla:** düzenleme ekranı — ① orijinal kod + önizleme, ② özelleştirme (stil → tam kod), **🔗 Bağımlılıklar** bilgi çubuğu
-4. **📂 Path Kopyala / ✨ Prompt Oluştur:** prompt, **bağımlılık dosyalarının tam yollarını** içerir — LLM'е yapıştırın, LLM hepsini kopyalar/uyarlar
-5. **💾 Kaydet** → HMR · **🔄 DB Yenile** → registry güncellenir
-
-## 🧱 Ortak çekirdek bileşenler
-
-Üst düzey bileşenler çekirdeği import eder — kopyalarken çekirdeği de alın (JSDoc'ta "Gerektirir:" notu):
-
-| Çekirdek | Kullananlar |
+| Sekme | Ne işe yarar |
 |---|---|
-| `calendar.tsx` | date-picker, date-range-picker, calendar-* örnekleri |
-| `color.ts` + color-* | color-picker |
-| `checkbox.tsx` | checkbox-group |
-| `button.tsx` | button-* örnekleri |
-| `icons.tsx` / `icons-brand.tsx` | tümü (gömülü SVG) |
+| **📊 Dashboard** | Kütüphane özeti, bileşen sayısı, kısayollar |
+| **🧩 Bileşenler** | 1755 bileşeni ara / filtrele (kaynak: Tümü/HeroUI/Mantine/shadcn/Özel · kategori · alt kategori) · ▦Kart / ☰Tablo görünüm · tıkla → canlı önizleme + kod düzenleme → 💾 Kaydet |
+| **📐 Layoutlar** | Tema 1-8 canlı minyatür kutular → tıkla → tam ekran → geri |
+| **+ Yeni** | Bileşen sihirbazı (pi'ye bağlı üretim) |
 
-## 🧪 Test
+---
 
-```bash
-cd bilesen-kutuphanesi && npm test    # findRootInfo birim testleri (15)
+## 📦 Bileşen Örneği
+
+```tsx
+import { MtButton } from "@/components/ui/mt-button"
+import { MtCard } from "@/components/ui/mt-card"
+
+function Demo() {
+  return (
+    <MtCard withBorder padding="lg">
+      <MtButton onClick={() => alert("Merhaba!")}>Başla</MtButton>
+    </MtCard>
+  )
+}
 ```
 
-## 📌 Notlar
+## 📐 Layout Temaları (NovaPanel tasarım dili)
 
-- Port **5800** sabittir (vite.config.ts)
-- MCP gerekmez — bileşenler dosya yoluyla LLM'e verilir
-- Kategori/alt kategori tek kaynak: `Bileşen Listesi .txt` (`### Kategori`, `#### Alt Kategori`)
+| Tema | Yapı |
+|---|---|
+| **Tema 1 — Klasik** | Header + açılır/kapanır panel + filtreli veri tablosu |
+| **Tema 2 — Sekmeli** | Footer üstü sekmeler — her sekme **kendi state'ine** sahip |
+| **Tema 3 — Dokümantasyon** | Sol konular + içerik (kod blokları) + sağ TOC akordeon |
+| **Tema 4 — Chat** | Konuşma listesi + mesaj paneli + yazma çubuğu |
+| **Tema 5 — Kanban** | 3 kolon + kart taşıma/ekleme |
+| **Tema 6 — E-ticaret** | Kategori + ürün grid + sepet |
+| **Tema 7 — Mail/Inbox** | Klasörler + liste + okuma (okundu/yıldız) |
+| **Tema 8 — Form Sihirbazı** | 4 adımlı onboarding (stepper + form) |
+
+---
+
+## 🗂️ Mimari
+
+```
+src/
+├── components/ui/   ← BİLEŞENLER (her biri TEK dosya)
+│   ├── icons.tsx    ← 1756 ikon (kendi setimiz, SVG gömülü)
+│   ├── icons-brand.tsx ← marka ikonları (Google/GitHub/Apple)
+│   ├── index.tsx    ← barrel (export * from "./x")
+│   ├── mt-*.tsx     ← Mantine · shadcn-*.tsx ← shadcn · *.tsx ← HeroUI
+│   └── ozel-*.tsx   ← kullanıcı/özel bileşenler
+├── layouts/         ← Layout temaları (tema1-8.tsx + tema1-8.css, scoped)
+├── App.tsx          ← Stüdyo (Dashboard/Bileşenler/Layoutlar)
+├── samples.tsx      ← Galeri önizlemeleri (SAMPLES[id] = JSX)
+└── lib/             ← cn() yardımcıları
+```
+
+## 🧪 Testler & Doğrulama
+
+```bash
+npm test          # findRootInfo birim testleri (15)
+npm run build     # tsc -b && vite build (tip kontrolü + derleme)
+```
+
+Kalite hedefi: **tsc 0 hata · test 15/15 · 20 kontrol OK · 0 çift kayıt**.
+
+## 📄 Lisans
+
+MIT — kopyala, kullan, uyarla. Bileşenler tek dosya olduğu için kendi projene taşıman serbest.
