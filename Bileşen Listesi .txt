@@ -1071,11 +1071,14 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1856` MuiStackDirection
 - `1860` MuiStackDivider
 - `1875` MuiStackResponsive
+- `1887` MuiStackFlexboxGap
 #### MuiDivider
 - `1849` MuiDivider
 - `1858` MuiDividerVariants
 - `1861` MuiDividerText
 - `1862` MuiDividerVertical
+- `1885` MuiDividerFlex
+- `1886` MuiDividerList
 #### MuiTypography
 - `1850` MuiTypography
 - `1857` MuiTypographyVariants
@@ -1089,12 +1092,20 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1869` MuiCollapseBasic
 - `1870` MuiFadeBasic
 - `1871` MuiSlideBasic
+- `1888` MuiGrowBasic
+- `1889` MuiZoomBasic
 #### MuiGrid
 - `1851` MuiGrid
 - `1859` MuiGridBasic
 - `1863` MuiGridResponsive
 - `1877` MuiGridAuto
 - `1878` MuiGridSpacing
+- `1879` MuiGridOffset
+- `1880` MuiGridNested
+- `1881` MuiGridFullWidth
+- `1882` MuiGridVariableWidth
+- `1883` MuiGridColumnLayout
+- `1884` MuiGridFullBordered
 #### Separator
 - `589` Separator
 - `590` SeparatorBasic
@@ -2231,7 +2242,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1843` MtAppShellUsage
 - `1844` MtAppShellAsideDemo
 
-**Toplam: 1787 bileşen (saf React)**
+**Toplam: 1799 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

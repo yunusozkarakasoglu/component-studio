@@ -22,6 +22,8 @@ interface MuiGridProps {
   md?: number | "auto"
   lg?: number | "auto"
   xl?: number | "auto"
+  /** Grid2 offset desteği: { xs, md, lg } veya sayı */
+  offset?: number | { xs?: number | "auto"; sm?: number | "auto"; md?: number | "auto"; lg?: number | "auto" }
   spacing?: number
   direction?: "row" | "row-reverse" | "column" | "column-reverse"
   justifyContent?: "flex-start" | "center" | "flex-end" | "space-between" | "space-around" | "space-evenly"
@@ -83,11 +85,15 @@ function MuiGrid({
 
   // item
   const span = (n?: number | "auto") => (n === "auto" ? undefined : n ? `span ${n}` : undefined)
+  // Grid2 offset: { xs: 3 } → gridColumnStart
+  const off = (o?: number | "auto") => (o === "auto" ? undefined : o ? o + 1 : undefined)
+  const offsetVal = typeof offset === "object" ? (offset.xs ?? offset.sm ?? offset.md ?? offset.lg) : offset
   return (
     <div
       className={cn(item && "min-w-0", className)}
       style={{
         gridColumn: span(xs) ?? span(sm) ?? span(md) ?? span(lg) ?? span(xl),
+        gridColumnStart: off(offsetVal),
         ...style,
       }}
     >
