@@ -837,6 +837,11 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1967` MuiChipColors
 - `1968` MuiChipSizes
 - `1969` MuiChipIcon
+#### MuiAutocomplete
+- `1970` MuiAutocomplete
+- `1971` MuiAutocompleteBasic
+- `1972` MuiAutocompleteMultiple
+- `1973` MuiAutocompleteDisabled
 #### RadioGroup
 - `389` RadioGroup
 - `390` RadioGroupBasic
@@ -2336,7 +2341,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1843` MtAppShellUsage
 - `1844` MtAppShellAsideDemo
 
-**Toplam: 1880 bileşen (saf React)**
+**Toplam: 1884 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
