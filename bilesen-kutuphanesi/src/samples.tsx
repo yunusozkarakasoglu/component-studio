@@ -1946,4 +1946,10 @@ export const SAMPLES: Record<string, ReactNode> = {
   "1971": <U.MuiAutocompleteBasic />,
   "1972": <U.MuiAutocompleteMultiple />,
   "1973": <U.MuiAutocompleteDisabled />,
+  "1974": <U.MuiSelect />,
+  "1975": <U.MuiSelectBasic />,
+  "1976": <U.MuiSelectMultiple />,
+  "1977": <U.MuiSelectNative />,
+  "1978": <U.MuiSelectGrouped />,
+  "1979": <U.MuiSelectSizes />,
 }
