@@ -1053,6 +1053,28 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `284` DrawerCustomStyles
 
 ### Genel
+#### MuiBox
+- `1845` MuiBox
+- `1852` MuiBoxBasic
+#### MuiPaper
+- `1846` MuiPaper
+- `1853` MuiPaperElevation
+#### MuiContainer
+- `1847` MuiContainer
+- `1854` MuiContainerBasic
+#### MuiStack
+- `1848` MuiStack
+- `1855` MuiStackBasic
+- `1856` MuiStackDirection
+#### MuiDivider
+- `1849` MuiDivider
+- `1858` MuiDividerVariants
+#### MuiTypography
+- `1850` MuiTypography
+- `1857` MuiTypographyVariants
+#### MuiGrid
+- `1851` MuiGrid
+- `1859` MuiGridBasic
 #### Separator
 - `589` Separator
 - `590` SeparatorBasic
@@ -2189,7 +2211,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1843` MtAppShellUsage
 - `1844` MtAppShellAsideDemo
 
-**Toplam: 1755 bileşen (saf React)**
+**Toplam: 1769 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
