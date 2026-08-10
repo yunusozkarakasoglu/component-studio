@@ -1043,6 +1043,12 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `528` TableCustomCells
 - `529` TableCustomStyles
 ### Yükleme & İlerleme
+- `2019` MuiCircularProgress
+- `2020` MuiLinearProgress
+- `2021` MuiSkeleton
+- `2022` MuiCircularProgressBasic
+- `2023` MuiLinearProgressBasic
+- `2024` MuiSkeletonBasic
 - `093` Spinner
 #### ProgressBar
 - `530` ProgressBar
@@ -2398,7 +2404,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1843` MtAppShellUsage
 - `1844` MtAppShellAsideDemo
 
-**Toplam: 1929 bileşen (saf React)**
+**Toplam: 1935 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

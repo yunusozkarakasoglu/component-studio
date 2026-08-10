@@ -1991,4 +1991,10 @@ export const SAMPLES: Record<string, ReactNode> = {
   "2016": <U.MuiListBasic />,
   "2017": <U.MuiTableBasic />,
   "2018": <U.MuiAccordionBasic />,
+  "2019": <U.MuiCircularProgress />,
+  "2020": <U.MuiLinearProgress />,
+  "2021": <U.MuiSkeleton />,
+  "2022": <U.MuiCircularProgressBasic />,
+  "2023": <U.MuiLinearProgressBasic />,
+  "2024": <U.MuiSkeletonBasic />,
 }

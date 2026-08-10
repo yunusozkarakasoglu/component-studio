@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-10T23:39:45.624Z",
+  "generatedAt": "2026-08-10T23:44:01.432Z",
   "counts": {
-    "components": 1929,
-    "ready": 1929,
+    "components": 1935,
+    "ready": 1935,
     "layouts": 0
   },
   "categories": [
@@ -10598,6 +10598,78 @@
       "code": "/**\n * TableCustomStyles\n * Özelleştirilmiş tablo örneği (saf React).\n * @id 529\n * @category Veri Gösterimi\n * @subcategory Table\n */\nimport { Table, TableBody, TableCell, TableColumn, TableContent, TableHeader, TableRow, TableScrollContainer } from \"@/components/ui/table\"\n\nconst ROWS = [\n  [\"Kate Moore\", \"CEO\", \"kate@acme.com\"],\n  [\"John Smith\", \"CTO\", \"john@acme.com\"],\n  [\"Sara Johnson\", \"CMO\", \"sara@acme.com\"],\n] as const\n\nfunction TableCustomStyles() {\n  return (\n    <Table className=\"overflow-hidden rounded-xl border border-border shadow-sm\">\n      <TableScrollContainer>\n        <TableContent aria-label=\"Team\" className=\"min-w-[480px]\">\n          <TableHeader className=\"bg-muted/60\">\n            <TableColumn isRowHeader>Name</TableColumn>\n            <TableColumn>Role</TableColumn>\n            <TableColumn>Email</TableColumn>\n          </TableHeader>\n          <TableBody>\n            {ROWS.map((row) => (\n              <TableRow key={row[0]} className=\"odd:bg-background even:bg-muted/20 hover:bg-blue-500/5\">\n                <TableCell className=\"font-medium text-blue-700\">{row[0]}</TableCell>\n                <TableCell>{row[1]}</TableCell>\n                <TableCell className=\"font-mono text-xs\">{row[2]}</TableCell>\n              </TableRow>\n            ))}\n          </TableBody>\n        </TableContent>\n      </TableScrollContainer>\n    </Table>\n  )\n}\n\nexport { TableCustomStyles }\n",
       "description": "TableCustomStyles",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/table-custom-styles.tsx"
+    },
+    {
+      "id": "2019",
+      "name": "MuiCircularProgress",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "",
+      "source": "mui",
+      "file": "mui-circular-progress.tsx",
+      "exists": true,
+      "code": "/**\n * MuiCircularProgress\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Dairesel yükleme göstergesi.\n *   <MuiCircularProgress /> · <MuiCircularProgress value={70} variant=\"determinate\" />\n * variant: indeterminate (dönen) | determinate (değerli)\n * color: primary/secondary/success/error/warning/info · size: small/medium/large\n * @id 2019\n * @category Yükleme & İlerleme\n * @subcategory MuiCircularProgress\n * @source mui\n */\nimport { cn } from \"@/lib/utils\"\n\ninterface MuiCircularProgressProps {\n  variant?: \"indeterminate\" | \"determinate\"\n  value?: number\n  color?: \"primary\" | \"secondary\" | \"success\" | \"error\" | \"warning\" | \"info\"\n  size?: \"small\" | \"medium\" | \"large\"\n  className?: string\n}\n\nconst SIZE: Record<string, string> = {\n  small: \"size-6\",\n  medium: \"size-9\",\n  large: \"size-14\",\n}\n\nconst COLOR: Record<string, string> = {\n  primary: \"text-blue-600\",\n  secondary: \"text-purple-600\",\n  success: \"text-green-600\",\n  error: \"text-red-600\",\n  warning: \"text-amber-500\",\n  info: \"text-sky-600\",\n}\n\nfunction MuiCircularProgress({\n  variant = \"indeterminate\",\n  value = 50,\n  color = \"primary\",\n  size = \"medium\",\n  className,\n}: MuiCircularProgressProps) {\n  if (variant === \"determinate\") {\n    return (\n      <div className={cn(\"relative inline-flex\", SIZE[size], className)} role=\"progressbar\" aria-valuenow={value} aria-valuemin={0} aria-valuemax={100}>\n        <svg viewBox=\"0 0 36 36\" className=\"size-full -rotate-90\">\n          <circle cx=\"18\" cy=\"18\" r=\"15.5\" fill=\"none\" strokeWidth=\"3.5\" className=\"stroke-gray-200\" />\n          <circle\n            cx=\"18\" cy=\"18\" r=\"15.5\" fill=\"none\" strokeWidth=\"3.5\" strokeLinecap=\"round\"\n            className={cn(\"stroke-current transition-all\", COLOR[color])}\n            strokeDasharray={`${(value / 100) * 97.4} 97.4`}\n          />\n        </svg>\n        <span className=\"absolute inset-0 flex items-center justify-center text-[10px] font-semibold text-gray-700\">{Math.round(value)}%</span>\n      </div>\n    )\n  }\n  return (\n    <div\n      role=\"progressbar\"\n      className={cn(\"inline-block animate-spin rounded-full border-4 border-gray-200 border-t-current\", SIZE[size], COLOR[color], className)}\n    />\n  )\n}\n\nexport { MuiCircularProgress }\nexport type { MuiCircularProgressProps }\n",
+      "description": "MuiCircularProgress",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-circular-progress.tsx"
+    },
+    {
+      "id": "2020",
+      "name": "MuiLinearProgress",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "",
+      "source": "mui",
+      "file": "mui-linear-progress.tsx",
+      "exists": true,
+      "code": "/**\n * MuiLinearProgress\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Çizgisel yükleme göstergesi.\n *   <MuiLinearProgress /> · <MuiLinearProgress value={70} variant=\"determinate\" />\n * variant: indeterminate (akış) | determinate (değerli)\n * color · value · className\n * @id 2020\n * @category Yükleme & İlerleme\n * @subcategory MuiLinearProgress\n * @source mui\n */\nimport { cn } from \"@/lib/utils\"\n\ninterface MuiLinearProgressProps {\n  variant?: \"indeterminate\" | \"determinate\"\n  value?: number\n  color?: \"primary\" | \"secondary\" | \"success\" | \"error\" | \"warning\" | \"info\"\n  className?: string\n}\n\nconst COLOR: Record<string, string> = {\n  primary: \"bg-blue-600\",\n  secondary: \"bg-purple-600\",\n  success: \"bg-green-600\",\n  error: \"bg-red-600\",\n  warning: \"bg-amber-500\",\n  info: \"bg-sky-600\",\n}\n\nfunction MuiLinearProgress({ variant = \"indeterminate\", value = 50, color = \"primary\", className }: MuiLinearProgressProps) {\n  if (variant === \"determinate\") {\n    return (\n      <div role=\"progressbar\" aria-valuenow={value} aria-valuemin={0} aria-valuemax={100} className={cn(\"h-1.5 w-full overflow-hidden rounded-full bg-gray-200\", className)}>\n        <div className={cn(\"h-full rounded-full transition-all\", COLOR[color])} style={{ width: `${value}%` }} />\n      </div>\n    )\n  }\n  return (\n    <div role=\"progressbar\" className={cn(\"relative h-1.5 w-full overflow-hidden rounded-full bg-gray-200\", className)}>\n      <div className={cn(\"absolute inset-y-0 left-0 w-1/3 animate-[indeterminate_1.5s_ease-in-out_infinite] rounded-full\", COLOR[color])} />\n    </div>\n  )\n}\n\nexport { MuiLinearProgress }\nexport type { MuiLinearProgressProps }\n",
+      "description": "MuiLinearProgress",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-linear-progress.tsx"
+    },
+    {
+      "id": "2021",
+      "name": "MuiSkeleton",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "",
+      "source": "mui",
+      "file": "mui-skeleton.tsx",
+      "exists": true,
+      "code": "/**\n * MuiSkeleton\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Yer tutucu — yüklenirken görünen iskelet.\n *   <MuiSkeleton width={200} height={20} />\n * variant: text (varsayılan) | circular | rectangular\n * width · height · animation: pulse (varsayılan) | wave | false\n * @id 2021\n * @category Yükleme & İlerleme\n * @subcategory MuiSkeleton\n * @source mui\n */\nimport { cn } from \"@/lib/utils\"\n\ninterface MuiSkeletonProps {\n  variant?: \"text\" | \"circular\" | \"rectangular\"\n  width?: number | string\n  height?: number | string\n  animation?: \"pulse\" | \"wave\" | false\n  className?: string\n}\n\nfunction MuiSkeleton({ variant = \"text\", width, height, animation = \"pulse\", className }: MuiSkeletonProps) {\n  return (\n    <div\n      className={cn(\n        \"bg-gray-200\",\n        animation === \"pulse\" && \"animate-pulse\",\n        animation === \"wave\" && \"relative overflow-hidden bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 bg-[length:200%_100%] animate-pulse\",\n        variant === \"text\" && \"rounded\",\n        variant === \"circular\" && \"rounded-full\",\n        variant === \"rectangular\" && \"rounded-md\",\n        className\n      )}\n      style={{ width: width ?? (variant === \"text\" ? \"100%\" : undefined), height: height ?? (variant === \"text\" ? \"1em\" : undefined) }}\n      aria-hidden\n    />\n  )\n}\n\nexport { MuiSkeleton }\nexport type { MuiSkeletonProps }\n",
+      "description": "MuiSkeleton",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-skeleton.tsx"
+    },
+    {
+      "id": "2022",
+      "name": "MuiCircularProgressBasic",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "",
+      "source": "mui",
+      "file": "mui-circular-progress-basic.tsx",
+      "exists": true,
+      "code": "/**\n * MuiCircularProgressBasic\n * @id 2022\n * @category Yükleme & İlerleme\n * @subcategory MuiCircularProgress\n * @source mui\n */\nimport { MuiCircularProgress } from \"@/components/ui/mui-circular-progress\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiCircularProgressBasic() {\n  return (\n    <MuiStack direction=\"row\" spacing={3} className=\"items-center\">\n      <MuiCircularProgress size=\"small\" />\n      <MuiCircularProgress size=\"medium\" />\n      <MuiCircularProgress size=\"large\" />\n      <MuiCircularProgress variant=\"determinate\" value={70} size=\"medium\" />\n      <MuiCircularProgress variant=\"determinate\" value={35} color=\"error\" size=\"medium\" />\n    </MuiStack>\n  )\n}\n\nexport { MuiCircularProgressBasic }\n",
+      "description": "MuiCircularProgressBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-circular-progress-basic.tsx"
+    },
+    {
+      "id": "2023",
+      "name": "MuiLinearProgressBasic",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "",
+      "source": "mui",
+      "file": "mui-linear-progress-basic.tsx",
+      "exists": true,
+      "code": "/**\n * MuiLinearProgressBasic\n * @id 2023\n * @category Yükleme & İlerleme\n * @subcategory MuiLinearProgress\n * @source mui\n */\nimport { MuiLinearProgress } from \"@/components/ui/mui-linear-progress\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiLinearProgressBasic() {\n  return (\n    <MuiStack spacing={3} className=\"w-full max-w-sm\">\n      <MuiLinearProgress />\n      <MuiLinearProgress variant=\"determinate\" value={70} />\n      <MuiLinearProgress variant=\"determinate\" value={45} color=\"secondary\" />\n      <MuiLinearProgress variant=\"determinate\" value={90} color=\"success\" />\n      <MuiLinearProgress variant=\"determinate\" value={25} color=\"error\" />\n    </MuiStack>\n  )\n}\n\nexport { MuiLinearProgressBasic }\n",
+      "description": "MuiLinearProgressBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-linear-progress-basic.tsx"
+    },
+    {
+      "id": "2024",
+      "name": "MuiSkeletonBasic",
+      "category": "Yükleme & İlerleme",
+      "subcategory": "",
+      "source": "mui",
+      "file": "mui-skeleton-basic.tsx",
+      "exists": true,
+      "code": "/**\n * MuiSkeletonBasic\n * @id 2024\n * @category Yükleme & İlerleme\n * @subcategory MuiSkeleton\n * @source mui\n */\nimport { MuiSkeleton } from \"@/components/ui/mui-skeleton\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiSkeletonBasic() {\n  return (\n    <MuiStack spacing={2} className=\"w-full max-w-sm\">\n      <div className=\"flex items-center gap-3\">\n        <MuiSkeleton variant=\"circular\" width={48} height={48} />\n        <div className=\"flex-1 space-y-2\">\n          <MuiSkeleton height={16} width=\"70%\" />\n          <MuiSkeleton height={12} width=\"40%\" />\n        </div>\n      </div>\n      <MuiSkeleton variant=\"rectangular\" height={120} />\n      <MuiSkeleton height={14} />\n      <MuiSkeleton height={14} width=\"80%\" />\n    </MuiStack>\n  )\n}\n\nexport { MuiSkeletonBasic }\n",
+      "description": "MuiSkeletonBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-skeleton-basic.tsx"
     },
     {
       "id": "093",
