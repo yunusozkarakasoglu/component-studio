@@ -712,12 +712,12 @@ export default function Studio() {
   const [edit, setEdit] = useState<{ rec: CompRecord } | null>(null)
   const [newOpen, setNewOpen] = useState(false)
   const refresh = () => {
-    fetch("/registry.json").then((r) => r.json()).then(setRegistry).catch(() => {})
+    fetch(`/registry.json?t=${Date.now()}`, { cache: "no-store" }).then((r) => r.json()).then(setRegistry).catch(() => {})
     location.reload()
   }
 
   useEffect(() => {
-    fetch("/registry.json").then((r) => r.json()).then(setRegistry).catch(() => setRegistry({ components: [] }))
+    fetch(`/registry.json?t=${Date.now()}`, { cache: "no-store" }).then((r) => r.json()).then(setRegistry).catch(() => setRegistry({ components: [] }))
   }, [])
 
   const term = q.toLowerCase().trim()
@@ -753,13 +753,15 @@ export default function Studio() {
 
   const filtered = useMemo(() => {
     if (!registry) return []
-    return registry.components.filter(
-      (c) =>
-        sourceOk(c) &&
-        (cat === "Tümü" || c.category === cat) &&
-        (!subCat || c.subcategory === subCat) &&
-        (!term || c.id.includes(term) || c.name.toLowerCase().includes(term) || c.description.toLowerCase().includes(term))
-    )
+    return registry.components
+      .filter(
+        (c) =>
+          sourceOk(c) &&
+          (cat === "Tümü" || c.category === cat) &&
+          (!subCat || c.subcategory === subCat) &&
+          (!term || c.id.includes(term) || c.name.toLowerCase().includes(term) || c.description.toLowerCase().includes(term))
+      )
+      .sort((a, b) => Number(a.id) - Number(b.id))
   }, [registry, q, cat, subCat, source])
 
   // Sanal liste: 1754 kartın yalnızca görünür alanını render et.

@@ -20,7 +20,7 @@
  *     </div>
  *   </div>
  */
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react"
+import { useCallback, useRef, useState } from "react"
 
 interface Options {
   /** Toplam öğe sayısı */
@@ -36,8 +36,8 @@ interface Options {
 }
 
 interface Result {
-  /** Scroll yapan container'a bağlanacak ref */
-  containerRef: React.RefObject<HTMLDivElement | null>
+  /** Scroll yapan container'a bağlanacak ref (callback) */
+  containerRef: (node: HTMLDivElement | null) => void
   /** İçerik yüksekliğini tutan (position: relative) iç container ref'i */
   innerRef: React.RefObject<HTMLDivElement | null>
   /** İç container'ın toplam yüksekliği (px) — scroll bar doğru olur */
@@ -77,41 +77,37 @@ export function useVirtualGrid({
     [colMinWidth, gap]
   )
 
-  // Container boyutlarını izle (resize)
-  useLayoutEffect(() => {
-    const el = containerRef.current
-    if (!el) return
-    const measure = () => {
-      const w = el.clientWidth
-      const h = el.clientHeight
-      setContainerW((prev) => (prev === w ? prev : w))
-      setViewportH((prev) => (prev === h ? prev : h))
-      recomputeCols(w)
+  // Container'a bağlanma: ref set edildiğinde hem boyut ölçümü hem scroll listener kurulur
+  const setContainerRef = useCallback((node: HTMLDivElement | null) => {
+    containerRef.current = node
+    if (!node) return
+    // Boyut ölçümü
+    const w = node.clientWidth
+    const h = node.clientHeight
+    setContainerW((prev) => (prev === w ? prev : w))
+    setViewportH((prev) => (prev === h ? prev : h))
+    recomputeCols(w)
+    // Scroll pozisyonunu senkronize et
+    setScrollTop(node.scrollTop)
+    // Scroll listener (pasif)
+    if (!node.dataset.vgBound) {
+      node.dataset.vgBound = "1"
+      node.addEventListener("scroll", () => setScrollTop(node.scrollTop), { passive: true })
     }
-    measure()
-    const ro = new ResizeObserver(measure)
-    ro.observe(el)
-    return () => ro.disconnect()
-  }, [recomputeCols])
-
-  // Scroll pozisyonunu izle (pasif, rAF ile throttle)
-  useEffect(() => {
-    const el = containerRef.current
-    if (!el) return
-    let raf = 0
-    const onScroll = () => {
-      if (raf) return
-      raf = requestAnimationFrame(() => {
-        raf = 0
-        setScrollTop(el.scrollTop)
+    // Boyut değişimi izle
+    if (!node.dataset.vgResize) {
+      node.dataset.vgResize = "1"
+      const ro = new ResizeObserver(() => {
+        const w2 = node.clientWidth
+        const h2 = node.clientHeight
+        setContainerW((prev) => (prev === w2 ? prev : w2))
+        setViewportH((prev) => (prev === h2 ? prev : h2))
+        recomputeCols(w2)
       })
+      ro.observe(node)
+      ;(node as HTMLDivElement & { __vgRO?: ResizeObserver }).__vgRO = ro
     }
-    el.addEventListener("scroll", onScroll, { passive: true })
-    return () => {
-      el.removeEventListener("scroll", onScroll)
-      if (raf) cancelAnimationFrame(raf)
-    }
-  }, [])
+  }, [recomputeCols])
 
   // Toplam satır/yükseklik
   const rowCount = Math.ceil(itemCount / colCount)
@@ -126,7 +122,8 @@ export function useVirtualGrid({
   const endIndex = Math.min(itemCount, endRow * colCount)
 
   return {
-    containerRef,
+    containerRef: setContainerRef,
+    innerRef,
     innerRef,
     totalHeight,
     startIndex,

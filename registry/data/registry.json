@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-10T15:59:54.385Z",
+  "generatedAt": "2026-08-10T17:48:31.765Z",
   "counts": {
     "components": 1839,
     "ready": 1839,
@@ -22019,7 +22019,7 @@
       "source": "mui",
       "file": "mui-text-field-adornments.tsx",
       "exists": true,
-      "code": "/**\n * MuiTextFieldAdornments\n * @id 1925\n * @category Form Elemanları\n * @subcategory MuiTextField\n * @source mui\n */\nimport { MuiTextField } from \"@/components/ui/mui-text-field\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\nimport { Search, Email, Lock } from \"@/components/ui/icons\"\n\nfunction MuiTextFieldAdornments() {\n  return (\n    <MuiStack spacing={3} className=\"w-full max-w-md\">\n      <MuiTextField label=\"Ara\" startAdornment={<Search className=\"size-4\" />} placeholder=\"Ara…\" />\n      <MuiTextField label=\"E-posta\" startAdornment={<Email className=\"size-4\" />} placeholder=\"ornek@site.com\" />\n      <MuiTextField label=\"Şifre\" startAdornment={<Lock className=\"size-4\" />} type=\"password\" placeholder=\"••••••\" />\n    </MuiStack>\n  )\n}\n\nexport { MuiTextFieldAdornments }\n",
+      "code": "/**\n * MuiTextFieldAdornments\n * @id 1925\n * @category Form Elemanları\n * @subcategory MuiTextField\n * @source mui\n */\nimport { MuiTextField } from \"@/components/ui/mui-text-field\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\nimport { Search, Mail, Lock } from \"@/components/ui/icons\"\n\nfunction MuiTextFieldAdornments() {\n  return (\n    <MuiStack spacing={3} className=\"w-full max-w-md\">\n      <MuiTextField label=\"Ara\" startAdornment={<Search className=\"size-4\" />} placeholder=\"Ara…\" />\n      <MuiTextField label=\"E-posta\" startAdornment={<Mail className=\"size-4\" />} placeholder=\"ornek@site.com\" />\n      <MuiTextField label=\"Şifre\" startAdornment={<Lock className=\"size-4\" />} type=\"password\" placeholder=\"••••••\" />\n    </MuiStack>\n  )\n}\n\nexport { MuiTextFieldAdornments }\n",
       "description": "Özel bileşen",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-text-field-adornments.tsx"
     },
