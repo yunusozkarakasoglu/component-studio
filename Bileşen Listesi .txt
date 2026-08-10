@@ -896,6 +896,11 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `430` ToggleButtonGroupDisabled
 - `431` ToggleButtonGroupWithoutSeparator
 ### Overlay
+#### MuiDialog
+- `1980` MuiDialog
+- `1981` MuiDialogBasic
+- `1982` MuiDialogForm
+- `1983` MuiDialogMaxWidth
 #### Modal
 - `432` Modal
 - `433` ModalDefault
@@ -2347,7 +2352,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1843` MtAppShellUsage
 - `1844` MtAppShellAsideDemo
 
-**Toplam: 1890 bileşen (saf React)**
+**Toplam: 1894 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
