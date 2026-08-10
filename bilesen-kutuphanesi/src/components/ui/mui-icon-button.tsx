@@ -10,7 +10,7 @@
  * @subcategory MuiButton
  * @source mui
  */
-import { type ButtonHTMLAttributes, type ReactNode } from "react"
+import { type ButtonHTMLAttributes } from "react"
 import { cn } from "@/lib/utils"
 
 interface MuiIconButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color"> {

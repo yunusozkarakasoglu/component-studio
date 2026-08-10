@@ -16,6 +16,7 @@ function MuiToggleButtonMultiple() {
     <MuiToggleButtonGroup
       value={formats}
       onChange={(v) => {
+        if (!v) return
         setFormats((prev) =>
           prev.includes(v) ? prev.filter((x) => x !== v) : [...prev, v]
         )

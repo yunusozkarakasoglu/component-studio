@@ -11,11 +11,11 @@
  * @subcategory MuiToggleButton
  * @source mui
  */
-import { type ButtonHTMLAttributes, type ReactNode } from "react"
+import { type ButtonHTMLAttributes } from "react"
 import { cn } from "@/lib/utils"
 
 interface MuiToggleButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "value"> {
-  value: string | number
+  value?: string | number
   selected?: boolean
   size?: "small" | "medium" | "large"
   fullWidth?: boolean

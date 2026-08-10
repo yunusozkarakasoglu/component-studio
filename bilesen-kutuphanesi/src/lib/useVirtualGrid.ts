@@ -63,7 +63,6 @@ export function useVirtualGrid({
   const innerRef = useRef<HTMLDivElement | null>(null)
   const [scrollTop, setScrollTop] = useState(0)
   const [viewportH, setViewportH] = useState(600)
-  const [containerW, setContainerW] = useState(1200)
   const [colCount, setColCount] = useState(5)
 
   const rowHeight = itemHeight + gap
@@ -84,7 +83,6 @@ export function useVirtualGrid({
     // Boyut ölçümü
     const w = node.clientWidth
     const h = node.clientHeight
-    setContainerW((prev) => (prev === w ? prev : w))
     setViewportH((prev) => (prev === h ? prev : h))
     recomputeCols(w)
     // Scroll pozisyonunu senkronize et
@@ -100,7 +98,6 @@ export function useVirtualGrid({
       const ro = new ResizeObserver(() => {
         const w2 = node.clientWidth
         const h2 = node.clientHeight
-        setContainerW((prev) => (prev === w2 ? prev : w2))
         setViewportH((prev) => (prev === h2 ? prev : h2))
         recomputeCols(w2)
       })
@@ -123,7 +120,6 @@ export function useVirtualGrid({
 
   return {
     containerRef: setContainerRef,
-    innerRef,
     innerRef,
     totalHeight,
     startIndex,

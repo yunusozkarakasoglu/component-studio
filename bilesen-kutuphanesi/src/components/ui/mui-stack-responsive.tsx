@@ -5,8 +5,6 @@
  * @subcategory MuiStack
  * @source mui
  */
-import { MuiStack } from "@/components/ui/mui-stack"
-
 function MuiStackResponsive() {
   return (
     <div className="flex w-full flex-col gap-2 sm:flex-row sm:gap-2">

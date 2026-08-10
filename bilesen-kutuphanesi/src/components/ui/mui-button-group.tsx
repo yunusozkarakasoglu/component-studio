@@ -12,6 +12,7 @@
  */
 import { type ReactNode } from "react"
 import { cn } from "@/lib/utils"
+import { MuiButton } from "@/components/ui/mui-button"
 
 interface MuiButtonGroupProps {
   variant?: "text" | "contained" | "outlined"

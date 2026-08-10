@@ -689,7 +689,7 @@ export default function Studio() {
   const [wizardOpen, setWizardOpen] = useState(() => window.location.hash === "#/yeni-bilesen")
   const [pendingCount, setPendingCount] = useState(0)
   const [view, setView] = useState<"dashboard" | "bilesenler" | "layoutlar">("dashboard")
-  const [source, setSource] = useState<"tumu" | "heroui" | "mantine" | "shadcn" | "ozel">("tumu")
+  const [source, setSource] = useState<"tumu" | "heroui" | "mantine" | "shadcn" | "mui" | "ozel">("tumu")
   const [galleryView, setGalleryView] = useState<"kart" | "tablo">("kart")
   const [newMenu, setNewMenu] = useState(false)
 

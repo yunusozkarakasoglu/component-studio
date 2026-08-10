@@ -20,13 +20,13 @@ interface MuiSpeedDialAction {
 }
 
 interface MuiSpeedDialProps {
-  ariaLabel: string
+  ariaLabel?: string
   actions?: MuiSpeedDialAction[]
   direction?: "up" | "down" | "left" | "right"
   className?: string
 }
 
-function MuiSpeedDial({ ariaLabel, actions = [], direction = "up", className }: MuiSpeedDialProps) {
+function MuiSpeedDial({ ariaLabel = "Hızlı aksiyon", actions = [], direction = "up", className }: MuiSpeedDialProps) {
   const [open, setOpen] = useState(false)
   const dirCls = {
     up: "bottom-16 right-2 flex-col-reverse",

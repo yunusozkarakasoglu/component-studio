@@ -12,6 +12,7 @@
  */
 import { type ReactNode } from "react"
 import { cn } from "@/lib/utils"
+import { MuiToggleButton } from "@/components/ui/mui-toggle-button"
 
 interface MuiToggleButtonGroupProps {
   value?: string | string[] | number | null

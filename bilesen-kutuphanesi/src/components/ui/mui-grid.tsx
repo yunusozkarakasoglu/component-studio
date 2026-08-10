@@ -37,14 +37,6 @@ const SPACING: Record<number, number> = {
   0: 0, 0.5: 4, 1: 8, 1.5: 12, 2: 16, 3: 24, 4: 32, 5: 40, 6: 48, 8: 64, 10: 80,
 }
 
-function colClass(bp: "xs" | "sm" | "md" | "lg" | "xl", n: number | "auto"): string {
-  if (n === "auto") return bp === "xs" ? "w-auto" : `${bp}:w-auto`
-  if (bp === "xs") return `w-full basis-${(100 / 12) * n}%`.replace("basis-", "basis-[") + "]"
-  const pct = (100 / 12) * n
-  const prefix = { xs: "", sm: "sm:", md: "md:", lg: "lg:", xl: "xl:" }[bp]
-  return `${prefix}w-[${pct}%]`
-}
-
 function MuiGrid({
   container = false,
   item = false,
@@ -57,6 +49,7 @@ function MuiGrid({
   direction = "row",
   justifyContent,
   alignItems,
+  offset,
   className,
   style,
   children,
