@@ -912,6 +912,12 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1989` MuiTooltipBasic
 #### MuiBackdrop
 - `1990` MuiBackdrop
+#### MuiPopover
+- `2025` MuiPopover
+- `2029` MuiPopoverBasic
+#### MuiModal
+- `2026` MuiModal
+- `2030` MuiModalBasic
 #### Modal
 - `432` Modal
 - `433` ModalDefault
@@ -991,6 +997,12 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 #### MuiTimeline
 - `1998` MuiTimeline
 - `2004` MuiTimelineBasic
+#### MuiLink
+- `2027` MuiLink
+- `2031` MuiLinkBasic
+#### MuiBottomNavigation
+- `2028` MuiBottomNavigation
+- `2032` MuiBottomNavigationBasic
 #### Pagination
 - `484` Pagination
 - `485` PaginationBasic
@@ -2404,7 +2416,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1843` MtAppShellUsage
 - `1844` MtAppShellAsideDemo
 
-**Toplam: 1935 bileşen (saf React)**
+**Toplam: 1943 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

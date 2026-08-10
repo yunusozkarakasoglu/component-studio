@@ -1997,4 +1997,12 @@ export const SAMPLES: Record<string, ReactNode> = {
   "2022": <U.MuiCircularProgressBasic />,
   "2023": <U.MuiLinearProgressBasic />,
   "2024": <U.MuiSkeletonBasic />,
+  "2025": <U.MuiPopover />,
+  "2026": <U.MuiModal />,
+  "2027": <U.MuiLink />,
+  "2028": <U.MuiBottomNavigation />,
+  "2029": <U.MuiPopoverBasic />,
+  "2030": <U.MuiModalBasic />,
+  "2031": <U.MuiLinkBasic />,
+  "2032": <U.MuiBottomNavigationBasic />,
 }

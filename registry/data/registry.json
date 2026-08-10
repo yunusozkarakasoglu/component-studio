@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-10T23:44:01.432Z",
+  "generatedAt": "2026-08-10T23:51:05.607Z",
   "counts": {
-    "components": 1935,
-    "ready": 1935,
+    "components": 1943,
+    "ready": 1943,
     "layouts": 0
   },
   "categories": [
@@ -9256,6 +9256,54 @@
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-backdrop.tsx"
     },
     {
+      "id": "2025",
+      "name": "MuiPopover",
+      "category": "Overlay",
+      "subcategory": "MuiPopover",
+      "source": "mui",
+      "file": "mui-popover.tsx",
+      "exists": true,
+      "code": "/**\n * MuiPopover\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Açılır içerik — tetikleyiciye bağlı küçük panel.\n *   <MuiPopover trigger={<button>…</button>}>…içerik…</MuiPopover>\n * trigger · placement: top/bottom/left/right · width\n * @id 2025\n * @category Overlay\n * @subcategory MuiPopover\n * @source mui\n */\nimport { useState, type ReactNode, type MouseEvent } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface MuiPopoverProps {\n  trigger?: ReactNode\n  placement?: \"top\" | \"bottom\" | \"left\" | \"right\"\n  width?: number\n  className?: string\n  children?: ReactNode\n}\n\nconst POS: Record<string, string> = {\n  bottom: \"top-full mt-2 left-0\",\n  top: \"bottom-full mb-2 left-0\",\n  left: \"right-full mr-2 top-0\",\n  right: \"left-full ml-2 top-0\",\n}\n\nfunction MuiPopover({ trigger = \"Aç\", placement = \"bottom\", width = 280, className, children }: MuiPopoverProps) {\n  const [open, setOpen] = useState(false)\n  const [anchor, setAnchor] = useState<DOMRect | null>(null)\n\n  const openAt = (e: MouseEvent<HTMLElement>) => {\n    setAnchor(e.currentTarget.getBoundingClientRect())\n    setOpen((o) => !o)\n  }\n\n  return (\n    <div className={cn(\"relative inline-flex\", className)}>\n      <span onClick={openAt} aria-haspopup=\"dialog\" aria-expanded={open}>\n        {trigger}\n      </span>\n      {open && anchor && (\n        <div className=\"fixed z-50\" style={{ left: anchor.left, top: anchor.top }}>\n          <div\n            role=\"dialog\"\n            className={cn(\n              \"absolute rounded-lg border border-gray-200 bg-white p-3 shadow-xl\",\n              POS[placement]\n            )}\n            style={{ width: `${width}px` }}\n          >\n            {children}\n          </div>\n        </div>\n      )}\n    </div>\n  )\n}\n\nexport { MuiPopover }\nexport type { MuiPopoverProps }\n",
+      "description": "MuiPopover",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-popover.tsx"
+    },
+    {
+      "id": "2029",
+      "name": "MuiPopoverBasic",
+      "category": "Overlay",
+      "subcategory": "MuiPopover",
+      "source": "mui",
+      "file": "mui-popover-basic.tsx",
+      "exists": true,
+      "code": "/**\n * MuiPopoverBasic\n * @id 2029\n * @category Overlay\n * @subcategory MuiPopover\n * @source mui\n */\nimport { MuiPopover } from \"@/components/ui/mui-popover\"\nimport { MuiButton } from \"@/components/ui/mui-button\"\n\nfunction MuiPopoverBasic() {\n  return (\n    <MuiPopover\n      trigger={<MuiButton variant=\"outlined\">Popover Aç</MuiButton>}\n      placement=\"bottom\"\n    >\n      <p className=\"font-medium text-gray-900\">Bu bir popover</p>\n      <p className=\"mt-1 text-xs text-gray-500\">Tetikleyiciye bağlı açılır içerik. Dışarıya tıklayınca kapanmaz, tekrar tıklayınca kapanır.</p>\n    </MuiPopover>\n  )\n}\n\nexport { MuiPopoverBasic }\n",
+      "description": "MuiPopoverBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-popover-basic.tsx"
+    },
+    {
+      "id": "2026",
+      "name": "MuiModal",
+      "category": "Overlay",
+      "subcategory": "MuiModal",
+      "source": "mui",
+      "file": "mui-modal.tsx",
+      "exists": true,
+      "code": "/**\n * MuiModal\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Modal — merkezde içerik, arka plan karartmalı.\n *   <MuiModal open={open} onClose={h} title=\"…\">…</MuiModal>\n * open · onClose · title · maxWidth\n * @id 2026\n * @category Overlay\n * @subcategory MuiModal\n * @source mui\n */\nimport { type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { X } from \"@/components/ui/icons\"\n\ninterface MuiModalProps {\n  open?: boolean\n  onClose?: () => void\n  title?: ReactNode\n  maxWidth?: number\n  className?: string\n  children?: ReactNode\n}\n\nfunction MuiModal({ open = false, onClose, title, maxWidth = 480, className, children }: MuiModalProps) {\n  if (!open) return null\n  return (\n    <div className=\"fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4\" onClick={onClose} role=\"presentation\">\n      <div\n        role=\"dialog\"\n        aria-modal=\"true\"\n        onClick={(e) => e.stopPropagation()}\n        className={cn(\"rounded-lg bg-white text-gray-900 shadow-2xl\", className)}\n        style={{ maxWidth: `${maxWidth}px`, width: \"100%\" }}\n      >\n        {title && (\n          <div className=\"flex items-center justify-between border-b border-gray-200 px-5 py-3\">\n            <h2 className=\"text-lg font-semibold\">{title}</h2>\n            <button type=\"button\" aria-label=\"Kapat\" onClick={onClose} className=\"rounded p-1 text-gray-500 hover:bg-gray-100\">\n              <X className=\"size-5\" />\n            </button>\n          </div>\n        )}\n        <div className=\"p-5 text-sm text-gray-700\">{children}</div>\n      </div>\n    </div>\n  )\n}\n\nexport { MuiModal }\nexport type { MuiModalProps }\n",
+      "description": "MuiModal",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-modal.tsx"
+    },
+    {
+      "id": "2030",
+      "name": "MuiModalBasic",
+      "category": "Overlay",
+      "subcategory": "MuiModal",
+      "source": "mui",
+      "file": "mui-modal-basic.tsx",
+      "exists": true,
+      "code": "/**\n * MuiModalBasic\n * @id 2030\n * @category Overlay\n * @subcategory MuiModal\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiModal } from \"@/components/ui/mui-modal\"\nimport { MuiButton } from \"@/components/ui/mui-button\"\n\nfunction MuiModalBasic() {\n  const [open, setOpen] = useState(false)\n  return (\n    <div>\n      <MuiButton variant=\"contained\" onClick={() => setOpen(true)}>Modal Aç</MuiButton>\n      <MuiModal open={open} onClose={() => setOpen(false)} title=\"Bilgi\">\n        <p>Bu, arka planı karartılmış bir modal örneğidir. İçerik merkezde gösterilir.</p>\n        <div className=\"mt-4 flex justify-end\">\n          <MuiButton variant=\"contained\" onClick={() => setOpen(false)}>Kapat</MuiButton>\n        </div>\n      </MuiModal>\n    </div>\n  )\n}\n\nexport { MuiModalBasic }\n",
+      "description": "MuiModalBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-modal-basic.tsx"
+    },
+    {
       "id": "432",
       "name": "Modal",
       "category": "Overlay",
@@ -10046,6 +10094,54 @@
       "code": "/**\n * MuiTimelineBasic\n * @id 2004\n * @category Navigasyon\n * @subcategory MuiTimeline\n * @source mui\n */\nimport { MuiTimeline } from \"@/components/ui/mui-timeline\"\n\nfunction MuiTimelineBasic() {\n  return (\n    <MuiTimeline\n      items={[\n        { title: \"Sipariş Alındı\", time: \"09:00\", description: \"Siparişiniz sisteme kaydedildi.\" },\n        { title: \"Hazırlanıyor\", time: \"10:30\", description: \"Ürününüz paketleniyor.\" },\n        { title: \"Kargoya Verildi\", time: \"14:00\", description: \"Kargo firmasına teslim edildi.\" },\n        { title: \"Teslim Edildi\", time: \"16:45\", description: \"Paketiniz adresinize ulaştı.\" },\n      ]}\n    />\n  )\n}\n\nexport { MuiTimelineBasic }\n",
       "description": "MuiTimelineBasic",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-timeline-basic.tsx"
+    },
+    {
+      "id": "2027",
+      "name": "MuiLink",
+      "category": "Navigasyon",
+      "subcategory": "MuiLink",
+      "source": "mui",
+      "file": "mui-link.tsx",
+      "exists": true,
+      "code": "/**\n * MuiLink\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Bağlantı — altı çizili tıklanabilir metin.\n *   <MuiLink href=\"#\" underline=\"hover\">Metin</MuiLink>\n * href · underline: none/hover/always · color: primary/secondary · onClick\n * @id 2027\n * @category Navigasyon\n * @subcategory MuiLink\n * @source mui\n */\nimport { type AnchorHTMLAttributes, type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface MuiLinkProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, \"color\"> {\n  underline?: \"none\" | \"hover\" | \"always\"\n  color?: \"primary\" | \"secondary\" | \"inherit\"\n}\n\nfunction MuiLink({ underline = \"hover\", color = \"primary\", className, children, ...rest }: MuiLinkProps) {\n  return (\n    <a\n      className={cn(\n        \"cursor-pointer\",\n        color === \"primary\" ? \"text-blue-600\" : color === \"secondary\" ? \"text-purple-600\" : \"text-current\",\n        underline === \"hover\" && \"hover:underline\",\n        underline === \"always\" && \"underline\",\n        className\n      )}\n      {...rest}\n    >\n      {children}\n    </a>\n  )\n}\n\nexport { MuiLink }\nexport type { MuiLinkProps }\n",
+      "description": "MuiLink",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-link.tsx"
+    },
+    {
+      "id": "2031",
+      "name": "MuiLinkBasic",
+      "category": "Navigasyon",
+      "subcategory": "MuiLink",
+      "source": "mui",
+      "file": "mui-link-basic.tsx",
+      "exists": true,
+      "code": "/**\n * MuiLinkBasic\n * @id 2031\n * @category Navigasyon\n * @subcategory MuiLink\n * @source mui\n */\nimport { MuiLink } from \"@/components/ui/mui-link\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiLinkBasic() {\n  return (\n    <MuiStack direction=\"row\" spacing={4} className=\"flex-wrap\">\n      <MuiLink href=\"#\" underline=\"hover\">Hover'da alt çizgi</MuiLink>\n      <MuiLink href=\"#\" underline=\"always\">Her zaman alt çizgi</MuiLink>\n      <MuiLink href=\"#\" underline=\"none\">Alt çizgisiz</MuiLink>\n      <MuiLink href=\"#\" color=\"secondary\">Secondary</MuiLink>\n    </MuiStack>\n  )\n}\n\nexport { MuiLinkBasic }\n",
+      "description": "MuiLinkBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-link-basic.tsx"
+    },
+    {
+      "id": "2028",
+      "name": "MuiBottomNavigation",
+      "category": "Navigasyon",
+      "subcategory": "MuiBottomNavigation",
+      "source": "mui",
+      "file": "mui-bottom-navigation.tsx",
+      "exists": true,
+      "code": "/**\n * MuiBottomNavigation\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Alt navigasyon — mobil tarzı sekmeler.\n *   <MuiBottomNavigation items={[{label, icon?}]} />\n * items · value/defaultValue · onChange · showLabels\n * @id 2028\n * @category Navigasyon\n * @subcategory MuiBottomNavigation\n * @source mui\n */\nimport { useState, type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface MuiBottomNavigationItem {\n  label: ReactNode\n  icon?: ReactNode\n}\n\ninterface MuiBottomNavigationProps {\n  items?: MuiBottomNavigationItem[]\n  value?: number\n  defaultValue?: number\n  onChange?: (index: number) => void\n  showLabels?: boolean\n  className?: string\n}\n\nfunction MuiBottomNavigation({\n  items = [\n    { label: \"Ana Sayfa\", icon: <span>🏠</span> },\n    { label: \"Arama\", icon: <span>🔍</span> },\n    { label: \"Favoriler\", icon: <span>⭐</span> },\n  ],\n  value,\n  defaultValue = 0,\n  onChange,\n  showLabels = true,\n  className,\n}: MuiBottomNavigationProps) {\n  const [internal, setInternal] = useState(defaultValue)\n  const active = value ?? internal\n  return (\n    <nav aria-label=\"Alt navigasyon\" className={cn(\"flex w-full max-w-md overflow-hidden rounded-t-lg border-t border-gray-200 bg-white\", className)}>\n      {items.map((item, i) => (\n        <button\n          key={i}\n          type=\"button\"\n          onClick={() => {\n            setInternal(i)\n            if (onChange) onChange(i)\n          }}\n          className={cn(\n            \"flex flex-1 flex-col items-center gap-0.5 py-2 text-xs transition-colors\",\n            i === active ? \"text-blue-600\" : \"text-gray-500 hover:text-gray-800\"\n          )}\n        >\n          {item.icon && <span className=\"text-lg leading-none\">{item.icon}</span>}\n          {showLabels && <span className=\"font-medium\">{item.label}</span>}\n        </button>\n      ))}\n    </nav>\n  )\n}\n\nexport { MuiBottomNavigation }\nexport type { MuiBottomNavigationProps, MuiBottomNavigationItem }\n",
+      "description": "MuiBottomNavigation",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-bottom-navigation.tsx"
+    },
+    {
+      "id": "2032",
+      "name": "MuiBottomNavigationBasic",
+      "category": "Navigasyon",
+      "subcategory": "MuiBottomNavigation",
+      "source": "mui",
+      "file": "mui-bottom-navigation-basic.tsx",
+      "exists": true,
+      "code": "/**\n * MuiBottomNavigationBasic\n * @id 2032\n * @category Navigasyon\n * @subcategory MuiBottomNavigation\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiBottomNavigation } from \"@/components/ui/mui-bottom-navigation\"\nimport { Home, Search, Heart } from \"@/components/ui/icons\"\n\nfunction MuiBottomNavigationBasic() {\n  const [value, setValue] = useState(0)\n  return (\n    <div className=\"w-full max-w-md\">\n      <MuiBottomNavigation\n        value={value}\n        onChange={setValue}\n        items={[\n          { label: \"Ana Sayfa\", icon: <Home className=\"size-5\" /> },\n          { label: \"Arama\", icon: <Search className=\"size-5\" /> },\n          { label: \"Favoriler\", icon: <Heart className=\"size-5\" /> },\n        ]}\n      />\n      <p className=\"mt-2 text-center text-xs text-gray-500\">Aktif: {value}</p>\n    </div>\n  )\n}\n\nexport { MuiBottomNavigationBasic }\n",
+      "description": "MuiBottomNavigationBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-bottom-navigation-basic.tsx"
     },
     {
       "id": "484",
