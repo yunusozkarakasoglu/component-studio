@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-10T15:55:38.160Z",
+  "generatedAt": "2026-08-10T15:57:43.662Z",
   "counts": {
-    "components": 1827,
-    "ready": 1827,
+    "components": 1832,
+    "ready": 1832,
     "layouts": 0
   },
   "categories": [
@@ -21950,6 +21950,66 @@
       "code": "/**\n * MtAppShellAside\n * Yan paneli (aside) olan kabuk (saf React, Mantine kaynaklı).\n * @id 1844\n * @category Özel Komponentler\n * @subcategory MtAppShell\n * @source mantine\n */\nimport { MtAppShell, MtAppShellAside, MtAppShellHeader, MtAppShellMain } from \"@/components/ui/mt-app-shell\"\n\nfunction MtAppShellAsideDemo() {\n  return (\n    <MtAppShell className=\"h-80\">\n      <MtAppShellHeader>\n        <span className=\"font-semibold text-foreground\">Editör</span>\n      </MtAppShellHeader>\n      <div className=\"flex min-h-0 flex-1\">\n        <MtAppShellMain>\n          <h2 className=\"mb-2 text-lg font-semibold text-foreground\">Belge</h2>\n          <p className=\"text-sm text-muted-foreground\">\n            Ana içerik alanı — belgeyi burada düzenleyin. Sağdaki aside bölümü özellikleri gösterir.\n          </p>\n        </MtAppShellMain>\n        <MtAppShellAside>\n          <p className=\"text-xs font-semibold uppercase text-muted-foreground\">Özellikler</p>\n          <div className=\"mt-2 space-y-1 text-sm text-foreground\">\n            <p>Yazı tipi: Inter</p>\n            <p>Boyut: 16px</p>\n            <p>Renk: #0f172a</p>\n          </div>\n        </MtAppShellAside>\n      </div>\n    </MtAppShell>\n  )\n}\n\nexport { MtAppShellAsideDemo }\n",
       "description": "MtAppShellAside",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mt-app-shell-aside-demo.tsx"
+    },
+    {
+      "id": "1920",
+      "name": "MuiAlertAction",
+      "category": "Alert & Dialog",
+      "subcategory": "MuiAlert",
+      "source": "mui",
+      "file": "mui-alert-action.tsx",
+      "exists": true,
+      "code": "/**\n * MuiAlertAction\n * @id 1920\n * @category Alert & Dialog\n * @subcategory MuiAlert\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiAlert } from \"@/components/ui/mui-alert\"\nimport { MuiButton } from \"@/components/ui/mui-button\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiAlertAction() {\n  const [visible, setVisible] = useState(true)\n  if (!visible) {\n    return (\n      <MuiButton variant=\"outlined\" onClick={() => setVisible(true)}>Tekrar Göster</MuiButton>\n    )\n  }\n  return (\n    <MuiStack spacing={2} className=\"w-full\">\n      <MuiAlert\n        severity=\"info\"\n        onClose={() => setVisible(false)}\n        action={\n          <MuiButton variant=\"text\" size=\"small\" color=\"info\" onClick={() => setVisible(false)}>\n            GERİ AL\n          </MuiButton>\n        }\n      >\n        Kapatılabilir uyarı — GERİ AL aksiyonu ile.\n      </MuiAlert>\n    </MuiStack>\n  )\n}\n\nexport { MuiAlertAction }\n",
+      "description": "Özel bileşen",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-alert-action.tsx"
+    },
+    {
+      "id": "1918",
+      "name": "MuiAlertBasic",
+      "category": "Alert & Dialog",
+      "subcategory": "MuiAlert",
+      "source": "mui",
+      "file": "mui-alert-basic.tsx",
+      "exists": true,
+      "code": "/**\n * MuiAlertBasic\n * @id 1918\n * @category Alert & Dialog\n * @subcategory MuiAlert\n * @source mui\n */\nimport { MuiAlert } from \"@/components/ui/mui-alert\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiAlertBasic() {\n  return (\n    <MuiStack spacing={2} className=\"w-full\">\n      <MuiAlert severity=\"success\">Bu bir başarı uyarısı.</MuiAlert>\n      <MuiAlert severity=\"info\">Bu bir bilgi uyarısı.</MuiAlert>\n      <MuiAlert severity=\"warning\">Bu bir uyarı mesajı.</MuiAlert>\n      <MuiAlert severity=\"error\">Bu bir hata uyarısı.</MuiAlert>\n    </MuiStack>\n  )\n}\n\nexport { MuiAlertBasic }\n",
+      "description": "Özel bileşen",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-alert-basic.tsx"
+    },
+    {
+      "id": "1921",
+      "name": "MuiAlertDescription",
+      "category": "Alert & Dialog",
+      "subcategory": "MuiAlert",
+      "source": "mui",
+      "file": "mui-alert-description.tsx",
+      "exists": true,
+      "code": "/**\n * MuiAlertDescription\n * @id 1921\n * @category Alert & Dialog\n * @subcategory MuiAlert\n * @source mui\n */\nimport { MuiAlert } from \"@/components/ui/mui-alert\"\n\nfunction MuiAlertDescription() {\n  return (\n    <MuiAlert severity=\"error\" className=\"w-full\">\n      <p className=\"font-semibold\">Bu kritik bir hata</p>\n      <p className=\"mt-1 text-xs opacity-80\">\n        İşlem başarısız oldu. Lütfen bağlantınızı kontrol edin ve tekrar deneyin. Detaylı açıklama\n        bu alanda gösterilir.\n      </p>\n    </MuiAlert>\n  )\n}\n\nexport { MuiAlertDescription }\n",
+      "description": "Özel bileşen",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-alert-description.tsx"
+    },
+    {
+      "id": "1919",
+      "name": "MuiAlertVariants",
+      "category": "Alert & Dialog",
+      "subcategory": "MuiAlert",
+      "source": "mui",
+      "file": "mui-alert-variants.tsx",
+      "exists": true,
+      "code": "/**\n * MuiAlertVariants\n * @id 1919\n * @category Alert & Dialog\n * @subcategory MuiAlert\n * @source mui\n */\nimport { MuiAlert } from \"@/components/ui/mui-alert\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiAlertVariants() {\n  return (\n    <MuiStack spacing={2} className=\"w-full\">\n      <MuiAlert severity=\"success\" variant=\"standard\">standard varyant</MuiAlert>\n      <MuiAlert severity=\"success\" variant=\"filled\">filled varyant</MuiAlert>\n      <MuiAlert severity=\"success\" variant=\"outlined\">outlined varyant</MuiAlert>\n    </MuiStack>\n  )\n}\n\nexport { MuiAlertVariants }\n",
+      "description": "Özel bileşen",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-alert-variants.tsx"
+    },
+    {
+      "id": "1917",
+      "name": "MuiAlert",
+      "category": "Alert & Dialog",
+      "subcategory": "MuiAlert",
+      "source": "mui",
+      "file": "mui-alert.tsx",
+      "exists": true,
+      "code": "/**\n * MuiAlert\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Uyarı bildirimi — duruma göre renkli bilgi kutusu.\n *   <MuiAlert severity=\"success\">İşlem başarılı</MuiAlert>\n * severity: success | info | warning | error\n * variant: standard (varsayılan) | filled | outlined\n * action: sağda özel aksiyon (ör. kapatma butonu) · icon: özel ikon\n * @id 1917\n * @category Alert & Dialog\n * @subcategory MuiAlert\n * @source mui\n */\nimport { type ReactNode } from \"react\"\nimport { cn } from \"@/lib/utils\"\nimport { CheckCircle, Info, AlertTriangle, AlertOctagon, X } from \"@/components/ui/icons\"\n\ninterface MuiAlertProps {\n  severity?: \"success\" | \"info\" | \"warning\" | \"error\"\n  variant?: \"standard\" | \"filled\" | \"outlined\"\n  action?: ReactNode\n  icon?: ReactNode\n  onClose?: () => void\n  className?: string\n  children?: ReactNode\n}\n\nconst SEVERITY: Record<string, { icon: ReactNode; standard: string; filled: string; outlined: string }> = {\n  success: {\n    icon: <CheckCircle className=\"size-5\" />,\n    standard: \"bg-green-50 text-green-900\",\n    filled: \"bg-green-600 text-white\",\n    outlined: \"border border-green-400 bg-green-50 text-green-900\",\n  },\n  info: {\n    icon: <Info className=\"size-5\" />,\n    standard: \"bg-sky-50 text-sky-900\",\n    filled: \"bg-sky-600 text-white\",\n    outlined: \"border border-sky-400 bg-sky-50 text-sky-900\",\n  },\n  warning: {\n    icon: <AlertTriangle className=\"size-5\" />,\n    standard: \"bg-amber-50 text-amber-900\",\n    filled: \"bg-amber-600 text-white\",\n    outlined: \"border border-amber-400 bg-amber-50 text-amber-900\",\n  },\n  error: {\n    icon: <AlertOctagon className=\"size-5\" />,\n    standard: \"bg-red-50 text-red-900\",\n    filled: \"bg-red-600 text-white\",\n    outlined: \"border border-red-400 bg-red-50 text-red-900\",\n  },\n}\n\nfunction MuiAlert({\n  severity = \"success\",\n  variant = \"standard\",\n  action,\n  icon,\n  onClose,\n  className,\n  children,\n}: MuiAlertProps) {\n  const s = SEVERITY[severity]\n  const bg = variant === \"filled\" ? s.filled : variant === \"outlined\" ? s.outlined : s.standard\n  return (\n    <div role=\"alert\" className={cn(\"flex w-full items-start gap-2 rounded-lg px-4 py-3 text-sm\", bg, className)}>\n      <span aria-hidden className=\"mt-0.5 shrink-0\">{icon ?? s.icon}</span>\n      <div className=\"flex-1\">{children}</div>\n      {action}\n      {onClose && (\n        <button\n          type=\"button\"\n          aria-label=\"Kapat\"\n          onClick={onClose}\n          className=\"shrink-0 rounded p-0.5 opacity-70 transition-opacity hover:opacity-100\"\n        >\n          <X className=\"size-4\" />\n        </button>\n      )}\n    </div>\n  )\n}\n\nexport { MuiAlert }\nexport type { MuiAlertProps }\n",
+      "description": "Özel bileşen",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-alert.tsx"
     }
   ],
   "layouts": []

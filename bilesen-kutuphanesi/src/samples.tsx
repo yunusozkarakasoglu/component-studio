@@ -1889,4 +1889,9 @@ export const SAMPLES: Record<string, ReactNode> = {
   "1914": <U.MuiButtonGroupVariants />,
   "1915": <U.MuiFabSizes />,
   "1916": <U.MuiSpeedDialBasic />,
+  "1917": <U.MuiAlert />,
+  "1918": <U.MuiAlertBasic />,
+  "1919": <U.MuiAlertVariants />,
+  "1920": <U.MuiAlertAction />,
+  "1921": <U.MuiAlertDescription />,
 }
