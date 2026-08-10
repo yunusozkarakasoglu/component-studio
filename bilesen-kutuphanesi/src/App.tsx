@@ -892,7 +892,7 @@ export default function Studio() {
                 </select>
               )}
               <div className="flex gap-1 rounded-lg border border-black/25 bg-muted/30 p-0.5">
-                {([["tumu", "Tümü"], ["heroui", "HeroUI"], ["mantine", "Mantine"], ["shadcn", "shadcn"], ["ozel", "Özel"]] as const).map(([v, l]) => (
+                {([["tumu", "Tümü"], ["heroui", "HeroUI"], ["mantine", "Mantine"], ["shadcn", "shadcn"], ["mui", "MUI"], ["ozel", "Özel"]] as const).map(([v, l]) => (
                   <button key={v} onClick={() => setSource(v)}
                     className={cn("rounded-md px-2 py-1 text-[11px] font-medium transition-colors",
                       source === v ? "bg-blue-600 text-white" : "text-foreground hover:bg-muted")}>
@@ -946,6 +946,7 @@ export default function Studio() {
                             (c.source ?? "heroui") === "shadcn" ? "bg-emerald-500/15 text-emerald-700"
                             : (c.source ?? "heroui") === "ozel" ? "bg-purple-500/15 text-purple-700"
                             : (c.source ?? "heroui") === "mantine" ? "bg-orange-500/15 text-orange-700"
+                            : (c.source ?? "heroui") === "mui" ? "bg-sky-500/15 text-sky-700"
                             : "bg-blue-500/15 text-blue-700")}>
                             {c.source ?? "heroui"}
                           </span>
