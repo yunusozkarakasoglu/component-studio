@@ -73,14 +73,40 @@ Adım 10 Takvim (1587-1764: 16 dates element, saf Intl) → Adım 11 Özel (1765
 - **Plan:** `PLAN-LAYOUT-TEMALARI.md` (Tema 3-8 ✅) · akış: `GOREV-AKISI-LAYOUT.md`
 - **Not:** senkron kaynaktan (styles.css) yapılınca Tema 1 kenarlık özelleştirmesi (--border #eef2f8) tekrar uygulanmalı
 
+### GitHub yayını (commit `d3e93be` + `d8731b6`)
+- Repo: `yunusozkarakasoglu/component-studio` (PUBLIC) · `gh auth` tamam
+- Kullanım: `npm install yunusozkarakasoglu/component-studio` → bileşen dosya yoluyla kopyala
+
+### Stüdyo hata düzeltmeleri (commit `7ac0b05`)
+- **Boş beyaz kutu hatası**: `MtFloatingWindow` (#1771) gibi `position:absolute` kullanan bileşenler,
+  kart kapsayıcısında `position:relative` olmadığı için viewport köşesine (top:24,left:24) kaçıyordu →
+  sol üstte boş beyaz kutu beliriyordu. Kart kapsayıcısı + preview alanına `relative` eklendi;
+  artık tüm absolute/fixed elementler (popover/tooltip/modal/floating) kart içine hapsoluyor.
+
+### Performans optimizasyonu (commit `c812a64` + `2f841ff`)
+- **Adım 1 — Sanal liste UYGULANDI**: `src/lib/useVirtualGrid.ts` (bağımlılıksız saf React hook).
+  Bileşenler sekmesindeki 1754 kartın tamamı tek seferde render edilince DOM 32.371 node'a çıkıyordu.
+  Artık yalnızca görünür alan (+ 4 satır tampon) render ediliyor:
+  **DOM 32.371 → 1.195 (%96 azalma)** · render kart 1.754 → 60 · scroll'da dinamik yükleme.
+  Hook dinamik (`itemCount=filtered.length`) → yeni bileşen eklenince otomatik çalışır.
+- **Adım 2-4 beklemede** (`PERFORMANS-OPTIMIZASYON-PLANI.md`): samples.tsx lazy loading,
+  React.memo + debounce, Vite manualChunks — production öncesi denetlenecek. Öncelik: Adım 4 > 3 > 2.
+
 ## 📊 Güncel Durum (son kontrol)
 
 - **1755 bileşen** · heroui 527 · shadcn 387 · **mantine 841** · 0 çift kayıt
 - **8 layout teması** (src/layouts/, Layoutlar sekmesi) — Tema seti tamam
+- **GitHub:** `yunusozkarakasoglu/component-studio` PUBLIC
+- **Performans:** Bileşenler sekmesi sanal liste (DOM %96 azaldı)
 - tsc ✓ · npm test 15/15 ✓ · `tests/kapsamli-kontrol.py` → **20 OK · 2 uyarı · 0 HATA**
-- Son commit: `54c9bec` (Tema 8 — Form Sihirbazı) — çalışma dizini temiz
+- Son commit: `2f841ff` (Performans optimizasyon planı) — çalışma dizini temiz
 
 ## ⬜ Bekleyen
+
+### Performans optimizasyonu (PERFORMANS-OPTIMIZASYON-PLANI.md) — production öncesi
+- **Adım 4** (öncelik) — Vite manualChunks: `icons`/`ui`/`vendor` ayrı chunk + production build analizi
+- **Adım 3** — Kart `React.memo` + arama 200ms debounce
+- **Adım 2** — samples.tsx lazy loading (3 seçenekli: tam lazy / kısmi lazy / atla — risk analizi plan dosyasında)
 
 ### Layout temaları
 - Kullanıcı istediğinde yeni tema (Tema 9+) — kaynak: `Masaüstü/Layouts` (5174) → `GOREV-AKISI-LAYOUT.md` akışı
@@ -89,6 +115,10 @@ Adım 10 Takvim (1587-1764: 16 dates element, saf Intl) → Adım 11 Özel (1765
 ### Stüdyo (SIHIRBAZ-NOT.md)
 - Bekleyen kayıt tamamlama akışı (sol panel görünürlüğü — sol panel kaldırıldı, güncellenecek)
 - Kütüphane modu tam test (Pi'ye Bağla)
+
+### GitHub senkronu
+- Stüdyo düzeltmeleri (boş kutu + sanal liste + plan dokümanları) GitHub'a yansıtılmadı —
+  `yayinla.sh` veya `git push` ile gönderilmeli
 
 ## ⚠️ Önemli Tuzaklar (compact sonrası hatırlatma)
 
