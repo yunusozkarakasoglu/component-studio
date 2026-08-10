@@ -970,6 +970,27 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `482` MenuLongPress
 - `483` MenuWithKeyboardShortcuts
 ### Navigasyon
+#### MuiMenu
+- `1991` MuiMenu
+- `1992` MuiMenuBasic
+#### MuiAppBar
+- `1993` MuiAppBar
+- `1999` MuiAppBarBasic
+#### MuiBreadcrumbs
+- `1994` MuiBreadcrumbs
+- `2000` MuiBreadcrumbsBasic
+#### MuiPagination
+- `1995` MuiPagination
+- `2001` MuiPaginationBasic
+#### MuiTabs
+- `1996` MuiTabs
+- `2002` MuiTabsBasic
+#### MuiStepper
+- `1997` MuiStepper
+- `2003` MuiStepperBasic
+#### MuiTimeline
+- `1998` MuiTimeline
+- `2004` MuiTimelineBasic
 #### Pagination
 - `484` Pagination
 - `485` PaginationBasic
@@ -2363,7 +2384,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1843` MtAppShellUsage
 - `1844` MtAppShellAsideDemo
 
-**Toplam: 1901 bileşen (saf React)**
+**Toplam: 1915 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
