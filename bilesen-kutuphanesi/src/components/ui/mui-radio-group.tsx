@@ -15,7 +15,7 @@ import { MuiRadio } from "@/components/ui/mui-radio"
 
 interface MuiRadioGroupProps {
   label?: ReactNode
-  options: { value: string; label: ReactNode; disabled?: boolean }[]
+  options?: { value: string; label: ReactNode; disabled?: boolean }[]
   defaultValue?: string
   value?: string
   onChange?: (value: string) => void
@@ -24,7 +24,7 @@ interface MuiRadioGroupProps {
   className?: string
 }
 
-function MuiRadioGroup({ label, options, defaultValue, value, onChange, row = false, color = "primary", className }: MuiRadioGroupProps) {
+function MuiRadioGroup({ label, options = [{ value: "a", label: "Seçenek A" }, { value: "b", label: "Seçenek B" }], defaultValue, value, onChange, row = false, color = "primary", className }: MuiRadioGroupProps) {
   const [internal, setInternal] = useState<string | undefined>(defaultValue)
   const active = value ?? internal
   return (
