@@ -4,7 +4,6 @@
  * Hiyerarşik veriyi sütunlar halinde gezinme (dosya yöneticisi tarzı).
  * @id 089
  * @category Özel Komponentler
- * @tags 
  */
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from "react"
 

@@ -287,7 +287,8 @@ Kurallar: 1) Çalışma klasörü src/workbench/current/ — index.tsx'e tek dos
             }
             writeFileSync(target, out, "utf8")
             res.setHeader("Content-Type", "application/json")
-            res.end(JSON.stringify({ ok: true }))
+            // İşlenmiş (tags güncellenmiş) kodu geri döndür — App state'e bunu yazar
+            res.end(JSON.stringify({ ok: true, code: out }))
           } catch (e: unknown) {
             res.statusCode = 500
             res.end(JSON.stringify({ ok: false, error: String((e as Error).message || e) }))

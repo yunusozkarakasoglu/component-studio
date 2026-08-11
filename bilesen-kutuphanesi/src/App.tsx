@@ -443,7 +443,7 @@ function EditorModal({
   initialCode: string; preview: ReactNode
   absPath: string; category: string; kind: "component" | "layout"
   registry: { components: CompRecord[]; categories?: string[] } | null
-  onClose: () => void; onSaved: (tags?: string[]) => Promise<void> | void
+  onClose: () => void; onSaved: (tags?: string[], code?: string) => Promise<void> | void
   isFav?: boolean; onToggleFav?: () => void
 }) {
   const [promptOpen, setPromptOpen] = useState(false)
@@ -485,16 +485,21 @@ function EditorModal({
   const save = async () => {
     setSaving(true); setStatus("")
     try {
+      // DOM'daki input değerini oku (state gecikmesi/otomasyon farkına karşı güvenli)
+      const domInput = document.getElementById("comp-tags") as HTMLInputElement | null
+      const effectiveTags = domInput ? domInput.value : tagsText
       const r = await fetch("/api/save-component", {
         method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ file, code, dir, tags: tagsText }),
+        body: JSON.stringify({ file, code, dir, tags: effectiveTags }),
       })
       const j = await r.json()
       if (!j.ok) { setStatus("✗ Hata: " + (j.error || "bilinmeyen")); setSaving(false); return }
       // 1) Dosya yazıldı → 2) state'e anında yansıt (rebuild'i beklemeden) → 3) rebuild arka planda
       setStatus("✓ Kaydedildi — etiketler güncellendi")
-      const tagList = tagsText.split(/[,\s]+/).map((t) => t.trim()).filter(Boolean)
-      onSaved(tagList)
+      setTagsText(effectiveTags)
+      const tagList = effectiveTags.split(/[,\s]+/).map((t) => t.trim()).filter(Boolean)
+      // API'nin döndürdüğü İŞLENMİŞ kodu kullan (tags güncellenmiş) — eski code state'i değil
+      onSaved(tagList, (j.code as string) ?? code)
       // Arka planda kayıt defterini yenile (91sn sürebilir; sonraki açılışta taze)
       fetch("/api/rebuild-registry", { method: "POST" }).catch(() => {})
     } catch (e) {
@@ -781,21 +786,16 @@ export default function Studio() {
     location.reload()
   }
   // Kayıt sonrası state'i anında merge et (rebuild 91sn sürdüğü için beklemeden arama çalışsın)
-  const mergeSaved = (savedId: string, savedTags: string[]) => {
+  const mergeSaved = (savedId: string, savedTags: string[], savedCode: string) => {
     setRegistry((prev) => {
       if (!prev) return prev
       return {
         ...prev,
         components: prev.components.map((c) =>
-          c.id === savedId ? { ...c, tags: savedTags } : c
+          c.id === savedId ? { ...c, tags: savedTags, code: savedCode } : c
         ),
       }
     })
-    // Arka planda registry.json'u tazele (sonraki açılışta tam güncel) — beklemeden
-    fetch(`/registry.json?t=${Date.now()}`, { cache: "no-store" })
-      .then((r) => r.json())
-      .then((data) => setRegistry(data))
-      .catch(() => {})
   }
 
   useEffect(() => {
@@ -1135,10 +1135,10 @@ export default function Studio() {
           category={edit.rec.category}
           kind="component"
           onClose={() => setEdit(null)}
-          onSaved={(tags) => {
+          onSaved={(tags, code) => {
             if (!edit) return
-            // Kaydet'ten geldi (tags array, boş dahil) → anında merge; rebuild'ten geldi (undefined) → taze çek
-            if (tags !== undefined) mergeSaved(edit.rec.id, tags)
+            // Kaydet'ten geldi (tags array, boş dahil) → anında merge (code dahil — detay tekrar açılınca güncel)
+            if (tags !== undefined) mergeSaved(edit.rec.id, tags, code ?? edit.rec.code)
             else {
               fetch(`/registry.json?t=${Date.now()}`, { cache: "no-store" })
                 .then((r) => r.json())
