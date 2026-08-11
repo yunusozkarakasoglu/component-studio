@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-11T00:00:38.169Z",
+  "generatedAt": "2026-08-11T00:05:56.224Z",
   "counts": {
-    "components": 1949,
-    "ready": 1949,
+    "components": 1954,
+    "ready": 1954,
     "layouts": 0
   },
   "categories": [
@@ -8476,6 +8476,42 @@
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-slider-minimum-distance.tsx"
     },
     {
+      "id": "2039",
+      "name": "MuiSliderNonLinear",
+      "category": "Seçim",
+      "subcategory": "MuiSlider",
+      "source": "mui",
+      "file": "mui-slider-non-linear.tsx",
+      "exists": true,
+      "code": "/**\n * MuiSliderNonLinear\n * @id 2039\n * @category Seçim\n * @subcategory MuiSlider\n * @source mui\n */\nimport { MuiSlider } from \"@/components/ui/mui-slider\"\n\nfunction MuiSliderNonLinear() {\n  return (\n    <div className=\"w-full max-w-sm\">\n      <MuiSlider defaultValue={2000} min={0} max={10000} step={100} ariaLabel=\"Doğrusal olmayan\" />\n      <p className=\"mt-2 text-xs text-gray-500\">Basit adımlı (0-10000, 100 birim) örnek.</p>\n    </div>\n  )\n}\n\nexport { MuiSliderNonLinear }\n",
+      "description": "MuiSliderNonLinear",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-slider-non-linear.tsx"
+    },
+    {
+      "id": "2040",
+      "name": "MuiSliderInput",
+      "category": "Seçim",
+      "subcategory": "MuiSlider",
+      "source": "mui",
+      "file": "mui-slider-input.tsx",
+      "exists": true,
+      "code": "/**\n * MuiSliderInput\n * @id 2040\n * @category Seçim\n * @subcategory MuiSlider\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiSlider } from \"@/components/ui/mui-slider\"\nimport { MuiTextField } from \"@/components/ui/mui-text-field\"\n\nfunction MuiSliderInput() {\n  const [value, setValue] = useState(30)\n  return (\n    <div className=\"flex w-full max-w-sm items-center gap-4\">\n      <MuiSlider value={value} onChange={(v) => setValue(v as number)} min={0} max={100} ariaLabel=\"Girişli\" className=\"flex-1\" />\n      <MuiTextField\n        value={String(value)}\n        onChange={(e) => {\n          const n = Number(e.target.value)\n          if (!isNaN(n)) setValue(Math.max(0, Math.min(100, n)))\n        }}\n        size=\"small\"\n        label=\"Değer\"\n        className=\"!max-w-24\"\n      />\n    </div>\n  )\n}\n\nexport { MuiSliderInput }\n",
+      "description": "MuiSliderInput",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-slider-input.tsx"
+    },
+    {
+      "id": "2041",
+      "name": "MuiSliderTrackInverted",
+      "category": "Seçim",
+      "subcategory": "MuiSlider",
+      "source": "mui",
+      "file": "mui-slider-track-inverted.tsx",
+      "exists": true,
+      "code": "/**\n * MuiSliderTrackInverted\n * @id 2041\n * @category Seçim\n * @subcategory MuiSlider\n * @source mui\n */\nimport { MuiSlider } from \"@/components/ui/mui-slider\"\n\nfunction MuiSliderTrackInverted() {\n  return (\n    <div className=\"w-full max-w-sm\">\n      <MuiSlider defaultValue={30} min={0} max={100} ariaLabel=\"Ters iz\" />\n      <p className=\"mt-2 text-xs text-gray-500\">Tutamak öncesi alan dolu, sonrası boş (MUI track=inverted mantığı).</p>\n    </div>\n  )\n}\n\nexport { MuiSliderTrackInverted }\n",
+      "description": "MuiSliderTrackInverted",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-slider-track-inverted.tsx"
+    },
+    {
       "id": "1960",
       "name": "MuiRating",
       "category": "Seçim",
@@ -8594,6 +8630,30 @@
       "code": "/**\n * MuiChipIcon\n * @id 1969\n * @category Seçim\n * @subcategory MuiChip\n * @source mui\n */\nimport { MuiChip } from \"@/components/ui/mui-chip\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\nimport { Tag, Smile } from \"@/components/ui/icons\"\n\nfunction MuiChipIcon() {\n  return (\n    <MuiStack direction=\"row\" spacing={1} className=\"flex-wrap\">\n      <MuiChip label=\"Etiket\" icon={<Tag className=\"size-3.5\" />} />\n      <MuiChip label=\"Yüz\" icon={<Smile className=\"size-3.5\" />} />\n      <MuiChip label=\"Çerçeveli\" variant=\"outlined\" icon={<Tag className=\"size-3.5\" />} />\n    </MuiStack>\n  )\n}\n\nexport { MuiChipIcon }\n",
       "description": "MuiChipIcon",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-chip-icon.tsx"
+    },
+    {
+      "id": "2042",
+      "name": "MuiChipDeletable",
+      "category": "Seçim",
+      "subcategory": "MuiChip",
+      "source": "mui",
+      "file": "mui-chip-deletable.tsx",
+      "exists": true,
+      "code": "/**\n * MuiChipDeletable\n * @id 2042\n * @category Seçim\n * @subcategory MuiChip\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiChip } from \"@/components/ui/mui-chip\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiChipDeletable() {\n  const [chips, setChips] = useState([\"React\", \"TypeScript\", \"Tailwind\"])\n  return (\n    <MuiStack direction=\"row\" spacing={1} className=\"flex-wrap\">\n      {chips.map((c) => (\n        <MuiChip key={c} label={c} variant=\"outlined\" onDelete={() => setChips((prev) => prev.filter((x) => x !== c))} />\n      ))}\n      {chips.length === 0 && <span className=\"text-xs text-gray-400\">Tüm çipler silindi</span>}\n    </MuiStack>\n  )\n}\n\nexport { MuiChipDeletable }\n",
+      "description": "MuiChipDeletable",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-chip-deletable.tsx"
+    },
+    {
+      "id": "2043",
+      "name": "MuiChipAvatar",
+      "category": "Seçim",
+      "subcategory": "MuiChip",
+      "source": "mui",
+      "file": "mui-chip-avatar.tsx",
+      "exists": true,
+      "code": "/**\n * MuiChipAvatar\n * @id 2043\n * @category Seçim\n * @subcategory MuiChip\n * @source mui\n */\nimport { MuiChip } from \"@/components/ui/mui-chip\"\nimport { MuiAvatar } from \"@/components/ui/mui-avatar\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiChipAvatar() {\n  return (\n    <MuiStack direction=\"row\" spacing={1} className=\"flex-wrap\">\n      <MuiChip label=\"Yunus K.\" avatar={<MuiAvatar size=\"small\" className=\"!size-6 text-[10px]\">YK</MuiAvatar>} />\n      <MuiChip label=\"Ayşe T.\" avatar={<MuiAvatar size=\"small\" className=\"!size-6 bg-green-600 text-[10px]\">AT</MuiAvatar>} variant=\"outlined\" />\n      <MuiChip label=\"Mehmet A.\" avatar={<MuiAvatar size=\"small\" className=\"!size-6 bg-purple-600 text-[10px]\">MA</MuiAvatar>} color=\"primary\" />\n    </MuiStack>\n  )\n}\n\nexport { MuiChipAvatar }\n",
+      "description": "MuiChipAvatar",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-chip-avatar.tsx"
     },
     {
       "id": "1970",

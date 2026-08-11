@@ -834,6 +834,9 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1959` MuiSliderColors
 - `2035` MuiSliderTrackFalse
 - `2036` MuiSliderMinimumDistance
+- `2039` MuiSliderNonLinear
+- `2040` MuiSliderInput
+- `2041` MuiSliderTrackInverted
 #### MuiRating
 - `1960` MuiRating
 - `1961` MuiRatingBasic
@@ -846,6 +849,8 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1967` MuiChipColors
 - `1968` MuiChipSizes
 - `1969` MuiChipIcon
+- `2042` MuiChipDeletable
+- `2043` MuiChipAvatar
 #### MuiAutocomplete
 - `1970` MuiAutocomplete
 - `1971` MuiAutocompleteBasic
@@ -2422,7 +2427,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1843` MtAppShellUsage
 - `1844` MtAppShellAsideDemo
 
-**Toplam: 1949 bileşen (saf React)**
+**Toplam: 1954 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

@@ -2011,4 +2011,9 @@ export const SAMPLES: Record<string, ReactNode> = {
   "2036": <U.MuiSliderMinimumDistance />,
   "2037": <U.MuiMenuIcons />,
   "2038": <U.MuiCheckboxGroup />,
+  "2039": <U.MuiSliderNonLinear />,
+  "2040": <U.MuiSliderInput />,
+  "2041": <U.MuiSliderTrackInverted />,
+  "2042": <U.MuiChipDeletable />,
+  "2043": <U.MuiChipAvatar />,
 }
