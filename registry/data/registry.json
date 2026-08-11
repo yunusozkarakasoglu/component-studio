@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-11T00:35:09.497Z",
+  "generatedAt": "2026-08-11T00:40:20.608Z",
   "counts": {
-    "components": 1981,
-    "ready": 1981,
+    "components": 1985,
+    "ready": 1985,
     "layouts": 0
   },
   "categories": [
@@ -11848,6 +11848,42 @@
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-button-disabled.tsx"
     },
     {
+      "id": "2071",
+      "name": "MuiButtonVariants",
+      "category": "Butonlar & Aksiyonlar",
+      "subcategory": "MuiButton",
+      "source": "mui",
+      "file": "mui-button-variants.tsx",
+      "exists": true,
+      "code": "/**\n * MuiButtonVariants\n * @id 2071\n * @category Butonlar & Aksiyonlar\n * @subcategory MuiButton\n * @source mui\n */\nimport { MuiButton } from \"@/components/ui/mui-button\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiButtonVariants() {\n  return (\n    <MuiStack spacing={2} className=\"w-full max-w-md\">\n      <MuiStack direction=\"row\" spacing={1}>\n        <MuiButton variant=\"text\">Metin</MuiButton>\n        <MuiButton variant=\"contained\">Dolu</MuiButton>\n        <MuiButton variant=\"outlined\">Çerçeveli</MuiButton>\n      </MuiStack>\n      <MuiStack direction=\"row\" spacing={1}>\n        <MuiButton variant=\"text\" color=\"secondary\">Metin</MuiButton>\n        <MuiButton variant=\"contained\" color=\"secondary\">Dolu</MuiButton>\n        <MuiButton variant=\"outlined\" color=\"secondary\">Çerçeveli</MuiButton>\n      </MuiStack>\n      <MuiStack direction=\"row\" spacing={1}>\n        <MuiButton variant=\"text\" color=\"error\">Metin</MuiButton>\n        <MuiButton variant=\"contained\" color=\"error\">Dolu</MuiButton>\n        <MuiButton variant=\"outlined\" color=\"error\">Çerçeveli</MuiButton>\n      </MuiStack>\n    </MuiStack>\n  )\n}\n\nexport { MuiButtonVariants }\n",
+      "description": "MuiButtonVariants",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-button-variants.tsx"
+    },
+    {
+      "id": "2072",
+      "name": "MuiButtonFullWidth",
+      "category": "Butonlar & Aksiyonlar",
+      "subcategory": "MuiButton",
+      "source": "mui",
+      "file": "mui-button-full-width.tsx",
+      "exists": true,
+      "code": "/**\n * MuiButtonFullWidth\n * @id 2072\n * @category Butonlar & Aksiyonlar\n * @subcategory MuiButton\n * @source mui\n */\nimport { MuiButton } from \"@/components/ui/mui-button\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiButtonFullWidth() {\n  return (\n    <MuiStack spacing={2} className=\"w-full max-w-md\">\n      <MuiButton variant=\"contained\" fullWidth>Tam Genişlik</MuiButton>\n      <MuiButton variant=\"outlined\" fullWidth>Çerçeveli Tam</MuiButton>\n    </MuiStack>\n  )\n}\n\nexport { MuiButtonFullWidth }\n",
+      "description": "MuiButtonFullWidth",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-button-full-width.tsx"
+    },
+    {
+      "id": "2073",
+      "name": "MuiIconButtonSizes",
+      "category": "Butonlar & Aksiyonlar",
+      "subcategory": "MuiButton",
+      "source": "mui",
+      "file": "mui-icon-button-sizes.tsx",
+      "exists": true,
+      "code": "/**\n * MuiIconButtonSizes\n * @id 2073\n * @category Butonlar & Aksiyonlar\n * @subcategory MuiButton\n * @source mui\n */\nimport { MuiIconButton } from \"@/components/ui/mui-icon-button\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\nimport { Heart } from \"@/components/ui/icons\"\n\nfunction MuiIconButtonSizes() {\n  return (\n    <MuiStack direction=\"row\" spacing={2} className=\"items-center\">\n      <MuiIconButton size=\"small\" aria-label=\"küçük\"><Heart className=\"size-4\" /></MuiIconButton>\n      <MuiIconButton size=\"medium\" aria-label=\"orta\"><Heart className=\"size-5\" /></MuiIconButton>\n      <MuiIconButton size=\"large\" aria-label=\"büyük\"><Heart className=\"size-6\" /></MuiIconButton>\n      <MuiIconButton size=\"medium\" color=\"error\" aria-label=\"hata\"><Heart className=\"size-5\" /></MuiIconButton>\n    </MuiStack>\n  )\n}\n\nexport { MuiIconButtonSizes }\n",
+      "description": "MuiIconButtonSizes",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-icon-button-sizes.tsx"
+    },
+    {
       "id": "1904",
       "name": "MuiToggleButton",
       "category": "Butonlar & Aksiyonlar",
@@ -11951,7 +11987,7 @@
       "source": "mui",
       "file": "mui-button-group-orientation.tsx",
       "exists": true,
-      "code": "/**\n * MuiButtonGroupOrientation\n * @id 2067\n * @category Butonlar & Aksiyonlar\n * @subcategory MuiButtonGroup\n * @source mui\n */\nimport { MuiButtonGroup } from \"@/components/ui/mui-button-group\"\nimport { MuiButton } from \"@/components/ui/mui-button\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiButtonGroupOrientation() {\n  return (\n    <MuiStack direction=\"row\" spacing={3} className=\"flex-wrap items-start\">\n      <MuiButtonGroup orientation=\"vertical\" variant=\"outlined\" ariaLabel=\"dikey\">\n        <MuiButton>Üst</MuiButton>\n        <MuiButton>Orta</MuiButton>\n        <MuiButton>Alt</MuiButton>\n      </MuiButtonGroup>\n      <MuiButtonGroup variant=\"contained\" ariaLabel=\"yatay\">\n        <MuiButton>Bir</MuiButton>\n        <MuiButton>İki</MuiButton>\n        <MuiButton>Üç</MuiButton>\n      </MuiButtonGroup>\n    </MuiStack>\n  )\n}\n\nexport { MuiButtonGroupOrientation }\n",
+      "code": "/**\n * MuiButtonGroupOrientation\n * @id 2067\n * @category Butonlar & Aksiyonlar\n * @subcategory MuiButtonGroup\n * @source mui\n */\nimport { MuiButtonGroup } from \"@/components/ui/mui-button-group\"\nimport { MuiButton } from \"@/components/ui/mui-button\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiButtonGroupOrientation() {\n  return (\n    <MuiStack direction=\"row\" spacing={3} className=\"flex-wrap items-start\">\n      <MuiButtonGroup orientation=\"column\" variant=\"outlined\" ariaLabel=\"dikey\">\n        <MuiButton>Üst</MuiButton>\n        <MuiButton>Orta</MuiButton>\n        <MuiButton>Alt</MuiButton>\n      </MuiButtonGroup>\n      <MuiButtonGroup variant=\"contained\" ariaLabel=\"yatay\">\n        <MuiButton>Bir</MuiButton>\n        <MuiButton>İki</MuiButton>\n        <MuiButton>Üç</MuiButton>\n      </MuiButtonGroup>\n    </MuiStack>\n  )\n}\n\nexport { MuiButtonGroupOrientation }\n",
       "description": "MuiButtonGroupOrientation",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-button-group-orientation.tsx"
     },
@@ -12602,6 +12638,18 @@
       "code": "/**\n * MuiAvatarBasic\n * @id 2014\n * @category Veri Gösterimi\n * @subcategory MuiAvatar\n * @source mui\n */\nimport { MuiAvatar } from \"@/components/ui/mui-avatar\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\nimport { CircleUser } from \"@/components/ui/icons\"\n\nfunction MuiAvatarBasic() {\n  return (\n    <MuiStack direction=\"row\" spacing={2} className=\"items-center\">\n      <MuiAvatar size=\"small\">YK</MuiAvatar>\n      <MuiAvatar size=\"medium\">YK</MuiAvatar>\n      <MuiAvatar size=\"large\">YK</MuiAvatar>\n      <MuiAvatar size=\"medium\" variant=\"rounded\">YK</MuiAvatar>\n      <MuiAvatar size=\"medium\"><CircleUser className=\"size-5\" /></MuiAvatar>\n    </MuiStack>\n  )\n}\n\nexport { MuiAvatarBasic }\n",
       "description": "MuiAvatarBasic",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-avatar-basic.tsx"
+    },
+    {
+      "id": "2074",
+      "name": "MuiAvatarGroup",
+      "category": "Veri Gösterimi",
+      "subcategory": "",
+      "source": "mui",
+      "file": "mui-avatar-group.tsx",
+      "exists": true,
+      "code": "/**\n * MuiAvatarGroup\n * @id 2074\n * @category Veri Gösterimi\n * @subcategory MuiAvatar\n * @source mui\n */\nimport { MuiAvatar } from \"@/components/ui/mui-avatar\"\n\nfunction MuiAvatarGroup() {\n  return (\n    <div className=\"flex -space-x-2\">\n      <MuiAvatar size=\"medium\" className=\"ring-2 ring-white\">YK</MuiAvatar>\n      <MuiAvatar size=\"medium\" className=\"bg-green-600 ring-2 ring-white\">AT</MuiAvatar>\n      <MuiAvatar size=\"medium\" className=\"bg-purple-600 ring-2 ring-white\">MA</MuiAvatar>\n      <MuiAvatar size=\"medium\" className=\"bg-amber-600 ring-2 ring-white\">+3</MuiAvatar>\n    </div>\n  )\n}\n\nexport { MuiAvatarGroup }\n",
+      "description": "MuiAvatarGroup",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-avatar-group.tsx"
     },
     {
       "id": "2015",
