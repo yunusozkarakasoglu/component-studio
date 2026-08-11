@@ -2007,4 +2007,8 @@ export const SAMPLES: Record<string, ReactNode> = {
   "2032": <U.MuiBottomNavigationBasic />,
   "2033": <U.MuiImageList />,
   "2034": <U.MuiMasonry />,
+  "2035": <U.MuiSliderTrackFalse />,
+  "2036": <U.MuiSliderMinimumDistance />,
+  "2037": <U.MuiMenuIcons />,
+  "2038": <U.MuiCheckboxGroup />,
 }

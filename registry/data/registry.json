@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-10T23:56:57.622Z",
+  "generatedAt": "2026-08-11T00:00:38.169Z",
   "counts": {
-    "components": 1945,
-    "ready": 1945,
+    "components": 1949,
+    "ready": 1949,
     "layouts": 0
   },
   "categories": [
@@ -8212,6 +8212,18 @@
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-checkbox-indeterminate.tsx"
     },
     {
+      "id": "2038",
+      "name": "MuiCheckboxGroup",
+      "category": "Seçim",
+      "subcategory": "MuiCheckbox",
+      "source": "mui",
+      "file": "mui-checkbox-group.tsx",
+      "exists": true,
+      "code": "/**\n * MuiCheckboxGroup\n * @id 2038\n * @category Seçim\n * @subcategory MuiCheckbox\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiCheckbox } from \"@/components/ui/mui-checkbox\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nconst TYPES = [\"Fotoğraf\", \"Video\", \"Belge\", \"Ses\"]\n\nfunction MuiCheckboxGroup() {\n  const [checked, setChecked] = useState<string[]>([\"Fotoğraf\", \"Video\"])\n  const toggle = (v: string) =>\n    setChecked((prev) => (prev.includes(v) ? prev.filter((x) => x !== v) : [...prev, v]))\n  return (\n    <MuiStack spacing={1.5}>\n      <p className=\"text-sm font-medium text-gray-800\">Dosya türleri</p>\n      {TYPES.map((t) => (\n        <MuiCheckbox key={t} checked={checked.includes(t)} onChange={() => toggle(t)}>\n          {t}\n        </MuiCheckbox>\n      ))}\n      <p className=\"text-xs text-gray-500\">Seçili: {checked.join(\", \") || \"hiçbiri\"}</p>\n    </MuiStack>\n  )\n}\n\nexport { MuiCheckboxGroup }\n",
+      "description": "MuiCheckboxGroup",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-checkbox-group.tsx"
+    },
+    {
       "id": "1941",
       "name": "MuiSwitch",
       "category": "Seçim",
@@ -8438,6 +8450,30 @@
       "code": "/**\n * MuiSliderColors\n * @id 1959\n * @category Seçim\n * @subcategory MuiSlider\n * @source mui\n */\nimport { MuiSlider } from \"@/components/ui/mui-slider\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiSliderColors() {\n  return (\n    <MuiStack spacing={4} className=\"w-full max-w-sm\">\n      <MuiSlider defaultValue={20} color=\"primary\" ariaLabel=\"Primary\" />\n      <MuiSlider defaultValue={40} color=\"secondary\" ariaLabel=\"Secondary\" />\n      <MuiSlider defaultValue={60} color=\"success\" ariaLabel=\"Success\" />\n      <MuiSlider defaultValue={80} color=\"error\" ariaLabel=\"Error\" />\n    </MuiStack>\n  )\n}\n\nexport { MuiSliderColors }\n",
       "description": "MuiSliderColors",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-slider-colors.tsx"
+    },
+    {
+      "id": "2035",
+      "name": "MuiSliderTrackFalse",
+      "category": "Seçim",
+      "subcategory": "MuiSlider",
+      "source": "mui",
+      "file": "mui-slider-track-false.tsx",
+      "exists": true,
+      "code": "/**\n * MuiSliderTrackFalse\n * @id 2035\n * @category Seçim\n * @subcategory MuiSlider\n * @source mui\n */\nimport { MuiSlider } from \"@/components/ui/mui-slider\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiSliderTrackFalse() {\n  return (\n    <MuiStack spacing={4} className=\"w-full max-w-sm\">\n      <MuiSlider defaultValue={40} min={0} max={100} ariaLabel=\"İz yok\" className=\"!w-full\" />\n      <p className=\"text-xs text-gray-500\">Dolu iz yerine yalnızca tutamak + noktalar.</p>\n    </MuiStack>\n  )\n}\n\nexport { MuiSliderTrackFalse }\n",
+      "description": "MuiSliderTrackFalse",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-slider-track-false.tsx"
+    },
+    {
+      "id": "2036",
+      "name": "MuiSliderMinimumDistance",
+      "category": "Seçim",
+      "subcategory": "MuiSlider",
+      "source": "mui",
+      "file": "mui-slider-minimum-distance.tsx",
+      "exists": true,
+      "code": "/**\n * MuiSliderMinimumDistance\n * @id 2036\n * @category Seçim\n * @subcategory MuiSlider\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiSlider } from \"@/components/ui/mui-slider\"\n\nfunction MuiSliderMinimumDistance() {\n  const [value, setValue] = useState<number[]>([20, 60])\n  const minDistance = 10\n  const handle = (v: number | number[]) => {\n    if (!Array.isArray(v)) return\n    let [a, b] = v\n    if (b - a < minDistance) {\n      if (a === value[0]) b = Math.min(100, a + minDistance)\n      else a = Math.max(0, b - minDistance)\n    }\n    setValue([a, b])\n  }\n  return (\n    <div className=\"w-full max-w-sm\">\n      <MuiSlider value={value} onChange={handle} min={0} max={100} ariaLabel=\"Min mesafe\" />\n      <p className=\"mt-2 text-xs text-gray-500\">\n        Tutamaklar arası min mesafe: {Math.round(value[0])} – {Math.round(value[1])} (en az {minDistance} birim ayrık)\n      </p>\n    </div>\n  )\n}\n\nexport { MuiSliderMinimumDistance }\n",
+      "description": "MuiSliderMinimumDistance",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-slider-minimum-distance.tsx"
     },
     {
       "id": "1960",
@@ -9950,6 +9986,18 @@
       "code": "/**\n * MuiMenuBasic\n * @id 1992\n * @category Navigasyon\n * @subcategory MuiMenu\n * @source mui\n */\nimport { MuiMenu } from \"@/components/ui/mui-menu\"\nimport { MuiButton } from \"@/components/ui/mui-button\"\nimport { Plus, Copy, Save, Trash2, Share2 } from \"@/components/ui/icons\"\n\nfunction MuiMenuBasic() {\n  return (\n    <MuiMenu\n      trigger={<MuiButton variant=\"contained\">İşlemler ▾</MuiButton>}\n      items={[\n        { label: \"Yeni\", icon: <Plus className=\"size-4\" />, onClick: () => alert(\"Yeni\") },\n        { label: \"Kopyala\", icon: <Copy className=\"size-4\" />, onClick: () => alert(\"Kopyalandı\") },\n        { label: \"Kaydet\", icon: <Save className=\"size-4\" />, onClick: () => alert(\"Kaydedildi\") },\n        { label: \"Paylaş\", icon: <Share2 className=\"size-4\" />, onClick: () => alert(\"Paylaşıldı\") },\n        { label: \"Sil\", icon: <Trash2 className=\"size-4\" />, disabled: true },\n      ]}\n    />\n  )\n}\n\nexport { MuiMenuBasic }\n",
       "description": "MuiMenuBasic",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-menu-basic.tsx"
+    },
+    {
+      "id": "2037",
+      "name": "MuiMenuIcons",
+      "category": "Navigasyon",
+      "subcategory": "MuiMenu",
+      "source": "mui",
+      "file": "mui-menu-icons.tsx",
+      "exists": true,
+      "code": "/**\n * MuiMenuIcons\n * @id 2037\n * @category Navigasyon\n * @subcategory MuiMenu\n * @source mui\n */\nimport { MuiMenu } from \"@/components/ui/mui-menu\"\nimport { MuiIconButton } from \"@/components/ui/mui-icon-button\"\nimport { MoreVertical, Copy, Edit, Delete, Download } from \"@/components/ui/icons\"\n\nfunction MuiMenuIcons() {\n  return (\n    <MuiMenu\n      trigger={<MuiIconButton aria-label=\"Menü\"><MoreVertical className=\"size-5\" /></MuiIconButton>}\n      items={[\n        { label: \"Düzenle\", icon: <Edit className=\"size-4\" /> },\n        { label: \"Kopyala\", icon: <Copy className=\"size-4\" /> },\n        { label: \"İndir\", icon: <Download className=\"size-4\" /> },\n        { label: \"Sil\", icon: <Delete className=\"size-4\" /> },\n      ]}\n    />\n  )\n}\n\nexport { MuiMenuIcons }\n",
+      "description": "MuiMenuIcons",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-menu-icons.tsx"
     },
     {
       "id": "1993",
