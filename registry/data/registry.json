@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-11T00:26:29.719Z",
+  "generatedAt": "2026-08-11T00:31:53.695Z",
   "counts": {
-    "components": 1972,
-    "ready": 1972,
+    "components": 1977,
+    "ready": 1977,
     "layouts": 0
   },
   "categories": [
@@ -8279,7 +8279,7 @@
       "source": "mui",
       "file": "mui-checkbox-icon.tsx",
       "exists": true,
-      "code": "/**\n * MuiCheckboxIcon\n * @id 2057\n * @category Seçim\n * @subcategory MuiCheckbox\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiCheckbox } from \"@/components/ui/mui-checkbox\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\nimport { Star, Heart } from \"@/components/ui/icons\"\n\nfunction MuiCheckboxIcon() {\n  const [fav, setFav] = useState(true)\n  const [star, setStar] = useState(false)\n  return (\n    <MuiStack direction=\"row\" spacing={4} className=\"items-center\">\n      <button type=\"button\" onClick={() => setFav((v) => !v)} aria-pressed={fav} className=\"cursor-pointer\">\n        <Heart className={fav ? \"size-7 fill-red-500 text-red-500\" : \"size-7 text-gray-300\"} />\n      </button>\n      <button type=\"button\" onClick={() => setStar((v) => !v)} aria-pressed={star} className=\"cursor-pointer\">\n        <Star className={star ? \"size-7 fill-amber-400 text-amber-400\" : \"size-7 text-gray-300\"} />\n      </button>\n    </MuiStack>\n  )\n}\n\nexport { MuiCheckboxIcon }\n",
+      "code": "/**\n * MuiCheckboxIcon\n * @id 2057\n * @category Seçim\n * @subcategory MuiCheckbox\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\nimport { Star, Heart } from \"@/components/ui/icons\"\n\nfunction MuiCheckboxIcon() {\n  const [fav, setFav] = useState(true)\n  const [star, setStar] = useState(false)\n  return (\n    <MuiStack direction=\"row\" spacing={4} className=\"items-center\">\n      <button type=\"button\" onClick={() => setFav((v) => !v)} aria-pressed={fav} className=\"cursor-pointer\">\n        <Heart className={fav ? \"size-7 fill-red-500 text-red-500\" : \"size-7 text-gray-300\"} />\n      </button>\n      <button type=\"button\" onClick={() => setStar((v) => !v)} aria-pressed={star} className=\"cursor-pointer\">\n        <Star className={star ? \"size-7 fill-amber-400 text-amber-400\" : \"size-7 text-gray-300\"} />\n      </button>\n    </MuiStack>\n  )\n}\n\nexport { MuiCheckboxIcon }\n",
       "description": "MuiCheckboxIcon",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-checkbox-icon.tsx"
     },
@@ -8656,6 +8656,18 @@
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-rating-hover.tsx"
     },
     {
+      "id": "2063",
+      "name": "MuiRatingText",
+      "category": "Seçim",
+      "subcategory": "MuiRating",
+      "source": "mui",
+      "file": "mui-rating-text.tsx",
+      "exists": true,
+      "code": "/**\n * MuiRatingText\n * @id 2063\n * @category Seçim\n * @subcategory MuiRating\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiRating } from \"@/components/ui/mui-rating\"\n\nfunction MuiRatingText() {\n  const [value, setValue] = useState<number | null>(4)\n  const texts = [\"\", \"Kötü\", \"Zayıf\", \"Orta\", \"İyi\", \"Mükemmel\"]\n  return (\n    <div className=\"flex flex-col gap-1\">\n      <MuiRating value={value} onChange={setValue} max={5} />\n      <span className=\"text-xs text-gray-500\">{value ? texts[value] : \"—\"}</span>\n    </div>\n  )\n}\n\nexport { MuiRatingText }\n",
+      "description": "MuiRatingText",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-rating-text.tsx"
+    },
+    {
       "id": "1964",
       "name": "MuiChip",
       "category": "Seçim",
@@ -8750,6 +8762,18 @@
       "code": "/**\n * MuiChipAvatar\n * @id 2043\n * @category Seçim\n * @subcategory MuiChip\n * @source mui\n */\nimport { MuiChip } from \"@/components/ui/mui-chip\"\nimport { MuiAvatar } from \"@/components/ui/mui-avatar\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiChipAvatar() {\n  return (\n    <MuiStack direction=\"row\" spacing={1} className=\"flex-wrap\">\n      <MuiChip label=\"Yunus K.\" avatar={<MuiAvatar size=\"small\" className=\"!size-6 text-[10px]\">YK</MuiAvatar>} />\n      <MuiChip label=\"Ayşe T.\" avatar={<MuiAvatar size=\"small\" className=\"!size-6 bg-green-600 text-[10px]\">AT</MuiAvatar>} variant=\"outlined\" />\n      <MuiChip label=\"Mehmet A.\" avatar={<MuiAvatar size=\"small\" className=\"!size-6 bg-purple-600 text-[10px]\">MA</MuiAvatar>} color=\"primary\" />\n    </MuiStack>\n  )\n}\n\nexport { MuiChipAvatar }\n",
       "description": "MuiChipAvatar",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-chip-avatar.tsx"
+    },
+    {
+      "id": "2065",
+      "name": "MuiChipArray",
+      "category": "Seçim",
+      "subcategory": "MuiChip",
+      "source": "mui",
+      "file": "mui-chip-array.tsx",
+      "exists": true,
+      "code": "/**\n * MuiChipArray\n * @id 2065\n * @category Seçim\n * @subcategory MuiChip\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiChip } from \"@/components/ui/mui-chip\"\nimport { MuiTextField } from \"@/components/ui/mui-text-field\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiChipArray() {\n  const [chips, setChips] = useState<string[]>([\"React\", \"Vite\"])\n  const [input, setInput] = useState(\"\")\n  const add = () => {\n    const v = input.trim()\n    if (v && !chips.includes(v)) setChips((c) => [...c, v])\n    setInput(\"\")\n  }\n  return (\n    <MuiStack spacing={2} className=\"w-full max-w-md\">\n      <MuiStack direction=\"row\" spacing={1} className=\"flex-wrap\">\n        {chips.map((c) => (\n          <MuiChip key={c} label={c} color=\"primary\" onDelete={() => setChips((p) => p.filter((x) => x !== c))} />\n        ))}\n      </MuiStack>\n      <MuiTextField\n        label=\"Etiket ekle\"\n        value={input}\n        onChange={(e) => setInput(e.target.value)}\n        onKeyDown={(e) => { if (e.key === \"Enter\") { e.preventDefault(); add() } }}\n        placeholder=\"Yazıp Enter'a basın\"\n        size=\"small\"\n      />\n    </MuiStack>\n  )\n}\n\nexport { MuiChipArray }\n",
+      "description": "MuiChipArray",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-chip-array.tsx"
     },
     {
       "id": "1970",
@@ -9398,6 +9422,18 @@
       "code": "/**\n * MuiDialogFullScreen\n * @id 2053\n * @category Overlay\n * @subcategory MuiDialog\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiDialog } from \"@/components/ui/mui-dialog\"\nimport { MuiButton } from \"@/components/ui/mui-button\"\n\nfunction MuiDialogFullScreen() {\n  const [open, setOpen] = useState(false)\n  return (\n    <div>\n      <MuiButton variant=\"outlined\" onClick={() => setOpen(true)}>Tam Ekran Diyalog</MuiButton>\n      <MuiDialog\n        open={open}\n        onClose={() => setOpen(false)}\n        title=\"Tam Ekran\"\n        fullScreen\n        actions={<MuiButton variant=\"contained\" onClick={() => setOpen(false)}>Kapat</MuiButton>}\n      >\n        <p className=\"mb-4\">Bu diyalog tüm ekranı kaplar. Mobil formlar ve detay görünümleri için idealdir.</p>\n        <div className=\"space-y-2\">\n          {Array.from({ length: 8 }, (_, i) => (\n            <div key={i} className=\"rounded bg-gray-100 p-3 text-sm text-gray-600\">İçerik bölümü {i + 1}</div>\n          ))}\n        </div>\n      </MuiDialog>\n    </div>\n  )\n}\n\nexport { MuiDialogFullScreen }\n",
       "description": "MuiDialogFullScreen",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-dialog-full-screen.tsx"
+    },
+    {
+      "id": "2064",
+      "name": "MuiDialogResponsive",
+      "category": "Overlay",
+      "subcategory": "MuiDialog",
+      "source": "mui",
+      "file": "mui-dialog-responsive.tsx",
+      "exists": true,
+      "code": "/**\n * MuiDialogResponsive\n * @id 2064\n * @category Overlay\n * @subcategory MuiDialog\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiDialog } from \"@/components/ui/mui-dialog\"\nimport { MuiButton } from \"@/components/ui/mui-button\"\n\nfunction MuiDialogResponsive() {\n  const [open, setOpen] = useState(false)\n  return (\n    <div>\n      <MuiButton variant=\"outlined\" onClick={() => setOpen(true)}>Duyarlı Diyalog</MuiButton>\n      <MuiDialog open={open} onClose={() => setOpen(false)} title=\"Duyarlı\" maxWidth=\"md\" fullWidth\n        actions={<MuiButton variant=\"contained\" onClick={() => setOpen(false)}>Tamam</MuiButton>}>\n        <p>fullWidth + maxWidth=\"md\" — içerik genişliğe göre esner.</p>\n      </MuiDialog>\n    </div>\n  )\n}\n\nexport { MuiDialogResponsive }\n",
+      "description": "MuiDialogResponsive",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-dialog-responsive.tsx"
     },
     {
       "id": "1984",
@@ -10334,6 +10370,18 @@
       "code": "/**\n * MuiTabsWithIcons\n * @id 2050\n * @category Navigasyon\n * @subcategory MuiTabs\n * @source mui\n */\nimport { MuiTabs } from \"@/components/ui/mui-tabs\"\nimport { Phone, Heart, CircleUser } from \"@/components/ui/icons\"\n\nfunction MuiTabsWithIcons() {\n  return (\n    <MuiTabs\n      centered\n      tabs={[\n        { label: \"Kişiler\", icon: <CircleUser className=\"size-4\" />, content: <p>Kişiler listesi.</p> },\n        { label: \"Favoriler\", icon: <Heart className=\"size-4\" />, content: <p>Favoriler.</p> },\n        { label: \"Aramalar\", icon: <Phone className=\"size-4\" />, content: <p>Çağrı geçmişi.</p> },\n      ]}\n    />\n  )\n}\n\nexport { MuiTabsWithIcons }\n",
       "description": "MuiTabsWithIcons",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-tabs-with-icons.tsx"
+    },
+    {
+      "id": "2066",
+      "name": "MuiTabsScrollable",
+      "category": "Navigasyon",
+      "subcategory": "MuiTabs",
+      "source": "mui",
+      "file": "mui-tabs-scrollable.tsx",
+      "exists": true,
+      "code": "/**\n * MuiTabsScrollable\n * @id 2066\n * @category Navigasyon\n * @subcategory MuiTabs\n * @source mui\n */\nimport { MuiTabs } from \"@/components/ui/mui-tabs\"\n\nconst MANY_TABS = Array.from({ length: 14 }, (_, i) => ({\n  label: `Sekme ${i + 1}`,\n  content: <p>Sekme {i + 1} içeriği.</p>,\n}))\n\nfunction MuiTabsScrollable() {\n  return (\n    <div className=\"w-full\">\n      <MuiTabs tabs={MANY_TABS} />\n      <p className=\"mt-2 text-xs text-gray-500\">14 sekme — yatay kaydırma desteği.</p>\n    </div>\n  )\n}\n\nexport { MuiTabsScrollable }\n",
+      "description": "MuiTabsScrollable",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-tabs-scrollable.tsx"
     },
     {
       "id": "1997",
@@ -11930,6 +11978,18 @@
       "code": "/**\n * MuiSpeedDialBasic\n * @id 1916\n * @category Butonlar & Aksiyonlar\n * @subcategory MuiSpeedDial\n * @source mui\n */\nimport { MuiSpeedDial } from \"@/components/ui/mui-speed-dial\"\nimport { Copy, Save, Printer, Share2 } from \"@/components/ui/icons\"\n\nfunction MuiSpeedDialBasic() {\n  return (\n    <div className=\"flex h-64 w-full items-start justify-end rounded-lg border border-gray-200 bg-gray-50 p-6\">\n      <MuiSpeedDial\n        ariaLabel=\"hızlı aksiyon\"\n        actions={[\n          { icon: <Copy className=\"size-4\" />, name: \"Kopyala\" },\n          { icon: <Save className=\"size-4\" />, name: \"Kaydet\" },\n          { icon: <Printer className=\"size-4\" />, name: \"Yazdır\" },\n          { icon: <Share2 className=\"size-4\" />, name: \"Paylaş\" },\n        ]}\n      />\n    </div>\n  )\n}\n\nexport { MuiSpeedDialBasic }\n",
       "description": "MuiSpeedDialBasic",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-speed-dial-basic.tsx"
+    },
+    {
+      "id": "2062",
+      "name": "MuiSpeedDialControlled",
+      "category": "Butonlar & Aksiyonlar",
+      "subcategory": "MuiSpeedDial",
+      "source": "mui",
+      "file": "mui-speed-dial-controlled.tsx",
+      "exists": true,
+      "code": "/**\n * MuiSpeedDialControlled\n * @id 2062\n * @category Butonlar & Aksiyonlar\n * @subcategory MuiSpeedDial\n * @source mui\n */\nimport { MuiSpeedDial } from \"@/components/ui/mui-speed-dial\"\nimport { Copy, Save, Printer, Share2 } from \"@/components/ui/icons\"\n\nfunction MuiSpeedDialControlled() {\n  return (\n    <div className=\"flex h-56 w-full items-start justify-end rounded-lg border border-gray-200 bg-gray-50 p-6\">\n      <MuiSpeedDial\n        ariaLabel=\"yönlü\"\n        direction=\"up\"\n        actions={[\n          { icon: <Copy className=\"size-4\" />, name: \"Kopyala\" },\n          { icon: <Save className=\"size-4\" />, name: \"Kaydet\" },\n          { icon: <Printer className=\"size-4\" />, name: \"Yazdır\" },\n          { icon: <Share2 className=\"size-4\" />, name: \"Paylaş\" },\n        ]}\n      />\n    </div>\n  )\n}\n\nexport { MuiSpeedDialControlled }\n",
+      "description": "MuiSpeedDialControlled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-speed-dial-controlled.tsx"
     },
     {
       "id": "092",

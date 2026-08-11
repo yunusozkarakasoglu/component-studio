@@ -2034,4 +2034,9 @@ export const SAMPLES: Record<string, ReactNode> = {
   "2059": <U.MuiSwitchControlled />,
   "2060": <U.MuiSelectControlled />,
   "2061": <U.MuiSelectCheckmarks />,
+  "2062": <U.MuiSpeedDialControlled />,
+  "2063": <U.MuiRatingText />,
+  "2064": <U.MuiDialogResponsive />,
+  "2065": <U.MuiChipArray />,
+  "2066": <U.MuiTabsScrollable />,
 }

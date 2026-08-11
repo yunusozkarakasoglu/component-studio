@@ -850,6 +850,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1962` MuiRatingHalf
 - `1963` MuiRatingSizes
 - `2055` MuiRatingHover
+- `2063` MuiRatingText
 #### MuiChip
 - `1964` MuiChip
 - `1965` MuiChipBasic
@@ -859,6 +860,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1969` MuiChipIcon
 - `2042` MuiChipDeletable
 - `2043` MuiChipAvatar
+- `2065` MuiChipArray
 #### MuiAutocomplete
 - `1970` MuiAutocomplete
 - `1971` MuiAutocompleteBasic
@@ -920,6 +922,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1982` MuiDialogForm
 - `1983` MuiDialogMaxWidth
 - `2053` MuiDialogFullScreen
+- `2064` MuiDialogResponsive
 #### MuiDrawer
 - `1984` MuiDrawer
 - `1985` MuiDrawerBasic
@@ -1015,6 +1018,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `2002` MuiTabsBasic
 - `2049` MuiTabsVertical
 - `2050` MuiTabsWithIcons
+- `2066` MuiTabsScrollable
 #### MuiStepper
 - `1997` MuiStepper
 - `2003` MuiStepperBasic
@@ -1171,6 +1175,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 #### MuiSpeedDial
 - `1913` MuiSpeedDial
 - `1916` MuiSpeedDialBasic
+- `2062` MuiSpeedDialControlled
 #### Standart
 - `092` Button
 - `094` ButtonVariants
@@ -2445,7 +2450,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1843` MtAppShellUsage
 - `1844` MtAppShellAsideDemo
 
-**Toplam: 1972 bileşen (saf React)**
+**Toplam: 1977 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
