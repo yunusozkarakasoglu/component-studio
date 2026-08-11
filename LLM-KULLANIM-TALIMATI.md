@@ -34,6 +34,21 @@ Kayıt defteri: `<COMPONENT-STUDIO>/registry/data/registry.json`
 - İkonlar her zaman kendi setimizden: `import { X } from "@/components/ui/icons"` — asla lucide-react.
 - Dosya isimleri, export adları, `@id`/`@category` etiketleri değiştirilmez.
 
+## Yeni bileşen ÜRETME isteğinde (kullanıcı "yeni bileşen yap/üret" derse)
+
+**KAYIT YAPMA!** Aşağıdaki akışı izle:
+
+1. Bileşeni üret → **sadece** `src/workbench/current/index.tsx`'e yaz (named export, saf React).
+2. Kullanıcıya kısaca açıkla (ne yaptın, props, nasıl test edilir).
+3. **Şunlara DOKUNMA:** `src/components/ui/` dosya ekleme · `index.tsx` barrel · `samples.tsx` ·
+   `Bileşen Listesi .txt` (envanter) · `registry/` (build-registry) · kategori/alt kategori seçimi · `git commit`.
+4. Kullanıcı stüdyoda **önizleyip test ettikten sonra** ad/kategori/alt kategori girer ve
+   **"Kaydet" butonuna basar** — kayıt işlemini stüdyo yapar.
+5. Detaylı kurallar: kökteki `YENI-BILESEN-SIHIRBAZI-TALIMATI.md` dosyasını oku.
+
+> Not: Bu, "mevcut bileşeni entegre et" akışından FARKLIDIR. Üretim = workbench'e yaz,
+> entegrasyon = kayıtlı bileşeni kullanıcının projesine taşı.
+
 ## Örnek zincir (274 DateRangePickerControlled)
 
 ```

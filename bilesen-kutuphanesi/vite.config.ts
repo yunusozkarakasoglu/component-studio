@@ -37,7 +37,14 @@ Kurallar: 1) Çalışma klasörü src/workbench/current/ — index.tsx'e tek dos
 2) Saf React: yalnızca react + tailwind. Üçüncü parti UI paketi YOK.
 3) İkonlar kendi setimizden: @/components/ui/icons.
 4) Mevcut kütüphane bileşenlerini import edebilirsin: @/components/ui/...
-5) Bileşeni yazdıktan sonra kullanıcıya kısaca açıkla (ne yaptın, nasıl kullanılır).`,
+5) Bileşeni yazdıktan sonra kullanıcıya kısaca açıkla (ne yaptın, nasıl kullanılır).
+
+⚠️ ZORUNLU: SADECE workbench/current/index.tsx'e YAZ. KAYIT YAPMA!
+- ui/ klasörüne dosya yazma, index.tsx barrel'i güncelleme, samples.tsx'i değiştirme,
+  'Bileşen Listesi .txt' (envanter) güncelleme, registry/build-registry ÇALIŞTIRMA,
+  kategori/alt kategori belirleme, git commit yapma.
+- Tüm kayıt işlemleri stüdyonun "Kaydet" butonuyla yapılır; kullanıcı onaylar.
+- Detaylı kurallar: kökteki YENI-BILESEN-SIHIRBAZI-TALIMATI.md dosyasını oku.`,
             },
           ],
         })

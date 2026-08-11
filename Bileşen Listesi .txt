@@ -804,7 +804,6 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1055` MtGridContainer
 - `1056` MtGridColumnAlign
 - `1057` MtGridResponsive
-
 ### Seçim
 #### MuiCheckbox
 - `1936` MuiCheckbox
@@ -1417,6 +1416,8 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `171` BreadcrumbsCustomStyles
 
 ### Özel Komponentler
+#### CascadingSelect
+- `2079` CascadingSelect
 - `089` MillerColumns
 
 ---
