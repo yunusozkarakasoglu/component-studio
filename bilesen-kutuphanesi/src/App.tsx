@@ -577,15 +577,32 @@ function EditorModal({
             </div>
           </div>
           {/* Tags düzenleme: virgülle ayrılmış — JSDoc @tags olarak kaydedilir */}
-          <div className="flex shrink-0 items-center gap-2 border-b border-black/20 bg-muted/30 px-3 py-1.5">
+          <div className="flex shrink-0 flex-wrap items-center gap-2 border-b border-black/20 bg-muted/30 px-3 py-1.5">
             <label htmlFor="comp-tags" className="shrink-0 text-[10px] font-bold text-muted-foreground">🏷 Etiketler:</label>
             <input
               id="comp-tags"
               value={tagsText}
               onChange={(e) => setTagsText(e.target.value)}
               placeholder="ör. form, seçim, koşullu, veri (virgülle ayır)"
-              className="h-6 min-w-0 flex-1 rounded border border-black/30 bg-background px-2 text-[11px] outline-none focus:border-blue-500"
+              className="h-6 w-56 shrink-0 rounded border border-black/30 bg-background px-2 text-[11px] outline-none focus:border-blue-500"
             />
+            {/* Eklenen etiket çipleri — kaydedilen/mevcut listeyi gösterir */}
+            <div className="flex min-w-0 flex-1 flex-wrap items-center gap-1">
+              {tagsText.split(/[,\s]+/).map((t) => t.trim()).filter(Boolean).map((t) => (
+                <span key={t} className="inline-flex items-center gap-0.5 rounded bg-blue-100 px-1.5 py-0.5 text-[10px] font-medium text-blue-700">
+                  {t}
+                  <button
+                    type="button"
+                    aria-label={`${t} kaldır`}
+                    onClick={() => setTagsText((cur) => cur.split(/[,\s]+/).map((x) => x.trim()).filter(Boolean).filter((x) => x !== t).join(", "))}
+                    className="cursor-pointer text-blue-400 hover:text-blue-800"
+                  >×</button>
+                </span>
+              ))}
+              {tagsText.split(/[,\s]+/).map((t) => t.trim()).filter(Boolean).length === 0 && (
+                <span className="text-[10px] text-muted-foreground">henüz etiket yok — yazıp virgülle ayırın</span>
+              )}
+            </div>
             <span className="shrink-0 text-[10px] text-muted-foreground">arama + tabloda görünür</span>
           </div>
           <div className="grid min-h-0 flex-1 grid-cols-2">
@@ -733,6 +750,10 @@ export default function Studio() {
   const refresh = () => {
     fetch(`/registry.json?t=${Date.now()}`, { cache: "no-store" }).then((r) => r.json()).then(setRegistry).catch(() => {})
     location.reload()
+  }
+  // Kayıt sonrası registry'yi yeniden yükle (reload'suz — modal açık kalır, arama güncel veriyle çalışır)
+  const reloadRegistry = () => {
+    fetch(`/registry.json?t=${Date.now()}`, { cache: "no-store" }).then((r) => r.json()).then(setRegistry).catch(() => {})
   }
 
   useEffect(() => {
@@ -1061,7 +1082,7 @@ export default function Studio() {
           category={edit.rec.category}
           kind="component"
           onClose={() => setEdit(null)}
-          onSaved={() => {}}
+          onSaved={reloadRegistry}
         />
       )}
     </>
