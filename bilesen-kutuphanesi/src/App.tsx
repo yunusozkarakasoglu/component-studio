@@ -437,13 +437,14 @@ function NewComponentDialog({
 
 /* ========== DÜZENLEME MODALI (orijinal + özelleştirilmiş iki alan) ========== */
 function EditorModal({
-  title, subtitle, file, dir, initialCode, preview, absPath, category, kind, registry, onClose, onSaved,
+  title, subtitle, file, dir, initialCode, preview, absPath, category, kind, registry, onClose, onSaved, isFav = false, onToggleFav,
 }: {
   title: string; subtitle: string; file: string; dir: "ui" | "layouts"
   initialCode: string; preview: ReactNode
   absPath: string; category: string; kind: "component" | "layout"
   registry: { components: CompRecord[]; categories?: string[] } | null
   onClose: () => void; onSaved: (tags?: string[]) => Promise<void> | void
+  isFav?: boolean; onToggleFav?: () => void
 }) {
   const [promptOpen, setPromptOpen] = useState(false)
   const [code, setCode] = useState(initialCode)
@@ -552,6 +553,14 @@ function EditorModal({
         </div>
         <div className="flex shrink-0 items-center gap-2">
           <Button variant="outline" size="sm" onClick={rebuild} className="border-black/40 bg-white/10 text-white hover:bg-white/20" aria-label="registry.json + registry.db yeniden üretilir">🔄 DB Yenile</Button>
+          <Button
+            variant="outline" size="sm" onClick={onToggleFav}
+            className={`border-black/40 bg-white/10 hover:bg-white/20 ${isFav ? "text-amber-300" : "text-white"}`}
+            aria-label={isFav ? "Favorilerden çıkar" : "Favorilere ekle"}
+            title={isFav ? "Favorilerden çıkar" : "Favorilere ekle"}
+          >
+            {isFav ? "★ Favori" : "☆ Favorilere Ekle"}
+          </Button>
           <Button variant="outline" size="sm" onClick={onClose} className="border-black/40 bg-white/10 text-white hover:bg-white/20">✕</Button>
         </div>
       </div>
@@ -733,9 +742,21 @@ export default function Studio() {
   const [wizardOpen, setWizardOpen] = useState(() => window.location.hash === "#/yeni-bilesen")
   const [pendingCount, setPendingCount] = useState(0)
   const [view, setView] = useState<"dashboard" | "bilesenler" | "layoutlar">("dashboard")
-  const [source, setSource] = useState<"tumu" | "heroui" | "mantine" | "shadcn" | "mui" | "ozel">("tumu")
+  const [source, setSource] = useState<"tumu" | "heroui" | "mantine" | "shadcn" | "mui" | "ozel" | "fav">("tumu")
   const [galleryView, setGalleryView] = useState<"kart" | "tablo">("kart")
   const [newMenu, setNewMenu] = useState(false)
+
+  // Favoriler: localStorage'da id listesi (kalıcı)
+  const [favIds, setFavIds] = useState<string[]>(() => {
+    try { return JSON.parse(localStorage.getItem("fav-components") || "[]") as string[] } catch { return [] }
+  })
+  const toggleFav = (id: string) => {
+    setFavIds((prev) => {
+      const next = prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+      try { localStorage.setItem("fav-components", JSON.stringify(next)) } catch { /* yoksay */ }
+      return next
+    })
+  }
 
   // + Yeni → tip seçimi
   const handleNew = (t: "component" | "layout" | "page") => {
@@ -784,8 +805,14 @@ export default function Studio() {
   const term = q.toLowerCase().trim()
 
   // Kaynak filtresi: tumu → hepsi · heroui → heroui/boş · mantine/shadcn → eşleşen
-  const sourceOk = (c: { source?: string }) =>
-    source === "tumu" || (source === "heroui" ? (c.source ?? "heroui") === "heroui" : (c.source ?? "heroui") === source)
+  const sourceOk = (c: { source?: string; id?: string }) =>
+    source === "tumu"
+      ? true
+      : source === "fav"
+        ? favIds.includes(String(c.id))
+        : source === "heroui"
+          ? (c.source ?? "heroui") === "heroui"
+          : (c.source ?? "heroui") === source
 
   const cats = useMemo(() => {
     if (!registry) return []
@@ -956,7 +983,7 @@ export default function Studio() {
                 </select>
               )}
               <div className="flex gap-1 rounded-lg border border-black/25 bg-muted/30 p-0.5">
-                {([["tumu", "Tümü"], ["heroui", "HeroUI"], ["mantine", "Mantine"], ["shadcn", "shadcn"], ["mui", "MUI"], ["ozel", "Özel"]] as const).map(([v, l]) => (
+                {([["tumu", "Tümü"], ["heroui", "HeroUI"], ["mantine", "Mantine"], ["shadcn", "shadcn"], ["mui", "MUI"], ["ozel", "Özel"], ["fav", "⭐ Favoriler"]] as const).map(([v, l]) => (
                   <button key={v} onClick={() => setSource(v)}
                     className={cn("rounded-md px-2 py-1 text-[11px] font-medium transition-colors",
                       source === v ? "bg-blue-600 text-white" : "text-foreground hover:bg-muted")}>
@@ -1002,7 +1029,7 @@ export default function Studio() {
                     {filtered.map((c) => (
                       <tr key={c.id} onClick={() => setEdit({ rec: c })} title={`${c.id} ${c.name} — düzenlemek için tıkla`}
                         className="cursor-pointer border-b border-black/10 transition-colors hover:bg-muted/50">
-                        <td className="px-3 py-1.5 font-mono text-[11px] text-muted-foreground">{c.id}</td>
+                        <td className="px-3 py-1.5 font-mono text-[11px] text-muted-foreground">{favIds.includes(c.id) ? <span className="mr-1 text-amber-500">★</span> : null}{c.id}</td>
                         <td className="px-3 py-1.5 font-medium text-foreground">{c.name}</td>
                         <td className="px-3 py-1.5 text-xs text-muted-foreground">{c.category}</td>
                         <td className="px-3 py-1.5 text-xs text-muted-foreground">{c.subcategory || "—"}</td>
@@ -1058,7 +1085,10 @@ export default function Studio() {
                         {/* Mavi başlık: üstte */}
                         <div className="flex items-center justify-between gap-1 bg-blue-600 px-2 py-1 text-white">
                           <span className="truncate text-[11px] font-semibold">{c.name}</span>
-                          <span className="shrink-0 font-mono text-[9px] text-blue-200">{c.id}</span>
+                          <span className="flex shrink-0 items-center gap-1">
+                            {favIds.includes(c.id) && <span className="text-[10px] text-amber-300" title="Favori">★</span>}
+                            <span className="font-mono text-[9px] text-blue-200">{c.id}</span>
+                          </span>
                         </div>
                         <div className="relative flex h-24 items-start justify-center overflow-hidden bg-muted/20 p-3 transition-transform duration-150 group-hover:scale-105">
                           <ErrorBoundary>{sample}</ErrorBoundary>
@@ -1098,6 +1128,8 @@ export default function Studio() {
           file={edit.rec.file}
           dir="ui"
           initialCode={edit.rec.code}
+          isFav={favIds.includes(edit.rec.id)}
+          onToggleFav={() => toggleFav(edit.rec.id)}
           preview={SAMPLES[edit.rec.id]}
           absPath={edit.rec.path || ""}
           category={edit.rec.category}
@@ -1105,8 +1137,8 @@ export default function Studio() {
           onClose={() => setEdit(null)}
           onSaved={(tags) => {
             if (!edit) return
-            // Tags varsa anında merge; yoksa (rebuild'ten) taze veri çek
-            if (tags && tags.length > 0) mergeSaved(edit.rec.id, tags)
+            // Kaydet'ten geldi (tags array, boş dahil) → anında merge; rebuild'ten geldi (undefined) → taze çek
+            if (tags !== undefined) mergeSaved(edit.rec.id, tags)
             else {
               fetch(`/registry.json?t=${Date.now()}`, { cache: "no-store" })
                 .then((r) => r.json())

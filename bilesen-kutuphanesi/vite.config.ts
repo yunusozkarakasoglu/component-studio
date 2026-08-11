@@ -271,9 +271,17 @@ Kurallar: 1) Çalışma klasörü src/workbench/current/ — index.tsx'e tek dos
               if (jsdoc) {
                 const block = jsdoc[0]
                 const hasTags = /@tags\s+/.test(block)
-                const updated = hasTags
-                  ? block.replace(/@tags\s+[^\n]*/, `@tags ${tagList}`)
-                  : block.replace(/\s*\*\/$/, `\n * @tags ${tagList}\n */`)
+                let updated: string
+                if (!tagList) {
+                  // Tüm etiketler silindi → @tags satırını tamamen kaldır
+                  updated = hasTags
+                    ? block.replace(/\n\s*\* @tags[^\n]*/, "")
+                    : block
+                } else {
+                  updated = hasTags
+                    ? block.replace(/@tags\s+[^\n]*/, `@tags ${tagList}`)
+                    : block.replace(/\s*\*\/$/, `\n * @tags ${tagList}\n */`)
+                }
                 out = out.replace(block, updated)
               }
             }
