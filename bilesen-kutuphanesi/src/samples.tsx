@@ -2047,4 +2047,8 @@ export const SAMPLES: Record<string, ReactNode> = {
   "2072": <U.MuiButtonFullWidth />,
   "2073": <U.MuiIconButtonSizes />,
   "2074": <U.MuiAvatarGroup />,
+  "2075": <U.MuiPopper />,
+  "2076": <U.MuiPopperBasic />,
+  "2077": <U.MuiToggleButtonColor />,
+  "2078": <U.MuiSnackbarPositions />,
 }

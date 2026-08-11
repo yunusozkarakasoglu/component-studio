@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-11T00:40:20.608Z",
+  "generatedAt": "2026-08-11T00:43:33.228Z",
   "counts": {
-    "components": 1985,
-    "ready": 1985,
+    "components": 1989,
+    "ready": 1989,
     "layouts": 0
   },
   "categories": [
@@ -9484,6 +9484,18 @@
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-snackbar-basic.tsx"
     },
     {
+      "id": "2078",
+      "name": "MuiSnackbarPositions",
+      "category": "Overlay",
+      "subcategory": "MuiSnackbar",
+      "source": "mui",
+      "file": "mui-snackbar-positions.tsx",
+      "exists": true,
+      "code": "/**\n * MuiSnackbarPositions\n * @id 2078\n * @category Overlay\n * @subcategory MuiSnackbar\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiSnackbar } from \"@/components/ui/mui-snackbar\"\nimport { MuiButton } from \"@/components/ui/mui-button\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nconst POSITIONS = [\"bottom-left\", \"bottom-center\", \"bottom-right\", \"top-left\", \"top-right\"] as const\n\nfunction MuiSnackbarPositions() {\n  const [pos, setPos] = useState<(typeof POSITIONS)[number] | null>(null)\n  return (\n    <div className=\"space-y-3\">\n      <MuiStack direction=\"row\" spacing={1} className=\"flex-wrap\">\n        {POSITIONS.map((p) => (\n          <MuiButton key={p} variant=\"outlined\" size=\"small\" onClick={() => setPos(p)}>{p}</MuiButton>\n        ))}\n      </MuiStack>\n      {pos && (\n        <MuiSnackbar\n          open={!!pos}\n          message={`Bildirim: ${pos}`}\n          onClose={() => setPos(null)}\n          anchorOrigin={pos}\n        />\n      )}\n    </div>\n  )\n}\n\nexport { MuiSnackbarPositions }\n",
+      "description": "MuiSnackbarPositions",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-snackbar-positions.tsx"
+    },
+    {
       "id": "1988",
       "name": "MuiTooltip",
       "category": "Overlay",
@@ -9530,6 +9542,30 @@
       "code": "/**\n * MuiBackdrop\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Arka plan karartma — içerik üzerinde yarı saydam katman.\n *   <MuiBackdrop open={open} onClick={h} />\n * open · onClick · invisible: tamamen şeffaf\n * @id 1990\n * @category Overlay\n * @subcategory MuiBackdrop\n * @source mui\n */\nimport { cn } from \"@/lib/utils\"\n\ninterface MuiBackdropProps {\n  open?: boolean\n  onClick?: () => void\n  invisible?: boolean\n  className?: string\n}\n\nfunction MuiBackdrop({ open = false, onClick, invisible = false, className }: MuiBackdropProps) {\n  if (!open) return null\n  return (\n    <div\n      role=\"presentation\"\n      onClick={onClick}\n      className={cn(\"fixed inset-0 z-40 transition-opacity\", invisible ? \"bg-transparent\" : \"bg-black/50\", className)}\n    />\n  )\n}\n\nexport { MuiBackdrop }\nexport type { MuiBackdropProps }\n",
       "description": "MuiBackdrop",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-backdrop.tsx"
+    },
+    {
+      "id": "2075",
+      "name": "MuiPopper",
+      "category": "Overlay",
+      "subcategory": "MuiPopper",
+      "source": "mui",
+      "file": "mui-popper.tsx",
+      "exists": true,
+      "code": "/**\n * MuiPopper\n * Saf React bileşen (bağımlılıksız) — Material UI kaynaklı.\n * Konumlanmış açılır panel — bağlantılı öğe.\n *   <MuiPopper trigger={<button>…</button>}>…</MuiPopper>\n * trigger · placement · width\n * @id 2075\n * @category Overlay\n * @subcategory MuiPopper\n * @source mui\n */\nimport { useState, type ReactNode, type MouseEvent } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\ninterface MuiPopperProps {\n  trigger?: ReactNode\n  placement?: \"top\" | \"bottom\" | \"left\" | \"right\"\n  width?: number\n  className?: string\n  children?: ReactNode\n}\n\nconst POS: Record<string, string> = {\n  bottom: \"top-full mt-2\",\n  top: \"bottom-full mb-2\",\n  left: \"right-full mr-2 top-0\",\n  right: \"left-full ml-2 top-0\",\n}\n\nfunction MuiPopper({ trigger = \"Aç\", placement = \"bottom\", width = 260, className, children }: MuiPopperProps) {\n  const [open, setOpen] = useState(false)\n  const [anchor, setAnchor] = useState<DOMRect | null>(null)\n  const openAt = (e: MouseEvent<HTMLElement>) => {\n    setAnchor(e.currentTarget.getBoundingClientRect())\n    setOpen((o) => !o)\n  }\n  return (\n    <div className={cn(\"relative inline-flex\", className)}>\n      <span onClick={openAt} aria-expanded={open}>{trigger}</span>\n      {open && anchor && (\n        <div className=\"fixed z-50\" style={{ left: anchor.left, top: anchor.top }}>\n          <div role=\"tooltip\" className={cn(\"absolute\", POS[placement])} style={{ width: `${width}px` }}>\n            {children}\n          </div>\n        </div>\n      )}\n    </div>\n  )\n}\n\nexport { MuiPopper }\nexport type { MuiPopperProps }\n",
+      "description": "MuiPopper",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-popper.tsx"
+    },
+    {
+      "id": "2076",
+      "name": "MuiPopperBasic",
+      "category": "Overlay",
+      "subcategory": "MuiPopper",
+      "source": "mui",
+      "file": "mui-popper-basic.tsx",
+      "exists": true,
+      "code": "/**\n * MuiPopperBasic\n * @id 2076\n * @category Overlay\n * @subcategory MuiPopper\n * @source mui\n */\nimport { MuiPopper } from \"@/components/ui/mui-popper\"\nimport { MuiButton } from \"@/components/ui/mui-button\"\n\nfunction MuiPopperBasic() {\n  return (\n    <MuiPopper\n      trigger={<MuiButton variant=\"outlined\">Popper Aç</MuiButton>}\n      placement=\"bottom\"\n    >\n      <div className=\"rounded-lg border border-gray-200 bg-white p-3 shadow-lg\">\n        <p className=\"text-sm font-medium text-gray-900\">Popper içeriği</p>\n        <p className=\"mt-1 text-xs text-gray-500\">Konumlanmış açılır panel.</p>\n      </div>\n    </MuiPopper>\n  )\n}\n\nexport { MuiPopperBasic }\n",
+      "description": "MuiPopperBasic",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-popper-basic.tsx"
     },
     {
       "id": "2025",
@@ -11942,6 +11978,18 @@
       "code": "/**\n * MuiToggleButtonSizes\n * @id 1908\n * @category Butonlar & Aksiyonlar\n * @subcategory MuiToggleButton\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiToggleButtonGroup } from \"@/components/ui/mui-toggle-button-group\"\nimport { MuiToggleButton } from \"@/components/ui/mui-toggle-button\"\nimport { AlignLeft, AlignCenter, AlignRight } from \"@/components/ui/icons\"\n\nfunction MuiToggleButtonSizes() {\n  const [size, setSize] = useState(\"small\")\n  return (\n    <div className=\"space-y-4\">\n      <MuiToggleButtonGroup value={size} exclusive onChange={(v) => setSize(v ?? \"small\")} ariaLabel=\"boyut\" size={size as \"small\" | \"medium\" | \"large\"}>\n        <MuiToggleButton value=\"small\"><AlignLeft className=\"size-4\" /></MuiToggleButton>\n        <MuiToggleButton value=\"medium\"><AlignCenter className=\"size-4\" /></MuiToggleButton>\n        <MuiToggleButton value=\"large\"><AlignRight className=\"size-4\" /></MuiToggleButton>\n      </MuiToggleButtonGroup>\n      <p className=\"text-xs text-gray-500\">Seçili boyut: {size}</p>\n    </div>\n  )\n}\n\nexport { MuiToggleButtonSizes }\n",
       "description": "MuiToggleButtonSizes",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-toggle-button-sizes.tsx"
+    },
+    {
+      "id": "2077",
+      "name": "MuiToggleButtonColor",
+      "category": "Butonlar & Aksiyonlar",
+      "subcategory": "MuiToggleButton",
+      "source": "mui",
+      "file": "mui-toggle-button-color.tsx",
+      "exists": true,
+      "code": "/**\n * MuiToggleButtonColor\n * @id 2077\n * @category Butonlar & Aksiyonlar\n * @subcategory MuiToggleButton\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiToggleButtonGroup } from \"@/components/ui/mui-toggle-button-group\"\nimport { MuiToggleButton } from \"@/components/ui/mui-toggle-button\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiToggleButtonColor() {\n  const [standard, setStandard] = useState<string | null>(\"one\")\n  const [primary, setPrimary] = useState<string | null>(\"one\")\n  const [secondary, setSecondary] = useState<string | null>(\"one\")\n  return (\n    <MuiStack direction=\"row\" spacing={3} className=\"flex-wrap\">\n      <MuiToggleButtonGroup value={standard} exclusive onChange={setStandard} color=\"standard\" ariaLabel=\"standart\">\n        <MuiToggleButton value=\"one\">Bir</MuiToggleButton>\n        <MuiToggleButton value=\"two\">İki</MuiToggleButton>\n      </MuiToggleButtonGroup>\n      <MuiToggleButtonGroup value={primary} exclusive onChange={setPrimary} color=\"primary\" ariaLabel=\"birincil\">\n        <MuiToggleButton value=\"one\">Bir</MuiToggleButton>\n        <MuiToggleButton value=\"two\">İki</MuiToggleButton>\n      </MuiToggleButtonGroup>\n      <MuiToggleButtonGroup value={secondary} exclusive onChange={setSecondary} color=\"secondary\" ariaLabel=\"ikincil\">\n        <MuiToggleButton value=\"one\">Bir</MuiToggleButton>\n        <MuiToggleButton value=\"two\">İki</MuiToggleButton>\n      </MuiToggleButtonGroup>\n    </MuiStack>\n  )\n}\n\nexport { MuiToggleButtonColor }\n",
+      "description": "MuiToggleButtonColor",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-toggle-button-color.tsx"
     },
     {
       "id": "1909",

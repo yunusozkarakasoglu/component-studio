@@ -929,12 +929,16 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 #### MuiSnackbar
 - `1986` MuiSnackbar
 - `1987` MuiSnackbarBasic
+- `2078` MuiSnackbarPositions
 #### MuiTooltip
 - `1988` MuiTooltip
 - `1989` MuiTooltipBasic
 - `2069` MuiTooltipArrow
 #### MuiBackdrop
 - `1990` MuiBackdrop
+#### MuiPopper
+- `2075` MuiPopper
+- `2076` MuiPopperBasic
 #### MuiPopover
 - `2025` MuiPopover
 - `2029` MuiPopoverBasic
@@ -1169,6 +1173,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1906` MuiToggleButtonAlignment
 - `1907` MuiToggleButtonMultiple
 - `1908` MuiToggleButtonSizes
+- `2077` MuiToggleButtonColor
 #### MuiButtonGroup
 - `1909` MuiButtonGroup
 - `1911` MuiButtonGroupBasic
@@ -2458,7 +2463,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1843` MtAppShellUsage
 - `1844` MtAppShellAsideDemo
 
-**Toplam: 1985 bileşen (saf React)**
+**Toplam: 1989 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.
