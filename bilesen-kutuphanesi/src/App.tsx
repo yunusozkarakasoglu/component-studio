@@ -489,8 +489,13 @@ function EditorModal({
         body: JSON.stringify({ file, code, dir, tags: tagsText }),
       })
       const j = await r.json()
-      if (j.ok) { setStatus("✓ Kaynak kodu + etiketler kaydedildi — HMR ile güncellendi"); onSaved() }
-      else setStatus("✗ Hata: " + (j.error || "bilinmeyen"))
+      if (!j.ok) { setStatus("✗ Hata: " + (j.error || "bilinmeyen")); setSaving(false); return }
+      // 1) Dosya yazıldı → 2) kayıt defterini otomatik yenile → 3) state tazele
+      setStatus("✓ Kaydedildi — kayıt defteri yenileniyor…")
+      const rb = await fetch("/api/rebuild-registry", { method: "POST" })
+      const rbJ = await rb.json()
+      setStatus(rbJ.ok ? "✓ Kaydedildi + kayıt defteri güncellendi" : "✓ Kaydedildi (DB: " + (rbJ.err || "hata") + ")")
+      onSaved()
     } catch (e) { setStatus("✗ Sunucuya ulaşılamadı: " + String(e)) }
     setSaving(false)
   }

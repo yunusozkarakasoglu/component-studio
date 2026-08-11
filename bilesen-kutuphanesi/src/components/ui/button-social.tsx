@@ -4,6 +4,7 @@
  * @iconify/react (CDN) YASAK — marka logoları kendi setimizden (icons-brand).
  * @id 102
  * @category Butonlar & Aksiyonlar
+ * @tags sign-in, login, google
  */
 import { Button } from "@/components/ui/button"
 import { AppleIcon, GitHubIcon, GoogleIcon } from "@/components/ui/icons-brand"
