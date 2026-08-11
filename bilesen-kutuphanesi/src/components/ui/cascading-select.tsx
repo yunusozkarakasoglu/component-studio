@@ -9,6 +9,7 @@
  * @category Özel Komponentler
  * @subcategory CascadingSelect
  * @source ozel
+ * @tags seçim, koşullu, dropdown, il-ilçe
  */
 import { useState } from "react"
 import { cn } from "@/lib/utils"

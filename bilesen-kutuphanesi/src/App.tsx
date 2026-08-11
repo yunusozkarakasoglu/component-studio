@@ -9,7 +9,7 @@ import { NewComponentWizard } from "@/components/ui/new-component-wizard"
 import { DashboardView } from "./dashboard-view"
 import { LayoutsView } from "./layouts-view"
 
-type CompRecord = { id: string; name: string; category: string; subcategory?: string; source?: string; description: string; file: string; code: string; exists: boolean; path: string }
+type CompRecord = { id: string; name: string; category: string; subcategory?: string; source?: string; tags?: string[]; description: string; file: string; code: string; exists: boolean; path: string }
 
 /* ---------- Hata sınırı ---------- */
 class ErrorBoundary extends Component<{ children: ReactNode }, { err: Error | null }> {
@@ -452,6 +452,13 @@ function EditorModal({
   const [saving, setSaving] = useState(false)
   const [copied, setCopied] = useState(false)
 
+  // Tags: mevcut JSDoc @tags'ten başla, düzenlenebilir (virgülle ayrılmış)
+  const initialTags = useMemo(() => {
+    const m = initialCode.match(/@tags\s+(.+)/)
+    return m ? m[1].trim().split(/[,\s]+/).filter(Boolean).join(", ") : ""
+  }, [initialCode])
+  const [tagsText, setTagsText] = useState(initialTags)
+
   const compName = (title.match(/\d+ — (.+)/) || [])[1] || title
   const compId = (title.match(/^(\d+)/) || [])[1] || ""
 
@@ -479,10 +486,10 @@ function EditorModal({
     try {
       const r = await fetch("/api/save-component", {
         method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ file, code, dir }),
+        body: JSON.stringify({ file, code, dir, tags: tagsText }),
       })
       const j = await r.json()
-      if (j.ok) { setStatus("✓ Kaynak kodu kaydedildi — HMR ile güncellendi"); onSaved() }
+      if (j.ok) { setStatus("✓ Kaynak kodu + etiketler kaydedildi — HMR ile güncellendi"); onSaved() }
       else setStatus("✗ Hata: " + (j.error || "bilinmeyen"))
     } catch (e) { setStatus("✗ Sunucuya ulaşılamadı: " + String(e)) }
     setSaving(false)
@@ -568,6 +575,18 @@ function EditorModal({
                 {saving ? "…" : "💾 Kaydet"}
               </Button>
             </div>
+          </div>
+          {/* Tags düzenleme: virgülle ayrılmış — JSDoc @tags olarak kaydedilir */}
+          <div className="flex shrink-0 items-center gap-2 border-b border-black/20 bg-muted/30 px-3 py-1.5">
+            <label htmlFor="comp-tags" className="shrink-0 text-[10px] font-bold text-muted-foreground">🏷 Etiketler:</label>
+            <input
+              id="comp-tags"
+              value={tagsText}
+              onChange={(e) => setTagsText(e.target.value)}
+              placeholder="ör. form, seçim, koşullu, veri (virgülle ayır)"
+              className="h-6 min-w-0 flex-1 rounded border border-black/30 bg-background px-2 text-[11px] outline-none focus:border-blue-500"
+            />
+            <span className="shrink-0 text-[10px] text-muted-foreground">arama + tabloda görünür</span>
           </div>
           <div className="grid min-h-0 flex-1 grid-cols-2">
             <textarea
@@ -759,7 +778,8 @@ export default function Studio() {
           sourceOk(c) &&
           (cat === "Tümü" || c.category === cat) &&
           (!subCat || c.subcategory === subCat) &&
-          (!term || c.id.includes(term) || c.name.toLowerCase().includes(term) || c.description.toLowerCase().includes(term))
+          (!term || c.id.includes(term) || c.name.toLowerCase().includes(term) || c.description.toLowerCase().includes(term) ||
+            (c.tags ?? []).some((t) => t.toLowerCase().includes(term.toLowerCase())))
       )
       .sort((a, b) => Number(a.id) - Number(b.id))
   }, [registry, q, cat, subCat, source])
@@ -932,6 +952,7 @@ export default function Studio() {
                       <th className="px-3 py-2 font-semibold">Kategori</th>
                       <th className="px-3 py-2 font-semibold">Alt Kategori</th>
                       <th className="px-3 py-2 font-semibold">Kaynak</th>
+                      <th className="px-3 py-2 font-semibold">Etiketler</th>
                       <th className="px-3 py-2 font-semibold">Açıklama</th>
                     </tr>
                   </thead>
@@ -952,6 +973,18 @@ export default function Studio() {
                             : "bg-blue-500/15 text-blue-700")}>
                             {c.source ?? "heroui"}
                           </span>
+                        </td>
+                        <td className="px-3 py-1.5">
+                          {(c.tags ?? []).length > 0 ? (
+                            <div className="flex max-w-56 flex-wrap gap-1">
+                              {(c.tags ?? []).slice(0, 4).map((t) => (
+                                <span key={t} className="rounded bg-gray-200/70 px-1.5 py-0.5 text-[10px] text-gray-600">{t}</span>
+                              ))}
+                              {(c.tags ?? []).length > 4 && <span className="text-[10px] text-muted-foreground">+{(c.tags ?? []).length - 4}</span>}
+                            </div>
+                          ) : (
+                            <span className="text-xs text-muted-foreground">—</span>
+                          )}
                         </td>
                         <td className="max-w-64 truncate px-3 py-1.5 text-xs text-muted-foreground">{c.description}</td>
                       </tr>

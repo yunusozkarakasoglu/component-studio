@@ -258,12 +258,26 @@ Kurallar: 1) Çalışma klasörü src/workbench/current/ — index.tsx'e tek dos
         req.on("data", (c) => (body += c))
         req.on("end", () => {
           try {
-            const { file, code, dir } = JSON.parse(body)
+            const { file, code, dir, tags } = JSON.parse(body)
             if (!file || !/^[a-z0-9-]+\.tsx$/.test(file)) throw new Error("Geçersiz dosya adı")
             const base = dir === "layouts" ? LAYOUT_DIR : UI_DIR
             const target = path.resolve(base, file)
             if (!target.startsWith(base + path.sep)) throw new Error("Yol dışında")
-            writeFileSync(target, code, "utf8")
+            let out = code
+            // Tags varsa JSDoc @tags satırını güncelle/ekle (kapanış */ öncesine)
+            if (typeof tags === "string") {
+              const tagList = tags.split(/[,\s]+/).map((t: string) => t.trim()).filter(Boolean).join(", ")
+              const jsdoc = out.match(/\/\*\*[\s\S]*?\*\//)
+              if (jsdoc) {
+                const block = jsdoc[0]
+                const hasTags = /@tags\s+/.test(block)
+                const updated = hasTags
+                  ? block.replace(/@tags\s+[^\n]*/, `@tags ${tagList}`)
+                  : block.replace(/\s*\*\/$/, `\n * @tags ${tagList}\n */`)
+                out = out.replace(block, updated)
+              }
+            }
+            writeFileSync(target, out, "utf8")
             res.setHeader("Content-Type", "application/json")
             res.end(JSON.stringify({ ok: true }))
           } catch (e: unknown) {
