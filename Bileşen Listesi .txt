@@ -30,6 +30,8 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1977` MuiSelectNative
 - `1978` MuiSelectGrouped
 - `1979` MuiSelectSizes
+- `2060` MuiSelectControlled
+- `2061` MuiSelectCheckmarks
 
 ### Tarih
 #### DateField
@@ -811,12 +813,15 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1939` MuiCheckboxSizes
 - `1940` MuiCheckboxIndeterminate
 - `2038` MuiCheckboxGroup
+- `2056` MuiCheckboxControlled
+- `2057` MuiCheckboxIcon
 #### MuiSwitch
 - `1941` MuiSwitch
 - `1942` MuiSwitchBasic
 - `1943` MuiSwitchLabels
 - `1944` MuiSwitchColors
 - `1945` MuiSwitchSizes
+- `2059` MuiSwitchControlled
 #### MuiRadio
 - `1946` MuiRadio
 - `1947` MuiRadioGroup
@@ -824,6 +829,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1949` MuiRadioRow
 - `1950` MuiRadioColors
 - `1951` MuiRadioError
+- `2058` MuiRadioPlacement
 #### MuiSlider
 - `1952` MuiSlider
 - `1953` MuiSliderContinuous
@@ -2439,7 +2445,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1843` MtAppShellUsage
 - `1844` MtAppShellAsideDemo
 
-**Toplam: 1966 bileşen (saf React)**
+**Toplam: 1972 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

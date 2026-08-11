@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-11T00:19:19.183Z",
+  "generatedAt": "2026-08-11T00:26:29.719Z",
   "counts": {
-    "components": 1966,
-    "ready": 1966,
+    "components": 1972,
+    "ready": 1972,
     "layouts": 0
   },
   "categories": [
@@ -290,6 +290,30 @@
       "code": "/**\n * MuiSelectSizes\n * @id 1979\n * @category Combobox\n * @subcategory MuiSelect\n * @source mui\n */\nimport { MuiSelect } from \"@/components/ui/mui-select\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiSelectSizes() {\n  const opts = [\n    { value: 1, label: \"Bir\" },\n    { value: 2, label: \"İki\" },\n    { value: 3, label: \"Üç\" },\n  ]\n  return (\n    <MuiStack spacing={3} className=\"w-full max-w-sm\">\n      <MuiSelect label=\"Küçük\" options={opts} size=\"small\" defaultValue={1} />\n      <MuiSelect label=\"Orta\" options={opts} size=\"medium\" defaultValue={2} />\n      <MuiSelect label=\"Devre dışı\" options={opts} disabled defaultValue={3} />\n    </MuiStack>\n  )\n}\n\nexport { MuiSelectSizes }\n",
       "description": "MuiSelectSizes",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-select-sizes.tsx"
+    },
+    {
+      "id": "2060",
+      "name": "MuiSelectControlled",
+      "category": "Combobox",
+      "subcategory": "",
+      "source": "mui",
+      "file": "mui-select-controlled.tsx",
+      "exists": true,
+      "code": "/**\n * MuiSelectControlled\n * @id 2060\n * @category Combobox\n * @subcategory MuiSelect\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiSelect } from \"@/components/ui/mui-select\"\nimport { MuiButton } from \"@/components/ui/mui-button\"\n\nfunction MuiSelectControlled() {\n  const [value, setValue] = useState<string | number>(\"orta\")\n  return (\n    <div className=\"flex items-end gap-3\">\n      <MuiSelect\n        label=\"Kontrollü seçim\"\n        options={[\n          { value: \"kucuk\", label: \"Küçük\" },\n          { value: \"orta\", label: \"Orta\" },\n          { value: \"buyuk\", label: \"Büyük\" },\n        ]}\n        value={value}\n        onChange={(v) => setValue(Array.isArray(v) ? v[0] : v)}\n      />\n      <MuiButton variant=\"outlined\" size=\"small\" onClick={() => setValue(\"buyuk\")}>Büyük Seç</MuiButton>\n    </div>\n  )\n}\n\nexport { MuiSelectControlled }\n",
+      "description": "MuiSelectControlled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-select-controlled.tsx"
+    },
+    {
+      "id": "2061",
+      "name": "MuiSelectCheckmarks",
+      "category": "Combobox",
+      "subcategory": "",
+      "source": "mui",
+      "file": "mui-select-checkmarks.tsx",
+      "exists": true,
+      "code": "/**\n * MuiSelectCheckmarks\n * @id 2061\n * @category Combobox\n * @subcategory MuiSelect\n * @source mui\n */\nimport { MuiSelect } from \"@/components/ui/mui-select\"\n\nfunction MuiSelectCheckmarks() {\n  return (\n    <MuiSelect\n      label=\"Çoklu — işaretli\"\n      multiple\n      defaultValue={[\"react\", \"ts\"]}\n      options={[\n        { value: \"react\", label: \"React\" },\n        { value: \"vue\", label: \"Vue\" },\n        { value: \"angular\", label: \"Angular\" },\n        { value: \"svelte\", label: \"Svelte\" },\n        { value: \"ts\", label: \"TypeScript\" },\n      ]}\n    />\n  )\n}\n\nexport { MuiSelectCheckmarks }\n",
+      "description": "MuiSelectCheckmarks",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-select-checkmarks.tsx"
     },
     {
       "id": "262",
@@ -8236,6 +8260,30 @@
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-checkbox-group.tsx"
     },
     {
+      "id": "2056",
+      "name": "MuiCheckboxControlled",
+      "category": "Seçim",
+      "subcategory": "MuiCheckbox",
+      "source": "mui",
+      "file": "mui-checkbox-controlled.tsx",
+      "exists": true,
+      "code": "/**\n * MuiCheckboxControlled\n * @id 2056\n * @category Seçim\n * @subcategory MuiCheckbox\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiCheckbox } from \"@/components/ui/mui-checkbox\"\nimport { MuiButton } from \"@/components/ui/mui-button\"\n\nfunction MuiCheckboxControlled() {\n  const [checked, setChecked] = useState(false)\n  return (\n    <div className=\"flex items-center gap-3\">\n      <MuiCheckbox checked={checked} onChange={(e) => setChecked(e.target.checked)}>\n        Kontrollü onay kutusu\n      </MuiCheckbox>\n      <MuiButton variant=\"outlined\" size=\"small\" onClick={() => setChecked((c) => !c)}>\n        {checked ? \"Kaldır\" : \"İşaretle\"}\n      </MuiButton>\n    </div>\n  )\n}\n\nexport { MuiCheckboxControlled }\n",
+      "description": "MuiCheckboxControlled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-checkbox-controlled.tsx"
+    },
+    {
+      "id": "2057",
+      "name": "MuiCheckboxIcon",
+      "category": "Seçim",
+      "subcategory": "MuiCheckbox",
+      "source": "mui",
+      "file": "mui-checkbox-icon.tsx",
+      "exists": true,
+      "code": "/**\n * MuiCheckboxIcon\n * @id 2057\n * @category Seçim\n * @subcategory MuiCheckbox\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiCheckbox } from \"@/components/ui/mui-checkbox\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\nimport { Star, Heart } from \"@/components/ui/icons\"\n\nfunction MuiCheckboxIcon() {\n  const [fav, setFav] = useState(true)\n  const [star, setStar] = useState(false)\n  return (\n    <MuiStack direction=\"row\" spacing={4} className=\"items-center\">\n      <button type=\"button\" onClick={() => setFav((v) => !v)} aria-pressed={fav} className=\"cursor-pointer\">\n        <Heart className={fav ? \"size-7 fill-red-500 text-red-500\" : \"size-7 text-gray-300\"} />\n      </button>\n      <button type=\"button\" onClick={() => setStar((v) => !v)} aria-pressed={star} className=\"cursor-pointer\">\n        <Star className={star ? \"size-7 fill-amber-400 text-amber-400\" : \"size-7 text-gray-300\"} />\n      </button>\n    </MuiStack>\n  )\n}\n\nexport { MuiCheckboxIcon }\n",
+      "description": "MuiCheckboxIcon",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-checkbox-icon.tsx"
+    },
+    {
       "id": "1941",
       "name": "MuiSwitch",
       "category": "Seçim",
@@ -8294,6 +8342,18 @@
       "code": "/**\n * MuiSwitchSizes\n * @id 1945\n * @category Seçim\n * @subcategory MuiSwitch\n * @source mui\n */\nimport { MuiSwitch } from \"@/components/ui/mui-switch\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiSwitchSizes() {\n  return (\n    <MuiStack direction=\"row\" spacing={3} className=\"items-center\">\n      <MuiSwitch defaultChecked size=\"small\" />\n      <MuiSwitch defaultChecked size=\"medium\" />\n    </MuiStack>\n  )\n}\n\nexport { MuiSwitchSizes }\n",
       "description": "MuiSwitchSizes",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-switch-sizes.tsx"
+    },
+    {
+      "id": "2059",
+      "name": "MuiSwitchControlled",
+      "category": "Seçim",
+      "subcategory": "MuiSwitch",
+      "source": "mui",
+      "file": "mui-switch-controlled.tsx",
+      "exists": true,
+      "code": "/**\n * MuiSwitchControlled\n * @id 2059\n * @category Seçim\n * @subcategory MuiSwitch\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiSwitch } from \"@/components/ui/mui-switch\"\n\nfunction MuiSwitchControlled() {\n  const [on, setOn] = useState(false)\n  return (\n    <div className=\"flex items-center gap-3\">\n      <MuiSwitch checked={on} onChange={(e) => setOn(e.target.checked)} />\n      <span className=\"text-sm text-gray-700\">{on ? \"Açık\" : \"Kapalı\"}</span>\n    </div>\n  )\n}\n\nexport { MuiSwitchControlled }\n",
+      "description": "MuiSwitchControlled",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-switch-controlled.tsx"
     },
     {
       "id": "1946",
@@ -8366,6 +8426,18 @@
       "code": "/**\n * MuiRadioError\n * @id 1951\n * @category Seçim\n * @subcategory MuiRadio\n * @source mui\n */\nimport { MuiRadioGroup } from \"@/components/ui/mui-radio-group\"\n\nfunction MuiRadioError() {\n  return (\n    <div className=\"rounded-md border border-red-300 bg-red-50 p-3\">\n      <p className=\"mb-2 text-sm font-medium text-red-700\">Lütfen bir seçenek işaretleyin</p>\n      <MuiRadioGroup\n        options={[\n          { value: \"a\", label: \"Seçenek A\" },\n          { value: \"b\", label: \"Seçenek B\" },\n        ]}\n      />\n    </div>\n  )\n}\n\nexport { MuiRadioError }\n",
       "description": "MuiRadioError",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-radio-error.tsx"
+    },
+    {
+      "id": "2058",
+      "name": "MuiRadioPlacement",
+      "category": "Seçim",
+      "subcategory": "MuiRadio",
+      "source": "mui",
+      "file": "mui-radio-placement.tsx",
+      "exists": true,
+      "code": "/**\n * MuiRadioPlacement\n * @id 2058\n * @category Seçim\n * @subcategory MuiRadio\n * @source mui\n */\nimport { MuiRadioGroup } from \"@/components/ui/mui-radio-group\"\n\nfunction MuiRadioPlacement() {\n  return (\n    <div className=\"space-y-4\">\n      <MuiRadioGroup\n        label=\"Yatay (row)\"\n        row\n        options={[\n          { value: \"a\", label: \"Bir\" },\n          { value: \"b\", label: \"İki\" },\n          { value: \"c\", label: \"Üç\" },\n        ]}\n        defaultValue=\"a\"\n      />\n      <MuiRadioGroup\n        label=\"Dikey\"\n        options={[\n          { value: \"x\", label: \"X\" },\n          { value: \"y\", label: \"Y\" },\n        ]}\n        defaultValue=\"x\"\n      />\n    </div>\n  )\n}\n\nexport { MuiRadioPlacement }\n",
+      "description": "MuiRadioPlacement",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-radio-placement.tsx"
     },
     {
       "id": "1952",

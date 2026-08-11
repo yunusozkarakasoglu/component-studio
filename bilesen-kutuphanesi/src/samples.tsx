@@ -2028,4 +2028,10 @@ export const SAMPLES: Record<string, ReactNode> = {
   "2053": <U.MuiDialogFullScreen />,
   "2054": <U.MuiTableSelection />,
   "2055": <U.MuiRatingHover />,
+  "2056": <U.MuiCheckboxControlled />,
+  "2057": <U.MuiCheckboxIcon />,
+  "2058": <U.MuiRadioPlacement />,
+  "2059": <U.MuiSwitchControlled />,
+  "2060": <U.MuiSelectControlled />,
+  "2061": <U.MuiSelectCheckmarks />,
 }
