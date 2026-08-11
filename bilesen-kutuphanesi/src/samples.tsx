@@ -2052,4 +2052,5 @@ export const SAMPLES: Record<string, ReactNode> = {
   "2077": <U.MuiToggleButtonColor />,
   "2078": <U.MuiSnackbarPositions />,
   "2079": <U.CascadingSelect />,
+  "2080": <U.Miller2 />,
 }

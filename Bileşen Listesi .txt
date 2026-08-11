@@ -1418,6 +1418,8 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 ### Özel Komponentler
 #### CascadingSelect
 - `2079` CascadingSelect
+#### Miller2
+- `2080` Miller2
 - `089` MillerColumns
 
 ---
