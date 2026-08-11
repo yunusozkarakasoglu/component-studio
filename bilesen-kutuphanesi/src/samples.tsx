@@ -2039,4 +2039,8 @@ export const SAMPLES: Record<string, ReactNode> = {
   "2064": <U.MuiDialogResponsive />,
   "2065": <U.MuiChipArray />,
   "2066": <U.MuiTabsScrollable />,
+  "2067": <U.MuiButtonGroupOrientation />,
+  "2068": <U.MuiButtonGroupColors />,
+  "2069": <U.MuiTooltipArrow />,
+  "2070": <U.MuiAppBarSticky />,
 }

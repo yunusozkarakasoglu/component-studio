@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-11T00:31:53.695Z",
+  "generatedAt": "2026-08-11T00:35:09.497Z",
   "counts": {
-    "components": 1977,
-    "ready": 1977,
+    "components": 1981,
+    "ready": 1981,
     "layouts": 0
   },
   "categories": [
@@ -9508,6 +9508,18 @@
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-tooltip-basic.tsx"
     },
     {
+      "id": "2069",
+      "name": "MuiTooltipArrow",
+      "category": "Overlay",
+      "subcategory": "MuiTooltip",
+      "source": "mui",
+      "file": "mui-tooltip-arrow.tsx",
+      "exists": true,
+      "code": "/**\n * MuiTooltipArrow\n * @id 2069\n * @category Overlay\n * @subcategory MuiTooltip\n * @source mui\n */\nimport { MuiTooltip } from \"@/components/ui/mui-tooltip\"\nimport { MuiButton } from \"@/components/ui/mui-button\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiTooltipArrow() {\n  return (\n    <MuiStack direction=\"row\" spacing={2}>\n      <MuiTooltip title=\"Ok işaretli ipucu\" placement=\"top\" arrow>\n        <MuiButton variant=\"outlined\">Ok</MuiButton>\n      </MuiTooltip>\n      <MuiTooltip title=\"İpucu\" placement=\"bottom\">\n        <MuiButton variant=\"outlined\">Düz</MuiButton>\n      </MuiTooltip>\n    </MuiStack>\n  )\n}\n\nexport { MuiTooltipArrow }\n",
+      "description": "MuiTooltipArrow",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-tooltip-arrow.tsx"
+    },
+    {
       "id": "1990",
       "name": "MuiBackdrop",
       "category": "Overlay",
@@ -10274,6 +10286,18 @@
       "code": "/**\n * MuiAppBarBasic\n * @id 1999\n * @category Navigasyon\n * @subcategory MuiAppBar\n * @source mui\n */\nimport { MuiAppBar } from \"@/components/ui/mui-app-bar\"\nimport { MuiIconButton } from \"@/components/ui/mui-icon-button\"\nimport { Search, Bell } from \"@/components/ui/icons\"\n\nfunction MuiAppBarBasic() {\n  return (\n    <MuiAppBar\n      title=\"Uygulama Başlığı\"\n      actions={\n        <>\n          <MuiIconButton aria-label=\"Ara\" className=\"text-white hover:bg-white/20\"><Search className=\"size-5\" /></MuiIconButton>\n          <MuiIconButton aria-label=\"Bildirimler\" className=\"text-white hover:bg-white/20\"><Bell className=\"size-5\" /></MuiIconButton>\n        </>\n      }\n    />\n  )\n}\n\nexport { MuiAppBarBasic }\n",
       "description": "MuiAppBarBasic",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-app-bar-basic.tsx"
+    },
+    {
+      "id": "2070",
+      "name": "MuiAppBarSticky",
+      "category": "Navigasyon",
+      "subcategory": "MuiAppBar",
+      "source": "mui",
+      "file": "mui-app-bar-sticky.tsx",
+      "exists": true,
+      "code": "/**\n * MuiAppBarSticky\n * @id 2070\n * @category Navigasyon\n * @subcategory MuiAppBar\n * @source mui\n */\nimport { MuiAppBar } from \"@/components/ui/mui-app-bar\"\nimport { MuiIconButton } from \"@/components/ui/mui-icon-button\"\nimport { Menu } from \"@/components/ui/icons\"\nimport { CircleUser } from \"@/components/ui/icons\"\n\nfunction MuiAppBarSticky() {\n  return (\n    <div className=\"w-full space-y-2\">\n      <MuiAppBar\n        title=\"Sabit Üst Çubuk\"\n        position=\"sticky\"\n        actions={\n          <>\n            <MuiIconButton aria-label=\"Menü\" className=\"text-white hover:bg-white/20\"><Menu className=\"size-5\" /></MuiIconButton>\n            <MuiIconButton aria-label=\"Profil\" className=\"text-white hover:bg-white/20\"><CircleUser className=\"size-5\" /></MuiIconButton>\n          </>\n        }\n      />\n      <p className=\"text-xs text-gray-500\">sticky — kaydırdıkça üstte kalır.</p>\n    </div>\n  )\n}\n\nexport { MuiAppBarSticky }\n",
+      "description": "MuiAppBarSticky",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-app-bar-sticky.tsx"
     },
     {
       "id": "1994",
@@ -11918,6 +11942,30 @@
       "code": "/**\n * MuiButtonGroupVariants\n * @id 1914\n * @category Butonlar & Aksiyonlar\n * @subcategory MuiButtonGroup\n * @source mui\n */\nimport { MuiButtonGroup } from \"@/components/ui/mui-button-group\"\nimport { MuiButton } from \"@/components/ui/mui-button\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiButtonGroupVariants() {\n  return (\n    <MuiStack direction=\"row\" spacing={2} className=\"flex-wrap\">\n      <MuiButtonGroup variant=\"contained\" ariaLabel=\"dolu\">\n        <MuiButton>Dolu</MuiButton>\n        <MuiButton>Butonlar</MuiButton>\n      </MuiButtonGroup>\n      <MuiButtonGroup variant=\"outlined\" ariaLabel=\"çerçeveli\">\n        <MuiButton>Çerçeveli</MuiButton>\n        <MuiButton>Butonlar</MuiButton>\n      </MuiButtonGroup>\n      <MuiButtonGroup variant=\"text\" ariaLabel=\"metin\">\n        <MuiButton>Metin</MuiButton>\n        <MuiButton>Butonlar</MuiButton>\n      </MuiButtonGroup>\n    </MuiStack>\n  )\n}\n\nexport { MuiButtonGroupVariants }\n",
       "description": "MuiButtonGroupVariants",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-button-group-variants.tsx"
+    },
+    {
+      "id": "2067",
+      "name": "MuiButtonGroupOrientation",
+      "category": "Butonlar & Aksiyonlar",
+      "subcategory": "MuiButtonGroup",
+      "source": "mui",
+      "file": "mui-button-group-orientation.tsx",
+      "exists": true,
+      "code": "/**\n * MuiButtonGroupOrientation\n * @id 2067\n * @category Butonlar & Aksiyonlar\n * @subcategory MuiButtonGroup\n * @source mui\n */\nimport { MuiButtonGroup } from \"@/components/ui/mui-button-group\"\nimport { MuiButton } from \"@/components/ui/mui-button\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiButtonGroupOrientation() {\n  return (\n    <MuiStack direction=\"row\" spacing={3} className=\"flex-wrap items-start\">\n      <MuiButtonGroup orientation=\"vertical\" variant=\"outlined\" ariaLabel=\"dikey\">\n        <MuiButton>Üst</MuiButton>\n        <MuiButton>Orta</MuiButton>\n        <MuiButton>Alt</MuiButton>\n      </MuiButtonGroup>\n      <MuiButtonGroup variant=\"contained\" ariaLabel=\"yatay\">\n        <MuiButton>Bir</MuiButton>\n        <MuiButton>İki</MuiButton>\n        <MuiButton>Üç</MuiButton>\n      </MuiButtonGroup>\n    </MuiStack>\n  )\n}\n\nexport { MuiButtonGroupOrientation }\n",
+      "description": "MuiButtonGroupOrientation",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-button-group-orientation.tsx"
+    },
+    {
+      "id": "2068",
+      "name": "MuiButtonGroupColors",
+      "category": "Butonlar & Aksiyonlar",
+      "subcategory": "MuiButtonGroup",
+      "source": "mui",
+      "file": "mui-button-group-colors.tsx",
+      "exists": true,
+      "code": "/**\n * MuiButtonGroupColors\n * @id 2068\n * @category Butonlar & Aksiyonlar\n * @subcategory MuiButtonGroup\n * @source mui\n */\nimport { MuiButtonGroup } from \"@/components/ui/mui-button-group\"\nimport { MuiButton } from \"@/components/ui/mui-button\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiButtonGroupColors() {\n  return (\n    <MuiStack direction=\"row\" spacing={2} className=\"flex-wrap\">\n      <MuiButtonGroup variant=\"contained\" color=\"primary\" ariaLabel=\"birincil\">\n        <MuiButton>One</MuiButton>\n        <MuiButton>Two</MuiButton>\n      </MuiButtonGroup>\n      <MuiButtonGroup variant=\"contained\" color=\"secondary\" ariaLabel=\"ikincil\">\n        <MuiButton>One</MuiButton>\n        <MuiButton>Two</MuiButton>\n      </MuiButtonGroup>\n      <MuiButtonGroup variant=\"contained\" color=\"success\" ariaLabel=\"başarı\">\n        <MuiButton>One</MuiButton>\n        <MuiButton>Two</MuiButton>\n      </MuiButtonGroup>\n      <MuiButtonGroup variant=\"contained\" color=\"error\" ariaLabel=\"hata\">\n        <MuiButton>One</MuiButton>\n        <MuiButton>Two</MuiButton>\n      </MuiButtonGroup>\n    </MuiStack>\n  )\n}\n\nexport { MuiButtonGroupColors }\n",
+      "description": "MuiButtonGroupColors",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-button-group-colors.tsx"
     },
     {
       "id": "1910",
