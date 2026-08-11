@@ -139,6 +139,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1933` MuiTextFieldHiddenLabel
 - `1934` MuiTextFieldLayout
 - `1935` MuiTextFieldInputWithIcon
+- `2046` MuiTextFieldState
 #### MuiTextareaAutosize
 - `1929` MuiTextareaAutosize
 - `1930` MuiTextareaAutosizeMinMax
@@ -842,6 +843,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1961` MuiRatingBasic
 - `1962` MuiRatingHalf
 - `1963` MuiRatingSizes
+- `2055` MuiRatingHover
 #### MuiChip
 - `1964` MuiChip
 - `1965` MuiChipBasic
@@ -856,6 +858,8 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1971` MuiAutocompleteBasic
 - `1972` MuiAutocompleteMultiple
 - `1973` MuiAutocompleteDisabled
+- `2044` MuiAutocompleteGrouped
+- `2045` MuiAutocompleteDisabledOptions
 #### RadioGroup
 - `389` RadioGroup
 - `390` RadioGroupBasic
@@ -909,6 +913,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1981` MuiDialogBasic
 - `1982` MuiDialogForm
 - `1983` MuiDialogMaxWidth
+- `2053` MuiDialogFullScreen
 #### MuiDrawer
 - `1984` MuiDrawer
 - `1985` MuiDrawerBasic
@@ -988,6 +993,8 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1991` MuiMenu
 - `1992` MuiMenuBasic
 - `2037` MuiMenuIcons
+- `2047` MuiMenuDense
+- `2048` MuiMenuLong
 #### MuiAppBar
 - `1993` MuiAppBar
 - `1999` MuiAppBarBasic
@@ -1000,9 +1007,12 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 #### MuiTabs
 - `1996` MuiTabs
 - `2002` MuiTabsBasic
+- `2049` MuiTabsVertical
+- `2050` MuiTabsWithIcons
 #### MuiStepper
 - `1997` MuiStepper
 - `2003` MuiStepperBasic
+- `2051` MuiStepperVertical
 #### MuiTimeline
 - `1998` MuiTimeline
 - `2004` MuiTimelineBasic
@@ -1203,6 +1213,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `2006` MuiCardBasic
 - `2007` MuiCardMedia
 - `2008` MuiCardOutlined
+- `2052` MuiCardActionArea
 - `2009` MuiAvatar
 - `2010` MuiBadge
 - `2011` MuiList
@@ -1212,6 +1223,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `2015` MuiBadgeBasic
 - `2016` MuiListBasic
 - `2017` MuiTableBasic
+- `2054` MuiTableSelection
 - `2018` MuiAccordionBasic
 - `2033` MuiImageList
 - `2034` MuiMasonry
@@ -2427,7 +2439,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1843` MtAppShellUsage
 - `1844` MtAppShellAsideDemo
 
-**Toplam: 1954 bileşen (saf React)**
+**Toplam: 1966 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

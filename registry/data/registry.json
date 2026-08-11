@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-11T00:05:56.224Z",
+  "generatedAt": "2026-08-11T00:19:19.183Z",
   "counts": {
-    "components": 1954,
-    "ready": 1954,
+    "components": 1966,
+    "ready": 1966,
     "layouts": 0
   },
   "categories": [
@@ -1346,6 +1346,18 @@
       "code": "/**\n * MuiTextFieldInputWithIcon\n * @id 1935\n * @category Form Elemanları\n * @subcategory MuiTextField\n * @source mui\n */\nimport { MuiTextField } from \"@/components/ui/mui-text-field\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\nimport { Search, CircleUser, Lock } from \"@/components/ui/icons\"\n\nfunction MuiTextFieldInputWithIcon() {\n  return (\n    <MuiStack spacing={3} className=\"w-full max-w-md\">\n      <MuiTextField label=\"Kullanıcı adı\" startAdornment={<CircleUser className=\"size-5\" />} defaultValue=\"yunus\" />\n      <MuiTextField label=\"Şifre\" startAdornment={<Lock className=\"size-4\" />} type=\"password\" defaultValue=\"••••••\" />\n      <MuiTextField label=\"Ara\" startAdornment={<Search className=\"size-4\" />} placeholder=\"Ürün ara…\" />\n    </MuiStack>\n  )\n}\n\nexport { MuiTextFieldInputWithIcon }\n",
       "description": "MuiTextFieldInputWithIcon",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-text-field-input-with-icon.tsx"
+    },
+    {
+      "id": "2046",
+      "name": "MuiTextFieldState",
+      "category": "Form Elemanları",
+      "subcategory": "MuiTextField",
+      "source": "mui",
+      "file": "mui-text-field-state.tsx",
+      "exists": true,
+      "code": "/**\n * MuiTextFieldState\n * @id 2046\n * @category Form Elemanları\n * @subcategory MuiTextField\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiTextField } from \"@/components/ui/mui-text-field\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiTextFieldState() {\n  const [value, setValue] = useState(\"Kontrollü değer\")\n  return (\n    <MuiStack spacing={3} className=\"w-full max-w-md\">\n      <MuiTextField label=\"Kontrollü\" value={value} onChange={(e) => setValue(e.target.value)} helperText=\"State ile yönetilir\" />\n      <MuiTextField label=\"Varsayılan\" defaultValue=\"Kontrolsüz (defaultValue)\" helperText=\"Dahili state\" />\n    </MuiStack>\n  )\n}\n\nexport { MuiTextFieldState }\n",
+      "description": "MuiTextFieldState",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-text-field-state.tsx"
     },
     {
       "id": "1929",
@@ -8560,6 +8572,18 @@
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-rating-sizes.tsx"
     },
     {
+      "id": "2055",
+      "name": "MuiRatingHover",
+      "category": "Seçim",
+      "subcategory": "MuiRating",
+      "source": "mui",
+      "file": "mui-rating-hover.tsx",
+      "exists": true,
+      "code": "/**\n * MuiRatingHover\n * @id 2055\n * @category Seçim\n * @subcategory MuiRating\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiRating } from \"@/components/ui/mui-rating\"\n\nfunction MuiRatingHover() {\n  const [value, setValue] = useState<number | null>(3)\n  const labels: Record<number, string> = { 1: \"Çok Kötü\", 2: \"Kötü\", 3: \"Orta\", 4: \"İyi\", 5: \"Mükemmel\" }\n  return (\n    <div className=\"flex items-center gap-3\">\n      <MuiRating value={value} onChange={setValue} />\n      <span className=\"text-sm text-gray-600\">{value ? labels[value] : \"Puanlayın\"}</span>\n    </div>\n  )\n}\n\nexport { MuiRatingHover }\n",
+      "description": "MuiRatingHover",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-rating-hover.tsx"
+    },
+    {
       "id": "1964",
       "name": "MuiChip",
       "category": "Seçim",
@@ -8702,6 +8726,30 @@
       "code": "/**\n * MuiAutocompleteDisabled\n * @id 1973\n * @category Seçim\n * @subcategory MuiAutocomplete\n * @source mui\n */\nimport { MuiAutocomplete } from \"@/components/ui/mui-autocomplete\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nconst OPTIONS = [\"Seçenek A\", \"Seçenek B\", \"Seçenek C\"]\n\nfunction MuiAutocompleteDisabled() {\n  return (\n    <MuiStack spacing={3} className=\"w-full max-w-sm\">\n      <MuiAutocomplete label=\"Devre dışı\" options={OPTIONS} disabled placeholder=\"Kullanılamaz\" />\n    </MuiStack>\n  )\n}\n\nexport { MuiAutocompleteDisabled }\n",
       "description": "MuiAutocompleteDisabled",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-autocomplete-disabled.tsx"
+    },
+    {
+      "id": "2044",
+      "name": "MuiAutocompleteGrouped",
+      "category": "Seçim",
+      "subcategory": "MuiAutocomplete",
+      "source": "mui",
+      "file": "mui-autocomplete-grouped.tsx",
+      "exists": true,
+      "code": "/**\n * MuiAutocompleteGrouped\n * @id 2044\n * @category Seçim\n * @subcategory MuiAutocomplete\n * @source mui\n */\nimport { useState } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\nfunction MuiAutocompleteGrouped() {\n  const [query, setQuery] = useState(\"\")\n  const [open, setOpen] = useState(false)\n  const groups = [\n    { label: \"Meyveler\", items: [\"Elma\", \"Armut\", \"Muz\", \"Çilek\"] },\n    { label: \"Sebzeler\", items: [\"Domates\", \"Salatalık\", \"Biber\", \"Havuç\"] },\n    { label: \"Tahıllar\", items: [\"Buğday\", \"Arpa\", \"Mısır\", \"Yulaf\"] },\n  ]\n  const filtered = groups\n    .map((g) => ({ ...g, items: g.items.filter((i) => i.toLowerCase().includes(query.toLowerCase())) }))\n    .filter((g) => g.items.length > 0)\n  return (\n    <div className=\"w-full max-w-sm\">\n      <label className=\"mb-1 block text-sm text-gray-700\">Gruplu otomatik tamamlama</label>\n      <div className=\"relative\">\n        <input\n          value={query}\n          onChange={(e) => { setQuery(e.target.value); setOpen(true) }}\n          onFocus={() => setOpen(true)}\n          onBlur={() => setTimeout(() => setOpen(false), 120)}\n          placeholder=\"Ara…\"\n          className=\"w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm outline-none focus:border-blue-500\"\n        />\n      </div>\n      {open && filtered.length > 0 && (\n        <div className=\"mt-1 max-h-56 overflow-auto rounded-md border border-gray-200 bg-white py-1 shadow-lg\">\n          {filtered.map((g) => (\n            <div key={g.label}>\n              <p className=\"bg-gray-50 px-3 py-1 text-xs font-semibold uppercase text-gray-500\">{g.label}</p>\n              {g.items.map((i) => (\n                <button key={i} type=\"button\" onMouseDown={(e) => e.preventDefault()} onClick={() => { setQuery(i); setOpen(false) }}\n                  className={cn(\"block w-full px-3 py-1.5 text-left text-sm hover:bg-blue-50\")}>\n                  {i}\n                </button>\n              ))}\n            </div>\n          ))}\n        </div>\n      )}\n    </div>\n  )\n}\n\nexport { MuiAutocompleteGrouped }\n",
+      "description": "MuiAutocompleteGrouped",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-autocomplete-grouped.tsx"
+    },
+    {
+      "id": "2045",
+      "name": "MuiAutocompleteDisabledOptions",
+      "category": "Seçim",
+      "subcategory": "MuiAutocomplete",
+      "source": "mui",
+      "file": "mui-autocomplete-disabled-options.tsx",
+      "exists": true,
+      "code": "/**\n * MuiAutocompleteDisabledOptions\n * @id 2045\n * @category Seçim\n * @subcategory MuiAutocomplete\n * @source mui\n */\nimport { MuiAutocomplete } from \"@/components/ui/mui-autocomplete\"\n\nfunction MuiAutocompleteDisabledOptions() {\n  return (\n    <MuiAutocomplete\n      label=\"Devre dışı seçenekler\"\n      options={[\"Elma\", \"Armut\", \"Muz\", \"Çilek\", \"Kiraz\", \"Üzüm\"]}\n      placeholder=\"Seç…\"\n    />\n  )\n}\n\nexport { MuiAutocompleteDisabledOptions }\n",
+      "description": "MuiAutocompleteDisabledOptions",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-autocomplete-disabled-options.tsx"
     },
     {
       "id": "389",
@@ -9266,6 +9314,18 @@
       "code": "/**\n * MuiDialogMaxWidth\n * @id 1983\n * @category Overlay\n * @subcategory MuiDialog\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiDialog } from \"@/components/ui/mui-dialog\"\nimport { MuiButton } from \"@/components/ui/mui-button\"\nimport { MuiSelect } from \"@/components/ui/mui-select\"\n\nfunction MuiDialogMaxWidth() {\n  const [open, setOpen] = useState(false)\n  const [width, setWidth] = useState<string | number>(\"sm\")\n  return (\n    <div className=\"space-y-3\">\n      <MuiSelect\n        label=\"Genişlik\"\n        options={[\n          { value: \"xs\", label: \"xs\" },\n          { value: \"sm\", label: \"sm\" },\n          { value: \"md\", label: \"md\" },\n          { value: \"lg\", label: \"lg\" },\n          { value: \"xl\", label: \"xl\" },\n        ]}\n        value={width}\n        onChange={(v) => setWidth(Array.isArray(v) ? v[0] : v)}\n        size=\"small\"\n        className=\"!max-w-40\"\n      />\n      <div>\n        <MuiButton variant=\"outlined\" onClick={() => setOpen(true)}>Diyalogu Aç</MuiButton>\n      </div>\n      <MuiDialog open={open} onClose={() => setOpen(false)} title={`maxWidth: ${width}`} maxWidth={width as \"sm\"} fullWidth>\n        Genişlik seçilen değere göre değişir. İçerik bu alanda gösterilir.\n      </MuiDialog>\n    </div>\n  )\n}\n\nexport { MuiDialogMaxWidth }\n",
       "description": "MuiDialogMaxWidth",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-dialog-max-width.tsx"
+    },
+    {
+      "id": "2053",
+      "name": "MuiDialogFullScreen",
+      "category": "Overlay",
+      "subcategory": "MuiDialog",
+      "source": "mui",
+      "file": "mui-dialog-full-screen.tsx",
+      "exists": true,
+      "code": "/**\n * MuiDialogFullScreen\n * @id 2053\n * @category Overlay\n * @subcategory MuiDialog\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiDialog } from \"@/components/ui/mui-dialog\"\nimport { MuiButton } from \"@/components/ui/mui-button\"\n\nfunction MuiDialogFullScreen() {\n  const [open, setOpen] = useState(false)\n  return (\n    <div>\n      <MuiButton variant=\"outlined\" onClick={() => setOpen(true)}>Tam Ekran Diyalog</MuiButton>\n      <MuiDialog\n        open={open}\n        onClose={() => setOpen(false)}\n        title=\"Tam Ekran\"\n        fullScreen\n        actions={<MuiButton variant=\"contained\" onClick={() => setOpen(false)}>Kapat</MuiButton>}\n      >\n        <p className=\"mb-4\">Bu diyalog tüm ekranı kaplar. Mobil formlar ve detay görünümleri için idealdir.</p>\n        <div className=\"space-y-2\">\n          {Array.from({ length: 8 }, (_, i) => (\n            <div key={i} className=\"rounded bg-gray-100 p-3 text-sm text-gray-600\">İçerik bölümü {i + 1}</div>\n          ))}\n        </div>\n      </MuiDialog>\n    </div>\n  )\n}\n\nexport { MuiDialogFullScreen }\n",
+      "description": "MuiDialogFullScreen",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-dialog-full-screen.tsx"
     },
     {
       "id": "1984",
@@ -10060,6 +10120,30 @@
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-menu-icons.tsx"
     },
     {
+      "id": "2047",
+      "name": "MuiMenuDense",
+      "category": "Navigasyon",
+      "subcategory": "MuiMenu",
+      "source": "mui",
+      "file": "mui-menu-dense.tsx",
+      "exists": true,
+      "code": "/**\n * MuiMenuDense\n * @id 2047\n * @category Navigasyon\n * @subcategory MuiMenu\n * @source mui\n */\nimport { MuiMenu } from \"@/components/ui/mui-menu\"\nimport { MuiButton } from \"@/components/ui/mui-button\"\n\nfunction MuiMenuDense() {\n  return (\n    <MuiMenu\n      trigger={<MuiButton variant=\"outlined\">Sıkı Menü ▾</MuiButton>}\n      items={[\n        { label: \"Kısayol 1\", onClick: () => alert(\"1\") },\n        { label: \"Kısayol 2\", onClick: () => alert(\"2\") },\n        { label: \"Kısayol 3\", onClick: () => alert(\"3\") },\n        { label: \"Kısayol 4\", onClick: () => alert(\"4\") },\n      ]}\n    />\n  )\n}\n\nexport { MuiMenuDense }\n",
+      "description": "MuiMenuDense",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-menu-dense.tsx"
+    },
+    {
+      "id": "2048",
+      "name": "MuiMenuLong",
+      "category": "Navigasyon",
+      "subcategory": "MuiMenu",
+      "source": "mui",
+      "file": "mui-menu-long.tsx",
+      "exists": true,
+      "code": "/**\n * MuiMenuLong\n * @id 2048\n * @category Navigasyon\n * @subcategory MuiMenu\n * @source mui\n */\nimport { MuiMenu } from \"@/components/ui/mui-menu\"\nimport { MuiButton } from \"@/components/ui/mui-button\"\n\nconst LONG_ITEMS = Array.from({ length: 20 }, (_, i) => ({\n  label: `Seçenek ${i + 1}`,\n  onClick: () => alert(`Seçenek ${i + 1}`),\n}))\n\nfunction MuiMenuLong() {\n  return (\n    <MuiMenu\n      trigger={<MuiButton variant=\"outlined\">Uzun Liste ▾</MuiButton>}\n      items={LONG_ITEMS}\n    />\n  )\n}\n\nexport { MuiMenuLong }\n",
+      "description": "MuiMenuLong",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-menu-long.tsx"
+    },
+    {
       "id": "1993",
       "name": "MuiAppBar",
       "category": "Navigasyon",
@@ -10156,6 +10240,30 @@
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-tabs-basic.tsx"
     },
     {
+      "id": "2049",
+      "name": "MuiTabsVertical",
+      "category": "Navigasyon",
+      "subcategory": "MuiTabs",
+      "source": "mui",
+      "file": "mui-tabs-vertical.tsx",
+      "exists": true,
+      "code": "/**\n * MuiTabsVertical\n * @id 2049\n * @category Navigasyon\n * @subcategory MuiTabs\n * @source mui\n */\nimport { MuiTabs } from \"@/components/ui/mui-tabs\"\n\nfunction MuiTabsVertical() {\n  return (\n    <MuiTabs\n      orientation=\"vertical\"\n      tabs={[\n        { label: \"Profil\", content: <p>Profil bilgileri.</p> },\n        { label: \"Hesap\", content: <p>Hesap ayarları.</p> },\n        { label: \"Gizlilik\", content: <p>Gizlilik tercihleri.</p> },\n      ]}\n    />\n  )\n}\n\nexport { MuiTabsVertical }\n",
+      "description": "MuiTabsVertical",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-tabs-vertical.tsx"
+    },
+    {
+      "id": "2050",
+      "name": "MuiTabsWithIcons",
+      "category": "Navigasyon",
+      "subcategory": "MuiTabs",
+      "source": "mui",
+      "file": "mui-tabs-with-icons.tsx",
+      "exists": true,
+      "code": "/**\n * MuiTabsWithIcons\n * @id 2050\n * @category Navigasyon\n * @subcategory MuiTabs\n * @source mui\n */\nimport { MuiTabs } from \"@/components/ui/mui-tabs\"\nimport { Phone, Heart, CircleUser } from \"@/components/ui/icons\"\n\nfunction MuiTabsWithIcons() {\n  return (\n    <MuiTabs\n      centered\n      tabs={[\n        { label: \"Kişiler\", icon: <CircleUser className=\"size-4\" />, content: <p>Kişiler listesi.</p> },\n        { label: \"Favoriler\", icon: <Heart className=\"size-4\" />, content: <p>Favoriler.</p> },\n        { label: \"Aramalar\", icon: <Phone className=\"size-4\" />, content: <p>Çağrı geçmişi.</p> },\n      ]}\n    />\n  )\n}\n\nexport { MuiTabsWithIcons }\n",
+      "description": "MuiTabsWithIcons",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-tabs-with-icons.tsx"
+    },
+    {
       "id": "1997",
       "name": "MuiStepper",
       "category": "Navigasyon",
@@ -10178,6 +10286,18 @@
       "code": "/**\n * MuiStepperBasic\n * @id 2003\n * @category Navigasyon\n * @subcategory MuiStepper\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiStepper } from \"@/components/ui/mui-stepper\"\nimport { MuiButton } from \"@/components/ui/mui-button\"\nimport { MuiStack } from \"@/components/ui/mui-stack\"\n\nfunction MuiStepperBasic() {\n  const [step, setStep] = useState(1)\n  return (\n    <MuiStack spacing={4} className=\"w-full max-w-md\">\n      <MuiStepper\n        activeStep={step}\n        steps={[\n          { label: \"Bilgiler\", content: \"Kişisel bilgilerinizi girin.\" },\n          { label: \"Adres\", content: \"Teslimat adresini girin.\" },\n          { label: \"Ödeme\", content: \"Ödeme yöntemini seçin.\" },\n        ]}\n      />\n      <div className=\"flex gap-2\">\n        <MuiButton variant=\"outlined\" disabled={step === 0} onClick={() => setStep((s) => s - 1)}>Geri</MuiButton>\n        <MuiButton variant=\"contained\" disabled={step === 2} onClick={() => setStep((s) => s + 1)}>İleri</MuiButton>\n      </div>\n    </MuiStack>\n  )\n}\n\nexport { MuiStepperBasic }\n",
       "description": "MuiStepperBasic",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-stepper-basic.tsx"
+    },
+    {
+      "id": "2051",
+      "name": "MuiStepperVertical",
+      "category": "Navigasyon",
+      "subcategory": "MuiStepper",
+      "source": "mui",
+      "file": "mui-stepper-vertical.tsx",
+      "exists": true,
+      "code": "/**\n * MuiStepperVertical\n * @id 2051\n * @category Navigasyon\n * @subcategory MuiStepper\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiStepper } from \"@/components/ui/mui-stepper\"\nimport { MuiButton } from \"@/components/ui/mui-button\"\n\nfunction MuiStepperVertical() {\n  const [step, setStep] = useState(1)\n  return (\n    <div className=\"w-full max-w-sm space-y-4\">\n      <MuiStepper\n        orientation=\"vertical\"\n        activeStep={step}\n        steps={[\n          { label: \"Kişisel\", content: \"Ad ve iletişim bilgileri.\" },\n          { label: \"Adres\", content: \"Teslimat adresi.\" },\n          { label: \"Ödeme\", content: \"Ödeme yöntemi.\" },\n        ]}\n      />\n      <div className=\"flex gap-2\">\n        <MuiButton variant=\"outlined\" size=\"small\" disabled={step === 0} onClick={() => setStep((s) => s - 1)}>Geri</MuiButton>\n        <MuiButton variant=\"contained\" size=\"small\" disabled={step === 2} onClick={() => setStep((s) => s + 1)}>İleri</MuiButton>\n      </div>\n    </div>\n  )\n}\n\nexport { MuiStepperVertical }\n",
+      "description": "MuiStepperVertical",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-stepper-vertical.tsx"
     },
     {
       "id": "1998",
@@ -12220,6 +12340,18 @@
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-card-outlined.tsx"
     },
     {
+      "id": "2052",
+      "name": "MuiCardActionArea",
+      "category": "Veri Gösterimi",
+      "subcategory": "",
+      "source": "mui",
+      "file": "mui-card-action-area.tsx",
+      "exists": true,
+      "code": "/**\n * MuiCardActionArea\n * @id 2052\n * @category Veri Gösterimi\n * @subcategory MuiCard\n * @source mui\n */\nimport { MuiCard } from \"@/components/ui/mui-card\"\nimport { MuiTypography } from \"@/components/ui/mui-typography\"\n\nfunction MuiCardActionArea() {\n  return (\n    <button type=\"button\" className=\"block cursor-pointer rounded-lg text-left transition-transform hover:scale-[1.02]\" onClick={() => alert(\"Karta tıklandı\")}>\n      <MuiCard\n        title=\"Tıklanabilir Kart\"\n        subheader=\"Action Area\"\n        media={<div className=\"h-28 w-full bg-gradient-to-br from-emerald-400 to-teal-600\" role=\"img\" aria-label=\"Yeşil\" />}\n        className=\"max-w-sm\"\n      >\n        <MuiTypography variant=\"body2\" className=\"text-gray-600\">\n          Kartın tamamı tıklanabilir — ActionArea davranışı.\n        </MuiTypography>\n      </MuiCard>\n    </button>\n  )\n}\n\nexport { MuiCardActionArea }\n",
+      "description": "MuiCardActionArea",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-card-action-area.tsx"
+    },
+    {
       "id": "2009",
       "name": "MuiAvatar",
       "category": "Veri Gösterimi",
@@ -12326,6 +12458,18 @@
       "code": "/**\n * MuiTableBasic\n * @id 2017\n * @category Veri Gösterimi\n * @subcategory MuiTable\n * @source mui\n */\nimport { MuiTable } from \"@/components/ui/mui-table\"\nimport { MuiChip } from \"@/components/ui/mui-chip\"\n\nfunction MuiTableBasic() {\n  return (\n    <MuiTable\n      striped\n      columns={[\n        { key: \"urun\", label: \"Ürün\" },\n        { key: \"fiyat\", label: \"Fiyat\", align: \"right\" },\n        { key: \"durum\", label: \"Durum\" },\n      ]}\n      rows={[\n        { urun: \"Kahve Makinesi\", fiyat: \"₺1.250\", durum: <MuiChip label=\"Stokta\" color=\"success\" size=\"small\" /> },\n        { urun: \"Bluetooth Kulaklık\", fiyat: \"₺480\", durum: <MuiChip label=\"Stokta\" color=\"success\" size=\"small\" /> },\n        { urun: \"Akıllı Saat\", fiyat: \"₺2.100\", durum: <MuiChip label=\"Tükendi\" color=\"error\" size=\"small\" /> },\n        { urun: \"USB-C Kablosu\", fiyat: \"₺90\", durum: <MuiChip label=\"Stokta\" color=\"success\" size=\"small\" /> },\n      ]}\n    />\n  )\n}\n\nexport { MuiTableBasic }\n",
       "description": "MuiTableBasic",
       "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-table-basic.tsx"
+    },
+    {
+      "id": "2054",
+      "name": "MuiTableSelection",
+      "category": "Veri Gösterimi",
+      "subcategory": "",
+      "source": "mui",
+      "file": "mui-table-selection.tsx",
+      "exists": true,
+      "code": "/**\n * MuiTableSelection\n * @id 2054\n * @category Veri Gösterimi\n * @subcategory MuiTable\n * @source mui\n */\nimport { useState } from \"react\"\nimport { MuiTable } from \"@/components/ui/mui-table\"\nimport { MuiCheckbox } from \"@/components/ui/mui-checkbox\"\n\nfunction MuiTableSelection() {\n  const [selected, setSelected] = useState<string[]>([])\n  const rows = [\n    { id: \"1\", ad: \"Ahmet Yılmaz\", rol: \"Geliştirici\" },\n    { id: \"2\", ad: \"Ayşe Kaya\", rol: \"Tasarımcı\" },\n    { id: \"3\", ad: \"Mehmet Demir\", rol: \"Yönetici\" },\n    { id: \"4\", ad: \"Fatma Şahin\", rol: \"Analist\" },\n  ]\n  const allChecked = selected.length === rows.length\n  const someChecked = selected.length > 0 && !allChecked\n  const toggle = (id: string) => setSelected((p) => (p.includes(id) ? p.filter((x) => x !== id) : [...p, id]))\n  return (\n    <div className=\"w-full max-w-lg\">\n      <MuiTable\n        columns={[\n          { key: \"sec\", label: <MuiCheckbox checked={allChecked} indeterminate={someChecked} onChange={() => setSelected(allChecked ? [] : rows.map((r) => r.id))} /> },\n          { key: \"ad\", label: \"Ad\" },\n          { key: \"rol\", label: \"Rol\" },\n        ]}\n        rows={rows.map((r) => ({\n          sec: <MuiCheckbox checked={selected.includes(r.id)} onChange={() => toggle(r.id)} />,\n          ad: r.ad,\n          rol: r.rol,\n        }))}\n        striped\n      />\n      <p className=\"mt-2 text-xs text-gray-500\">Seçili: {selected.length} satır</p>\n    </div>\n  )\n}\n\nexport { MuiTableSelection }\n",
+      "description": "MuiTableSelection",
+      "path": "/home/yunus/.pi/Component-studio/bilesen-kutuphanesi/src/components/ui/mui-table-selection.tsx"
     },
     {
       "id": "2018",
