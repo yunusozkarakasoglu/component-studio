@@ -443,7 +443,7 @@ function EditorModal({
   initialCode: string; preview: ReactNode
   absPath: string; category: string; kind: "component" | "layout"
   registry: { components: CompRecord[]; categories?: string[] } | null
-  onClose: () => void; onSaved: () => void
+  onClose: () => void; onSaved: (tags?: string[]) => Promise<void> | void
 }) {
   const [promptOpen, setPromptOpen] = useState(false)
   const [code, setCode] = useState(initialCode)
@@ -490,13 +490,15 @@ function EditorModal({
       })
       const j = await r.json()
       if (!j.ok) { setStatus("✗ Hata: " + (j.error || "bilinmeyen")); setSaving(false); return }
-      // 1) Dosya yazıldı → 2) kayıt defterini otomatik yenile → 3) state tazele
-      setStatus("✓ Kaydedildi — kayıt defteri yenileniyor…")
-      const rb = await fetch("/api/rebuild-registry", { method: "POST" })
-      const rbJ = await rb.json()
-      setStatus(rbJ.ok ? "✓ Kaydedildi + kayıt defteri güncellendi" : "✓ Kaydedildi (DB: " + (rbJ.err || "hata") + ")")
-      onSaved()
-    } catch (e) { setStatus("✗ Sunucuya ulaşılamadı: " + String(e)) }
+      // 1) Dosya yazıldı → 2) state'e anında yansıt (rebuild'i beklemeden) → 3) rebuild arka planda
+      setStatus("✓ Kaydedildi — etiketler güncellendi")
+      const tagList = tagsText.split(/[,\s]+/).map((t) => t.trim()).filter(Boolean)
+      onSaved(tagList)
+      // Arka planda kayıt defterini yenile (91sn sürebilir; sonraki açılışta taze)
+      fetch("/api/rebuild-registry", { method: "POST" }).catch(() => {})
+    } catch (e) {
+      setStatus("✗ Sunucuya ulaşılamadı: " + String(e))
+    }
     setSaving(false)
   }
 
@@ -506,6 +508,7 @@ function EditorModal({
       const r = await fetch("/api/rebuild-registry", { method: "POST" })
       const j = await r.json()
       setStatus(j.ok ? "✓ Veri tabanı yenilendi" : "✗ " + (j.err || "hata"))
+      // App'e bildir — registry'yi taze veriyle günceller (rebuild registry.json'u yazdı)
       onSaved()
     } catch { setStatus("✗ Yenilenemedi") }
   }
@@ -756,9 +759,22 @@ export default function Studio() {
     fetch(`/registry.json?t=${Date.now()}`, { cache: "no-store" }).then((r) => r.json()).then(setRegistry).catch(() => {})
     location.reload()
   }
-  // Kayıt sonrası registry'yi yeniden yükle (reload'suz — modal açık kalır, arama güncel veriyle çalışır)
-  const reloadRegistry = () => {
-    fetch(`/registry.json?t=${Date.now()}`, { cache: "no-store" }).then((r) => r.json()).then(setRegistry).catch(() => {})
+  // Kayıt sonrası state'i anında merge et (rebuild 91sn sürdüğü için beklemeden arama çalışsın)
+  const mergeSaved = (savedId: string, savedTags: string[]) => {
+    setRegistry((prev) => {
+      if (!prev) return prev
+      return {
+        ...prev,
+        components: prev.components.map((c) =>
+          c.id === savedId ? { ...c, tags: savedTags } : c
+        ),
+      }
+    })
+    // Arka planda registry.json'u tazele (sonraki açılışta tam güncel) — beklemeden
+    fetch(`/registry.json?t=${Date.now()}`, { cache: "no-store" })
+      .then((r) => r.json())
+      .then((data) => setRegistry(data))
+      .catch(() => {})
   }
 
   useEffect(() => {
@@ -1087,7 +1103,17 @@ export default function Studio() {
           category={edit.rec.category}
           kind="component"
           onClose={() => setEdit(null)}
-          onSaved={reloadRegistry}
+          onSaved={(tags) => {
+            if (!edit) return
+            // Tags varsa anında merge; yoksa (rebuild'ten) taze veri çek
+            if (tags && tags.length > 0) mergeSaved(edit.rec.id, tags)
+            else {
+              fetch(`/registry.json?t=${Date.now()}`, { cache: "no-store" })
+                .then((r) => r.json())
+                .then((data) => setRegistry(data))
+                .catch(() => {})
+            }
+          }}
         />
       )}
     </>
