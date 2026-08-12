@@ -4,6 +4,7 @@
  * Basit, bağımsız tarih aralığı seçici (takvim + aralık vurgusu + temizle).
  * @id 088
  * @category Takvim
+ * @tags takvim
  */
 import { useMemo, useState } from "react"
 import { cn } from "@/lib/utils"

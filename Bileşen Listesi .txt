@@ -1420,6 +1420,8 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `2079` CascadingSelect
 #### Miller2
 - `2080` Miller2
+#### HesapMakinesi
+- `2081` HesapMakinesi
 - `089` MillerColumns
 
 ---
