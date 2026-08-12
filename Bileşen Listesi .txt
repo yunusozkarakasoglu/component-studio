@@ -2468,7 +2468,11 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `1843` MtAppShellUsage
 - `1844` MtAppShellAsideDemo
 
-**Toplam: 1989 bileşen (saf React)**
+### Widgets
+#### SaatWidget
+- `2082` SaatWidget
+
+**Toplam: 1993 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

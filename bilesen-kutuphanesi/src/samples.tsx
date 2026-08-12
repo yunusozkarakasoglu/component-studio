@@ -2054,4 +2054,5 @@ export const SAMPLES: Record<string, ReactNode> = {
   "2079": <U.CascadingSelect />,
   "2080": <U.Miller2 />,
   "2081": <U.HesapMakinesi />,
+  "2082": <U.SaatWidget />,
 }
