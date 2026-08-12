@@ -7,12 +7,6 @@
 import { useEffect, useRef, useState, type ReactNode } from "react"
 import { Tema1 } from "./layouts/tema1"
 import { Tema2 } from "./layouts/tema2"
-import { Tema3 } from "./layouts/tema3"
-import { Tema4 } from "./layouts/tema4"
-import { Tema5 } from "./layouts/tema5"
-import { Tema6 } from "./layouts/tema6"
-import { Tema7 } from "./layouts/tema7"
-import { Tema8 } from "./layouts/tema8"
 
 interface LayoutLike {
   id?: string
@@ -67,12 +61,6 @@ function LayoutsView({ layouts }: LayoutsViewProps) {
   const temas: TemaPreview[] = [
     { id: "tema1", title: "Tema 1", desc: "NovaPanel — header + açılır/kapanır panel + filtreli tablo", node: <Tema1 />, ready: true },
     { id: "tema2", title: "Tema 2 — Sekmeli", desc: "Footer üstü sekmeler — her sekme kendi state'i (filtre/arama/sayfa)", node: <Tema2 />, ready: true },
-    { id: "tema3", title: "Tema 3 — Dokümantasyon", desc: "Sol konular + içerik (başlıklar/kod) + sağ TOC akordeon", node: <Tema3 />, ready: true },
-    { id: "tema4", title: "Tema 4 — Chat", desc: "Sol konuşma listesi + mesaj paneli + yazma çubuğu", node: <Tema4 />, ready: true },
-    { id: "tema5", title: "Tema 5 — Kanban", desc: "3 kolon + kart ekle/taşı + etiketler", node: <Tema5 />, ready: true },
-    { id: "tema6", title: "Tema 6 — E-ticaret", desc: "Kategori + ürün grid + sepet çubuğu", node: <Tema6 />, ready: true },
-    { id: "tema7", title: "Tema 7 — Mail/Inbox", desc: "Klasörler + mesaj listesi + okuma paneli (okundu/yıldız)", node: <Tema7 />, ready: true },
-    { id: "tema8", title: "Tema 8 — Form Sihirbazı", desc: "Adım göstergesi + form alanı + geri/ileri (onboarding)", node: <Tema8 />, ready: true },
   ]
 
   const temaById = (id: string) => temas.find((x) => x.id === id)
