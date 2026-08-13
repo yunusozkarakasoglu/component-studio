@@ -81,7 +81,8 @@ Kullanıcı dosya yolu / numara verince:
 Detaylı kılavuz: `component-kutuphane.md` (kullanıcı isterse "oku" der).
 
 ## 🎨 Layout Tema Entegrasyonu (görev akışı)
-Kullanıcı `Masaüstü/Layouts` klasöründe (5174) sayfa tasarımları üretir; ben bunları yeni layout tema olarak sisteme eklerim.
+Kullanıcı 5174'te sayfa tasarımları üretir; ben bunları yeni layout tema olarak sisteme eklerim.
+(**Not:** `Masaüstü/Layouts` kaynak klasörü silindi — kullanıcı yeni tasarım üretirse kaynak yeniden oluşur.)
 **Tam akış: `GOREV-AKISI-LAYOUT.md` — önce oku, sonra uygula.** Özet:
 1. Oku: `App.jsx` (state/davranış) + `styles.css` (tasarım) + varsa HTML
 2. Anla: bölümler, state'ler, ikonlar (kendi setimizle eşle), CSS değişkenleri
@@ -89,4 +90,11 @@ Kullanıcı `Masaüstü/Layouts` klasöründe (5174) sayfa tasarımları üretir
 4. `layouts-view.tsx` temas listesine kart ekle (kutu → tam ekran → geri hazır)
 5. Doğrula: tsc ✓ · test 15/15 ✓ · kapsamlı kontrol 20 OK ✓ · tarayıcı kutu→tam ekran→geri
 6. Commit: `Layout: Tema <N> (<ad>) entegrasyonu` — kütüphane kaydı (envanter/registry) DEĞİŞMEZ
+
+## 🧰 Widgets Sekmesi (görev akışı)
+Üst navigasyonda 4 sekme: Dashboard · Bileşenler · Layoutlar · **Widgets**.
+- `src/widgets-view.tsx` — "Widgets" kategorisindeki bileşenleri kart + arama ile listeler (Bileşenler akışının aynısı)
+- Widget eklemek için: bileşeni `@category Widgets` JSDoc ile oluştur (ör. SaatWidget 2082)
+- Bileşenler akışının aynısı: dosya → barrel → samples → envanter (`### Widgets` EN SONA!) → build-registry → tsc/test → commit
+- **Dikkat:** envanterde `### Widgets` başlığı dosyanın SONUNDA olmalı — ortada olursa sonraki tüm kayıtlar Widgets'e atanır
 <!-- component-studio:end -->

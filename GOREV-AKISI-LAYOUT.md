@@ -1,6 +1,6 @@
 # Görev Akışı — Layout Tema Entegrasyonu
 
-> Kullanıcı `Masaüstü/Layouts` klasöründe (localhost:5174) sayfa tasarımları üretir.
+> Kullanıcı 5174'te sayfa tasarımları üretir (kaynak klasör `Masaüstü/Layouts` silindi — yeni tasarım gelince yeniden oluşur).
 > Bu doküman: kaynağı **oku → anla → yeni layout tema olarak sisteme ekle** akışını tanımlar.
 > Yeni tema geldiğinde bu akış aynen uygulanır. (v2 — Tema 1-8 tamamlandı, kaynak güncel: 5174'teki App.jsx/styles.css)
 

@@ -92,14 +92,41 @@ Adım 10 Takvim (1587-1764: 16 dates element, saf Intl) → Adım 11 Özel (1765
 - **Adım 2-4 beklemede** (`PERFORMANS-OPTIMIZASYON-PLANI.md`): samples.tsx lazy loading,
   React.memo + debounce, Vite manualChunks — production öncesi denetlenecek. Öncelik: Adım 4 > 3 > 2.
 
+### Material UI — TAMAMLANDI · 234 bileşen (PLAN-MATERIALUI.md)
+- Adım 1-9: Genel/Butonlar/Alert/Form/Seçim/Combobox/Overlay/Navigasyon/Veri/Yükleme + ek varyantlar
+- Kaynak: `Masaüstü/MaterialUI` (silindi — entegrasyon tamam) · id 1845-2078
+
+### Özel bileşenler (source: ozel)
+- CascadingSelect (2079) — koşullu İl→İlçe seçim · Miller2 (2080) — dizel motor parça Miller Columns + arama
+- HesapMakinesi (2081) — 3 modlu araç (hesap/zaman/döviz) · SaatWidget (2082) — canlı saat
+
+### Widgets sekmesi (commit `8898f4f`)
+- Üst navigasyona "🧰 Widgets" eklendi · widgets-view.tsx (kategori bazlı liste + arama)
+- İlk widget: SaatWidget (2082, Widgets kategorisi)
+
+### Etiketler (tags) + Favoriler (commit `d4521e2` + `079a6cc`)
+- Tags: JSDoc @tags → registry tags · detay sayfası düzenleme + çip · tablo sütunu · arama
+- Kayıt sonrası anında merge (rebuild 91sn beklemez) — `mergeSaved` tags+code günceller
+- Favoriler: ⭐ sekmesi + detayda yıldız butonu + localStorage kalıcı
+
+### Layout temaları — Tema 3-8 SİLİNDİ (commit `a1d8abf`)
+- Kalan: Tema 1 (NovaPanel), Tema 2 (Sekmeli) — kopyalar temizlendi
+
+### Kaynak klasörler silindi
+- `Masaüstü/{shadcn,heroui,mantine,Layouts,MaterialUI}` — tümü entegre edildi, ~65MB temizlendi
+
 ## 📊 Güncel Durum (son kontrol)
 
-- **1755 bileşen** · heroui 527 · shadcn 387 · **mantine 841** · 0 çift kayıt
-- **8 layout teması** (src/layouts/, Layoutlar sekmesi) — Tema seti tamam
+- **1993 bileşen** · heroui 527 · shadcn 387 · **mantine 841** · **mui 234** · özel 4 · 0 çift kayıt
+- **2 layout teması** (src/layouts/ — Tema 1, Tema 2) — Tema 3-8 silindi (kopya)
+- **Widgets sekmesi** — ayrı görünüm (widgets-view.tsx) + SaatWidget (2082)
 - **GitHub:** `yunusozkarakasoglu/component-studio` PUBLIC
 - **Performans:** Bileşenler sekmesi sanal liste (DOM %96 azaldı)
+- **Etiketler (tags):** detay sayfası + tablo sütunu + arama · kayıt sonrası anında merge
+- **Favoriler:** ⭐ sekmesi + yıldız (localStorage)
+- **Kaynak klasörler silindi:** Masaüstü/{shadcn,heroui,mantine,Layouts,MaterialUI} — entegrasyon tamam
 - tsc ✓ · npm test 15/15 ✓ · `tests/kapsamli-kontrol.py` → **20 OK · 2 uyarı · 0 HATA**
-- Son commit: `2f841ff` (Performans optimizasyon planı) — çalışma dizini temiz
+- Son commit: `a1d8abf` (Tema 3-8 silindi) — çalışma dizini temiz
 
 ## ⬜ Bekleyen
 
@@ -109,16 +136,12 @@ Adım 10 Takvim (1587-1764: 16 dates element, saf Intl) → Adım 11 Özel (1765
 - **Adım 2** — samples.tsx lazy loading (3 seçenekli: tam lazy / kısmi lazy / atla — risk analizi plan dosyasında)
 
 ### Layout temaları
-- Kullanıcı istediğinde yeni tema (Tema 9+) — kaynak: `Masaüstü/Layouts` (5174) → `GOREV-AKISI-LAYOUT.md` akışı
-- Mevcut temalarda düzenleme (kullanıcı 5174'te günceller → senkron)
+- Kullanıcı istediğinde yeni tema (Tema 3+) — kaynak: kullanıcının 5174 tasarımı → `GOREV-AKISI-LAYOUT.md` akışı
+  (not: Masaüstü/Layouts silindi — kullanıcı yeni tasarım üretirse kaynak yeniden oluşur)
 
 ### Stüdyo (SIHIRBAZ-NOT.md)
 - Bekleyen kayıt tamamlama akışı (sol panel görünürlüğü — sol panel kaldırıldı, güncellenecek)
 - Kütüphane modu tam test (Pi'ye Bağla)
-
-### GitHub senkronu
-- Stüdyo düzeltmeleri (boş kutu + sanal liste + plan dokümanları) GitHub'a yansıtılmadı —
-  `yayinla.sh` veya `git push` ile gönderilmeli
 
 ## ⚠️ Önemli Tuzaklar (compact sonrası hatırlatma)
 
