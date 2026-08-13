@@ -7,6 +7,22 @@ import type { ReactNode } from "react"
 import * as U from "@/components/ui"
 import { Box, CreditCard, Earth, Receipt, RotateCcw, ShoppingBag } from "@/components/ui/icons"
 
+export const SAMPLE_WIKI_HTML = `
+<h1>Merhaba Dünya</h1>
+<p>Bu bir <strong>zengin metin</strong> örneğidir. <a href="https://example.com">Bağlantı</a> ve <code>inline code</code> desteklenir.</p>
+<h2>Başlık 2</h2>
+<p>Sıradan bir paragraf — Taiga temasındaki renkler birebir korunmuştur.</p>
+<ul><li>Madde 1</li><li>Madde 2<ul><li>Alt madde</li></ul></li></ul>
+<ol><li>İlk adım</li><li>İkinci adım</li></ol>
+<ul data-type="todo"><li><input type="checkbox" /><span>Yapılacak 1</span></li><li><input type="checkbox" checked /><span>Yapıldı 2</span></li></ul>
+<blockquote><p>Taiga alıntı stili — sol kenar çizgisi ve gri metin.</p></blockquote>
+<pre data-language="javascript"><code class="language-javascript">function selam(name) {
+  return \`Merhaba, \${name}!\`;
+}</code></pre>
+<table><tbody><tr><th>Ürün</th><th>Adet</th><th>Fiyat</th></tr><tr><td>Kalem</td><td>12</td><td>25₺</td></tr><tr><td>Defter</td><td>5</td><td>40₺</td></tr></tbody></table>
+<hr />
+`
+
 export const SAMPLES: Record<string, ReactNode> = {
   "088": (
     <U.DateRangePickerSimple />
@@ -2055,4 +2071,11 @@ export const SAMPLES: Record<string, ReactNode> = {
   "2080": <U.Miller2 />,
   "2081": <U.HesapMakinesi />,
   "2082": <U.SaatWidget />,
+  "2083": (
+    <U.RichTextEditor
+      className="w-full max-w-2xl"
+      value={SAMPLE_WIKI_HTML}
+      placeholder="Empty space is so boring... go on, be descriptive..."
+    />
+  ),
 }
