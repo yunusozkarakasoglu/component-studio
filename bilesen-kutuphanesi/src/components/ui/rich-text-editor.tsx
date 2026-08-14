@@ -115,7 +115,7 @@ const RTE_CSS = `
 
 let rteInjected = false
 function ensureRteStyles() {
-  if (rteInjected || typeof document === "undefined") return
+  if (rteInjected || typeof document === "undefined") return;
   rteInjected = true
   const el = document.createElement("style")
   el.setAttribute("data-rte-theme", "taiga")
@@ -398,7 +398,7 @@ export function RichTextEditor({
   /* ---------------- temel yardımcılar ---------------- */
 
   const notifyChange = useCallback(() => {
-    if (!editorRef.current) return
+    if (!editorRef.current) return;
     const html = editorRef.current.innerHTML
     lastHtmlRef.current = html
     setIsEmpty(!html || html === "<br>" || html === "<br>\n")
@@ -413,7 +413,7 @@ export function RichTextEditor({
   }, [])
 
   const restoreRange = useCallback(() => {
-    if (!savedRangeRef.current || !editorRef.current) return
+    if (!savedRangeRef.current || !editorRef.current) return;
     try {
       const sel = window.getSelection()
       sel && sel.removeAllRanges()
@@ -584,7 +584,7 @@ export function RichTextEditor({
   const applyLink = (e: React.FormEvent) => {
     e.preventDefault()
     let url = linkUrl.trim()
-    if (!url) return
+    if (!url) return;
     if (!/^[a-z]+:\/\//i.test(url) && !url.startsWith("mailto:")) {
       url = "https://" + url
     }
@@ -656,7 +656,7 @@ export function RichTextEditor({
 
   const onFileChosen = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0]
-    if (!file) return
+    if (!file) return;
     if (file.size > 3 * 1024 * 1024) {
       alert("Görsel 3 MB'tan büyük olamaz.")
       e.target.value = ""
@@ -690,10 +690,10 @@ export function RichTextEditor({
     restoreRange()
     const sel = window.getSelection()
     const td = closest(sel && sel.anchorNode, "td,th") as HTMLTableCellElement | null
-    if (!td) return
+    if (!td) return;
     const tr = td.closest("tr")
     const table = td.closest("table")
-    if (!tr || !table) return
+    if (!tr || !table) return;
     const tbody = table.querySelector("tbody") as HTMLTableSectionElement | null || table
 
     const blankCell = (tag: string) => {

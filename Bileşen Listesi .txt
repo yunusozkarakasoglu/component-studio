@@ -1423,6 +1423,10 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 #### HesapMakinesi
 - `2081` HesapMakinesi
 - `089` MillerColumns
+#### RichTextEditor
+- `2083` RichTextEditor
+#### TaskFilterButton
+- `2084` TaskFilterButton
 
 ---
 
@@ -2472,7 +2476,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 #### SaatWidget
 - `2082` SaatWidget
 
-**Toplam: 1993 bileşen (saf React)**
+**Toplam: 1995 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

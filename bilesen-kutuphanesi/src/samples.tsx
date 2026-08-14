@@ -2078,4 +2078,5 @@ export const SAMPLES: Record<string, ReactNode> = {
       placeholder="Empty space is so boring... go on, be descriptive..."
     />
   ),
+  "2084": <U.TaskFilterButton />,
 }
