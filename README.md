@@ -22,16 +22,19 @@ sayfa/tema/maket üretirsin.
 
 ## ✨ Özellikler
 
-- **1755+ bileşen** — 3 kaynaktan saf React'e çevrilmiş:
+- **1995+ bileşen** — 4 kaynaktan saf React'e çevrilmiş:
   | Kaynak | Sayı | Örnekler |
   |---|---|---|
   | HeroUI | 527 | Modal, Tabs, Table, Toolbar, NumberField… |
   | shadcn/ui | 387 | Dialog, DropdownMenu, Combobox, Sidebar… |
   | Mantine | 841 | MtButton, MtCard, MtCalendar, MtStepper, MtTree… |
+  | Material UI | 234 | MuiButton, MuiDialog, MuiSlider, MuiGrid… |
+  | Özel | 6 | CascadingSelect, Miller2, HesapMakinesi, SaatWidget, RichTextEditor, TaskFilterButton |
 - **Saf React + Tailwind v4** — üçüncü parti UI paketi **YOK**
 - **Kendi ikon seti** — 1756 ikon (`@/components/ui/icons`), SVG gömülü, uzak bağımlılık yok
-- **8 Layout Teması** — NovaPanel tasarım diliyle hazır sayfa iskeletleri
-- **Tasarım Stüdyosu** — canlı önizleme, kod düzenleme, kaydetme, kayıt yenileme
+- **2 Layout Teması** — NovaPanel tasarım diliyle hazır sayfa iskeletleri (Tema 1-2)
+- **Tasarım Stüdyosu** — 5 sekme: Dashboard · Bileşenler · Layoutlar · Widgets · İkonlar
+  (canlı önizleme, kod düzenleme, kaydetme, kayıt yenileme, etiketler, favoriler)
 
 ---
 
@@ -90,8 +93,10 @@ Stüdyo → **http://localhost:5800**
 | Sekme | Ne işe yarar |
 |---|---|
 | **📊 Dashboard** | Kütüphane özeti, bileşen sayısı, kısayollar |
-| **🧩 Bileşenler** | 1755 bileşeni ara / filtrele (kaynak: Tümü/HeroUI/Mantine/shadcn/Özel · kategori · alt kategori) · ▦Kart / ☰Tablo görünüm · tıkla → canlı önizleme + kod düzenleme → 💾 Kaydet |
-| **📐 Layoutlar** | Tema 1-8 canlı minyatür kutular → tıkla → tam ekran → geri |
+| **🧩 Bileşenler** | 1995 bileşeni ara / filtrele (kaynak: Tümü/HeroUI/Mantine/shadcn/MUI/Özel · kategori · alt kategori) · ▦Kart/☰Tablo görünüm · tıkla → canlı önizleme + kod düzenleme → 💾 Kaydet · etiketler · ⭐ favoriler |
+| **📐 Layoutlar** | Tema 1-2 canlı minyatür kutular → tıkla → tam ekran → geri |
+| **🧰 Widgets** | Widget kategorisindeki bileşenler (ör. SaatWidget canlı saat) |
+| **🧩 İkonlar** | 1756 ikon · 23 kategori (İletişim/Kişiler/…) · arama · tıkla → kopyala → yanıp sönen bildirim |
 | **+ Yeni** | Bileşen sihirbazı (pi'ye bağlı üretim) |
 
 ---
@@ -117,12 +122,8 @@ function Demo() {
 |---|---|
 | **Tema 1 — Klasik** | Header + açılır/kapanır panel + filtreli veri tablosu |
 | **Tema 2 — Sekmeli** | Footer üstü sekmeler — her sekme **kendi state'ine** sahip |
-| **Tema 3 — Dokümantasyon** | Sol konular + içerik (kod blokları) + sağ TOC akordeon |
-| **Tema 4 — Chat** | Konuşma listesi + mesaj paneli + yazma çubuğu |
-| **Tema 5 — Kanban** | 3 kolon + kart taşıma/ekleme |
-| **Tema 6 — E-ticaret** | Kategori + ürün grid + sepet |
-| **Tema 7 — Mail/Inbox** | Klasörler + liste + okuma (okundu/yıldız) |
-| **Tema 8 — Form Sihirbazı** | 4 adımlı onboarding (stepper + form) |
+
+*(Tema 3-8 aynı sistemin kopyalarıydı — silindi; yeni tema istenirse 5174 tasarımıyla eklenir, `GOREV-AKISI-LAYOUT.md`)*
 
 ---
 
@@ -134,12 +135,15 @@ src/
 │   ├── icons.tsx    ← 1756 ikon (kendi setimiz, SVG gömülü)
 │   ├── icons-brand.tsx ← marka ikonları (Google/GitHub/Apple)
 │   ├── index.tsx    ← barrel (export * from "./x")
-│   ├── mt-*.tsx     ← Mantine · shadcn-*.tsx ← shadcn · *.tsx ← HeroUI
-│   └── ozel-*.tsx   ← kullanıcı/özel bileşenler
-├── layouts/         ← Layout temaları (tema1-8.tsx + tema1-8.css, scoped)
-├── App.tsx          ← Stüdyo (Dashboard/Bileşenler/Layoutlar)
+│   ├── mt-*.tsx     ← Mantine · shadcn-*.tsx ← shadcn · mui-*.tsx ← MUI
+│   └── *.tsx        ← HeroUI · özel/araç bileşenleri (source: ozel)
+├── layouts/         ← Layout temaları (tema1-2.tsx + tema1-2.css, scoped)
+├── App.tsx          ← Stüdyo (5 sekme)
+├── icons-view.tsx   ← İkonlar sekmesi (kategori + arama + kopyalama)
+├── widgets-view.tsx ← Widgets sekmesi
+├── layouts-view.tsx ← Layoutlar sekmesi (tema kutuları)
 ├── samples.tsx      ← Galeri önizlemeleri (SAMPLES[id] = JSX)
-└── lib/             ← cn() yardımcıları
+└── lib/             ← cn() yardımcıları + useVirtualGrid + iconNames/iconCategories
 ```
 
 ## 🧪 Testler & Doğrulama

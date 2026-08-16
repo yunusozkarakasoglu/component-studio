@@ -99,6 +99,15 @@ Adım 10 Takvim (1587-1764: 16 dates element, saf Intl) → Adım 11 Özel (1765
 ### Özel bileşenler (source: ozel)
 - CascadingSelect (2079) — koşullu İl→İlçe seçim · Miller2 (2080) — dizel motor parça Miller Columns + arama
 - HesapMakinesi (2081) — 3 modlu araç (hesap/zaman/döviz) · SaatWidget (2082) — canlı saat
+- RichTextEditor (2083) — WYSIWYG zengin metin editörü (taiga/wiki, komut tabanlı)
+- TaskFilterButton (2084) — görev filtresi popover (6 alan + VE/VEYA + applyFilters yardımcısı)
+
+### İkonlar sekmesi (commit `7f056b1` + `cf938b9` + `fcbe23c`)
+- **5. sekme "🧩 İkonlar"** — `icons-view.tsx`: arama + **23 kategori chip'i** + sanal grid (ilk 200) + tıkla kopyala
+- `lib/iconNames.ts` (1756 ad) + `lib/iconCategories.ts` (23 grup) — otomatik üretildi (camelCase + word boundary)
+- Gerçek ikon render (`import * as Icons` → dinamik erişim) — önceden sadece ad gösteriliyordu
+- Kopyalama bildirimi: yanıp sönen toast (`ikon-flash` 1.6s) + kart flash (`ikon-kart` 0.9s) — index.css keyframes
+- **Performans:** ikonlar zaten bundle'da (345+ bileşen import) → sekme sıfır ekstra yük
 
 ### Widgets sekmesi (commit `8898f4f`)
 - Üst navigasyona "🧰 Widgets" eklendi · widgets-view.tsx (kategori bazlı liste + arama)
@@ -117,16 +126,16 @@ Adım 10 Takvim (1587-1764: 16 dates element, saf Intl) → Adım 11 Özel (1765
 
 ## 📊 Güncel Durum (son kontrol)
 
-- **1993 bileşen** · heroui 527 · shadcn 387 · **mantine 841** · **mui 234** · özel 4 · 0 çift kayıt
+- **1995 bileşen** · heroui 527 · shadcn 387 · **mantine 841** · **mui 234** · özel 6 · 0 çift kayıt
 - **2 layout teması** (src/layouts/ — Tema 1, Tema 2) — Tema 3-8 silindi (kopya)
-- **Widgets sekmesi** — ayrı görünüm (widgets-view.tsx) + SaatWidget (2082)
+- **5 sekme:** Dashboard · Bileşenler · Layoutlar · Widgets · **İkonlar** (23 kategori, 1756 ikon)
 - **GitHub:** `yunusozkarakasoglu/component-studio` PUBLIC
-- **Performans:** Bileşenler sekmesi sanal liste (DOM %96 azaldı)
+- **Performans:** Bileşenler sekmesi sanal liste (DOM %96 azaldı) · İkonlar sekmesi de sanal (ilk 200)
 - **Etiketler (tags):** detay sayfası + tablo sütunu + arama · kayıt sonrası anında merge
 - **Favoriler:** ⭐ sekmesi + yıldız (localStorage)
 - **Kaynak klasörler silindi:** Masaüstü/{shadcn,heroui,mantine,Layouts,MaterialUI} — entegrasyon tamam
 - tsc ✓ · npm test 15/15 ✓ · `tests/kapsamli-kontrol.py` → **20 OK · 2 uyarı · 0 HATA**
-- Son commit: `a1d8abf` (Tema 3-8 silindi) — çalışma dizini temiz
+- Son commit: `fcbe23c` (İkon kopyalama bildirimi) — çalışma dizini temiz
 
 ## ⬜ Bekleyen
 

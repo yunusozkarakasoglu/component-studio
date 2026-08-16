@@ -11,12 +11,14 @@ düzenle", "kütüphaneyi başlat" gibi şeyler söylediğinde kurallara göre d
 ./kutuphane-baslat.sh      # kütüphaneyi arka planda başlat → http://localhost:5800
 ./kutuphane-durdur.sh      # durdur
 node yollar.mjs            # gerçek yolları basar (dinamik)
-cd registry && node build-registry.mjs   # kayıt defterini tazele
+cd registry && node build-registry.mjs   # kayıt defterini tazele (91 sn)
 cd bilesen-kutuphanesi && npm test       # findRootInfo birim testleri (15)
+python3 tests/kapsamli-kontrol.py        # kapsamlı kontrol (20 OK hedef)
 ```
 
 - Port **5800** sabittir (değiştirilmez).
 - `bilesen-kutuphanesi` → Vite dev; `registry` → kayıt defteri üretici.
+- **CDP**: `cdp open "http://localhost:5800/"` — tarayıcı doğrulama (kayma riskine karşı önce open).
 
 ## 📂 Yapı
 
@@ -27,7 +29,12 @@ bilesen-kutuphanesi/
 │   ├── icons-brand.tsx       ← marka ikonları (Google/GitHub/Apple — gömülü SVG)
 │   ├── color.ts              ← ortak renk çekirdeği (bileşen değil)
 │   └── index.tsx             ← barrel (export * from "./x")
-├── src/App.tsx               ← stüdyo (sol panel: TREE VIEW — Kategori ▸ Alt Kategori ▸ Bileşen)
+├── src/App.tsx               ← stüdyo (5 sekme: Dashboard/Bileşenler/Layoutlar/Widgets/İkonlar)
+├── src/icons-view.tsx        ← İkonlar sekmesi (arama + 23 kategori + tıkla kopyala + toast)
+├── src/widgets-view.tsx      ← Widgets sekmesi (kategori bazlı liste)
+├── src/layouts-view.tsx      ← Layoutlar sekmesi (tema kutuları)
+├── src/lib/iconNames.ts      ← 1756 ikon adı (otomatik üretildi)
+├── src/lib/iconCategories.ts ← 23 kategori (İletişim/Kişiler/… — otomatik üretildi)
 ├── src/samples.tsx           ← galeri önizlemeleri (SAMPLES[id] = örnek JSX)
 └── vite.config.ts            ← port 5800 + kaydetme/oluşturma API'leri
 registry/
@@ -52,9 +59,11 @@ registry/
 
 ## 🖥️ Stüdyo (5800)
 
-Sol panel: **tree view** — kategoriler (boş olanlar dahil) + alt kategoriler + arama.
-Galeri: önizlemeler. Bileşene tıkla → canlı önizleme + kod düzenleme +
-**🔗 Bağımlılıklar** bilgi çubuğu + 📂 Path Kopyala + ✨ Prompt Oluştur.
+**5 sekme:** 📊 Dashboard · 🧩 Bileşenler · 📐 Layoutlar · 🧰 Widgets · 🧩 İkonlar.
+- Bileşenler: üst filtreler (arama + kategori + alt kategori + kaynak + görünüm) **sticky** + ▦Kart/☰Tablo + ✕Temizle
+- **Sanal liste** (`src/lib/useVirtualGrid.ts`): görünür kartlar + 4 satır tampon (DOM %96 az)
+- İkonlar: arama + 23 kategori chip'i + sanal grid (ilk 200, "Daha fazla" ile genişler) + tıkla kopyala → yanıp sönen toast
+- Bileşene tıkla → canlı önizleme + kod düzenleme + **🔗 Bağımlılıklar** bilgi çubuğu + 📂 Path Kopyala + ✨ Prompt Oluştur
 
 ## 🔄 Bileşeni kullanıcının projesine entegre etme
 
@@ -97,4 +106,15 @@ Kullanıcı 5174'te sayfa tasarımları üretir; ben bunları yeni layout tema o
 - Widget eklemek için: bileşeni `@category Widgets` JSDoc ile oluştur (ör. SaatWidget 2082)
 - Bileşenler akışının aynısı: dosya → barrel → samples → envanter (`### Widgets` EN SONA!) → build-registry → tsc/test → commit
 - **Dikkat:** envanterde `### Widgets` başlığı dosyanın SONUNDA olmalı — ortada olursa sonraki tüm kayıtlar Widgets'e atanır
+
+## 🧩 İkonlar Sekmesi (görev akışı)
+- `src/icons-view.tsx` — 1756 ikon: arama + 23 kategori chip'i (İletişim/Kişiler/Navigasyon/…) + sanal grid + tıkla kopyala (toast)
+- İkon adları: `src/lib/iconNames.ts` (otomatik üretildi) · kategoriler: `src/lib/iconCategories.ts` (otomatik üretildi)
+- **İkon setine yeni ikon eklenirse** (icons.tsx düzenlenirse) iki dosyayı yeniden üret:
+  ```bash
+  # iconNames.ts + iconCategories.ts üreten script (components/ui/icons.tsx'ten)
+  ```
+  (camelCase ayrıştırma + word boundary — "Brain" Sağlık'ta kalır, "rain" Hava'ya çekmez)
+- **Performans:** ikonlar zaten bundle'da (345+ bileşen import ediyor) → sekme ekstra yük getirmez; grid sanal (ilk 200)
+- Toast animasyonları `index.css`'te: `ikon-flash` (1.6s çakma) + `ikon-kart` (0.9s yeşil flash)
 <!-- component-studio:end -->
