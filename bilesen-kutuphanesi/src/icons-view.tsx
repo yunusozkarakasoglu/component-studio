@@ -4,7 +4,7 @@
  * Arama (isim), sanal grid (ilk `limit` kadar, "Daha fazla" ile genişler), tıkla → adı kopyala.
  * İkonlar zaten bundle'da (bileşenler import ediyor) → ekstra yük yok.
  */
-import { useMemo, useState } from "react"
+import { useMemo, useState, type ReactElement } from "react"
 import { cn } from "@/lib/utils"
 import { ICON_NAMES } from "./lib/iconNames"
 import { ICON_CATEGORY_ORDER, ICON_CATEGORIES } from "./lib/iconCategories"
