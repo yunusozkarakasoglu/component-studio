@@ -19,6 +19,7 @@ export function IconsView({ onIconClick }: IconsViewProps) {
   const [q, setQ] = useState("")
   const [cat, setCat] = useState("Tümü")
   const [copied, setCopied] = useState<string | null>(null)
+  const [toast, setToast] = useState<string | null>(null)
   const [limit, setLimit] = useState(200)
 
   const cats = useMemo(() => ["Tümü", ...ICON_CATEGORY_ORDER], [])
@@ -34,8 +35,14 @@ export function IconsView({ onIconClick }: IconsViewProps) {
 
   const copy = (name: string) => {
     navigator.clipboard?.writeText(name).catch(() => {})
-    setCopied(name)
-    window.setTimeout(() => setCopied((c) => (c === name ? null : c)), 1200)
+    setCopied(null) // kart flash'ı yeniden tetikle
+    setToast(null)
+    window.requestAnimationFrame(() => {
+      setCopied(name)
+      setToast(name)
+    })
+    window.setTimeout(() => setToast((t) => (t === name ? null : t)), 1700)
+    window.setTimeout(() => setCopied((c) => (c === name ? null : c)), 1000)
     onIconClick?.(name)
   }
 
@@ -46,6 +53,17 @@ export function IconsView({ onIconClick }: IconsViewProps) {
 
   return (
     <div className="flex min-h-0 flex-1 flex-col">
+      {/* Kopyalama bildirimi — yanıp sönen toast */}
+      {toast && (
+        <div className="pointer-events-none fixed left-1/2 top-14 z-50">
+          <div className="ikon-toast flex items-center gap-1.5 rounded-lg border border-green-300 bg-green-50 px-3 py-1.5 text-xs font-medium text-green-800 shadow-lg">
+            <Check className="size-3.5 text-green-600" />
+            <span className="font-mono">{toast}</span>
+            <span className="text-green-600">kopyalandı</span>
+          </div>
+        </div>
+      )}
+
       {/* Üst: arama + sayaç (sabit) */}
       <div className="sticky top-0 z-30 -mx-4 mb-2 bg-background px-4 pb-2 pt-3">
         <div className="flex items-center gap-2">
@@ -90,18 +108,18 @@ export function IconsView({ onIconClick }: IconsViewProps) {
       <div className="min-h-0 flex-1 overflow-y-auto px-4 pb-4">
         <div className="grid grid-cols-[repeat(auto-fill,minmax(120px,1fr))] gap-2">
           {visible.map((name) => {
-            const isCopied = copied === name
+            const isFlash = copied === name
             const Icon = (Icons as Record<string, (p: { className?: string }) => ReactElement | null>)[name]
             return (
               <button
                 key={name}
                 onClick={() => copy(name)}
                 title={`${name} — tıkla kopyala`}
-                className="flex flex-col items-center gap-1.5 rounded-lg border border-border bg-muted/20 px-2 py-3 text-[10px] text-foreground transition-colors hover:border-blue-400 hover:bg-blue-50/50"
+                className={`flex flex-col items-center gap-1.5 rounded-lg border px-2 py-3 text-[10px] text-foreground transition-colors hover:border-blue-400 hover:bg-blue-50/50 ${isFlash ? "ikon-kart-flash" : "border-border bg-muted/20"}`}
               >
                 {Icon ? (
                   <Icon className="size-5 text-foreground" />
-                ) : isCopied ? (
+                ) : isFlash ? (
                   <Check className="size-5 text-green-600" />
                 ) : (
                   <Copy className="size-5 text-muted-foreground" />
