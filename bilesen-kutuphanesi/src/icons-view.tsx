@@ -8,6 +8,7 @@ import { useMemo, useState } from "react"
 import { cn } from "@/lib/utils"
 import { ICON_NAMES } from "./lib/iconNames"
 import { ICON_CATEGORY_ORDER, ICON_CATEGORIES } from "./lib/iconCategories"
+import * as Icons from "@/components/ui/icons"
 import { Search, Copy, Check } from "@/components/ui/icons"
 
 interface IconsViewProps {
@@ -90,6 +91,7 @@ export function IconsView({ onIconClick }: IconsViewProps) {
         <div className="grid grid-cols-[repeat(auto-fill,minmax(120px,1fr))] gap-2">
           {visible.map((name) => {
             const isCopied = copied === name
+            const Icon = (Icons as Record<string, (p: { className?: string }) => ReactElement | null>)[name]
             return (
               <button
                 key={name}
@@ -97,7 +99,13 @@ export function IconsView({ onIconClick }: IconsViewProps) {
                 title={`${name} — tıkla kopyala`}
                 className="flex flex-col items-center gap-1.5 rounded-lg border border-border bg-muted/20 px-2 py-3 text-[10px] text-foreground transition-colors hover:border-blue-400 hover:bg-blue-50/50"
               >
-                {isCopied ? <Check className="size-5 text-green-600" /> : <Copy className="size-5 text-muted-foreground" />}
+                {Icon ? (
+                  <Icon className="size-5 text-foreground" />
+                ) : isCopied ? (
+                  <Check className="size-5 text-green-600" />
+                ) : (
+                  <Copy className="size-5 text-muted-foreground" />
+                )}
                 <span className="w-full truncate text-center font-mono">{name}</span>
               </button>
             )
