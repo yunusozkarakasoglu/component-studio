@@ -9,6 +9,7 @@ import { NewComponentWizard } from "@/components/ui/new-component-wizard"
 import { DashboardView } from "./dashboard-view"
 import { LayoutsView } from "./layouts-view"
 import { WidgetsView } from "./widgets-view"
+import { IconsView } from "./icons-view"
 
 type CompRecord = { id: string; name: string; category: string; subcategory?: string; source?: string; tags?: string[]; description: string; file: string; code: string; exists: boolean; path: string }
 
@@ -747,7 +748,7 @@ export default function Studio() {
   const [registry, setRegistry] = useState<{ components: CompRecord[]; categories?: string[] } | null>(null)
   const [wizardOpen, setWizardOpen] = useState(() => window.location.hash === "#/yeni-bilesen")
   const [pendingCount, setPendingCount] = useState(0)
-  const [view, setView] = useState<"dashboard" | "bilesenler" | "layoutlar" | "widgets">("dashboard")
+  const [view, setView] = useState<"dashboard" | "bilesenler" | "layoutlar" | "widgets" | "ikonlar">("dashboard")
   const [source, setSource] = useState<"tumu" | "heroui" | "mantine" | "shadcn" | "mui" | "ozel" | "fav">("tumu")
   const [galleryView, setGalleryView] = useState<"kart" | "tablo">("kart")
   const [newMenu, setNewMenu] = useState(false)
@@ -898,7 +899,7 @@ export default function Studio() {
             </div>
           </div>
           <nav className="flex items-center gap-1 rounded-lg border border-black/25 bg-muted/30 p-0.5">
-            {([["dashboard", "📊 Dashboard"], ["bilesenler", "🧩 Bileşenler"], ["layoutlar", "📐 Layoutlar"], ["widgets", "🧰 Widgets"]] as const).map(([v, l]) => (
+            {([["dashboard", "📊 Dashboard"], ["bilesenler", "🧩 Bileşenler"], ["layoutlar", "📐 Layoutlar"], ["widgets", "🧰 Widgets"], ["ikonlar", "🧩 İkonlar"]] as const).map(([v, l]) => (
               <button key={v} onClick={() => setView(v)}
                 className={cn("rounded-md px-2.5 py-1 text-xs font-medium transition-colors", view === v ? "bg-blue-600 text-white" : "text-foreground hover:bg-muted")}>
                 {l}
@@ -940,7 +941,7 @@ export default function Studio() {
         {/* Breadcrumb — konum göstergesi (Bileşenler view'ında başlık sticky bar içinde) */}
         {view !== "bilesenler" && (
         <div className="flex shrink-0 items-center gap-1 border-b border-black/20 bg-muted/20 px-4 py-1 text-[11px] text-muted-foreground">
-          <span className="font-medium text-foreground">{view === "dashboard" ? "📊 Dashboard" : view === "widgets" ? "🧰 Widgets" : "📐 Layoutlar"}</span>
+          <span className="font-medium text-foreground">{view === "dashboard" ? "📊 Dashboard" : view === "widgets" ? "🧰 Widgets" : view === "ikonlar" ? "🧩 İkonlar" : "📐 Layoutlar"}</span>
           <span className="ml-auto">kaynak: <button onClick={() => setSource(source === "tumu" ? "tumu" : "tumu")} className="hover:underline">{source}</button></span>
         </div>
 
@@ -957,6 +958,11 @@ export default function Studio() {
           {/* WIDGETS — ayrı görünüm, ana alanı kaplar */}
           {view === "widgets" && (
             <WidgetsView registry={registry} onOpen={(rec) => setEdit({ rec: rec as { id: string; name: string; category: string; subcategory?: string; source?: string; description: string; file: string; code: string; exists: boolean; path: string } })} />
+          )}
+
+          {/* İKONLAR — ayrı görünüm, ana alanı kaplar */}
+          {view === "ikonlar" && (
+            <IconsView onIconClick={(name) => console.log("ikon kopyalandı:", name)} />
           )}
 
           {/* ANA ALAN */}
