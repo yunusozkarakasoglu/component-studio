@@ -94,7 +94,25 @@ Component-studio/
 └── *.md                              ← plan/hafıza dokümanları (Roadmap, AGENTS…)
 ```
 
-### 3.2 Veri Akışı (kayıt)
+### 3.2 Stüdyo API'leri (vite.config.ts — Vite middleware)
+
+| API | Yöntem | İşlev |
+|---|---|---|
+| `/api/workbench/start` | POST | Sihirbaz workbench oturumunu başlatır |
+| `/api/workbench/save` | POST | Workbench'e kod yazar |
+| `/api/workbench/read` | GET | Workbench'ten kod okur |
+| `/api/workbench/clear` | GET | Workbench'i temizler |
+| `/api/test-component` | GET | Test bileşeni döner |
+| `/api/pi` | POST | **Pi köprüsü** — mesaj gönder → SSE akışı (sihirbazda LLM çağrısı) |
+| `/api/finalize-component` | POST | Sihirbazdan son kayıt (workbench → ui + barrel + samples + envanter) |
+| `/api/create-component` | POST | Yeni bileşen oluştur (JSDoc + dosya yazma) |
+| `/api/save-component` | POST | 💾 Kaydet — `{ file, code }` → `src/components/ui/<file>` yazar, **işlenmiş kodu döndürür (`code: out`)** |
+| `/api/rebuild-registry` | GET | build-registry.mjs çalıştırır (91 sn) |
+
+> **Kaydetme akışı:** save-component → `mergeSaved(id, tags, code)` ile state'e **anında merge** (tags+code),
+> rebuild arka planda fire-and-forget (91 sn beklemez). Etiketler DOM'dan okunur (`getElementById("comp-tags").value`).
+
+### 3.3 Sihirbaz dosyaları (önemli!)
 
 ```
 Yeni bileşen (TSX, JSDoc: @id @category @subcategory @source @tags)
@@ -107,14 +125,16 @@ Yeni bileşen (TSX, JSDoc: @id @category @subcategory @source @tags)
 6. tsc → npm test → kapsamlı kontrol → tarayıcı → commit
 ```
 
-### 3.3 Kaydetme Akışı (stüdyoda düzenleme)
+- `YENI-BILESEN-SIHIRBAZI-TALIMATI.md` — **sihirbaz içinde çalışan LLM'in kuralları** (OKU ÖNCE!):
+  sadece `src/workbench/current/index.tsx`'e yaz, **KAYIT YAPMA** (barrel/samples/envanter/registry/commit YASAK)
+- `LLM-KULLANIM-TALIMATI.md` — kullanıcı "bileşen üret" dediğinde izlenecek akış
+- `SIHIRBAZ-NOT.md` — sihirbaz notları
+- Workbench: `src/workbench/current/index.tsx` (sihirbaz üretimi; kayıt kullanıcının "Kaydet" butonuyla)
+- Sihirbaz UI: `#/yeni-bilesen` route + `wb-pending` localStorage
 
-- 💾 Kaydet → `/api/save-component` → **API işlenmiş kodu döndürür (`code: out`)**
-- `mergeSaved(id, tags, code)` → state'e **anında merge** (tags + code)
-- Rebuild **arka planda fire-and-forget** (91 sn beklenmez)
-- Etiket alanı DOM'dan okunur (`getElementById("comp-tags").value`)
+### 3.4 Veri Akışı (kayıt)
 
-### 3.4 İkon Sistemi
+### 3.5 İkon Sistemi
 
 - 1756 ikon, `function Ad(props: IconProps)` formatında, `export { Ad }` ile barrel
 - `IconProps = SVGProps<SVGSVGElement>` — boyut Tailwind `size-*` class ile
@@ -123,7 +143,7 @@ Yeni bileşen (TSX, JSDoc: @id @category @subcategory @source @tags)
   (ör. "BrainCircuit" → "brain circuit" → Sağlık; "rain" alt kelimesi Hava'ya çekmez)
 - İkonlar zaten bundle'da (345+ bileşen import ediyor) → İkonlar sekmesi sıfır ekstra yük
 
-### 3.5 Tasarım Sistemi
+### 3.6 Tasarım Sistemi
 
 - **Tailwind v4** — tek stil sistemi; bileşenler className ile
 - **Tema CSS scoped:** layout temaları `:root`/`*`/`body` → `.tema<N>-root` (stüdyoyu bozmaz)
@@ -140,10 +160,25 @@ cd bilesen-kutuphanesi && npm test      # 15/15 (findRootInfo)
 python3 tests/kapsamli-kontrol.py       # 20 OK · 2 uyarı · 0 HATA (G1-G7 grupları)
 ```
 
-Kapsamlı kontrol grupları: G1 envanter/registry tutarlılığı · G2 dosya etiketleri + ikon adları ·
-G3 export + samples önizlemeleri · G4 slug eşleşmesi · G5 derleme (tsc + test) · G7 bağımlılık zinciri.
+Kapsamlı kontrol grupları:
+- **G1** — registry/envanter tutarlılığı (1995 bileşen, 20 kategori, çift kayıt yok)
+- **G2** — dosya JSDoc etiketleri (@id/@category/@source) + ikon adları (144 doğrulanır)
+- **G3** — barrel export'ları + samples önizlemeleri (910 doğrulanır; 1000-1007 bilinen uyarı)
+- **G4** — ad→dosya slug eşleşmesi (1995)
+- **G5** — derleme: tsc + npm test (15/15)
+- **G7** — örnek import zinciri (6 üst düzey örnek çözülür) + çekirdek "Gerektirir" notu
 
 Her görev sonunda: **tsc ✓ · test 15/15 ✓ · 20 OK ✓ · CDP tarayıcı doğrulama · commit + push**.
+
+### CDP tarayıcı doğrulama akışı
+
+```bash
+cdp open "http://localhost:5800/"   # önce open (sekme kaymasına karşı)
+sleep 18                            # 11.5MB script yavaş yüklenir
+# Sekmeye tıkla → içerik kontrolü → gerçek etkileşim (popover/buton)
+```
+
+> Vite yeni dosya eklenince düşebilir → `./kutuphane-durdur.sh && rm -rf bilesen-kutuphanesi/node_modules/.vite && ./kutuphane-baslat.sh`
 
 ---
 
@@ -208,4 +243,29 @@ cdp open "http://localhost:5800/"        # tarayıcı doğrulama
 - **5 sekme** (Dashboard/Bileşenler/Layoutlar/Widgets/İkonlar) · **2 layout teması** (Tema 1-2)
 - **1756 ikon · 23 kategori** · tags + favoriler sistemleri çalışır durumda
 - tsc ✓ · test 15/15 ✓ · kapsamlı kontrol 20 OK · GitHub senkron
-- Son id: **2084** · Son commit: `fcbe23c`
+- Son id: **2084** · Son commit: `3ad509e`
+
+---
+
+## 7. 🔄 Yeniden Açılış Kontrol Listesi
+
+Proje yeniden açıldığında (compact/oturum sonrası) hızlıca yakalamak için:
+
+1. `project_info.md` (bu dosya) → `Roadmap.md` (durum) → `AGENTS.md` (kurallar) oku
+2. Ortamı doğrula: `./kutuphane-baslat.sh` → `cdp open "http://localhost:5800/"` → sekmeler görünür mü
+3. Git durumu: `git branch --show-current` (main olmalı) + `git status` (temiz)
+4. Son id'yi kontrol et: registry son id = 2084 → yeni bileşen 2085
+5. Kullanıcının son isteğini al — hedef görev yoksa bekleyenler (Roadmap ⬜) öner
+
+### Sık kullanılan komutlar (hızlı)
+
+```bash
+cd /home/yunus/.pi/Component-studio
+./kutuphane-baslat.sh          # 5800 başlat
+./kutuphane-durdur.sh          # durdur
+cd registry && node build-registry.mjs   # kayıt defteri (91 sn)
+cd bilesen-kutuphanesi && npx tsc --noEmit -p tsconfig.app.json
+cd bilesen-kutuphanesi && npm test
+python3 tests/kapsamli-kontrol.py
+cdp open "http://localhost:5800/"
+```
