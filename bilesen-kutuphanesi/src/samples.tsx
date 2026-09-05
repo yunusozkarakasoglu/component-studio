@@ -2080,4 +2080,14 @@ export const SAMPLES: Record<string, ReactNode> = {
   ),
   "2084": <U.TaskFilterButton />,
   "2085": <U.UyeListesi />,
+  "2086": (
+    <div className="w-full max-w-3xl">
+      <U.RichTextEditorPlus
+        value={
+          "<p>Merhaba! Bu <strong>zengin metin editörü</strong> ile yazabilirsin.</p><div><input type=\"checkbox\" style=\"margin-right:6px;accent-color:#3b82f6;transform:scale(1.2);vertical-align:middle\" />&nbsp;Görev satırı (Enter ile yeni satır)</div><p>Resim ekle, liste yap, Ctrl+Z ile geri al.</p>"
+        }
+        onChange={() => {}}
+      />
+    </div>
+  ),
 }
