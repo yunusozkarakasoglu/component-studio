@@ -56,4 +56,4 @@ beforeunload uyarısı.
 - `bilesen-kutuphanesi/src/App.tsx` — hash route + "+ Yeni Bileşen" + Bekleyen rozeti
 - `bilesen-kutuphanesi/src/workbench/current/` — geçici çalışma alanı (gitignore'lu)
 - `bilesen-kutuphanesi/src/index.css` — kendi animasyonlarımız (paket yok)
-- `YENI-BILESEN-PLANI.md` — plan v3 (2 sütunlu karar)
+- (plan v3 taslağı silindi — aktif talimat: `YENI-BILESEN-SIHIRBAZI-TALIMATI.md`)

@@ -1,6 +1,6 @@
 # 🗺️ Component-Studio Yol Haritası & Durum
 
-> Bu dosya compact sonrası tek kaynaktır. Detaylı adım planları: `PLAN-MANTINE.md`, `PLAN-SHADCN.md`, `PLAN-ILERLEME.md`.
+> Bu dosya compact sonrası tek kaynaktır. (Eski PLAN-*.md entegrasyon planları tamamlandı ve silindi — özet aşağıda.)
 
 ## 🎯 Hedef (vizyon)
 
@@ -39,15 +39,15 @@ Component-studio/
 
 ## ✅ Tamamlanan
 
-### Heroui — 56 aile · 527 bileşen (PLAN-ILERLEME.md)
+### Heroui — 56 aile · 527 bileşen
 Tüm elementler saf React'e çevrildi (Form, Seçim, Overlay, Navigasyon, Veri, Yükleme, Genel…).
 
-### shadcn/ui — 7 adım · ~390 bileşen (PLAN-SHADCN.md)
+### shadcn/ui — 7 adım · ~390 bileşen
 Adım 1 Form (84) → Adım 2 Seçim (42) → Adım 3 Buton+Kart (31) → Adım 4 Overlay (52) →
 Adım 5 Navigasyon (29) → Adım 6 Akordeon/Uyarı/Takvim (63) → Adım 7 Veri/Yükleme/Genel (90).
 Üçüncü parti yerine yazılan çekirdekler: Calendar (react-day-picker), Combobox (base-ui), Command (cmdk), Resizable (react-resizable-panels).
 
-### Mantine — TAMAMLANDI · 841 bileşen (PLAN-MANTINE.md)
+### Mantine — TAMAMLANDI · 841 bileşen
 Adım 1 Layout (1004-1057) → Adım 2 Butonlar (1058-1113) → Adım 3 Form (1114-1210) →
 Adım 4 Seçim (1211-1298) → Adım 5 Combobox (1299-1340) → Adım 6 Overlay (1341-1385) →
 Adım 7 Navigasyon (1386-1425: Tabs/Pagination/Breadcrumbs/NavLink/Stepper/Timeline/FloatingIndicator) →
@@ -70,7 +70,7 @@ Adım 10 Takvim (1587-1764: 16 dates element, saf Intl) → Adım 11 Özel (1765
   - Tema 5 Kanban (3 kolon + kart taşı/ekle) · Tema 6 E-ticaret (kategori + ürün + sepet)
   - Tema 7 Mail/Inbox (3 sütun + okundu/yıldız) · Tema 8 Form Sihirbazı (4 adımlı onboarding)
 - **Layoutlar sekmesi:** tema seçim kutuları (minyatür thumbnail) → tıkla → tam ekran (hash `#/layoutlar/tema<N>`) → geri (buton/tarayıcı geri/Esc)
-- **Plan:** `PLAN-LAYOUT-TEMALARI.md` (Tema 3-8 ✅) · akış: `GOREV-AKISI-LAYOUT.md`
+- **Akış:** `GOREV-AKISI-LAYOUT.md`
 - **Not:** senkron kaynaktan (styles.css) yapılınca Tema 1 kenarlık özelleştirmesi (--border #eef2f8) tekrar uygulanmalı
 
 ### GitHub yayını (commit `d3e93be` + `d8731b6`)
@@ -92,7 +92,7 @@ Adım 10 Takvim (1587-1764: 16 dates element, saf Intl) → Adım 11 Özel (1765
 - **Adım 2-4 beklemede** (`PERFORMANS-OPTIMIZASYON-PLANI.md`): samples.tsx lazy loading,
   React.memo + debounce, Vite manualChunks — production öncesi denetlenecek. Öncelik: Adım 4 > 3 > 2.
 
-### Material UI — TAMAMLANDI · 234 bileşen (PLAN-MATERIALUI.md)
+### Material UI — TAMAMLANDI · 234 bileşen
 - Adım 1-9: Genel/Butonlar/Alert/Form/Seçim/Combobox/Overlay/Navigasyon/Veri/Yükleme + ek varyantlar
 - Kaynak: `Masaüstü/MaterialUI` (silindi — entegrasyon tamam) · id 1845-2078
 
