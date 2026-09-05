@@ -1,133 +1,81 @@
 <!-- component-studio:start -->
-# Component Studio — Proje Kuralları
+# Component Studio — AGENTS.md (LLM Görev Rehberi)
 
-Bu klasör, **offline React bileşen kütüphanesi**dir (**saf React** — üçüncü parti UI bağımlılığı YOK).
-pi burada çalışırken aşağıdakileri her zaman bilir. Kullanıcı "element ekle", "bileşen
-düzenle", "kütüphaneyi başlat" gibi şeyler söylediğinde kurallara göre davran.
+> **Bu dosya bir göreve başlamadan önce İLK okunan dosyadır.**
+> Rolü: görevi tanı → doğru talimat dosyasına **yönlendir** → evrensel kuralları hatırlat.
+> Detaylı anlatım burada DEĞİL, referans verilen dosyalardadır.
 
-## 🧠 Hafıza Dosyaları (öncelik sırası)
+**Proje:** Offline, saf React bileşen kütüphanesi + tasarım stüdyosu (port 5800).
+Üçüncü parti UI paketi YOK — her bileşen tek dosya, kendi ikon setimizle.
 
-| Dosya | Rol |
-|---|---|
-| `project_info.md` | Proje tanımı, özellikler, mimari özeti, kritik bilgiler — **tek başvuru** |
-| `Mimari.md` | **Yazılım mimarisi + kodlama kuralları** — bileşen kuralları, veri akışı, API'ler, ikon sistemi, tema akışı, tuzaklar |
-| `Roadmap.md` | Global ilerleme — sprint + alt görev checkbox |
-| `Tasks.md` | Görev takibi — geçmiş + sıradaki (tarih etiketli) |
-| `README.md` | Kullanım kılavuzu (kullanıcıya dönük) |
-| `YENI-BILESEN-SIHIRBAZI-TALIMATI.md` | Sihirbaz LLM talimatı (vite.config system prompt okur — **SİLME**)
+---
 
-> **Görev başlarken:** `Tasks.md`'ye görev ekle → bitince checkbox onayla → `Roadmap.md` sprint işaretle → commit.
+## 🧭 GÖREV → REFERANS (bir görev gelince buraya bak)
 
-## 🚀 Temel Komutlar
+| # | Görev (kullanıcı ne dedi) | Talimat dosyası → akış |
+|---|---|---|
+| 1 | **Yeni bileşen ekle** ("şu HTML/JSX/TSX'i kütüphaneye ekle") | `Mimari.md` §3 (bileşen kuralları) + §4.1 (kayıt akışı) → 4 adım: dosya → barrel → samples → envanter → build-registry → test → commit |
+| 2 | **Bileşeni kullanıcının projesine entegre et** ("274 takvimi X alanına ekle") | `Mimari.md` §4.2 — bağımlılık zincirini çöz (çekirdek + icons + cn) |
+| 3 | **Sihirbazda yeni bileşen üret** ("yeni bileşen yap/üret" — stüdyo + Yeni) | **`YENI-BILESEN-SIHIRBAZI-TALIMATI.md`** — workbench'e YAZ, KAYIT YAPMA! (barrel/samples/envanter/registry/commit YASAK) |
+| 4 | **Layout tema ekle** (kullanıcının 5174 tasarımını tema yap) | `Mimari.md` §6 — oku→anla→`tema<N>.tsx+.css` (scoped) → layouts-view → doğrula → commit |
+| 5 | **Widget ekle** ("saat widget'ı yap") | `Mimari.md` §3 + Widgets kuralı: `@category Widgets` — **envanterde `### Widgets` EN SONA** |
+| 6 | **Mevcut bileşeni güncelle** | `Mimari.md` §3 + §4.3 — dosyayı düzenle → build-registry |
+| 7 | **İkon setini güncelle / yeni ikon** | `Mimari.md` §7 (ikon sistemi) + `generate-icons.mjs` + iconNames/iconCategories yeniden üret |
+| 8 | **Performans iyileştirme** | `Roadmap.md` Sprint 6 (Adım 4 > 3 > 2) |
+| 9 | **Test/doğrulama** | `Mimari.md` §8 — tsc → npm test → kapsamli-kontrol.py → CDP |
+| 10 | **Dokümantasyon/hafıza güncelle** | `Tasks.md` + `Roadmap.md` + `project_info.md` |
+| 11 | **Yeni görev/öneri** (belirsiz istek) | Önce bu tabloyu tara → en yakın görev tipine yönlendir |
+
+---
+
+## 📁 Hafıza Dosyaları (roller)
+
+| Dosya | Rol | Ne zaman |
+|---|---|---|
+| **AGENTS.md** (bu) | Görev → referans yönlendirme + evrensel kurallar | Her görev öncesi |
+| `Mimari.md` | Yazılım mimarisi + kodlama kuralları + veri akışı + tuzaklar | Görevin detayı için |
+| `project_info.md` | Proje tanımı, özellikler, durum, açılış kontrol listesi | Bağlam/hafıza tazeleme |
+| `Roadmap.md` | Sprint + checkbox ilerleme | İlerleme işaretleme |
+| `Tasks.md` | Görev takibi (geçmiş + sıradaki, tarih etiketli) | **Her görev başı/sonu** |
+| `README.md` | Kullanım kılavuzu | Kullanıcıya dönük |
+| `YENI-BILESEN-SIHIRBAZI-TALIMATI.md` | Sihirbaz LLM talimatı (vite.config okur — **SİLME**) | Sihirbaz üretimi |
+
+---
+
+## ✅ Evrensel Görev Akışı (her görevde)
+
+1. **Görevi oku/anla** → yukarıdaki tablodan görev tipini bul → referans dosyayı OKU.
+2. **`Tasks.md`'ye görev ekle** (tarih etiketli, checkbox açık).
+3. **Uygula** (referans dosyadaki akışa göre).
+4. **Doğrula:** `tsc --noEmit -p tsconfig.app.json` → `npm test` (15/15) → `python3 tests/kapsamli-kontrol.py` (20 OK) → CDP tarayıcı (gerekirse).
+5. **Onayla:** `Tasks.md` checkbox kapat + `Roadmap.md` sprint işaretle (yeni özellikse).
+6. **Commit + push** (her görev sonunda — `main`'de olduğunu doğrula: `git branch --show-current`).
+
+---
+
+## ⚠️ Evrensel Kurallar (bağlamdan bağımsız)
+
+1. **Saf React:** yalnızca react + tailwind. Üçüncü parti UI paketi **YASAK**.
+2. **İkonlar kendi setimizden:** `import { Search } from "@/components/ui/icons"` — lucide-react'ten import YASAK.
+   Eşleştirme: birebir ad → anlam (Email→Mail) → emin değilsen SOR.
+3. **Bileşen formatı:** tek dosya, named export, interface başta, JSDoc `@id @category @subcategory @source @tags` zorunlu.
+4. **Offline:** uzak görsel/iframe/CDN YASAK → gradient placeholder (tek istisna: HesapMakinesi döviz).
+5. **`.ts` içinde JSX OLMAZ** (JSX → `.tsx`).
+6. **Envanter tek kaynak:** `Bileşen Listesi .txt` — kategori/alt kategori oradan; `rfind` ile "Toplam:" güncelle.
+7. **Commit disiplini:** görev sonunda commit + push; detached HEAD'e düşme (uzun cherry-pick sonrası kontrol).
+
+---
+
+## 🚀 Temel Komutlar (hızlı)
 
 ```bash
-./kutuphane-baslat.sh      # kütüphaneyi arka planda başlat → http://localhost:5800
+./kutuphane-baslat.sh      # 5800 başlat (Vite yeni dosyada düşerse: rm -rf bilesen-kutuphanesi/node_modules/.vite)
 ./kutuphane-durdur.sh      # durdur
-node yollar.mjs            # gerçek yolları basar (dinamik)
-cd registry && node build-registry.mjs   # kayıt defterini tazele (91 sn)
-cd bilesen-kutuphanesi && npm test       # findRootInfo birim testleri (15)
-python3 tests/kapsamli-kontrol.py        # kapsamlı kontrol (20 OK hedef)
+cd registry && node build-registry.mjs   # kayıt defteri (91 sn)
+cd bilesen-kutuphanesi && npm test       # findRootInfo (15)
+python3 tests/kapsamli-kontrol.py        # 20 OK hedef
+cdp open "http://localhost:5800/"        # tarayıcı doğrulama (sekme kaymasına karşı önce open)
 ```
 
-- Port **5800** sabittir (değiştirilmez).
-- `bilesen-kutuphanesi` → Vite dev; `registry` → kayıt defteri üretici.
-- **CDP**: `cdp open "http://localhost:5800/"` — tarayıcı doğrulama (kayma riskine karşı önce open).
-
-## 📂 Yapı
-
-```
-bilesen-kutuphanesi/
-├── src/components/ui/*.tsx   ← BİLEŞENLER (her biri TEK dosya)
-│   ├── icons.tsx             ← KENDİ ikon setimiz (1756 ikon, SVG gömülü, paket yok)
-│   ├── icons-brand.tsx       ← marka ikonları (Google/GitHub/Apple — gömülü SVG)
-│   ├── color.ts              ← ortak renk çekirdeği (bileşen değil)
-│   └── index.tsx             ← barrel (export * from "./x")
-├── src/App.tsx               ← stüdyo (5 sekme: Dashboard/Bileşenler/Layoutlar/Widgets/İkonlar)
-├── src/icons-view.tsx        ← İkonlar sekmesi (arama + 23 kategori + tıkla kopyala + toast)
-├── src/widgets-view.tsx      ← Widgets sekmesi (kategori bazlı liste)
-├── src/layouts-view.tsx      ← Layoutlar sekmesi (tema kutuları)
-├── src/lib/iconNames.ts      ← 1756 ikon adı (otomatik üretildi)
-├── src/lib/iconCategories.ts ← 23 kategori (İletişim/Kişiler/… — otomatik üretildi)
-├── src/samples.tsx           ← galeri önizlemeleri (SAMPLES[id] = örnek JSX)
-└── vite.config.ts            ← port 5800 + kaydetme/oluşturma API'leri
-registry/
-├── build-registry.mjs        ← registry.json + .db üretir (kategori + alt kategori)
-└── data/registry.json        ← bileşen kayıtları (mutlak yollar, code, subcategory)
-```
-
-## 🧱 Bileşen Kuralları (her bileşen)
-
-- Tek dosya, **named export**, interface dosya başında.
-- Dosya başı JSDoc'ta **zorunlu etiketler**: `@id <numara>` + `@category <kategori>` + (gerekirse) `@subcategory <alt kategori>`.
-  build-registry bu etiketlerden kaydı okur; numara = sıradaki boş.
-- **Bağımlılık notu:** üst düzey bileşen çekirdeği import ediyorsa JSDoc'a `Gerektirir (ortak çekirdek): <dosya>` yaz.
-- Yeni bileşen eklerken 4 adım:
-  1. `src/components/ui/<kebab>.tsx` oluştur (kurallarla; JSX ise TSX'e çevir — class→className, style→object)
-  2. `index.tsx`'e `export * from "./<kebab>"` ekle
-  3. `samples.tsx`'e galeri önizlemesi ekle (`"<id>": <Bileşen />,`)
-  4. `cd registry && node build-registry.mjs` (kayıt defterini tazele)
-- Kategori/alt kategori tek kaynak: `Bileşen Listesi .txt` (`### Kategori`, `#### Alt Kategori`).
-- Mevcut bileşeni güncelle: dosyayı düzenle → build-registry çalıştır.
-  (Stüdyodaki 💾 Kaydet + 🔄 DB Yenile aynı işi yapar.)
-
-## 🖥️ Stüdyo (5800)
-
-**5 sekme:** 📊 Dashboard · 🧩 Bileşenler · 📐 Layoutlar · 🧰 Widgets · 🧩 İkonlar.
-- Bileşenler: üst filtreler (arama + kategori + alt kategori + kaynak + görünüm) **sticky** + ▦Kart/☰Tablo + ✕Temizle
-- **Sanal liste** (`src/lib/useVirtualGrid.ts`): görünür kartlar + 4 satır tampon (DOM %96 az)
-- İkonlar: arama + 23 kategori chip'i + sanal grid (ilk 200, "Daha fazla" ile genişler) + tıkla kopyala → yanıp sönen toast
-- Bileşene tıkla → canlı önizleme + kod düzenleme + **🔗 Bağımlılıklar** bilgi çubuğu + 📂 Path Kopyala + ✨ Prompt Oluştur
-
-## 🔄 Bileşeni kullanıcının projesine entegre etme
-
-Kullanıcı dosya yolu / numara verince:
-1. Kaynak dosyayı `read` ile oku; isimleri/export'ları değiştirme.
-2. **Bağımlılık zincirini çöz** — import'lardan (`@/components/ui/x`) recursive takip;
-   JSDoc "Gerektirir:" notuna bak. Bağımlılık dosyalarını da kopyala:
-   - üst düzey bileşenler (date-picker vb.) → çekirdeği de al (calendar, color.ts...)
-   - icons.tsx/icons-brand.tsx → her zaman gerekli (SVG gömülü)
-   - `@/lib/utils` → `cn()` util'i (clsx + tailwind-merge)
-3. `@/*` → `src/`; `cn()` sağla. Tailwind v4 + şablon tema değişkenleri varsay.
-4. Kullanıcı görevini uygula, değişiklikleri açıkla.
-
-## ⚠️ Saf React Standartları (bağımlılıksız)
-
-- Bileşenler yalnızca react + tailwind kullanır; üçüncü parti UI paketi YASAK.
-- İkonlar her zaman kendi kütüphanemizden: `import { Search } from "@/components/ui/icons"` (SVG gömülü).
-- Çeviri (Heroui örneklerinden): `@heroui/react` + `@gravity-ui/icons` + CDN URL asla —
-  saf React + kendi ikonlarımızla. GravityUI ikon adını setimizdeki eşdeğeriyle eşleştir
-  (birebir ad → anlam → emin değilsen kullanıcıya sor).
-- A11y attributeleri (aria-expanded/controls/current, role) zorunlu.
-- JSDoc'ta üçüncü parti adı yok ("HeroUI örneği" gibi ibareler kaldırıldı).
-
-Detaylı kurallar: `Mimari.md` (§3 bileşen kuralları · §4 veri akışı · §7 ikon sistemi).
-
-## 🎨 Layout Tema Entegrasyonu (görev akışı)
-Kullanıcı 5174'te sayfa tasarımları üretir; ben bunları yeni layout tema olarak sisteme eklerim.
-(**Not:** `Masaüstü/Layouts` kaynak klasörü silindi — kullanıcı yeni tasarım üretirse kaynak yeniden oluşur.)
-**Tam akış: `Mimari.md` §6 — önce oku, sonra uygula.** Özet:
-1. Oku: `App.jsx` (state/davranış) + `styles.css` (tasarım) + varsa HTML
-2. Anla: bölümler, state'ler, ikonlar (kendi setimizle eşle), CSS değişkenleri
-3. Ekle: `src/layouts/tema<N>.tsx` (TSX, kendi ikonlar, kök `tema<N>-root`+`data-theme`) + `tema<N>.css` (**scoped**: `:root`/`*`/`body`/`[data-theme]` → `.tema<N>-root`)
-4. `layouts-view.tsx` temas listesine kart ekle (kutu → tam ekran → geri hazır)
-5. Doğrula: tsc ✓ · test 15/15 ✓ · kapsamlı kontrol 20 OK ✓ · tarayıcı kutu→tam ekran→geri
-6. Commit: `Layout: Tema <N> (<ad>) entegrasyonu` — kütüphane kaydı (envanter/registry) DEĞİŞMEZ
-
-## 🧰 Widgets Sekmesi (görev akışı)
-Üst navigasyonda 4 sekme: Dashboard · Bileşenler · Layoutlar · **Widgets**.
-- `src/widgets-view.tsx` — "Widgets" kategorisindeki bileşenleri kart + arama ile listeler (Bileşenler akışının aynısı)
-- Widget eklemek için: bileşeni `@category Widgets` JSDoc ile oluştur (ör. SaatWidget 2082)
-- Bileşenler akışının aynısı: dosya → barrel → samples → envanter (`### Widgets` EN SONA!) → build-registry → tsc/test → commit
-- **Dikkat:** envanterde `### Widgets` başlığı dosyanın SONUNDA olmalı — ortada olursa sonraki tüm kayıtlar Widgets'e atanır
-
-## 🧩 İkonlar Sekmesi (görev akışı)
-- `src/icons-view.tsx` — 1756 ikon: arama + 23 kategori chip'i (İletişim/Kişiler/Navigasyon/…) + sanal grid + tıkla kopyala (toast)
-- İkon adları: `src/lib/iconNames.ts` (otomatik üretildi) · kategoriler: `src/lib/iconCategories.ts` (otomatik üretildi)
-- **İkon setine yeni ikon eklenirse** (icons.tsx düzenlenirse) iki dosyayı yeniden üret:
-  ```bash
-  # iconNames.ts + iconCategories.ts üreten script (components/ui/icons.tsx'ten)
-  ```
-  (camelCase ayrıştırma + word boundary — "Brain" Sağlık'ta kalır, "rain" Hava'ya çekmez)
-- **Performans:** ikonlar zaten bundle'da (345+ bileşen import ediyor) → sekme ekstra yük getirmez; grid sanal (ilk 200)
-- Toast animasyonları `index.css`'te: `ikon-flash` (1.6s çakma) + `ikon-kart` (0.9s yeşil flash)
+Detaylı mimari/kurallar/tuzaklar: **`Mimari.md`** · Güncel durum: **`Roadmap.md`** · Görev takibi: **`Tasks.md`**
 <!-- component-studio:end -->
