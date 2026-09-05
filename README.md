@@ -1,8 +1,8 @@
 # 🧩 Component Studio — Saf React Bileşen Kütüphanesi & Tasarım Stüdyosu
 
 > **Ne işe yarar?** Modern frontend arayüzleri için **offline, bağımlılıksız React bileşen kütüphanesi**
-> + bunları yönetip önizlediğin bir **tasarım stüdyosu**. Üçüncü parti UI paketi yok —
-> her bileşen tek dosya, kendi ikon setimizle, `react + tailwind` ile yazılmıştır.
+>
+> - bunları yönetip önizlediğin bir **tasarım stüdyosu**. Üçüncü parti UI paketi yok — her bileşen tek dosya, kendi ikon setimizle, `react + tailwind` ile yazılmıştır.
 
 ---
 
@@ -15,16 +15,16 @@ Elements (Atom) → Components (Molekül) → Layouts (Organizm) → Templates �
   Buton/Input         Kart/Form          Sayfa iskeleti        +içerik     tam sayfa
 ```
 
-Kütüphane **Elements + Components + Layouts** katmanlarını doldurur; sen bunlardan
-sayfa/tema/maket üretirsin.
+Kütüphane **Elements + Components + Layouts** katmanlarını doldurur; sen bunlardan sayfa/tema/maket üretirsin.
 
 ---
 
 ## ✨ Özellikler
 
 - **1995+ bileşen** — 4 kaynaktan saf React'e çevrilmiş:
+
   | Kaynak | Sayı | Örnekler |
-  |---|---|---|
+  | --- | --- | --- |
   | HeroUI | 527 | Modal, Tabs, Table, Toolbar, NumberField… |
   | shadcn/ui | 387 | Dialog, DropdownMenu, Combobox, Sidebar… |
   | Mantine | 841 | MtButton, MtCard, MtCalendar, MtStepper, MtTree… |
@@ -33,14 +33,14 @@ sayfa/tema/maket üretirsin.
 - **Saf React + Tailwind v4** — üçüncü parti UI paketi **YOK**
 - **Kendi ikon seti** — 1756 ikon (`@/components/ui/icons`), SVG gömülü, uzak bağımlılık yok
 - **2 Layout Teması** — NovaPanel tasarım diliyle hazır sayfa iskeletleri (Tema 1-2)
-- **Tasarım Stüdyosu** — 5 sekme: Dashboard · Bileşenler · Layoutlar · Widgets · İkonlar
-  (canlı önizleme, kod düzenleme, kaydetme, kayıt yenileme, etiketler, favoriler)
+- **Tasarım Stüdyosu** — 5 sekme: Dashboard · Bileşenler · Layoutlar · Widgets · İkonlar (canlı önizleme, kod düzenleme, kaydetme, kayıt yenileme, etiketler, favoriler)
 
 ---
 
 ## 🔄 Nasıl Çalışır? (Akış)
 
 ### 1) Bileşen üretim akışı (kaynak → kütüphane)
+
 ```
 Kaynak (HeroUI/shadcn/Mantine dosyaları)
    ↓  saf React'e çevir (TSX, kendi ikonlar, Tailwind)
@@ -54,6 +54,7 @@ Stüdyoda görünür → tıkla → önizle/düzenle → kaydet
 ```
 
 ### 2) Layout tema akışı (tasarım → tema)
+
 ```
 Sen 5174'te (veya herhangi bir yerde) sayfa tasarlarsın
    ↓
@@ -66,6 +67,7 @@ Layoutlar sekmesi → tema kutusu (minyatür önizleme)
 ```
 
 ### 3) Senin projene entegrasyon akışı
+
 ```
 1. src/components/ui/<bileşen>.tsx dosyasını projenize kopyala
 2. Bağımlılıkları çöz:
@@ -86,12 +88,12 @@ npm install
 npm run dev
 ```
 
-Stüdyo → **http://localhost:5800**
+<span style="color: #2563EB"><u>Stüdyo → </u>**<u>http://localhost:5800</u>**</span>
 
 ### 📊 Stüdyo sekmeleri
 
 | Sekme | Ne işe yarar |
-|---|---|
+| --- | --- |
 | **📊 Dashboard** | Kütüphane özeti, bileşen sayısı, kısayollar |
 | **🧩 Bileşenler** | 1995 bileşeni ara / filtrele (kaynak: Tümü/HeroUI/Mantine/shadcn/MUI/Özel · kategori · alt kategori) · ▦Kart/☰Tablo görünüm · tıkla → canlı önizleme + kod düzenleme → 💾 Kaydet · etiketler · ⭐ favoriler |
 | **📐 Layoutlar** | Tema 1-2 canlı minyatür kutular → tıkla → tam ekran → geri |
@@ -106,24 +108,23 @@ Stüdyo → **http://localhost:5800**
 ```tsx
 import { MtButton } from "@/components/ui/mt-button"
 import { MtCard } from "@/components/ui/mt-card"
-
 function Demo() {
-  return (
-    <MtCard withBorder padding="lg">
-      <MtButton onClick={() => alert("Merhaba!")}>Başla</MtButton>
-    </MtCard>
-  )
+return (
+<MtCard withBorder padding="lg">
+<MtButton onClick={() => alert("Merhaba!")}>Başla</MtButton>
+</MtCard>
+)
 }
 ```
 
 ## 📐 Layout Temaları (NovaPanel tasarım dili)
 
 | Tema | Yapı |
-|---|---|
+| --- | --- |
 | **Tema 1 — Klasik** | Header + açılır/kapanır panel + filtreli veri tablosu |
 | **Tema 2 — Sekmeli** | Footer üstü sekmeler — her sekme **kendi state'ine** sahip |
 
-*(Tema 3-8 aynı sistemin kopyalarıydı — silindi; yeni tema istenirse 5174 tasarımıyla eklenir, `GOREV-AKISI-LAYOUT.md`)*
+*(Tema 3-8 aynı sistemin kopyalarıydı — silindi; yeni tema istenirse 5174 tasarımıyla eklenir,* `GOREV-AKISI-LAYOUT.md`*)*
 
 ---
 
@@ -135,7 +136,7 @@ src/
 │   ├── icons.tsx    ← 1756 ikon (kendi setimiz, SVG gömülü)
 │   ├── icons-brand.tsx ← marka ikonları (Google/GitHub/Apple)
 │   ├── index.tsx    ← barrel (export * from "./x")
-│   ├── mt-*.tsx     ← Mantine · shadcn-*.tsx ← shadcn · mui-*.tsx ← MUI
+│   ├── mt-.tsx     ← Mantine · shadcn-.tsx ← shadcn · mui-*.tsx ← MUI
 │   └── *.tsx        ← HeroUI · özel/araç bileşenleri (source: ozel)
 ├── layouts/         ← Layout temaları (tema1-2.tsx + tema1-2.css, scoped)
 ├── App.tsx          ← Stüdyo (5 sekme)

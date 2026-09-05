@@ -14,3 +14,4 @@ node_modules/.tmp/
 .DS_Store
 src/workbench/current
 bilesen-kutuphanesi/src/workbench/current
+*.bak
