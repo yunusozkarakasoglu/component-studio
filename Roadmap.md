@@ -1,6 +1,10 @@
-# 🗺️ Component-Studio Yol Haritası & Durum
+# 🗺️ Roadmap — Component Studio Yol Haritası & İlerleme
 
-> Bu dosya compact sonrası tek kaynaktır. (Eski PLAN-*.md entegrasyon planları tamamlandı ve silindi — özet aşağıda.)
+> Bu dosya projenin **global ilerleme akışını** sprint + alt görev (checkbox) olarak izler.
+> Her sprint/alt görev satırda checkbox ile işaretlenir.
+> Görev takibi: `Tasks.md` · Proje tanımı: `project_info.md` · Mimari/kurallar: `Mimari.md` · LLM kuralları: `AGENTS.md`
+
+---
 
 ## 🎯 Hedef (vizyon)
 
@@ -13,167 +17,98 @@ Elements (Atoms) → Components (Molecules) → Layouts (Organisms) → Template
 Design system (tokens/tema) · State & Data
 ```
 
-## 🏗️ Mimari
+---
 
-```
-Component-studio/
-├── bilesen-kutuphanesi/            ← Vite dev uygulaması (port 5800)
-│   └── src/components/ui/*.tsx     ← BİLEŞENLER (her biri TEK dosya)
-│       ├── icons.tsx               ← 1756 ikon (kendi setimiz)
-│       └── index.tsx               ← barrel (export * from "./x")
-├── registry/                       ← build-registry.mjs → registry.json (+ .db)
-├── tests/kapsamli-kontrol.py       ← 20 OK · 2 uyarı · 0 HATA hedefi
-└── PLAN-*.md, Roadmap.md           ← plan/hafıza dokümanları
-```
+## ✅ Sprint 0 — Altyapı & HeroUI (tamamlandı)
+- [x] 0.1 Saf React çekirdeği — RAC ve üçüncü parti UI bağımlılıkları kaldırıldı
+- [x] 0.2 Sol panel kategori iskeleti (boş kategoriler dahil görünür)
+- [x] 0.3 HeroUI entegrasyonu — **56 aile · 527 bileşen** (Button→Calendar→Table…)
 
-**Kaynak kategorileri (4):** `heroui` · `mantine` · `shadcn` · `ozel` — JSDoc `@source` etiketi, registry `source` alanı, üst barda filtre butonları (Tümü/HeroUI/Mantine/shadcn/Özel).
+## ✅ Sprint 1 — shadcn/ui (tamamlandı)
+- [x] 1.1 shadcn/ui — **387 bileşen** (7 adım: Form→Seçim→Buton+Kart→Overlay→Navigasyon→Akordeon/Uyarı/Takvim→Veri/Yükleme/Genel)
+  - Üçüncü parti yerine yazılan çekirdekler: Calendar (react-day-picker), Combobox (base-ui), Command (cmdk), Resizable (react-resizable-panels)
 
-**İsimlendirme:** Heroui kendi adıyla (Button) · shadcn `Shadcn` öneki · Mantine `Mt` öneki · sihirbaz/şablon `ozel`.
+## ✅ Sprint 2 — Mantine (tamamlandı)
+- [x] 2.1 Mantine — **841 bileşen** (11 adım: Layout→Butonlar→Form→Seçim→Combobox→Overlay→Navigasyon→Veri→Geri Bildirim→Takvim→Özel)
 
-**JSDoc zorunlu:** `@id` (sıradaki boş) + `@category` + `@subcategory` + `@source`.
+## ✅ Sprint 3 — Stüdyo & Yayın (tamamlandı)
+- [x] 3.1 Stüdyo arayüzü — Dashboard/Bileşenler/Layoutlar sekmeleri + filtreler + kart/tablo
+- [x] 3.2 GitHub yayını — `yunusozkarakasoglu/component-studio` PUBLIC
+- [x] 3.3 Boş kutu düzeltmesi — absolute bileşenler kart içine hapsoldu (`7ac0b05`)
+- [x] 3.4 Performans Adım 1 — **sanal liste** `useVirtualGrid` (DOM 32.371→1.195, %96) (`c812a64`)
+- [x] 3.5 Layout Tema Sistemi — Tema 1-8 (kaynak: 5174 NovaPanel şablonu)
 
-**Kaynak klasörler (Masaüstü):**
-- `heroui-components-setup/` — 66 md (tamamlandı, entegre)
-- `shadcn-components-setup/` — 63 md (tamamlandı, entegre)
-- `mantine-components-setup/` — `docs/` (134 mdx) + `demos/` (1266 tsx), sparse clone'dan
+## ✅ Sprint 4 — MUI + Etiket + Favori (tamamlandı)
+- [x] 4.1 Material UI — **234 bileşen** (9 adım) · son id 2078
+- [x] 4.2 Etiketler (tags) — JSDoc @tags → registry · detay/tablo/arama (`d4521e2`)
+- [x] 4.3 Kayıt akışı — save-component `code:out` + anında merge (rebuild beklemez)
+- [x] 4.4 Favoriler — ⭐ sekmesi + yıldız + localStorage (`079a6cc`)
+- [x] 4.5 Yeni bileşen üretim akışı — LLM kayıt yapmaz, workbench'e yazar (`762a395`)
 
-## ✅ Tamamlanan
+## ✅ Sprint 5 — Widgets / İkonlar / Özel / Sadeleştirme (tamamlandı)
+- [x] 5.1 Widgets sekmesi + SaatWidget 2082 (`8898f4f`)
+- [x] 5.2 HesapMakinesi 2081 — 3 mod (döviz: uzak API kullanıcı isteğiyle korundu) (`60ec78a`)
+- [x] 5.3 Layout temaları — Tema 3-8 silindi (aynı sistemin kopyaları), Tema 1-2 kaldı (`a1d8abf`)
+- [x] 5.4 Hafıza dosyaları — project_info.md + Roadmap/AGENTS güncelleme (`2a62555`)
+- [x] 5.5 Kaynak klasörler silindi — Masaüstü/{shadcn,heroui,mantine,Layouts,MaterialUI}
+- [x] 5.6 İkonlar sekmesi — 1756 ikon · 23 kategori · kopyala+toast (`7f056b1`+`fcbe23c`)
+- [x] 5.7 UyeListesi 2085 — yazdıkça gelen checkbox üye listesi (`d643f54`)
+- [x] 5.8 RichTextEditorPlus 2086 — Note Pro zengin metin editörü (`d527e73`)
+- [x] 5.9 Temizlik — PLAN-*.md + yedekler silindi, referanslar temizlendi (`bdcd40e`)
+- [x] 5.10 Standart proje dosyaları — Tasks.md + Mimari.md oluşturuldu; eski takip dosyaları birleştirildi
 
-### Heroui — 56 aile · 527 bileşen
-Tüm elementler saf React'e çevrildi (Form, Seçim, Overlay, Navigasyon, Veri, Yükleme, Genel…).
+---
 
-### shadcn/ui — 7 adım · ~390 bileşen
-Adım 1 Form (84) → Adım 2 Seçim (42) → Adım 3 Buton+Kart (31) → Adım 4 Overlay (52) →
-Adım 5 Navigasyon (29) → Adım 6 Akordeon/Uyarı/Takvim (63) → Adım 7 Veri/Yükleme/Genel (90).
-Üçüncü parti yerine yazılan çekirdekler: Calendar (react-day-picker), Combobox (base-ui), Command (cmdk), Resizable (react-resizable-panels).
+## ⬜ Sprint 6 — Production & Sihirbaz (bekleyen)
 
-### Mantine — TAMAMLANDI · 841 bileşen
-Adım 1 Layout (1004-1057) → Adım 2 Butonlar (1058-1113) → Adım 3 Form (1114-1210) →
-Adım 4 Seçim (1211-1298) → Adım 5 Combobox (1299-1340) → Adım 6 Overlay (1341-1385) →
-Adım 7 Navigasyon (1386-1425: Tabs/Pagination/Breadcrumbs/NavLink/Stepper/Timeline/FloatingIndicator) →
-Adım 8 Veri (1426-1502: Table/Card/Avatar/DataList/EmptyState/List/Text/Title/ThemeIcon/Pill/Image) →
-Adım 9 Geri Bildirim (1503-1586: Loader/Progress/RingProgress/Skeleton/Indicator/Alert/Code/Kbd/Highlight/Spoiler/Collapse) →
-Adım 10 Takvim (1587-1764: 16 dates element, saf Intl) → Adım 11 Özel (1765-1844: AppShell/ScrollArea/Splitter/Tree/Marquee/FloatingWindow/TableOfContents)
+### Performans (production öncesi) — öncelik sırası: Adım 4 > 3 > 2
+- [ ] 6.1 **Adım 4 — Vite chunking**: `build.rollupOptions.output.manualChunks` — `icons`/`ui`/`vendor` ayrı chunk + prod build analizi
+  - Dev: 250 modül isteği · beklenti: JS boyutu düşer, cache hit artar
+- [ ] 6.2 **Adım 3 — Kart memoization**: React.memo (props: rec/sample) + SAMPLES memoize + arama 200ms debounce
+- [ ] 6.3 **Adım 2 — samples lazy**: (a) tam lazy (1754 dosya — yüksek risk) (b) kısmi lazy (ağır bileşenler) (c) atla → Adım 4 çözer
 
-### Stüdyo arayüzü (commit'li)
-- Global header + Dashboard/Layoutlar/Bileşenler sekmeleri + breadcrumb
-- Bileşenler: üst filtreler (arama + kategori + alt kategori + kaynak + görünüm) **sabit (sticky)** + ▦Kart/☰Tablo + ✕Temizle
-- +Yeni sihirbazı (pi SDK köprüsü: `/api/pi` SSE + workbench izolasyonu + kayıt finalize)
-- cdp.js: localhost:5800 hedef önceliği + `open` komutu
+### Sihirbaz (SIHIRBAZ akışı — new-component-wizard)
+- [ ] 6.4 Kayıt onayı UX — aşama 2 "Sonra" akışı + Bekleyen rozeti görünürlüğü
+- [ ] 6.5 Kütüphane modu tam test — seçim → "Pi'ye Bağla" → birleştirme üretimi (kod yazıldı, test edilmedi)
+- [ ] 6.6 finalize id hesabı — max+1 mantığı tekrar doğrula
 
-### Layout Tema Sistemi — Tema 1-8 TAMAMLANDI (GOREV-AKISI-LAYOUT.md)
-- **Kaynak:** kullanıcının `Masaüstü/Layouts` (5174, NovaPanel React şablonu: App.jsx + styles.css)
-- **Akış:** oku → anla → `tema<N>.tsx` + `tema<N>.css` (scoped `.tema<N>-root`) → `layouts-view.tsx` kutusu → tsc/test/tarayıcı → commit
-- **Tema seti (NovaPanel tasarım dili — mavi palet, açık kenarlıklar):**
-  - Tema 1 Klasik (NovaPanel, filtreli tablo) · Tema 2 Sekmeli (footer üstü TabBar, her sekme kendi state'i)
-  - Tema 3 Dokümantasyon (sol konular + içerik + sağ TOC akordeon) · Tema 4 Chat (konuşmalar + mesaj)
-  - Tema 5 Kanban (3 kolon + kart taşı/ekle) · Tema 6 E-ticaret (kategori + ürün + sepet)
-  - Tema 7 Mail/Inbox (3 sütun + okundu/yıldız) · Tema 8 Form Sihirbazı (4 adımlı onboarding)
-- **Layoutlar sekmesi:** tema seçim kutuları (minyatür thumbnail) → tıkla → tam ekran (hash `#/layoutlar/tema<N>`) → geri (buton/tarayıcı geri/Esc)
-- **Akış:** `GOREV-AKISI-LAYOUT.md`
-- **Not:** senkron kaynaktan (styles.css) yapılınca Tema 1 kenarlık özelleştirmesi (--border #eef2f8) tekrar uygulanmalı
+### Layout temaları
+- [ ] 6.7 Yeni tema (Tema 3+) — kullanıcı 5174'te yeni tasarım üretirse → `Mimari.md §6` akışı
 
-### GitHub yayını (commit `d3e93be` + `d8731b6`)
-- Repo: `yunusozkarakasoglu/component-studio` (PUBLIC) · `gh auth` tamam
-- Kullanım: `npm install yunusozkarakasoglu/component-studio` → bileşen dosya yoluyla kopyala
-
-### Stüdyo hata düzeltmeleri (commit `7ac0b05`)
-- **Boş beyaz kutu hatası**: `MtFloatingWindow` (#1771) gibi `position:absolute` kullanan bileşenler,
-  kart kapsayıcısında `position:relative` olmadığı için viewport köşesine (top:24,left:24) kaçıyordu →
-  sol üstte boş beyaz kutu beliriyordu. Kart kapsayıcısı + preview alanına `relative` eklendi;
-  artık tüm absolute/fixed elementler (popover/tooltip/modal/floating) kart içine hapsoluyor.
-
-### Performans optimizasyonu (commit `c812a64` + `2f841ff`)
-- **Adım 1 — Sanal liste UYGULANDI**: `src/lib/useVirtualGrid.ts` (bağımlılıksız saf React hook).
-  Bileşenler sekmesindeki 1754 kartın tamamı tek seferde render edilince DOM 32.371 node'a çıkıyordu.
-  Artık yalnızca görünür alan (+ 4 satır tampon) render ediliyor:
-  **DOM 32.371 → 1.195 (%96 azalma)** · render kart 1.754 → 60 · scroll'da dinamik yükleme.
-  Hook dinamik (`itemCount=filtered.length`) → yeni bileşen eklenince otomatik çalışır.
-- **Adım 2-4 beklemede** (`PERFORMANS-OPTIMIZASYON-PLANI.md`): samples.tsx lazy loading,
-  React.memo + debounce, Vite manualChunks — production öncesi denetlenecek. Öncelik: Adım 4 > 3 > 2.
-
-### Material UI — TAMAMLANDI · 234 bileşen
-- Adım 1-9: Genel/Butonlar/Alert/Form/Seçim/Combobox/Overlay/Navigasyon/Veri/Yükleme + ek varyantlar
-- Kaynak: `Masaüstü/MaterialUI` (silindi — entegrasyon tamam) · id 1845-2078
-
-### Özel bileşenler (source: ozel)
-- CascadingSelect (2079) — koşullu İl→İlçe seçim · Miller2 (2080) — dizel motor parça Miller Columns + arama
-- HesapMakinesi (2081) — 3 modlu araç (hesap/zaman/döviz) · SaatWidget (2082) — canlı saat
-- RichTextEditor (2083) — WYSIWYG zengin metin editörü (taiga/wiki, komut tabanlı)
-- TaskFilterButton (2084) — görev filtresi popover (6 alan + VE/VEYA + applyFilters yardımcısı)
-
-### İkonlar sekmesi (commit `7f056b1` + `cf938b9` + `fcbe23c`)
-- **5. sekme "🧩 İkonlar"** — `icons-view.tsx`: arama + **23 kategori chip'i** + sanal grid (ilk 200) + tıkla kopyala
-- `lib/iconNames.ts` (1756 ad) + `lib/iconCategories.ts` (23 grup) — otomatik üretildi (camelCase + word boundary)
-- Gerçek ikon render (`import * as Icons` → dinamik erişim) — önceden sadece ad gösteriliyordu
-- Kopyalama bildirimi: yanıp sönen toast (`ikon-flash` 1.6s) + kart flash (`ikon-kart` 0.9s) — index.css keyframes
-- **Performans:** ikonlar zaten bundle'da (345+ bileşen import) → sekme sıfır ekstra yük
-
-### Widgets sekmesi (commit `8898f4f`)
-- Üst navigasyona "🧰 Widgets" eklendi · widgets-view.tsx (kategori bazlı liste + arama)
-- İlk widget: SaatWidget (2082, Widgets kategorisi)
-
-### Etiketler (tags) + Favoriler (commit `d4521e2` + `079a6cc`)
-- Tags: JSDoc @tags → registry tags · detay sayfası düzenleme + çip · tablo sütunu · arama
-- Kayıt sonrası anında merge (rebuild 91sn beklemez) — `mergeSaved` tags+code günceller
-- Favoriler: ⭐ sekmesi + detayda yıldız butonu + localStorage kalıcı
-
-### Layout temaları — Tema 3-8 SİLİNDİ (commit `a1d8abf`)
-- Kalan: Tema 1 (NovaPanel), Tema 2 (Sekmeli) — kopyalar temizlendi
-
-### Kaynak klasörler silindi
-- `Masaüstü/{shadcn,heroui,mantine,Layouts,MaterialUI}` — tümü entegre edildi, ~65MB temizlendi
+---
 
 ## 📊 Güncel Durum (son kontrol)
 
-- **1995 bileşen** · heroui 527 · shadcn 387 · **mantine 841** · **mui 234** · özel 6 · 0 çift kayıt
-- **2 layout teması** (src/layouts/ — Tema 1, Tema 2) — Tema 3-8 silindi (kopya)
-- **5 sekme:** Dashboard · Bileşenler · Layoutlar · Widgets · **İkonlar** (23 kategori, 1756 ikon)
-- **GitHub:** `yunusozkarakasoglu/component-studio` PUBLIC
-- **Performans:** Bileşenler sekmesi sanal liste (DOM %96 azaldı) · İkonlar sekmesi de sanal (ilk 200)
-- **Etiketler (tags):** detay sayfası + tablo sütunu + arama · kayıt sonrası anında merge
-- **Favoriler:** ⭐ sekmesi + yıldız (localStorage)
-- **Kaynak klasörler silindi:** Masaüstü/{shadcn,heroui,mantine,Layouts,MaterialUI} — entegrasyon tamam
-- tsc ✓ · npm test 15/15 ✓ · `tests/kapsamli-kontrol.py` → **20 OK · 2 uyarı · 0 HATA**
-- Son commit: `fcbe23c` (İkon kopyalama bildirimi) — çalışma dizini temiz
+- **1997 bileşen** · heroui 527 · shadcn 387 · **mantine 841** · **mui 234** · özel 8 · 0 çift kayıt
+- **2 layout teması** (Tema 1, Tema 2) · **5 sekme** (Dashboard/Bileşenler/Layoutlar/Widgets/İkonlar)
+- **1756 ikon · 23 kategori** · tags + favoriler çalışır durumda
+- GitHub senkron · tsc ✓ · test 15/15 ✓ · kapsamlı kontrol **20 OK · 2 uyarı · 0 HATA**
+- Son id: **2086** · Son commit: `bdcd40e`
 
-## ⬜ Bekleyen
-
-### Performans optimizasyonu (PERFORMANS-OPTIMIZASYON-PLANI.md) — production öncesi
-- **Adım 4** (öncelik) — Vite manualChunks: `icons`/`ui`/`vendor` ayrı chunk + production build analizi
-- **Adım 3** — Kart `React.memo` + arama 200ms debounce
-- **Adım 2** — samples.tsx lazy loading (3 seçenekli: tam lazy / kısmi lazy / atla — risk analizi plan dosyasında)
-
-### Layout temaları
-- Kullanıcı istediğinde yeni tema (Tema 3+) — kaynak: kullanıcının 5174 tasarımı → `GOREV-AKISI-LAYOUT.md` akışı
-  (not: Masaüstü/Layouts silindi — kullanıcı yeni tasarım üretirse kaynak yeniden oluşur)
-
-### Stüdyo (SIHIRBAZ-NOT.md)
-- Bekleyen kayıt tamamlama akışı (sol panel görünürlüğü — sol panel kaldırıldı, güncellenecek)
-- Kütüphane modu tam test (Pi'ye Bağla)
+---
 
 ## ⚠️ Önemli Tuzaklar (compact sonrası hatırlatma)
 
-1. **Envanter kırpma tuzağı**: `Bileşen Listesi .txt` güncellerken "**Toplam:**" satırını `rfind` ile BULUP öncesine ekle — `find` ile ilk eşleşme (eski toplam artığı) yanlış yeri keser. Bir kez 260 kayıt silindi (git checkout ile kurtarıldı).
-2. **Ad-dosya uyuşmazlığı**: envanterdeki bileşen adı ≠ dosya adı olursa çift kayıt üretir (617, 889, 895, 999, 1212 örnekleri). Envanter adı = dosya adı olmalı.
-3. **JSDoc id sıralaması**: çekirdek + örnek id'leri envanter/samples ile birebir aynı sırada olmalı (Adım 6'da hizalandı: çekirdekler 1341-1349, örnekler 1350+).
-4. **samples props'suz render**: render-prop çekirdekleri (MtCopyButton, MtFileButton) ve zorunlu prop'lu çekirdekler (MtModal opened) samples'ta props'suz render edildiği için propları opsiyonel yap.
-5. **HTML prop çakışması**: `size`/`title`/`onSelect` gibi proplar InputHTMLAttributes/HTMLAttributes ile çakışır → `Omit<..., "size">` gerekir.
-6. **CDP sekme kayması**: cdp.js 5800 önceliklidir ama sekme kapalıysa başka sekmeye (Drive vb.) bağlanır → `cdp open "http://localhost:5800/"` ile geri dön.
-7. **findRootInfo**: fragment kök (`<>`) bulunamaz → `display:contents` span sarmalayıcı kullan (MtCopyButton örneği).
-8. **Offline ilkesi**: uzak görsel/iframe (YouTube, Google Maps, avatar.vercel.sh) → gradient placeholder.
-9. **`.ts` içinde JSX OLMAZ**: JSX içeren dosyalar `.tsx` olmalı (builder/schema dersleri).
-10. **Tema senkronu**: `styles.css`'ten yeniden kopyalama, tema CSS'ine yapılan özelleştirmeleri (kenarlık açma, override'lar) ezer → GOREV-AKISI'ndeki yeniden uygulama listesine bak.
-11. **Tema CSS global kurallar**: `:root/*/body/[data-theme]` stüdyoyu bozar → scoped (`.tema<N>-root`) şart; `grep -E "^(body|html|:root|\*|#root)"` kontrolü YOK olmalı.
-12. **Fixed elemanlar (tema)**: `.g-header/.app__body/.g-footer` position:fixed → thumbnail'de static, tam ekranda offset (48/104px) gerekir; yoksa toggle/buton görünmez.
-13. **Vite yeni tema dosyalarında çökebilir**: `src/layouts/tema<N>.*` eklenince 5800 düşebilir → `./kutuphane-baslat.sh` ile yeniden başlat.
-14. **CDP 5174 kayması**: kullanıcının NovaPanel'i 5174'te — CDP oraya kayarsa `cdp eval "location.href='http://localhost:5800/'"`.
-15. **Programatik tıklama**: `el.click()` (native) React onClick'i tetikler; `dispatchEvent(MouseEvent)` bazen çalışmaz. `cdp click` gerçek mouse tıklamasıdır.
+1. **Envanter kırpma**: `Bileşen Listesi .txt`'te "**Toplam:**" satırını `rfind` ile bul (`find` yanlış keser — 260 kayıt gitmişti).
+2. **Ad-dosya uyuşmazlığı**: envanter adı ≠ dosya adı → çift kayıt (617/889/895/999/1212).
+3. **JSDoc id sıralaması**: çekirdek+örnek id'leri envanter/samples ile birebir aynı sırada.
+4. **samples props'suz render**: render-prop + zorunlu prop'lu çekirdekler → propları opsiyonel yap veya örnek içerik ver.
+5. **HTML prop çakışması**: `size`/`title`/`onSelect` → `Omit<..., "size">`.
+6. **CDP sekme kayması**: önce `cdp open "http://localhost:5800/"`.
+7. **findRootInfo**: fragment kök bulunamaz → `display:contents` span; erken return'ler `return;`; regex `\(`→`\x28`.
+8. **Offline ilkesi**: uzak görsel/iframe → gradient placeholder.
+9. **`.ts` içinde JSX OLMAZ**.
+10. **Tema senkronu**: styles.css'ten kopyalama özelleştirmeleri ezer → `Mimari.md §6` yeniden uygulama listesi.
+11. **Tema CSS scoped**: `:root/*/body` YASAK → `.tema<N>-root`.
+12. **Fixed elemanlar (tema)**: thumbnail static, tam ekran offset (48/104px).
+13. **Vite yeni tema dosyasında çökebilir** → yeniden başlat.
+14. **Detached HEAD**: push öncesi `git branch --show-current`.
 
-## 🔄 Akış (her element)
+---
 
-1. Kaynak oku (`docs/<kat>/<x>.mdx` + `demos/<kat>/<X>/*.tsx`)
-2. Saf React çevir (önek + kendi icons + Tailwind)
-3. Dosya oluştur + barrel + samples + envanter (tuzağa dikkat!)
-4. `cd registry && node build-registry.mjs` → tsc → npm test → kapsamlı kontrol
-5. Tarayıcı doğrula (Bileşenler → kaynak filtresi) → **commit** (her adım sonunda)
+## 🔄 Akış (her görev)
+
+1. `Tasks.md`'ye görev ekle → başla
+2. Görevi uygula (Mimari.md kuralları + AGENTS.md akışı)
+3. Doğrula: tsc → npm test → kapsamlı kontrol → CDP tarayıcı
+4. `Tasks.md` onayla → Roadmap sprint checkbox işaretle → **commit + push**

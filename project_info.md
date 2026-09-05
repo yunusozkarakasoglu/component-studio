@@ -3,7 +3,7 @@
 > **Amaç:** Bu dosya projeye ait TÜM açıklamaları tek yerde toplar — proje konusu,
 > neler yapılır, mimari (kod yapısı, tasarım), kritik noktalar ve önemli bilgiler.
 > Yeni bir oturumda (veya compact sonrası) projeyi hızlıca anlamak için bu dosya okunur.
-> Güncel durum: `Roadmap.md` · Proje kuralları: `AGENTS.md` · Kullanım kılavuzu: `README.md`
+> Güncel durum: `Roadmap.md` · Proje kuralları: `AGENTS.md` · Mimari/kodlama: `Mimari.md` · Görev takibi: `Tasks.md` · Kullanım kılavuzu: `README.md`
 
 ---
 
@@ -127,8 +127,7 @@ Yeni bileşen (TSX, JSDoc: @id @category @subcategory @source @tags)
 
 - `YENI-BILESEN-SIHIRBAZI-TALIMATI.md` — **sihirbaz içinde çalışan LLM'in kuralları** (OKU ÖNCE!):
   sadece `src/workbench/current/index.tsx`'e yaz, **KAYIT YAPMA** (barrel/samples/envanter/registry/commit YASAK)
-- `LLM-KULLANIM-TALIMATI.md` — kullanıcı "bileşen üret" dediğinde izlenecek akış
-- `SIHIRBAZ-NOT.md` — sihirbaz notları
+- Sihirbaz LLM entegrasyonu / üretim akışı detayları → `Mimari.md` §5 (sihirbaz) + §3.3
 - Workbench: `src/workbench/current/index.tsx` (sihirbaz üretimi; kayıt kullanıcının "Kaydet" butonuyla)
 - Sihirbaz UI: `#/yeni-bilesen` route + `wb-pending` localStorage
 

@@ -124,7 +124,7 @@ return (
 | **Tema 1 — Klasik** | Header + açılır/kapanır panel + filtreli veri tablosu |
 | **Tema 2 — Sekmeli** | Footer üstü sekmeler — her sekme **kendi state'ine** sahip |
 
-*(Tema 3-8 aynı sistemin kopyalarıydı — silindi; yeni tema istenirse 5174 tasarımıyla eklenir,* `GOREV-AKISI-LAYOUT.md`*)*
+*(Tema 3-8 aynı sistemin kopyalarıydı — silindi; yeni tema istenirse 5174 tasarımıyla eklenir — akış: `Mimari.md` §6)*
 
 ---
 

@@ -5,6 +5,19 @@ Bu klasör, **offline React bileşen kütüphanesi**dir (**saf React** — üç�
 pi burada çalışırken aşağıdakileri her zaman bilir. Kullanıcı "element ekle", "bileşen
 düzenle", "kütüphaneyi başlat" gibi şeyler söylediğinde kurallara göre davran.
 
+## 🧠 Hafıza Dosyaları (öncelik sırası)
+
+| Dosya | Rol |
+|---|---|
+| `project_info.md` | Proje tanımı, özellikler, mimari özeti, kritik bilgiler — **tek başvuru** |
+| `Mimari.md` | **Yazılım mimarisi + kodlama kuralları** — bileşen kuralları, veri akışı, API'ler, ikon sistemi, tema akışı, tuzaklar |
+| `Roadmap.md` | Global ilerleme — sprint + alt görev checkbox |
+| `Tasks.md` | Görev takibi — geçmiş + sıradaki (tarih etiketli) |
+| `README.md` | Kullanım kılavuzu (kullanıcıya dönük) |
+| `YENI-BILESEN-SIHIRBAZI-TALIMATI.md` | Sihirbaz LLM talimatı (vite.config system prompt okur — **SİLME**)
+
+> **Görev başlarken:** `Tasks.md`'ye görev ekle → bitince checkbox onayla → `Roadmap.md` sprint işaretle → commit.
+
 ## 🚀 Temel Komutlar
 
 ```bash
@@ -87,12 +100,12 @@ Kullanıcı dosya yolu / numara verince:
 - A11y attributeleri (aria-expanded/controls/current, role) zorunlu.
 - JSDoc'ta üçüncü parti adı yok ("HeroUI örneği" gibi ibareler kaldırıldı).
 
-Detaylı kılavuz: `component-kutuphane.md` (kullanıcı isterse "oku" der).
+Detaylı kurallar: `Mimari.md` (§3 bileşen kuralları · §4 veri akışı · §7 ikon sistemi).
 
 ## 🎨 Layout Tema Entegrasyonu (görev akışı)
 Kullanıcı 5174'te sayfa tasarımları üretir; ben bunları yeni layout tema olarak sisteme eklerim.
 (**Not:** `Masaüstü/Layouts` kaynak klasörü silindi — kullanıcı yeni tasarım üretirse kaynak yeniden oluşur.)
-**Tam akış: `GOREV-AKISI-LAYOUT.md` — önce oku, sonra uygula.** Özet:
+**Tam akış: `Mimari.md` §6 — önce oku, sonra uygula.** Özet:
 1. Oku: `App.jsx` (state/davranış) + `styles.css` (tasarım) + varsa HTML
 2. Anla: bölümler, state'ler, ikonlar (kendi setimizle eşle), CSS değişkenleri
 3. Ekle: `src/layouts/tema<N>.tsx` (TSX, kendi ikonlar, kök `tema<N>-root`+`data-theme`) + `tema<N>.css` (**scoped**: `:root`/`*`/`body`/`[data-theme]` → `.tema<N>-root`)
