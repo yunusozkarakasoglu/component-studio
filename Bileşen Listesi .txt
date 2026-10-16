@@ -1429,6 +1429,10 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 - `2086` RichTextEditorPlus
 #### RadialMenu
 - `2087` RadialMenu
+#### GanttChart
+- `2088` GanttChart
+#### ProjeAgaci
+- `2089` ProjeAgaci
 #### TaskFilterButton
 - `2084` TaskFilterButton
 #### UyeListesi
@@ -2482,7 +2486,7 @@ Stüdyonun sol panelinde aşağıdaki TÜM kategoriler görünür — boş olanl
 #### SaatWidget
 - `2082` SaatWidget
 
-**Toplam: 1998 bileşen (saf React)**
+**Toplam: 2000 bileşen (saf React)**
 
 Her bileşen:
 - Tek dosya, named export, interface dosya başında.

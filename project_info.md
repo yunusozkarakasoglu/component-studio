@@ -51,6 +51,8 @@
 - **UyeListesi (2085)** — yazdıkça gelen checkbox'lı üye listesi (arama + avatar)
 - **RichTextEditorPlus (2086)** — Note Pro zengin metin editörü (kontrol listesi + resim boyutlandırma)
 - **RadialMenu (2087)** — Plasticity tarzı radyal bağlam menüsü (sağ tık/Space, sürükle-bırak, nested menü)
+- **GanttChart (2088)** — görev planlama aracı (görev/alt görev listesi + takvim aralığı + sürüklenebilir Gantt çubukları)
+- **ProjeAgaci (2089)** — ağaç biçiminde proje planlama (Roadmap→Sprint→Madde→Görev, seviyeli ekleme, roadmap listeleri)
 
 ### Ek sistemler
 - **Etiketler (tags):** JSDoc `@tags` → registry `tags: string[]` · detay sayfası düzenleme (çipler) · tablo sütunu · aramada dahil
@@ -241,11 +243,11 @@ cdp open "http://localhost:5800/"        # tarayıcı doğrulama
 
 ## 6. 📌 Durum Özeti (son kontrol)
 
-- **1998 bileşen** · heroui 527 · shadcn 387 · mantine 841 · mui 234 · özel 9
+- **2000 bileşen** · heroui 527 · shadcn 387 · mantine 841 · mui 234 · özel 11
 - **5 sekme** (Dashboard/Bileşenler/Layoutlar/Widgets/İkonlar) · **2 layout teması** (Tema 1-2)
 - **1756 ikon · 23 kategori** · tags + favoriler sistemleri çalışır durumda
 - tsc ✓ · test 15/15 ✓ · kapsamlı kontrol 20 OK · GitHub senkron
-- Son id: **2087** · Son commit: `3ad509e`
+- Son id: **2089** · Son commit: `3ad509e`
 
 ---
 

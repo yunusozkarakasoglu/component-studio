@@ -2115,4 +2115,6 @@ export const SAMPLES: Record<string, ReactNode> = {
       ]}
     />
   ),
+  "2088": <U.GanttChart />,
+  "2089": <U.ProjeAgaci />,
 }

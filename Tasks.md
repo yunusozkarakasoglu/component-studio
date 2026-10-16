@@ -49,6 +49,8 @@
 
 ## 📋 Sıradaki Görevler (bekleyen)
 
+- [x] **2025-10 · 5.12** GanttChart (2088) — görev planlama aracı (görev/alt görev + takvim aralığı + Gantt çubukları: sürükle taşı/boyutlandır)
+- [x] **2025-10 · 5.13** ProjeAgaci (2089) — Roadmap > Sprint > Madde > Görev hiyerarşisi (ağaç, satır içi düzenleme, seviyeli ekleme)
 - [x] **2025-10 · 6.0** RadialMenu (2087) — Plasticity tarzı radyal bağlam menüsü (Masaüstü/Radial-Menuklasoru → saf React + TSX + kendi ikon setimiz)
 - [ ] **Perf-1 > Performans Adım 4** — Vite manualChunks (icons/ui/vendor ayrı chunk + prod build analizi) — production öncesi
 - [ ] **Perf-2 > Performans Adım 3** — Kart React.memo + arama 200ms debounce

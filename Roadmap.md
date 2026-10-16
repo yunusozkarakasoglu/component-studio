@@ -57,6 +57,8 @@ Design system (tokens/tema) · State & Data
 - [x] 5.9 Temizlik — PLAN-*.md + yedekler silindi, referanslar temizlendi (`bdcd40e`)
 - [x] 5.10 Standart proje dosyaları — Tasks.md + Mimari.md oluşturuldu; eski takip dosyaları birleştirildi
 - [x] 5.11 RadialMenu 2087 — Plasticity tarzı radyal bağlam menüsü (sağ tık/Space, nested, halka dizilim)
+- [x] 5.12 GanttChart 2088 — görev planlama (görev/alt görev + takvim aralığı + sürüklenebilir Gantt çubukları)
+- [x] 5.13 ProjeAgaci 2089 — Roadmap→Sprint→Madde→Görev hiyerarşisi (ağaç, seviyeli ekleme, modal)
 
 ---
 
@@ -80,11 +82,11 @@ Design system (tokens/tema) · State & Data
 
 ## 📊 Güncel Durum (son kontrol)
 
-- **1998 bileşen** · heroui 527 · shadcn 387 · **mantine 841** · **mui 234** · özel 9 · 0 çift kayıt
+- **2000 bileşen** · heroui 527 · shadcn 387 · **mantine 841** · **mui 234** · özel 11 · 0 çift kayıt
 - **2 layout teması** (Tema 1, Tema 2) · **5 sekme** (Dashboard/Bileşenler/Layoutlar/Widgets/İkonlar)
 - **1756 ikon · 23 kategori** · tags + favoriler çalışır durumda
 - GitHub senkron · tsc ✓ · test 15/15 ✓ · kapsamlı kontrol **20 OK · 2 uyarı · 0 HATA**
-- Son id: **2087** · Son commit: `0045443`
+- Son id: **2089** · Son commit: `a8a6969`
 
 ---
 
