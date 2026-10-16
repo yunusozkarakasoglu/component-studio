@@ -56,6 +56,7 @@ Design system (tokens/tema) · State & Data
 - [x] 5.8 RichTextEditorPlus 2086 — Note Pro zengin metin editörü (`d527e73`)
 - [x] 5.9 Temizlik — PLAN-*.md + yedekler silindi, referanslar temizlendi (`bdcd40e`)
 - [x] 5.10 Standart proje dosyaları — Tasks.md + Mimari.md oluşturuldu; eski takip dosyaları birleştirildi
+- [x] 5.11 RadialMenu 2087 — Plasticity tarzı radyal bağlam menüsü (sağ tık/Space, nested, halka dizilim)
 
 ---
 
@@ -79,11 +80,11 @@ Design system (tokens/tema) · State & Data
 
 ## 📊 Güncel Durum (son kontrol)
 
-- **1997 bileşen** · heroui 527 · shadcn 387 · **mantine 841** · **mui 234** · özel 8 · 0 çift kayıt
+- **1998 bileşen** · heroui 527 · shadcn 387 · **mantine 841** · **mui 234** · özel 9 · 0 çift kayıt
 - **2 layout teması** (Tema 1, Tema 2) · **5 sekme** (Dashboard/Bileşenler/Layoutlar/Widgets/İkonlar)
 - **1756 ikon · 23 kategori** · tags + favoriler çalışır durumda
 - GitHub senkron · tsc ✓ · test 15/15 ✓ · kapsamlı kontrol **20 OK · 2 uyarı · 0 HATA**
-- Son id: **2086** · Son commit: `bdcd40e`
+- Son id: **2087** · Son commit: `0045443`
 
 ---
 

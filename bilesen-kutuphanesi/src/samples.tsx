@@ -2090,4 +2090,29 @@ export const SAMPLES: Record<string, ReactNode> = {
       />
     </div>
   ),
+  "2087": (
+    <U.RadialMenu
+      menus={[
+        {
+          name: "Selection Mode",
+          command: "demo:selection",
+          items: [
+            { command: "selection:mode:set:solid", label: "Solid", icon: "solid", description: "Solid nesneleri seçer" },
+            { command: "selection:mode:set:surface", label: "Surface", icon: "surface", description: "Yüzeyleri seçer" },
+            { command: "selection:mode:set:curve", label: "Curve", icon: "curve", description: "Eğrileri seçer" },
+            { command: "view:radial:demo:primitives", label: "Primitives", description: "Alt menüyü açar (nested)" },
+          ],
+        },
+        {
+          name: "Primitives",
+          command: "demo:primitives",
+          items: [
+            { command: "command:center-box", label: "Center Box", icon: "box", description: "Kutu oluşturur" },
+            { command: "command:cylinder", label: "Cylinder", icon: "cylinder", description: "Silindir oluşturur" },
+            { command: "command:sphere", label: "Sphere", icon: "sphere", description: "Küre oluşturur" },
+          ],
+        },
+      ]}
+    />
+  ),
 }

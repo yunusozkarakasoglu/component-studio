@@ -49,6 +49,7 @@
 
 ## 📋 Sıradaki Görevler (bekleyen)
 
+- [x] **2025-10 · 6.0** RadialMenu (2087) — Plasticity tarzı radyal bağlam menüsü (Masaüstü/Radial-Menuklasoru → saf React + TSX + kendi ikon setimiz)
 - [ ] **Perf-1 > Performans Adım 4** — Vite manualChunks (icons/ui/vendor ayrı chunk + prod build analizi) — production öncesi
 - [ ] **Perf-2 > Performans Adım 3** — Kart React.memo + arama 200ms debounce
 - [ ] **Perf-3 > Performans Adım 2** — samples.tsx lazy loading (3 seçenekli — tam/kısmi/atla)

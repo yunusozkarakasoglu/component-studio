@@ -48,6 +48,9 @@
 - **SaatWidget (2082)** — canlı saat + tarih (Widgets kategorisi)
 - **RichTextEditor (2083)** — WYSIWYG zengin metin editörü (komut tabanlı, taiga/wiki)
 - **TaskFilterButton (2084)** — görev filtresi popover (6 alan + VE/VEYA + `applyFilters` yardımcısı)
+- **UyeListesi (2085)** — yazdıkça gelen checkbox'lı üye listesi (arama + avatar)
+- **RichTextEditorPlus (2086)** — Note Pro zengin metin editörü (kontrol listesi + resim boyutlandırma)
+- **RadialMenu (2087)** — Plasticity tarzı radyal bağlam menüsü (sağ tık/Space, sürükle-bırak, nested menü)
 
 ### Ek sistemler
 - **Etiketler (tags):** JSDoc `@tags` → registry `tags: string[]` · detay sayfası düzenleme (çipler) · tablo sütunu · aramada dahil
@@ -238,11 +241,11 @@ cdp open "http://localhost:5800/"        # tarayıcı doğrulama
 
 ## 6. 📌 Durum Özeti (son kontrol)
 
-- **1995 bileşen** · heroui 527 · shadcn 387 · mantine 841 · mui 234 · özel 6
+- **1998 bileşen** · heroui 527 · shadcn 387 · mantine 841 · mui 234 · özel 9
 - **5 sekme** (Dashboard/Bileşenler/Layoutlar/Widgets/İkonlar) · **2 layout teması** (Tema 1-2)
 - **1756 ikon · 23 kategori** · tags + favoriler sistemleri çalışır durumda
 - tsc ✓ · test 15/15 ✓ · kapsamlı kontrol 20 OK · GitHub senkron
-- Son id: **2084** · Son commit: `3ad509e`
+- Son id: **2087** · Son commit: `3ad509e`
 
 ---
 
